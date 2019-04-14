@@ -1,0 +1,106 @@
+<svg id="astronaut-helmet-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 49.031841 46.142315" height="49.218" width="52.301" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs id="defs85">
+		<linearGradient id="linearGradient3990">
+			<stop id="stop3992" style="stop-color:#ffffff" offset="0"/>
+			<stop id="stop3994" style="stop-color:#ffffff;stop-opacity:0" offset="1"/>
+		</linearGradient>
+		<linearGradient id="linearGradient3980">
+			<stop id="stop3982" style="stop-color:#ffc800" offset="0"/>
+			<stop id="stop3984" style="stop-color:#c57101" offset="1"/>
+		</linearGradient>
+		<filter id="filter3792" height="2.0279" width="1.1669" y="-.51397" x="-.083454">
+			<feGaussianBlur id="feGaussianBlur3794" stdDeviation="19.681091"/>
+		</filter>
+		<filter id="filter3976" height="1.3545" width="1.3338" y="-.17727" x="-.16692">
+			<feGaussianBlur id="feGaussianBlur3978" stdDeviation="1.2865167"/>
+		</filter>
+		<filter id="filter4174" height="1.3102" width="1.2921" y="-.15511" x="-.14606">
+			<feGaussianBlur id="feGaussianBlur4176" stdDeviation="1.1257021"/>
+		</filter>
+		<filter id="filter5723">
+			<feGaussianBlur id="feGaussianBlur5725" stdDeviation="7.8527728"/>
+		</filter>
+		<radialGradient id="radialGradient6035" gradientUnits="userSpaceOnUse" cy="515.22" cx="390" gradientTransform="matrix(1 0 0 .135 0 445.66)" r="285.71">
+			<stop id="stop3808" style="stop-color:#570000" offset="0"/>
+			<stop id="stop3810" style="stop-color:#ce0000" offset="1"/>
+		</radialGradient>
+		<linearGradient id="linearGradient6037" y2="577.07" gradientUnits="userSpaceOnUse" x2="376.15" y1="481.62" x1="371.54">
+			<stop id="stop3800" style="stop-color:#570000" offset="0"/>
+			<stop id="stop3802" style="stop-color:#ff0000" offset="1"/>
+		</linearGradient>
+		<linearGradient id="linearGradient6039" y2="666.74" xlink:href="#linearGradient3980" gradientUnits="userSpaceOnUse" x2="165.94" y1="649.41" x1="166.92"/>
+		<linearGradient id="linearGradient6041" y2="671.96" xlink:href="#linearGradient3990" gradientUnits="userSpaceOnUse" x2="172.06" y1="652.83" x1="157.43"/>
+	</defs>
+	<g id="layer1" transform="translate(-434.49 -150.54)">
+		<g id="layer1-5" transform="matrix(.078930 0 0 .078930 430.69 142.16)">
+			<g id="g5977" transform="translate(-4.2857,-108.57)">
+				<g id="g5525" transform="translate(-67.143,-285.71)">
+					<ellipse id="path5148" style="color-rendering:auto;color:#000000;isolation:auto;mix-blend-mode:normal;shape-rendering:auto;solid-color:#000000;image-rendering:auto;fill:#ffe686" rx="182.55" ry="53.743" transform="rotate(-9.0699)" cy="643.72" cx="302.63"/>
+					<ellipse id="path3310" style="fill:url(#radialGradient6035)" rx="285.71" transform="matrix(.99016 -.15255 .22032 1.6971 -89.104 -190.79)" ry="38.571" cy="515.22" cx="390"/>
+					<ellipse id="path3824" style="opacity:.74227;fill:#570000" rx="285.71" transform="matrix(.99016 -.14978 .22032 1.6662 -89.104 -170.56)" ry="38.571" cy="515.22" cx="390"/>
+					<ellipse id="path3306" style="fill:url(#linearGradient6037)" rx="285.71" transform="matrix(.99004 -.14082 .22166 1.5584 -87.744 -115.49)" ry="38.571" cy="515.22" cx="390"/>
+					<ellipse id="path3674" style="stroke:#000000;stroke-width:5.2894;fill:#b3b3b3" rx="285.71" transform="matrix(.47269 -.067233 .10583 .74405 179.06 292.82)" ry="38.571" cy="515.22" cx="390"/>
+					<ellipse id="path3308" style="stroke:#000000;stroke-width:5.2894;fill:#ffffff" rx="285.71" transform="matrix(.38872 -.055289 .087028 .61187 224.35 360.68)" ry="38.571" cy="515.22" cx="390"/>
+					<ellipse id="path3472" style="filter:url(#filter3792);fill:#ffffff" rx="285.71" transform="matrix(.38872 -.055289 .087028 .61187 223.21 359.25)" ry="38.571" cy="515.22" cx="390"/>
+					<ellipse id="path3796" style="filter:url(#filter3792);fill:#ffffff" rx="285.71" transform="matrix(.38872 -.055289 .087028 .61187 221.78 359.82)" ry="38.571" cy="515.22" cx="390"/>
+					<g id="g4178">
+						<ellipse id="path3834" style="filter:url(#filter3976);fill:#000000" rx="9.2857" transform="matrix(.99466 -.10324 .055924 .53877 188.37 247.49)" ry="8.5714" cy="658.08" cx="166.43"/>
+						<ellipse id="path3832" style="fill:url(#linearGradient6039)" rx="9.2857" transform="matrix(.99466 -.10324 .055924 .53877 188.37 248.21)" ry="8.5714" cy="658.08" cx="166.43"/>
+						<ellipse id="path3988" style="filter:url(#filter4174);fill:url(#linearGradient6041)" rx="9.2857" transform="matrix(.99466 -.10324 .055924 .53877 188.37 248.21)" ry="8.5714" cy="658.08" cx="166.43"/>
+					</g>
+					<g id="g4183" transform="matrix(.78886 0 0 .78886 178.4 116.49)">
+						<ellipse id="path4185" style="filter:url(#filter3976);fill:#000000" rx="9.2857" transform="matrix(.99466 -.10324 .055924 .53877 188.37 247.49)" ry="8.5714" cy="658.08" cx="166.43"/>
+						<ellipse id="path4187" style="fill:url(#linearGradient6039)" rx="9.2857" transform="matrix(.99466 -.10324 .055924 .53877 188.37 248.21)" ry="8.5714" cy="658.08" cx="166.43"/>
+						<ellipse id="path4189" style="filter:url(#filter4174);fill:url(#linearGradient6041)" rx="9.2857" transform="matrix(.99466 -.10324 .055924 .53877 188.37 248.21)" ry="8.5714" cy="658.08" cx="166.43"/>
+					</g>
+					<g id="g4195" transform="matrix(.72969 0 0 .72969 283.11 154.82)">
+						<ellipse id="path4197" style="filter:url(#filter3976);fill:#000000" rx="9.2857" transform="matrix(.99466 -.10324 .055924 .53877 188.37 247.49)" ry="8.5714" cy="658.08" cx="166.43"/>
+						<ellipse id="path4199" style="fill:url(#linearGradient6039)" rx="9.2857" transform="matrix(.99466 -.10324 .055924 .53877 188.37 248.21)" ry="8.5714" cy="658.08" cx="166.43"/>
+						<ellipse id="path4201" style="filter:url(#filter4174);fill:url(#linearGradient6041)" rx="9.2857" transform="matrix(.99466 -.10324 .055924 .53877 188.37 248.21)" ry="8.5714" cy="658.08" cx="166.43"/>
+					</g>
+					<g id="g4207" transform="matrix(.65246 0 0 .65246 372.57 219.62)">
+						<ellipse id="path4209" style="filter:url(#filter3976);fill:#000000" rx="9.2857" transform="matrix(.99466 -.10324 .055924 .53877 188.37 247.49)" ry="8.5714" cy="658.08" cx="166.43"/>
+						<ellipse id="path4211" style="fill:url(#linearGradient6039)" rx="9.2857" transform="matrix(.99466 -.10324 .055924 .53877 188.37 248.21)" ry="8.5714" cy="658.08" cx="166.43"/>
+						<ellipse id="path4213" style="filter:url(#filter4174);fill:url(#linearGradient6041)" rx="9.2857" transform="matrix(.99466 -.10324 .055924 .53877 188.37 248.21)" ry="8.5714" cy="658.08" cx="166.43"/>
+					</g>
+					<g id="g4219" transform="matrix(.50734 0 0 .50734 407.93 341.82)">
+						<ellipse id="path4221" style="filter:url(#filter3976);fill:#000000" rx="9.2857" transform="matrix(.99466 -.10324 .055924 .53877 188.37 247.49)" ry="8.5714" cy="658.08" cx="166.43"/>
+						<ellipse id="path4223" style="fill:url(#linearGradient6039)" rx="9.2857" transform="matrix(.99466 -.10324 .055924 .53877 188.37 248.21)" ry="8.5714" cy="658.08" cx="166.43"/>
+						<ellipse id="path4225" style="filter:url(#filter4174);fill:url(#linearGradient6041)" rx="9.2857" transform="matrix(.99466 -.10324 .055924 .53877 188.37 248.21)" ry="8.5714" cy="658.08" cx="166.43"/>
+					</g>
+					<g id="g4231" transform="matrix(.53662 0 0 .53662 316.77 348.83)">
+						<ellipse id="path4233" style="filter:url(#filter3976);fill:#000000" rx="9.2857" transform="matrix(.99466 -.10324 .055924 .53877 188.37 247.49)" ry="8.5714" cy="658.08" cx="166.43"/>
+						<ellipse id="path4235" style="fill:url(#linearGradient6039)" rx="9.2857" transform="matrix(.99466 -.10324 .055924 .53877 188.37 248.21)" ry="8.5714" cy="658.08" cx="166.43"/>
+						<ellipse id="path4237" style="filter:url(#filter4174);fill:url(#linearGradient6041)" rx="9.2857" transform="matrix(.99466 -.10324 .055924 .53877 188.37 248.21)" ry="8.5714" cy="658.08" cx="166.43"/>
+					</g>
+					<g id="g4243" transform="matrix(.498 0 0 .498 77.496 403.23)">
+						<ellipse id="path4245" style="filter:url(#filter3976);fill:#000000" rx="9.2857" transform="matrix(.99466 -.10324 .055924 .53877 188.37 247.49)" ry="8.5714" cy="658.08" cx="166.43"/>
+						<ellipse id="path4247" style="fill:url(#linearGradient6039)" rx="9.2857" transform="matrix(.99466 -.10324 .055924 .53877 188.37 248.21)" ry="8.5714" cy="658.08" cx="166.43"/>
+						<ellipse id="path4249" style="filter:url(#filter4174);fill:url(#linearGradient6041)" rx="9.2857" transform="matrix(.99466 -.10324 .055924 .53877 188.37 248.21)" ry="8.5714" cy="658.08" cx="166.43"/>
+					</g>
+					<g id="g4255" transform="matrix(.6481 0 0 .6481 -53.761 306.15)">
+						<ellipse id="path4257" style="filter:url(#filter3976);fill:#000000" rx="9.2857" transform="matrix(.99466 -.10324 .055924 .53877 188.37 247.49)" ry="8.5714" cy="658.08" cx="166.43"/>
+						<ellipse id="path4259" style="fill:url(#linearGradient6039)" rx="9.2857" transform="matrix(.99466 -.10324 .055924 .53877 188.37 248.21)" ry="8.5714" cy="658.08" cx="166.43"/>
+						<ellipse id="path4261" style="filter:url(#filter4174);fill:url(#linearGradient6041)" rx="9.2857" transform="matrix(.99466 -.10324 .055924 .53877 188.37 248.21)" ry="8.5714" cy="658.08" cx="166.43"/>
+					</g>
+					<g id="g4267" transform="matrix(.96138 0 0 .96138 -193.27 84.402)">
+						<ellipse id="path4269" style="filter:url(#filter3976);fill:#000000" rx="9.2857" transform="matrix(.99466 -.10324 .055924 .53877 188.37 247.49)" ry="8.5714" cy="658.08" cx="166.43"/>
+						<ellipse id="path4271" style="fill:url(#linearGradient6039)" rx="9.2857" transform="matrix(.99466 -.10324 .055924 .53877 188.37 248.21)" ry="8.5714" cy="658.08" cx="166.43"/>
+						<ellipse id="path4273" style="filter:url(#filter4174);fill:url(#linearGradient6041)" rx="9.2857" transform="matrix(.99466 -.10324 .055924 .53877 188.37 248.21)" ry="8.5714" cy="658.08" cx="166.43"/>
+					</g>
+					<g id="g4279" transform="matrix(.80692 0 0 .80692 -34.348 134.01)">
+						<ellipse id="path4281" style="filter:url(#filter3976);fill:#000000" rx="9.2857" transform="matrix(.99466 -.10324 .055924 .53877 188.37 247.49)" ry="8.5714" cy="658.08" cx="166.43"/>
+						<ellipse id="path4283" style="fill:url(#linearGradient6039)" rx="9.2857" transform="matrix(.99466 -.10324 .055924 .53877 188.37 248.21)" ry="8.5714" cy="658.08" cx="166.43"/>
+						<ellipse id="path4285" style="filter:url(#filter4174);fill:url(#linearGradient6041)" rx="9.2857" transform="matrix(.99466 -.10324 .055924 .53877 188.37 248.21)" ry="8.5714" cy="658.08" cx="166.43"/>
+					</g>
+					<g id="g5513" transform="matrix(.30492 0 0 .30492 297.15 513.24)">
+						<ellipse id="path5515" style="filter:url(#filter3976);fill:#000000" rx="9.2857" transform="matrix(.99466 -.10324 .055924 .53877 188.37 247.49)" ry="8.5714" cy="658.08" cx="166.43"/>
+						<ellipse id="path5517" style="fill:url(#linearGradient6039)" rx="9.2857" transform="matrix(.99466 -.10324 .055924 .53877 188.37 248.21)" ry="8.5714" cy="658.08" cx="166.43"/>
+						<ellipse id="path5519" style="filter:url(#filter4174);fill:url(#linearGradient6041)" rx="9.2857" transform="matrix(.99466 -.10324 .055924 .53877 188.37 248.21)" ry="8.5714" cy="658.08" cx="166.43"/>
+					</g>
+				</g>
+				<path id="path5629" style="opacity:.51203;fill-rule:evenodd;filter:url(#filter5723);stroke:#000000;stroke-width:1px;fill:#ffffff" d="m462.86 346.65 177.52 401.99-438.39 10.117 42.291-380.68c63.78-35.8 139.54-48.97 218.57-31.43z"/>
+			</g>
+		</g>
+	</g>
+</svg>
