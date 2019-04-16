@@ -1,5 +1,6 @@
-body, html {height: 100%}
-body {font-family: "Khand", sans-serif }
+body, html {height: 100%; }
+body {font-family: "Khand", sans-serif; }
+h1,h2,h3,h4,h5,h6 { margin: 0; }
 h1,h3,h5 {font-family: "Raleway", sans-serif; }
 h2,h4,h6 {font-family: "Khand", sans-serif; font-weight: bold; }
 h1,.h1 { font-size: 1.7em; }
@@ -9,7 +10,7 @@ h4,.h4 { font-size: 1.0em; }
 h5,.h5 { font-size: 1.0em; }
 h6,.h6 { font-size: 0.7em; }
 body { font-size: 1.2em; }
-.menu {display: none}
+.menu {display: none; }
 .bgimg {
     background-repeat: no-repeat;
     background-size: cover;
