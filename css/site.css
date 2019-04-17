@@ -19,7 +19,6 @@ body { font-size: 1.2em; }
 
 .grow-5, .grow-10, .grow-20, .grow-30, .grow-40, .grow-50 > svg {
 	-webkit-transition: 0.2s ease-in-out; -moz-transition: 0.2s ease-in-out; -o-transition: 0.2s ease-in-out; -ms-transition: 0.2s ease-in-out; transition: 0.2s ease-in-out; 
-	margin: 5px;
 	display: inline-block;
 }
 .grow-5:hover { -webkit-transform: scale(1.05); -moz-transform: scale(1.05); -o-transform: scale(1.05); -ms-transform: scale(1.05); transform: scale(1.05); }
@@ -138,6 +137,9 @@ textarea {
 	right: 0; 
 	float: right; 
 	text-align: right;
+}
+.w3-bar .site-bar-item {
+	padding: 8px 8px;
 }
 .site-slideshow-div1 {
 	max-width: 500px; 
