@@ -181,3 +181,73 @@ em {
 	font-weight: bold;
 	font-style: normal;
 }
+.site-cmd-complet { 
+	font-size: 1.1em; 
+	font-family: "Courier New", Courier, monospace; 
+	font-weight: normal; 
+	background-color: black; 
+	border: 2px white solid; 
+	padding: 5px; 
+	display: block;
+	font-size: 0.7em;
+	color: white;
+}
+
+.recapituler2Table i {
+	color:#08232E;
+}
+.recapituler2Table {
+	border-collapse:collapse;border-spacing:0;width:100%;display:table;
+	color:#fff;
+}
+.recapituler2TableTr td {
+	text-align:center;
+}
+.recapituler2TableTr td.odd {
+	background-color:#2E6E87;
+}
+.recapituler2TableTr td.even {
+	background-color:#BEDCE9;color:#142E39;
+}
+.recapituler2TableTr td {
+	text-align:center;
+}
+.recapituler2TableTr1Td1 {
+	font-size:64px;font-family: "Anton", sans-serif;width:20%;
+}
+.recapituler2TableTr2Td1 {
+	font-size:32px;color:#08232E;font-weight: bold;
+}
+.recapituler2TableTr1Td2 {
+	font-size:70px;
+}
+.recapituler2TableTr2Td2 {
+	font-size:32px;font-family:Anton;padding:0px 8px;
+}
+.recapituler2TableTr1Td3 {
+	font-size:70px;
+}
+.recapituler2TableTr2Td3 {
+	font-size:32px;font-family:Anton;padding:0px 8px;
+}
+.recapituler2TableTr1Td4 {
+	font-size:64px;color:#08232E;font-weight: bold;width:20%;
+}
+.recapituler2TableTr2Td4 {
+	font-size:20px;font-family: "Anton", sans-serif;
+}
+
+.recapituler3Table {
+	border-collapse:collapse;border-spacing:0;width:100%;display:table;
+}
+.recapituler3Table i {
+	color:#08232E;
+	font-size:32px;
+	margin: 8px;
+}
+.recapituler3TableTr.odd td {
+	color:#fff;background-color:#54A5C4;
+}
+.recapituler3TableTr.even td {
+	color:#fff;background-color:#2E6E87;
+}
