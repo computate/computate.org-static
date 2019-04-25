@@ -219,10 +219,10 @@ em {
 	}
 }
 .recapituler2TableTr1Td1 {
-	font-size:64px;font-family: "Anton", sans-serif;width:20%;
+	color:#BEDCE9;font-size:64px;font-family: "Anton", sans-serif;width:20%;
 }
 .recapituler2TableTr2Td1 {
-	font-size:32px;color:#08232E;font-weight: bold;
+	font-size:32px;color:#fff;font-weight: bold;
 }
 .recapituler2TableTr1Td2 {
 	font-size:70px;
@@ -252,8 +252,8 @@ em {
 	margin: 8px;
 }
 .recapituler3TableTr.odd td {
-	color:#fff;background-color:#54A5C4;
+	color:#fff;background-color:#54A5C4;font-weight:bold;
 }
 .recapituler3TableTr.even td {
-	color:#fff;background-color:#2E6E87;
+	color:#fff;background-color:#2E6E87;font-weight:bold;
 }
