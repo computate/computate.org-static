@@ -212,6 +212,11 @@ em {
 .recapituler2TableTr td {
 	text-align:center;
 }
+@media (max-width:600px){
+	.recapituler2TableTr td {
+		display:block;width:100%!important;
+	}
+}
 .recapituler2TableTr1Td1 {
 	font-size:64px;font-family: "Anton", sans-serif;width:20%;
 }
