@@ -252,8 +252,8 @@ em {
 	margin: 8px;
 }
 .recapituler3TableTr.odd td {
-	color:#fff;background-color:#54A5C4;font-weight:bold;
+	color:#fff;background-color:#54A5C4;font-weight:bold;font-size:30px;
 }
 .recapituler3TableTr.even td {
-	color:#fff;background-color:#2E6E87;font-weight:bold;
+	color:#fff;background-color:#2E6E87;font-weight:bold;font-size:30px;
 }
