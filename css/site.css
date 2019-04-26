@@ -181,7 +181,7 @@ em {
 	font-weight: bold;
 	font-style: normal;
 }
-.site-cmd-complet { 
+pre, .site-cmd-complet { 
 	font-size: 1.1em; 
 	font-family: "Courier New", Courier, monospace; 
 	font-weight: normal; 
@@ -191,6 +191,7 @@ em {
 	display: block;
 	font-size: 0.7em;
 	color: white;
+	white-space: pre-wrap;
 }
 
 .recapituler2Table i {
