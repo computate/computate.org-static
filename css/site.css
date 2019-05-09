@@ -9,6 +9,7 @@ h3,.h3 { font-size: 1.3em; }
 h4,.h4 { font-size: 1.3em; }
 h5,.h5 { font-size: 1.0em; }
 h6,.h6 { font-size: 1.0em; }
+i { font-weight: normal; }
 body { font-size: 1.2em; }
 .menu {display: none; }
 .bgimg {
