@@ -14,21 +14,17 @@ function rechercheCluster($formulaireFiltres) {
 	if(filtreModifie != null && filtreModifie !== '')
 		filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
 
-	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
-	if(filtreArchive != null && filtreArchive === true)
-		filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
-
 	var filtreSupprime = $formulaireFiltres.find('.valeurSupprime').prop('checked');
 	if(filtreSupprime != null && filtreSupprime === true)
 		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
-	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
-	if(filtrePk != null && filtrePk !== '')
-		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
-
 	var filtreId = $formulaireFiltres.find('.valeurId').val();
 	if(filtreId != null && filtreId !== '')
 		filtres.push({ name: 'fq', value: 'id:' + filtreId });
+
+	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
+	if(filtrePk != null && filtrePk !== '')
+		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
 
 	var filtreClasseNomCanonique = $formulaireFiltres.find('.valeurClasseNomCanonique').val();
 	if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
@@ -41,6 +37,10 @@ function rechercheCluster($formulaireFiltres) {
 	var filtreClasseNomsCanoniques = $formulaireFiltres.find('.valeurClasseNomsCanoniques').val();
 	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
 		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
+
+	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
+	if(filtreArchive != null && filtreArchive === true)
+		filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
 	$.ajax({
 		url: '/api/cluster?' + $.param(filtres)
 		, dataType: 'json'
@@ -67,14 +67,6 @@ function postCluster($formulaireValeurs) {
 	var valeurModifie = $formulaireValeurs.find('.valeurModifie').val();
 	if(valeurModifie != null && valeurModifie !== '')
 		valeurs['modifie'] = valeurModifie;
-
-	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
-	if(valeurArchive != null && valeurArchive !== '')
-		valeurs['archive'] = valeurArchive;
-
-	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').prop('checked');
-	if(valeurSupprime != null && valeurSupprime !== '')
-		valeurs['supprime'] = valeurSupprime;
 
 	$.ajax({
 		url: '/api/cluster'
@@ -112,21 +104,17 @@ function patchCluster($formulaireFiltres, $formulaireValeurs) {
 	if(filtreModifie != null && filtreModifie !== '')
 		filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
 
-	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
-	if(filtreArchive != null && filtreArchive === true)
-		filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
-
 	var filtreSupprime = $formulaireFiltres.find('.valeurSupprime').prop('checked');
 	if(filtreSupprime != null && filtreSupprime === true)
 		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
-	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
-	if(filtrePk != null && filtrePk !== '')
-		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
-
 	var filtreId = $formulaireFiltres.find('.valeurId').val();
 	if(filtreId != null && filtreId !== '')
 		filtres.push({ name: 'fq', value: 'id:' + filtreId });
+
+	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
+	if(filtrePk != null && filtrePk !== '')
+		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
 
 	var filtreClasseNomCanonique = $formulaireFiltres.find('.valeurClasseNomCanonique').val();
 	if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
@@ -139,6 +127,10 @@ function patchCluster($formulaireFiltres, $formulaireValeurs) {
 	var filtreClasseNomsCanoniques = $formulaireFiltres.find('.valeurClasseNomsCanoniques').val();
 	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
 		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
+
+	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
+	if(filtreArchive != null && filtreArchive === true)
+		filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
 
 	var valeurs = {};
 
@@ -161,26 +153,6 @@ function patchCluster($formulaireFiltres, $formulaireValeurs) {
 	var removeModifie = $formulaireValeurs.find('.removeModifie').val();
 	if(removeModifie != null && removeModifie !== '')
 		valeurs['removeModifie'] = removeModifie;
-
-	var setArchive = $formulaireValeurs.find('.setArchive').prop('checked');
-	if(setArchive != null && setArchive !== '')
-		valeurs['setArchive'] = setArchive;
-	var addArchive = $formulaireValeurs.find('.addArchive').prop('checked');
-	if(addArchive != null && addArchive !== '')
-		valeurs['addArchive'] = addArchive;
-	var removeArchive = $formulaireValeurs.find('.removeArchive').prop('checked');
-	if(removeArchive != null && removeArchive !== '')
-		valeurs['removeArchive'] = removeArchive;
-
-	var setSupprime = $formulaireValeurs.find('.setSupprime').prop('checked');
-	if(setSupprime != null && setSupprime !== '')
-		valeurs['setSupprime'] = setSupprime;
-	var addSupprime = $formulaireValeurs.find('.addSupprime').prop('checked');
-	if(addSupprime != null && addSupprime !== '')
-		valeurs['addSupprime'] = addSupprime;
-	var removeSupprime = $formulaireValeurs.find('.removeSupprime').prop('checked');
-	if(removeSupprime != null && removeSupprime !== '')
-		valeurs['removeSupprime'] = removeSupprime;
 
 	$.ajax({
 		url: '/api/cluster?' + $.param(filtres)
