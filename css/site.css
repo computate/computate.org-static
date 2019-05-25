@@ -1,14 +1,16 @@
-body, html {height: 100%; }
-body {font-family: "Khand", sans-serif; }
+body, html {  }
+body {font-family: "Bellefair", sans-serif; }
 h1,h2,h3,h4,h5,h6 { margin: 0; }
-h1,h3,h5 {font-family: "Raleway", sans-serif; }
-h2,h4,h6 {font-family: "Khand", sans-serif; font-weight: bold; }
-h1,.h1 { font-size: 1.7em; }
-h2,.h2 { font-size: 1.7em; }
-h3,.h3 { font-size: 1.3em; }
-h4,.h4 { font-size: 1.3em; }
-h5,.h5 { font-size: 1.0em; }
-h6,.h6 { font-size: 1.0em; }
+h1,h3,h5 {font-family: "Stint Ultra Condensed", sans-serif; }
+h2,h4,h6 {font-family: "Jomhuria", sans-serif; }
+h1,.h1 { font-size: 2.2em; }
+h2,.h2 { font-size: 2.2em; }
+h3,.h3 { font-size: 1.9em; }
+h4,.h4 { font-size: 1.9em; }
+h5,.h5 { font-size: 1.5em; }
+h6,.h6 { font-size: 1.5em; }
+dt { display: inline; margin: 0; padding: 0; font-family: "PT Serif", sans-serif; font-size: 1.0em; }
+dd { display: inline; margin: 0; padding: 0; }
 i { font-weight: normal; }
 body { font-size: 1.2em; }
 .menu {display: none; }
@@ -183,14 +185,13 @@ em {
 	font-style: normal;
 }
 pre, .site-cmd-complet { 
-	font-size: 1.1em; 
-	font-family: "Courier New", Courier, monospace; 
+	font-size: 1.0em; 
+	font-family: "Anonymous Pro", monospace; 
 	font-weight: normal; 
 	background-color: black; 
 	border: 2px white solid; 
 	padding: 5px; 
 	display: block;
-	font-size: 0.7em;
 	color: white;
 	white-space: pre-wrap;
 }
@@ -199,7 +200,7 @@ pre, .site-cmd-complet {
 	color:#08232E;
 }
 .recapituler2Table {
-	border-collapse:collapse;border-spacing:0;width:100%;display:table;
+	border-collapse:collapse;border-spacing:0;width:100%;display:table;font-family: "Stint Ultra Condensed", sans-serif;
 	color:#fff;
 }
 .recapituler2TableTr td {
@@ -221,32 +222,32 @@ pre, .site-cmd-complet {
 	}
 }
 .recapituler2TableTr1Td1 {
-	color:#BEDCE9;font-size:64px;font-family: "Anton", sans-serif;width:20%;
+	color:#BEDCE9;font-size:64px;font-family: "Stint Ultra Condensed", sans-serif;width:20%;
 }
 .recapituler2TableTr2Td1 {
-	font-size:32px;color:#fff;font-weight: bold;
+	font-size:32px;color:#fff;
 }
 .recapituler2TableTr1Td2 {
 	font-size:70px;
 }
 .recapituler2TableTr2Td2 {
-	font-size:32px;font-family:Anton;padding:0px 8px;
+	font-size:32px;font-family:Stint Ultra Condensed;padding:0px 8px;
 }
 .recapituler2TableTr1Td3 {
 	font-size:70px;
 }
 .recapituler2TableTr2Td3 {
-	font-size:32px;font-family:Anton;padding:0px 8px;
+	font-size:32px;font-family:Stint Ultra Condensed;padding:0px 8px;
 }
 .recapituler2TableTr1Td4 {
 	font-size:64px;color:#08232E;font-weight: bold;width:20%;
 }
 .recapituler2TableTr2Td4 {
-	font-size:20px;font-family: "Anton", sans-serif;
+	font-size:32px;font-family: "Stint Ultra Condensed", sans-serif;
 }
 
 .recapituler3Table {
-	border-collapse:collapse;border-spacing:0;width:100%;display:table;
+	border-collapse:collapse;border-spacing:0;width:100%;display:table;font-family: "Stint Ultra Condensed", sans-serif;
 }
 .recapituler3Table i {
 	color:#08232E;
@@ -254,8 +255,8 @@ pre, .site-cmd-complet {
 	margin: 8px;
 }
 .recapituler3TableTr.odd td {
-	color:#fff;background-color:#54A5C4;font-weight:bold;font-size:30px;
+	color:#fff;background-color:#54A5C4;font-size:30px;
 }
 .recapituler3TableTr.even td {
-	color:#fff;background-color:#2E6E87;font-weight:bold;font-size:30px;
+	color:#fff;background-color:#2E6E87;font-size:30px;
 }

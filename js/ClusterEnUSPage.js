@@ -3,10 +3,10 @@
 
 /**
  */
-function rechercheCours($formulaireFiltres) {
+function rechercheCluster($formulaireFiltres) {
 	var filtres = [];
 	$.ajax({
-		url: '/api/cours?' + $.param(filtres)
+		url: '/api/cluster?' + $.param(filtres)
 		, dataType: 'json'
 		, type: 'GET'
 		, contentType: 'application/json; charset=utf-8'
@@ -21,11 +21,11 @@ function rechercheCours($formulaireFiltres) {
 
 /**
  */
-function postCours($formulaireValeurs) {
+function postCluster($formulaireValeurs) {
 	var valeurs = {};
 
 	$.ajax({
-		url: '/api/cours'
+		url: '/api/cluster'
 		, dataType: 'json'
 		, type: 'POST'
 		, contentType: 'application/json; charset=utf-8'
@@ -49,13 +49,13 @@ function postCours($formulaireValeurs) {
  * @param valeurs Noms des champs et valeurs à changer selon les filtres fq. 
  *           Example: { pk: 1 }
  */
-function patchCours($formulaireFiltres, $formulaireValeurs) {
+function patchCluster($formulaireFiltres, $formulaireValeurs) {
 	var filtres = [];
 
 	var valeurs = {};
 
 	$.ajax({
-		url: '/api/cours?' + $.param(filtres)
+		url: '/api/cluster?' + $.param(filtres)
 		, dataType: 'json'
 		, type: 'PATCH'
 		, contentType: 'application/json; charset=utf-8'
@@ -71,9 +71,9 @@ function patchCours($formulaireFiltres, $formulaireValeurs) {
 
 /**
  */
-function getCours(pk) {
+function getCluster(pk) {
 	$.ajax({
-		url: '/api/cours/' + id
+		url: '/api/cluster/' + id
 		, dataType: 'json'
 		, type: 'GET'
 		, contentType: 'application/json; charset=utf-8'
@@ -88,9 +88,9 @@ function getCours(pk) {
 
 /**
  */
-function deleteCours(pk) {
+function deleteCluster(pk) {
 	$.ajax({
-		url: '/api/cours/' + id
+		url: '/api/cluster/' + id
 		, dataType: 'json'
 		, type: 'DELETE'
 		, contentType: 'application/json; charset=utf-8'
