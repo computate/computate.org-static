@@ -174,7 +174,7 @@ function parseTime(timeString) {
 }
 
 function enleverLueur($input) {
-			$input.removeClass('lueurSuccès');
+	$input.removeClass('lueurSucces');
 	$input.removeClass('lueurErreur');
 }
 
@@ -289,7 +289,7 @@ function envoyerFormulaire($inputEnfant, $lueur) {
 //				}
 //			}
 //			else if($lueur != null)
-				$lueur.addClass('lueurSuccès');
+				$lueur.addClass('lueurSucces');
 				$icone.removeClass('w3-spin-fast');
 				$icone.addClass('w3-hide');
 		} 

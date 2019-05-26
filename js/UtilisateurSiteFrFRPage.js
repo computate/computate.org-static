@@ -157,8 +157,16 @@ function patchUtilisateurSite($formulaireFiltres, $formulaireValeurs) {
 		, contentType: 'application/json; charset=utf-8'
 		, data: JSON.stringify(valeurs)
 		, success: function( data, textStatus, jQxhr ) {
+			$.each( valeurs, function( key, value ) {
+				$formulaireValeurs.find('.' + key).removeClass('lueurErreur');
+				$formulaireValeurs.find('.' + key).addClass('lueurSucces');
+			});
 		}
 		, error: function( jqXhr, textStatus, errorThrown ) {
+			$.each( valeurs, function( key, value ) {
+				$formulaireValeurs.find('.' + key).removeClass('lueurSucces');
+				$formulaireValeurs.find('.' + key).addClass('lueurErreur');
+			});
 		}
 	});
 }
