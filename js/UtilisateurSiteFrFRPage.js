@@ -34,17 +34,21 @@ function patchUtilisateurSite($formulaireFiltres, $formulaireValeurs) {
 	if(filtreSiteNomDomaine != null && filtreSiteNomDomaine !== '')
 		filtres.push({ name: 'fq', value: 'siteNomDomaine:' + filtreSiteNomDomaine });
 
-	var filtreSupprime = $formulaireFiltres.find('.valeurSupprime').prop('checked');
-	if(filtreSupprime != null && filtreSupprime === true)
-		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
+	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
+	if(filtrePk != null && filtrePk !== '')
+		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
 
 	var filtreId = $formulaireFiltres.find('.valeurId').val();
 	if(filtreId != null && filtreId !== '')
 		filtres.push({ name: 'fq', value: 'id:' + filtreId });
 
-	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
-	if(filtrePk != null && filtrePk !== '')
-		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
+	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
+	if(filtreArchive != null && filtreArchive === true)
+		filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
+
+	var filtreSupprime = $formulaireFiltres.find('.valeurSupprime').prop('checked');
+	if(filtreSupprime != null && filtreSupprime === true)
+		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
 	var filtreClasseNomCanonique = $formulaireFiltres.find('.valeurClasseNomCanonique').val();
 	if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
@@ -57,10 +61,6 @@ function patchUtilisateurSite($formulaireFiltres, $formulaireValeurs) {
 	var filtreClasseNomsCanoniques = $formulaireFiltres.find('.valeurClasseNomsCanoniques').val();
 	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
 		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
-
-	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
-	if(filtreArchive != null && filtreArchive === true)
-		filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
 
 	var filtreUtilisateurId = $formulaireFiltres.find('.valeurUtilisateurId').val();
 	if(filtreUtilisateurId != null && filtreUtilisateurId !== '')

@@ -14,17 +14,21 @@ function rechercheCluster($formulaireFiltres) {
 	if(filtreModifie != null && filtreModifie !== '')
 		filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
 
-	var filtreSupprime = $formulaireFiltres.find('.valeurSupprime').prop('checked');
-	if(filtreSupprime != null && filtreSupprime === true)
-		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
+	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
+	if(filtrePk != null && filtrePk !== '')
+		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
 
 	var filtreId = $formulaireFiltres.find('.valeurId').val();
 	if(filtreId != null && filtreId !== '')
 		filtres.push({ name: 'fq', value: 'id:' + filtreId });
 
-	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
-	if(filtrePk != null && filtrePk !== '')
-		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
+	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
+	if(filtreArchive != null && filtreArchive === true)
+		filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
+
+	var filtreSupprime = $formulaireFiltres.find('.valeurSupprime').prop('checked');
+	if(filtreSupprime != null && filtreSupprime === true)
+		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
 	var filtreClasseNomCanonique = $formulaireFiltres.find('.valeurClasseNomCanonique').val();
 	if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
@@ -37,18 +41,22 @@ function rechercheCluster($formulaireFiltres) {
 	var filtreClasseNomsCanoniques = $formulaireFiltres.find('.valeurClasseNomsCanoniques').val();
 	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
 		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
-
-	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
-	if(filtreArchive != null && filtreArchive === true)
-		filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
 	$.ajax({
 		url: '/api/cluster?' + $.param(filtres)
 		, dataType: 'json'
 		, type: 'GET'
 		, contentType: 'application/json; charset=utf-8'
 		, success: function( data, textStatus, jQxhr ) {
+			$.each( valeurs, function( key, value ) {
+				$formulaireValeurs.find('.' + key).removeClass('lueurErreur');
+				$formulaireValeurs.find('.' + key).addClass('lueurSucces');
+			});
 		}
 		, error: function( jqXhr, textStatus, errorThrown ) {
+			$.each( valeurs, function( key, value ) {
+				$formulaireValeurs.find('.' + key).removeClass('lueurSucces');
+				$formulaireValeurs.find('.' + key).addClass('lueurErreur');
+			});
 		}
 	});
 }
@@ -75,8 +83,16 @@ function postCluster($formulaireValeurs) {
 		, contentType: 'application/json; charset=utf-8'
 		, data: JSON.stringify(valeurs)
 		, success: function( data, textStatus, jQxhr ) {
+			$.each( valeurs, function( key, value ) {
+				$formulaireValeurs.find('.' + key).removeClass('lueurErreur');
+				$formulaireValeurs.find('.' + key).addClass('lueurSucces');
+			});
 		}
 		, error: function( jqXhr, textStatus, errorThrown ) {
+			$.each( valeurs, function( key, value ) {
+				$formulaireValeurs.find('.' + key).removeClass('lueurSucces');
+				$formulaireValeurs.find('.' + key).addClass('lueurErreur');
+			});
 		}
 	});
 }
@@ -104,17 +120,21 @@ function patchCluster($formulaireFiltres, $formulaireValeurs) {
 	if(filtreModifie != null && filtreModifie !== '')
 		filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
 
-	var filtreSupprime = $formulaireFiltres.find('.valeurSupprime').prop('checked');
-	if(filtreSupprime != null && filtreSupprime === true)
-		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
+	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
+	if(filtrePk != null && filtrePk !== '')
+		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
 
 	var filtreId = $formulaireFiltres.find('.valeurId').val();
 	if(filtreId != null && filtreId !== '')
 		filtres.push({ name: 'fq', value: 'id:' + filtreId });
 
-	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
-	if(filtrePk != null && filtrePk !== '')
-		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
+	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
+	if(filtreArchive != null && filtreArchive === true)
+		filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
+
+	var filtreSupprime = $formulaireFiltres.find('.valeurSupprime').prop('checked');
+	if(filtreSupprime != null && filtreSupprime === true)
+		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
 	var filtreClasseNomCanonique = $formulaireFiltres.find('.valeurClasseNomCanonique').val();
 	if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
@@ -127,10 +147,6 @@ function patchCluster($formulaireFiltres, $formulaireValeurs) {
 	var filtreClasseNomsCanoniques = $formulaireFiltres.find('.valeurClasseNomsCanoniques').val();
 	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
 		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
-
-	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
-	if(filtreArchive != null && filtreArchive === true)
-		filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
 
 	var valeurs = {};
 
@@ -161,8 +177,16 @@ function patchCluster($formulaireFiltres, $formulaireValeurs) {
 		, contentType: 'application/json; charset=utf-8'
 		, data: JSON.stringify(valeurs)
 		, success: function( data, textStatus, jQxhr ) {
+			$.each( valeurs, function( key, value ) {
+				$formulaireValeurs.find('.' + key).removeClass('lueurErreur');
+				$formulaireValeurs.find('.' + key).addClass('lueurSucces');
+			});
 		}
 		, error: function( jqXhr, textStatus, errorThrown ) {
+			$.each( valeurs, function( key, value ) {
+				$formulaireValeurs.find('.' + key).removeClass('lueurSucces');
+				$formulaireValeurs.find('.' + key).addClass('lueurErreur');
+			});
 		}
 	});
 }
@@ -178,8 +202,16 @@ function getCluster(pk) {
 		, type: 'GET'
 		, contentType: 'application/json; charset=utf-8'
 		, success: function( data, textStatus, jQxhr ) {
+			$.each( valeurs, function( key, value ) {
+				$formulaireValeurs.find('.' + key).removeClass('lueurErreur');
+				$formulaireValeurs.find('.' + key).addClass('lueurSucces');
+			});
 		}
 		, error: function( jqXhr, textStatus, errorThrown ) {
+			$.each( valeurs, function( key, value ) {
+				$formulaireValeurs.find('.' + key).removeClass('lueurSucces');
+				$formulaireValeurs.find('.' + key).addClass('lueurErreur');
+			});
 		}
 	});
 }
@@ -196,8 +228,16 @@ function deleteCluster(pk) {
 		, contentType: 'application/json; charset=utf-8'
 		, data: JSON.stringify(valeurs)
 		, success: function( data, textStatus, jQxhr ) {
+			$.each( valeurs, function( key, value ) {
+				$formulaireValeurs.find('.' + key).removeClass('lueurErreur');
+				$formulaireValeurs.find('.' + key).addClass('lueurSucces');
+			});
 		}
 		, error: function( jqXhr, textStatus, errorThrown ) {
+			$.each( valeurs, function( key, value ) {
+				$formulaireValeurs.find('.' + key).removeClass('lueurSucces');
+				$formulaireValeurs.find('.' + key).addClass('lueurErreur');
+			});
 		}
 	});
 }

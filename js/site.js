@@ -326,6 +326,8 @@ function toggleFunction(s) {
 function patchUtilisateurSiteBase($formulaireFiltres, $formulaireValeurs) {
 	var filtres = [];
 
+	$('#siteRefraichirPage').attr('disabled', true); 
+
 	var filtreCree = $formulaireFiltres.find('.valeurCree').val();
 	if(filtreCree != null && filtreCree !== '')
 		filtres.push({ name: 'fq', value: 'cree:' + filtreCree });
@@ -473,6 +475,7 @@ function patchUtilisateurSiteBase($formulaireFiltres, $formulaireValeurs) {
 				$formulaireValeurs.find('.' + key).removeClass('lueurErreur');
 				$formulaireValeurs.find('.' + key).addClass('lueurSucces');
 			});
+			$('#siteRefraichirPage').removeAttr('disabled'); 
 		}
 		, error: function( jqXhr, textStatus, errorThrown ) {
 			$.each( valeurs, function( key, value ) {
@@ -483,3 +486,38 @@ function patchUtilisateurSiteBase($formulaireFiltres, $formulaireValeurs) {
 	});
 }
 
+/**
+ * Modifier un ou plusiers  sans valuers qui change, 
+ * ou changer des valeurs pour un ou plusiers . 
+ * @param params: [ "q=*:*", "fq=pk:1", "sort=pk asc", "rows=1", "fl=pk" ]
+ *        Une liste des opérations de recherche sur des  
+ *        pour rechercher "q=*:*", filtrer "fq=pk:1", trier "sort=pk desc", 
+ *        limiter les résultats "rows=1", ou limiter les valeurs "fl=pk". 
+ * @param valeurs Noms des champs et valeurs à changer selon les filtres fq. 
+ *           Example: { pk: 1 }
+ */
+function patchClusterBase($formulaireFiltres, $formulaireValeurs) {
+	var filtres = [];
+
+	var valeurs = {};
+
+	$.ajax({
+		url: '/api/cluster?' + $.param(filtres)
+		, dataType: 'json'
+		, type: 'PATCH'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(valeurs)
+		, success: function( data, textStatus, jQxhr ) {
+			$.each( valeurs, function( key, value ) {
+				$formulaireValeurs.find('.' + key).removeClass('lueurErreur');
+				$formulaireValeurs.find('.' + key).addClass('lueurSucces');
+			});
+		}
+		, error: function( jqXhr, textStatus, errorThrown ) {
+			$.each( valeurs, function( key, value ) {
+				$formulaireValeurs.find('.' + key).removeClass('lueurSucces');
+				$formulaireValeurs.find('.' + key).addClass('lueurErreur');
+			});
+		}
+	});
+}
