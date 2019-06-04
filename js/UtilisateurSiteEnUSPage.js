@@ -34,6 +34,18 @@ function patchUtilisateurSite($formulaireFiltres, $formulaireValeurs) {
 	if(filtreSiteNomDomaine != null && filtreSiteNomDomaine !== '')
 		filtres.push({ name: 'fq', value: 'siteNomDomaine:' + filtreSiteNomDomaine });
 
+	var filtreZookeeperVersion = $formulaireFiltres.find('.valeurZookeeperVersion').val();
+	if(filtreZookeeperVersion != null && filtreZookeeperVersion !== '')
+		filtres.push({ name: 'fq', value: 'zookeeperVersion:' + filtreZookeeperVersion });
+
+	var filtreZookeeperPortAdmin = $formulaireFiltres.find('.valeurZookeeperPortAdmin').val();
+	if(filtreZookeeperPortAdmin != null && filtreZookeeperPortAdmin !== '')
+		filtres.push({ name: 'fq', value: 'zookeeperPortAdmin:' + filtreZookeeperPortAdmin });
+
+	var filtreZookeeperPortClient = $formulaireFiltres.find('.valeurZookeeperPortClient').val();
+	if(filtreZookeeperPortClient != null && filtreZookeeperPortClient !== '')
+		filtres.push({ name: 'fq', value: 'zookeeperPortClient:' + filtreZookeeperPortClient });
+
 	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
 	if(filtrePk != null && filtrePk !== '')
 		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
@@ -149,6 +161,36 @@ function patchUtilisateurSite($formulaireFiltres, $formulaireValeurs) {
 	var removeSiteNomDomaine = $formulaireValeurs.find('.removeSiteNomDomaine').val();
 	if(removeSiteNomDomaine != null && removeSiteNomDomaine !== '')
 		valeurs['removeSiteNomDomaine'] = removeSiteNomDomaine;
+
+	var setZookeeperVersion = $formulaireValeurs.find('.setZookeeperVersion').val();
+	if(setZookeeperVersion != null && setZookeeperVersion !== '')
+		valeurs['setZookeeperVersion'] = setZookeeperVersion;
+	var addZookeeperVersion = $formulaireValeurs.find('.addZookeeperVersion').val();
+	if(addZookeeperVersion != null && addZookeeperVersion !== '')
+		valeurs['addZookeeperVersion'] = addZookeeperVersion;
+	var removeZookeeperVersion = $formulaireValeurs.find('.removeZookeeperVersion').val();
+	if(removeZookeeperVersion != null && removeZookeeperVersion !== '')
+		valeurs['removeZookeeperVersion'] = removeZookeeperVersion;
+
+	var setZookeeperPortAdmin = $formulaireValeurs.find('.setZookeeperPortAdmin').val();
+	if(setZookeeperPortAdmin != null && setZookeeperPortAdmin !== '')
+		valeurs['setZookeeperPortAdmin'] = parseInt(setZookeeperPortAdmin);
+	var addZookeeperPortAdmin = $formulaireValeurs.find('.addZookeeperPortAdmin').val();
+	if(addZookeeperPortAdmin != null && addZookeeperPortAdmin !== '')
+		valeurs['addZookeeperPortAdmin'] = parseInt(addZookeeperPortAdmin);
+	var removeZookeeperPortAdmin = $formulaireValeurs.find('.removeZookeeperPortAdmin').val();
+	if(removeZookeeperPortAdmin != null && removeZookeeperPortAdmin !== '')
+		valeurs['removeZookeeperPortAdmin'] = parseInt(removeZookeeperPortAdmin);
+
+	var setZookeeperPortClient = $formulaireValeurs.find('.setZookeeperPortClient').val();
+	if(setZookeeperPortClient != null && setZookeeperPortClient !== '')
+		valeurs['setZookeeperPortClient'] = parseInt(setZookeeperPortClient);
+	var addZookeeperPortClient = $formulaireValeurs.find('.addZookeeperPortClient').val();
+	if(addZookeeperPortClient != null && addZookeeperPortClient !== '')
+		valeurs['addZookeeperPortClient'] = parseInt(addZookeeperPortClient);
+	var removeZookeeperPortClient = $formulaireValeurs.find('.removeZookeeperPortClient').val();
+	if(removeZookeeperPortClient != null && removeZookeeperPortClient !== '')
+		valeurs['removeZookeeperPortClient'] = parseInt(removeZookeeperPortClient);
 
 	$.ajax({
 		url: '/api/site/utilisateur?' + $.param(filtres)

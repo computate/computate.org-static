@@ -326,8 +326,6 @@ function toggleFunction(s) {
 function patchUtilisateurSiteBase($formulaireFiltres, $formulaireValeurs) {
 	var filtres = [];
 
-	$('#siteRefraichirPage').attr('disabled', true); 
-
 	var filtreCree = $formulaireFiltres.find('.valeurCree').val();
 	if(filtreCree != null && filtreCree !== '')
 		filtres.push({ name: 'fq', value: 'cree:' + filtreCree });
@@ -348,17 +346,33 @@ function patchUtilisateurSiteBase($formulaireFiltres, $formulaireValeurs) {
 	if(filtreSiteNomDomaine != null && filtreSiteNomDomaine !== '')
 		filtres.push({ name: 'fq', value: 'siteNomDomaine:' + filtreSiteNomDomaine });
 
-	var filtreSupprime = $formulaireFiltres.find('.valeurSupprime').prop('checked');
-	if(filtreSupprime != null && filtreSupprime === true)
-		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
+	var filtreZookeeperVersion = $formulaireFiltres.find('.valeurZookeeperVersion').val();
+	if(filtreZookeeperVersion != null && filtreZookeeperVersion !== '')
+		filtres.push({ name: 'fq', value: 'zookeeperVersion:' + filtreZookeeperVersion });
+
+	var filtreZookeeperPortAdmin = $formulaireFiltres.find('.valeurZookeeperPortAdmin').val();
+	if(filtreZookeeperPortAdmin != null && filtreZookeeperPortAdmin !== '')
+		filtres.push({ name: 'fq', value: 'zookeeperPortAdmin:' + filtreZookeeperPortAdmin });
+
+	var filtreZookeeperPortClient = $formulaireFiltres.find('.valeurZookeeperPortClient').val();
+	if(filtreZookeeperPortClient != null && filtreZookeeperPortClient !== '')
+		filtres.push({ name: 'fq', value: 'zookeeperPortClient:' + filtreZookeeperPortClient });
+
+	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
+	if(filtrePk != null && filtrePk !== '')
+		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
 
 	var filtreId = $formulaireFiltres.find('.valeurId').val();
 	if(filtreId != null && filtreId !== '')
 		filtres.push({ name: 'fq', value: 'id:' + filtreId });
 
-	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
-	if(filtrePk != null && filtrePk !== '')
-		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
+	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
+	if(filtreArchive != null && filtreArchive === true)
+		filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
+
+	var filtreSupprime = $formulaireFiltres.find('.valeurSupprime').prop('checked');
+	if(filtreSupprime != null && filtreSupprime === true)
+		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
 	var filtreClasseNomCanonique = $formulaireFiltres.find('.valeurClasseNomCanonique').val();
 	if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
@@ -371,10 +385,6 @@ function patchUtilisateurSiteBase($formulaireFiltres, $formulaireValeurs) {
 	var filtreClasseNomsCanoniques = $formulaireFiltres.find('.valeurClasseNomsCanoniques').val();
 	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
 		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
-
-	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
-	if(filtreArchive != null && filtreArchive === true)
-		filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
 
 	var filtreUtilisateurId = $formulaireFiltres.find('.valeurUtilisateurId').val();
 	if(filtreUtilisateurId != null && filtreUtilisateurId !== '')
@@ -464,6 +474,36 @@ function patchUtilisateurSiteBase($formulaireFiltres, $formulaireValeurs) {
 	if(removeSiteNomDomaine != null && removeSiteNomDomaine !== '')
 		valeurs['removeSiteNomDomaine'] = removeSiteNomDomaine;
 
+	var setZookeeperVersion = $formulaireValeurs.find('.setZookeeperVersion').val();
+	if(setZookeeperVersion != null && setZookeeperVersion !== '')
+		valeurs['setZookeeperVersion'] = setZookeeperVersion;
+	var addZookeeperVersion = $formulaireValeurs.find('.addZookeeperVersion').val();
+	if(addZookeeperVersion != null && addZookeeperVersion !== '')
+		valeurs['addZookeeperVersion'] = addZookeeperVersion;
+	var removeZookeeperVersion = $formulaireValeurs.find('.removeZookeeperVersion').val();
+	if(removeZookeeperVersion != null && removeZookeeperVersion !== '')
+		valeurs['removeZookeeperVersion'] = removeZookeeperVersion;
+
+	var setZookeeperPortAdmin = $formulaireValeurs.find('.setZookeeperPortAdmin').val();
+	if(setZookeeperPortAdmin != null && setZookeeperPortAdmin !== '')
+		valeurs['setZookeeperPortAdmin'] = parseInt(setZookeeperPortAdmin);
+	var addZookeeperPortAdmin = $formulaireValeurs.find('.addZookeeperPortAdmin').val();
+	if(addZookeeperPortAdmin != null && addZookeeperPortAdmin !== '')
+		valeurs['addZookeeperPortAdmin'] = parseInt(addZookeeperPortAdmin);
+	var removeZookeeperPortAdmin = $formulaireValeurs.find('.removeZookeeperPortAdmin').val();
+	if(removeZookeeperPortAdmin != null && removeZookeeperPortAdmin !== '')
+		valeurs['removeZookeeperPortAdmin'] = parseInt(removeZookeeperPortAdmin);
+
+	var setZookeeperPortClient = $formulaireValeurs.find('.setZookeeperPortClient').val();
+	if(setZookeeperPortClient != null && setZookeeperPortClient !== '')
+		valeurs['setZookeeperPortClient'] = parseInt(setZookeeperPortClient);
+	var addZookeeperPortClient = $formulaireValeurs.find('.addZookeeperPortClient').val();
+	if(addZookeeperPortClient != null && addZookeeperPortClient !== '')
+		valeurs['addZookeeperPortClient'] = parseInt(addZookeeperPortClient);
+	var removeZookeeperPortClient = $formulaireValeurs.find('.removeZookeeperPortClient').val();
+	if(removeZookeeperPortClient != null && removeZookeeperPortClient !== '')
+		valeurs['removeZookeeperPortClient'] = parseInt(removeZookeeperPortClient);
+
 	$.ajax({
 		url: '/api/site/utilisateur?' + $.param(filtres)
 		, dataType: 'json'
@@ -471,11 +511,30 @@ function patchUtilisateurSiteBase($formulaireFiltres, $formulaireValeurs) {
 		, contentType: 'application/json; charset=utf-8'
 		, data: JSON.stringify(valeurs)
 		, success: function( data, textStatus, jQxhr ) {
-			$.each( valeurs, function( key, value ) {
-				$formulaireValeurs.find('.' + key).removeClass('lueurErreur');
-				$formulaireValeurs.find('.' + key).addClass('lueurSucces');
+			$.ajax({
+				url: window.location.href
+				, dataType: 'html'
+				, type: 'GET'
+				, contentType: 'text/html;charset=UTF-8'
+				, success: function( data, textStatus, jQxhr ) {
+					$.each( valeurs, function( key, value ) {
+						$formulaireValeurs.find('.' + key).removeClass('lueurErreur');
+						$formulaireValeurs.find('.' + key).addClass('lueurSucces');
+					});
+					var wrapper = document.createElement('div');
+					wrapper.innerHTML = data;
+					var $con = $(wrapper);
+					$('#sitePersonnaliser').empty().append($con.find('#sitePersonnaliser'))
+				}
+				, error: function( jqXhr, textStatus, errorThrown ) {
+					$.each( valeurs, function( key, value ) {
+						$formulaireValeurs.find('.' + key).removeClass('lueurSucces');
+						$formulaireValeurs.find('.' + key).addClass('lueurErreur');
+					});
+				}
 			});
-			$('#siteRefraichirPage').removeAttr('disabled'); 
+
+
 		}
 		, error: function( jqXhr, textStatus, errorThrown ) {
 			$.each( valeurs, function( key, value ) {
