@@ -46,6 +46,22 @@ function patchUtilisateurSite($formulaireFiltres, $formulaireValeurs) {
 	if(filtreZookeeperPortClient != null && filtreZookeeperPortClient !== '')
 		filtres.push({ name: 'fq', value: 'zookeeperPortClient:' + filtreZookeeperPortClient });
 
+	var filtreSolrVersion = $formulaireFiltres.find('.valeurSolrVersion').val();
+	if(filtreSolrVersion != null && filtreSolrVersion !== '')
+		filtres.push({ name: 'fq', value: 'solrVersion:' + filtreSolrVersion });
+
+	var filtreSolrPortClient = $formulaireFiltres.find('.valeurSolrPortClient').val();
+	if(filtreSolrPortClient != null && filtreSolrPortClient !== '')
+		filtres.push({ name: 'fq', value: 'solrPortClient:' + filtreSolrPortClient });
+
+	var filtreSolrConfigset = $formulaireFiltres.find('.valeurSolrConfigset').val();
+	if(filtreSolrConfigset != null && filtreSolrConfigset !== '')
+		filtres.push({ name: 'fq', value: 'solrConfigset:' + filtreSolrConfigset });
+
+	var filtreSolrCollection = $formulaireFiltres.find('.valeurSolrCollection').val();
+	if(filtreSolrCollection != null && filtreSolrCollection !== '')
+		filtres.push({ name: 'fq', value: 'solrCollection:' + filtreSolrCollection });
+
 	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
 	if(filtrePk != null && filtrePk !== '')
 		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
@@ -191,6 +207,46 @@ function patchUtilisateurSite($formulaireFiltres, $formulaireValeurs) {
 	var removeZookeeperPortClient = $formulaireValeurs.find('.removeZookeeperPortClient').val();
 	if(removeZookeeperPortClient != null && removeZookeeperPortClient !== '')
 		valeurs['removeZookeeperPortClient'] = parseInt(removeZookeeperPortClient);
+
+	var setSolrVersion = $formulaireValeurs.find('.setSolrVersion').val();
+	if(setSolrVersion != null && setSolrVersion !== '')
+		valeurs['setSolrVersion'] = setSolrVersion;
+	var addSolrVersion = $formulaireValeurs.find('.addSolrVersion').val();
+	if(addSolrVersion != null && addSolrVersion !== '')
+		valeurs['addSolrVersion'] = addSolrVersion;
+	var removeSolrVersion = $formulaireValeurs.find('.removeSolrVersion').val();
+	if(removeSolrVersion != null && removeSolrVersion !== '')
+		valeurs['removeSolrVersion'] = removeSolrVersion;
+
+	var setSolrPortClient = $formulaireValeurs.find('.setSolrPortClient').val();
+	if(setSolrPortClient != null && setSolrPortClient !== '')
+		valeurs['setSolrPortClient'] = parseInt(setSolrPortClient);
+	var addSolrPortClient = $formulaireValeurs.find('.addSolrPortClient').val();
+	if(addSolrPortClient != null && addSolrPortClient !== '')
+		valeurs['addSolrPortClient'] = parseInt(addSolrPortClient);
+	var removeSolrPortClient = $formulaireValeurs.find('.removeSolrPortClient').val();
+	if(removeSolrPortClient != null && removeSolrPortClient !== '')
+		valeurs['removeSolrPortClient'] = parseInt(removeSolrPortClient);
+
+	var setSolrConfigset = $formulaireValeurs.find('.setSolrConfigset').val();
+	if(setSolrConfigset != null && setSolrConfigset !== '')
+		valeurs['setSolrConfigset'] = setSolrConfigset;
+	var addSolrConfigset = $formulaireValeurs.find('.addSolrConfigset').val();
+	if(addSolrConfigset != null && addSolrConfigset !== '')
+		valeurs['addSolrConfigset'] = addSolrConfigset;
+	var removeSolrConfigset = $formulaireValeurs.find('.removeSolrConfigset').val();
+	if(removeSolrConfigset != null && removeSolrConfigset !== '')
+		valeurs['removeSolrConfigset'] = removeSolrConfigset;
+
+	var setSolrCollection = $formulaireValeurs.find('.setSolrCollection').val();
+	if(setSolrCollection != null && setSolrCollection !== '')
+		valeurs['setSolrCollection'] = setSolrCollection;
+	var addSolrCollection = $formulaireValeurs.find('.addSolrCollection').val();
+	if(addSolrCollection != null && addSolrCollection !== '')
+		valeurs['addSolrCollection'] = addSolrCollection;
+	var removeSolrCollection = $formulaireValeurs.find('.removeSolrCollection').val();
+	if(removeSolrCollection != null && removeSolrCollection !== '')
+		valeurs['removeSolrCollection'] = removeSolrCollection;
 
 	$.ajax({
 		url: '/api/site/utilisateur?' + $.param(filtres)
