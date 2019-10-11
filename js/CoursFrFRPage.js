@@ -6,10 +6,6 @@
 function rechercheCours($formulaireFiltres) {
 	var filtres = [];
 
-	var filtreCoursNumero = $formulaireFiltres.find('.valeurCoursNumero').val();
-	if(filtreCoursNumero != null && filtreCoursNumero !== '')
-		filtres.push({ name: 'fq', value: 'coursNumero:' + filtreCoursNumero });
-
 	var filtreCree = $formulaireFiltres.find('.valeurCree').val();
 	if(filtreCree != null && filtreCree !== '')
 		filtres.push({ name: 'fq', value: 'cree:' + filtreCree });
@@ -17,6 +13,38 @@ function rechercheCours($formulaireFiltres) {
 	var filtreModifie = $formulaireFiltres.find('.valeurModifie').val();
 	if(filtreModifie != null && filtreModifie !== '')
 		filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
+
+	var filtreCoursNumero = $formulaireFiltres.find('.valeurCoursNumero').val();
+	if(filtreCoursNumero != null && filtreCoursNumero !== '')
+		filtres.push({ name: 'fq', value: 'coursNumero:' + filtreCoursNumero });
+
+	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
+	if(filtrePk != null && filtrePk !== '')
+		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
+
+	var filtreId = $formulaireFiltres.find('.valeurId').val();
+	if(filtreId != null && filtreId !== '')
+		filtres.push({ name: 'fq', value: 'id:' + filtreId });
+
+	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
+	if(filtreArchive != null && filtreArchive === true)
+		filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
+
+	var filtreSupprime = $formulaireFiltres.find('.valeurSupprime').prop('checked');
+	if(filtreSupprime != null && filtreSupprime === true)
+		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
+
+	var filtreClasseNomCanonique = $formulaireFiltres.find('.valeurClasseNomCanonique').val();
+	if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
+		filtres.push({ name: 'fq', value: 'classeNomCanonique:' + filtreClasseNomCanonique });
+
+	var filtreClasseNomSimple = $formulaireFiltres.find('.valeurClasseNomSimple').val();
+	if(filtreClasseNomSimple != null && filtreClasseNomSimple !== '')
+		filtres.push({ name: 'fq', value: 'classeNomSimple:' + filtreClasseNomSimple });
+
+	var filtreClasseNomsCanoniques = $formulaireFiltres.find('.valeurClasseNomsCanoniques').val();
+	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
+		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
 
 	var filtreEstCours = $formulaireFiltres.find('.valeurEstCours').prop('checked');
 	if(filtreEstCours != null && filtreEstCours === true)
@@ -89,34 +117,6 @@ function rechercheCours($formulaireFiltres) {
 	var filtrePageTitre = $formulaireFiltres.find('.valeurPageTitre').val();
 	if(filtrePageTitre != null && filtrePageTitre !== '')
 		filtres.push({ name: 'fq', value: 'pageTitre:' + filtrePageTitre });
-
-	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
-	if(filtrePk != null && filtrePk !== '')
-		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
-
-	var filtreId = $formulaireFiltres.find('.valeurId').val();
-	if(filtreId != null && filtreId !== '')
-		filtres.push({ name: 'fq', value: 'id:' + filtreId });
-
-	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
-	if(filtreArchive != null && filtreArchive === true)
-		filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
-
-	var filtreSupprime = $formulaireFiltres.find('.valeurSupprime').prop('checked');
-	if(filtreSupprime != null && filtreSupprime === true)
-		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
-
-	var filtreClasseNomCanonique = $formulaireFiltres.find('.valeurClasseNomCanonique').val();
-	if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
-		filtres.push({ name: 'fq', value: 'classeNomCanonique:' + filtreClasseNomCanonique });
-
-	var filtreClasseNomSimple = $formulaireFiltres.find('.valeurClasseNomSimple').val();
-	if(filtreClasseNomSimple != null && filtreClasseNomSimple !== '')
-		filtres.push({ name: 'fq', value: 'classeNomSimple:' + filtreClasseNomSimple });
-
-	var filtreClasseNomsCanoniques = $formulaireFiltres.find('.valeurClasseNomsCanoniques').val();
-	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
-		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
 	$.ajax({
 		url: '/api/cours?' + $.param(filtres)
 		, dataType: 'json'

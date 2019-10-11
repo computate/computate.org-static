@@ -239,7 +239,7 @@ function patchUtilisateurSite($formulaireFiltres, $formulaireValeurs) {
 		valeurs['removeSolrCollection'] = removeSolrCollection;
 
 	$.ajax({
-		url: '/api/site/utilisateur?' + $.param(filtres)
+		url: '/frFR/api/utilisateur?' + $.param(filtres)
 		, dataType: 'json'
 		, type: 'PATCH'
 		, contentType: 'application/json; charset=utf-8'
