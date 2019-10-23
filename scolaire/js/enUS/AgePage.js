@@ -595,7 +595,7 @@ function suggestSchoolAgeBlockKeys($formFilters, $list) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-bell w3-padding-small ');
-			var $span = $('<span>').attr('class', '').text(o['blocCompleteName']);
+			var $span = $('<span>').attr('class', '').text(o['blockCompleteName']);
 			var $a = $('<a>').attr('href', o['pageUrl']);
 			$a.append($i);
 			$a.append($span);

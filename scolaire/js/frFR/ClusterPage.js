@@ -1,8 +1,18 @@
 
 // POST //
 
-function postCluster($formulaireValeurs) {
+function postCluster($formulaireValeurs, success, error) {
 	var vals = {};
+	if(success == null) {
+		success = function( data, textStatus, jQxhr ) {
+			ajouterLueur($formulaireValeurs.next('button'));
+		};
+	}
+	if(error == null) {
+		error = function( jqXhr, textStatus, errorThrown ) {
+			ajouterErreur($formulaireValeurs.next('button'));
+		};
+	}
 
 	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
 	if(valeurPk != null && valeurPk !== '')
