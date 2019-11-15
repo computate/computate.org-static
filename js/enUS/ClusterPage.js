@@ -1,8 +1,73 @@
 
+// POST //
+
+function postCluster($formValues, success, error) {
+	var vals = {};
+	if(success == null) {
+		success = function( data, textStatus, jQxhr ) {
+			addGlow($formValues.next('button'));
+			var url = data['pageUrl'];
+			if(url)
+				window.location.href = url;
+		};
+	}
+	if(error == null) {
+		error = function( jqXhr, textStatus, errorThrown ) {
+			addError($formValues.next('button'));
+		};
+	}
+
+	var valuePk = $formValues.find('.valuePk').val();
+	if(valuePk != null && valuePk !== '')
+		vals['pk'] = valuePk;
+
+	var valueCreated = $formValues.find('.valueCreated').val();
+	if(valueCreated != null && valueCreated !== '')
+		vals['created'] = valueCreated;
+
+	var valueModified = $formValues.find('.valueModified').val();
+	if(valueModified != null && valueModified !== '')
+		vals['modified'] = valueModified;
+
+	var valueObjectId = $formValues.find('.valueObjectId').val();
+	if(valueObjectId != null && valueObjectId !== '')
+		vals['objectId'] = valueObjectId;
+
+	var valueArchived = $formValues.find('.valueArchived').prop('checked');
+	if(valueArchived != null && valueArchived !== '')
+		vals['archived'] = valueArchived;
+
+	var valueDeleted = $formValues.find('.valueDeleted').prop('checked');
+	if(valueDeleted != null && valueDeleted !== '')
+		vals['deleted'] = valueDeleted;
+
+	$.ajax({
+		url: '/api/cluster'
+		, dataType: 'json'
+		, type: 'POST'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(vals)
+		, success: success
+		, error: error
+	});
+}
+
+function postClusterVals(vals, success, error) {
+	$.ajax({
+		url: '/api/cluster'
+		, dataType: 'json'
+		, type: 'POST'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(vals)
+		, success: success
+		, error: error
+	});
+}
+
 // PATCH //
 
-function patchSiteUser($formFilters, $formValues, success, error) {
-	var filters = patchSiteUserFilters($formFilters);
+function patchCluster($formFilters, $formValues, success, error) {
+	var filters = patchClusterFilters($formFilters);
 
 	var vals = {};
 
@@ -72,43 +137,10 @@ function patchSiteUser($formFilters, $formValues, success, error) {
 	if(removeDeleted != null && removeDeleted !== '')
 		vals['removeDeleted'] = removeDeleted;
 
-	var removeUserReceiveEmails = $formFilters.find('.removeUserReceiveEmails').val() === 'true';
-	var setUserReceiveEmails = removeUserReceiveEmails ? null : $formValues.find('.setUserReceiveEmails').prop('checked');
-	if(removeUserReceiveEmails || setUserReceiveEmails != null && setUserReceiveEmails !== '')
-		vals['setUserReceiveEmails'] = setUserReceiveEmails;
-	var addUserReceiveEmails = $formValues.find('.addUserReceiveEmails').prop('checked');
-	if(addUserReceiveEmails != null && addUserReceiveEmails !== '')
-		vals['addUserReceiveEmails'] = addUserReceiveEmails;
-	var removeUserReceiveEmails = $formValues.find('.removeUserReceiveEmails').prop('checked');
-	if(removeUserReceiveEmails != null && removeUserReceiveEmails !== '')
-		vals['removeUserReceiveEmails'] = removeUserReceiveEmails;
-
-	var removeSeeArchived = $formFilters.find('.removeSeeArchived').val() === 'true';
-	var setSeeArchived = removeSeeArchived ? null : $formValues.find('.setSeeArchived').prop('checked');
-	if(removeSeeArchived || setSeeArchived != null && setSeeArchived !== '')
-		vals['setSeeArchived'] = setSeeArchived;
-	var addSeeArchived = $formValues.find('.addSeeArchived').prop('checked');
-	if(addSeeArchived != null && addSeeArchived !== '')
-		vals['addSeeArchived'] = addSeeArchived;
-	var removeSeeArchived = $formValues.find('.removeSeeArchived').prop('checked');
-	if(removeSeeArchived != null && removeSeeArchived !== '')
-		vals['removeSeeArchived'] = removeSeeArchived;
-
-	var removeSeeDeleted = $formFilters.find('.removeSeeDeleted').val() === 'true';
-	var setSeeDeleted = removeSeeDeleted ? null : $formValues.find('.setSeeDeleted').prop('checked');
-	if(removeSeeDeleted || setSeeDeleted != null && setSeeDeleted !== '')
-		vals['setSeeDeleted'] = setSeeDeleted;
-	var addSeeDeleted = $formValues.find('.addSeeDeleted').prop('checked');
-	if(addSeeDeleted != null && addSeeDeleted !== '')
-		vals['addSeeDeleted'] = addSeeDeleted;
-	var removeSeeDeleted = $formValues.find('.removeSeeDeleted').prop('checked');
-	if(removeSeeDeleted != null && removeSeeDeleted !== '')
-		vals['removeSeeDeleted'] = removeSeeDeleted;
-
-	patchSiteUserVals(filters, vals, success, error);
+	patchClusterVals(filters, vals, success, error);
 }
 
-function patchSiteUserFilters($formFilters) {
+function patchClusterFilters($formFilters) {
 	var filters = [];
 
 	var filterPk = $formFilters.find('.valuePk').val();
@@ -134,18 +166,6 @@ function patchSiteUserFilters($formFilters) {
 	var filterDeleted = $formFilters.find('.valueDeleted').prop('checked');
 	if(filterDeleted != null && filterDeleted === true)
 		filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
-
-	var filterUserReceiveEmails = $formFilters.find('.valueUserReceiveEmails').prop('checked');
-	if(filterUserReceiveEmails != null && filterUserReceiveEmails === true)
-		filters.push({ name: 'fq', value: 'userReceiveEmails:' + filterUserReceiveEmails });
-
-	var filterSeeArchived = $formFilters.find('.valueSeeArchived').prop('checked');
-	if(filterSeeArchived != null && filterSeeArchived === true)
-		filters.push({ name: 'fq', value: 'seeArchived:' + filterSeeArchived });
-
-	var filterSeeDeleted = $formFilters.find('.valueSeeDeleted').prop('checked');
-	if(filterSeeDeleted != null && filterSeeDeleted === true)
-		filters.push({ name: 'fq', value: 'seeDeleted:' + filterSeeDeleted });
 
 	var filterId = $formFilters.find('.valueId').val();
 	if(filterId != null && filterId !== '')
@@ -174,42 +194,18 @@ function patchSiteUserFilters($formFilters) {
 	var filterPageUrl = $formFilters.find('.valuePageUrl').val();
 	if(filterPageUrl != null && filterPageUrl !== '')
 		filters.push({ name: 'fq', value: 'pageUrl:' + filterPageUrl });
-
-	var filterUserName = $formFilters.find('.valueUserName').val();
-	if(filterUserName != null && filterUserName !== '')
-		filters.push({ name: 'fq', value: 'userName:' + filterUserName });
-
-	var filterUserEmail = $formFilters.find('.valueUserEmail').val();
-	if(filterUserEmail != null && filterUserEmail !== '')
-		filters.push({ name: 'fq', value: 'userEmail:' + filterUserEmail });
-
-	var filterUserFirstName = $formFilters.find('.valueUserFirstName').val();
-	if(filterUserFirstName != null && filterUserFirstName !== '')
-		filters.push({ name: 'fq', value: 'userFirstName:' + filterUserFirstName });
-
-	var filterUserLastName = $formFilters.find('.valueUserLastName').val();
-	if(filterUserLastName != null && filterUserLastName !== '')
-		filters.push({ name: 'fq', value: 'userLastName:' + filterUserLastName });
-
-	var filterUserFullName = $formFilters.find('.valueUserFullName').val();
-	if(filterUserFullName != null && filterUserFullName !== '')
-		filters.push({ name: 'fq', value: 'userFullName:' + filterUserFullName });
-
-	var filterUserSite = $formFilters.find('.valueUserSite').val();
-	if(filterUserSite != null && filterUserSite !== '')
-		filters.push({ name: 'fq', value: 'userSite:' + filterUserSite });
 	return filters;
 }
 
-function patchSiteUserVal(filters, v, val, success, error) {
+function patchClusterVal(filters, v, val, success, error) {
 	var vals = {};
 	vals[v] = val;
-	patchSiteUserVals(filters, vals, success, error);
+	patchClusterVals(filters, vals, success, error);
 }
 
-function patchSiteUserVals(filters, vals, success, error) {
+function patchClusterVals(filters, vals, success, error) {
 	$.ajax({
-		url: '/api/user?' + $.param(filters)
+		url: '/api/cluster?' + $.param(filters)
 		, dataType: 'json'
 		, type: 'PATCH'
 		, contentType: 'application/json; charset=utf-8'
@@ -219,10 +215,135 @@ function patchSiteUserVals(filters, vals, success, error) {
 	});
 }
 
-function websocketSiteUser() {
+// GET //
+
+function getCluster(pk) {
+	$.ajax({
+		url: '/api/cluster/' + id
+		, dataType: 'json'
+		, type: 'GET'
+		, contentType: 'application/json; charset=utf-8'
+		, success: success
+		, error: error
+	});
+}
+
+// DELETE //
+
+function deleteCluster(pk) {
+	$.ajax({
+		url: '/api/cluster/' + id
+		, dataType: 'json'
+		, type: 'DELETE'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(vals)
+		, success: success
+		, error: error
+	});
+}
+
+// Search //
+
+function searchCluster($formFilters, success, error) {
+	var filters = searchClusterFilters($formFilters);
+	if(success == null)
+		success = function( data, textStatus, jQxhr ) {};
+	if(error == null)
+		error = function( jqXhr, textStatus, errorThrown ) {};
+
+	searchClusterVals(filters, success, error);
+}
+
+function searchClusterFilters($formFilters) {
+	var filters = [];
+
+	var filterPk = $formFilters.find('.valuePk').val();
+	if(filterPk != null && filterPk !== '')
+		filters.push({ name: 'fq', value: 'pk:' + filterPk });
+
+	var filterCreated = $formFilters.find('.valueCreated').val();
+	if(filterCreated != null && filterCreated !== '')
+		filters.push({ name: 'fq', value: 'created:' + filterCreated });
+
+	var filterModified = $formFilters.find('.valueModified').val();
+	if(filterModified != null && filterModified !== '')
+		filters.push({ name: 'fq', value: 'modified:' + filterModified });
+
+	var filterObjectId = $formFilters.find('.valueObjectId').val();
+	if(filterObjectId != null && filterObjectId !== '')
+		filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
+
+	var filterArchived = $formFilters.find('.valueArchived').prop('checked');
+	if(filterArchived != null && filterArchived === true)
+		filters.push({ name: 'fq', value: 'archived:' + filterArchived });
+
+	var filterDeleted = $formFilters.find('.valueDeleted').prop('checked');
+	if(filterDeleted != null && filterDeleted === true)
+		filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
+
+	var filterId = $formFilters.find('.valueId').val();
+	if(filterId != null && filterId !== '')
+		filters.push({ name: 'fq', value: 'id:' + filterId });
+
+	var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
+	if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
+		filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+
+	var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
+	if(filterClassSimpleName != null && filterClassSimpleName !== '')
+		filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+
+	var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
+	if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+		filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+	var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
+	if(filterObjectTitle != null && filterObjectTitle !== '')
+		filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
+
+	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
+	if(filterObjectSuggest != null && filterObjectSuggest !== '')
+		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+
+	var filterPageUrl = $formFilters.find('.valuePageUrl').val();
+	if(filterPageUrl != null && filterPageUrl !== '')
+		filters.push({ name: 'fq', value: 'pageUrl:' + filterPageUrl });
+	return filters;
+}
+
+function searchClusterVals(filters, success, error) {
+	$.ajax({
+		url: '/api/cluster?' + $.param(filters)
+		, dataType: 'json'
+		, type: 'GET'
+		, contentType: 'application/json; charset=utf-8'
+		, success: success
+		, error: error
+	});
+}
+
+function suggestClusterObjectSuggest($formFilters, $list) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'far fa-fort-awesome w3-padding-small ');
+			var $span = $('<span>').attr('class', '').text(o['objectTitle']);
+			var $li = $('<li>');
+			var $a = $('<a>').attr('href', o['pageUrl']);
+			$a.append($i);
+			$a.append($span);
+			$li.append($a);
+			$list.append($li);
+		});
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	searchClusterVals($formFilters, success, error);
+}
+
+function websocketCluster() {
 	var eventBus = new EventBus('/eventbus');
 	eventBus.onopen = function () {
-		eventBus.registerHandler('websocketSiteUser', function (error, message) {
+		eventBus.registerHandler('websocketCluster', function (error, message) {
 			var json = JSON.parse(message['body']);
 			var id = json['id'];
 			var numFound = json['numFound'];
@@ -231,13 +352,13 @@ function websocketSiteUser() {
 			var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
 			var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
 			var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
-			var $header = $('<div>').attr('class', 'w3-container fa-gray ').attr('id', 'header-' + id);
-			var $i = $('<i>').attr('class', 'far fa-user-cog w3-margin-right ').attr('id', 'icon-' + id);
-			var $headerSpan = $('<span>').attr('class', '').text('modify site users');
+			var $header = $('<div>').attr('class', 'w3-container fa-green ').attr('id', 'header-' + id);
+			var $i = $('<i>').attr('class', 'far fa-fort-awesome w3-margin-right ').attr('id', 'icon-' + id);
+			var $headerSpan = $('<span>').attr('class', '').text('modify clusters');
 			var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
 			var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
 			var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
-			var $progress = $('<div>').attr('class', 'w3-gray ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
+			var $progress = $('<div>').attr('class', 'w3-green ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
 			$card.append($header);
 			$header.append($i);
 			$header.append($headerSpan);

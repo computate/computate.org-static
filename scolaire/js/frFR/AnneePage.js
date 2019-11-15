@@ -29,9 +29,9 @@ function postAnneeScolaire($formulaireValeurs, success, error) {
 	if(valeurModifie != null && valeurModifie !== '')
 		vals['modifie'] = valeurModifie;
 
-	var valeurAnneeId = $formulaireValeurs.find('.valeurAnneeId').val();
-	if(valeurAnneeId != null && valeurAnneeId !== '')
-		vals['anneeId'] = valeurAnneeId;
+	var valeurObjetId = $formulaireValeurs.find('.valeurObjetId').val();
+	if(valeurObjetId != null && valeurObjetId !== '')
+		vals['objetId'] = valeurObjetId;
 
 	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
 	if(valeurArchive != null && valeurArchive !== '')
@@ -128,16 +128,16 @@ function patchAnneeScolaire($formulaireFiltres, $formulaireValeurs, success, err
 	if(removeModifie != null && removeModifie !== '')
 		vals['removeModifie'] = removeModifie;
 
-	var removeAnneeId = $formulaireFiltres.find('.removeAnneeId').val() === 'true';
-	var setAnneeId = removeAnneeId ? null : $formulaireValeurs.find('.setAnneeId').val();
-	if(removeAnneeId || setAnneeId != null && setAnneeId !== '')
-		vals['setAnneeId'] = setAnneeId;
-	var addAnneeId = $formulaireValeurs.find('.addAnneeId').val();
-	if(addAnneeId != null && addAnneeId !== '')
-		vals['addAnneeId'] = addAnneeId;
-	var removeAnneeId = $formulaireValeurs.find('.removeAnneeId').val();
-	if(removeAnneeId != null && removeAnneeId !== '')
-		vals['removeAnneeId'] = removeAnneeId;
+	var removeObjetId = $formulaireFiltres.find('.removeObjetId').val() === 'true';
+	var setObjetId = removeObjetId ? null : $formulaireValeurs.find('.setObjetId').val();
+	if(removeObjetId || setObjetId != null && setObjetId !== '')
+		vals['setObjetId'] = setObjetId;
+	var addObjetId = $formulaireValeurs.find('.addObjetId').val();
+	if(addObjetId != null && addObjetId !== '')
+		vals['addObjetId'] = addObjetId;
+	var removeObjetId = $formulaireValeurs.find('.removeObjetId').val();
+	if(removeObjetId != null && removeObjetId !== '')
+		vals['removeObjetId'] = removeObjetId;
 
 	var removeArchive = $formulaireFiltres.find('.removeArchive').val() === 'true';
 	var setArchive = removeArchive ? null : $formulaireValeurs.find('.setArchive').prop('checked');
@@ -245,9 +245,9 @@ function patchAnneeScolaireFiltres($formulaireFiltres) {
 	if(filtreModifie != null && filtreModifie !== '')
 		filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
 
-	var filtreAnneeId = $formulaireFiltres.find('.valeurAnneeId').val();
-	if(filtreAnneeId != null && filtreAnneeId !== '')
-		filtres.push({ name: 'fq', value: 'anneeId:' + filtreAnneeId });
+	var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
+	if(filtreObjetId != null && filtreObjetId !== '')
+		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
 
 	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
 	if(filtreArchive != null && filtreArchive === true)
@@ -293,6 +293,18 @@ function patchAnneeScolaireFiltres($formulaireFiltres) {
 	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
 		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
 
+	var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
+	if(filtreObjetTitre != null && filtreObjetTitre !== '')
+		filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
+
+	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
+	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
+		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
+
+	var filtrePageUrl = $formulaireFiltres.find('.valeurPageUrl').val();
+	if(filtrePageUrl != null && filtrePageUrl !== '')
+		filtres.push({ name: 'fq', value: 'pageUrl:' + filtrePageUrl });
+
 	var filtreAnneeCle = $formulaireFiltres.find('.valeurAnneeCle').val();
 	if(filtreAnneeCle != null && filtreAnneeCle !== '')
 		filtres.push({ name: 'fq', value: 'anneeCle:' + filtreAnneeCle });
@@ -313,6 +325,10 @@ function patchAnneeScolaireFiltres($formulaireFiltres) {
 	if(filtreAnneeTri != null && filtreAnneeTri !== '')
 		filtres.push({ name: 'fq', value: 'anneeTri:' + filtreAnneeTri });
 
+	var filtreEcoleNom = $formulaireFiltres.find('.valeurEcoleNom').val();
+	if(filtreEcoleNom != null && filtreEcoleNom !== '')
+		filtres.push({ name: 'fq', value: 'ecoleNom:' + filtreEcoleNom });
+
 	var filtreEcoleNomComplet = $formulaireFiltres.find('.valeurEcoleNomComplet').val();
 	if(filtreEcoleNomComplet != null && filtreEcoleNomComplet !== '')
 		filtres.push({ name: 'fq', value: 'ecoleNomComplet:' + filtreEcoleNomComplet });
@@ -328,14 +344,6 @@ function patchAnneeScolaireFiltres($formulaireFiltres) {
 	var filtreAnneeNomComplet = $formulaireFiltres.find('.valeurAnneeNomComplet').val();
 	if(filtreAnneeNomComplet != null && filtreAnneeNomComplet !== '')
 		filtres.push({ name: 'fq', value: 'anneeNomComplet:' + filtreAnneeNomComplet });
-
-	var filtrePageUrl = $formulaireFiltres.find('.valeurPageUrl').val();
-	if(filtrePageUrl != null && filtrePageUrl !== '')
-		filtres.push({ name: 'fq', value: 'pageUrl:' + filtrePageUrl });
-
-	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
-	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
-		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
 	return filtres;
 }
 
@@ -411,9 +419,9 @@ function rechercheAnneeScolaireFiltres($formulaireFiltres) {
 	if(filtreModifie != null && filtreModifie !== '')
 		filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
 
-	var filtreAnneeId = $formulaireFiltres.find('.valeurAnneeId').val();
-	if(filtreAnneeId != null && filtreAnneeId !== '')
-		filtres.push({ name: 'fq', value: 'anneeId:' + filtreAnneeId });
+	var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
+	if(filtreObjetId != null && filtreObjetId !== '')
+		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
 
 	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
 	if(filtreArchive != null && filtreArchive === true)
@@ -459,6 +467,18 @@ function rechercheAnneeScolaireFiltres($formulaireFiltres) {
 	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
 		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
 
+	var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
+	if(filtreObjetTitre != null && filtreObjetTitre !== '')
+		filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
+
+	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
+	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
+		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
+
+	var filtrePageUrl = $formulaireFiltres.find('.valeurPageUrl').val();
+	if(filtrePageUrl != null && filtrePageUrl !== '')
+		filtres.push({ name: 'fq', value: 'pageUrl:' + filtrePageUrl });
+
 	var filtreAnneeCle = $formulaireFiltres.find('.valeurAnneeCle').val();
 	if(filtreAnneeCle != null && filtreAnneeCle !== '')
 		filtres.push({ name: 'fq', value: 'anneeCle:' + filtreAnneeCle });
@@ -479,6 +499,10 @@ function rechercheAnneeScolaireFiltres($formulaireFiltres) {
 	if(filtreAnneeTri != null && filtreAnneeTri !== '')
 		filtres.push({ name: 'fq', value: 'anneeTri:' + filtreAnneeTri });
 
+	var filtreEcoleNom = $formulaireFiltres.find('.valeurEcoleNom').val();
+	if(filtreEcoleNom != null && filtreEcoleNom !== '')
+		filtres.push({ name: 'fq', value: 'ecoleNom:' + filtreEcoleNom });
+
 	var filtreEcoleNomComplet = $formulaireFiltres.find('.valeurEcoleNomComplet').val();
 	if(filtreEcoleNomComplet != null && filtreEcoleNomComplet !== '')
 		filtres.push({ name: 'fq', value: 'ecoleNomComplet:' + filtreEcoleNomComplet });
@@ -494,14 +518,6 @@ function rechercheAnneeScolaireFiltres($formulaireFiltres) {
 	var filtreAnneeNomComplet = $formulaireFiltres.find('.valeurAnneeNomComplet').val();
 	if(filtreAnneeNomComplet != null && filtreAnneeNomComplet !== '')
 		filtres.push({ name: 'fq', value: 'anneeNomComplet:' + filtreAnneeNomComplet });
-
-	var filtrePageUrl = $formulaireFiltres.find('.valeurPageUrl').val();
-	if(filtrePageUrl != null && filtrePageUrl !== '')
-		filtres.push({ name: 'fq', value: 'pageUrl:' + filtrePageUrl });
-
-	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
-	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
-		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
 	return filtres;
 }
 
@@ -514,6 +530,24 @@ function rechercheAnneeScolaireVals(filtres, success, error) {
 		, success: success
 		, error: error
 	});
+}
+
+function suggereAnneeScolaireObjetSuggere($formulaireFiltres, $list) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'far fa-calendar-check w3-padding-small ');
+			var $span = $('<span>').attr('class', '').text(o['anneeNomComplet']);
+			var $li = $('<li>');
+			var $a = $('<a>').attr('href', o['pageUrl']);
+			$a.append($i);
+			$a.append($span);
+			$li.append($a);
+			$list.append($li);
+		});
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	rechercherAnneeScolaireVals($formulaireFiltres, success, error);
 }
 
 function suggereAnneeScolaireEcoleCle($formulaireFiltres, $list) {
@@ -576,20 +610,37 @@ function suggereAnneeScolaireSaisonCles($formulaireFiltres, $list) {
 	rechercheSaisonScolaire($formulaireFiltres, success, error);
 }
 
-function suggereAnneeScolaireObjetSuggere($formulaireFiltres, $list) {
-	success = function( data, textStatus, jQxhr ) {
-		$list.empty();
-		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'far fa-calendar-check w3-padding-small ');
-			var $span = $('<span>').attr('class', '').text(o['anneeNomComplet']);
-			var $li = $('<li>');
-			var $a = $('<a>').attr('href', o['pageUrl']);
-			$a.append($i);
-			$a.append($span);
-			$li.append($a);
-			$list.append($li);
+function websocketAnneeScolaire() {
+	var eventBus = new EventBus('/eventbus');
+	eventBus.onopen = function () {
+		eventBus.registerHandler('websocketAnneeScolaire', function (error, message) {
+			var json = JSON.parse(message['body']);
+			var id = json['id'];
+			var numFound = json['numFound'];
+			var numPATCH = json['numPATCH'];
+			var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
+			var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
+			var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
+			var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
+			var $header = $('<div>').attr('class', 'w3-container fa-orange ').attr('id', 'header-' + id);
+			var $i = $('<i>').attr('class', 'far fa-calendar-check w3-margin-right ').attr('id', 'icon-' + id);
+			var $headerSpan = $('<span>').attr('class', '').text('modifier années');
+			var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
+			var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
+			var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
+			var $progress = $('<div>').attr('class', 'w3-orange ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
+			$card.append($header);
+			$header.append($i);
+			$header.append($headerSpan);
+			$header.append($x);
+			$body.append($bar);
+			$bar.append($progress);
+			$card.append($body);
+			$box.append($margin);
+			$margin.append($card);
+			$('.box-' + id).remove();
+			if(numPATCH < numFound)
+				$('.w3-content').append($box);
 		});
-	};
-	error = function( jqXhr, textStatus, errorThrown ) {};
-	rechercherAnneeScolaireVals($formulaireFiltres, success, error);
+	}
 }

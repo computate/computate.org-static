@@ -1,8 +1,21 @@
 
 // POST //
 
-function postEnfantScolaire($formulaireValeurs) {
+function postEnfantScolaire($formulaireValeurs, success, error) {
 	var vals = {};
+	if(success == null) {
+		success = function( data, textStatus, jQxhr ) {
+			ajouterLueur($formulaireValeurs.next('button'));
+			var url = data['pageUrl'];
+			if(url)
+				window.location.href = url;
+		};
+	}
+	if(error == null) {
+		error = function( jqXhr, textStatus, errorThrown ) {
+			ajouterErreur($formulaireValeurs.next('button'));
+		};
+	}
 
 	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
 	if(valeurPk != null && valeurPk !== '')
@@ -16,9 +29,9 @@ function postEnfantScolaire($formulaireValeurs) {
 	if(valeurModifie != null && valeurModifie !== '')
 		vals['modifie'] = valeurModifie;
 
-	var valeurEnfantId = $formulaireValeurs.find('.valeurEnfantId').val();
-	if(valeurEnfantId != null && valeurEnfantId !== '')
-		vals['enfantId'] = valeurEnfantId;
+	var valeurObjetId = $formulaireValeurs.find('.valeurObjetId').val();
+	if(valeurObjetId != null && valeurObjetId !== '')
+		vals['objetId'] = valeurObjetId;
 
 	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
 	if(valeurArchive != null && valeurArchive !== '')
@@ -143,16 +156,16 @@ function patchEnfantScolaire($formulaireFiltres, $formulaireValeurs, success, er
 	if(removeModifie != null && removeModifie !== '')
 		vals['removeModifie'] = removeModifie;
 
-	var removeEnfantId = $formulaireFiltres.find('.removeEnfantId').val() === 'true';
-	var setEnfantId = removeEnfantId ? null : $formulaireValeurs.find('.setEnfantId').val();
-	if(removeEnfantId || setEnfantId != null && setEnfantId !== '')
-		vals['setEnfantId'] = setEnfantId;
-	var addEnfantId = $formulaireValeurs.find('.addEnfantId').val();
-	if(addEnfantId != null && addEnfantId !== '')
-		vals['addEnfantId'] = addEnfantId;
-	var removeEnfantId = $formulaireValeurs.find('.removeEnfantId').val();
-	if(removeEnfantId != null && removeEnfantId !== '')
-		vals['removeEnfantId'] = removeEnfantId;
+	var removeObjetId = $formulaireFiltres.find('.removeObjetId').val() === 'true';
+	var setObjetId = removeObjetId ? null : $formulaireValeurs.find('.setObjetId').val();
+	if(removeObjetId || setObjetId != null && setObjetId !== '')
+		vals['setObjetId'] = setObjetId;
+	var addObjetId = $formulaireValeurs.find('.addObjetId').val();
+	if(addObjetId != null && addObjetId !== '')
+		vals['addObjetId'] = addObjetId;
+	var removeObjetId = $formulaireValeurs.find('.removeObjetId').val();
+	if(removeObjetId != null && removeObjetId !== '')
+		vals['removeObjetId'] = removeObjetId;
 
 	var removeArchive = $formulaireFiltres.find('.removeArchive').val() === 'true';
 	var setArchive = removeArchive ? null : $formulaireValeurs.find('.setArchive').prop('checked');
@@ -337,9 +350,9 @@ function patchEnfantScolaireFiltres($formulaireFiltres) {
 	if(filtreModifie != null && filtreModifie !== '')
 		filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
 
-	var filtreEnfantId = $formulaireFiltres.find('.valeurEnfantId').val();
-	if(filtreEnfantId != null && filtreEnfantId !== '')
-		filtres.push({ name: 'fq', value: 'enfantId:' + filtreEnfantId });
+	var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
+	if(filtreObjetId != null && filtreObjetId !== '')
+		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
 
 	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
 	if(filtreArchive != null && filtreArchive === true)
@@ -413,6 +426,18 @@ function patchEnfantScolaireFiltres($formulaireFiltres) {
 	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
 		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
 
+	var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
+	if(filtreObjetTitre != null && filtreObjetTitre !== '')
+		filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
+
+	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
+	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
+		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
+
+	var filtrePageUrl = $formulaireFiltres.find('.valeurPageUrl').val();
+	if(filtrePageUrl != null && filtrePageUrl !== '')
+		filtres.push({ name: 'fq', value: 'pageUrl:' + filtrePageUrl });
+
 	var filtreEnfantCle = $formulaireFiltres.find('.valeurEnfantCle').val();
 	if(filtreEnfantCle != null && filtreEnfantCle !== '')
 		filtres.push({ name: 'fq', value: 'enfantCle:' + filtreEnfantCle });
@@ -460,14 +485,6 @@ function patchEnfantScolaireFiltres($formulaireFiltres) {
 	var filtreEnfantNomComplet = $formulaireFiltres.find('.valeurEnfantNomComplet').val();
 	if(filtreEnfantNomComplet != null && filtreEnfantNomComplet !== '')
 		filtres.push({ name: 'fq', value: 'enfantNomComplet:' + filtreEnfantNomComplet });
-
-	var filtrePageUrl = $formulaireFiltres.find('.valeurPageUrl').val();
-	if(filtrePageUrl != null && filtrePageUrl !== '')
-		filtres.push({ name: 'fq', value: 'pageUrl:' + filtrePageUrl });
-
-	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
-	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
-		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
 	return filtres;
 }
 
@@ -543,9 +560,9 @@ function rechercheEnfantScolaireFiltres($formulaireFiltres) {
 	if(filtreModifie != null && filtreModifie !== '')
 		filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
 
-	var filtreEnfantId = $formulaireFiltres.find('.valeurEnfantId').val();
-	if(filtreEnfantId != null && filtreEnfantId !== '')
-		filtres.push({ name: 'fq', value: 'enfantId:' + filtreEnfantId });
+	var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
+	if(filtreObjetId != null && filtreObjetId !== '')
+		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
 
 	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
 	if(filtreArchive != null && filtreArchive === true)
@@ -619,6 +636,18 @@ function rechercheEnfantScolaireFiltres($formulaireFiltres) {
 	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
 		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
 
+	var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
+	if(filtreObjetTitre != null && filtreObjetTitre !== '')
+		filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
+
+	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
+	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
+		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
+
+	var filtrePageUrl = $formulaireFiltres.find('.valeurPageUrl').val();
+	if(filtrePageUrl != null && filtrePageUrl !== '')
+		filtres.push({ name: 'fq', value: 'pageUrl:' + filtrePageUrl });
+
 	var filtreEnfantCle = $formulaireFiltres.find('.valeurEnfantCle').val();
 	if(filtreEnfantCle != null && filtreEnfantCle !== '')
 		filtres.push({ name: 'fq', value: 'enfantCle:' + filtreEnfantCle });
@@ -666,14 +695,6 @@ function rechercheEnfantScolaireFiltres($formulaireFiltres) {
 	var filtreEnfantNomComplet = $formulaireFiltres.find('.valeurEnfantNomComplet').val();
 	if(filtreEnfantNomComplet != null && filtreEnfantNomComplet !== '')
 		filtres.push({ name: 'fq', value: 'enfantNomComplet:' + filtreEnfantNomComplet });
-
-	var filtrePageUrl = $formulaireFiltres.find('.valeurPageUrl').val();
-	if(filtrePageUrl != null && filtrePageUrl !== '')
-		filtres.push({ name: 'fq', value: 'pageUrl:' + filtrePageUrl });
-
-	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
-	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
-		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
 	return filtres;
 }
 
@@ -686,6 +707,24 @@ function rechercheEnfantScolaireVals(filtres, success, error) {
 		, success: success
 		, error: error
 	});
+}
+
+function suggereEnfantScolaireObjetSuggere($formulaireFiltres, $list) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'far fa-child w3-padding-small ');
+			var $span = $('<span>').attr('class', '').text(o['enfantNomComplet']);
+			var $li = $('<li>');
+			var $a = $('<a>').attr('href', o['pageUrl']);
+			$a.append($i);
+			$a.append($span);
+			$li.append($a);
+			$list.append($li);
+		});
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	rechercherEnfantScolaireVals($formulaireFiltres, success, error);
 }
 
 function suggereEnfantScolaireInscriptionCles($formulaireFiltres, $list) {
@@ -718,20 +757,37 @@ function suggereEnfantScolaireInscriptionCles($formulaireFiltres, $list) {
 	rechercheInscriptionScolaire($formulaireFiltres, success, error);
 }
 
-function suggereEnfantScolaireObjetSuggere($formulaireFiltres, $list) {
-	success = function( data, textStatus, jQxhr ) {
-		$list.empty();
-		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'far fa-child w3-padding-small ');
-			var $span = $('<span>').attr('class', '').text(o['enfantNomComplet']);
-			var $li = $('<li>');
-			var $a = $('<a>').attr('href', o['pageUrl']);
-			$a.append($i);
-			$a.append($span);
-			$li.append($a);
-			$list.append($li);
+function websocketEnfantScolaire() {
+	var eventBus = new EventBus('/eventbus');
+	eventBus.onopen = function () {
+		eventBus.registerHandler('websocketEnfantScolaire', function (error, message) {
+			var json = JSON.parse(message['body']);
+			var id = json['id'];
+			var numFound = json['numFound'];
+			var numPATCH = json['numPATCH'];
+			var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
+			var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
+			var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
+			var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
+			var $header = $('<div>').attr('class', 'w3-container fa-green ').attr('id', 'header-' + id);
+			var $i = $('<i>').attr('class', 'far fa-child w3-margin-right ').attr('id', 'icon-' + id);
+			var $headerSpan = $('<span>').attr('class', '').text('modifier enfants');
+			var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
+			var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
+			var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
+			var $progress = $('<div>').attr('class', 'w3-green ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
+			$card.append($header);
+			$header.append($i);
+			$header.append($headerSpan);
+			$header.append($x);
+			$body.append($bar);
+			$bar.append($progress);
+			$card.append($body);
+			$box.append($margin);
+			$margin.append($card);
+			$('.box-' + id).remove();
+			if(numPATCH < numFound)
+				$('.w3-content').append($box);
 		});
-	};
-	error = function( jqXhr, textStatus, errorThrown ) {};
-	rechercherEnfantScolaireVals($formulaireFiltres, success, error);
+	}
 }

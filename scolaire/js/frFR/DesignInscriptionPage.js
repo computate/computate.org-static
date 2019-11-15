@@ -45,9 +45,9 @@ function postDesignInscription($formulaireValeurs, success, error) {
 	if(valeurAnneeCle != null && valeurAnneeCle !== '')
 		vals['anneeCle'] = valeurAnneeCle;
 
-	var valeurPartFormCles = $formulaireValeurs.find('.valeurPartFormCles').val();
-	if(valeurPartFormCles != null && valeurPartFormCles !== '')
-		vals['partFormCles'] = valeurPartFormCles;
+	var valeurPartHtmlCles = $formulaireValeurs.find('.valeurPartHtmlCles').val();
+	if(valeurPartHtmlCles != null && valeurPartHtmlCles !== '')
+		vals['partHtmlCles'] = valeurPartHtmlCles;
 
 	var valeurInscriptionCles = $formulaireValeurs.find('.valeurInscriptionCles').val();
 	if(valeurInscriptionCles != null && valeurInscriptionCles !== '')
@@ -164,16 +164,16 @@ function patchDesignInscription($formulaireFiltres, $formulaireValeurs, success,
 	if(removeAnneeCle != null && removeAnneeCle !== '')
 		vals['removeAnneeCle'] = removeAnneeCle;
 
-	var removePartFormCles = $formulaireFiltres.find('.removePartFormCles').val() === 'true';
-	var setPartFormCles = removePartFormCles ? null : $formulaireValeurs.find('.setPartFormCles').val();
-	if(removePartFormCles || setPartFormCles != null && setPartFormCles !== '')
-		vals['setPartFormCles'] = setPartFormCles;
-	var addPartFormCles = $formulaireValeurs.find('.addPartFormCles').val();
-	if(addPartFormCles != null && addPartFormCles !== '')
-		vals['addPartFormCles'] = addPartFormCles;
-	var removePartFormCles = $formulaireValeurs.find('.removePartFormCles').val();
-	if(removePartFormCles != null && removePartFormCles !== '')
-		vals['removePartFormCles'] = removePartFormCles;
+	var removePartHtmlCles = $formulaireFiltres.find('.removePartHtmlCles').val() === 'true';
+	var setPartHtmlCles = removePartHtmlCles ? null : $formulaireValeurs.find('.setPartHtmlCles').val();
+	if(removePartHtmlCles || setPartHtmlCles != null && setPartHtmlCles !== '')
+		vals['setPartHtmlCles'] = setPartHtmlCles;
+	var addPartHtmlCles = $formulaireValeurs.find('.addPartHtmlCles').val();
+	if(addPartHtmlCles != null && addPartHtmlCles !== '')
+		vals['addPartHtmlCles'] = addPartHtmlCles;
+	var removePartHtmlCles = $formulaireValeurs.find('.removePartHtmlCles').val();
+	if(removePartHtmlCles != null && removePartHtmlCles !== '')
+		vals['removePartHtmlCles'] = removePartHtmlCles;
 
 	var removeInscriptionCles = $formulaireFiltres.find('.removeInscriptionCles').val() === 'true';
 	var setInscriptionCles = removeInscriptionCles ? null : $formulaireValeurs.find('.setInscriptionCles').val();
@@ -231,9 +231,9 @@ function patchDesignInscriptionFiltres($formulaireFiltres) {
 	if(filtreAnneeCle != null && filtreAnneeCle !== '')
 		filtres.push({ name: 'fq', value: 'anneeCle:' + filtreAnneeCle });
 
-	var filtrePartFormCles = $formulaireFiltres.find('.valeurPartFormCles').val();
-	if(filtrePartFormCles != null && filtrePartFormCles !== '')
-		filtres.push({ name: 'fq', value: 'partFormCles:' + filtrePartFormCles });
+	var filtrePartHtmlCles = $formulaireFiltres.find('.valeurPartHtmlCles').val();
+	if(filtrePartHtmlCles != null && filtrePartHtmlCles !== '')
+		filtres.push({ name: 'fq', value: 'partHtmlCles:' + filtrePartHtmlCles });
 
 	var filtreInscriptionCles = $formulaireFiltres.find('.valeurInscriptionCles').val();
 	if(filtreInscriptionCles != null && filtreInscriptionCles !== '')
@@ -393,9 +393,9 @@ function rechercheDesignInscriptionFiltres($formulaireFiltres) {
 	if(filtreAnneeCle != null && filtreAnneeCle !== '')
 		filtres.push({ name: 'fq', value: 'anneeCle:' + filtreAnneeCle });
 
-	var filtrePartFormCles = $formulaireFiltres.find('.valeurPartFormCles').val();
-	if(filtrePartFormCles != null && filtrePartFormCles !== '')
-		filtres.push({ name: 'fq', value: 'partFormCles:' + filtrePartFormCles });
+	var filtrePartHtmlCles = $formulaireFiltres.find('.valeurPartHtmlCles').val();
+	if(filtrePartHtmlCles != null && filtrePartHtmlCles !== '')
+		filtres.push({ name: 'fq', value: 'partHtmlCles:' + filtrePartHtmlCles });
 
 	var filtreInscriptionCles = $formulaireFiltres.find('.valeurInscriptionCles').val();
 	if(filtreInscriptionCles != null && filtreInscriptionCles !== '')
@@ -494,4 +494,184 @@ function suggereDesignInscriptionObjetSuggere($formulaireFiltres, $list) {
 	};
 	error = function( jqXhr, textStatus, errorThrown ) {};
 	rechercherDesignInscriptionVals($formulaireFiltres, success, error);
+}
+
+function suggereDesignInscriptionPartHtmlCles($formulaireFiltres, $list) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'fa fa-sun w3-padding-small ');
+			var $span = $('<span>').attr('class', '').text(o['objetTitre']);
+			var $a = $('<a>').attr('href', o['pageUrl']);
+			$a.append($i);
+			$a.append($span);
+			var pk = parseInt($('#DesignInscriptionForm :input[name="pk"]').val());
+			var val = o['designInscriptionCle'];
+			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
+			var $input = $('<input>');
+			$input.attr('id', 'GET_partHtmlCles_' + pk + '_designInscriptionCle_' + o['pk']);
+			$input.attr('class', 'w3-check ');
+			$input.attr('onchange', "var $input = $('#GET_partHtmlCles_" + pk + "_designInscriptionCle_" + o['pk'] + "'); patchDesignInscriptionVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'PartHtmlCles']: \"" + o['pk'] + "\" }, function() { patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], {}, function() { ajouterLueur($input); }, function() { ajouterErreur($input); } ); } ); ");
+			$input.attr('onclick', 'enleverLueur($(this)); ');
+			$input.attr('type', 'checkbox');
+			if(checked)
+				$input.attr('checked', 'checked');
+			var $li = $('<li>');
+			var tri1 = o['tri1'];
+			if(tri1) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				$sortText = $('<span>').attr('class', '').text(tri1);
+				var $iDown = $('<i>').attr('class', 'fad fa-caret-square-down w3-tiny ').attr('onclick', '');
+				var $iUp = $('<i>').attr('class', 'fad fa-caret-square-up w3-tiny ').attr('onclick', '');
+				var $iDelete = $('<i>').attr('class', 'fad fa-minus-square w3-tiny ').attr('onclick', '');
+				var $iRight = $('<i>').attr('class', 'fad fa-caret-square-right w3-tiny ').attr('onclick', '');
+				$supUp = $('<sup>').attr('class', 'w3-tiny ');
+				$subDown = $('<sub>').attr('class', 'w3-tiny ');
+				$supDelete = $('<sup>').attr('class', 'w3-tiny ');
+				$subRight = $('<sub>').attr('class', 'w3-tiny ');
+				$supUp.append($iUp);
+				$subDown.append($iDown);
+				$supDelete.append($iDelete);
+				$subRight.append($iRight);
+				$sort.append($supUp);
+				$sort.append($subDown);
+				$sort.append($sortText);
+				$sort.append($supDelete);
+				$sort.append($subRight);
+				$li.append($sort);
+			}
+			var tri2 = o['tri2'];
+			if(tri2) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				$sortText = $('<span>').attr('class', '').text(tri2);
+				var $iDown = $('<i>').attr('class', 'fad fa-caret-square-down w3-tiny ').attr('onclick', '');
+				var $iUp = $('<i>').attr('class', 'fad fa-caret-square-up w3-tiny ').attr('onclick', '');
+				var $iDelete = $('<i>').attr('class', 'fad fa-minus-square w3-tiny ').attr('onclick', '');
+				var $iRight = $('<i>').attr('class', 'fad fa-caret-square-right w3-tiny ').attr('onclick', '');
+				$supUp = $('<sup>').attr('class', 'w3-tiny ');
+				$subDown = $('<sub>').attr('class', 'w3-tiny ');
+				$supDelete = $('<sup>').attr('class', 'w3-tiny ');
+				$subRight = $('<sub>').attr('class', 'w3-tiny ');
+				$supUp.append($iUp);
+				$subDown.append($iDown);
+				$supDelete.append($iDelete);
+				$subRight.append($iRight);
+				$sort.append($supUp);
+				$sort.append($subDown);
+				$sort.append($sortText);
+				$sort.append($supDelete);
+				$sort.append($subRight);
+				$li.append($sort);
+			}
+			var tri3 = o['tri3'];
+			if(tri3) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				$sortText = $('<span>').attr('class', '').text(tri3);
+				var $iDown = $('<i>').attr('class', 'fad fa-caret-square-down w3-tiny ').attr('onclick', '');
+				var $iUp = $('<i>').attr('class', 'fad fa-caret-square-up w3-tiny ').attr('onclick', '');
+				var $iDelete = $('<i>').attr('class', 'fad fa-minus-square w3-tiny ').attr('onclick', '');
+				var $iRight = $('<i>').attr('class', 'fad fa-caret-square-right w3-tiny ').attr('onclick', '');
+				$supUp = $('<sup>').attr('class', 'w3-tiny ');
+				$subDown = $('<sub>').attr('class', 'w3-tiny ');
+				$supDelete = $('<sup>').attr('class', 'w3-tiny ');
+				$subRight = $('<sub>').attr('class', 'w3-tiny ');
+				$supUp.append($iUp);
+				$subDown.append($iDown);
+				$supDelete.append($iDelete);
+				$subRight.append($iRight);
+				$sort.append($supUp);
+				$sort.append($subDown);
+				$sort.append($sortText);
+				$sort.append($supDelete);
+				$sort.append($subRight);
+				$li.append($sort);
+			}
+			var tri4 = o['tri4'];
+			if(tri4) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				$sortText = $('<span>').attr('class', '').text(tri4);
+				var $iDown = $('<i>').attr('class', 'fad fa-caret-square-down w3-tiny ').attr('onclick', '');
+				var $iUp = $('<i>').attr('class', 'fad fa-caret-square-up w3-tiny ').attr('onclick', '');
+				var $iDelete = $('<i>').attr('class', 'fad fa-minus-square w3-tiny ').attr('onclick', '');
+				var $iRight = $('<i>').attr('class', 'fad fa-caret-square-right w3-tiny ').attr('onclick', '');
+				$supUp = $('<sup>').attr('class', 'w3-tiny ');
+				$subDown = $('<sub>').attr('class', 'w3-tiny ');
+				$supDelete = $('<sup>').attr('class', 'w3-tiny ');
+				$subRight = $('<sub>').attr('class', 'w3-tiny ');
+				$supUp.append($iUp);
+				$subDown.append($iDown);
+				$supDelete.append($iDelete);
+				$subRight.append($iRight);
+				$sort.append($supUp);
+				$sort.append($subDown);
+				$sort.append($sortText);
+				$sort.append($supDelete);
+				$sort.append($subRight);
+				$li.append($sort);
+			}
+			var tri5 = o['tri5'];
+			if(tri5) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				$sortText = $('<span>').attr('class', '').text(tri5);
+				var $iDown = $('<i>').attr('class', 'fad fa-caret-square-down w3-tiny ').attr('onclick', '');
+				var $iUp = $('<i>').attr('class', 'fad fa-caret-square-up w3-tiny ').attr('onclick', '');
+				var $iDelete = $('<i>').attr('class', 'fad fa-minus-square w3-tiny ').attr('onclick', '');
+				var $iRight = $('<i>').attr('class', 'fad fa-caret-square-right w3-tiny ').attr('onclick', '');
+				$supUp = $('<sup>').attr('class', 'w3-tiny ');
+				$subDown = $('<sub>').attr('class', 'w3-tiny ');
+				$supDelete = $('<sup>').attr('class', 'w3-tiny ');
+				$subRight = $('<sub>').attr('class', 'w3-tiny ');
+				$supUp.append($iUp);
+				$subDown.append($iDown);
+				$supDelete.append($iDelete);
+				$subRight.append($iRight);
+				$sort.append($supUp);
+				$sort.append($subDown);
+				$sort.append($sortText);
+				$sort.append($supDelete);
+				$sort.append($subRight);
+				$li.append($sort);
+			}
+			$li.append($input);
+			$li.append($a);
+			$list.append($li);
+		});
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	recherchePartHtml($formulaireFiltres, success, error);
+}
+
+function websocketDesignInscription() {
+	var eventBus = new EventBus('/eventbus');
+	eventBus.onopen = function () {
+		eventBus.registerHandler('websocketDesignInscription', function (error, message) {
+			var json = JSON.parse(message['body']);
+			var id = json['id'];
+			var numFound = json['numFound'];
+			var numPATCH = json['numPATCH'];
+			var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
+			var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
+			var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
+			var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
+			var $header = $('<div>').attr('class', 'w3-container fa-indigo ').attr('id', 'header-' + id);
+			var $i = $('<i>').attr('class', 'far fa-bell w3-margin-right ').attr('id', 'icon-' + id);
+			var $headerSpan = $('<span>').attr('class', '').text('modifier design d'inscriptions');
+			var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
+			var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
+			var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
+			var $progress = $('<div>').attr('class', 'w3-indigo ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
+			$card.append($header);
+			$header.append($i);
+			$header.append($headerSpan);
+			$header.append($x);
+			$body.append($bar);
+			$bar.append($progress);
+			$card.append($body);
+			$box.append($margin);
+			$margin.append($card);
+			$('.box-' + id).remove();
+			if(numPATCH < numFound)
+				$('.w3-content').append($box);
+		});
+	}
 }

@@ -29,9 +29,9 @@ function postSchoolYear($formValues, success, error) {
 	if(valueModified != null && valueModified !== '')
 		vals['modified'] = valueModified;
 
-	var valueYearId = $formValues.find('.valueYearId').val();
-	if(valueYearId != null && valueYearId !== '')
-		vals['yearId'] = valueYearId;
+	var valueObjectId = $formValues.find('.valueObjectId').val();
+	if(valueObjectId != null && valueObjectId !== '')
+		vals['objectId'] = valueObjectId;
 
 	var valueArchived = $formValues.find('.valueArchived').prop('checked');
 	if(valueArchived != null && valueArchived !== '')
@@ -128,16 +128,16 @@ function patchSchoolYear($formFilters, $formValues, success, error) {
 	if(removeModified != null && removeModified !== '')
 		vals['removeModified'] = removeModified;
 
-	var removeYearId = $formFilters.find('.removeYearId').val() === 'true';
-	var setYearId = removeYearId ? null : $formValues.find('.setYearId').val();
-	if(removeYearId || setYearId != null && setYearId !== '')
-		vals['setYearId'] = setYearId;
-	var addYearId = $formValues.find('.addYearId').val();
-	if(addYearId != null && addYearId !== '')
-		vals['addYearId'] = addYearId;
-	var removeYearId = $formValues.find('.removeYearId').val();
-	if(removeYearId != null && removeYearId !== '')
-		vals['removeYearId'] = removeYearId;
+	var removeObjectId = $formFilters.find('.removeObjectId').val() === 'true';
+	var setObjectId = removeObjectId ? null : $formValues.find('.setObjectId').val();
+	if(removeObjectId || setObjectId != null && setObjectId !== '')
+		vals['setObjectId'] = setObjectId;
+	var addObjectId = $formValues.find('.addObjectId').val();
+	if(addObjectId != null && addObjectId !== '')
+		vals['addObjectId'] = addObjectId;
+	var removeObjectId = $formValues.find('.removeObjectId').val();
+	if(removeObjectId != null && removeObjectId !== '')
+		vals['removeObjectId'] = removeObjectId;
 
 	var removeArchived = $formFilters.find('.removeArchived').val() === 'true';
 	var setArchived = removeArchived ? null : $formValues.find('.setArchived').prop('checked');
@@ -245,9 +245,9 @@ function patchSchoolYearFilters($formFilters) {
 	if(filterModified != null && filterModified !== '')
 		filters.push({ name: 'fq', value: 'modified:' + filterModified });
 
-	var filterYearId = $formFilters.find('.valueYearId').val();
-	if(filterYearId != null && filterYearId !== '')
-		filters.push({ name: 'fq', value: 'yearId:' + filterYearId });
+	var filterObjectId = $formFilters.find('.valueObjectId').val();
+	if(filterObjectId != null && filterObjectId !== '')
+		filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
 
 	var filterArchived = $formFilters.find('.valueArchived').prop('checked');
 	if(filterArchived != null && filterArchived === true)
@@ -293,6 +293,18 @@ function patchSchoolYearFilters($formFilters) {
 	if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
 		filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
+	var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
+	if(filterObjectTitle != null && filterObjectTitle !== '')
+		filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
+
+	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
+	if(filterObjectSuggest != null && filterObjectSuggest !== '')
+		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+
+	var filterPageUrl = $formFilters.find('.valuePageUrl').val();
+	if(filterPageUrl != null && filterPageUrl !== '')
+		filters.push({ name: 'fq', value: 'pageUrl:' + filterPageUrl });
+
 	var filterYearKey = $formFilters.find('.valueYearKey').val();
 	if(filterYearKey != null && filterYearKey !== '')
 		filters.push({ name: 'fq', value: 'yearKey:' + filterYearKey });
@@ -313,6 +325,10 @@ function patchSchoolYearFilters($formFilters) {
 	if(filterYearSort != null && filterYearSort !== '')
 		filters.push({ name: 'fq', value: 'yearSort:' + filterYearSort });
 
+	var filterSchoolName = $formFilters.find('.valueSchoolName').val();
+	if(filterSchoolName != null && filterSchoolName !== '')
+		filters.push({ name: 'fq', value: 'schoolName:' + filterSchoolName });
+
 	var filterSchoolCompleteName = $formFilters.find('.valueSchoolCompleteName').val();
 	if(filterSchoolCompleteName != null && filterSchoolCompleteName !== '')
 		filters.push({ name: 'fq', value: 'schoolCompleteName:' + filterSchoolCompleteName });
@@ -328,14 +344,6 @@ function patchSchoolYearFilters($formFilters) {
 	var filterYearCompleteName = $formFilters.find('.valueYearCompleteName').val();
 	if(filterYearCompleteName != null && filterYearCompleteName !== '')
 		filters.push({ name: 'fq', value: 'yearCompleteName:' + filterYearCompleteName });
-
-	var filterPageUrl = $formFilters.find('.valuePageUrl').val();
-	if(filterPageUrl != null && filterPageUrl !== '')
-		filters.push({ name: 'fq', value: 'pageUrl:' + filterPageUrl });
-
-	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
-	if(filterObjectSuggest != null && filterObjectSuggest !== '')
-		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
 	return filters;
 }
 
@@ -411,9 +419,9 @@ function searchSchoolYearFilters($formFilters) {
 	if(filterModified != null && filterModified !== '')
 		filters.push({ name: 'fq', value: 'modified:' + filterModified });
 
-	var filterYearId = $formFilters.find('.valueYearId').val();
-	if(filterYearId != null && filterYearId !== '')
-		filters.push({ name: 'fq', value: 'yearId:' + filterYearId });
+	var filterObjectId = $formFilters.find('.valueObjectId').val();
+	if(filterObjectId != null && filterObjectId !== '')
+		filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
 
 	var filterArchived = $formFilters.find('.valueArchived').prop('checked');
 	if(filterArchived != null && filterArchived === true)
@@ -459,6 +467,18 @@ function searchSchoolYearFilters($formFilters) {
 	if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
 		filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
+	var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
+	if(filterObjectTitle != null && filterObjectTitle !== '')
+		filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
+
+	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
+	if(filterObjectSuggest != null && filterObjectSuggest !== '')
+		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+
+	var filterPageUrl = $formFilters.find('.valuePageUrl').val();
+	if(filterPageUrl != null && filterPageUrl !== '')
+		filters.push({ name: 'fq', value: 'pageUrl:' + filterPageUrl });
+
 	var filterYearKey = $formFilters.find('.valueYearKey').val();
 	if(filterYearKey != null && filterYearKey !== '')
 		filters.push({ name: 'fq', value: 'yearKey:' + filterYearKey });
@@ -479,6 +499,10 @@ function searchSchoolYearFilters($formFilters) {
 	if(filterYearSort != null && filterYearSort !== '')
 		filters.push({ name: 'fq', value: 'yearSort:' + filterYearSort });
 
+	var filterSchoolName = $formFilters.find('.valueSchoolName').val();
+	if(filterSchoolName != null && filterSchoolName !== '')
+		filters.push({ name: 'fq', value: 'schoolName:' + filterSchoolName });
+
 	var filterSchoolCompleteName = $formFilters.find('.valueSchoolCompleteName').val();
 	if(filterSchoolCompleteName != null && filterSchoolCompleteName !== '')
 		filters.push({ name: 'fq', value: 'schoolCompleteName:' + filterSchoolCompleteName });
@@ -494,14 +518,6 @@ function searchSchoolYearFilters($formFilters) {
 	var filterYearCompleteName = $formFilters.find('.valueYearCompleteName').val();
 	if(filterYearCompleteName != null && filterYearCompleteName !== '')
 		filters.push({ name: 'fq', value: 'yearCompleteName:' + filterYearCompleteName });
-
-	var filterPageUrl = $formFilters.find('.valuePageUrl').val();
-	if(filterPageUrl != null && filterPageUrl !== '')
-		filters.push({ name: 'fq', value: 'pageUrl:' + filterPageUrl });
-
-	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
-	if(filterObjectSuggest != null && filterObjectSuggest !== '')
-		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
 	return filters;
 }
 
@@ -514,6 +530,24 @@ function searchSchoolYearVals(filters, success, error) {
 		, success: success
 		, error: error
 	});
+}
+
+function suggestSchoolYearObjectSuggest($formFilters, $list) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'far fa-calendar-check w3-padding-small ');
+			var $span = $('<span>').attr('class', '').text(o['yearCompleteName']);
+			var $li = $('<li>');
+			var $a = $('<a>').attr('href', o['pageUrl']);
+			$a.append($i);
+			$a.append($span);
+			$li.append($a);
+			$list.append($li);
+		});
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	searchSchoolYearVals($formFilters, success, error);
 }
 
 function suggestSchoolYearSchoolKey($formFilters, $list) {
@@ -576,20 +610,37 @@ function suggestSchoolYearSeasonKeys($formFilters, $list) {
 	searchSchoolSeason($formFilters, success, error);
 }
 
-function suggestSchoolYearObjectSuggest($formFilters, $list) {
-	success = function( data, textStatus, jQxhr ) {
-		$list.empty();
-		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'far fa-calendar-check w3-padding-small ');
-			var $span = $('<span>').attr('class', '').text(o['yearCompleteName']);
-			var $li = $('<li>');
-			var $a = $('<a>').attr('href', o['pageUrl']);
-			$a.append($i);
-			$a.append($span);
-			$li.append($a);
-			$list.append($li);
+function websocketSchoolYear() {
+	var eventBus = new EventBus('/eventbus');
+	eventBus.onopen = function () {
+		eventBus.registerHandler('websocketSchoolYear', function (error, message) {
+			var json = JSON.parse(message['body']);
+			var id = json['id'];
+			var numFound = json['numFound'];
+			var numPATCH = json['numPATCH'];
+			var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
+			var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
+			var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
+			var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
+			var $header = $('<div>').attr('class', 'w3-container fa-orange ').attr('id', 'header-' + id);
+			var $i = $('<i>').attr('class', 'far fa-calendar-check w3-margin-right ').attr('id', 'icon-' + id);
+			var $headerSpan = $('<span>').attr('class', '').text('modify years');
+			var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
+			var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
+			var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
+			var $progress = $('<div>').attr('class', 'w3-orange ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
+			$card.append($header);
+			$header.append($i);
+			$header.append($headerSpan);
+			$header.append($x);
+			$body.append($bar);
+			$bar.append($progress);
+			$card.append($body);
+			$box.append($margin);
+			$margin.append($card);
+			$('.box-' + id).remove();
+			if(numPATCH < numFound)
+				$('.w3-content').append($box);
 		});
-	};
-	error = function( jqXhr, textStatus, errorThrown ) {};
-	searchSchoolYearVals($formFilters, success, error);
+	}
 }

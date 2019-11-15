@@ -29,9 +29,9 @@ function postSchoolDad($formValues, success, error) {
 	if(valueModified != null && valueModified !== '')
 		vals['modified'] = valueModified;
 
-	var valueDadId = $formValues.find('.valueDadId').val();
-	if(valueDadId != null && valueDadId !== '')
-		vals['dadId'] = valueDadId;
+	var valueObjectId = $formValues.find('.valueObjectId').val();
+	if(valueObjectId != null && valueObjectId !== '')
+		vals['objectId'] = valueObjectId;
 
 	var valueArchived = $formValues.find('.valueArchived').prop('checked');
 	if(valueArchived != null && valueArchived !== '')
@@ -152,16 +152,16 @@ function patchSchoolDad($formFilters, $formValues, success, error) {
 	if(removeModified != null && removeModified !== '')
 		vals['removeModified'] = removeModified;
 
-	var removeDadId = $formFilters.find('.removeDadId').val() === 'true';
-	var setDadId = removeDadId ? null : $formValues.find('.setDadId').val();
-	if(removeDadId || setDadId != null && setDadId !== '')
-		vals['setDadId'] = setDadId;
-	var addDadId = $formValues.find('.addDadId').val();
-	if(addDadId != null && addDadId !== '')
-		vals['addDadId'] = addDadId;
-	var removeDadId = $formValues.find('.removeDadId').val();
-	if(removeDadId != null && removeDadId !== '')
-		vals['removeDadId'] = removeDadId;
+	var removeObjectId = $formFilters.find('.removeObjectId').val() === 'true';
+	var setObjectId = removeObjectId ? null : $formValues.find('.setObjectId').val();
+	if(removeObjectId || setObjectId != null && setObjectId !== '')
+		vals['setObjectId'] = setObjectId;
+	var addObjectId = $formValues.find('.addObjectId').val();
+	if(addObjectId != null && addObjectId !== '')
+		vals['addObjectId'] = addObjectId;
+	var removeObjectId = $formValues.find('.removeObjectId').val();
+	if(removeObjectId != null && removeObjectId !== '')
+		vals['removeObjectId'] = removeObjectId;
 
 	var removeArchived = $formFilters.find('.removeArchived').val() === 'true';
 	var setArchived = removeArchived ? null : $formValues.find('.setArchived').prop('checked');
@@ -335,9 +335,9 @@ function patchSchoolDadFilters($formFilters) {
 	if(filterModified != null && filterModified !== '')
 		filters.push({ name: 'fq', value: 'modified:' + filterModified });
 
-	var filterDadId = $formFilters.find('.valueDadId').val();
-	if(filterDadId != null && filterDadId !== '')
-		filters.push({ name: 'fq', value: 'dadId:' + filterDadId });
+	var filterObjectId = $formFilters.find('.valueObjectId').val();
+	if(filterObjectId != null && filterObjectId !== '')
+		filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
 
 	var filterArchived = $formFilters.find('.valueArchived').prop('checked');
 	if(filterArchived != null && filterArchived === true)
@@ -407,6 +407,18 @@ function patchSchoolDadFilters($formFilters) {
 	if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
 		filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
+	var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
+	if(filterObjectTitle != null && filterObjectTitle !== '')
+		filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
+
+	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
+	if(filterObjectSuggest != null && filterObjectSuggest !== '')
+		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+
+	var filterPageUrl = $formFilters.find('.valuePageUrl').val();
+	if(filterPageUrl != null && filterPageUrl !== '')
+		filters.push({ name: 'fq', value: 'pageUrl:' + filterPageUrl });
+
 	var filterDadKey = $formFilters.find('.valueDadKey').val();
 	if(filterDadKey != null && filterDadKey !== '')
 		filters.push({ name: 'fq', value: 'dadKey:' + filterDadKey });
@@ -458,14 +470,6 @@ function patchSchoolDadFilters($formFilters) {
 	var filterDadCompleteName = $formFilters.find('.valueDadCompleteName').val();
 	if(filterDadCompleteName != null && filterDadCompleteName !== '')
 		filters.push({ name: 'fq', value: 'dadCompleteName:' + filterDadCompleteName });
-
-	var filterPageUrl = $formFilters.find('.valuePageUrl').val();
-	if(filterPageUrl != null && filterPageUrl !== '')
-		filters.push({ name: 'fq', value: 'pageUrl:' + filterPageUrl });
-
-	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
-	if(filterObjectSuggest != null && filterObjectSuggest !== '')
-		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
 	return filters;
 }
 
@@ -541,9 +545,9 @@ function searchSchoolDadFilters($formFilters) {
 	if(filterModified != null && filterModified !== '')
 		filters.push({ name: 'fq', value: 'modified:' + filterModified });
 
-	var filterDadId = $formFilters.find('.valueDadId').val();
-	if(filterDadId != null && filterDadId !== '')
-		filters.push({ name: 'fq', value: 'dadId:' + filterDadId });
+	var filterObjectId = $formFilters.find('.valueObjectId').val();
+	if(filterObjectId != null && filterObjectId !== '')
+		filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
 
 	var filterArchived = $formFilters.find('.valueArchived').prop('checked');
 	if(filterArchived != null && filterArchived === true)
@@ -613,6 +617,18 @@ function searchSchoolDadFilters($formFilters) {
 	if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
 		filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
+	var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
+	if(filterObjectTitle != null && filterObjectTitle !== '')
+		filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
+
+	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
+	if(filterObjectSuggest != null && filterObjectSuggest !== '')
+		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+
+	var filterPageUrl = $formFilters.find('.valuePageUrl').val();
+	if(filterPageUrl != null && filterPageUrl !== '')
+		filters.push({ name: 'fq', value: 'pageUrl:' + filterPageUrl });
+
 	var filterDadKey = $formFilters.find('.valueDadKey').val();
 	if(filterDadKey != null && filterDadKey !== '')
 		filters.push({ name: 'fq', value: 'dadKey:' + filterDadKey });
@@ -664,14 +680,6 @@ function searchSchoolDadFilters($formFilters) {
 	var filterDadCompleteName = $formFilters.find('.valueDadCompleteName').val();
 	if(filterDadCompleteName != null && filterDadCompleteName !== '')
 		filters.push({ name: 'fq', value: 'dadCompleteName:' + filterDadCompleteName });
-
-	var filterPageUrl = $formFilters.find('.valuePageUrl').val();
-	if(filterPageUrl != null && filterPageUrl !== '')
-		filters.push({ name: 'fq', value: 'pageUrl:' + filterPageUrl });
-
-	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
-	if(filterObjectSuggest != null && filterObjectSuggest !== '')
-		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
 	return filters;
 }
 
@@ -684,6 +692,24 @@ function searchSchoolDadVals(filters, success, error) {
 		, success: success
 		, error: error
 	});
+}
+
+function suggestSchoolDadObjectSuggest($formFilters, $list) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'far fa-male w3-padding-small ');
+			var $span = $('<span>').attr('class', '').text(o['dadCompleteName']);
+			var $li = $('<li>');
+			var $a = $('<a>').attr('href', o['pageUrl']);
+			$a.append($i);
+			$a.append($span);
+			$li.append($a);
+			$list.append($li);
+		});
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	searchSchoolDadVals($formFilters, success, error);
 }
 
 function suggestSchoolDadEnrollmentKeys($formFilters, $list) {
@@ -716,20 +742,37 @@ function suggestSchoolDadEnrollmentKeys($formFilters, $list) {
 	searchSchoolEnrollment($formFilters, success, error);
 }
 
-function suggestSchoolDadObjectSuggest($formFilters, $list) {
-	success = function( data, textStatus, jQxhr ) {
-		$list.empty();
-		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'far fa-male w3-padding-small ');
-			var $span = $('<span>').attr('class', '').text(o['dadCompleteName']);
-			var $li = $('<li>');
-			var $a = $('<a>').attr('href', o['pageUrl']);
-			$a.append($i);
-			$a.append($span);
-			$li.append($a);
-			$list.append($li);
+function websocketSchoolDad() {
+	var eventBus = new EventBus('/eventbus');
+	eventBus.onopen = function () {
+		eventBus.registerHandler('websocketSchoolDad', function (error, message) {
+			var json = JSON.parse(message['body']);
+			var id = json['id'];
+			var numFound = json['numFound'];
+			var numPATCH = json['numPATCH'];
+			var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
+			var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
+			var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
+			var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
+			var $header = $('<div>').attr('class', 'w3-container fa-light-blue ').attr('id', 'header-' + id);
+			var $i = $('<i>').attr('class', 'far fa-male w3-margin-right ').attr('id', 'icon-' + id);
+			var $headerSpan = $('<span>').attr('class', '').text('modify dads');
+			var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
+			var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
+			var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
+			var $progress = $('<div>').attr('class', 'w3-light-blue ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
+			$card.append($header);
+			$header.append($i);
+			$header.append($headerSpan);
+			$header.append($x);
+			$body.append($bar);
+			$bar.append($progress);
+			$card.append($body);
+			$box.append($margin);
+			$margin.append($card);
+			$('.box-' + id).remove();
+			if(numPATCH < numFound)
+				$('.w3-content').append($box);
 		});
-	};
-	error = function( jqXhr, textStatus, errorThrown ) {};
-	searchSchoolDadVals($formFilters, success, error);
+	}
 }

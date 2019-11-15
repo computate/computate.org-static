@@ -1,8 +1,21 @@
 
 // POST //
 
-function postSchoolChild($formValues) {
+function postSchoolChild($formValues, success, error) {
 	var vals = {};
+	if(success == null) {
+		success = function( data, textStatus, jQxhr ) {
+			addGlow($formValues.next('button'));
+			var url = data['pageUrl'];
+			if(url)
+				window.location.href = url;
+		};
+	}
+	if(error == null) {
+		error = function( jqXhr, textStatus, errorThrown ) {
+			addError($formValues.next('button'));
+		};
+	}
 
 	var valuePk = $formValues.find('.valuePk').val();
 	if(valuePk != null && valuePk !== '')
@@ -16,9 +29,9 @@ function postSchoolChild($formValues) {
 	if(valueModified != null && valueModified !== '')
 		vals['modified'] = valueModified;
 
-	var valueChildId = $formValues.find('.valueChildId').val();
-	if(valueChildId != null && valueChildId !== '')
-		vals['childId'] = valueChildId;
+	var valueObjectId = $formValues.find('.valueObjectId').val();
+	if(valueObjectId != null && valueObjectId !== '')
+		vals['objectId'] = valueObjectId;
 
 	var valueArchived = $formValues.find('.valueArchived').prop('checked');
 	if(valueArchived != null && valueArchived !== '')
@@ -143,16 +156,16 @@ function patchSchoolChild($formFilters, $formValues, success, error) {
 	if(removeModified != null && removeModified !== '')
 		vals['removeModified'] = removeModified;
 
-	var removeChildId = $formFilters.find('.removeChildId').val() === 'true';
-	var setChildId = removeChildId ? null : $formValues.find('.setChildId').val();
-	if(removeChildId || setChildId != null && setChildId !== '')
-		vals['setChildId'] = setChildId;
-	var addChildId = $formValues.find('.addChildId').val();
-	if(addChildId != null && addChildId !== '')
-		vals['addChildId'] = addChildId;
-	var removeChildId = $formValues.find('.removeChildId').val();
-	if(removeChildId != null && removeChildId !== '')
-		vals['removeChildId'] = removeChildId;
+	var removeObjectId = $formFilters.find('.removeObjectId').val() === 'true';
+	var setObjectId = removeObjectId ? null : $formValues.find('.setObjectId').val();
+	if(removeObjectId || setObjectId != null && setObjectId !== '')
+		vals['setObjectId'] = setObjectId;
+	var addObjectId = $formValues.find('.addObjectId').val();
+	if(addObjectId != null && addObjectId !== '')
+		vals['addObjectId'] = addObjectId;
+	var removeObjectId = $formValues.find('.removeObjectId').val();
+	if(removeObjectId != null && removeObjectId !== '')
+		vals['removeObjectId'] = removeObjectId;
 
 	var removeArchived = $formFilters.find('.removeArchived').val() === 'true';
 	var setArchived = removeArchived ? null : $formValues.find('.setArchived').prop('checked');
@@ -337,9 +350,9 @@ function patchSchoolChildFilters($formFilters) {
 	if(filterModified != null && filterModified !== '')
 		filters.push({ name: 'fq', value: 'modified:' + filterModified });
 
-	var filterChildId = $formFilters.find('.valueChildId').val();
-	if(filterChildId != null && filterChildId !== '')
-		filters.push({ name: 'fq', value: 'childId:' + filterChildId });
+	var filterObjectId = $formFilters.find('.valueObjectId').val();
+	if(filterObjectId != null && filterObjectId !== '')
+		filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
 
 	var filterArchived = $formFilters.find('.valueArchived').prop('checked');
 	if(filterArchived != null && filterArchived === true)
@@ -413,6 +426,18 @@ function patchSchoolChildFilters($formFilters) {
 	if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
 		filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
+	var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
+	if(filterObjectTitle != null && filterObjectTitle !== '')
+		filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
+
+	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
+	if(filterObjectSuggest != null && filterObjectSuggest !== '')
+		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+
+	var filterPageUrl = $formFilters.find('.valuePageUrl').val();
+	if(filterPageUrl != null && filterPageUrl !== '')
+		filters.push({ name: 'fq', value: 'pageUrl:' + filterPageUrl });
+
 	var filterChildKey = $formFilters.find('.valueChildKey').val();
 	if(filterChildKey != null && filterChildKey !== '')
 		filters.push({ name: 'fq', value: 'childKey:' + filterChildKey });
@@ -460,14 +485,6 @@ function patchSchoolChildFilters($formFilters) {
 	var filterChildCompleteName = $formFilters.find('.valueChildCompleteName').val();
 	if(filterChildCompleteName != null && filterChildCompleteName !== '')
 		filters.push({ name: 'fq', value: 'childCompleteName:' + filterChildCompleteName });
-
-	var filterPageUrl = $formFilters.find('.valuePageUrl').val();
-	if(filterPageUrl != null && filterPageUrl !== '')
-		filters.push({ name: 'fq', value: 'pageUrl:' + filterPageUrl });
-
-	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
-	if(filterObjectSuggest != null && filterObjectSuggest !== '')
-		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
 	return filters;
 }
 
@@ -543,9 +560,9 @@ function searchSchoolChildFilters($formFilters) {
 	if(filterModified != null && filterModified !== '')
 		filters.push({ name: 'fq', value: 'modified:' + filterModified });
 
-	var filterChildId = $formFilters.find('.valueChildId').val();
-	if(filterChildId != null && filterChildId !== '')
-		filters.push({ name: 'fq', value: 'childId:' + filterChildId });
+	var filterObjectId = $formFilters.find('.valueObjectId').val();
+	if(filterObjectId != null && filterObjectId !== '')
+		filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
 
 	var filterArchived = $formFilters.find('.valueArchived').prop('checked');
 	if(filterArchived != null && filterArchived === true)
@@ -619,6 +636,18 @@ function searchSchoolChildFilters($formFilters) {
 	if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
 		filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
+	var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
+	if(filterObjectTitle != null && filterObjectTitle !== '')
+		filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
+
+	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
+	if(filterObjectSuggest != null && filterObjectSuggest !== '')
+		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+
+	var filterPageUrl = $formFilters.find('.valuePageUrl').val();
+	if(filterPageUrl != null && filterPageUrl !== '')
+		filters.push({ name: 'fq', value: 'pageUrl:' + filterPageUrl });
+
 	var filterChildKey = $formFilters.find('.valueChildKey').val();
 	if(filterChildKey != null && filterChildKey !== '')
 		filters.push({ name: 'fq', value: 'childKey:' + filterChildKey });
@@ -666,14 +695,6 @@ function searchSchoolChildFilters($formFilters) {
 	var filterChildCompleteName = $formFilters.find('.valueChildCompleteName').val();
 	if(filterChildCompleteName != null && filterChildCompleteName !== '')
 		filters.push({ name: 'fq', value: 'childCompleteName:' + filterChildCompleteName });
-
-	var filterPageUrl = $formFilters.find('.valuePageUrl').val();
-	if(filterPageUrl != null && filterPageUrl !== '')
-		filters.push({ name: 'fq', value: 'pageUrl:' + filterPageUrl });
-
-	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
-	if(filterObjectSuggest != null && filterObjectSuggest !== '')
-		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
 	return filters;
 }
 
@@ -686,6 +707,24 @@ function searchSchoolChildVals(filters, success, error) {
 		, success: success
 		, error: error
 	});
+}
+
+function suggestSchoolChildObjectSuggest($formFilters, $list) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'far fa-child w3-padding-small ');
+			var $span = $('<span>').attr('class', '').text(o['childCompleteName']);
+			var $li = $('<li>');
+			var $a = $('<a>').attr('href', o['pageUrl']);
+			$a.append($i);
+			$a.append($span);
+			$li.append($a);
+			$list.append($li);
+		});
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	searchSchoolChildVals($formFilters, success, error);
 }
 
 function suggestSchoolChildEnrollmentKeys($formFilters, $list) {
@@ -718,20 +757,37 @@ function suggestSchoolChildEnrollmentKeys($formFilters, $list) {
 	searchSchoolEnrollment($formFilters, success, error);
 }
 
-function suggestSchoolChildObjectSuggest($formFilters, $list) {
-	success = function( data, textStatus, jQxhr ) {
-		$list.empty();
-		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'far fa-child w3-padding-small ');
-			var $span = $('<span>').attr('class', '').text(o['childCompleteName']);
-			var $li = $('<li>');
-			var $a = $('<a>').attr('href', o['pageUrl']);
-			$a.append($i);
-			$a.append($span);
-			$li.append($a);
-			$list.append($li);
+function websocketSchoolChild() {
+	var eventBus = new EventBus('/eventbus');
+	eventBus.onopen = function () {
+		eventBus.registerHandler('websocketSchoolChild', function (error, message) {
+			var json = JSON.parse(message['body']);
+			var id = json['id'];
+			var numFound = json['numFound'];
+			var numPATCH = json['numPATCH'];
+			var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
+			var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
+			var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
+			var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
+			var $header = $('<div>').attr('class', 'w3-container fa-green ').attr('id', 'header-' + id);
+			var $i = $('<i>').attr('class', 'far fa-child w3-margin-right ').attr('id', 'icon-' + id);
+			var $headerSpan = $('<span>').attr('class', '').text('modify children');
+			var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
+			var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
+			var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
+			var $progress = $('<div>').attr('class', 'w3-green ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
+			$card.append($header);
+			$header.append($i);
+			$header.append($headerSpan);
+			$header.append($x);
+			$body.append($bar);
+			$bar.append($progress);
+			$card.append($body);
+			$box.append($margin);
+			$margin.append($card);
+			$('.box-' + id).remove();
+			if(numPATCH < numFound)
+				$('.w3-content').append($box);
 		});
-	};
-	error = function( jqXhr, textStatus, errorThrown ) {};
-	searchSchoolChildVals($formFilters, success, error);
+	}
 }

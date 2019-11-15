@@ -1,7 +1,7 @@
 
 // POST //
 
-function postFormPart($formValues, success, error) {
+function postHtmlPart($formValues, success, error) {
 	var vals = {};
 	if(success == null) {
 		success = function( data, textStatus, jQxhr ) {
@@ -41,9 +41,9 @@ function postFormPart($formValues, success, error) {
 	if(valueDeleted != null && valueDeleted !== '')
 		vals['deleted'] = valueDeleted;
 
-	var valueEnrollmentFormKey = $formValues.find('.valueEnrollmentFormKey').val();
-	if(valueEnrollmentFormKey != null && valueEnrollmentFormKey !== '')
-		vals['enrollmentFormKey'] = valueEnrollmentFormKey;
+	var valueEnrollmentDesignKey = $formValues.find('.valueEnrollmentDesignKey').val();
+	if(valueEnrollmentDesignKey != null && valueEnrollmentDesignKey !== '')
+		vals['enrollmentDesignKey'] = valueEnrollmentDesignKey;
 
 	var valueHtmlLink = $formValues.find('.valueHtmlLink').val();
 	if(valueHtmlLink != null && valueHtmlLink !== '')
@@ -122,7 +122,7 @@ function postFormPart($formValues, success, error) {
 		vals['sort10'] = valueSort10;
 
 	$.ajax({
-		url: '/api/form-part'
+		url: '/api/html-part'
 		, dataType: 'json'
 		, type: 'POST'
 		, contentType: 'application/json; charset=utf-8'
@@ -132,9 +132,9 @@ function postFormPart($formValues, success, error) {
 	});
 }
 
-function postFormPartVals(vals, success, error) {
+function postHtmlPartVals(vals, success, error) {
 	$.ajax({
-		url: '/api/form-part'
+		url: '/api/html-part'
 		, dataType: 'json'
 		, type: 'POST'
 		, contentType: 'application/json; charset=utf-8'
@@ -146,8 +146,8 @@ function postFormPartVals(vals, success, error) {
 
 // PATCH //
 
-function patchFormPart($formFilters, $formValues, success, error) {
-	var filters = patchFormPartFilters($formFilters);
+function patchHtmlPart($formFilters, $formValues, success, error) {
+	var filters = patchHtmlPartFilters($formFilters);
 
 	var vals = {};
 
@@ -217,16 +217,16 @@ function patchFormPart($formFilters, $formValues, success, error) {
 	if(removeDeleted != null && removeDeleted !== '')
 		vals['removeDeleted'] = removeDeleted;
 
-	var removeEnrollmentFormKey = $formFilters.find('.removeEnrollmentFormKey').val() === 'true';
-	var setEnrollmentFormKey = removeEnrollmentFormKey ? null : $formValues.find('.setEnrollmentFormKey').val();
-	if(removeEnrollmentFormKey || setEnrollmentFormKey != null && setEnrollmentFormKey !== '')
-		vals['setEnrollmentFormKey'] = setEnrollmentFormKey;
-	var addEnrollmentFormKey = $formValues.find('.addEnrollmentFormKey').val();
-	if(addEnrollmentFormKey != null && addEnrollmentFormKey !== '')
-		vals['addEnrollmentFormKey'] = addEnrollmentFormKey;
-	var removeEnrollmentFormKey = $formValues.find('.removeEnrollmentFormKey').val();
-	if(removeEnrollmentFormKey != null && removeEnrollmentFormKey !== '')
-		vals['removeEnrollmentFormKey'] = removeEnrollmentFormKey;
+	var removeEnrollmentDesignKey = $formFilters.find('.removeEnrollmentDesignKey').val() === 'true';
+	var setEnrollmentDesignKey = removeEnrollmentDesignKey ? null : $formValues.find('.setEnrollmentDesignKey').val();
+	if(removeEnrollmentDesignKey || setEnrollmentDesignKey != null && setEnrollmentDesignKey !== '')
+		vals['setEnrollmentDesignKey'] = setEnrollmentDesignKey;
+	var addEnrollmentDesignKey = $formValues.find('.addEnrollmentDesignKey').val();
+	if(addEnrollmentDesignKey != null && addEnrollmentDesignKey !== '')
+		vals['addEnrollmentDesignKey'] = addEnrollmentDesignKey;
+	var removeEnrollmentDesignKey = $formValues.find('.removeEnrollmentDesignKey').val();
+	if(removeEnrollmentDesignKey != null && removeEnrollmentDesignKey !== '')
+		vals['removeEnrollmentDesignKey'] = removeEnrollmentDesignKey;
 
 	var removeHtmlLink = $formFilters.find('.removeHtmlLink').val() === 'true';
 	var setHtmlLink = removeHtmlLink ? null : $formValues.find('.setHtmlLink').val();
@@ -437,10 +437,10 @@ function patchFormPart($formFilters, $formValues, success, error) {
 	if(removeSort10 != null && removeSort10 !== '')
 		vals['removeSort10'] = removeSort10;
 
-	patchFormPartVals(filters, vals, success, error);
+	patchHtmlPartVals(filters, vals, success, error);
 }
 
-function patchFormPartFilters($formFilters) {
+function patchHtmlPartFilters($formFilters) {
 	var filters = [];
 
 	var filterPk = $formFilters.find('.valuePk').val();
@@ -467,9 +467,85 @@ function patchFormPartFilters($formFilters) {
 	if(filterDeleted != null && filterDeleted === true)
 		filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
-	var filterEnrollmentFormKey = $formFilters.find('.valueEnrollmentFormKey').val();
-	if(filterEnrollmentFormKey != null && filterEnrollmentFormKey !== '')
-		filters.push({ name: 'fq', value: 'enrollmentFormKey:' + filterEnrollmentFormKey });
+	var filterEnrollmentDesignKey = $formFilters.find('.valueEnrollmentDesignKey').val();
+	if(filterEnrollmentDesignKey != null && filterEnrollmentDesignKey !== '')
+		filters.push({ name: 'fq', value: 'enrollmentDesignKey:' + filterEnrollmentDesignKey });
+
+	var filterHtmlLink = $formFilters.find('.valueHtmlLink').val();
+	if(filterHtmlLink != null && filterHtmlLink !== '')
+		filters.push({ name: 'fq', value: 'htmlLink:' + filterHtmlLink });
+
+	var filterHtmlElement = $formFilters.find('.valueHtmlElement').val();
+	if(filterHtmlElement != null && filterHtmlElement !== '')
+		filters.push({ name: 'fq', value: 'htmlElement:' + filterHtmlElement });
+
+	var filterHtmlId = $formFilters.find('.valueHtmlId').val();
+	if(filterHtmlId != null && filterHtmlId !== '')
+		filters.push({ name: 'fq', value: 'htmlId:' + filterHtmlId });
+
+	var filterHtmlClasses = $formFilters.find('.valueHtmlClasses').val();
+	if(filterHtmlClasses != null && filterHtmlClasses !== '')
+		filters.push({ name: 'fq', value: 'htmlClasses:' + filterHtmlClasses });
+
+	var filterHtmlStyle = $formFilters.find('.valueHtmlStyle').val();
+	if(filterHtmlStyle != null && filterHtmlStyle !== '')
+		filters.push({ name: 'fq', value: 'htmlStyle:' + filterHtmlStyle });
+
+	var filterHtmlBefore = $formFilters.find('.valueHtmlBefore').val();
+	if(filterHtmlBefore != null && filterHtmlBefore !== '')
+		filters.push({ name: 'fq', value: 'htmlBefore:' + filterHtmlBefore });
+
+	var filterHtmlVar = $formFilters.find('.valueHtmlVar').val();
+	if(filterHtmlVar != null && filterHtmlVar !== '')
+		filters.push({ name: 'fq', value: 'htmlVar:' + filterHtmlVar });
+
+	var filterHtmlAfter = $formFilters.find('.valueHtmlAfter').val();
+	if(filterHtmlAfter != null && filterHtmlAfter !== '')
+		filters.push({ name: 'fq', value: 'htmlAfter:' + filterHtmlAfter });
+
+	var filterHtmlText = $formFilters.find('.valueHtmlText').val();
+	if(filterHtmlText != null && filterHtmlText !== '')
+		filters.push({ name: 'fq', value: 'htmlText:' + filterHtmlText });
+
+	var filterSort1 = $formFilters.find('.valueSort1').val();
+	if(filterSort1 != null && filterSort1 !== '')
+		filters.push({ name: 'fq', value: 'sort1:' + filterSort1 });
+
+	var filterSort2 = $formFilters.find('.valueSort2').val();
+	if(filterSort2 != null && filterSort2 !== '')
+		filters.push({ name: 'fq', value: 'sort2:' + filterSort2 });
+
+	var filterSort3 = $formFilters.find('.valueSort3').val();
+	if(filterSort3 != null && filterSort3 !== '')
+		filters.push({ name: 'fq', value: 'sort3:' + filterSort3 });
+
+	var filterSort4 = $formFilters.find('.valueSort4').val();
+	if(filterSort4 != null && filterSort4 !== '')
+		filters.push({ name: 'fq', value: 'sort4:' + filterSort4 });
+
+	var filterSort5 = $formFilters.find('.valueSort5').val();
+	if(filterSort5 != null && filterSort5 !== '')
+		filters.push({ name: 'fq', value: 'sort5:' + filterSort5 });
+
+	var filterSort6 = $formFilters.find('.valueSort6').val();
+	if(filterSort6 != null && filterSort6 !== '')
+		filters.push({ name: 'fq', value: 'sort6:' + filterSort6 });
+
+	var filterSort7 = $formFilters.find('.valueSort7').val();
+	if(filterSort7 != null && filterSort7 !== '')
+		filters.push({ name: 'fq', value: 'sort7:' + filterSort7 });
+
+	var filterSort8 = $formFilters.find('.valueSort8').val();
+	if(filterSort8 != null && filterSort8 !== '')
+		filters.push({ name: 'fq', value: 'sort8:' + filterSort8 });
+
+	var filterSort9 = $formFilters.find('.valueSort9').val();
+	if(filterSort9 != null && filterSort9 !== '')
+		filters.push({ name: 'fq', value: 'sort9:' + filterSort9 });
+
+	var filterSort10 = $formFilters.find('.valueSort10').val();
+	if(filterSort10 != null && filterSort10 !== '')
+		filters.push({ name: 'fq', value: 'sort10:' + filterSort10 });
 
 	var filterId = $formFilters.find('.valueId').val();
 	if(filterId != null && filterId !== '')
@@ -499,21 +575,21 @@ function patchFormPartFilters($formFilters) {
 	if(filterPageUrl != null && filterPageUrl !== '')
 		filters.push({ name: 'fq', value: 'pageUrl:' + filterPageUrl });
 
-	var filterFormPartKey = $formFilters.find('.valueFormPartKey').val();
-	if(filterFormPartKey != null && filterFormPartKey !== '')
-		filters.push({ name: 'fq', value: 'formPartKey:' + filterFormPartKey });
+	var filterHtmlPartKey = $formFilters.find('.valueHtmlPartKey').val();
+	if(filterHtmlPartKey != null && filterHtmlPartKey !== '')
+		filters.push({ name: 'fq', value: 'htmlPartKey:' + filterHtmlPartKey });
 	return filters;
 }
 
-function patchFormPartVal(filters, v, val, success, error) {
+function patchHtmlPartVal(filters, v, val, success, error) {
 	var vals = {};
 	vals[v] = val;
-	patchFormPartVals(filters, vals, success, error);
+	patchHtmlPartVals(filters, vals, success, error);
 }
 
-function patchFormPartVals(filters, vals, success, error) {
+function patchHtmlPartVals(filters, vals, success, error) {
 	$.ajax({
-		url: '/api/form-part?' + $.param(filters)
+		url: '/api/html-part?' + $.param(filters)
 		, dataType: 'json'
 		, type: 'PATCH'
 		, contentType: 'application/json; charset=utf-8'
@@ -525,9 +601,9 @@ function patchFormPartVals(filters, vals, success, error) {
 
 // GET //
 
-function getFormPart(pk) {
+function getHtmlPart(pk) {
 	$.ajax({
-		url: '/api/form-part/' + id
+		url: '/api/html-part/' + id
 		, dataType: 'json'
 		, type: 'GET'
 		, contentType: 'application/json; charset=utf-8'
@@ -538,9 +614,9 @@ function getFormPart(pk) {
 
 // DELETE //
 
-function deleteFormPart(pk) {
+function deleteHtmlPart(pk) {
 	$.ajax({
-		url: '/api/form-part/' + id
+		url: '/api/html-part/' + id
 		, dataType: 'json'
 		, type: 'DELETE'
 		, contentType: 'application/json; charset=utf-8'
@@ -552,17 +628,17 @@ function deleteFormPart(pk) {
 
 // Search //
 
-function searchFormPart($formFilters, success, error) {
-	var filters = searchFormPartFilters($formFilters);
+function searchHtmlPart($formFilters, success, error) {
+	var filters = searchHtmlPartFilters($formFilters);
 	if(success == null)
 		success = function( data, textStatus, jQxhr ) {};
 	if(error == null)
 		error = function( jqXhr, textStatus, errorThrown ) {};
 
-	searchFormPartVals(filters, success, error);
+	searchHtmlPartVals(filters, success, error);
 }
 
-function searchFormPartFilters($formFilters) {
+function searchHtmlPartFilters($formFilters) {
 	var filters = [];
 
 	var filterPk = $formFilters.find('.valuePk').val();
@@ -589,9 +665,85 @@ function searchFormPartFilters($formFilters) {
 	if(filterDeleted != null && filterDeleted === true)
 		filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
-	var filterEnrollmentFormKey = $formFilters.find('.valueEnrollmentFormKey').val();
-	if(filterEnrollmentFormKey != null && filterEnrollmentFormKey !== '')
-		filters.push({ name: 'fq', value: 'enrollmentFormKey:' + filterEnrollmentFormKey });
+	var filterEnrollmentDesignKey = $formFilters.find('.valueEnrollmentDesignKey').val();
+	if(filterEnrollmentDesignKey != null && filterEnrollmentDesignKey !== '')
+		filters.push({ name: 'fq', value: 'enrollmentDesignKey:' + filterEnrollmentDesignKey });
+
+	var filterHtmlLink = $formFilters.find('.valueHtmlLink').val();
+	if(filterHtmlLink != null && filterHtmlLink !== '')
+		filters.push({ name: 'fq', value: 'htmlLink:' + filterHtmlLink });
+
+	var filterHtmlElement = $formFilters.find('.valueHtmlElement').val();
+	if(filterHtmlElement != null && filterHtmlElement !== '')
+		filters.push({ name: 'fq', value: 'htmlElement:' + filterHtmlElement });
+
+	var filterHtmlId = $formFilters.find('.valueHtmlId').val();
+	if(filterHtmlId != null && filterHtmlId !== '')
+		filters.push({ name: 'fq', value: 'htmlId:' + filterHtmlId });
+
+	var filterHtmlClasses = $formFilters.find('.valueHtmlClasses').val();
+	if(filterHtmlClasses != null && filterHtmlClasses !== '')
+		filters.push({ name: 'fq', value: 'htmlClasses:' + filterHtmlClasses });
+
+	var filterHtmlStyle = $formFilters.find('.valueHtmlStyle').val();
+	if(filterHtmlStyle != null && filterHtmlStyle !== '')
+		filters.push({ name: 'fq', value: 'htmlStyle:' + filterHtmlStyle });
+
+	var filterHtmlBefore = $formFilters.find('.valueHtmlBefore').val();
+	if(filterHtmlBefore != null && filterHtmlBefore !== '')
+		filters.push({ name: 'fq', value: 'htmlBefore:' + filterHtmlBefore });
+
+	var filterHtmlVar = $formFilters.find('.valueHtmlVar').val();
+	if(filterHtmlVar != null && filterHtmlVar !== '')
+		filters.push({ name: 'fq', value: 'htmlVar:' + filterHtmlVar });
+
+	var filterHtmlAfter = $formFilters.find('.valueHtmlAfter').val();
+	if(filterHtmlAfter != null && filterHtmlAfter !== '')
+		filters.push({ name: 'fq', value: 'htmlAfter:' + filterHtmlAfter });
+
+	var filterHtmlText = $formFilters.find('.valueHtmlText').val();
+	if(filterHtmlText != null && filterHtmlText !== '')
+		filters.push({ name: 'fq', value: 'htmlText:' + filterHtmlText });
+
+	var filterSort1 = $formFilters.find('.valueSort1').val();
+	if(filterSort1 != null && filterSort1 !== '')
+		filters.push({ name: 'fq', value: 'sort1:' + filterSort1 });
+
+	var filterSort2 = $formFilters.find('.valueSort2').val();
+	if(filterSort2 != null && filterSort2 !== '')
+		filters.push({ name: 'fq', value: 'sort2:' + filterSort2 });
+
+	var filterSort3 = $formFilters.find('.valueSort3').val();
+	if(filterSort3 != null && filterSort3 !== '')
+		filters.push({ name: 'fq', value: 'sort3:' + filterSort3 });
+
+	var filterSort4 = $formFilters.find('.valueSort4').val();
+	if(filterSort4 != null && filterSort4 !== '')
+		filters.push({ name: 'fq', value: 'sort4:' + filterSort4 });
+
+	var filterSort5 = $formFilters.find('.valueSort5').val();
+	if(filterSort5 != null && filterSort5 !== '')
+		filters.push({ name: 'fq', value: 'sort5:' + filterSort5 });
+
+	var filterSort6 = $formFilters.find('.valueSort6').val();
+	if(filterSort6 != null && filterSort6 !== '')
+		filters.push({ name: 'fq', value: 'sort6:' + filterSort6 });
+
+	var filterSort7 = $formFilters.find('.valueSort7').val();
+	if(filterSort7 != null && filterSort7 !== '')
+		filters.push({ name: 'fq', value: 'sort7:' + filterSort7 });
+
+	var filterSort8 = $formFilters.find('.valueSort8').val();
+	if(filterSort8 != null && filterSort8 !== '')
+		filters.push({ name: 'fq', value: 'sort8:' + filterSort8 });
+
+	var filterSort9 = $formFilters.find('.valueSort9').val();
+	if(filterSort9 != null && filterSort9 !== '')
+		filters.push({ name: 'fq', value: 'sort9:' + filterSort9 });
+
+	var filterSort10 = $formFilters.find('.valueSort10').val();
+	if(filterSort10 != null && filterSort10 !== '')
+		filters.push({ name: 'fq', value: 'sort10:' + filterSort10 });
 
 	var filterId = $formFilters.find('.valueId').val();
 	if(filterId != null && filterId !== '')
@@ -621,15 +773,21 @@ function searchFormPartFilters($formFilters) {
 	if(filterPageUrl != null && filterPageUrl !== '')
 		filters.push({ name: 'fq', value: 'pageUrl:' + filterPageUrl });
 
-	var filterFormPartKey = $formFilters.find('.valueFormPartKey').val();
-	if(filterFormPartKey != null && filterFormPartKey !== '')
-		filters.push({ name: 'fq', value: 'formPartKey:' + filterFormPartKey });
+	var filterHtmlPartKey = $formFilters.find('.valueHtmlPartKey').val();
+	if(filterHtmlPartKey != null && filterHtmlPartKey !== '')
+		filters.push({ name: 'fq', value: 'htmlPartKey:' + filterHtmlPartKey });
+
+	filters.push({ name: 'sort', value: 'sort1 asc' });
+	filters.push({ name: 'sort', value: 'sort2 asc' });
+	filters.push({ name: 'sort', value: 'sort3 asc' });
+	filters.push({ name: 'sort', value: 'sort4 asc' });
+	filters.push({ name: 'sort', value: 'sort5 asc' });
 	return filters;
 }
 
-function searchFormPartVals(filters, success, error) {
+function searchHtmlPartVals(filters, success, error) {
 	$.ajax({
-		url: '/api/form-part?' + $.param(filters)
+		url: '/api/html-part?' + $.param(filters)
 		, dataType: 'json'
 		, type: 'GET'
 		, contentType: 'application/json; charset=utf-8'
@@ -638,12 +796,12 @@ function searchFormPartVals(filters, success, error) {
 	});
 }
 
-function suggestFormPartObjectSuggest($formFilters, $list) {
+function suggestHtmlPartObjectSuggest($formFilters, $list) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'far fa-sun w3-padding-small ');
-			var $span = $('<span>').attr('class', '').text();
+			var $span = $('<span>').attr('class', '').text(o['objectTitle']);
 			var $li = $('<li>');
 			var $a = $('<a>').attr('href', o['pageUrl']);
 			$a.append($i);
@@ -653,5 +811,70 @@ function suggestFormPartObjectSuggest($formFilters, $list) {
 		});
 	};
 	error = function( jqXhr, textStatus, errorThrown ) {};
-	searchFormPartVals($formFilters, success, error);
+	searchHtmlPartVals($formFilters, success, error);
+}
+
+function suggestHtmlPartEnrollmentDesignKey($formFilters, $list) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'fa fa-bell w3-padding-small ');
+			var $span = $('<span>').attr('class', '').text(o['enrollmentDesignCompleteName']);
+			var $a = $('<a>').attr('href', o['pageUrl']);
+			$a.append($i);
+			$a.append($span);
+			var pk = parseInt($('#HtmlPartForm :input[name="pk"]').val());
+			var val = o['htmlPartKeys'];
+			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
+			var $input = $('<input>');
+			$input.attr('id', 'GET_enrollmentDesignKey_' + pk + '_htmlPartKeys_' + o['pk']);
+			$input.attr('class', 'w3-check ');
+			$input.attr('onchange', "var $input = $('#GET_enrollmentDesignKey_" + pk + "_htmlPartKeys_" + o['pk'] + "'); patchHtmlPartVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'set' : 'remove') + 'EnrollmentDesignKey']: \"" + o['pk'] + "\" }, function() { patchEnrollmentDesignVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], {}, function() { addGlow($input); }, function() { addError($input); } ); } ); ");
+			$input.attr('onclick', 'removeGlow($(this)); ');
+			$input.attr('type', 'checkbox');
+			if(checked)
+				$input.attr('checked', 'checked');
+			var $li = $('<li>');
+			$li.append($input);
+			$li.append($a);
+			$list.append($li);
+		});
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	searchEnrollmentDesign($formFilters, success, error);
+}
+
+function websocketHtmlPart() {
+	var eventBus = new EventBus('/eventbus');
+	eventBus.onopen = function () {
+		eventBus.registerHandler('websocketHtmlPart', function (error, message) {
+			var json = JSON.parse(message['body']);
+			var id = json['id'];
+			var numFound = json['numFound'];
+			var numPATCH = json['numPATCH'];
+			var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
+			var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
+			var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
+			var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
+			var $header = $('<div>').attr('class', 'w3-container fa-yellow ').attr('id', 'header-' + id);
+			var $i = $('<i>').attr('class', 'far fa-sun w3-margin-right ').attr('id', 'icon-' + id);
+			var $headerSpan = $('<span>').attr('class', '').text('modify HTML parts');
+			var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
+			var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
+			var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
+			var $progress = $('<div>').attr('class', 'w3-yellow ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
+			$card.append($header);
+			$header.append($i);
+			$header.append($headerSpan);
+			$header.append($x);
+			$body.append($bar);
+			$bar.append($progress);
+			$card.append($body);
+			$box.append($margin);
+			$margin.append($card);
+			$('.box-' + id).remove();
+			if(numPATCH < numFound)
+				$('.w3-content').append($box);
+		});
+	}
 }

@@ -29,9 +29,9 @@ function postSchoolGuardian($formValues, success, error) {
 	if(valueModified != null && valueModified !== '')
 		vals['modified'] = valueModified;
 
-	var valueGuardianId = $formValues.find('.valueGuardianId').val();
-	if(valueGuardianId != null && valueGuardianId !== '')
-		vals['guardianId'] = valueGuardianId;
+	var valueObjectId = $formValues.find('.valueObjectId').val();
+	if(valueObjectId != null && valueObjectId !== '')
+		vals['objectId'] = valueObjectId;
 
 	var valueArchived = $formValues.find('.valueArchived').prop('checked');
 	if(valueArchived != null && valueArchived !== '')
@@ -132,16 +132,16 @@ function patchSchoolGuardian($formFilters, $formValues, success, error) {
 	if(removeModified != null && removeModified !== '')
 		vals['removeModified'] = removeModified;
 
-	var removeGuardianId = $formFilters.find('.removeGuardianId').val() === 'true';
-	var setGuardianId = removeGuardianId ? null : $formValues.find('.setGuardianId').val();
-	if(removeGuardianId || setGuardianId != null && setGuardianId !== '')
-		vals['setGuardianId'] = setGuardianId;
-	var addGuardianId = $formValues.find('.addGuardianId').val();
-	if(addGuardianId != null && addGuardianId !== '')
-		vals['addGuardianId'] = addGuardianId;
-	var removeGuardianId = $formValues.find('.removeGuardianId').val();
-	if(removeGuardianId != null && removeGuardianId !== '')
-		vals['removeGuardianId'] = removeGuardianId;
+	var removeObjectId = $formFilters.find('.removeObjectId').val() === 'true';
+	var setObjectId = removeObjectId ? null : $formValues.find('.setObjectId').val();
+	if(removeObjectId || setObjectId != null && setObjectId !== '')
+		vals['setObjectId'] = setObjectId;
+	var addObjectId = $formValues.find('.addObjectId').val();
+	if(addObjectId != null && addObjectId !== '')
+		vals['addObjectId'] = addObjectId;
+	var removeObjectId = $formValues.find('.removeObjectId').val();
+	if(removeObjectId != null && removeObjectId !== '')
+		vals['removeObjectId'] = removeObjectId;
 
 	var removeArchived = $formFilters.find('.removeArchived').val() === 'true';
 	var setArchived = removeArchived ? null : $formValues.find('.setArchived').prop('checked');
@@ -260,9 +260,9 @@ function patchSchoolGuardianFilters($formFilters) {
 	if(filterModified != null && filterModified !== '')
 		filters.push({ name: 'fq', value: 'modified:' + filterModified });
 
-	var filterGuardianId = $formFilters.find('.valueGuardianId').val();
-	if(filterGuardianId != null && filterGuardianId !== '')
-		filters.push({ name: 'fq', value: 'guardianId:' + filterGuardianId });
+	var filterObjectId = $formFilters.find('.valueObjectId').val();
+	if(filterObjectId != null && filterObjectId !== '')
+		filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
 
 	var filterArchived = $formFilters.find('.valueArchived').prop('checked');
 	if(filterArchived != null && filterArchived === true)
@@ -311,6 +311,18 @@ function patchSchoolGuardianFilters($formFilters) {
 	var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
 	if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
 		filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+	var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
+	if(filterObjectTitle != null && filterObjectTitle !== '')
+		filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
+
+	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
+	if(filterObjectSuggest != null && filterObjectSuggest !== '')
+		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+
+	var filterPageUrl = $formFilters.find('.valuePageUrl').val();
+	if(filterPageUrl != null && filterPageUrl !== '')
+		filters.push({ name: 'fq', value: 'pageUrl:' + filterPageUrl });
 
 	var filterGuardianKey = $formFilters.find('.valueGuardianKey').val();
 	if(filterGuardianKey != null && filterGuardianKey !== '')
@@ -383,14 +395,6 @@ function patchSchoolGuardianFilters($formFilters) {
 	var filterGuardianCompleteName = $formFilters.find('.valueGuardianCompleteName').val();
 	if(filterGuardianCompleteName != null && filterGuardianCompleteName !== '')
 		filters.push({ name: 'fq', value: 'guardianCompleteName:' + filterGuardianCompleteName });
-
-	var filterPageUrl = $formFilters.find('.valuePageUrl').val();
-	if(filterPageUrl != null && filterPageUrl !== '')
-		filters.push({ name: 'fq', value: 'pageUrl:' + filterPageUrl });
-
-	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
-	if(filterObjectSuggest != null && filterObjectSuggest !== '')
-		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
 	return filters;
 }
 
@@ -466,9 +470,9 @@ function searchSchoolGuardianFilters($formFilters) {
 	if(filterModified != null && filterModified !== '')
 		filters.push({ name: 'fq', value: 'modified:' + filterModified });
 
-	var filterGuardianId = $formFilters.find('.valueGuardianId').val();
-	if(filterGuardianId != null && filterGuardianId !== '')
-		filters.push({ name: 'fq', value: 'guardianId:' + filterGuardianId });
+	var filterObjectId = $formFilters.find('.valueObjectId').val();
+	if(filterObjectId != null && filterObjectId !== '')
+		filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
 
 	var filterArchived = $formFilters.find('.valueArchived').prop('checked');
 	if(filterArchived != null && filterArchived === true)
@@ -517,6 +521,18 @@ function searchSchoolGuardianFilters($formFilters) {
 	var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
 	if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
 		filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+	var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
+	if(filterObjectTitle != null && filterObjectTitle !== '')
+		filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
+
+	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
+	if(filterObjectSuggest != null && filterObjectSuggest !== '')
+		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+
+	var filterPageUrl = $formFilters.find('.valuePageUrl').val();
+	if(filterPageUrl != null && filterPageUrl !== '')
+		filters.push({ name: 'fq', value: 'pageUrl:' + filterPageUrl });
 
 	var filterGuardianKey = $formFilters.find('.valueGuardianKey').val();
 	if(filterGuardianKey != null && filterGuardianKey !== '')
@@ -589,14 +605,6 @@ function searchSchoolGuardianFilters($formFilters) {
 	var filterGuardianCompleteName = $formFilters.find('.valueGuardianCompleteName').val();
 	if(filterGuardianCompleteName != null && filterGuardianCompleteName !== '')
 		filters.push({ name: 'fq', value: 'guardianCompleteName:' + filterGuardianCompleteName });
-
-	var filterPageUrl = $formFilters.find('.valuePageUrl').val();
-	if(filterPageUrl != null && filterPageUrl !== '')
-		filters.push({ name: 'fq', value: 'pageUrl:' + filterPageUrl });
-
-	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
-	if(filterObjectSuggest != null && filterObjectSuggest !== '')
-		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
 	return filters;
 }
 
@@ -609,6 +617,24 @@ function searchSchoolGuardianVals(filters, success, error) {
 		, success: success
 		, error: error
 	});
+}
+
+function suggestSchoolGuardianObjectSuggest($formFilters, $list) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'far fa-phone w3-padding-small ');
+			var $span = $('<span>').attr('class', '').text(o['guardianCompleteName']);
+			var $li = $('<li>');
+			var $a = $('<a>').attr('href', o['pageUrl']);
+			$a.append($i);
+			$a.append($span);
+			$li.append($a);
+			$list.append($li);
+		});
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	searchSchoolGuardianVals($formFilters, success, error);
 }
 
 function suggestSchoolGuardianEnrollmentKeys($formFilters, $list) {
@@ -641,20 +667,37 @@ function suggestSchoolGuardianEnrollmentKeys($formFilters, $list) {
 	searchSchoolEnrollment($formFilters, success, error);
 }
 
-function suggestSchoolGuardianObjectSuggest($formFilters, $list) {
-	success = function( data, textStatus, jQxhr ) {
-		$list.empty();
-		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'far fa-phone w3-padding-small ');
-			var $span = $('<span>').attr('class', '').text(o['guardianCompleteName']);
-			var $li = $('<li>');
-			var $a = $('<a>').attr('href', o['pageUrl']);
-			$a.append($i);
-			$a.append($span);
-			$li.append($a);
-			$list.append($li);
+function websocketSchoolGuardian() {
+	var eventBus = new EventBus('/eventbus');
+	eventBus.onopen = function () {
+		eventBus.registerHandler('websocketSchoolGuardian', function (error, message) {
+			var json = JSON.parse(message['body']);
+			var id = json['id'];
+			var numFound = json['numFound'];
+			var numPATCH = json['numPATCH'];
+			var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
+			var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
+			var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
+			var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
+			var $header = $('<div>').attr('class', 'w3-container fa-yellow ').attr('id', 'header-' + id);
+			var $i = $('<i>').attr('class', 'far fa-phone w3-margin-right ').attr('id', 'icon-' + id);
+			var $headerSpan = $('<span>').attr('class', '').text('modify guardians');
+			var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
+			var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
+			var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
+			var $progress = $('<div>').attr('class', 'w3-yellow ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
+			$card.append($header);
+			$header.append($i);
+			$header.append($headerSpan);
+			$header.append($x);
+			$body.append($bar);
+			$bar.append($progress);
+			$card.append($body);
+			$box.append($margin);
+			$margin.append($card);
+			$('.box-' + id).remove();
+			if(numPATCH < numFound)
+				$('.w3-content').append($box);
 		});
-	};
-	error = function( jqXhr, textStatus, errorThrown ) {};
-	searchSchoolGuardianVals($formFilters, success, error);
+	}
 }
