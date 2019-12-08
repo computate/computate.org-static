@@ -196,6 +196,30 @@ pre, .site-cmd-complet {
 	color: white;
 	white-space: pre-wrap;
 }
+.white-space-pre {
+	white-space: pre;
+}
+.white-space-pre-wrap {
+	white-space: pre-wrap;
+}
+.font-weight-bold {
+	font-weight: bold;
+}
+.text-transform-uppercase {
+	text-transform: uppercase;
+}
+.text-transform-lowercase {
+	text-transform: lowercase;
+}
+.text-transform-capitalize {
+	text-transform: capitalize;
+}
+.font-family-times {
+	font-family: times;
+}
+.text-decoration-underline {
+	text-decoration: underline;
+}
 
 .recapituler2Table i {
 	color:#08232E;

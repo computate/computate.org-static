@@ -729,14 +729,14 @@ function suggereEnfantScolaireObjetSuggere($formulaireFiltres, $list) {
 
 function suggereEnfantScolaireInscriptionCles($formulaireFiltres, $list) {
 	success = function( data, textStatus, jQxhr ) {
+		var pk = parseInt($('#EnfantScolaireForm :input[name="pk"]').val());
 		$list.empty();
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-edit w3-padding-small ');
 			var $span = $('<span>').attr('class', '').text(o['inscriptionNomComplet']);
-			var $a = $('<a>').attr('href', o['pageUrl']);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrl'] + '#' + pk);
 			$a.append($i);
 			$a.append($span);
-			var pk = parseInt($('#EnfantScolaireForm :input[name="pk"]').val());
 			var val = o['enfantCle'];
 			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
 			var $input = $('<input>');
@@ -760,6 +760,7 @@ function suggereEnfantScolaireInscriptionCles($formulaireFiltres, $list) {
 function websocketEnfantScolaire() {
 	var eventBus = new EventBus('/eventbus');
 	eventBus.onopen = function () {
+
 		eventBus.registerHandler('websocketEnfantScolaire', function (error, message) {
 			var json = JSON.parse(message['body']);
 			var id = json['id'];
@@ -788,6 +789,10 @@ function websocketEnfantScolaire() {
 			$('.box-' + id).remove();
 			if(numPATCH < numFound)
 				$('.w3-content').append($box);
+		});
+
+		eventBus.registerHandler('websocketInscriptionScolaire', function (error, message) {
+			$('.suggereInscriptionCles').trigger('oninput');
 		});
 	}
 }

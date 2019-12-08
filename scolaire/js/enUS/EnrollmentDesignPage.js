@@ -498,14 +498,14 @@ function suggestEnrollmentDesignObjectSuggest($formFilters, $list) {
 
 function suggestEnrollmentDesignHtmlPartKeys($formFilters, $list) {
 	success = function( data, textStatus, jQxhr ) {
+		var pk = parseInt($('#EnrollmentDesignForm :input[name="pk"]').val());
 		$list.empty();
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-sun w3-padding-small ');
 			var $span = $('<span>').attr('class', '').text(o['objectTitle']);
-			var $a = $('<a>').attr('href', o['pageUrl']);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrl'] + '#' + pk);
 			$a.append($i);
 			$a.append($span);
-			var pk = parseInt($('#EnrollmentDesignForm :input[name="pk"]').val());
 			var val = o['enrollmentDesignKey'];
 			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
 			var $input = $('<input>');
@@ -518,118 +518,86 @@ function suggestEnrollmentDesignHtmlPartKeys($formFilters, $list) {
 				$input.attr('checked', 'checked');
 			var $li = $('<li>');
 			var sort1 = o['sort1'];
-			if(sort1) {
-				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
-				$sortText = $('<span>').attr('class', '').text(sort1);
-				var $iDown = $('<i>').attr('class', 'fad fa-caret-square-down w3-tiny ').attr('onclick', '');
-				var $iUp = $('<i>').attr('class', 'fad fa-caret-square-up w3-tiny ').attr('onclick', '');
-				var $iDelete = $('<i>').attr('class', 'fad fa-minus-square w3-tiny ').attr('onclick', '');
-				var $iRight = $('<i>').attr('class', 'fad fa-caret-square-right w3-tiny ').attr('onclick', '');
-				$supUp = $('<sup>').attr('class', 'w3-tiny ');
-				$subDown = $('<sub>').attr('class', 'w3-tiny ');
-				$supDelete = $('<sup>').attr('class', 'w3-tiny ');
-				$subRight = $('<sub>').attr('class', 'w3-tiny ');
-				$supUp.append($iUp);
-				$subDown.append($iDown);
-				$supDelete.append($iDelete);
-				$subRight.append($iRight);
-				$sort.append($supUp);
-				$sort.append($subDown);
-				$sort.append($sortText);
-				$sort.append($supDelete);
-				$sort.append($subRight);
-				$li.append($sort);
-			}
 			var sort2 = o['sort2'];
-			if(sort2) {
-				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
-				$sortText = $('<span>').attr('class', '').text(sort2);
-				var $iDown = $('<i>').attr('class', 'fad fa-caret-square-down w3-tiny ').attr('onclick', '');
-				var $iUp = $('<i>').attr('class', 'fad fa-caret-square-up w3-tiny ').attr('onclick', '');
-				var $iDelete = $('<i>').attr('class', 'fad fa-minus-square w3-tiny ').attr('onclick', '');
-				var $iRight = $('<i>').attr('class', 'fad fa-caret-square-right w3-tiny ').attr('onclick', '');
-				$supUp = $('<sup>').attr('class', 'w3-tiny ');
-				$subDown = $('<sub>').attr('class', 'w3-tiny ');
-				$supDelete = $('<sup>').attr('class', 'w3-tiny ');
-				$subRight = $('<sub>').attr('class', 'w3-tiny ');
-				$supUp.append($iUp);
-				$subDown.append($iDown);
-				$supDelete.append($iDelete);
-				$subRight.append($iRight);
-				$sort.append($supUp);
-				$sort.append($subDown);
-				$sort.append($sortText);
-				$sort.append($supDelete);
-				$sort.append($subRight);
-				$li.append($sort);
-			}
 			var sort3 = o['sort3'];
-			if(sort3) {
-				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
-				$sortText = $('<span>').attr('class', '').text(sort3);
-				var $iDown = $('<i>').attr('class', 'fad fa-caret-square-down w3-tiny ').attr('onclick', '');
-				var $iUp = $('<i>').attr('class', 'fad fa-caret-square-up w3-tiny ').attr('onclick', '');
-				var $iDelete = $('<i>').attr('class', 'fad fa-minus-square w3-tiny ').attr('onclick', '');
-				var $iRight = $('<i>').attr('class', 'fad fa-caret-square-right w3-tiny ').attr('onclick', '');
-				$supUp = $('<sup>').attr('class', 'w3-tiny ');
-				$subDown = $('<sub>').attr('class', 'w3-tiny ');
-				$supDelete = $('<sup>').attr('class', 'w3-tiny ');
-				$subRight = $('<sub>').attr('class', 'w3-tiny ');
-				$supUp.append($iUp);
-				$subDown.append($iDown);
-				$supDelete.append($iDelete);
-				$subRight.append($iRight);
-				$sort.append($supUp);
-				$sort.append($subDown);
-				$sort.append($sortText);
-				$sort.append($supDelete);
-				$sort.append($subRight);
-				$li.append($sort);
-			}
 			var sort4 = o['sort4'];
-			if(sort4) {
+			var sort5 = o['sort5'];
+
+			$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+			var $sortInput = $('<input>')
+			$sortInput.attr('class', 'w3-tiny ');
+			$sortInput.attr('style', 'width: 4em; ');
+			$sortInput.attr('id', "attribute_" + o['pk'] + "_sort_sort1");
+			$sortInput.attr('value', sort1).attr('onchange', 
+				"patchHtmlPartVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setSort1']: $(this).val() ? $(this).val() : null }"
+					+ ", function() { "
+					+ "}"
+					+ ", function() { addError($('#attribute_" + o['pk'] + "_sort_sort1')); }"
+					+ " ); "); 
+			$sort.append($sortInput);
+			$li.append($sort);
+
+			if(sort1 != null) {
 				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
-				$sortText = $('<span>').attr('class', '').text(sort4);
-				var $iDown = $('<i>').attr('class', 'fad fa-caret-square-down w3-tiny ').attr('onclick', '');
-				var $iUp = $('<i>').attr('class', 'fad fa-caret-square-up w3-tiny ').attr('onclick', '');
-				var $iDelete = $('<i>').attr('class', 'fad fa-minus-square w3-tiny ').attr('onclick', '');
-				var $iRight = $('<i>').attr('class', 'fad fa-caret-square-right w3-tiny ').attr('onclick', '');
-				$supUp = $('<sup>').attr('class', 'w3-tiny ');
-				$subDown = $('<sub>').attr('class', 'w3-tiny ');
-				$supDelete = $('<sup>').attr('class', 'w3-tiny ');
-				$subRight = $('<sub>').attr('class', 'w3-tiny ');
-				$supUp.append($iUp);
-				$subDown.append($iDown);
-				$supDelete.append($iDelete);
-				$subRight.append($iRight);
-				$sort.append($supUp);
-				$sort.append($subDown);
-				$sort.append($sortText);
-				$sort.append($supDelete);
-				$sort.append($subRight);
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribute_" + o['pk'] + "_sort_sort2");
+				$sortInput.attr('value', sort2).attr('onchange', 
+					"patchHtmlPartVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setSort2']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { addError($('#attribute_" + o['pk'] + "_sort_sort2')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
 				$li.append($sort);
 			}
-			var sort5 = o['sort5'];
-			if(sort5) {
+
+			if(sort2 != null) {
 				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
-				$sortText = $('<span>').attr('class', '').text(sort5);
-				var $iDown = $('<i>').attr('class', 'fad fa-caret-square-down w3-tiny ').attr('onclick', '');
-				var $iUp = $('<i>').attr('class', 'fad fa-caret-square-up w3-tiny ').attr('onclick', '');
-				var $iDelete = $('<i>').attr('class', 'fad fa-minus-square w3-tiny ').attr('onclick', '');
-				var $iRight = $('<i>').attr('class', 'fad fa-caret-square-right w3-tiny ').attr('onclick', '');
-				$supUp = $('<sup>').attr('class', 'w3-tiny ');
-				$subDown = $('<sub>').attr('class', 'w3-tiny ');
-				$supDelete = $('<sup>').attr('class', 'w3-tiny ');
-				$subRight = $('<sub>').attr('class', 'w3-tiny ');
-				$supUp.append($iUp);
-				$subDown.append($iDown);
-				$supDelete.append($iDelete);
-				$subRight.append($iRight);
-				$sort.append($supUp);
-				$sort.append($subDown);
-				$sort.append($sortText);
-				$sort.append($supDelete);
-				$sort.append($subRight);
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribute_" + o['pk'] + "_sort_sort3");
+				$sortInput.attr('value', sort3).attr('onchange', 
+					"patchHtmlPartVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setSort3']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { addError($('#attribute_" + o['pk'] + "_sort_sort3')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+
+			if(sort3 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribute_" + o['pk'] + "_sort_sort4");
+				$sortInput.attr('value', sort4).attr('onchange', 
+					"patchHtmlPartVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setSort4']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { addError($('#attribute_" + o['pk'] + "_sort_sort4')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+
+			if(sort4 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribute_" + o['pk'] + "_sort_sort5");
+				$sortInput.attr('value', sort5).attr('onchange', 
+					"patchHtmlPartVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setSort5']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { addError($('#attribute_" + o['pk'] + "_sort_sort5')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
 				$li.append($sort);
 			}
 			$li.append($input);
@@ -644,6 +612,7 @@ function suggestEnrollmentDesignHtmlPartKeys($formFilters, $list) {
 function websocketEnrollmentDesign() {
 	var eventBus = new EventBus('/eventbus');
 	eventBus.onopen = function () {
+
 		eventBus.registerHandler('websocketEnrollmentDesign', function (error, message) {
 			var json = JSON.parse(message['body']);
 			var id = json['id'];
@@ -672,6 +641,10 @@ function websocketEnrollmentDesign() {
 			$('.box-' + id).remove();
 			if(numPATCH < numFound)
 				$('.w3-content').append($box);
+		});
+
+		eventBus.registerHandler('websocketHtmlPart', function (error, message) {
+			$('.suggestHtmlPartKeys').trigger('oninput');
 		});
 	}
 }

@@ -498,14 +498,14 @@ function suggereDesignInscriptionObjetSuggere($formulaireFiltres, $list) {
 
 function suggereDesignInscriptionPartHtmlCles($formulaireFiltres, $list) {
 	success = function( data, textStatus, jQxhr ) {
+		var pk = parseInt($('#DesignInscriptionForm :input[name="pk"]').val());
 		$list.empty();
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-sun w3-padding-small ');
 			var $span = $('<span>').attr('class', '').text(o['objetTitre']);
-			var $a = $('<a>').attr('href', o['pageUrl']);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrl'] + '#' + pk);
 			$a.append($i);
 			$a.append($span);
-			var pk = parseInt($('#DesignInscriptionForm :input[name="pk"]').val());
 			var val = o['designInscriptionCle'];
 			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
 			var $input = $('<input>');
@@ -518,118 +518,86 @@ function suggereDesignInscriptionPartHtmlCles($formulaireFiltres, $list) {
 				$input.attr('checked', 'checked');
 			var $li = $('<li>');
 			var tri1 = o['tri1'];
-			if(tri1) {
-				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
-				$sortText = $('<span>').attr('class', '').text(tri1);
-				var $iDown = $('<i>').attr('class', 'fad fa-caret-square-down w3-tiny ').attr('onclick', '');
-				var $iUp = $('<i>').attr('class', 'fad fa-caret-square-up w3-tiny ').attr('onclick', '');
-				var $iDelete = $('<i>').attr('class', 'fad fa-minus-square w3-tiny ').attr('onclick', '');
-				var $iRight = $('<i>').attr('class', 'fad fa-caret-square-right w3-tiny ').attr('onclick', '');
-				$supUp = $('<sup>').attr('class', 'w3-tiny ');
-				$subDown = $('<sub>').attr('class', 'w3-tiny ');
-				$supDelete = $('<sup>').attr('class', 'w3-tiny ');
-				$subRight = $('<sub>').attr('class', 'w3-tiny ');
-				$supUp.append($iUp);
-				$subDown.append($iDown);
-				$supDelete.append($iDelete);
-				$subRight.append($iRight);
-				$sort.append($supUp);
-				$sort.append($subDown);
-				$sort.append($sortText);
-				$sort.append($supDelete);
-				$sort.append($subRight);
-				$li.append($sort);
-			}
 			var tri2 = o['tri2'];
-			if(tri2) {
-				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
-				$sortText = $('<span>').attr('class', '').text(tri2);
-				var $iDown = $('<i>').attr('class', 'fad fa-caret-square-down w3-tiny ').attr('onclick', '');
-				var $iUp = $('<i>').attr('class', 'fad fa-caret-square-up w3-tiny ').attr('onclick', '');
-				var $iDelete = $('<i>').attr('class', 'fad fa-minus-square w3-tiny ').attr('onclick', '');
-				var $iRight = $('<i>').attr('class', 'fad fa-caret-square-right w3-tiny ').attr('onclick', '');
-				$supUp = $('<sup>').attr('class', 'w3-tiny ');
-				$subDown = $('<sub>').attr('class', 'w3-tiny ');
-				$supDelete = $('<sup>').attr('class', 'w3-tiny ');
-				$subRight = $('<sub>').attr('class', 'w3-tiny ');
-				$supUp.append($iUp);
-				$subDown.append($iDown);
-				$supDelete.append($iDelete);
-				$subRight.append($iRight);
-				$sort.append($supUp);
-				$sort.append($subDown);
-				$sort.append($sortText);
-				$sort.append($supDelete);
-				$sort.append($subRight);
-				$li.append($sort);
-			}
 			var tri3 = o['tri3'];
-			if(tri3) {
-				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
-				$sortText = $('<span>').attr('class', '').text(tri3);
-				var $iDown = $('<i>').attr('class', 'fad fa-caret-square-down w3-tiny ').attr('onclick', '');
-				var $iUp = $('<i>').attr('class', 'fad fa-caret-square-up w3-tiny ').attr('onclick', '');
-				var $iDelete = $('<i>').attr('class', 'fad fa-minus-square w3-tiny ').attr('onclick', '');
-				var $iRight = $('<i>').attr('class', 'fad fa-caret-square-right w3-tiny ').attr('onclick', '');
-				$supUp = $('<sup>').attr('class', 'w3-tiny ');
-				$subDown = $('<sub>').attr('class', 'w3-tiny ');
-				$supDelete = $('<sup>').attr('class', 'w3-tiny ');
-				$subRight = $('<sub>').attr('class', 'w3-tiny ');
-				$supUp.append($iUp);
-				$subDown.append($iDown);
-				$supDelete.append($iDelete);
-				$subRight.append($iRight);
-				$sort.append($supUp);
-				$sort.append($subDown);
-				$sort.append($sortText);
-				$sort.append($supDelete);
-				$sort.append($subRight);
-				$li.append($sort);
-			}
 			var tri4 = o['tri4'];
-			if(tri4) {
+			var tri5 = o['tri5'];
+
+			$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+			var $sortInput = $('<input>')
+			$sortInput.attr('class', 'w3-tiny ');
+			$sortInput.attr('style', 'width: 4em; ');
+			$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri1");
+			$sortInput.attr('value', tri1).attr('onchange', 
+				"patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri1']: $(this).val() ? $(this).val() : null }"
+					+ ", function() { "
+					+ "}"
+					+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri1')); }"
+					+ " ); "); 
+			$sort.append($sortInput);
+			$li.append($sort);
+
+			if(tri1 != null) {
 				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
-				$sortText = $('<span>').attr('class', '').text(tri4);
-				var $iDown = $('<i>').attr('class', 'fad fa-caret-square-down w3-tiny ').attr('onclick', '');
-				var $iUp = $('<i>').attr('class', 'fad fa-caret-square-up w3-tiny ').attr('onclick', '');
-				var $iDelete = $('<i>').attr('class', 'fad fa-minus-square w3-tiny ').attr('onclick', '');
-				var $iRight = $('<i>').attr('class', 'fad fa-caret-square-right w3-tiny ').attr('onclick', '');
-				$supUp = $('<sup>').attr('class', 'w3-tiny ');
-				$subDown = $('<sub>').attr('class', 'w3-tiny ');
-				$supDelete = $('<sup>').attr('class', 'w3-tiny ');
-				$subRight = $('<sub>').attr('class', 'w3-tiny ');
-				$supUp.append($iUp);
-				$subDown.append($iDown);
-				$supDelete.append($iDelete);
-				$subRight.append($iRight);
-				$sort.append($supUp);
-				$sort.append($subDown);
-				$sort.append($sortText);
-				$sort.append($supDelete);
-				$sort.append($subRight);
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri2");
+				$sortInput.attr('value', tri2).attr('onchange', 
+					"patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri2']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri2')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
 				$li.append($sort);
 			}
-			var tri5 = o['tri5'];
-			if(tri5) {
+
+			if(tri2 != null) {
 				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
-				$sortText = $('<span>').attr('class', '').text(tri5);
-				var $iDown = $('<i>').attr('class', 'fad fa-caret-square-down w3-tiny ').attr('onclick', '');
-				var $iUp = $('<i>').attr('class', 'fad fa-caret-square-up w3-tiny ').attr('onclick', '');
-				var $iDelete = $('<i>').attr('class', 'fad fa-minus-square w3-tiny ').attr('onclick', '');
-				var $iRight = $('<i>').attr('class', 'fad fa-caret-square-right w3-tiny ').attr('onclick', '');
-				$supUp = $('<sup>').attr('class', 'w3-tiny ');
-				$subDown = $('<sub>').attr('class', 'w3-tiny ');
-				$supDelete = $('<sup>').attr('class', 'w3-tiny ');
-				$subRight = $('<sub>').attr('class', 'w3-tiny ');
-				$supUp.append($iUp);
-				$subDown.append($iDown);
-				$supDelete.append($iDelete);
-				$subRight.append($iRight);
-				$sort.append($supUp);
-				$sort.append($subDown);
-				$sort.append($sortText);
-				$sort.append($supDelete);
-				$sort.append($subRight);
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri3");
+				$sortInput.attr('value', tri3).attr('onchange', 
+					"patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri3']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri3')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+
+			if(tri3 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri4");
+				$sortInput.attr('value', tri4).attr('onchange', 
+					"patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri4']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri4')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+
+			if(tri4 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri5");
+				$sortInput.attr('value', tri5).attr('onchange', 
+					"patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri5']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri5')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
 				$li.append($sort);
 			}
 			$li.append($input);
@@ -644,6 +612,7 @@ function suggereDesignInscriptionPartHtmlCles($formulaireFiltres, $list) {
 function websocketDesignInscription() {
 	var eventBus = new EventBus('/eventbus');
 	eventBus.onopen = function () {
+
 		eventBus.registerHandler('websocketDesignInscription', function (error, message) {
 			var json = JSON.parse(message['body']);
 			var id = json['id'];
@@ -672,6 +641,10 @@ function websocketDesignInscription() {
 			$('.box-' + id).remove();
 			if(numPATCH < numFound)
 				$('.w3-content').append($box);
+		});
+
+		eventBus.registerHandler('websocketPartHtml', function (error, message) {
+			$('.suggerePartHtmlCles').trigger('oninput');
 		});
 	}
 }

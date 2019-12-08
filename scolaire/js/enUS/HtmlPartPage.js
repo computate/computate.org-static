@@ -69,10 +69,6 @@ function postHtmlPart($formValues, success, error) {
 	if(valueHtmlBefore != null && valueHtmlBefore !== '')
 		vals['htmlBefore'] = valueHtmlBefore;
 
-	var valueHtmlVar = $formValues.find('.valueHtmlVar').val();
-	if(valueHtmlVar != null && valueHtmlVar !== '')
-		vals['htmlVar'] = valueHtmlVar;
-
 	var valueHtmlAfter = $formValues.find('.valueHtmlAfter').val();
 	if(valueHtmlAfter != null && valueHtmlAfter !== '')
 		vals['htmlAfter'] = valueHtmlAfter;
@@ -80,6 +76,18 @@ function postHtmlPart($formValues, success, error) {
 	var valueHtmlText = $formValues.find('.valueHtmlText').val();
 	if(valueHtmlText != null && valueHtmlText !== '')
 		vals['htmlText'] = valueHtmlText;
+
+	var valueHtmlVar = $formValues.find('.valueHtmlVar').val();
+	if(valueHtmlVar != null && valueHtmlVar !== '')
+		vals['htmlVar'] = valueHtmlVar;
+
+	var valueHtmlVarInput = $formValues.find('.valueHtmlVarInput').val();
+	if(valueHtmlVarInput != null && valueHtmlVarInput !== '')
+		vals['htmlVarInput'] = valueHtmlVarInput;
+
+	var valuePdfExclude = $formValues.find('.valuePdfExclude').prop('checked');
+	if(valuePdfExclude != null && valuePdfExclude !== '')
+		vals['pdfExclude'] = valuePdfExclude;
 
 	var valueSort1 = $formValues.find('.valueSort1').val();
 	if(valueSort1 != null && valueSort1 !== '')
@@ -294,17 +302,6 @@ function patchHtmlPart($formFilters, $formValues, success, error) {
 	if(removeHtmlBefore != null && removeHtmlBefore !== '')
 		vals['removeHtmlBefore'] = removeHtmlBefore;
 
-	var removeHtmlVar = $formFilters.find('.removeHtmlVar').val() === 'true';
-	var setHtmlVar = removeHtmlVar ? null : $formValues.find('.setHtmlVar').val();
-	if(removeHtmlVar || setHtmlVar != null && setHtmlVar !== '')
-		vals['setHtmlVar'] = setHtmlVar;
-	var addHtmlVar = $formValues.find('.addHtmlVar').val();
-	if(addHtmlVar != null && addHtmlVar !== '')
-		vals['addHtmlVar'] = addHtmlVar;
-	var removeHtmlVar = $formValues.find('.removeHtmlVar').val();
-	if(removeHtmlVar != null && removeHtmlVar !== '')
-		vals['removeHtmlVar'] = removeHtmlVar;
-
 	var removeHtmlAfter = $formFilters.find('.removeHtmlAfter').val() === 'true';
 	var setHtmlAfter = removeHtmlAfter ? null : $formValues.find('.setHtmlAfter').val();
 	if(removeHtmlAfter || setHtmlAfter != null && setHtmlAfter !== '')
@@ -326,6 +323,39 @@ function patchHtmlPart($formFilters, $formValues, success, error) {
 	var removeHtmlText = $formValues.find('.removeHtmlText').val();
 	if(removeHtmlText != null && removeHtmlText !== '')
 		vals['removeHtmlText'] = removeHtmlText;
+
+	var removeHtmlVar = $formFilters.find('.removeHtmlVar').val() === 'true';
+	var setHtmlVar = removeHtmlVar ? null : $formValues.find('.setHtmlVar').val();
+	if(removeHtmlVar || setHtmlVar != null && setHtmlVar !== '')
+		vals['setHtmlVar'] = setHtmlVar;
+	var addHtmlVar = $formValues.find('.addHtmlVar').val();
+	if(addHtmlVar != null && addHtmlVar !== '')
+		vals['addHtmlVar'] = addHtmlVar;
+	var removeHtmlVar = $formValues.find('.removeHtmlVar').val();
+	if(removeHtmlVar != null && removeHtmlVar !== '')
+		vals['removeHtmlVar'] = removeHtmlVar;
+
+	var removeHtmlVarInput = $formFilters.find('.removeHtmlVarInput').val() === 'true';
+	var setHtmlVarInput = removeHtmlVarInput ? null : $formValues.find('.setHtmlVarInput').val();
+	if(removeHtmlVarInput || setHtmlVarInput != null && setHtmlVarInput !== '')
+		vals['setHtmlVarInput'] = setHtmlVarInput;
+	var addHtmlVarInput = $formValues.find('.addHtmlVarInput').val();
+	if(addHtmlVarInput != null && addHtmlVarInput !== '')
+		vals['addHtmlVarInput'] = addHtmlVarInput;
+	var removeHtmlVarInput = $formValues.find('.removeHtmlVarInput').val();
+	if(removeHtmlVarInput != null && removeHtmlVarInput !== '')
+		vals['removeHtmlVarInput'] = removeHtmlVarInput;
+
+	var removePdfExclude = $formFilters.find('.removePdfExclude').val() === 'true';
+	var setPdfExclude = removePdfExclude ? null : $formValues.find('.setPdfExclude').prop('checked');
+	if(removePdfExclude || setPdfExclude != null && setPdfExclude !== '')
+		vals['setPdfExclude'] = setPdfExclude;
+	var addPdfExclude = $formValues.find('.addPdfExclude').prop('checked');
+	if(addPdfExclude != null && addPdfExclude !== '')
+		vals['addPdfExclude'] = addPdfExclude;
+	var removePdfExclude = $formValues.find('.removePdfExclude').prop('checked');
+	if(removePdfExclude != null && removePdfExclude !== '')
+		vals['removePdfExclude'] = removePdfExclude;
 
 	var removeSort1 = $formFilters.find('.removeSort1').val() === 'true';
 	var setSort1 = removeSort1 ? null : $formValues.find('.setSort1').val();
@@ -443,6 +473,8 @@ function patchHtmlPart($formFilters, $formValues, success, error) {
 function patchHtmlPartFilters($formFilters) {
 	var filters = [];
 
+	filters.push({ name: 'rows', value: 1000000 });
+
 	var filterPk = $formFilters.find('.valuePk').val();
 	if(filterPk != null && filterPk !== '')
 		filters.push({ name: 'fq', value: 'pk:' + filterPk });
@@ -495,10 +527,6 @@ function patchHtmlPartFilters($formFilters) {
 	if(filterHtmlBefore != null && filterHtmlBefore !== '')
 		filters.push({ name: 'fq', value: 'htmlBefore:' + filterHtmlBefore });
 
-	var filterHtmlVar = $formFilters.find('.valueHtmlVar').val();
-	if(filterHtmlVar != null && filterHtmlVar !== '')
-		filters.push({ name: 'fq', value: 'htmlVar:' + filterHtmlVar });
-
 	var filterHtmlAfter = $formFilters.find('.valueHtmlAfter').val();
 	if(filterHtmlAfter != null && filterHtmlAfter !== '')
 		filters.push({ name: 'fq', value: 'htmlAfter:' + filterHtmlAfter });
@@ -506,6 +534,18 @@ function patchHtmlPartFilters($formFilters) {
 	var filterHtmlText = $formFilters.find('.valueHtmlText').val();
 	if(filterHtmlText != null && filterHtmlText !== '')
 		filters.push({ name: 'fq', value: 'htmlText:' + filterHtmlText });
+
+	var filterHtmlVar = $formFilters.find('.valueHtmlVar').val();
+	if(filterHtmlVar != null && filterHtmlVar !== '')
+		filters.push({ name: 'fq', value: 'htmlVar:' + filterHtmlVar });
+
+	var filterHtmlVarInput = $formFilters.find('.valueHtmlVarInput').val();
+	if(filterHtmlVarInput != null && filterHtmlVarInput !== '')
+		filters.push({ name: 'fq', value: 'htmlVarInput:' + filterHtmlVarInput });
+
+	var filterPdfExclude = $formFilters.find('.valuePdfExclude').prop('checked');
+	if(filterPdfExclude != null && filterPdfExclude === true)
+		filters.push({ name: 'fq', value: 'pdfExclude:' + filterPdfExclude });
 
 	var filterSort1 = $formFilters.find('.valueSort1').val();
 	if(filterSort1 != null && filterSort1 !== '')
@@ -641,6 +681,8 @@ function searchHtmlPart($formFilters, success, error) {
 function searchHtmlPartFilters($formFilters) {
 	var filters = [];
 
+	filters.push({ name: 'rows', value: 1000000 });
+
 	var filterPk = $formFilters.find('.valuePk').val();
 	if(filterPk != null && filterPk !== '')
 		filters.push({ name: 'fq', value: 'pk:' + filterPk });
@@ -693,10 +735,6 @@ function searchHtmlPartFilters($formFilters) {
 	if(filterHtmlBefore != null && filterHtmlBefore !== '')
 		filters.push({ name: 'fq', value: 'htmlBefore:' + filterHtmlBefore });
 
-	var filterHtmlVar = $formFilters.find('.valueHtmlVar').val();
-	if(filterHtmlVar != null && filterHtmlVar !== '')
-		filters.push({ name: 'fq', value: 'htmlVar:' + filterHtmlVar });
-
 	var filterHtmlAfter = $formFilters.find('.valueHtmlAfter').val();
 	if(filterHtmlAfter != null && filterHtmlAfter !== '')
 		filters.push({ name: 'fq', value: 'htmlAfter:' + filterHtmlAfter });
@@ -704,6 +742,18 @@ function searchHtmlPartFilters($formFilters) {
 	var filterHtmlText = $formFilters.find('.valueHtmlText').val();
 	if(filterHtmlText != null && filterHtmlText !== '')
 		filters.push({ name: 'fq', value: 'htmlText:' + filterHtmlText });
+
+	var filterHtmlVar = $formFilters.find('.valueHtmlVar').val();
+	if(filterHtmlVar != null && filterHtmlVar !== '')
+		filters.push({ name: 'fq', value: 'htmlVar:' + filterHtmlVar });
+
+	var filterHtmlVarInput = $formFilters.find('.valueHtmlVarInput').val();
+	if(filterHtmlVarInput != null && filterHtmlVarInput !== '')
+		filters.push({ name: 'fq', value: 'htmlVarInput:' + filterHtmlVarInput });
+
+	var filterPdfExclude = $formFilters.find('.valuePdfExclude').prop('checked');
+	if(filterPdfExclude != null && filterPdfExclude === true)
+		filters.push({ name: 'fq', value: 'pdfExclude:' + filterPdfExclude });
 
 	var filterSort1 = $formFilters.find('.valueSort1').val();
 	if(filterSort1 != null && filterSort1 !== '')
@@ -816,14 +866,14 @@ function suggestHtmlPartObjectSuggest($formFilters, $list) {
 
 function suggestHtmlPartEnrollmentDesignKey($formFilters, $list) {
 	success = function( data, textStatus, jQxhr ) {
+		var pk = parseInt($('#HtmlPartForm :input[name="pk"]').val());
 		$list.empty();
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-bell w3-padding-small ');
 			var $span = $('<span>').attr('class', '').text(o['enrollmentDesignCompleteName']);
-			var $a = $('<a>').attr('href', o['pageUrl']);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrl'] + '#' + pk);
 			$a.append($i);
 			$a.append($span);
-			var pk = parseInt($('#HtmlPartForm :input[name="pk"]').val());
 			var val = o['htmlPartKeys'];
 			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
 			var $input = $('<input>');
@@ -847,6 +897,7 @@ function suggestHtmlPartEnrollmentDesignKey($formFilters, $list) {
 function websocketHtmlPart() {
 	var eventBus = new EventBus('/eventbus');
 	eventBus.onopen = function () {
+
 		eventBus.registerHandler('websocketHtmlPart', function (error, message) {
 			var json = JSON.parse(message['body']);
 			var id = json['id'];
@@ -875,6 +926,10 @@ function websocketHtmlPart() {
 			$('.box-' + id).remove();
 			if(numPATCH < numFound)
 				$('.w3-content').append($box);
+		});
+
+		eventBus.registerHandler('websocketEnrollmentDesign', function (error, message) {
+			$('.suggestEnrollmentDesignKey').trigger('oninput');
 		});
 	}
 }

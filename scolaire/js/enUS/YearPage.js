@@ -337,6 +337,18 @@ function patchSchoolYearFilters($formFilters) {
 	if(filterSchoolLocation != null && filterSchoolLocation !== '')
 		filters.push({ name: 'fq', value: 'schoolLocation:' + filterSchoolLocation });
 
+	var filterSchoolAddress = $formFilters.find('.valueSchoolAddress').val();
+	if(filterSchoolAddress != null && filterSchoolAddress !== '')
+		filters.push({ name: 'fq', value: 'schoolAddress:' + filterSchoolAddress });
+
+	var filterSchoolPhoneNumber = $formFilters.find('.valueSchoolPhoneNumber').val();
+	if(filterSchoolPhoneNumber != null && filterSchoolPhoneNumber !== '')
+		filters.push({ name: 'fq', value: 'schoolPhoneNumber:' + filterSchoolPhoneNumber });
+
+	var filterSchoolAdministratorName = $formFilters.find('.valueSchoolAdministratorName').val();
+	if(filterSchoolAdministratorName != null && filterSchoolAdministratorName !== '')
+		filters.push({ name: 'fq', value: 'schoolAdministratorName:' + filterSchoolAdministratorName });
+
 	var filterYearShortName = $formFilters.find('.valueYearShortName').val();
 	if(filterYearShortName != null && filterYearShortName !== '')
 		filters.push({ name: 'fq', value: 'yearShortName:' + filterYearShortName });
@@ -511,6 +523,18 @@ function searchSchoolYearFilters($formFilters) {
 	if(filterSchoolLocation != null && filterSchoolLocation !== '')
 		filters.push({ name: 'fq', value: 'schoolLocation:' + filterSchoolLocation });
 
+	var filterSchoolAddress = $formFilters.find('.valueSchoolAddress').val();
+	if(filterSchoolAddress != null && filterSchoolAddress !== '')
+		filters.push({ name: 'fq', value: 'schoolAddress:' + filterSchoolAddress });
+
+	var filterSchoolPhoneNumber = $formFilters.find('.valueSchoolPhoneNumber').val();
+	if(filterSchoolPhoneNumber != null && filterSchoolPhoneNumber !== '')
+		filters.push({ name: 'fq', value: 'schoolPhoneNumber:' + filterSchoolPhoneNumber });
+
+	var filterSchoolAdministratorName = $formFilters.find('.valueSchoolAdministratorName').val();
+	if(filterSchoolAdministratorName != null && filterSchoolAdministratorName !== '')
+		filters.push({ name: 'fq', value: 'schoolAdministratorName:' + filterSchoolAdministratorName });
+
 	var filterYearShortName = $formFilters.find('.valueYearShortName').val();
 	if(filterYearShortName != null && filterYearShortName !== '')
 		filters.push({ name: 'fq', value: 'yearShortName:' + filterYearShortName });
@@ -552,14 +576,14 @@ function suggestSchoolYearObjectSuggest($formFilters, $list) {
 
 function suggestSchoolYearSchoolKey($formFilters, $list) {
 	success = function( data, textStatus, jQxhr ) {
+		var pk = parseInt($('#SchoolYearForm :input[name="pk"]').val());
 		$list.empty();
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-school w3-padding-small ');
 			var $span = $('<span>').attr('class', '').text(o['schoolCompleteName']);
-			var $a = $('<a>').attr('href', o['pageUrl']);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrl'] + '#' + pk);
 			$a.append($i);
 			$a.append($span);
-			var pk = parseInt($('#SchoolYearForm :input[name="pk"]').val());
 			var val = o['yearKeys'];
 			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
 			var $input = $('<input>');
@@ -582,14 +606,14 @@ function suggestSchoolYearSchoolKey($formFilters, $list) {
 
 function suggestSchoolYearSeasonKeys($formFilters, $list) {
 	success = function( data, textStatus, jQxhr ) {
+		var pk = parseInt($('#SchoolYearForm :input[name="pk"]').val());
 		$list.empty();
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-sun w3-padding-small ');
 			var $span = $('<span>').attr('class', '').text(o['seasonCompleteName']);
-			var $a = $('<a>').attr('href', o['pageUrl']);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrl'] + '#' + pk);
 			$a.append($i);
 			$a.append($span);
-			var pk = parseInt($('#SchoolYearForm :input[name="pk"]').val());
 			var val = o['yearKey'];
 			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
 			var $input = $('<input>');
@@ -613,6 +637,7 @@ function suggestSchoolYearSeasonKeys($formFilters, $list) {
 function websocketSchoolYear() {
 	var eventBus = new EventBus('/eventbus');
 	eventBus.onopen = function () {
+
 		eventBus.registerHandler('websocketSchoolYear', function (error, message) {
 			var json = JSON.parse(message['body']);
 			var id = json['id'];
@@ -641,6 +666,14 @@ function websocketSchoolYear() {
 			$('.box-' + id).remove();
 			if(numPATCH < numFound)
 				$('.w3-content').append($box);
+		});
+
+		eventBus.registerHandler('websocketSchool', function (error, message) {
+			$('.suggestSchoolKey').trigger('oninput');
+		});
+
+		eventBus.registerHandler('websocketSchoolSeason', function (error, message) {
+			$('.suggestSeasonKeys').trigger('oninput');
 		});
 	}
 }

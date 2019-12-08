@@ -1,16 +1,20 @@
 body, html { font-size: 1.0em; }
-body {font-family: "Bellefair", sans-serif; }
 h1,h2,h3,h4,h5,h6 { margin: 0; }
+/*
+body {font-family: "Bellefair", sans-serif; }
 h1,h3,h5 {font-family: "Stint Ultra Condensed", sans-serif; line-height: 1.2; }
 h2,h4,h6 {font-family: "Jomhuria", sans-serif; line-height: 0.9; }
+*/
 h1,.h1 { font-size: 2.4em; }
 h2,.h2 { font-size: 2.0em; }
 h3,.h3 { font-size: 1.7em; }
 h4,.h4 { font-size: 1.7em; }
 h5,.h5 { font-size: 1.3em; }
 h6,.h6 { font-size: 1.3em; }
+/*
 dt { display: inline; margin: 0; padding: 0; font-family: "PT Serif", sans-serif; font-size: 0.9em; }
 label { font-family: "PT Serif", sans-serif; font-size: 0.9em; }
+*/
 dd { display: inline; margin: 0; padding: 0; }
 i { font-weight: normal; }
 body {  }
@@ -177,17 +181,19 @@ textarea {
 	width: 1.4em;
 	text-align: center;
 }
+/*
 .site-highlight {
 	font-family: arial,sans-serif;
 	font-size: small;
 }
+*/
 em {
 	font-weight: bold;
 	font-style: normal;
 }
 pre, .site-cmd-complet { 
 	font-size: 0.8em; 
-	font-family: "Anonymous Pro", monospace; 
+	/*font-family: "Anonymous Pro", monospace; */
 	font-weight: normal; 
 	background-color: black; 
 	border: 2px white solid; 
@@ -196,12 +202,39 @@ pre, .site-cmd-complet {
 	color: white;
 	white-space: pre-wrap;
 }
+.white-space-pre {
+	white-space: pre;
+}
+.white-space-pre-wrap {
+	white-space: pre-wrap;
+}
+.font-weight-bold {
+	font-weight: bold;
+}
+.text-transform-uppercase {
+	text-transform: uppercase;
+}
+.text-transform-lowercase {
+	text-transform: lowercase;
+}
+.text-transform-capitalize {
+	text-transform: capitalize;
+}
+/*
+.font-family-times {
+	font-family: times;
+}
+*/
+.text-decoration-underline {
+	text-decoration: underline;
+}
 
 .recapituler2Table i {
 	color:#08232E;
 }
 .recapituler2Table {
-	border-collapse:collapse;border-spacing:0;width:100%;display:table;font-family: "Stint Ultra Condensed", sans-serif;
+	border-collapse:collapse;border-spacing:0;width:100%;display:table;
+	/*font-family: "Stint Ultra Condensed", sans-serif;*/
 	color:#fff;
 }
 .recapituler2TableTr td {
@@ -223,7 +256,9 @@ pre, .site-cmd-complet {
 	}
 }
 .recapituler2TableTr1Td1 {
-	color:#BEDCE9;font-size:64px;font-family: "Stint Ultra Condensed", sans-serif;width:20%;
+	color:#BEDCE9;font-size:64px;
+	/*font-family: "Stint Ultra Condensed", sans-serif;*/
+	width:20%;
 }
 .recapituler2TableTr2Td1 {
 	font-size:32px;color:#fff;
@@ -232,23 +267,29 @@ pre, .site-cmd-complet {
 	font-size:70px;
 }
 .recapituler2TableTr2Td2 {
-	font-size:32px;font-family:Stint Ultra Condensed;padding:0px 8px;
+	font-size:32px;
+	/*font-family:Stint Ultra Condensed;*/
+	padding:0px 8px;
 }
 .recapituler2TableTr1Td3 {
 	font-size:70px;
 }
 .recapituler2TableTr2Td3 {
-	font-size:32px;font-family:Stint Ultra Condensed;padding:0px 8px;
+	font-size:32px;
+	/*font-family:Stint Ultra Condensed;*/
+	padding:0px 8px;
 }
 .recapituler2TableTr1Td4 {
 	font-size:64px;color:#08232E;font-weight: bold;width:20%;
 }
 .recapituler2TableTr2Td4 {
-	font-size:32px;font-family: "Stint Ultra Condensed", sans-serif;
+	font-size:32px;
+	/*font-family: "Stint Ultra Condensed", sans-serif;*/
 }
 
 .recapituler3Table {
-	border-collapse:collapse;border-spacing:0;width:100%;display:table;font-family: "Stint Ultra Condensed", sans-serif;
+	border-collapse:collapse;border-spacing:0;width:100%;display:table;
+	/*font-family: "Stint Ultra Condensed", sans-serif;*/
 }
 .recapituler3Table i {
 	color:#08232E;

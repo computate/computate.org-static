@@ -1,0 +1,48 @@
+
+@page { 
+	size: 8.5in 11in; 
+	margin-top: 0.3in; 
+	margin-bottom: 0.5in; 
+	margin-left: 0.3in; 
+	margin-right: 0.3in; 
+	@bottom-right { 
+		content: 'Page ' counter(page) ' of ' counter(pages); 
+	} 
+} 
+h1, h2, h3, h4, h5, h6 {
+	padding: 0;
+	margin: 0;
+}
+table {
+	-fs-table-paginate: paginate;
+}
+tr {
+	page-break-inside: avoid; 
+}
+.page-break-inside-avoid {
+	page-break-inside: avoid; 
+}
+.page-break {
+	page-break-before: always; 
+}
+.page-break-before {
+	page-break-before: always; 
+}
+.page-break-after {
+	page-break-after: always; 
+}
+.page-input {
+	border-bottom: 1px solid black; 
+}
+/*
+.fa-check-square-o { 
+	min-width: 20px; min-height: 16px; 
+	background: url(https://orchard.computate.org/svg/check-square-o.svg) no-repeat center center; 
+	background-size: 20px; 
+}
+.fa-square-o { 
+	min-width: 20px; min-height: 16px; 
+	background: url(https://orchard.computate.org/svg/square-o.svg) no-repeat center center; 
+	background-size: 20px; 
+}
+*/

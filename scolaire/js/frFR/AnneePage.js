@@ -337,6 +337,18 @@ function patchAnneeScolaireFiltres($formulaireFiltres) {
 	if(filtreEcoleEmplacement != null && filtreEcoleEmplacement !== '')
 		filtres.push({ name: 'fq', value: 'ecoleEmplacement:' + filtreEcoleEmplacement });
 
+	var filtreEcoleAddresse = $formulaireFiltres.find('.valeurEcoleAddresse').val();
+	if(filtreEcoleAddresse != null && filtreEcoleAddresse !== '')
+		filtres.push({ name: 'fq', value: 'ecoleAddresse:' + filtreEcoleAddresse });
+
+	var filtreEcoleNumeroTelephone = $formulaireFiltres.find('.valeurEcoleNumeroTelephone').val();
+	if(filtreEcoleNumeroTelephone != null && filtreEcoleNumeroTelephone !== '')
+		filtres.push({ name: 'fq', value: 'ecoleNumeroTelephone:' + filtreEcoleNumeroTelephone });
+
+	var filtreEcoleAdministrateurNom = $formulaireFiltres.find('.valeurEcoleAdministrateurNom').val();
+	if(filtreEcoleAdministrateurNom != null && filtreEcoleAdministrateurNom !== '')
+		filtres.push({ name: 'fq', value: 'ecoleAdministrateurNom:' + filtreEcoleAdministrateurNom });
+
 	var filtreAnneeNomCourt = $formulaireFiltres.find('.valeurAnneeNomCourt').val();
 	if(filtreAnneeNomCourt != null && filtreAnneeNomCourt !== '')
 		filtres.push({ name: 'fq', value: 'anneeNomCourt:' + filtreAnneeNomCourt });
@@ -511,6 +523,18 @@ function rechercheAnneeScolaireFiltres($formulaireFiltres) {
 	if(filtreEcoleEmplacement != null && filtreEcoleEmplacement !== '')
 		filtres.push({ name: 'fq', value: 'ecoleEmplacement:' + filtreEcoleEmplacement });
 
+	var filtreEcoleAddresse = $formulaireFiltres.find('.valeurEcoleAddresse').val();
+	if(filtreEcoleAddresse != null && filtreEcoleAddresse !== '')
+		filtres.push({ name: 'fq', value: 'ecoleAddresse:' + filtreEcoleAddresse });
+
+	var filtreEcoleNumeroTelephone = $formulaireFiltres.find('.valeurEcoleNumeroTelephone').val();
+	if(filtreEcoleNumeroTelephone != null && filtreEcoleNumeroTelephone !== '')
+		filtres.push({ name: 'fq', value: 'ecoleNumeroTelephone:' + filtreEcoleNumeroTelephone });
+
+	var filtreEcoleAdministrateurNom = $formulaireFiltres.find('.valeurEcoleAdministrateurNom').val();
+	if(filtreEcoleAdministrateurNom != null && filtreEcoleAdministrateurNom !== '')
+		filtres.push({ name: 'fq', value: 'ecoleAdministrateurNom:' + filtreEcoleAdministrateurNom });
+
 	var filtreAnneeNomCourt = $formulaireFiltres.find('.valeurAnneeNomCourt').val();
 	if(filtreAnneeNomCourt != null && filtreAnneeNomCourt !== '')
 		filtres.push({ name: 'fq', value: 'anneeNomCourt:' + filtreAnneeNomCourt });
@@ -552,14 +576,14 @@ function suggereAnneeScolaireObjetSuggere($formulaireFiltres, $list) {
 
 function suggereAnneeScolaireEcoleCle($formulaireFiltres, $list) {
 	success = function( data, textStatus, jQxhr ) {
+		var pk = parseInt($('#AnneeScolaireForm :input[name="pk"]').val());
 		$list.empty();
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-school w3-padding-small ');
 			var $span = $('<span>').attr('class', '').text(o['ecoleNomComplet']);
-			var $a = $('<a>').attr('href', o['pageUrl']);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrl'] + '#' + pk);
 			$a.append($i);
 			$a.append($span);
-			var pk = parseInt($('#AnneeScolaireForm :input[name="pk"]').val());
 			var val = o['anneeCles'];
 			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
 			var $input = $('<input>');
@@ -582,14 +606,14 @@ function suggereAnneeScolaireEcoleCle($formulaireFiltres, $list) {
 
 function suggereAnneeScolaireSaisonCles($formulaireFiltres, $list) {
 	success = function( data, textStatus, jQxhr ) {
+		var pk = parseInt($('#AnneeScolaireForm :input[name="pk"]').val());
 		$list.empty();
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-sun w3-padding-small ');
 			var $span = $('<span>').attr('class', '').text(o['saisonNomComplet']);
-			var $a = $('<a>').attr('href', o['pageUrl']);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrl'] + '#' + pk);
 			$a.append($i);
 			$a.append($span);
-			var pk = parseInt($('#AnneeScolaireForm :input[name="pk"]').val());
 			var val = o['anneeCle'];
 			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
 			var $input = $('<input>');
@@ -613,6 +637,7 @@ function suggereAnneeScolaireSaisonCles($formulaireFiltres, $list) {
 function websocketAnneeScolaire() {
 	var eventBus = new EventBus('/eventbus');
 	eventBus.onopen = function () {
+
 		eventBus.registerHandler('websocketAnneeScolaire', function (error, message) {
 			var json = JSON.parse(message['body']);
 			var id = json['id'];
@@ -641,6 +666,14 @@ function websocketAnneeScolaire() {
 			$('.box-' + id).remove();
 			if(numPATCH < numFound)
 				$('.w3-content').append($box);
+		});
+
+		eventBus.registerHandler('websocketEcole', function (error, message) {
+			$('.suggereEcoleCle').trigger('oninput');
+		});
+
+		eventBus.registerHandler('websocketSaisonScolaire', function (error, message) {
+			$('.suggereSaisonCles').trigger('oninput');
 		});
 	}
 }

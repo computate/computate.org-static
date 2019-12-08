@@ -729,14 +729,14 @@ function suggestSchoolChildObjectSuggest($formFilters, $list) {
 
 function suggestSchoolChildEnrollmentKeys($formFilters, $list) {
 	success = function( data, textStatus, jQxhr ) {
+		var pk = parseInt($('#SchoolChildForm :input[name="pk"]').val());
 		$list.empty();
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-edit w3-padding-small ');
 			var $span = $('<span>').attr('class', '').text(o['enrollmentCompleteName']);
-			var $a = $('<a>').attr('href', o['pageUrl']);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrl'] + '#' + pk);
 			$a.append($i);
 			$a.append($span);
-			var pk = parseInt($('#SchoolChildForm :input[name="pk"]').val());
 			var val = o['childKey'];
 			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
 			var $input = $('<input>');
@@ -760,6 +760,7 @@ function suggestSchoolChildEnrollmentKeys($formFilters, $list) {
 function websocketSchoolChild() {
 	var eventBus = new EventBus('/eventbus');
 	eventBus.onopen = function () {
+
 		eventBus.registerHandler('websocketSchoolChild', function (error, message) {
 			var json = JSON.parse(message['body']);
 			var id = json['id'];
@@ -788,6 +789,10 @@ function websocketSchoolChild() {
 			$('.box-' + id).remove();
 			if(numPATCH < numFound)
 				$('.w3-content').append($box);
+		});
+
+		eventBus.registerHandler('websocketSchoolEnrollment', function (error, message) {
+			$('.suggestEnrollmentKeys').trigger('oninput');
 		});
 	}
 }
