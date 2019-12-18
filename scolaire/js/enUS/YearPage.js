@@ -1,7 +1,7 @@
 
 // POST //
 
-function postSchoolYear($formValues, success, error) {
+async function postSchoolYear($formValues, success, error) {
 	var vals = {};
 	if(success == null) {
 		success = function( data, textStatus, jQxhr ) {
@@ -90,7 +90,7 @@ function postSchoolYearVals(vals, success, error) {
 
 // PATCH //
 
-function patchSchoolYear($formFilters, $formValues, success, error) {
+async function patchSchoolYear($formFilters, $formValues, success, error) {
 	var filters = patchSchoolYearFilters($formFilters);
 
 	var vals = {};
@@ -379,7 +379,7 @@ function patchSchoolYearVals(filters, vals, success, error) {
 
 // GET //
 
-function getSchoolYear(pk) {
+async function getSchoolYear(pk) {
 	$.ajax({
 		url: '/api/year/' + id
 		, dataType: 'json'
@@ -392,7 +392,7 @@ function getSchoolYear(pk) {
 
 // DELETE //
 
-function deleteSchoolYear(pk) {
+async function deleteSchoolYear(pk) {
 	$.ajax({
 		url: '/api/year/' + id
 		, dataType: 'json'
@@ -406,7 +406,7 @@ function deleteSchoolYear(pk) {
 
 // Search //
 
-function searchSchoolYear($formFilters, success, error) {
+async function searchSchoolYear($formFilters, success, error) {
 	var filters = searchSchoolYearFilters($formFilters);
 	if(success == null)
 		success = function( data, textStatus, jQxhr ) {};
@@ -574,9 +574,8 @@ function suggestSchoolYearObjectSuggest($formFilters, $list) {
 	searchSchoolYearVals($formFilters, success, error);
 }
 
-function suggestSchoolYearSchoolKey($formFilters, $list) {
+function suggestSchoolYearSchoolKey(filters, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
-		var pk = parseInt($('#SchoolYearForm :input[name="pk"]').val());
 		$list.empty();
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-school w3-padding-small ');
@@ -589,7 +588,7 @@ function suggestSchoolYearSchoolKey($formFilters, $list) {
 			var $input = $('<input>');
 			$input.attr('id', 'GET_schoolKey_' + pk + '_yearKeys_' + o['pk']);
 			$input.attr('class', 'w3-check ');
-			$input.attr('onchange', "var $input = $('#GET_schoolKey_" + pk + "_yearKeys_" + o['pk'] + "'); patchSchoolYearVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'set' : 'remove') + 'SchoolKey']: \"" + o['pk'] + "\" }, function() { patchSchoolVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], {}, function() { addGlow($input); }, function() { addError($input); } ); } ); ");
+			$input.attr('onchange', "var $input = $('#GET_schoolKey_" + pk + "_yearKeys_" + o['pk'] + "'); patchSchoolYearVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'set' : 'remove') + 'SchoolKey']: \"" + o['pk'] + "\" } ); ");
 			$input.attr('onclick', 'removeGlow($(this)); ');
 			$input.attr('type', 'checkbox');
 			if(checked)
@@ -599,14 +598,16 @@ function suggestSchoolYearSchoolKey($formFilters, $list) {
 			$li.append($a);
 			$list.append($li);
 		});
+		var focusId = $('#SchoolYearForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
 	};
 	error = function( jqXhr, textStatus, errorThrown ) {};
-	searchSchool($formFilters, success, error);
+	searchSchoolVals(filters, success, error);
 }
 
-function suggestSchoolYearSeasonKeys($formFilters, $list) {
+function suggestSchoolYearSeasonKeys(filters, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
-		var pk = parseInt($('#SchoolYearForm :input[name="pk"]').val());
 		$list.empty();
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-sun w3-padding-small ');
@@ -619,7 +620,7 @@ function suggestSchoolYearSeasonKeys($formFilters, $list) {
 			var $input = $('<input>');
 			$input.attr('id', 'GET_seasonKeys_' + pk + '_yearKey_' + o['pk']);
 			$input.attr('class', 'w3-check ');
-			$input.attr('onchange', "var $input = $('#GET_seasonKeys_" + pk + "_yearKey_" + o['pk'] + "'); patchSchoolYearVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'SeasonKeys']: \"" + o['pk'] + "\" }, function() { patchSchoolSeasonVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], {}, function() { addGlow($input); }, function() { addError($input); } ); } ); ");
+			$input.attr('onchange', "var $input = $('#GET_seasonKeys_" + pk + "_yearKey_" + o['pk'] + "'); patchSchoolYearVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'SeasonKeys']: \"" + o['pk'] + "\" } ); ");
 			$input.attr('onclick', 'removeGlow($(this)); ');
 			$input.attr('type', 'checkbox');
 			if(checked)
@@ -629,51 +630,61 @@ function suggestSchoolYearSeasonKeys($formFilters, $list) {
 			$li.append($a);
 			$list.append($li);
 		});
+		var focusId = $('#SchoolYearForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
 	};
 	error = function( jqXhr, textStatus, errorThrown ) {};
-	searchSchoolSeason($formFilters, success, error);
+	searchSchoolSeasonVals(filters, success, error);
 }
 
-function websocketSchoolYear() {
+async function websocketSchoolYear(success) {
 	var eventBus = new EventBus('/eventbus');
 	eventBus.onopen = function () {
 
 		eventBus.registerHandler('websocketSchoolYear', function (error, message) {
 			var json = JSON.parse(message['body']);
 			var id = json['id'];
-			var numFound = json['numFound'];
-			var numPATCH = json['numPATCH'];
-			var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
-			var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
-			var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
-			var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
-			var $header = $('<div>').attr('class', 'w3-container fa-orange ').attr('id', 'header-' + id);
-			var $i = $('<i>').attr('class', 'far fa-calendar-check w3-margin-right ').attr('id', 'icon-' + id);
-			var $headerSpan = $('<span>').attr('class', '').text('modify years');
-			var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
-			var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
-			var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
-			var $progress = $('<div>').attr('class', 'w3-orange ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
-			$card.append($header);
-			$header.append($i);
-			$header.append($headerSpan);
-			$header.append($x);
-			$body.append($bar);
-			$bar.append($progress);
-			$card.append($body);
-			$box.append($margin);
-			$margin.append($card);
-			$('.box-' + id).remove();
-			if(numPATCH < numFound)
+			var pk = json['pk'];
+			var pks = json['pks'];
+			var empty = json['empty'];
+			if(!empty) {
+				var numFound = json['numFound'];
+				var numPATCH = json['numPATCH'];
+				var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
+				var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
+				var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
+				var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
+				var $header = $('<div>').attr('class', 'w3-container fa-orange ').attr('id', 'header-' + id);
+				var $i = $('<i>').attr('class', 'far fa-calendar-check w3-margin-right ').attr('id', 'icon-' + id);
+				var $headerSpan = $('<span>').attr('class', '').text('modify years');
+				var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
+				var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
+				var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
+				var $progress = $('<div>').attr('class', 'w3-orange ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
+				$card.append($header);
+				$header.append($i);
+				$header.append($headerSpan);
+				$header.append($x);
+				$body.append($bar);
+				$bar.append($progress);
+				$card.append($body);
+				$box.append($margin);
+				$margin.append($card);
+				$('.box-' + id).remove();
+				if(numPATCH < numFound)
 				$('.w3-content').append($box);
+				if(success)
+					success(json);
+			}
 		});
 
 		eventBus.registerHandler('websocketSchool', function (error, message) {
-			$('.suggestSchoolKey').trigger('oninput');
+			$('#Page_schoolKey').trigger('oninput');
 		});
 
 		eventBus.registerHandler('websocketSchoolSeason', function (error, message) {
-			$('.suggestSeasonKeys').trigger('oninput');
+			$('#Page_seasonKeys').trigger('oninput');
 		});
 	}
 }

@@ -1,7 +1,7 @@
 
 // POST //
 
-function postBlocScolaire($formulaireValeurs, success, error) {
+async function postBlocScolaire($formulaireValeurs, success, error) {
 	var vals = {};
 	if(success == null) {
 		success = function( data, textStatus, jQxhr ) {
@@ -110,7 +110,7 @@ function postBlocScolaireVals(vals, success, error) {
 
 // PATCH //
 
-function patchBlocScolaire($formulaireFiltres, $formulaireValeurs, success, error) {
+async function patchBlocScolaire($formulaireFiltres, $formulaireValeurs, success, error) {
 	var filtres = patchBlocScolaireFiltres($formulaireFiltres);
 
 	var vals = {};
@@ -558,7 +558,7 @@ function patchBlocScolaireVals(filtres, vals, success, error) {
 
 // GET //
 
-function getBlocScolaire(pk) {
+async function getBlocScolaire(pk) {
 	$.ajax({
 		url: '/api/bloc/' + id
 		, dataType: 'json'
@@ -571,7 +571,7 @@ function getBlocScolaire(pk) {
 
 // DELETE //
 
-function deleteBlocScolaire(pk) {
+async function deleteBlocScolaire(pk) {
 	$.ajax({
 		url: '/api/bloc/' + id
 		, dataType: 'json'
@@ -585,7 +585,7 @@ function deleteBlocScolaire(pk) {
 
 // Recherche //
 
-function rechercheBlocScolaire($formulaireFiltres, success, error) {
+async function rechercheBlocScolaire($formulaireFiltres, success, error) {
 	var filtres = rechercheBlocScolaireFiltres($formulaireFiltres);
 	if(success == null)
 		success = function( data, textStatus, jQxhr ) {};
@@ -857,9 +857,8 @@ function suggereBlocScolaireObjetSuggere($formulaireFiltres, $list) {
 	rechercherBlocScolaireVals($formulaireFiltres, success, error);
 }
 
-function suggereBlocScolaireInscriptionCles($formulaireFiltres, $list) {
+function suggereBlocScolaireInscriptionCles(filtres, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
-		var pk = parseInt($('#BlocScolaireForm :input[name="pk"]').val());
 		$list.empty();
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-edit w3-padding-small ');
@@ -872,7 +871,7 @@ function suggereBlocScolaireInscriptionCles($formulaireFiltres, $list) {
 			var $input = $('<input>');
 			$input.attr('id', 'GET_inscriptionCles_' + pk + '_blocCles_' + o['pk']);
 			$input.attr('class', 'w3-check ');
-			$input.attr('onchange', "var $input = $('#GET_inscriptionCles_" + pk + "_blocCles_" + o['pk'] + "'); patchBlocScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'InscriptionCles']: \"" + o['pk'] + "\" }, function() { patchInscriptionScolaireVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], {}, function() { ajouterLueur($input); }, function() { ajouterErreur($input); } ); } ); ");
+			$input.attr('onchange', "var $input = $('#GET_inscriptionCles_" + pk + "_blocCles_" + o['pk'] + "'); patchBlocScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'InscriptionCles']: \"" + o['pk'] + "\" } ); ");
 			$input.attr('onclick', 'enleverLueur($(this)); ');
 			$input.attr('type', 'checkbox');
 			if(checked)
@@ -882,14 +881,16 @@ function suggereBlocScolaireInscriptionCles($formulaireFiltres, $list) {
 			$li.append($a);
 			$list.append($li);
 		});
+		var focusId = $('#BlocScolaireForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
 	};
 	error = function( jqXhr, textStatus, errorThrown ) {};
-	rechercheInscriptionScolaire($formulaireFiltres, success, error);
+	rechercheInscriptionScolaireVals(filtres, success, error);
 }
 
-function suggereBlocScolaireAgeCle($formulaireFiltres, $list) {
+function suggereBlocScolaireAgeCle(filtres, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
-		var pk = parseInt($('#BlocScolaireForm :input[name="pk"]').val());
 		$list.empty();
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-birthday-cake w3-padding-small ');
@@ -902,7 +903,7 @@ function suggereBlocScolaireAgeCle($formulaireFiltres, $list) {
 			var $input = $('<input>');
 			$input.attr('id', 'GET_ageCle_' + pk + '_blocCles_' + o['pk']);
 			$input.attr('class', 'w3-check ');
-			$input.attr('onchange', "var $input = $('#GET_ageCle_" + pk + "_blocCles_" + o['pk'] + "'); patchBlocScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'set' : 'remove') + 'AgeCle']: \"" + o['pk'] + "\" }, function() { patchAgeScolaireVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], {}, function() { ajouterLueur($input); }, function() { ajouterErreur($input); } ); } ); ");
+			$input.attr('onchange', "var $input = $('#GET_ageCle_" + pk + "_blocCles_" + o['pk'] + "'); patchBlocScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'set' : 'remove') + 'AgeCle']: \"" + o['pk'] + "\" } ); ");
 			$input.attr('onclick', 'enleverLueur($(this)); ');
 			$input.attr('type', 'checkbox');
 			if(checked)
@@ -912,51 +913,61 @@ function suggereBlocScolaireAgeCle($formulaireFiltres, $list) {
 			$li.append($a);
 			$list.append($li);
 		});
+		var focusId = $('#BlocScolaireForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
 	};
 	error = function( jqXhr, textStatus, errorThrown ) {};
-	rechercheAgeScolaire($formulaireFiltres, success, error);
+	rechercheAgeScolaireVals(filtres, success, error);
 }
 
-function websocketBlocScolaire() {
+async function websocketBlocScolaire(success) {
 	var eventBus = new EventBus('/eventbus');
 	eventBus.onopen = function () {
 
 		eventBus.registerHandler('websocketBlocScolaire', function (error, message) {
 			var json = JSON.parse(message['body']);
 			var id = json['id'];
-			var numFound = json['numFound'];
-			var numPATCH = json['numPATCH'];
-			var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
-			var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
-			var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
-			var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
-			var $header = $('<div>').attr('class', 'w3-container fa-indigo ').attr('id', 'header-' + id);
-			var $i = $('<i>').attr('class', 'far fa-bell w3-margin-right ').attr('id', 'icon-' + id);
-			var $headerSpan = $('<span>').attr('class', '').text('modifier blocs');
-			var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
-			var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
-			var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
-			var $progress = $('<div>').attr('class', 'w3-indigo ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
-			$card.append($header);
-			$header.append($i);
-			$header.append($headerSpan);
-			$header.append($x);
-			$body.append($bar);
-			$bar.append($progress);
-			$card.append($body);
-			$box.append($margin);
-			$margin.append($card);
-			$('.box-' + id).remove();
-			if(numPATCH < numFound)
+			var pk = json['pk'];
+			var pks = json['pks'];
+			var empty = json['empty'];
+			if(!empty) {
+				var numFound = json['numFound'];
+				var numPATCH = json['numPATCH'];
+				var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
+				var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
+				var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
+				var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
+				var $header = $('<div>').attr('class', 'w3-container fa-indigo ').attr('id', 'header-' + id);
+				var $i = $('<i>').attr('class', 'far fa-bell w3-margin-right ').attr('id', 'icon-' + id);
+				var $headerSpan = $('<span>').attr('class', '').text('modifier blocs');
+				var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
+				var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
+				var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
+				var $progress = $('<div>').attr('class', 'w3-indigo ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
+				$card.append($header);
+				$header.append($i);
+				$header.append($headerSpan);
+				$header.append($x);
+				$body.append($bar);
+				$bar.append($progress);
+				$card.append($body);
+				$box.append($margin);
+				$margin.append($card);
+				$('.box-' + id).remove();
+				if(numPATCH < numFound)
 				$('.w3-content').append($box);
+				if(success)
+					success(json);
+			}
 		});
 
 		eventBus.registerHandler('websocketInscriptionScolaire', function (error, message) {
-			$('.suggereInscriptionCles').trigger('oninput');
+			$('#Page_inscriptionCles').trigger('oninput');
 		});
 
 		eventBus.registerHandler('websocketAgeScolaire', function (error, message) {
-			$('.suggereAgeCle').trigger('oninput');
+			$('#Page_ageCle').trigger('oninput');
 		});
 	}
 }

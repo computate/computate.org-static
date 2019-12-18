@@ -1,7 +1,7 @@
 
 // POST //
 
-function postEnfantScolaire($formulaireValeurs, success, error) {
+async function postEnfantScolaire($formulaireValeurs, success, error) {
 	var vals = {};
 	if(success == null) {
 		success = function( data, textStatus, jQxhr ) {
@@ -118,7 +118,7 @@ function postEnfantScolaireVals(vals, success, error) {
 
 // PATCH //
 
-function patchEnfantScolaire($formulaireFiltres, $formulaireValeurs, success, error) {
+async function patchEnfantScolaire($formulaireFiltres, $formulaireValeurs, success, error) {
 	var filtres = patchEnfantScolaireFiltres($formulaireFiltres);
 
 	var vals = {};
@@ -508,7 +508,7 @@ function patchEnfantScolaireVals(filtres, vals, success, error) {
 
 // GET //
 
-function getEnfantScolaire(pk) {
+async function getEnfantScolaire(pk) {
 	$.ajax({
 		url: '/api/enfant/' + id
 		, dataType: 'json'
@@ -521,7 +521,7 @@ function getEnfantScolaire(pk) {
 
 // DELETE //
 
-function deleteEnfantScolaire(pk) {
+async function deleteEnfantScolaire(pk) {
 	$.ajax({
 		url: '/api/enfant/' + id
 		, dataType: 'json'
@@ -535,7 +535,7 @@ function deleteEnfantScolaire(pk) {
 
 // Recherche //
 
-function rechercheEnfantScolaire($formulaireFiltres, success, error) {
+async function rechercheEnfantScolaire($formulaireFiltres, success, error) {
 	var filtres = rechercheEnfantScolaireFiltres($formulaireFiltres);
 	if(success == null)
 		success = function( data, textStatus, jQxhr ) {};
@@ -727,9 +727,8 @@ function suggereEnfantScolaireObjetSuggere($formulaireFiltres, $list) {
 	rechercherEnfantScolaireVals($formulaireFiltres, success, error);
 }
 
-function suggereEnfantScolaireInscriptionCles($formulaireFiltres, $list) {
+function suggereEnfantScolaireInscriptionCles(filtres, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
-		var pk = parseInt($('#EnfantScolaireForm :input[name="pk"]').val());
 		$list.empty();
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-edit w3-padding-small ');
@@ -742,7 +741,7 @@ function suggereEnfantScolaireInscriptionCles($formulaireFiltres, $list) {
 			var $input = $('<input>');
 			$input.attr('id', 'GET_inscriptionCles_' + pk + '_enfantCle_' + o['pk']);
 			$input.attr('class', 'w3-check ');
-			$input.attr('onchange', "var $input = $('#GET_inscriptionCles_" + pk + "_enfantCle_" + o['pk'] + "'); patchEnfantScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'InscriptionCles']: \"" + o['pk'] + "\" }, function() { patchInscriptionScolaireVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], {}, function() { ajouterLueur($input); }, function() { ajouterErreur($input); } ); } ); ");
+			$input.attr('onchange', "var $input = $('#GET_inscriptionCles_" + pk + "_enfantCle_" + o['pk'] + "'); patchEnfantScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'InscriptionCles']: \"" + o['pk'] + "\" } ); ");
 			$input.attr('onclick', 'enleverLueur($(this)); ');
 			$input.attr('type', 'checkbox');
 			if(checked)
@@ -752,47 +751,57 @@ function suggereEnfantScolaireInscriptionCles($formulaireFiltres, $list) {
 			$li.append($a);
 			$list.append($li);
 		});
+		var focusId = $('#EnfantScolaireForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
 	};
 	error = function( jqXhr, textStatus, errorThrown ) {};
-	rechercheInscriptionScolaire($formulaireFiltres, success, error);
+	rechercheInscriptionScolaireVals(filtres, success, error);
 }
 
-function websocketEnfantScolaire() {
+async function websocketEnfantScolaire(success) {
 	var eventBus = new EventBus('/eventbus');
 	eventBus.onopen = function () {
 
 		eventBus.registerHandler('websocketEnfantScolaire', function (error, message) {
 			var json = JSON.parse(message['body']);
 			var id = json['id'];
-			var numFound = json['numFound'];
-			var numPATCH = json['numPATCH'];
-			var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
-			var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
-			var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
-			var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
-			var $header = $('<div>').attr('class', 'w3-container fa-green ').attr('id', 'header-' + id);
-			var $i = $('<i>').attr('class', 'far fa-child w3-margin-right ').attr('id', 'icon-' + id);
-			var $headerSpan = $('<span>').attr('class', '').text('modifier enfants');
-			var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
-			var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
-			var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
-			var $progress = $('<div>').attr('class', 'w3-green ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
-			$card.append($header);
-			$header.append($i);
-			$header.append($headerSpan);
-			$header.append($x);
-			$body.append($bar);
-			$bar.append($progress);
-			$card.append($body);
-			$box.append($margin);
-			$margin.append($card);
-			$('.box-' + id).remove();
-			if(numPATCH < numFound)
+			var pk = json['pk'];
+			var pks = json['pks'];
+			var empty = json['empty'];
+			if(!empty) {
+				var numFound = json['numFound'];
+				var numPATCH = json['numPATCH'];
+				var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
+				var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
+				var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
+				var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
+				var $header = $('<div>').attr('class', 'w3-container fa-green ').attr('id', 'header-' + id);
+				var $i = $('<i>').attr('class', 'far fa-child w3-margin-right ').attr('id', 'icon-' + id);
+				var $headerSpan = $('<span>').attr('class', '').text('modifier enfants');
+				var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
+				var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
+				var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
+				var $progress = $('<div>').attr('class', 'w3-green ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
+				$card.append($header);
+				$header.append($i);
+				$header.append($headerSpan);
+				$header.append($x);
+				$body.append($bar);
+				$bar.append($progress);
+				$card.append($body);
+				$box.append($margin);
+				$margin.append($card);
+				$('.box-' + id).remove();
+				if(numPATCH < numFound)
 				$('.w3-content').append($box);
+				if(success)
+					success(json);
+			}
 		});
 
 		eventBus.registerHandler('websocketInscriptionScolaire', function (error, message) {
-			$('.suggereInscriptionCles').trigger('oninput');
+			$('#Page_inscriptionCles').trigger('oninput');
 		});
 	}
 }

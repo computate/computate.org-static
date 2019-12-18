@@ -1,7 +1,7 @@
 
 // POST //
 
-function postDesignInscription($formulaireValeurs, success, error) {
+async function postDesignInscription($formulaireValeurs, success, error) {
 	var vals = {};
 	if(success == null) {
 		success = function( data, textStatus, jQxhr ) {
@@ -82,7 +82,7 @@ function postDesignInscriptionVals(vals, success, error) {
 
 // PATCH //
 
-function patchDesignInscription($formulaireFiltres, $formulaireValeurs, success, error) {
+async function patchDesignInscription($formulaireFiltres, $formulaireValeurs, success, error) {
 	var filtres = patchDesignInscriptionFiltres($formulaireFiltres);
 
 	var vals = {};
@@ -325,7 +325,7 @@ function patchDesignInscriptionVals(filtres, vals, success, error) {
 
 // GET //
 
-function getDesignInscription(pk) {
+async function getDesignInscription(pk) {
 	$.ajax({
 		url: '/api/design-inscription/' + id
 		, dataType: 'json'
@@ -338,7 +338,7 @@ function getDesignInscription(pk) {
 
 // DELETE //
 
-function deleteDesignInscription(pk) {
+async function deleteDesignInscription(pk) {
 	$.ajax({
 		url: '/api/design-inscription/' + id
 		, dataType: 'json'
@@ -352,7 +352,7 @@ function deleteDesignInscription(pk) {
 
 // Recherche //
 
-function rechercheDesignInscription($formulaireFiltres, success, error) {
+async function rechercheDesignInscription($formulaireFiltres, success, error) {
 	var filtres = rechercheDesignInscriptionFiltres($formulaireFiltres);
 	if(success == null)
 		success = function( data, textStatus, jQxhr ) {};
@@ -496,9 +496,8 @@ function suggereDesignInscriptionObjetSuggere($formulaireFiltres, $list) {
 	rechercherDesignInscriptionVals($formulaireFiltres, success, error);
 }
 
-function suggereDesignInscriptionPartHtmlCles($formulaireFiltres, $list) {
+function suggereDesignInscriptionPartHtmlCles(filtres, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
-		var pk = parseInt($('#DesignInscriptionForm :input[name="pk"]').val());
 		$list.empty();
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-sun w3-padding-small ');
@@ -511,7 +510,7 @@ function suggereDesignInscriptionPartHtmlCles($formulaireFiltres, $list) {
 			var $input = $('<input>');
 			$input.attr('id', 'GET_partHtmlCles_' + pk + '_designInscriptionCle_' + o['pk']);
 			$input.attr('class', 'w3-check ');
-			$input.attr('onchange', "var $input = $('#GET_partHtmlCles_" + pk + "_designInscriptionCle_" + o['pk'] + "'); patchDesignInscriptionVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'PartHtmlCles']: \"" + o['pk'] + "\" }, function() { patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], {}, function() { ajouterLueur($input); }, function() { ajouterErreur($input); } ); } ); ");
+			$input.attr('onchange', "var $input = $('#GET_partHtmlCles_" + pk + "_designInscriptionCle_" + o['pk'] + "'); patchDesignInscriptionVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'PartHtmlCles']: \"" + o['pk'] + "\" } ); ");
 			$input.attr('onclick', 'enleverLueur($(this)); ');
 			$input.attr('type', 'checkbox');
 			if(checked)
@@ -529,7 +528,8 @@ function suggereDesignInscriptionPartHtmlCles($formulaireFiltres, $list) {
 			$sortInput.attr('style', 'width: 4em; ');
 			$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri1");
 			$sortInput.attr('value', tri1).attr('onchange', 
-				"patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri1']: $(this).val() ? $(this).val() : null }"
+				"$('#DesignInscriptionForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+				+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri1']: $(this).val() ? $(this).val() : null }"
 					+ ", function() { "
 					+ "}"
 					+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri1')); }"
@@ -544,7 +544,8 @@ function suggereDesignInscriptionPartHtmlCles($formulaireFiltres, $list) {
 				$sortInput.attr('style', 'width: 4em; ');
 				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri2");
 				$sortInput.attr('value', tri2).attr('onchange', 
-					"patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri2']: $(this).val() ? $(this).val() : null }"
+					"$('#DesignInscriptionForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri2']: $(this).val() ? $(this).val() : null }"
 						+ ", function() { "
 						+ "}"
 						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri2')); }"
@@ -560,7 +561,8 @@ function suggereDesignInscriptionPartHtmlCles($formulaireFiltres, $list) {
 				$sortInput.attr('style', 'width: 4em; ');
 				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri3");
 				$sortInput.attr('value', tri3).attr('onchange', 
-					"patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri3']: $(this).val() ? $(this).val() : null }"
+					"$('#DesignInscriptionForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri3']: $(this).val() ? $(this).val() : null }"
 						+ ", function() { "
 						+ "}"
 						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri3')); }"
@@ -576,7 +578,8 @@ function suggereDesignInscriptionPartHtmlCles($formulaireFiltres, $list) {
 				$sortInput.attr('style', 'width: 4em; ');
 				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri4");
 				$sortInput.attr('value', tri4).attr('onchange', 
-					"patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri4']: $(this).val() ? $(this).val() : null }"
+					"$('#DesignInscriptionForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri4']: $(this).val() ? $(this).val() : null }"
 						+ ", function() { "
 						+ "}"
 						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri4')); }"
@@ -592,7 +595,8 @@ function suggereDesignInscriptionPartHtmlCles($formulaireFiltres, $list) {
 				$sortInput.attr('style', 'width: 4em; ');
 				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri5");
 				$sortInput.attr('value', tri5).attr('onchange', 
-					"patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri5']: $(this).val() ? $(this).val() : null }"
+					"$('#DesignInscriptionForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri5']: $(this).val() ? $(this).val() : null }"
 						+ ", function() { "
 						+ "}"
 						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri5')); }"
@@ -604,47 +608,57 @@ function suggereDesignInscriptionPartHtmlCles($formulaireFiltres, $list) {
 			$li.append($a);
 			$list.append($li);
 		});
+		var focusId = $('#DesignInscriptionForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
 	};
 	error = function( jqXhr, textStatus, errorThrown ) {};
-	recherchePartHtml($formulaireFiltres, success, error);
+	recherchePartHtmlVals(filtres, success, error);
 }
 
-function websocketDesignInscription() {
+async function websocketDesignInscription(success) {
 	var eventBus = new EventBus('/eventbus');
 	eventBus.onopen = function () {
 
 		eventBus.registerHandler('websocketDesignInscription', function (error, message) {
 			var json = JSON.parse(message['body']);
 			var id = json['id'];
-			var numFound = json['numFound'];
-			var numPATCH = json['numPATCH'];
-			var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
-			var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
-			var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
-			var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
-			var $header = $('<div>').attr('class', 'w3-container fa-indigo ').attr('id', 'header-' + id);
-			var $i = $('<i>').attr('class', 'far fa-bell w3-margin-right ').attr('id', 'icon-' + id);
-			var $headerSpan = $('<span>').attr('class', '').text('modifier design d'inscriptions');
-			var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
-			var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
-			var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
-			var $progress = $('<div>').attr('class', 'w3-indigo ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
-			$card.append($header);
-			$header.append($i);
-			$header.append($headerSpan);
-			$header.append($x);
-			$body.append($bar);
-			$bar.append($progress);
-			$card.append($body);
-			$box.append($margin);
-			$margin.append($card);
-			$('.box-' + id).remove();
-			if(numPATCH < numFound)
+			var pk = json['pk'];
+			var pks = json['pks'];
+			var empty = json['empty'];
+			if(!empty) {
+				var numFound = json['numFound'];
+				var numPATCH = json['numPATCH'];
+				var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
+				var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
+				var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
+				var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
+				var $header = $('<div>').attr('class', 'w3-container fa-indigo ').attr('id', 'header-' + id);
+				var $i = $('<i>').attr('class', 'far fa-bell w3-margin-right ').attr('id', 'icon-' + id);
+				var $headerSpan = $('<span>').attr('class', '').text('modifier design d'inscriptions');
+				var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
+				var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
+				var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
+				var $progress = $('<div>').attr('class', 'w3-indigo ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
+				$card.append($header);
+				$header.append($i);
+				$header.append($headerSpan);
+				$header.append($x);
+				$body.append($bar);
+				$bar.append($progress);
+				$card.append($body);
+				$box.append($margin);
+				$margin.append($card);
+				$('.box-' + id).remove();
+				if(numPATCH < numFound)
 				$('.w3-content').append($box);
+				if(success)
+					success(json);
+			}
 		});
 
 		eventBus.registerHandler('websocketPartHtml', function (error, message) {
-			$('.suggerePartHtmlCles').trigger('oninput');
+			$('#Page_partHtmlCles').trigger('oninput');
 		});
 	}
 }

@@ -1,7 +1,7 @@
 
 // POST //
 
-function postSchoolBlock($formValues, success, error) {
+async function postSchoolBlock($formValues, success, error) {
 	var vals = {};
 	if(success == null) {
 		success = function( data, textStatus, jQxhr ) {
@@ -110,7 +110,7 @@ function postSchoolBlockVals(vals, success, error) {
 
 // PATCH //
 
-function patchSchoolBlock($formFilters, $formValues, success, error) {
+async function patchSchoolBlock($formFilters, $formValues, success, error) {
 	var filters = patchSchoolBlockFilters($formFilters);
 
 	var vals = {};
@@ -558,7 +558,7 @@ function patchSchoolBlockVals(filters, vals, success, error) {
 
 // GET //
 
-function getSchoolBlock(pk) {
+async function getSchoolBlock(pk) {
 	$.ajax({
 		url: '/api/block/' + id
 		, dataType: 'json'
@@ -571,7 +571,7 @@ function getSchoolBlock(pk) {
 
 // DELETE //
 
-function deleteSchoolBlock(pk) {
+async function deleteSchoolBlock(pk) {
 	$.ajax({
 		url: '/api/block/' + id
 		, dataType: 'json'
@@ -585,7 +585,7 @@ function deleteSchoolBlock(pk) {
 
 // Search //
 
-function searchSchoolBlock($formFilters, success, error) {
+async function searchSchoolBlock($formFilters, success, error) {
 	var filters = searchSchoolBlockFilters($formFilters);
 	if(success == null)
 		success = function( data, textStatus, jQxhr ) {};
@@ -857,9 +857,8 @@ function suggestSchoolBlockObjectSuggest($formFilters, $list) {
 	searchSchoolBlockVals($formFilters, success, error);
 }
 
-function suggestSchoolBlockEnrollmentKeys($formFilters, $list) {
+function suggestSchoolBlockEnrollmentKeys(filters, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
-		var pk = parseInt($('#SchoolBlockForm :input[name="pk"]').val());
 		$list.empty();
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-edit w3-padding-small ');
@@ -872,7 +871,7 @@ function suggestSchoolBlockEnrollmentKeys($formFilters, $list) {
 			var $input = $('<input>');
 			$input.attr('id', 'GET_enrollmentKeys_' + pk + '_blockKeys_' + o['pk']);
 			$input.attr('class', 'w3-check ');
-			$input.attr('onchange', "var $input = $('#GET_enrollmentKeys_" + pk + "_blockKeys_" + o['pk'] + "'); patchSchoolBlockVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'EnrollmentKeys']: \"" + o['pk'] + "\" }, function() { patchSchoolEnrollmentVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], {}, function() { addGlow($input); }, function() { addError($input); } ); } ); ");
+			$input.attr('onchange', "var $input = $('#GET_enrollmentKeys_" + pk + "_blockKeys_" + o['pk'] + "'); patchSchoolBlockVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'EnrollmentKeys']: \"" + o['pk'] + "\" } ); ");
 			$input.attr('onclick', 'removeGlow($(this)); ');
 			$input.attr('type', 'checkbox');
 			if(checked)
@@ -882,14 +881,16 @@ function suggestSchoolBlockEnrollmentKeys($formFilters, $list) {
 			$li.append($a);
 			$list.append($li);
 		});
+		var focusId = $('#SchoolBlockForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
 	};
 	error = function( jqXhr, textStatus, errorThrown ) {};
-	searchSchoolEnrollment($formFilters, success, error);
+	searchSchoolEnrollmentVals(filters, success, error);
 }
 
-function suggestSchoolBlockAgeKey($formFilters, $list) {
+function suggestSchoolBlockAgeKey(filters, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
-		var pk = parseInt($('#SchoolBlockForm :input[name="pk"]').val());
 		$list.empty();
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-birthday-cake w3-padding-small ');
@@ -902,7 +903,7 @@ function suggestSchoolBlockAgeKey($formFilters, $list) {
 			var $input = $('<input>');
 			$input.attr('id', 'GET_ageKey_' + pk + '_blockKeys_' + o['pk']);
 			$input.attr('class', 'w3-check ');
-			$input.attr('onchange', "var $input = $('#GET_ageKey_" + pk + "_blockKeys_" + o['pk'] + "'); patchSchoolBlockVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'set' : 'remove') + 'AgeKey']: \"" + o['pk'] + "\" }, function() { patchSchoolAgeVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], {}, function() { addGlow($input); }, function() { addError($input); } ); } ); ");
+			$input.attr('onchange', "var $input = $('#GET_ageKey_" + pk + "_blockKeys_" + o['pk'] + "'); patchSchoolBlockVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'set' : 'remove') + 'AgeKey']: \"" + o['pk'] + "\" } ); ");
 			$input.attr('onclick', 'removeGlow($(this)); ');
 			$input.attr('type', 'checkbox');
 			if(checked)
@@ -912,51 +913,61 @@ function suggestSchoolBlockAgeKey($formFilters, $list) {
 			$li.append($a);
 			$list.append($li);
 		});
+		var focusId = $('#SchoolBlockForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
 	};
 	error = function( jqXhr, textStatus, errorThrown ) {};
-	searchSchoolAge($formFilters, success, error);
+	searchSchoolAgeVals(filters, success, error);
 }
 
-function websocketSchoolBlock() {
+async function websocketSchoolBlock(success) {
 	var eventBus = new EventBus('/eventbus');
 	eventBus.onopen = function () {
 
 		eventBus.registerHandler('websocketSchoolBlock', function (error, message) {
 			var json = JSON.parse(message['body']);
 			var id = json['id'];
-			var numFound = json['numFound'];
-			var numPATCH = json['numPATCH'];
-			var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
-			var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
-			var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
-			var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
-			var $header = $('<div>').attr('class', 'w3-container fa-indigo ').attr('id', 'header-' + id);
-			var $i = $('<i>').attr('class', 'far fa-bell w3-margin-right ').attr('id', 'icon-' + id);
-			var $headerSpan = $('<span>').attr('class', '').text('modify blocks');
-			var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
-			var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
-			var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
-			var $progress = $('<div>').attr('class', 'w3-indigo ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
-			$card.append($header);
-			$header.append($i);
-			$header.append($headerSpan);
-			$header.append($x);
-			$body.append($bar);
-			$bar.append($progress);
-			$card.append($body);
-			$box.append($margin);
-			$margin.append($card);
-			$('.box-' + id).remove();
-			if(numPATCH < numFound)
+			var pk = json['pk'];
+			var pks = json['pks'];
+			var empty = json['empty'];
+			if(!empty) {
+				var numFound = json['numFound'];
+				var numPATCH = json['numPATCH'];
+				var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
+				var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
+				var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
+				var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
+				var $header = $('<div>').attr('class', 'w3-container fa-indigo ').attr('id', 'header-' + id);
+				var $i = $('<i>').attr('class', 'far fa-bell w3-margin-right ').attr('id', 'icon-' + id);
+				var $headerSpan = $('<span>').attr('class', '').text('modify blocks');
+				var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
+				var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
+				var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
+				var $progress = $('<div>').attr('class', 'w3-indigo ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
+				$card.append($header);
+				$header.append($i);
+				$header.append($headerSpan);
+				$header.append($x);
+				$body.append($bar);
+				$bar.append($progress);
+				$card.append($body);
+				$box.append($margin);
+				$margin.append($card);
+				$('.box-' + id).remove();
+				if(numPATCH < numFound)
 				$('.w3-content').append($box);
+				if(success)
+					success(json);
+			}
 		});
 
 		eventBus.registerHandler('websocketSchoolEnrollment', function (error, message) {
-			$('.suggestEnrollmentKeys').trigger('oninput');
+			$('#Page_enrollmentKeys').trigger('oninput');
 		});
 
 		eventBus.registerHandler('websocketSchoolAge', function (error, message) {
-			$('.suggestAgeKey').trigger('oninput');
+			$('#Page_ageKey').trigger('oninput');
 		});
 	}
 }

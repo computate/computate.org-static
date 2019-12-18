@@ -1,7 +1,7 @@
 
 // POST //
 
-function postInscriptionScolaire($formulaireValeurs, success, error) {
+async function postInscriptionScolaire($formulaireValeurs, success, error) {
 	var vals = {};
 	if(success == null) {
 		success = function( data, textStatus, jQxhr ) {
@@ -142,7 +142,7 @@ function postInscriptionScolaireVals(vals, success, error) {
 
 // PATCH //
 
-function patchInscriptionScolaire($formulaireFiltres, $formulaireValeurs, success, error) {
+async function patchInscriptionScolaire($formulaireFiltres, $formulaireValeurs, success, error) {
 	var filtres = patchInscriptionScolaireFiltres($formulaireFiltres);
 
 	var vals = {};
@@ -750,7 +750,7 @@ function patchInscriptionScolaireVals(filtres, vals, success, error) {
 
 // GET //
 
-function getInscriptionScolaire(pk) {
+async function getInscriptionScolaire(pk) {
 	$.ajax({
 		url: '/api/inscription/' + id
 		, dataType: 'json'
@@ -763,7 +763,7 @@ function getInscriptionScolaire(pk) {
 
 // DELETE //
 
-function deleteInscriptionScolaire(pk) {
+async function deleteInscriptionScolaire(pk) {
 	$.ajax({
 		url: '/api/inscription/' + id
 		, dataType: 'json'
@@ -777,7 +777,7 @@ function deleteInscriptionScolaire(pk) {
 
 // Recherche //
 
-function rechercheInscriptionScolaire($formulaireFiltres, success, error) {
+async function rechercheInscriptionScolaire($formulaireFiltres, success, error) {
 	var filtres = rechercheInscriptionScolaireFiltres($formulaireFiltres);
 	if(success == null)
 		success = function( data, textStatus, jQxhr ) {};
@@ -1121,9 +1121,8 @@ function suggereInscriptionScolaireObjetSuggere($formulaireFiltres, $list) {
 	rechercherInscriptionScolaireVals($formulaireFiltres, success, error);
 }
 
-function suggereInscriptionScolaireBlocCles($formulaireFiltres, $list) {
+function suggereInscriptionScolaireBlocCles(filtres, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
-		var pk = parseInt($('#InscriptionScolaireForm :input[name="pk"]').val());
 		$list.empty();
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-bell w3-padding-small ');
@@ -1136,7 +1135,7 @@ function suggereInscriptionScolaireBlocCles($formulaireFiltres, $list) {
 			var $input = $('<input>');
 			$input.attr('id', 'GET_blocCles_' + pk + '_inscriptionCles_' + o['pk']);
 			$input.attr('class', 'w3-check ');
-			$input.attr('onchange', "var $input = $('#GET_blocCles_" + pk + "_inscriptionCles_" + o['pk'] + "'); patchInscriptionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'BlocCles']: \"" + o['pk'] + "\" }, function() { patchBlocScolaireVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], {}, function() { ajouterLueur($input); }, function() { ajouterErreur($input); } ); } ); ");
+			$input.attr('onchange', "var $input = $('#GET_blocCles_" + pk + "_inscriptionCles_" + o['pk'] + "'); patchInscriptionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'BlocCles']: \"" + o['pk'] + "\" } ); ");
 			$input.attr('onclick', 'enleverLueur($(this)); ');
 			$input.attr('type', 'checkbox');
 			if(checked)
@@ -1146,14 +1145,16 @@ function suggereInscriptionScolaireBlocCles($formulaireFiltres, $list) {
 			$li.append($a);
 			$list.append($li);
 		});
+		var focusId = $('#InscriptionScolaireForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
 	};
 	error = function( jqXhr, textStatus, errorThrown ) {};
-	rechercheBlocScolaire($formulaireFiltres, success, error);
+	rechercheBlocScolaireVals(filtres, success, error);
 }
 
-function suggereInscriptionScolaireEnfantCle($formulaireFiltres, $list) {
+function suggereInscriptionScolaireEnfantCle(filtres, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
-		var pk = parseInt($('#InscriptionScolaireForm :input[name="pk"]').val());
 		$list.empty();
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-child w3-padding-small ');
@@ -1166,7 +1167,7 @@ function suggereInscriptionScolaireEnfantCle($formulaireFiltres, $list) {
 			var $input = $('<input>');
 			$input.attr('id', 'GET_enfantCle_' + pk + '_inscriptionCles_' + o['pk']);
 			$input.attr('class', 'w3-check ');
-			$input.attr('onchange', "var $input = $('#GET_enfantCle_" + pk + "_inscriptionCles_" + o['pk'] + "'); patchInscriptionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'set' : 'remove') + 'EnfantCle']: \"" + o['pk'] + "\" }, function() { patchEnfantScolaireVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], {}, function() { ajouterLueur($input); }, function() { ajouterErreur($input); } ); } ); ");
+			$input.attr('onchange', "var $input = $('#GET_enfantCle_" + pk + "_inscriptionCles_" + o['pk'] + "'); patchInscriptionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'set' : 'remove') + 'EnfantCle']: \"" + o['pk'] + "\" } ); ");
 			$input.attr('onclick', 'enleverLueur($(this)); ');
 			$input.attr('type', 'checkbox');
 			if(checked)
@@ -1176,14 +1177,16 @@ function suggereInscriptionScolaireEnfantCle($formulaireFiltres, $list) {
 			$li.append($a);
 			$list.append($li);
 		});
+		var focusId = $('#InscriptionScolaireForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
 	};
 	error = function( jqXhr, textStatus, errorThrown ) {};
-	rechercheEnfantScolaire($formulaireFiltres, success, error);
+	rechercheEnfantScolaireVals(filtres, success, error);
 }
 
-function suggereInscriptionScolaireMereCles($formulaireFiltres, $list) {
+function suggereInscriptionScolaireMereCles(filtres, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
-		var pk = parseInt($('#InscriptionScolaireForm :input[name="pk"]').val());
 		$list.empty();
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-female w3-padding-small ');
@@ -1196,7 +1199,7 @@ function suggereInscriptionScolaireMereCles($formulaireFiltres, $list) {
 			var $input = $('<input>');
 			$input.attr('id', 'GET_mereCles_' + pk + '_inscriptionCles_' + o['pk']);
 			$input.attr('class', 'w3-check ');
-			$input.attr('onchange', "var $input = $('#GET_mereCles_" + pk + "_inscriptionCles_" + o['pk'] + "'); patchInscriptionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'MereCles']: \"" + o['pk'] + "\" }, function() { patchMereScolaireVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], {}, function() { ajouterLueur($input); }, function() { ajouterErreur($input); } ); } ); ");
+			$input.attr('onchange', "var $input = $('#GET_mereCles_" + pk + "_inscriptionCles_" + o['pk'] + "'); patchInscriptionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'MereCles']: \"" + o['pk'] + "\" } ); ");
 			$input.attr('onclick', 'enleverLueur($(this)); ');
 			$input.attr('type', 'checkbox');
 			if(checked)
@@ -1206,14 +1209,16 @@ function suggereInscriptionScolaireMereCles($formulaireFiltres, $list) {
 			$li.append($a);
 			$list.append($li);
 		});
+		var focusId = $('#InscriptionScolaireForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
 	};
 	error = function( jqXhr, textStatus, errorThrown ) {};
-	rechercheMereScolaire($formulaireFiltres, success, error);
+	rechercheMereScolaireVals(filtres, success, error);
 }
 
-function suggereInscriptionScolairePereCles($formulaireFiltres, $list) {
+function suggereInscriptionScolairePereCles(filtres, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
-		var pk = parseInt($('#InscriptionScolaireForm :input[name="pk"]').val());
 		$list.empty();
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-male w3-padding-small ');
@@ -1226,7 +1231,7 @@ function suggereInscriptionScolairePereCles($formulaireFiltres, $list) {
 			var $input = $('<input>');
 			$input.attr('id', 'GET_pereCles_' + pk + '_inscriptionCles_' + o['pk']);
 			$input.attr('class', 'w3-check ');
-			$input.attr('onchange', "var $input = $('#GET_pereCles_" + pk + "_inscriptionCles_" + o['pk'] + "'); patchInscriptionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'PereCles']: \"" + o['pk'] + "\" }, function() { patchPereScolaireVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], {}, function() { ajouterLueur($input); }, function() { ajouterErreur($input); } ); } ); ");
+			$input.attr('onchange', "var $input = $('#GET_pereCles_" + pk + "_inscriptionCles_" + o['pk'] + "'); patchInscriptionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'PereCles']: \"" + o['pk'] + "\" } ); ");
 			$input.attr('onclick', 'enleverLueur($(this)); ');
 			$input.attr('type', 'checkbox');
 			if(checked)
@@ -1236,14 +1241,16 @@ function suggereInscriptionScolairePereCles($formulaireFiltres, $list) {
 			$li.append($a);
 			$list.append($li);
 		});
+		var focusId = $('#InscriptionScolaireForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
 	};
 	error = function( jqXhr, textStatus, errorThrown ) {};
-	recherchePereScolaire($formulaireFiltres, success, error);
+	recherchePereScolaireVals(filtres, success, error);
 }
 
-function suggereInscriptionScolaireGardienCles($formulaireFiltres, $list) {
+function suggereInscriptionScolaireGardienCles(filtres, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
-		var pk = parseInt($('#InscriptionScolaireForm :input[name="pk"]').val());
 		$list.empty();
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-phone w3-padding-small ');
@@ -1256,7 +1263,7 @@ function suggereInscriptionScolaireGardienCles($formulaireFiltres, $list) {
 			var $input = $('<input>');
 			$input.attr('id', 'GET_gardienCles_' + pk + '_inscriptionCles_' + o['pk']);
 			$input.attr('class', 'w3-check ');
-			$input.attr('onchange', "var $input = $('#GET_gardienCles_" + pk + "_inscriptionCles_" + o['pk'] + "'); patchInscriptionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'GardienCles']: \"" + o['pk'] + "\" }, function() { patchGardienScolaireVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], {}, function() { ajouterLueur($input); }, function() { ajouterErreur($input); } ); } ); ");
+			$input.attr('onchange', "var $input = $('#GET_gardienCles_" + pk + "_inscriptionCles_" + o['pk'] + "'); patchInscriptionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'GardienCles']: \"" + o['pk'] + "\" } ); ");
 			$input.attr('onclick', 'enleverLueur($(this)); ');
 			$input.attr('type', 'checkbox');
 			if(checked)
@@ -1266,14 +1273,16 @@ function suggereInscriptionScolaireGardienCles($formulaireFiltres, $list) {
 			$li.append($a);
 			$list.append($li);
 		});
+		var focusId = $('#InscriptionScolaireForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
 	};
 	error = function( jqXhr, textStatus, errorThrown ) {};
-	rechercheGardienScolaire($formulaireFiltres, success, error);
+	rechercheGardienScolaireVals(filtres, success, error);
 }
 
-function suggereInscriptionScolairePaiementCles($formulaireFiltres, $list) {
+function suggereInscriptionScolairePaiementCles(filtres, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
-		var pk = parseInt($('#InscriptionScolaireForm :input[name="pk"]').val());
 		$list.empty();
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-search-dollar w3-padding-small ');
@@ -1286,7 +1295,7 @@ function suggereInscriptionScolairePaiementCles($formulaireFiltres, $list) {
 			var $input = $('<input>');
 			$input.attr('id', 'GET_paiementCles_' + pk + '_inscriptionCles_' + o['pk']);
 			$input.attr('class', 'w3-check ');
-			$input.attr('onchange', "var $input = $('#GET_paiementCles_" + pk + "_inscriptionCles_" + o['pk'] + "'); patchInscriptionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'PaiementCles']: \"" + o['pk'] + "\" }, function() { patchPaiementScolaireVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], {}, function() { ajouterLueur($input); }, function() { ajouterErreur($input); } ); } ); ");
+			$input.attr('onchange', "var $input = $('#GET_paiementCles_" + pk + "_inscriptionCles_" + o['pk'] + "'); patchInscriptionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'PaiementCles']: \"" + o['pk'] + "\" } ); ");
 			$input.attr('onclick', 'enleverLueur($(this)); ');
 			$input.attr('type', 'checkbox');
 			if(checked)
@@ -1296,67 +1305,77 @@ function suggereInscriptionScolairePaiementCles($formulaireFiltres, $list) {
 			$li.append($a);
 			$list.append($li);
 		});
+		var focusId = $('#InscriptionScolaireForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
 	};
 	error = function( jqXhr, textStatus, errorThrown ) {};
-	recherchePaiementScolaire($formulaireFiltres, success, error);
+	recherchePaiementScolaireVals(filtres, success, error);
 }
 
-function websocketInscriptionScolaire() {
+async function websocketInscriptionScolaire(success) {
 	var eventBus = new EventBus('/eventbus');
 	eventBus.onopen = function () {
 
 		eventBus.registerHandler('websocketInscriptionScolaire', function (error, message) {
 			var json = JSON.parse(message['body']);
 			var id = json['id'];
-			var numFound = json['numFound'];
-			var numPATCH = json['numPATCH'];
-			var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
-			var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
-			var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
-			var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
-			var $header = $('<div>').attr('class', 'w3-container fa-purple ').attr('id', 'header-' + id);
-			var $i = $('<i>').attr('class', 'fas fa-edit w3-margin-right ').attr('id', 'icon-' + id);
-			var $headerSpan = $('<span>').attr('class', '').text('modifier inscriptions');
-			var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
-			var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
-			var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
-			var $progress = $('<div>').attr('class', 'w3-purple ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
-			$card.append($header);
-			$header.append($i);
-			$header.append($headerSpan);
-			$header.append($x);
-			$body.append($bar);
-			$bar.append($progress);
-			$card.append($body);
-			$box.append($margin);
-			$margin.append($card);
-			$('.box-' + id).remove();
-			if(numPATCH < numFound)
+			var pk = json['pk'];
+			var pks = json['pks'];
+			var empty = json['empty'];
+			if(!empty) {
+				var numFound = json['numFound'];
+				var numPATCH = json['numPATCH'];
+				var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
+				var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
+				var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
+				var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
+				var $header = $('<div>').attr('class', 'w3-container fa-purple ').attr('id', 'header-' + id);
+				var $i = $('<i>').attr('class', 'fas fa-edit w3-margin-right ').attr('id', 'icon-' + id);
+				var $headerSpan = $('<span>').attr('class', '').text('modifier inscriptions');
+				var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
+				var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
+				var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
+				var $progress = $('<div>').attr('class', 'w3-purple ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
+				$card.append($header);
+				$header.append($i);
+				$header.append($headerSpan);
+				$header.append($x);
+				$body.append($bar);
+				$bar.append($progress);
+				$card.append($body);
+				$box.append($margin);
+				$margin.append($card);
+				$('.box-' + id).remove();
+				if(numPATCH < numFound)
 				$('.w3-content').append($box);
+				if(success)
+					success(json);
+			}
 		});
 
 		eventBus.registerHandler('websocketBlocScolaire', function (error, message) {
-			$('.suggereBlocCles').trigger('oninput');
+			$('#Page_blocCles').trigger('oninput');
 		});
 
 		eventBus.registerHandler('websocketEnfantScolaire', function (error, message) {
-			$('.suggereEnfantCle').trigger('oninput');
+			$('#Page_enfantCle').trigger('oninput');
 		});
 
 		eventBus.registerHandler('websocketMereScolaire', function (error, message) {
-			$('.suggereMereCles').trigger('oninput');
+			$('#Page_mereCles').trigger('oninput');
 		});
 
 		eventBus.registerHandler('websocketPereScolaire', function (error, message) {
-			$('.suggerePereCles').trigger('oninput');
+			$('#Page_pereCles').trigger('oninput');
 		});
 
 		eventBus.registerHandler('websocketGardienScolaire', function (error, message) {
-			$('.suggereGardienCles').trigger('oninput');
+			$('#Page_gardienCles').trigger('oninput');
 		});
 
 		eventBus.registerHandler('websocketPaiementScolaire', function (error, message) {
-			$('.suggerePaiementCles').trigger('oninput');
+			$('#Page_paiementCles').trigger('oninput');
 		});
 	}
 }

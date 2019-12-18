@@ -1,7 +1,7 @@
 
 // POST //
 
-function postHtmlPart($formValues, success, error) {
+async function postHtmlPart($formValues, success, error) {
 	var vals = {};
 	if(success == null) {
 		success = function( data, textStatus, jQxhr ) {
@@ -85,6 +85,10 @@ function postHtmlPart($formValues, success, error) {
 	if(valueHtmlVarInput != null && valueHtmlVarInput !== '')
 		vals['htmlVarInput'] = valueHtmlVarInput;
 
+	var valueHtmlVarForEach = $formValues.find('.valueHtmlVarForEach').val();
+	if(valueHtmlVarForEach != null && valueHtmlVarForEach !== '')
+		vals['htmlVarForEach'] = valueHtmlVarForEach;
+
 	var valuePdfExclude = $formValues.find('.valuePdfExclude').prop('checked');
 	if(valuePdfExclude != null && valuePdfExclude !== '')
 		vals['pdfExclude'] = valuePdfExclude;
@@ -154,7 +158,7 @@ function postHtmlPartVals(vals, success, error) {
 
 // PATCH //
 
-function patchHtmlPart($formFilters, $formValues, success, error) {
+async function patchHtmlPart($formFilters, $formValues, success, error) {
 	var filters = patchHtmlPartFilters($formFilters);
 
 	var vals = {};
@@ -346,6 +350,17 @@ function patchHtmlPart($formFilters, $formValues, success, error) {
 	if(removeHtmlVarInput != null && removeHtmlVarInput !== '')
 		vals['removeHtmlVarInput'] = removeHtmlVarInput;
 
+	var removeHtmlVarForEach = $formFilters.find('.removeHtmlVarForEach').val() === 'true';
+	var setHtmlVarForEach = removeHtmlVarForEach ? null : $formValues.find('.setHtmlVarForEach').val();
+	if(removeHtmlVarForEach || setHtmlVarForEach != null && setHtmlVarForEach !== '')
+		vals['setHtmlVarForEach'] = setHtmlVarForEach;
+	var addHtmlVarForEach = $formValues.find('.addHtmlVarForEach').val();
+	if(addHtmlVarForEach != null && addHtmlVarForEach !== '')
+		vals['addHtmlVarForEach'] = addHtmlVarForEach;
+	var removeHtmlVarForEach = $formValues.find('.removeHtmlVarForEach').val();
+	if(removeHtmlVarForEach != null && removeHtmlVarForEach !== '')
+		vals['removeHtmlVarForEach'] = removeHtmlVarForEach;
+
 	var removePdfExclude = $formFilters.find('.removePdfExclude').val() === 'true';
 	var setPdfExclude = removePdfExclude ? null : $formValues.find('.setPdfExclude').prop('checked');
 	if(removePdfExclude || setPdfExclude != null && setPdfExclude !== '')
@@ -473,8 +488,6 @@ function patchHtmlPart($formFilters, $formValues, success, error) {
 function patchHtmlPartFilters($formFilters) {
 	var filters = [];
 
-	filters.push({ name: 'rows', value: 1000000 });
-
 	var filterPk = $formFilters.find('.valuePk').val();
 	if(filterPk != null && filterPk !== '')
 		filters.push({ name: 'fq', value: 'pk:' + filterPk });
@@ -542,6 +555,10 @@ function patchHtmlPartFilters($formFilters) {
 	var filterHtmlVarInput = $formFilters.find('.valueHtmlVarInput').val();
 	if(filterHtmlVarInput != null && filterHtmlVarInput !== '')
 		filters.push({ name: 'fq', value: 'htmlVarInput:' + filterHtmlVarInput });
+
+	var filterHtmlVarForEach = $formFilters.find('.valueHtmlVarForEach').val();
+	if(filterHtmlVarForEach != null && filterHtmlVarForEach !== '')
+		filters.push({ name: 'fq', value: 'htmlVarForEach:' + filterHtmlVarForEach });
 
 	var filterPdfExclude = $formFilters.find('.valuePdfExclude').prop('checked');
 	if(filterPdfExclude != null && filterPdfExclude === true)
@@ -641,7 +658,7 @@ function patchHtmlPartVals(filters, vals, success, error) {
 
 // GET //
 
-function getHtmlPart(pk) {
+async function getHtmlPart(pk) {
 	$.ajax({
 		url: '/api/html-part/' + id
 		, dataType: 'json'
@@ -654,7 +671,7 @@ function getHtmlPart(pk) {
 
 // DELETE //
 
-function deleteHtmlPart(pk) {
+async function deleteHtmlPart(pk) {
 	$.ajax({
 		url: '/api/html-part/' + id
 		, dataType: 'json'
@@ -668,7 +685,7 @@ function deleteHtmlPart(pk) {
 
 // Search //
 
-function searchHtmlPart($formFilters, success, error) {
+async function searchHtmlPart($formFilters, success, error) {
 	var filters = searchHtmlPartFilters($formFilters);
 	if(success == null)
 		success = function( data, textStatus, jQxhr ) {};
@@ -680,8 +697,6 @@ function searchHtmlPart($formFilters, success, error) {
 
 function searchHtmlPartFilters($formFilters) {
 	var filters = [];
-
-	filters.push({ name: 'rows', value: 1000000 });
 
 	var filterPk = $formFilters.find('.valuePk').val();
 	if(filterPk != null && filterPk !== '')
@@ -750,6 +765,10 @@ function searchHtmlPartFilters($formFilters) {
 	var filterHtmlVarInput = $formFilters.find('.valueHtmlVarInput').val();
 	if(filterHtmlVarInput != null && filterHtmlVarInput !== '')
 		filters.push({ name: 'fq', value: 'htmlVarInput:' + filterHtmlVarInput });
+
+	var filterHtmlVarForEach = $formFilters.find('.valueHtmlVarForEach').val();
+	if(filterHtmlVarForEach != null && filterHtmlVarForEach !== '')
+		filters.push({ name: 'fq', value: 'htmlVarForEach:' + filterHtmlVarForEach });
 
 	var filterPdfExclude = $formFilters.find('.valuePdfExclude').prop('checked');
 	if(filterPdfExclude != null && filterPdfExclude === true)
@@ -826,16 +845,23 @@ function searchHtmlPartFilters($formFilters) {
 	var filterHtmlPartKey = $formFilters.find('.valueHtmlPartKey').val();
 	if(filterHtmlPartKey != null && filterHtmlPartKey !== '')
 		filters.push({ name: 'fq', value: 'htmlPartKey:' + filterHtmlPartKey });
+	return filters;
+}
+
+function searchHtmlPartVals(filters, success, error) {
+
+	filters.push({ name: 'rows', value: 1000000 });
 
 	filters.push({ name: 'sort', value: 'sort1 asc' });
 	filters.push({ name: 'sort', value: 'sort2 asc' });
 	filters.push({ name: 'sort', value: 'sort3 asc' });
 	filters.push({ name: 'sort', value: 'sort4 asc' });
 	filters.push({ name: 'sort', value: 'sort5 asc' });
-	return filters;
-}
-
-function searchHtmlPartVals(filters, success, error) {
+	filters.push({ name: 'sort', value: 'sort6 asc' });
+	filters.push({ name: 'sort', value: 'sort7 asc' });
+	filters.push({ name: 'sort', value: 'sort8 asc' });
+	filters.push({ name: 'sort', value: 'sort9 asc' });
+	filters.push({ name: 'sort', value: 'sort10 asc' });
 	$.ajax({
 		url: '/api/html-part?' + $.param(filters)
 		, dataType: 'json'
@@ -864,9 +890,8 @@ function suggestHtmlPartObjectSuggest($formFilters, $list) {
 	searchHtmlPartVals($formFilters, success, error);
 }
 
-function suggestHtmlPartEnrollmentDesignKey($formFilters, $list) {
+function suggestHtmlPartEnrollmentDesignKey(filters, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
-		var pk = parseInt($('#HtmlPartForm :input[name="pk"]').val());
 		$list.empty();
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-bell w3-padding-small ');
@@ -879,7 +904,7 @@ function suggestHtmlPartEnrollmentDesignKey($formFilters, $list) {
 			var $input = $('<input>');
 			$input.attr('id', 'GET_enrollmentDesignKey_' + pk + '_htmlPartKeys_' + o['pk']);
 			$input.attr('class', 'w3-check ');
-			$input.attr('onchange', "var $input = $('#GET_enrollmentDesignKey_" + pk + "_htmlPartKeys_" + o['pk'] + "'); patchHtmlPartVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'set' : 'remove') + 'EnrollmentDesignKey']: \"" + o['pk'] + "\" }, function() { patchEnrollmentDesignVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], {}, function() { addGlow($input); }, function() { addError($input); } ); } ); ");
+			$input.attr('onchange', "var $input = $('#GET_enrollmentDesignKey_" + pk + "_htmlPartKeys_" + o['pk'] + "'); patchHtmlPartVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'set' : 'remove') + 'EnrollmentDesignKey']: \"" + o['pk'] + "\" } ); ");
 			$input.attr('onclick', 'removeGlow($(this)); ');
 			$input.attr('type', 'checkbox');
 			if(checked)
@@ -889,47 +914,57 @@ function suggestHtmlPartEnrollmentDesignKey($formFilters, $list) {
 			$li.append($a);
 			$list.append($li);
 		});
+		var focusId = $('#HtmlPartForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
 	};
 	error = function( jqXhr, textStatus, errorThrown ) {};
-	searchEnrollmentDesign($formFilters, success, error);
+	searchEnrollmentDesignVals(filters, success, error);
 }
 
-function websocketHtmlPart() {
+async function websocketHtmlPart(success) {
 	var eventBus = new EventBus('/eventbus');
 	eventBus.onopen = function () {
 
 		eventBus.registerHandler('websocketHtmlPart', function (error, message) {
 			var json = JSON.parse(message['body']);
 			var id = json['id'];
-			var numFound = json['numFound'];
-			var numPATCH = json['numPATCH'];
-			var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
-			var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
-			var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
-			var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
-			var $header = $('<div>').attr('class', 'w3-container fa-yellow ').attr('id', 'header-' + id);
-			var $i = $('<i>').attr('class', 'far fa-sun w3-margin-right ').attr('id', 'icon-' + id);
-			var $headerSpan = $('<span>').attr('class', '').text('modify HTML parts');
-			var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
-			var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
-			var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
-			var $progress = $('<div>').attr('class', 'w3-yellow ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
-			$card.append($header);
-			$header.append($i);
-			$header.append($headerSpan);
-			$header.append($x);
-			$body.append($bar);
-			$bar.append($progress);
-			$card.append($body);
-			$box.append($margin);
-			$margin.append($card);
-			$('.box-' + id).remove();
-			if(numPATCH < numFound)
+			var pk = json['pk'];
+			var pks = json['pks'];
+			var empty = json['empty'];
+			if(!empty) {
+				var numFound = json['numFound'];
+				var numPATCH = json['numPATCH'];
+				var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
+				var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
+				var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
+				var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
+				var $header = $('<div>').attr('class', 'w3-container fa-yellow ').attr('id', 'header-' + id);
+				var $i = $('<i>').attr('class', 'far fa-sun w3-margin-right ').attr('id', 'icon-' + id);
+				var $headerSpan = $('<span>').attr('class', '').text('modify HTML parts');
+				var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
+				var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
+				var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
+				var $progress = $('<div>').attr('class', 'w3-yellow ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
+				$card.append($header);
+				$header.append($i);
+				$header.append($headerSpan);
+				$header.append($x);
+				$body.append($bar);
+				$bar.append($progress);
+				$card.append($body);
+				$box.append($margin);
+				$margin.append($card);
+				$('.box-' + id).remove();
+				if(numPATCH < numFound)
 				$('.w3-content').append($box);
+				if(success)
+					success(json);
+			}
 		});
 
 		eventBus.registerHandler('websocketEnrollmentDesign', function (error, message) {
-			$('.suggestEnrollmentDesignKey').trigger('oninput');
+			$('#Page_enrollmentDesignKey').trigger('oninput');
 		});
 	}
 }

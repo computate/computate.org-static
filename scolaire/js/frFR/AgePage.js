@@ -1,7 +1,7 @@
 
 // POST //
 
-function postAgeScolaire($formulaireValeurs, success, error) {
+async function postAgeScolaire($formulaireValeurs, success, error) {
 	var vals = {};
 	if(success == null) {
 		success = function( data, textStatus, jQxhr ) {
@@ -86,7 +86,7 @@ function postAgeScolaireVals(vals, success, error) {
 
 // PATCH //
 
-function patchAgeScolaire($formulaireFiltres, $formulaireValeurs, success, error) {
+async function patchAgeScolaire($formulaireFiltres, $formulaireValeurs, success, error) {
 	var filtres = patchAgeScolaireFiltres($formulaireFiltres);
 
 	var vals = {};
@@ -416,7 +416,7 @@ function patchAgeScolaireVals(filtres, vals, success, error) {
 
 // GET //
 
-function getAgeScolaire(pk) {
+async function getAgeScolaire(pk) {
 	$.ajax({
 		url: '/api/age/' + id
 		, dataType: 'json'
@@ -429,7 +429,7 @@ function getAgeScolaire(pk) {
 
 // DELETE //
 
-function deleteAgeScolaire(pk) {
+async function deleteAgeScolaire(pk) {
 	$.ajax({
 		url: '/api/age/' + id
 		, dataType: 'json'
@@ -443,7 +443,7 @@ function deleteAgeScolaire(pk) {
 
 // Recherche //
 
-function rechercheAgeScolaire($formulaireFiltres, success, error) {
+async function rechercheAgeScolaire($formulaireFiltres, success, error) {
 	var filtres = rechercheAgeScolaireFiltres($formulaireFiltres);
 	if(success == null)
 		success = function( data, textStatus, jQxhr ) {};
@@ -663,9 +663,8 @@ function suggereAgeScolaireObjetSuggere($formulaireFiltres, $list) {
 	rechercherAgeScolaireVals($formulaireFiltres, success, error);
 }
 
-function suggereAgeScolaireBlocCles($formulaireFiltres, $list) {
+function suggereAgeScolaireBlocCles(filtres, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
-		var pk = parseInt($('#AgeScolaireForm :input[name="pk"]').val());
 		$list.empty();
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-bell w3-padding-small ');
@@ -678,7 +677,7 @@ function suggereAgeScolaireBlocCles($formulaireFiltres, $list) {
 			var $input = $('<input>');
 			$input.attr('id', 'GET_blocCles_' + pk + '_ageCle_' + o['pk']);
 			$input.attr('class', 'w3-check ');
-			$input.attr('onchange', "var $input = $('#GET_blocCles_" + pk + "_ageCle_" + o['pk'] + "'); patchAgeScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'BlocCles']: \"" + o['pk'] + "\" }, function() { patchBlocScolaireVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], {}, function() { ajouterLueur($input); }, function() { ajouterErreur($input); } ); } ); ");
+			$input.attr('onchange', "var $input = $('#GET_blocCles_" + pk + "_ageCle_" + o['pk'] + "'); patchAgeScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'BlocCles']: \"" + o['pk'] + "\" } ); ");
 			$input.attr('onclick', 'enleverLueur($(this)); ');
 			$input.attr('type', 'checkbox');
 			if(checked)
@@ -688,14 +687,16 @@ function suggereAgeScolaireBlocCles($formulaireFiltres, $list) {
 			$li.append($a);
 			$list.append($li);
 		});
+		var focusId = $('#AgeScolaireForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
 	};
 	error = function( jqXhr, textStatus, errorThrown ) {};
-	rechercheBlocScolaire($formulaireFiltres, success, error);
+	rechercheBlocScolaireVals(filtres, success, error);
 }
 
-function suggereAgeScolaireSessionCle($formulaireFiltres, $list) {
+function suggereAgeScolaireSessionCle(filtres, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
-		var pk = parseInt($('#AgeScolaireForm :input[name="pk"]').val());
 		$list.empty();
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-graduation-cap w3-padding-small ');
@@ -708,7 +709,7 @@ function suggereAgeScolaireSessionCle($formulaireFiltres, $list) {
 			var $input = $('<input>');
 			$input.attr('id', 'GET_sessionCle_' + pk + '_ageCles_' + o['pk']);
 			$input.attr('class', 'w3-check ');
-			$input.attr('onchange', "var $input = $('#GET_sessionCle_" + pk + "_ageCles_" + o['pk'] + "'); patchAgeScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'set' : 'remove') + 'SessionCle']: \"" + o['pk'] + "\" }, function() { patchSessionScolaireVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], {}, function() { ajouterLueur($input); }, function() { ajouterErreur($input); } ); } ); ");
+			$input.attr('onchange', "var $input = $('#GET_sessionCle_" + pk + "_ageCles_" + o['pk'] + "'); patchAgeScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'set' : 'remove') + 'SessionCle']: \"" + o['pk'] + "\" } ); ");
 			$input.attr('onclick', 'enleverLueur($(this)); ');
 			$input.attr('type', 'checkbox');
 			if(checked)
@@ -718,51 +719,61 @@ function suggereAgeScolaireSessionCle($formulaireFiltres, $list) {
 			$li.append($a);
 			$list.append($li);
 		});
+		var focusId = $('#AgeScolaireForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
 	};
 	error = function( jqXhr, textStatus, errorThrown ) {};
-	rechercheSessionScolaire($formulaireFiltres, success, error);
+	rechercheSessionScolaireVals(filtres, success, error);
 }
 
-function websocketAgeScolaire() {
+async function websocketAgeScolaire(success) {
 	var eventBus = new EventBus('/eventbus');
 	eventBus.onopen = function () {
 
 		eventBus.registerHandler('websocketAgeScolaire', function (error, message) {
 			var json = JSON.parse(message['body']);
 			var id = json['id'];
-			var numFound = json['numFound'];
-			var numPATCH = json['numPATCH'];
-			var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
-			var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
-			var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
-			var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
-			var $header = $('<div>').attr('class', 'w3-container fa-blue ').attr('id', 'header-' + id);
-			var $i = $('<i>').attr('class', 'fad fa-birthday-cake w3-margin-right ').attr('id', 'icon-' + id);
-			var $headerSpan = $('<span>').attr('class', '').text('modifier âges');
-			var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
-			var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
-			var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
-			var $progress = $('<div>').attr('class', 'w3-blue ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
-			$card.append($header);
-			$header.append($i);
-			$header.append($headerSpan);
-			$header.append($x);
-			$body.append($bar);
-			$bar.append($progress);
-			$card.append($body);
-			$box.append($margin);
-			$margin.append($card);
-			$('.box-' + id).remove();
-			if(numPATCH < numFound)
+			var pk = json['pk'];
+			var pks = json['pks'];
+			var empty = json['empty'];
+			if(!empty) {
+				var numFound = json['numFound'];
+				var numPATCH = json['numPATCH'];
+				var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
+				var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
+				var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
+				var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
+				var $header = $('<div>').attr('class', 'w3-container fa-blue ').attr('id', 'header-' + id);
+				var $i = $('<i>').attr('class', 'fad fa-birthday-cake w3-margin-right ').attr('id', 'icon-' + id);
+				var $headerSpan = $('<span>').attr('class', '').text('modifier âges');
+				var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
+				var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
+				var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
+				var $progress = $('<div>').attr('class', 'w3-blue ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
+				$card.append($header);
+				$header.append($i);
+				$header.append($headerSpan);
+				$header.append($x);
+				$body.append($bar);
+				$bar.append($progress);
+				$card.append($body);
+				$box.append($margin);
+				$margin.append($card);
+				$('.box-' + id).remove();
+				if(numPATCH < numFound)
 				$('.w3-content').append($box);
+				if(success)
+					success(json);
+			}
 		});
 
 		eventBus.registerHandler('websocketBlocScolaire', function (error, message) {
-			$('.suggereBlocCles').trigger('oninput');
+			$('#Page_blocCles').trigger('oninput');
 		});
 
 		eventBus.registerHandler('websocketSessionScolaire', function (error, message) {
-			$('.suggereSessionCle').trigger('oninput');
+			$('#Page_sessionCle').trigger('oninput');
 		});
 	}
 }

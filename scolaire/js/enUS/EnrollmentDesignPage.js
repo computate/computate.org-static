@@ -1,7 +1,7 @@
 
 // POST //
 
-function postEnrollmentDesign($formValues, success, error) {
+async function postEnrollmentDesign($formValues, success, error) {
 	var vals = {};
 	if(success == null) {
 		success = function( data, textStatus, jQxhr ) {
@@ -82,7 +82,7 @@ function postEnrollmentDesignVals(vals, success, error) {
 
 // PATCH //
 
-function patchEnrollmentDesign($formFilters, $formValues, success, error) {
+async function patchEnrollmentDesign($formFilters, $formValues, success, error) {
 	var filters = patchEnrollmentDesignFilters($formFilters);
 
 	var vals = {};
@@ -325,7 +325,7 @@ function patchEnrollmentDesignVals(filters, vals, success, error) {
 
 // GET //
 
-function getEnrollmentDesign(pk) {
+async function getEnrollmentDesign(pk) {
 	$.ajax({
 		url: '/api/enrollment-design/' + id
 		, dataType: 'json'
@@ -338,7 +338,7 @@ function getEnrollmentDesign(pk) {
 
 // DELETE //
 
-function deleteEnrollmentDesign(pk) {
+async function deleteEnrollmentDesign(pk) {
 	$.ajax({
 		url: '/api/enrollment-design/' + id
 		, dataType: 'json'
@@ -352,7 +352,7 @@ function deleteEnrollmentDesign(pk) {
 
 // Search //
 
-function searchEnrollmentDesign($formFilters, success, error) {
+async function searchEnrollmentDesign($formFilters, success, error) {
 	var filters = searchEnrollmentDesignFilters($formFilters);
 	if(success == null)
 		success = function( data, textStatus, jQxhr ) {};
@@ -496,9 +496,8 @@ function suggestEnrollmentDesignObjectSuggest($formFilters, $list) {
 	searchEnrollmentDesignVals($formFilters, success, error);
 }
 
-function suggestEnrollmentDesignHtmlPartKeys($formFilters, $list) {
+function suggestEnrollmentDesignHtmlPartKeys(filters, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
-		var pk = parseInt($('#EnrollmentDesignForm :input[name="pk"]').val());
 		$list.empty();
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-sun w3-padding-small ');
@@ -511,7 +510,7 @@ function suggestEnrollmentDesignHtmlPartKeys($formFilters, $list) {
 			var $input = $('<input>');
 			$input.attr('id', 'GET_htmlPartKeys_' + pk + '_enrollmentDesignKey_' + o['pk']);
 			$input.attr('class', 'w3-check ');
-			$input.attr('onchange', "var $input = $('#GET_htmlPartKeys_" + pk + "_enrollmentDesignKey_" + o['pk'] + "'); patchEnrollmentDesignVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'HtmlPartKeys']: \"" + o['pk'] + "\" }, function() { patchHtmlPartVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], {}, function() { addGlow($input); }, function() { addError($input); } ); } ); ");
+			$input.attr('onchange', "var $input = $('#GET_htmlPartKeys_" + pk + "_enrollmentDesignKey_" + o['pk'] + "'); patchEnrollmentDesignVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'HtmlPartKeys']: \"" + o['pk'] + "\" } ); ");
 			$input.attr('onclick', 'removeGlow($(this)); ');
 			$input.attr('type', 'checkbox');
 			if(checked)
@@ -529,7 +528,8 @@ function suggestEnrollmentDesignHtmlPartKeys($formFilters, $list) {
 			$sortInput.attr('style', 'width: 4em; ');
 			$sortInput.attr('id', "attribute_" + o['pk'] + "_sort_sort1");
 			$sortInput.attr('value', sort1).attr('onchange', 
-				"patchHtmlPartVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setSort1']: $(this).val() ? $(this).val() : null }"
+				"$('#EnrollmentDesignForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+				+ "patchHtmlPartVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setSort1']: $(this).val() ? $(this).val() : null }"
 					+ ", function() { "
 					+ "}"
 					+ ", function() { addError($('#attribute_" + o['pk'] + "_sort_sort1')); }"
@@ -544,7 +544,8 @@ function suggestEnrollmentDesignHtmlPartKeys($formFilters, $list) {
 				$sortInput.attr('style', 'width: 4em; ');
 				$sortInput.attr('id', "attribute_" + o['pk'] + "_sort_sort2");
 				$sortInput.attr('value', sort2).attr('onchange', 
-					"patchHtmlPartVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setSort2']: $(this).val() ? $(this).val() : null }"
+					"$('#EnrollmentDesignForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchHtmlPartVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setSort2']: $(this).val() ? $(this).val() : null }"
 						+ ", function() { "
 						+ "}"
 						+ ", function() { addError($('#attribute_" + o['pk'] + "_sort_sort2')); }"
@@ -560,7 +561,8 @@ function suggestEnrollmentDesignHtmlPartKeys($formFilters, $list) {
 				$sortInput.attr('style', 'width: 4em; ');
 				$sortInput.attr('id', "attribute_" + o['pk'] + "_sort_sort3");
 				$sortInput.attr('value', sort3).attr('onchange', 
-					"patchHtmlPartVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setSort3']: $(this).val() ? $(this).val() : null }"
+					"$('#EnrollmentDesignForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchHtmlPartVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setSort3']: $(this).val() ? $(this).val() : null }"
 						+ ", function() { "
 						+ "}"
 						+ ", function() { addError($('#attribute_" + o['pk'] + "_sort_sort3')); }"
@@ -576,7 +578,8 @@ function suggestEnrollmentDesignHtmlPartKeys($formFilters, $list) {
 				$sortInput.attr('style', 'width: 4em; ');
 				$sortInput.attr('id', "attribute_" + o['pk'] + "_sort_sort4");
 				$sortInput.attr('value', sort4).attr('onchange', 
-					"patchHtmlPartVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setSort4']: $(this).val() ? $(this).val() : null }"
+					"$('#EnrollmentDesignForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchHtmlPartVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setSort4']: $(this).val() ? $(this).val() : null }"
 						+ ", function() { "
 						+ "}"
 						+ ", function() { addError($('#attribute_" + o['pk'] + "_sort_sort4')); }"
@@ -592,7 +595,8 @@ function suggestEnrollmentDesignHtmlPartKeys($formFilters, $list) {
 				$sortInput.attr('style', 'width: 4em; ');
 				$sortInput.attr('id', "attribute_" + o['pk'] + "_sort_sort5");
 				$sortInput.attr('value', sort5).attr('onchange', 
-					"patchHtmlPartVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setSort5']: $(this).val() ? $(this).val() : null }"
+					"$('#EnrollmentDesignForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchHtmlPartVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setSort5']: $(this).val() ? $(this).val() : null }"
 						+ ", function() { "
 						+ "}"
 						+ ", function() { addError($('#attribute_" + o['pk'] + "_sort_sort5')); }"
@@ -604,47 +608,57 @@ function suggestEnrollmentDesignHtmlPartKeys($formFilters, $list) {
 			$li.append($a);
 			$list.append($li);
 		});
+		var focusId = $('#EnrollmentDesignForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
 	};
 	error = function( jqXhr, textStatus, errorThrown ) {};
-	searchHtmlPart($formFilters, success, error);
+	searchHtmlPartVals(filters, success, error);
 }
 
-function websocketEnrollmentDesign() {
+async function websocketEnrollmentDesign(success) {
 	var eventBus = new EventBus('/eventbus');
 	eventBus.onopen = function () {
 
 		eventBus.registerHandler('websocketEnrollmentDesign', function (error, message) {
 			var json = JSON.parse(message['body']);
 			var id = json['id'];
-			var numFound = json['numFound'];
-			var numPATCH = json['numPATCH'];
-			var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
-			var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
-			var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
-			var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
-			var $header = $('<div>').attr('class', 'w3-container fa-indigo ').attr('id', 'header-' + id);
-			var $i = $('<i>').attr('class', 'far fa-bell w3-margin-right ').attr('id', 'icon-' + id);
-			var $headerSpan = $('<span>').attr('class', '').text('modify enrollment designs');
-			var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
-			var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
-			var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
-			var $progress = $('<div>').attr('class', 'w3-indigo ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
-			$card.append($header);
-			$header.append($i);
-			$header.append($headerSpan);
-			$header.append($x);
-			$body.append($bar);
-			$bar.append($progress);
-			$card.append($body);
-			$box.append($margin);
-			$margin.append($card);
-			$('.box-' + id).remove();
-			if(numPATCH < numFound)
+			var pk = json['pk'];
+			var pks = json['pks'];
+			var empty = json['empty'];
+			if(!empty) {
+				var numFound = json['numFound'];
+				var numPATCH = json['numPATCH'];
+				var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
+				var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
+				var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
+				var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
+				var $header = $('<div>').attr('class', 'w3-container fa-indigo ').attr('id', 'header-' + id);
+				var $i = $('<i>').attr('class', 'far fa-bell w3-margin-right ').attr('id', 'icon-' + id);
+				var $headerSpan = $('<span>').attr('class', '').text('modify enrollment designs');
+				var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
+				var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
+				var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
+				var $progress = $('<div>').attr('class', 'w3-indigo ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
+				$card.append($header);
+				$header.append($i);
+				$header.append($headerSpan);
+				$header.append($x);
+				$body.append($bar);
+				$bar.append($progress);
+				$card.append($body);
+				$box.append($margin);
+				$margin.append($card);
+				$('.box-' + id).remove();
+				if(numPATCH < numFound)
 				$('.w3-content').append($box);
+				if(success)
+					success(json);
+			}
 		});
 
 		eventBus.registerHandler('websocketHtmlPart', function (error, message) {
-			$('.suggestHtmlPartKeys').trigger('oninput');
+			$('#Page_htmlPartKeys').trigger('oninput');
 		});
 	}
 }
