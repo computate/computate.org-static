@@ -38,6 +38,9 @@ tr {
 .page-input {
 	border-bottom: 1px solid black; 
 }
+input[type=text] {
+	width: 150px;
+}
 /*
 .fa-check-square-o { 
 	min-width: 20px; min-height: 16px; 

@@ -220,6 +220,9 @@ pre, .site-cmd-complet {
 .text-transform-capitalize {
 	text-transform: capitalize;
 }
+.vertical-align-middle {
+	vertical-align: middle;
+}
 /*
 .font-family-times {
 	font-family: times;

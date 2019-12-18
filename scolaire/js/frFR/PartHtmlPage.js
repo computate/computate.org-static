@@ -81,6 +81,10 @@ async function postPartHtml($formulaireValeurs, success, error) {
 	if(valeurHtmlVar != null && valeurHtmlVar !== '')
 		vals['htmlVar'] = valeurHtmlVar;
 
+	var valeurHtmlVarForm = $formulaireValeurs.find('.valeurHtmlVarForm').val();
+	if(valeurHtmlVarForm != null && valeurHtmlVarForm !== '')
+		vals['htmlVarForm'] = valeurHtmlVarForm;
+
 	var valeurHtmlVarInput = $formulaireValeurs.find('.valeurHtmlVarInput').val();
 	if(valeurHtmlVarInput != null && valeurHtmlVarInput !== '')
 		vals['htmlVarInput'] = valeurHtmlVarInput;
@@ -339,6 +343,17 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, success, er
 	if(removeHtmlVar != null && removeHtmlVar !== '')
 		vals['removeHtmlVar'] = removeHtmlVar;
 
+	var removeHtmlVarForm = $formulaireFiltres.find('.removeHtmlVarForm').val() === 'true';
+	var setHtmlVarForm = removeHtmlVarForm ? null : $formulaireValeurs.find('.setHtmlVarForm').val();
+	if(removeHtmlVarForm || setHtmlVarForm != null && setHtmlVarForm !== '')
+		vals['setHtmlVarForm'] = setHtmlVarForm;
+	var addHtmlVarForm = $formulaireValeurs.find('.addHtmlVarForm').val();
+	if(addHtmlVarForm != null && addHtmlVarForm !== '')
+		vals['addHtmlVarForm'] = addHtmlVarForm;
+	var removeHtmlVarForm = $formulaireValeurs.find('.removeHtmlVarForm').val();
+	if(removeHtmlVarForm != null && removeHtmlVarForm !== '')
+		vals['removeHtmlVarForm'] = removeHtmlVarForm;
+
 	var removeHtmlVarInput = $formulaireFiltres.find('.removeHtmlVarInput').val() === 'true';
 	var setHtmlVarInput = removeHtmlVarInput ? null : $formulaireValeurs.find('.setHtmlVarInput').val();
 	if(removeHtmlVarInput || setHtmlVarInput != null && setHtmlVarInput !== '')
@@ -552,6 +567,10 @@ function patchPartHtmlFiltres($formulaireFiltres) {
 	if(filtreHtmlVar != null && filtreHtmlVar !== '')
 		filtres.push({ name: 'fq', value: 'htmlVar:' + filtreHtmlVar });
 
+	var filtreHtmlVarForm = $formulaireFiltres.find('.valeurHtmlVarForm').val();
+	if(filtreHtmlVarForm != null && filtreHtmlVarForm !== '')
+		filtres.push({ name: 'fq', value: 'htmlVarForm:' + filtreHtmlVarForm });
+
 	var filtreHtmlVarInput = $formulaireFiltres.find('.valeurHtmlVarInput').val();
 	if(filtreHtmlVarInput != null && filtreHtmlVarInput !== '')
 		filtres.push({ name: 'fq', value: 'htmlVarInput:' + filtreHtmlVarInput });
@@ -761,6 +780,10 @@ function recherchePartHtmlFiltres($formulaireFiltres) {
 	var filtreHtmlVar = $formulaireFiltres.find('.valeurHtmlVar').val();
 	if(filtreHtmlVar != null && filtreHtmlVar !== '')
 		filtres.push({ name: 'fq', value: 'htmlVar:' + filtreHtmlVar });
+
+	var filtreHtmlVarForm = $formulaireFiltres.find('.valeurHtmlVarForm').val();
+	if(filtreHtmlVarForm != null && filtreHtmlVarForm !== '')
+		filtres.push({ name: 'fq', value: 'htmlVarForm:' + filtreHtmlVarForm });
 
 	var filtreHtmlVarInput = $formulaireFiltres.find('.valeurHtmlVarInput').val();
 	if(filtreHtmlVarInput != null && filtreHtmlVarInput !== '')

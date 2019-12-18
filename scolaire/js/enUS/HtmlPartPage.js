@@ -81,6 +81,10 @@ async function postHtmlPart($formValues, success, error) {
 	if(valueHtmlVar != null && valueHtmlVar !== '')
 		vals['htmlVar'] = valueHtmlVar;
 
+	var valueHtmlVarForm = $formValues.find('.valueHtmlVarForm').val();
+	if(valueHtmlVarForm != null && valueHtmlVarForm !== '')
+		vals['htmlVarForm'] = valueHtmlVarForm;
+
 	var valueHtmlVarInput = $formValues.find('.valueHtmlVarInput').val();
 	if(valueHtmlVarInput != null && valueHtmlVarInput !== '')
 		vals['htmlVarInput'] = valueHtmlVarInput;
@@ -339,6 +343,17 @@ async function patchHtmlPart($formFilters, $formValues, success, error) {
 	if(removeHtmlVar != null && removeHtmlVar !== '')
 		vals['removeHtmlVar'] = removeHtmlVar;
 
+	var removeHtmlVarForm = $formFilters.find('.removeHtmlVarForm').val() === 'true';
+	var setHtmlVarForm = removeHtmlVarForm ? null : $formValues.find('.setHtmlVarForm').val();
+	if(removeHtmlVarForm || setHtmlVarForm != null && setHtmlVarForm !== '')
+		vals['setHtmlVarForm'] = setHtmlVarForm;
+	var addHtmlVarForm = $formValues.find('.addHtmlVarForm').val();
+	if(addHtmlVarForm != null && addHtmlVarForm !== '')
+		vals['addHtmlVarForm'] = addHtmlVarForm;
+	var removeHtmlVarForm = $formValues.find('.removeHtmlVarForm').val();
+	if(removeHtmlVarForm != null && removeHtmlVarForm !== '')
+		vals['removeHtmlVarForm'] = removeHtmlVarForm;
+
 	var removeHtmlVarInput = $formFilters.find('.removeHtmlVarInput').val() === 'true';
 	var setHtmlVarInput = removeHtmlVarInput ? null : $formValues.find('.setHtmlVarInput').val();
 	if(removeHtmlVarInput || setHtmlVarInput != null && setHtmlVarInput !== '')
@@ -552,6 +567,10 @@ function patchHtmlPartFilters($formFilters) {
 	if(filterHtmlVar != null && filterHtmlVar !== '')
 		filters.push({ name: 'fq', value: 'htmlVar:' + filterHtmlVar });
 
+	var filterHtmlVarForm = $formFilters.find('.valueHtmlVarForm').val();
+	if(filterHtmlVarForm != null && filterHtmlVarForm !== '')
+		filters.push({ name: 'fq', value: 'htmlVarForm:' + filterHtmlVarForm });
+
 	var filterHtmlVarInput = $formFilters.find('.valueHtmlVarInput').val();
 	if(filterHtmlVarInput != null && filterHtmlVarInput !== '')
 		filters.push({ name: 'fq', value: 'htmlVarInput:' + filterHtmlVarInput });
@@ -761,6 +780,10 @@ function searchHtmlPartFilters($formFilters) {
 	var filterHtmlVar = $formFilters.find('.valueHtmlVar').val();
 	if(filterHtmlVar != null && filterHtmlVar !== '')
 		filters.push({ name: 'fq', value: 'htmlVar:' + filterHtmlVar });
+
+	var filterHtmlVarForm = $formFilters.find('.valueHtmlVarForm').val();
+	if(filterHtmlVarForm != null && filterHtmlVarForm !== '')
+		filters.push({ name: 'fq', value: 'htmlVarForm:' + filterHtmlVarForm });
 
 	var filterHtmlVarInput = $formFilters.find('.valueHtmlVarInput').val();
 	if(filterHtmlVarInput != null && filterHtmlVarInput !== '')
