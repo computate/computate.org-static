@@ -267,10 +267,6 @@ function patchEnrollmentDesignFilters($formFilters) {
 	if(filterPageUrl != null && filterPageUrl !== '')
 		filters.push({ name: 'fq', value: 'pageUrl:' + filterPageUrl });
 
-	var filterEnrollmentDesignKey = $formFilters.find('.valueEnrollmentDesignKey').val();
-	if(filterEnrollmentDesignKey != null && filterEnrollmentDesignKey !== '')
-		filters.push({ name: 'fq', value: 'enrollmentDesignKey:' + filterEnrollmentDesignKey });
-
 	var filterSchoolKey = $formFilters.find('.valueSchoolKey').val();
 	if(filterSchoolKey != null && filterSchoolKey !== '')
 		filters.push({ name: 'fq', value: 'schoolKey:' + filterSchoolKey });
@@ -282,6 +278,10 @@ function patchEnrollmentDesignFilters($formFilters) {
 	var filterSchoolLocation = $formFilters.find('.valueSchoolLocation').val();
 	if(filterSchoolLocation != null && filterSchoolLocation !== '')
 		filters.push({ name: 'fq', value: 'schoolLocation:' + filterSchoolLocation });
+
+	var filterEnrollmentDesignKey = $formFilters.find('.valueEnrollmentDesignKey').val();
+	if(filterEnrollmentDesignKey != null && filterEnrollmentDesignKey !== '')
+		filters.push({ name: 'fq', value: 'enrollmentDesignKey:' + filterEnrollmentDesignKey });
 
 	var filterYearStart = $formFilters.find('.valueYearStart').val();
 	if(filterYearStart != null && filterYearStart !== '')
@@ -429,10 +429,6 @@ function searchEnrollmentDesignFilters($formFilters) {
 	if(filterPageUrl != null && filterPageUrl !== '')
 		filters.push({ name: 'fq', value: 'pageUrl:' + filterPageUrl });
 
-	var filterEnrollmentDesignKey = $formFilters.find('.valueEnrollmentDesignKey').val();
-	if(filterEnrollmentDesignKey != null && filterEnrollmentDesignKey !== '')
-		filters.push({ name: 'fq', value: 'enrollmentDesignKey:' + filterEnrollmentDesignKey });
-
 	var filterSchoolKey = $formFilters.find('.valueSchoolKey').val();
 	if(filterSchoolKey != null && filterSchoolKey !== '')
 		filters.push({ name: 'fq', value: 'schoolKey:' + filterSchoolKey });
@@ -444,6 +440,10 @@ function searchEnrollmentDesignFilters($formFilters) {
 	var filterSchoolLocation = $formFilters.find('.valueSchoolLocation').val();
 	if(filterSchoolLocation != null && filterSchoolLocation !== '')
 		filters.push({ name: 'fq', value: 'schoolLocation:' + filterSchoolLocation });
+
+	var filterEnrollmentDesignKey = $formFilters.find('.valueEnrollmentDesignKey').val();
+	if(filterEnrollmentDesignKey != null && filterEnrollmentDesignKey !== '')
+		filters.push({ name: 'fq', value: 'enrollmentDesignKey:' + filterEnrollmentDesignKey });
 
 	var filterYearStart = $formFilters.find('.valueYearStart').val();
 	if(filterYearStart != null && filterYearStart !== '')
@@ -521,6 +521,11 @@ function suggestEnrollmentDesignHtmlPartKeys(filters, $list, pk = null) {
 			var sort3 = o['sort3'];
 			var sort4 = o['sort4'];
 			var sort5 = o['sort5'];
+			var sort6 = o['sort6'];
+			var sort7 = o['sort7'];
+			var sort8 = o['sort8'];
+			var sort9 = o['sort9'];
+			var sort10 = o['sort10'];
 
 			$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
 			var $sortInput = $('<input>')
@@ -600,6 +605,91 @@ function suggestEnrollmentDesignHtmlPartKeys(filters, $list, pk = null) {
 						+ ", function() { "
 						+ "}"
 						+ ", function() { addError($('#attribute_" + o['pk'] + "_sort_sort5')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+
+			if(sort5 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribute_" + o['pk'] + "_sort_sort6");
+				$sortInput.attr('value', sort6).attr('onchange', 
+					"$('#EnrollmentDesignForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchHtmlPartVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setSort6']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { addError($('#attribute_" + o['pk'] + "_sort_sort6')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+
+			if(sort6 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribute_" + o['pk'] + "_sort_sort7");
+				$sortInput.attr('value', sort7).attr('onchange', 
+					"$('#EnrollmentDesignForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchHtmlPartVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setSort7']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { addError($('#attribute_" + o['pk'] + "_sort_sort7')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+
+			if(sort7 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribute_" + o['pk'] + "_sort_sort8");
+				$sortInput.attr('value', sort8).attr('onchange', 
+					"$('#EnrollmentDesignForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchHtmlPartVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setSort8']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { addError($('#attribute_" + o['pk'] + "_sort_sort8')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+
+			if(sort8 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribute_" + o['pk'] + "_sort_sort9");
+				$sortInput.attr('value', sort9).attr('onchange', 
+					"$('#EnrollmentDesignForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchHtmlPartVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setSort9']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { addError($('#attribute_" + o['pk'] + "_sort_sort9')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+
+			if(sort9 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribute_" + o['pk'] + "_sort_sort10");
+				$sortInput.attr('value', sort10).attr('onchange', 
+					"$('#EnrollmentDesignForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchHtmlPartVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setSort10']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { addError($('#attribute_" + o['pk'] + "_sort_sort10')); }"
 						+ " ); "); 
 				$sort.append($sortInput);
 				$li.append($sort);

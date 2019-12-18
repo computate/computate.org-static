@@ -267,10 +267,6 @@ function patchDesignInscriptionFiltres($formulaireFiltres) {
 	if(filtrePageUrl != null && filtrePageUrl !== '')
 		filtres.push({ name: 'fq', value: 'pageUrl:' + filtrePageUrl });
 
-	var filtreDesignInscriptionCle = $formulaireFiltres.find('.valeurDesignInscriptionCle').val();
-	if(filtreDesignInscriptionCle != null && filtreDesignInscriptionCle !== '')
-		filtres.push({ name: 'fq', value: 'designInscriptionCle:' + filtreDesignInscriptionCle });
-
 	var filtreEcoleCle = $formulaireFiltres.find('.valeurEcoleCle').val();
 	if(filtreEcoleCle != null && filtreEcoleCle !== '')
 		filtres.push({ name: 'fq', value: 'ecoleCle:' + filtreEcoleCle });
@@ -282,6 +278,10 @@ function patchDesignInscriptionFiltres($formulaireFiltres) {
 	var filtreEcoleEmplacement = $formulaireFiltres.find('.valeurEcoleEmplacement').val();
 	if(filtreEcoleEmplacement != null && filtreEcoleEmplacement !== '')
 		filtres.push({ name: 'fq', value: 'ecoleEmplacement:' + filtreEcoleEmplacement });
+
+	var filtreDesignInscriptionCle = $formulaireFiltres.find('.valeurDesignInscriptionCle').val();
+	if(filtreDesignInscriptionCle != null && filtreDesignInscriptionCle !== '')
+		filtres.push({ name: 'fq', value: 'designInscriptionCle:' + filtreDesignInscriptionCle });
 
 	var filtreAnneeDebut = $formulaireFiltres.find('.valeurAnneeDebut').val();
 	if(filtreAnneeDebut != null && filtreAnneeDebut !== '')
@@ -429,10 +429,6 @@ function rechercheDesignInscriptionFiltres($formulaireFiltres) {
 	if(filtrePageUrl != null && filtrePageUrl !== '')
 		filtres.push({ name: 'fq', value: 'pageUrl:' + filtrePageUrl });
 
-	var filtreDesignInscriptionCle = $formulaireFiltres.find('.valeurDesignInscriptionCle').val();
-	if(filtreDesignInscriptionCle != null && filtreDesignInscriptionCle !== '')
-		filtres.push({ name: 'fq', value: 'designInscriptionCle:' + filtreDesignInscriptionCle });
-
 	var filtreEcoleCle = $formulaireFiltres.find('.valeurEcoleCle').val();
 	if(filtreEcoleCle != null && filtreEcoleCle !== '')
 		filtres.push({ name: 'fq', value: 'ecoleCle:' + filtreEcoleCle });
@@ -444,6 +440,10 @@ function rechercheDesignInscriptionFiltres($formulaireFiltres) {
 	var filtreEcoleEmplacement = $formulaireFiltres.find('.valeurEcoleEmplacement').val();
 	if(filtreEcoleEmplacement != null && filtreEcoleEmplacement !== '')
 		filtres.push({ name: 'fq', value: 'ecoleEmplacement:' + filtreEcoleEmplacement });
+
+	var filtreDesignInscriptionCle = $formulaireFiltres.find('.valeurDesignInscriptionCle').val();
+	if(filtreDesignInscriptionCle != null && filtreDesignInscriptionCle !== '')
+		filtres.push({ name: 'fq', value: 'designInscriptionCle:' + filtreDesignInscriptionCle });
 
 	var filtreAnneeDebut = $formulaireFiltres.find('.valeurAnneeDebut').val();
 	if(filtreAnneeDebut != null && filtreAnneeDebut !== '')
@@ -521,6 +521,11 @@ function suggereDesignInscriptionPartHtmlCles(filtres, $list, pk = null) {
 			var tri3 = o['tri3'];
 			var tri4 = o['tri4'];
 			var tri5 = o['tri5'];
+			var tri6 = o['tri6'];
+			var tri7 = o['tri7'];
+			var tri8 = o['tri8'];
+			var tri9 = o['tri9'];
+			var tri10 = o['tri10'];
 
 			$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
 			var $sortInput = $('<input>')
@@ -600,6 +605,91 @@ function suggereDesignInscriptionPartHtmlCles(filtres, $list, pk = null) {
 						+ ", function() { "
 						+ "}"
 						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri5')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+
+			if(tri5 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri6");
+				$sortInput.attr('value', tri6).attr('onchange', 
+					"$('#DesignInscriptionForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri6']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri6')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+
+			if(tri6 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri7");
+				$sortInput.attr('value', tri7).attr('onchange', 
+					"$('#DesignInscriptionForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri7']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri7')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+
+			if(tri7 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri8");
+				$sortInput.attr('value', tri8).attr('onchange', 
+					"$('#DesignInscriptionForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri8']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri8')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+
+			if(tri8 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri9");
+				$sortInput.attr('value', tri9).attr('onchange', 
+					"$('#DesignInscriptionForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri9']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri9')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+
+			if(tri9 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri10");
+				$sortInput.attr('value', tri10).attr('onchange', 
+					"$('#DesignInscriptionForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri10']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri10')); }"
 						+ " ); "); 
 				$sort.append($sortInput);
 				$li.append($sort);
