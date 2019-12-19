@@ -42,9 +42,8 @@ input[type=text] {
 	width: 180px;
 }
 input[type=checkbox] {
-	transform:scale(2, 2);
-	width: 10px;
-	height: 10px;
+	width: 15px;
+	height: 15px;
 }
 textarea {
 	height: 3em;
