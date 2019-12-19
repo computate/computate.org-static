@@ -57,9 +57,17 @@ async function postSchoolGuardian($formValues, success, error) {
 	if(valuePersonPhoneNumber != null && valuePersonPhoneNumber !== '')
 		vals['personPhoneNumber'] = valuePersonPhoneNumber;
 
-	var valuePersonOccupation = $formValues.find('.valuePersonOccupation').val();
-	if(valuePersonOccupation != null && valuePersonOccupation !== '')
-		vals['personOccupation'] = valuePersonOccupation;
+	var valuePersonRelation = $formValues.find('.valuePersonRelation').val();
+	if(valuePersonRelation != null && valuePersonRelation !== '')
+		vals['personRelation'] = valuePersonRelation;
+
+	var valuePersonEmergencyContact = $formValues.find('.valuePersonEmergencyContact').prop('checked');
+	if(valuePersonEmergencyContact != null && valuePersonEmergencyContact !== '')
+		vals['personEmergencyContact'] = valuePersonEmergencyContact;
+
+	var valuePersonPickup = $formValues.find('.valuePersonPickup').prop('checked');
+	if(valuePersonPickup != null && valuePersonPickup !== '')
+		vals['personPickup'] = valuePersonPickup;
 
 	var valueEnrollmentKeys = $formValues.find('.valueEnrollmentKeys').val();
 	if(valueEnrollmentKeys != null && valueEnrollmentKeys !== '')
@@ -209,16 +217,38 @@ async function patchSchoolGuardian($formFilters, $formValues, success, error) {
 	if(removePersonPhoneNumber != null && removePersonPhoneNumber !== '')
 		vals['removePersonPhoneNumber'] = removePersonPhoneNumber;
 
-	var removePersonOccupation = $formFilters.find('.removePersonOccupation').val() === 'true';
-	var setPersonOccupation = removePersonOccupation ? null : $formValues.find('.setPersonOccupation').val();
-	if(removePersonOccupation || setPersonOccupation != null && setPersonOccupation !== '')
-		vals['setPersonOccupation'] = setPersonOccupation;
-	var addPersonOccupation = $formValues.find('.addPersonOccupation').val();
-	if(addPersonOccupation != null && addPersonOccupation !== '')
-		vals['addPersonOccupation'] = addPersonOccupation;
-	var removePersonOccupation = $formValues.find('.removePersonOccupation').val();
-	if(removePersonOccupation != null && removePersonOccupation !== '')
-		vals['removePersonOccupation'] = removePersonOccupation;
+	var removePersonRelation = $formFilters.find('.removePersonRelation').val() === 'true';
+	var setPersonRelation = removePersonRelation ? null : $formValues.find('.setPersonRelation').val();
+	if(removePersonRelation || setPersonRelation != null && setPersonRelation !== '')
+		vals['setPersonRelation'] = setPersonRelation;
+	var addPersonRelation = $formValues.find('.addPersonRelation').val();
+	if(addPersonRelation != null && addPersonRelation !== '')
+		vals['addPersonRelation'] = addPersonRelation;
+	var removePersonRelation = $formValues.find('.removePersonRelation').val();
+	if(removePersonRelation != null && removePersonRelation !== '')
+		vals['removePersonRelation'] = removePersonRelation;
+
+	var removePersonEmergencyContact = $formFilters.find('.removePersonEmergencyContact').val() === 'true';
+	var setPersonEmergencyContact = removePersonEmergencyContact ? null : $formValues.find('.setPersonEmergencyContact').prop('checked');
+	if(removePersonEmergencyContact || setPersonEmergencyContact != null && setPersonEmergencyContact !== '')
+		vals['setPersonEmergencyContact'] = setPersonEmergencyContact;
+	var addPersonEmergencyContact = $formValues.find('.addPersonEmergencyContact').prop('checked');
+	if(addPersonEmergencyContact != null && addPersonEmergencyContact !== '')
+		vals['addPersonEmergencyContact'] = addPersonEmergencyContact;
+	var removePersonEmergencyContact = $formValues.find('.removePersonEmergencyContact').prop('checked');
+	if(removePersonEmergencyContact != null && removePersonEmergencyContact !== '')
+		vals['removePersonEmergencyContact'] = removePersonEmergencyContact;
+
+	var removePersonPickup = $formFilters.find('.removePersonPickup').val() === 'true';
+	var setPersonPickup = removePersonPickup ? null : $formValues.find('.setPersonPickup').prop('checked');
+	if(removePersonPickup || setPersonPickup != null && setPersonPickup !== '')
+		vals['setPersonPickup'] = setPersonPickup;
+	var addPersonPickup = $formValues.find('.addPersonPickup').prop('checked');
+	if(addPersonPickup != null && addPersonPickup !== '')
+		vals['addPersonPickup'] = addPersonPickup;
+	var removePersonPickup = $formValues.find('.removePersonPickup').prop('checked');
+	if(removePersonPickup != null && removePersonPickup !== '')
+		vals['removePersonPickup'] = removePersonPickup;
 
 	var removeEnrollmentKeys = $formFilters.find('.removeEnrollmentKeys').val() === 'true';
 	var setEnrollmentKeys = removeEnrollmentKeys ? null : $formValues.find('.setEnrollmentKeys').val();
@@ -288,9 +318,17 @@ function patchSchoolGuardianFilters($formFilters) {
 	if(filterPersonPhoneNumber != null && filterPersonPhoneNumber !== '')
 		filters.push({ name: 'fq', value: 'personPhoneNumber:' + filterPersonPhoneNumber });
 
-	var filterPersonOccupation = $formFilters.find('.valuePersonOccupation').val();
-	if(filterPersonOccupation != null && filterPersonOccupation !== '')
-		filters.push({ name: 'fq', value: 'personOccupation:' + filterPersonOccupation });
+	var filterPersonRelation = $formFilters.find('.valuePersonRelation').val();
+	if(filterPersonRelation != null && filterPersonRelation !== '')
+		filters.push({ name: 'fq', value: 'personRelation:' + filterPersonRelation });
+
+	var filterPersonEmergencyContact = $formFilters.find('.valuePersonEmergencyContact').prop('checked');
+	if(filterPersonEmergencyContact != null && filterPersonEmergencyContact === true)
+		filters.push({ name: 'fq', value: 'personEmergencyContact:' + filterPersonEmergencyContact });
+
+	var filterPersonPickup = $formFilters.find('.valuePersonPickup').prop('checked');
+	if(filterPersonPickup != null && filterPersonPickup === true)
+		filters.push({ name: 'fq', value: 'personPickup:' + filterPersonPickup });
 
 	var filterEnrollmentKeys = $formFilters.find('.valueEnrollmentKeys').val();
 	if(filterEnrollmentKeys != null && filterEnrollmentKeys !== '')
@@ -368,13 +406,13 @@ function patchSchoolGuardianFilters($formFilters) {
 	if(filterPersonFormalName != null && filterPersonFormalName !== '')
 		filters.push({ name: 'fq', value: 'personFormalName:' + filterPersonFormalName });
 
+	var filterPersonOccupation = $formFilters.find('.valuePersonOccupation').val();
+	if(filterPersonOccupation != null && filterPersonOccupation !== '')
+		filters.push({ name: 'fq', value: 'personOccupation:' + filterPersonOccupation });
+
 	var filterPersonEmail = $formFilters.find('.valuePersonEmail').val();
 	if(filterPersonEmail != null && filterPersonEmail !== '')
 		filters.push({ name: 'fq', value: 'personEmail:' + filterPersonEmail });
-
-	var filterPersonRelation = $formFilters.find('.valuePersonRelation').val();
-	if(filterPersonRelation != null && filterPersonRelation !== '')
-		filters.push({ name: 'fq', value: 'personRelation:' + filterPersonRelation });
 
 	var filterPersonSms = $formFilters.find('.valuePersonSms').prop('checked');
 	if(filterPersonSms != null && filterPersonSms === true)
@@ -383,14 +421,6 @@ function patchSchoolGuardianFilters($formFilters) {
 	var filterPersonReceiveEmail = $formFilters.find('.valuePersonReceiveEmail').prop('checked');
 	if(filterPersonReceiveEmail != null && filterPersonReceiveEmail === true)
 		filters.push({ name: 'fq', value: 'personReceiveEmail:' + filterPersonReceiveEmail });
-
-	var filterPersonEmergencyContact = $formFilters.find('.valuePersonEmergencyContact').prop('checked');
-	if(filterPersonEmergencyContact != null && filterPersonEmergencyContact === true)
-		filters.push({ name: 'fq', value: 'personEmergencyContact:' + filterPersonEmergencyContact });
-
-	var filterPersonPickup = $formFilters.find('.valuePersonPickup').prop('checked');
-	if(filterPersonPickup != null && filterPersonPickup === true)
-		filters.push({ name: 'fq', value: 'personPickup:' + filterPersonPickup });
 
 	var filterGuardianCompleteName = $formFilters.find('.valueGuardianCompleteName').val();
 	if(filterGuardianCompleteName != null && filterGuardianCompleteName !== '')
@@ -498,9 +528,17 @@ function searchSchoolGuardianFilters($formFilters) {
 	if(filterPersonPhoneNumber != null && filterPersonPhoneNumber !== '')
 		filters.push({ name: 'fq', value: 'personPhoneNumber:' + filterPersonPhoneNumber });
 
-	var filterPersonOccupation = $formFilters.find('.valuePersonOccupation').val();
-	if(filterPersonOccupation != null && filterPersonOccupation !== '')
-		filters.push({ name: 'fq', value: 'personOccupation:' + filterPersonOccupation });
+	var filterPersonRelation = $formFilters.find('.valuePersonRelation').val();
+	if(filterPersonRelation != null && filterPersonRelation !== '')
+		filters.push({ name: 'fq', value: 'personRelation:' + filterPersonRelation });
+
+	var filterPersonEmergencyContact = $formFilters.find('.valuePersonEmergencyContact').prop('checked');
+	if(filterPersonEmergencyContact != null && filterPersonEmergencyContact === true)
+		filters.push({ name: 'fq', value: 'personEmergencyContact:' + filterPersonEmergencyContact });
+
+	var filterPersonPickup = $formFilters.find('.valuePersonPickup').prop('checked');
+	if(filterPersonPickup != null && filterPersonPickup === true)
+		filters.push({ name: 'fq', value: 'personPickup:' + filterPersonPickup });
 
 	var filterEnrollmentKeys = $formFilters.find('.valueEnrollmentKeys').val();
 	if(filterEnrollmentKeys != null && filterEnrollmentKeys !== '')
@@ -578,13 +616,13 @@ function searchSchoolGuardianFilters($formFilters) {
 	if(filterPersonFormalName != null && filterPersonFormalName !== '')
 		filters.push({ name: 'fq', value: 'personFormalName:' + filterPersonFormalName });
 
+	var filterPersonOccupation = $formFilters.find('.valuePersonOccupation').val();
+	if(filterPersonOccupation != null && filterPersonOccupation !== '')
+		filters.push({ name: 'fq', value: 'personOccupation:' + filterPersonOccupation });
+
 	var filterPersonEmail = $formFilters.find('.valuePersonEmail').val();
 	if(filterPersonEmail != null && filterPersonEmail !== '')
 		filters.push({ name: 'fq', value: 'personEmail:' + filterPersonEmail });
-
-	var filterPersonRelation = $formFilters.find('.valuePersonRelation').val();
-	if(filterPersonRelation != null && filterPersonRelation !== '')
-		filters.push({ name: 'fq', value: 'personRelation:' + filterPersonRelation });
 
 	var filterPersonSms = $formFilters.find('.valuePersonSms').prop('checked');
 	if(filterPersonSms != null && filterPersonSms === true)
@@ -593,14 +631,6 @@ function searchSchoolGuardianFilters($formFilters) {
 	var filterPersonReceiveEmail = $formFilters.find('.valuePersonReceiveEmail').prop('checked');
 	if(filterPersonReceiveEmail != null && filterPersonReceiveEmail === true)
 		filters.push({ name: 'fq', value: 'personReceiveEmail:' + filterPersonReceiveEmail });
-
-	var filterPersonEmergencyContact = $formFilters.find('.valuePersonEmergencyContact').prop('checked');
-	if(filterPersonEmergencyContact != null && filterPersonEmergencyContact === true)
-		filters.push({ name: 'fq', value: 'personEmergencyContact:' + filterPersonEmergencyContact });
-
-	var filterPersonPickup = $formFilters.find('.valuePersonPickup').prop('checked');
-	if(filterPersonPickup != null && filterPersonPickup === true)
-		filters.push({ name: 'fq', value: 'personPickup:' + filterPersonPickup });
 
 	var filterGuardianCompleteName = $formFilters.find('.valueGuardianCompleteName').val();
 	if(filterGuardianCompleteName != null && filterGuardianCompleteName !== '')
