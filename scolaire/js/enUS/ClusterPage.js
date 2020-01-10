@@ -1,7 +1,7 @@
 
 // POST //
 
-function postCluster($formValues, success, error) {
+async function postCluster($formValues, success, error) {
 	var vals = {};
 	if(success == null) {
 		success = function( data, textStatus, jQxhr ) {
@@ -66,7 +66,7 @@ function postClusterVals(vals, success, error) {
 
 // PATCH //
 
-function patchCluster($formFilters, $formValues, success, error) {
+async function patchCluster($formFilters, $formValues, success, error) {
 	var filters = patchClusterFilters($formFilters);
 
 	var vals = {};
@@ -183,6 +183,10 @@ function patchClusterFilters($formFilters) {
 	if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
 		filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
+	var filterSessionId = $formFilters.find('.valueSessionId').val();
+	if(filterSessionId != null && filterSessionId !== '')
+		filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
 	var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
 	if(filterObjectTitle != null && filterObjectTitle !== '')
 		filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
@@ -217,7 +221,7 @@ function patchClusterVals(filters, vals, success, error) {
 
 // GET //
 
-function getCluster(pk) {
+async function getCluster(pk) {
 	$.ajax({
 		url: '/api/cluster/' + id
 		, dataType: 'json'
@@ -230,7 +234,7 @@ function getCluster(pk) {
 
 // DELETE //
 
-function deleteCluster(pk) {
+async function deleteCluster(pk) {
 	$.ajax({
 		url: '/api/cluster/' + id
 		, dataType: 'json'
@@ -244,7 +248,7 @@ function deleteCluster(pk) {
 
 // Search //
 
-function searchCluster($formFilters, success, error) {
+async function searchCluster($formFilters, success, error) {
 	var filters = searchClusterFilters($formFilters);
 	if(success == null)
 		success = function( data, textStatus, jQxhr ) {};
@@ -297,6 +301,10 @@ function searchClusterFilters($formFilters) {
 	if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
 		filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
+	var filterSessionId = $formFilters.find('.valueSessionId').val();
+	if(filterSessionId != null && filterSessionId !== '')
+		filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
 	var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
 	if(filterObjectTitle != null && filterObjectTitle !== '')
 		filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
@@ -340,38 +348,45 @@ function suggestClusterObjectSuggest($formFilters, $list) {
 	searchClusterVals($formFilters, success, error);
 }
 
-function websocketCluster() {
+async function websocketCluster(success) {
 	var eventBus = new EventBus('/eventbus');
 	eventBus.onopen = function () {
 
 		eventBus.registerHandler('websocketCluster', function (error, message) {
 			var json = JSON.parse(message['body']);
 			var id = json['id'];
-			var numFound = json['numFound'];
-			var numPATCH = json['numPATCH'];
-			var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
-			var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
-			var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
-			var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
-			var $header = $('<div>').attr('class', 'w3-container fa-green ').attr('id', 'header-' + id);
-			var $i = $('<i>').attr('class', 'far fa-fort-awesome w3-margin-right ').attr('id', 'icon-' + id);
-			var $headerSpan = $('<span>').attr('class', '').text('modify clusters');
-			var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
-			var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
-			var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
-			var $progress = $('<div>').attr('class', 'w3-green ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
-			$card.append($header);
-			$header.append($i);
-			$header.append($headerSpan);
-			$header.append($x);
-			$body.append($bar);
-			$bar.append($progress);
-			$card.append($body);
-			$box.append($margin);
-			$margin.append($card);
-			$('.box-' + id).remove();
-			if(numPATCH < numFound)
+			var pk = json['pk'];
+			var pks = json['pks'];
+			var empty = json['empty'];
+			if(!empty) {
+				var numFound = json['numFound'];
+				var numPATCH = json['numPATCH'];
+				var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
+				var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
+				var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
+				var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
+				var $header = $('<div>').attr('class', 'w3-container fa-green ').attr('id', 'header-' + id);
+				var $i = $('<i>').attr('class', 'far fa-fort-awesome w3-margin-right ').attr('id', 'icon-' + id);
+				var $headerSpan = $('<span>').attr('class', '').text('modify clusters');
+				var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
+				var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
+				var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
+				var $progress = $('<div>').attr('class', 'w3-green ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
+				$card.append($header);
+				$header.append($i);
+				$header.append($headerSpan);
+				$header.append($x);
+				$body.append($bar);
+				$bar.append($progress);
+				$card.append($body);
+				$box.append($margin);
+				$margin.append($card);
+				$('.box-' + id).remove();
+				if(numPATCH < numFound)
 				$('.w3-content').append($box);
+				if(success)
+					success(json);
+			}
 		});
 	}
 }

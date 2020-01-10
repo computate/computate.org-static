@@ -1,7 +1,7 @@
 
 // POST //
 
-function postCluster($formulaireValeurs, success, error) {
+async function postCluster($formulaireValeurs, success, error) {
 	var vals = {};
 	if(success == null) {
 		success = function( data, textStatus, jQxhr ) {
@@ -66,7 +66,7 @@ function postClusterVals(vals, success, error) {
 
 // PATCH //
 
-function patchCluster($formulaireFiltres, $formulaireValeurs, success, error) {
+async function patchCluster($formulaireFiltres, $formulaireValeurs, success, error) {
 	var filtres = patchClusterFiltres($formulaireFiltres);
 
 	var vals = {};
@@ -183,6 +183,10 @@ function patchClusterFiltres($formulaireFiltres) {
 	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
 		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
 
+	var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
+	if(filtreSessionId != null && filtreSessionId !== '')
+		filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
+
 	var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
 	if(filtreObjetTitre != null && filtreObjetTitre !== '')
 		filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
@@ -217,7 +221,7 @@ function patchClusterVals(filtres, vals, success, error) {
 
 // GET //
 
-function getCluster(pk) {
+async function getCluster(pk) {
 	$.ajax({
 		url: '/api/cluster/' + id
 		, dataType: 'json'
@@ -230,7 +234,7 @@ function getCluster(pk) {
 
 // DELETE //
 
-function deleteCluster(pk) {
+async function deleteCluster(pk) {
 	$.ajax({
 		url: '/api/cluster/' + id
 		, dataType: 'json'
@@ -244,7 +248,7 @@ function deleteCluster(pk) {
 
 // Recherche //
 
-function rechercheCluster($formulaireFiltres, success, error) {
+async function rechercheCluster($formulaireFiltres, success, error) {
 	var filtres = rechercheClusterFiltres($formulaireFiltres);
 	if(success == null)
 		success = function( data, textStatus, jQxhr ) {};
@@ -297,6 +301,10 @@ function rechercheClusterFiltres($formulaireFiltres) {
 	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
 		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
 
+	var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
+	if(filtreSessionId != null && filtreSessionId !== '')
+		filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
+
 	var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
 	if(filtreObjetTitre != null && filtreObjetTitre !== '')
 		filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
@@ -340,38 +348,45 @@ function suggereClusterObjetSuggere($formulaireFiltres, $list) {
 	rechercherClusterVals($formulaireFiltres, success, error);
 }
 
-function websocketCluster() {
+async function websocketCluster(success) {
 	var eventBus = new EventBus('/eventbus');
 	eventBus.onopen = function () {
 
 		eventBus.registerHandler('websocketCluster', function (error, message) {
 			var json = JSON.parse(message['body']);
 			var id = json['id'];
-			var numFound = json['numFound'];
-			var numPATCH = json['numPATCH'];
-			var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
-			var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
-			var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
-			var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
-			var $header = $('<div>').attr('class', 'w3-container fa-green ').attr('id', 'header-' + id);
-			var $i = $('<i>').attr('class', 'far fa-fort-awesome w3-margin-right ').attr('id', 'icon-' + id);
-			var $headerSpan = $('<span>').attr('class', '').text('modifier clusters');
-			var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
-			var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
-			var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
-			var $progress = $('<div>').attr('class', 'w3-green ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
-			$card.append($header);
-			$header.append($i);
-			$header.append($headerSpan);
-			$header.append($x);
-			$body.append($bar);
-			$bar.append($progress);
-			$card.append($body);
-			$box.append($margin);
-			$margin.append($card);
-			$('.box-' + id).remove();
-			if(numPATCH < numFound)
+			var pk = json['pk'];
+			var pks = json['pks'];
+			var empty = json['empty'];
+			if(!empty) {
+				var numFound = json['numFound'];
+				var numPATCH = json['numPATCH'];
+				var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
+				var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
+				var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
+				var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
+				var $header = $('<div>').attr('class', 'w3-container fa-green ').attr('id', 'header-' + id);
+				var $i = $('<i>').attr('class', 'far fa-fort-awesome w3-margin-right ').attr('id', 'icon-' + id);
+				var $headerSpan = $('<span>').attr('class', '').text('modifier clusters');
+				var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
+				var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
+				var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
+				var $progress = $('<div>').attr('class', 'w3-green ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
+				$card.append($header);
+				$header.append($i);
+				$header.append($headerSpan);
+				$header.append($x);
+				$body.append($bar);
+				$bar.append($progress);
+				$card.append($body);
+				$box.append($margin);
+				$margin.append($card);
+				$('.box-' + id).remove();
+				if(numPATCH < numFound)
 				$('.w3-content').append($box);
+				if(success)
+					success(json);
+			}
 		});
 	}
 }

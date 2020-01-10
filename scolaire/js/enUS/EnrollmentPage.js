@@ -121,9 +121,81 @@ async function postSchoolEnrollment($formValues, success, error) {
 	if(valueEnrollmentSignature1 != null && valueEnrollmentSignature1 !== '')
 		vals['enrollmentSignature1'] = valueEnrollmentSignature1;
 
-	var valueEnrollmentParentDate = $formValues.find('.valueEnrollmentParentDate').val();
-	if(valueEnrollmentParentDate != null && valueEnrollmentParentDate !== '')
-		vals['enrollmentParentDate'] = valueEnrollmentParentDate;
+	var valueEnrollmentSignature2 = $formValues.find('.valueEnrollmentSignature2').val();
+	if(valueEnrollmentSignature2 != null && valueEnrollmentSignature2 !== '')
+		vals['enrollmentSignature2'] = valueEnrollmentSignature2;
+
+	var valueEnrollmentSignature3 = $formValues.find('.valueEnrollmentSignature3').val();
+	if(valueEnrollmentSignature3 != null && valueEnrollmentSignature3 !== '')
+		vals['enrollmentSignature3'] = valueEnrollmentSignature3;
+
+	var valueEnrollmentSignature4 = $formValues.find('.valueEnrollmentSignature4').val();
+	if(valueEnrollmentSignature4 != null && valueEnrollmentSignature4 !== '')
+		vals['enrollmentSignature4'] = valueEnrollmentSignature4;
+
+	var valueEnrollmentSignature5 = $formValues.find('.valueEnrollmentSignature5').val();
+	if(valueEnrollmentSignature5 != null && valueEnrollmentSignature5 !== '')
+		vals['enrollmentSignature5'] = valueEnrollmentSignature5;
+
+	var valueEnrollmentSignature6 = $formValues.find('.valueEnrollmentSignature6').val();
+	if(valueEnrollmentSignature6 != null && valueEnrollmentSignature6 !== '')
+		vals['enrollmentSignature6'] = valueEnrollmentSignature6;
+
+	var valueEnrollmentSignature7 = $formValues.find('.valueEnrollmentSignature7').val();
+	if(valueEnrollmentSignature7 != null && valueEnrollmentSignature7 !== '')
+		vals['enrollmentSignature7'] = valueEnrollmentSignature7;
+
+	var valueEnrollmentSignature8 = $formValues.find('.valueEnrollmentSignature8').val();
+	if(valueEnrollmentSignature8 != null && valueEnrollmentSignature8 !== '')
+		vals['enrollmentSignature8'] = valueEnrollmentSignature8;
+
+	var valueEnrollmentSignature9 = $formValues.find('.valueEnrollmentSignature9').val();
+	if(valueEnrollmentSignature9 != null && valueEnrollmentSignature9 !== '')
+		vals['enrollmentSignature9'] = valueEnrollmentSignature9;
+
+	var valueEnrollmentSignature10 = $formValues.find('.valueEnrollmentSignature10').val();
+	if(valueEnrollmentSignature10 != null && valueEnrollmentSignature10 !== '')
+		vals['enrollmentSignature10'] = valueEnrollmentSignature10;
+
+	var valueEnrollmentDate1 = $formValues.find('.valueEnrollmentDate1').val();
+	if(valueEnrollmentDate1 != null && valueEnrollmentDate1 !== '')
+		vals['enrollmentDate1'] = valueEnrollmentDate1;
+
+	var valueEnrollmentDate2 = $formValues.find('.valueEnrollmentDate2').val();
+	if(valueEnrollmentDate2 != null && valueEnrollmentDate2 !== '')
+		vals['enrollmentDate2'] = valueEnrollmentDate2;
+
+	var valueEnrollmentDate3 = $formValues.find('.valueEnrollmentDate3').val();
+	if(valueEnrollmentDate3 != null && valueEnrollmentDate3 !== '')
+		vals['enrollmentDate3'] = valueEnrollmentDate3;
+
+	var valueEnrollmentDate4 = $formValues.find('.valueEnrollmentDate4').val();
+	if(valueEnrollmentDate4 != null && valueEnrollmentDate4 !== '')
+		vals['enrollmentDate4'] = valueEnrollmentDate4;
+
+	var valueEnrollmentDate5 = $formValues.find('.valueEnrollmentDate5').val();
+	if(valueEnrollmentDate5 != null && valueEnrollmentDate5 !== '')
+		vals['enrollmentDate5'] = valueEnrollmentDate5;
+
+	var valueEnrollmentDate6 = $formValues.find('.valueEnrollmentDate6').val();
+	if(valueEnrollmentDate6 != null && valueEnrollmentDate6 !== '')
+		vals['enrollmentDate6'] = valueEnrollmentDate6;
+
+	var valueEnrollmentDate7 = $formValues.find('.valueEnrollmentDate7').val();
+	if(valueEnrollmentDate7 != null && valueEnrollmentDate7 !== '')
+		vals['enrollmentDate7'] = valueEnrollmentDate7;
+
+	var valueEnrollmentDate8 = $formValues.find('.valueEnrollmentDate8').val();
+	if(valueEnrollmentDate8 != null && valueEnrollmentDate8 !== '')
+		vals['enrollmentDate8'] = valueEnrollmentDate8;
+
+	var valueEnrollmentDate9 = $formValues.find('.valueEnrollmentDate9').val();
+	if(valueEnrollmentDate9 != null && valueEnrollmentDate9 !== '')
+		vals['enrollmentDate9'] = valueEnrollmentDate9;
+
+	var valueEnrollmentDate10 = $formValues.find('.valueEnrollmentDate10').val();
+	if(valueEnrollmentDate10 != null && valueEnrollmentDate10 !== '')
+		vals['enrollmentDate10'] = valueEnrollmentDate10;
 
 	var valueEnrollmentCompleteName = $formValues.find('.valueEnrollmentCompleteName').val();
 	if(valueEnrollmentCompleteName != null && valueEnrollmentCompleteName !== '')
@@ -445,16 +517,214 @@ async function patchSchoolEnrollment($formFilters, $formValues, success, error) 
 	if(removeEnrollmentSignature1 != null && removeEnrollmentSignature1 !== '')
 		vals['removeEnrollmentSignature1'] = removeEnrollmentSignature1;
 
-	var removeEnrollmentParentDate = $formFilters.find('.removeEnrollmentParentDate').val() === 'true';
-	var setEnrollmentParentDate = removeEnrollmentParentDate ? null : $formValues.find('.setEnrollmentParentDate').val();
-	if(removeEnrollmentParentDate || setEnrollmentParentDate != null && setEnrollmentParentDate !== '')
-		vals['setEnrollmentParentDate'] = setEnrollmentParentDate;
-	var addEnrollmentParentDate = $formValues.find('.addEnrollmentParentDate').val();
-	if(addEnrollmentParentDate != null && addEnrollmentParentDate !== '')
-		vals['addEnrollmentParentDate'] = addEnrollmentParentDate;
-	var removeEnrollmentParentDate = $formValues.find('.removeEnrollmentParentDate').val();
-	if(removeEnrollmentParentDate != null && removeEnrollmentParentDate !== '')
-		vals['removeEnrollmentParentDate'] = removeEnrollmentParentDate;
+	var removeEnrollmentSignature2 = $formFilters.find('.removeEnrollmentSignature2').val() === 'true';
+	var setEnrollmentSignature2 = removeEnrollmentSignature2 ? null : $formValues.find('.setEnrollmentSignature2').val();
+	if(removeEnrollmentSignature2 || setEnrollmentSignature2 != null && setEnrollmentSignature2 !== '')
+		vals['setEnrollmentSignature2'] = setEnrollmentSignature2;
+	var addEnrollmentSignature2 = $formValues.find('.addEnrollmentSignature2').val();
+	if(addEnrollmentSignature2 != null && addEnrollmentSignature2 !== '')
+		vals['addEnrollmentSignature2'] = addEnrollmentSignature2;
+	var removeEnrollmentSignature2 = $formValues.find('.removeEnrollmentSignature2').val();
+	if(removeEnrollmentSignature2 != null && removeEnrollmentSignature2 !== '')
+		vals['removeEnrollmentSignature2'] = removeEnrollmentSignature2;
+
+	var removeEnrollmentSignature3 = $formFilters.find('.removeEnrollmentSignature3').val() === 'true';
+	var setEnrollmentSignature3 = removeEnrollmentSignature3 ? null : $formValues.find('.setEnrollmentSignature3').val();
+	if(removeEnrollmentSignature3 || setEnrollmentSignature3 != null && setEnrollmentSignature3 !== '')
+		vals['setEnrollmentSignature3'] = setEnrollmentSignature3;
+	var addEnrollmentSignature3 = $formValues.find('.addEnrollmentSignature3').val();
+	if(addEnrollmentSignature3 != null && addEnrollmentSignature3 !== '')
+		vals['addEnrollmentSignature3'] = addEnrollmentSignature3;
+	var removeEnrollmentSignature3 = $formValues.find('.removeEnrollmentSignature3').val();
+	if(removeEnrollmentSignature3 != null && removeEnrollmentSignature3 !== '')
+		vals['removeEnrollmentSignature3'] = removeEnrollmentSignature3;
+
+	var removeEnrollmentSignature4 = $formFilters.find('.removeEnrollmentSignature4').val() === 'true';
+	var setEnrollmentSignature4 = removeEnrollmentSignature4 ? null : $formValues.find('.setEnrollmentSignature4').val();
+	if(removeEnrollmentSignature4 || setEnrollmentSignature4 != null && setEnrollmentSignature4 !== '')
+		vals['setEnrollmentSignature4'] = setEnrollmentSignature4;
+	var addEnrollmentSignature4 = $formValues.find('.addEnrollmentSignature4').val();
+	if(addEnrollmentSignature4 != null && addEnrollmentSignature4 !== '')
+		vals['addEnrollmentSignature4'] = addEnrollmentSignature4;
+	var removeEnrollmentSignature4 = $formValues.find('.removeEnrollmentSignature4').val();
+	if(removeEnrollmentSignature4 != null && removeEnrollmentSignature4 !== '')
+		vals['removeEnrollmentSignature4'] = removeEnrollmentSignature4;
+
+	var removeEnrollmentSignature5 = $formFilters.find('.removeEnrollmentSignature5').val() === 'true';
+	var setEnrollmentSignature5 = removeEnrollmentSignature5 ? null : $formValues.find('.setEnrollmentSignature5').val();
+	if(removeEnrollmentSignature5 || setEnrollmentSignature5 != null && setEnrollmentSignature5 !== '')
+		vals['setEnrollmentSignature5'] = setEnrollmentSignature5;
+	var addEnrollmentSignature5 = $formValues.find('.addEnrollmentSignature5').val();
+	if(addEnrollmentSignature5 != null && addEnrollmentSignature5 !== '')
+		vals['addEnrollmentSignature5'] = addEnrollmentSignature5;
+	var removeEnrollmentSignature5 = $formValues.find('.removeEnrollmentSignature5').val();
+	if(removeEnrollmentSignature5 != null && removeEnrollmentSignature5 !== '')
+		vals['removeEnrollmentSignature5'] = removeEnrollmentSignature5;
+
+	var removeEnrollmentSignature6 = $formFilters.find('.removeEnrollmentSignature6').val() === 'true';
+	var setEnrollmentSignature6 = removeEnrollmentSignature6 ? null : $formValues.find('.setEnrollmentSignature6').val();
+	if(removeEnrollmentSignature6 || setEnrollmentSignature6 != null && setEnrollmentSignature6 !== '')
+		vals['setEnrollmentSignature6'] = setEnrollmentSignature6;
+	var addEnrollmentSignature6 = $formValues.find('.addEnrollmentSignature6').val();
+	if(addEnrollmentSignature6 != null && addEnrollmentSignature6 !== '')
+		vals['addEnrollmentSignature6'] = addEnrollmentSignature6;
+	var removeEnrollmentSignature6 = $formValues.find('.removeEnrollmentSignature6').val();
+	if(removeEnrollmentSignature6 != null && removeEnrollmentSignature6 !== '')
+		vals['removeEnrollmentSignature6'] = removeEnrollmentSignature6;
+
+	var removeEnrollmentSignature7 = $formFilters.find('.removeEnrollmentSignature7').val() === 'true';
+	var setEnrollmentSignature7 = removeEnrollmentSignature7 ? null : $formValues.find('.setEnrollmentSignature7').val();
+	if(removeEnrollmentSignature7 || setEnrollmentSignature7 != null && setEnrollmentSignature7 !== '')
+		vals['setEnrollmentSignature7'] = setEnrollmentSignature7;
+	var addEnrollmentSignature7 = $formValues.find('.addEnrollmentSignature7').val();
+	if(addEnrollmentSignature7 != null && addEnrollmentSignature7 !== '')
+		vals['addEnrollmentSignature7'] = addEnrollmentSignature7;
+	var removeEnrollmentSignature7 = $formValues.find('.removeEnrollmentSignature7').val();
+	if(removeEnrollmentSignature7 != null && removeEnrollmentSignature7 !== '')
+		vals['removeEnrollmentSignature7'] = removeEnrollmentSignature7;
+
+	var removeEnrollmentSignature8 = $formFilters.find('.removeEnrollmentSignature8').val() === 'true';
+	var setEnrollmentSignature8 = removeEnrollmentSignature8 ? null : $formValues.find('.setEnrollmentSignature8').val();
+	if(removeEnrollmentSignature8 || setEnrollmentSignature8 != null && setEnrollmentSignature8 !== '')
+		vals['setEnrollmentSignature8'] = setEnrollmentSignature8;
+	var addEnrollmentSignature8 = $formValues.find('.addEnrollmentSignature8').val();
+	if(addEnrollmentSignature8 != null && addEnrollmentSignature8 !== '')
+		vals['addEnrollmentSignature8'] = addEnrollmentSignature8;
+	var removeEnrollmentSignature8 = $formValues.find('.removeEnrollmentSignature8').val();
+	if(removeEnrollmentSignature8 != null && removeEnrollmentSignature8 !== '')
+		vals['removeEnrollmentSignature8'] = removeEnrollmentSignature8;
+
+	var removeEnrollmentSignature9 = $formFilters.find('.removeEnrollmentSignature9').val() === 'true';
+	var setEnrollmentSignature9 = removeEnrollmentSignature9 ? null : $formValues.find('.setEnrollmentSignature9').val();
+	if(removeEnrollmentSignature9 || setEnrollmentSignature9 != null && setEnrollmentSignature9 !== '')
+		vals['setEnrollmentSignature9'] = setEnrollmentSignature9;
+	var addEnrollmentSignature9 = $formValues.find('.addEnrollmentSignature9').val();
+	if(addEnrollmentSignature9 != null && addEnrollmentSignature9 !== '')
+		vals['addEnrollmentSignature9'] = addEnrollmentSignature9;
+	var removeEnrollmentSignature9 = $formValues.find('.removeEnrollmentSignature9').val();
+	if(removeEnrollmentSignature9 != null && removeEnrollmentSignature9 !== '')
+		vals['removeEnrollmentSignature9'] = removeEnrollmentSignature9;
+
+	var removeEnrollmentSignature10 = $formFilters.find('.removeEnrollmentSignature10').val() === 'true';
+	var setEnrollmentSignature10 = removeEnrollmentSignature10 ? null : $formValues.find('.setEnrollmentSignature10').val();
+	if(removeEnrollmentSignature10 || setEnrollmentSignature10 != null && setEnrollmentSignature10 !== '')
+		vals['setEnrollmentSignature10'] = setEnrollmentSignature10;
+	var addEnrollmentSignature10 = $formValues.find('.addEnrollmentSignature10').val();
+	if(addEnrollmentSignature10 != null && addEnrollmentSignature10 !== '')
+		vals['addEnrollmentSignature10'] = addEnrollmentSignature10;
+	var removeEnrollmentSignature10 = $formValues.find('.removeEnrollmentSignature10').val();
+	if(removeEnrollmentSignature10 != null && removeEnrollmentSignature10 !== '')
+		vals['removeEnrollmentSignature10'] = removeEnrollmentSignature10;
+
+	var removeEnrollmentDate1 = $formFilters.find('.removeEnrollmentDate1').val() === 'true';
+	var setEnrollmentDate1 = removeEnrollmentDate1 ? null : $formValues.find('.setEnrollmentDate1').val();
+	if(removeEnrollmentDate1 || setEnrollmentDate1 != null && setEnrollmentDate1 !== '')
+		vals['setEnrollmentDate1'] = setEnrollmentDate1;
+	var addEnrollmentDate1 = $formValues.find('.addEnrollmentDate1').val();
+	if(addEnrollmentDate1 != null && addEnrollmentDate1 !== '')
+		vals['addEnrollmentDate1'] = addEnrollmentDate1;
+	var removeEnrollmentDate1 = $formValues.find('.removeEnrollmentDate1').val();
+	if(removeEnrollmentDate1 != null && removeEnrollmentDate1 !== '')
+		vals['removeEnrollmentDate1'] = removeEnrollmentDate1;
+
+	var removeEnrollmentDate2 = $formFilters.find('.removeEnrollmentDate2').val() === 'true';
+	var setEnrollmentDate2 = removeEnrollmentDate2 ? null : $formValues.find('.setEnrollmentDate2').val();
+	if(removeEnrollmentDate2 || setEnrollmentDate2 != null && setEnrollmentDate2 !== '')
+		vals['setEnrollmentDate2'] = setEnrollmentDate2;
+	var addEnrollmentDate2 = $formValues.find('.addEnrollmentDate2').val();
+	if(addEnrollmentDate2 != null && addEnrollmentDate2 !== '')
+		vals['addEnrollmentDate2'] = addEnrollmentDate2;
+	var removeEnrollmentDate2 = $formValues.find('.removeEnrollmentDate2').val();
+	if(removeEnrollmentDate2 != null && removeEnrollmentDate2 !== '')
+		vals['removeEnrollmentDate2'] = removeEnrollmentDate2;
+
+	var removeEnrollmentDate3 = $formFilters.find('.removeEnrollmentDate3').val() === 'true';
+	var setEnrollmentDate3 = removeEnrollmentDate3 ? null : $formValues.find('.setEnrollmentDate3').val();
+	if(removeEnrollmentDate3 || setEnrollmentDate3 != null && setEnrollmentDate3 !== '')
+		vals['setEnrollmentDate3'] = setEnrollmentDate3;
+	var addEnrollmentDate3 = $formValues.find('.addEnrollmentDate3').val();
+	if(addEnrollmentDate3 != null && addEnrollmentDate3 !== '')
+		vals['addEnrollmentDate3'] = addEnrollmentDate3;
+	var removeEnrollmentDate3 = $formValues.find('.removeEnrollmentDate3').val();
+	if(removeEnrollmentDate3 != null && removeEnrollmentDate3 !== '')
+		vals['removeEnrollmentDate3'] = removeEnrollmentDate3;
+
+	var removeEnrollmentDate4 = $formFilters.find('.removeEnrollmentDate4').val() === 'true';
+	var setEnrollmentDate4 = removeEnrollmentDate4 ? null : $formValues.find('.setEnrollmentDate4').val();
+	if(removeEnrollmentDate4 || setEnrollmentDate4 != null && setEnrollmentDate4 !== '')
+		vals['setEnrollmentDate4'] = setEnrollmentDate4;
+	var addEnrollmentDate4 = $formValues.find('.addEnrollmentDate4').val();
+	if(addEnrollmentDate4 != null && addEnrollmentDate4 !== '')
+		vals['addEnrollmentDate4'] = addEnrollmentDate4;
+	var removeEnrollmentDate4 = $formValues.find('.removeEnrollmentDate4').val();
+	if(removeEnrollmentDate4 != null && removeEnrollmentDate4 !== '')
+		vals['removeEnrollmentDate4'] = removeEnrollmentDate4;
+
+	var removeEnrollmentDate5 = $formFilters.find('.removeEnrollmentDate5').val() === 'true';
+	var setEnrollmentDate5 = removeEnrollmentDate5 ? null : $formValues.find('.setEnrollmentDate5').val();
+	if(removeEnrollmentDate5 || setEnrollmentDate5 != null && setEnrollmentDate5 !== '')
+		vals['setEnrollmentDate5'] = setEnrollmentDate5;
+	var addEnrollmentDate5 = $formValues.find('.addEnrollmentDate5').val();
+	if(addEnrollmentDate5 != null && addEnrollmentDate5 !== '')
+		vals['addEnrollmentDate5'] = addEnrollmentDate5;
+	var removeEnrollmentDate5 = $formValues.find('.removeEnrollmentDate5').val();
+	if(removeEnrollmentDate5 != null && removeEnrollmentDate5 !== '')
+		vals['removeEnrollmentDate5'] = removeEnrollmentDate5;
+
+	var removeEnrollmentDate6 = $formFilters.find('.removeEnrollmentDate6').val() === 'true';
+	var setEnrollmentDate6 = removeEnrollmentDate6 ? null : $formValues.find('.setEnrollmentDate6').val();
+	if(removeEnrollmentDate6 || setEnrollmentDate6 != null && setEnrollmentDate6 !== '')
+		vals['setEnrollmentDate6'] = setEnrollmentDate6;
+	var addEnrollmentDate6 = $formValues.find('.addEnrollmentDate6').val();
+	if(addEnrollmentDate6 != null && addEnrollmentDate6 !== '')
+		vals['addEnrollmentDate6'] = addEnrollmentDate6;
+	var removeEnrollmentDate6 = $formValues.find('.removeEnrollmentDate6').val();
+	if(removeEnrollmentDate6 != null && removeEnrollmentDate6 !== '')
+		vals['removeEnrollmentDate6'] = removeEnrollmentDate6;
+
+	var removeEnrollmentDate7 = $formFilters.find('.removeEnrollmentDate7').val() === 'true';
+	var setEnrollmentDate7 = removeEnrollmentDate7 ? null : $formValues.find('.setEnrollmentDate7').val();
+	if(removeEnrollmentDate7 || setEnrollmentDate7 != null && setEnrollmentDate7 !== '')
+		vals['setEnrollmentDate7'] = setEnrollmentDate7;
+	var addEnrollmentDate7 = $formValues.find('.addEnrollmentDate7').val();
+	if(addEnrollmentDate7 != null && addEnrollmentDate7 !== '')
+		vals['addEnrollmentDate7'] = addEnrollmentDate7;
+	var removeEnrollmentDate7 = $formValues.find('.removeEnrollmentDate7').val();
+	if(removeEnrollmentDate7 != null && removeEnrollmentDate7 !== '')
+		vals['removeEnrollmentDate7'] = removeEnrollmentDate7;
+
+	var removeEnrollmentDate8 = $formFilters.find('.removeEnrollmentDate8').val() === 'true';
+	var setEnrollmentDate8 = removeEnrollmentDate8 ? null : $formValues.find('.setEnrollmentDate8').val();
+	if(removeEnrollmentDate8 || setEnrollmentDate8 != null && setEnrollmentDate8 !== '')
+		vals['setEnrollmentDate8'] = setEnrollmentDate8;
+	var addEnrollmentDate8 = $formValues.find('.addEnrollmentDate8').val();
+	if(addEnrollmentDate8 != null && addEnrollmentDate8 !== '')
+		vals['addEnrollmentDate8'] = addEnrollmentDate8;
+	var removeEnrollmentDate8 = $formValues.find('.removeEnrollmentDate8').val();
+	if(removeEnrollmentDate8 != null && removeEnrollmentDate8 !== '')
+		vals['removeEnrollmentDate8'] = removeEnrollmentDate8;
+
+	var removeEnrollmentDate9 = $formFilters.find('.removeEnrollmentDate9').val() === 'true';
+	var setEnrollmentDate9 = removeEnrollmentDate9 ? null : $formValues.find('.setEnrollmentDate9').val();
+	if(removeEnrollmentDate9 || setEnrollmentDate9 != null && setEnrollmentDate9 !== '')
+		vals['setEnrollmentDate9'] = setEnrollmentDate9;
+	var addEnrollmentDate9 = $formValues.find('.addEnrollmentDate9').val();
+	if(addEnrollmentDate9 != null && addEnrollmentDate9 !== '')
+		vals['addEnrollmentDate9'] = addEnrollmentDate9;
+	var removeEnrollmentDate9 = $formValues.find('.removeEnrollmentDate9').val();
+	if(removeEnrollmentDate9 != null && removeEnrollmentDate9 !== '')
+		vals['removeEnrollmentDate9'] = removeEnrollmentDate9;
+
+	var removeEnrollmentDate10 = $formFilters.find('.removeEnrollmentDate10').val() === 'true';
+	var setEnrollmentDate10 = removeEnrollmentDate10 ? null : $formValues.find('.setEnrollmentDate10').val();
+	if(removeEnrollmentDate10 || setEnrollmentDate10 != null && setEnrollmentDate10 !== '')
+		vals['setEnrollmentDate10'] = setEnrollmentDate10;
+	var addEnrollmentDate10 = $formValues.find('.addEnrollmentDate10').val();
+	if(addEnrollmentDate10 != null && addEnrollmentDate10 !== '')
+		vals['addEnrollmentDate10'] = addEnrollmentDate10;
+	var removeEnrollmentDate10 = $formValues.find('.removeEnrollmentDate10').val();
+	if(removeEnrollmentDate10 != null && removeEnrollmentDate10 !== '')
+		vals['removeEnrollmentDate10'] = removeEnrollmentDate10;
 
 	var removeEnrollmentCompleteName = $formFilters.find('.removeEnrollmentCompleteName').val() === 'true';
 	var setEnrollmentCompleteName = removeEnrollmentCompleteName ? null : $formValues.find('.setEnrollmentCompleteName').val();
@@ -585,6 +855,10 @@ function patchSchoolEnrollmentFilters($formFilters) {
 	if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
 		filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
+	var filterSessionId = $formFilters.find('.valueSessionId').val();
+	if(filterSessionId != null && filterSessionId !== '')
+		filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
 	var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
 	if(filterObjectTitle != null && filterObjectTitle !== '')
 		filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
@@ -705,13 +979,13 @@ function patchSchoolEnrollmentFilters($formFilters) {
 	if(filterSeasonCompleteName != null && filterSeasonCompleteName !== '')
 		filters.push({ name: 'fq', value: 'seasonCompleteName:' + filterSeasonCompleteName });
 
-	var filterSessionStartDay = $formFilters.find('.valueSessionStartDay').val();
-	if(filterSessionStartDay != null && filterSessionStartDay !== '')
-		filters.push({ name: 'fq', value: 'sessionStartDay:' + filterSessionStartDay });
+	var filterSessionStartDate = $formFilters.find('.valueSessionStartDate').val();
+	if(filterSessionStartDate != null && filterSessionStartDate !== '')
+		filters.push({ name: 'fq', value: 'sessionStartDate:' + filterSessionStartDate });
 
-	var filterSessionEndDay = $formFilters.find('.valueSessionEndDay').val();
-	if(filterSessionEndDay != null && filterSessionEndDay !== '')
-		filters.push({ name: 'fq', value: 'sessionEndDay:' + filterSessionEndDay });
+	var filterSessionEndDate = $formFilters.find('.valueSessionEndDate').val();
+	if(filterSessionEndDate != null && filterSessionEndDate !== '')
+		filters.push({ name: 'fq', value: 'sessionEndDate:' + filterSessionEndDate });
 
 	var filterAgeCompleteName = $formFilters.find('.valueAgeCompleteName').val();
 	if(filterAgeCompleteName != null && filterAgeCompleteName !== '')
@@ -777,9 +1051,81 @@ function patchSchoolEnrollmentFilters($formFilters) {
 	if(filterEnrollmentSignature1 != null && filterEnrollmentSignature1 !== '')
 		filters.push({ name: 'fq', value: 'enrollmentSignature1:' + filterEnrollmentSignature1 });
 
-	var filterEnrollmentParentDate = $formFilters.find('.valueEnrollmentParentDate').val();
-	if(filterEnrollmentParentDate != null && filterEnrollmentParentDate !== '')
-		filters.push({ name: 'fq', value: 'enrollmentParentDate:' + filterEnrollmentParentDate });
+	var filterEnrollmentSignature2 = $formFilters.find('.valueEnrollmentSignature2').val();
+	if(filterEnrollmentSignature2 != null && filterEnrollmentSignature2 !== '')
+		filters.push({ name: 'fq', value: 'enrollmentSignature2:' + filterEnrollmentSignature2 });
+
+	var filterEnrollmentSignature3 = $formFilters.find('.valueEnrollmentSignature3').val();
+	if(filterEnrollmentSignature3 != null && filterEnrollmentSignature3 !== '')
+		filters.push({ name: 'fq', value: 'enrollmentSignature3:' + filterEnrollmentSignature3 });
+
+	var filterEnrollmentSignature4 = $formFilters.find('.valueEnrollmentSignature4').val();
+	if(filterEnrollmentSignature4 != null && filterEnrollmentSignature4 !== '')
+		filters.push({ name: 'fq', value: 'enrollmentSignature4:' + filterEnrollmentSignature4 });
+
+	var filterEnrollmentSignature5 = $formFilters.find('.valueEnrollmentSignature5').val();
+	if(filterEnrollmentSignature5 != null && filterEnrollmentSignature5 !== '')
+		filters.push({ name: 'fq', value: 'enrollmentSignature5:' + filterEnrollmentSignature5 });
+
+	var filterEnrollmentSignature6 = $formFilters.find('.valueEnrollmentSignature6').val();
+	if(filterEnrollmentSignature6 != null && filterEnrollmentSignature6 !== '')
+		filters.push({ name: 'fq', value: 'enrollmentSignature6:' + filterEnrollmentSignature6 });
+
+	var filterEnrollmentSignature7 = $formFilters.find('.valueEnrollmentSignature7').val();
+	if(filterEnrollmentSignature7 != null && filterEnrollmentSignature7 !== '')
+		filters.push({ name: 'fq', value: 'enrollmentSignature7:' + filterEnrollmentSignature7 });
+
+	var filterEnrollmentSignature8 = $formFilters.find('.valueEnrollmentSignature8').val();
+	if(filterEnrollmentSignature8 != null && filterEnrollmentSignature8 !== '')
+		filters.push({ name: 'fq', value: 'enrollmentSignature8:' + filterEnrollmentSignature8 });
+
+	var filterEnrollmentSignature9 = $formFilters.find('.valueEnrollmentSignature9').val();
+	if(filterEnrollmentSignature9 != null && filterEnrollmentSignature9 !== '')
+		filters.push({ name: 'fq', value: 'enrollmentSignature9:' + filterEnrollmentSignature9 });
+
+	var filterEnrollmentSignature10 = $formFilters.find('.valueEnrollmentSignature10').val();
+	if(filterEnrollmentSignature10 != null && filterEnrollmentSignature10 !== '')
+		filters.push({ name: 'fq', value: 'enrollmentSignature10:' + filterEnrollmentSignature10 });
+
+	var filterEnrollmentDate1 = $formFilters.find('.valueEnrollmentDate1').val();
+	if(filterEnrollmentDate1 != null && filterEnrollmentDate1 !== '')
+		filters.push({ name: 'fq', value: 'enrollmentDate1:' + filterEnrollmentDate1 });
+
+	var filterEnrollmentDate2 = $formFilters.find('.valueEnrollmentDate2').val();
+	if(filterEnrollmentDate2 != null && filterEnrollmentDate2 !== '')
+		filters.push({ name: 'fq', value: 'enrollmentDate2:' + filterEnrollmentDate2 });
+
+	var filterEnrollmentDate3 = $formFilters.find('.valueEnrollmentDate3').val();
+	if(filterEnrollmentDate3 != null && filterEnrollmentDate3 !== '')
+		filters.push({ name: 'fq', value: 'enrollmentDate3:' + filterEnrollmentDate3 });
+
+	var filterEnrollmentDate4 = $formFilters.find('.valueEnrollmentDate4').val();
+	if(filterEnrollmentDate4 != null && filterEnrollmentDate4 !== '')
+		filters.push({ name: 'fq', value: 'enrollmentDate4:' + filterEnrollmentDate4 });
+
+	var filterEnrollmentDate5 = $formFilters.find('.valueEnrollmentDate5').val();
+	if(filterEnrollmentDate5 != null && filterEnrollmentDate5 !== '')
+		filters.push({ name: 'fq', value: 'enrollmentDate5:' + filterEnrollmentDate5 });
+
+	var filterEnrollmentDate6 = $formFilters.find('.valueEnrollmentDate6').val();
+	if(filterEnrollmentDate6 != null && filterEnrollmentDate6 !== '')
+		filters.push({ name: 'fq', value: 'enrollmentDate6:' + filterEnrollmentDate6 });
+
+	var filterEnrollmentDate7 = $formFilters.find('.valueEnrollmentDate7').val();
+	if(filterEnrollmentDate7 != null && filterEnrollmentDate7 !== '')
+		filters.push({ name: 'fq', value: 'enrollmentDate7:' + filterEnrollmentDate7 });
+
+	var filterEnrollmentDate8 = $formFilters.find('.valueEnrollmentDate8').val();
+	if(filterEnrollmentDate8 != null && filterEnrollmentDate8 !== '')
+		filters.push({ name: 'fq', value: 'enrollmentDate8:' + filterEnrollmentDate8 });
+
+	var filterEnrollmentDate9 = $formFilters.find('.valueEnrollmentDate9').val();
+	if(filterEnrollmentDate9 != null && filterEnrollmentDate9 !== '')
+		filters.push({ name: 'fq', value: 'enrollmentDate9:' + filterEnrollmentDate9 });
+
+	var filterEnrollmentDate10 = $formFilters.find('.valueEnrollmentDate10').val();
+	if(filterEnrollmentDate10 != null && filterEnrollmentDate10 !== '')
+		filters.push({ name: 'fq', value: 'enrollmentDate10:' + filterEnrollmentDate10 });
 
 	var filterEnrollmentCompleteName = $formFilters.find('.valueEnrollmentCompleteName').val();
 	if(filterEnrollmentCompleteName != null && filterEnrollmentCompleteName !== '')
@@ -959,6 +1305,10 @@ function searchSchoolEnrollmentFilters($formFilters) {
 	if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
 		filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
+	var filterSessionId = $formFilters.find('.valueSessionId').val();
+	if(filterSessionId != null && filterSessionId !== '')
+		filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
 	var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
 	if(filterObjectTitle != null && filterObjectTitle !== '')
 		filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
@@ -1079,13 +1429,13 @@ function searchSchoolEnrollmentFilters($formFilters) {
 	if(filterSeasonCompleteName != null && filterSeasonCompleteName !== '')
 		filters.push({ name: 'fq', value: 'seasonCompleteName:' + filterSeasonCompleteName });
 
-	var filterSessionStartDay = $formFilters.find('.valueSessionStartDay').val();
-	if(filterSessionStartDay != null && filterSessionStartDay !== '')
-		filters.push({ name: 'fq', value: 'sessionStartDay:' + filterSessionStartDay });
+	var filterSessionStartDate = $formFilters.find('.valueSessionStartDate').val();
+	if(filterSessionStartDate != null && filterSessionStartDate !== '')
+		filters.push({ name: 'fq', value: 'sessionStartDate:' + filterSessionStartDate });
 
-	var filterSessionEndDay = $formFilters.find('.valueSessionEndDay').val();
-	if(filterSessionEndDay != null && filterSessionEndDay !== '')
-		filters.push({ name: 'fq', value: 'sessionEndDay:' + filterSessionEndDay });
+	var filterSessionEndDate = $formFilters.find('.valueSessionEndDate').val();
+	if(filterSessionEndDate != null && filterSessionEndDate !== '')
+		filters.push({ name: 'fq', value: 'sessionEndDate:' + filterSessionEndDate });
 
 	var filterAgeCompleteName = $formFilters.find('.valueAgeCompleteName').val();
 	if(filterAgeCompleteName != null && filterAgeCompleteName !== '')
@@ -1151,9 +1501,81 @@ function searchSchoolEnrollmentFilters($formFilters) {
 	if(filterEnrollmentSignature1 != null && filterEnrollmentSignature1 !== '')
 		filters.push({ name: 'fq', value: 'enrollmentSignature1:' + filterEnrollmentSignature1 });
 
-	var filterEnrollmentParentDate = $formFilters.find('.valueEnrollmentParentDate').val();
-	if(filterEnrollmentParentDate != null && filterEnrollmentParentDate !== '')
-		filters.push({ name: 'fq', value: 'enrollmentParentDate:' + filterEnrollmentParentDate });
+	var filterEnrollmentSignature2 = $formFilters.find('.valueEnrollmentSignature2').val();
+	if(filterEnrollmentSignature2 != null && filterEnrollmentSignature2 !== '')
+		filters.push({ name: 'fq', value: 'enrollmentSignature2:' + filterEnrollmentSignature2 });
+
+	var filterEnrollmentSignature3 = $formFilters.find('.valueEnrollmentSignature3').val();
+	if(filterEnrollmentSignature3 != null && filterEnrollmentSignature3 !== '')
+		filters.push({ name: 'fq', value: 'enrollmentSignature3:' + filterEnrollmentSignature3 });
+
+	var filterEnrollmentSignature4 = $formFilters.find('.valueEnrollmentSignature4').val();
+	if(filterEnrollmentSignature4 != null && filterEnrollmentSignature4 !== '')
+		filters.push({ name: 'fq', value: 'enrollmentSignature4:' + filterEnrollmentSignature4 });
+
+	var filterEnrollmentSignature5 = $formFilters.find('.valueEnrollmentSignature5').val();
+	if(filterEnrollmentSignature5 != null && filterEnrollmentSignature5 !== '')
+		filters.push({ name: 'fq', value: 'enrollmentSignature5:' + filterEnrollmentSignature5 });
+
+	var filterEnrollmentSignature6 = $formFilters.find('.valueEnrollmentSignature6').val();
+	if(filterEnrollmentSignature6 != null && filterEnrollmentSignature6 !== '')
+		filters.push({ name: 'fq', value: 'enrollmentSignature6:' + filterEnrollmentSignature6 });
+
+	var filterEnrollmentSignature7 = $formFilters.find('.valueEnrollmentSignature7').val();
+	if(filterEnrollmentSignature7 != null && filterEnrollmentSignature7 !== '')
+		filters.push({ name: 'fq', value: 'enrollmentSignature7:' + filterEnrollmentSignature7 });
+
+	var filterEnrollmentSignature8 = $formFilters.find('.valueEnrollmentSignature8').val();
+	if(filterEnrollmentSignature8 != null && filterEnrollmentSignature8 !== '')
+		filters.push({ name: 'fq', value: 'enrollmentSignature8:' + filterEnrollmentSignature8 });
+
+	var filterEnrollmentSignature9 = $formFilters.find('.valueEnrollmentSignature9').val();
+	if(filterEnrollmentSignature9 != null && filterEnrollmentSignature9 !== '')
+		filters.push({ name: 'fq', value: 'enrollmentSignature9:' + filterEnrollmentSignature9 });
+
+	var filterEnrollmentSignature10 = $formFilters.find('.valueEnrollmentSignature10').val();
+	if(filterEnrollmentSignature10 != null && filterEnrollmentSignature10 !== '')
+		filters.push({ name: 'fq', value: 'enrollmentSignature10:' + filterEnrollmentSignature10 });
+
+	var filterEnrollmentDate1 = $formFilters.find('.valueEnrollmentDate1').val();
+	if(filterEnrollmentDate1 != null && filterEnrollmentDate1 !== '')
+		filters.push({ name: 'fq', value: 'enrollmentDate1:' + filterEnrollmentDate1 });
+
+	var filterEnrollmentDate2 = $formFilters.find('.valueEnrollmentDate2').val();
+	if(filterEnrollmentDate2 != null && filterEnrollmentDate2 !== '')
+		filters.push({ name: 'fq', value: 'enrollmentDate2:' + filterEnrollmentDate2 });
+
+	var filterEnrollmentDate3 = $formFilters.find('.valueEnrollmentDate3').val();
+	if(filterEnrollmentDate3 != null && filterEnrollmentDate3 !== '')
+		filters.push({ name: 'fq', value: 'enrollmentDate3:' + filterEnrollmentDate3 });
+
+	var filterEnrollmentDate4 = $formFilters.find('.valueEnrollmentDate4').val();
+	if(filterEnrollmentDate4 != null && filterEnrollmentDate4 !== '')
+		filters.push({ name: 'fq', value: 'enrollmentDate4:' + filterEnrollmentDate4 });
+
+	var filterEnrollmentDate5 = $formFilters.find('.valueEnrollmentDate5').val();
+	if(filterEnrollmentDate5 != null && filterEnrollmentDate5 !== '')
+		filters.push({ name: 'fq', value: 'enrollmentDate5:' + filterEnrollmentDate5 });
+
+	var filterEnrollmentDate6 = $formFilters.find('.valueEnrollmentDate6').val();
+	if(filterEnrollmentDate6 != null && filterEnrollmentDate6 !== '')
+		filters.push({ name: 'fq', value: 'enrollmentDate6:' + filterEnrollmentDate6 });
+
+	var filterEnrollmentDate7 = $formFilters.find('.valueEnrollmentDate7').val();
+	if(filterEnrollmentDate7 != null && filterEnrollmentDate7 !== '')
+		filters.push({ name: 'fq', value: 'enrollmentDate7:' + filterEnrollmentDate7 });
+
+	var filterEnrollmentDate8 = $formFilters.find('.valueEnrollmentDate8').val();
+	if(filterEnrollmentDate8 != null && filterEnrollmentDate8 !== '')
+		filters.push({ name: 'fq', value: 'enrollmentDate8:' + filterEnrollmentDate8 });
+
+	var filterEnrollmentDate9 = $formFilters.find('.valueEnrollmentDate9').val();
+	if(filterEnrollmentDate9 != null && filterEnrollmentDate9 !== '')
+		filters.push({ name: 'fq', value: 'enrollmentDate9:' + filterEnrollmentDate9 });
+
+	var filterEnrollmentDate10 = $formFilters.find('.valueEnrollmentDate10').val();
+	if(filterEnrollmentDate10 != null && filterEnrollmentDate10 !== '')
+		filters.push({ name: 'fq', value: 'enrollmentDate10:' + filterEnrollmentDate10 });
 
 	var filterEnrollmentCompleteName = $formFilters.find('.valueEnrollmentCompleteName').val();
 	if(filterEnrollmentCompleteName != null && filterEnrollmentCompleteName !== '')

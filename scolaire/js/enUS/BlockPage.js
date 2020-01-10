@@ -81,6 +81,18 @@ async function postSchoolBlock($formValues, success, error) {
 	if(valueEnrollmentKeys != null && valueEnrollmentKeys !== '')
 		vals['enrollmentKeys'] = valueEnrollmentKeys;
 
+	var valueSchoolAddress = $formValues.find('.valueSchoolAddress').val();
+	if(valueSchoolAddress != null && valueSchoolAddress !== '')
+		vals['schoolAddress'] = valueSchoolAddress;
+
+	var valueBlockSunday = $formValues.find('.valueBlockSunday').prop('checked');
+	if(valueBlockSunday != null && valueBlockSunday !== '')
+		vals['blockSunday'] = valueBlockSunday;
+
+	var valueBlockSaturday = $formValues.find('.valueBlockSaturday').prop('checked');
+	if(valueBlockSaturday != null && valueBlockSaturday !== '')
+		vals['blockSaturday'] = valueBlockSaturday;
+
 	var valueBlockCompleteName = $formValues.find('.valueBlockCompleteName').val();
 	if(valueBlockCompleteName != null && valueBlockCompleteName !== '')
 		vals['blockCompleteName'] = valueBlockCompleteName;
@@ -291,6 +303,39 @@ async function patchSchoolBlock($formFilters, $formValues, success, error) {
 	if(removeEnrollmentKeys != null && removeEnrollmentKeys !== '')
 		vals['removeEnrollmentKeys'] = removeEnrollmentKeys;
 
+	var removeSchoolAddress = $formFilters.find('.removeSchoolAddress').val() === 'true';
+	var setSchoolAddress = removeSchoolAddress ? null : $formValues.find('.setSchoolAddress').val();
+	if(removeSchoolAddress || setSchoolAddress != null && setSchoolAddress !== '')
+		vals['setSchoolAddress'] = setSchoolAddress;
+	var addSchoolAddress = $formValues.find('.addSchoolAddress').val();
+	if(addSchoolAddress != null && addSchoolAddress !== '')
+		vals['addSchoolAddress'] = addSchoolAddress;
+	var removeSchoolAddress = $formValues.find('.removeSchoolAddress').val();
+	if(removeSchoolAddress != null && removeSchoolAddress !== '')
+		vals['removeSchoolAddress'] = removeSchoolAddress;
+
+	var removeBlockSunday = $formFilters.find('.removeBlockSunday').val() === 'true';
+	var setBlockSunday = removeBlockSunday ? null : $formValues.find('.setBlockSunday').prop('checked');
+	if(removeBlockSunday || setBlockSunday != null && setBlockSunday !== '')
+		vals['setBlockSunday'] = setBlockSunday;
+	var addBlockSunday = $formValues.find('.addBlockSunday').prop('checked');
+	if(addBlockSunday != null && addBlockSunday !== '')
+		vals['addBlockSunday'] = addBlockSunday;
+	var removeBlockSunday = $formValues.find('.removeBlockSunday').prop('checked');
+	if(removeBlockSunday != null && removeBlockSunday !== '')
+		vals['removeBlockSunday'] = removeBlockSunday;
+
+	var removeBlockSaturday = $formFilters.find('.removeBlockSaturday').val() === 'true';
+	var setBlockSaturday = removeBlockSaturday ? null : $formValues.find('.setBlockSaturday').prop('checked');
+	if(removeBlockSaturday || setBlockSaturday != null && setBlockSaturday !== '')
+		vals['setBlockSaturday'] = setBlockSaturday;
+	var addBlockSaturday = $formValues.find('.addBlockSaturday').prop('checked');
+	if(addBlockSaturday != null && addBlockSaturday !== '')
+		vals['addBlockSaturday'] = addBlockSaturday;
+	var removeBlockSaturday = $formValues.find('.removeBlockSaturday').prop('checked');
+	if(removeBlockSaturday != null && removeBlockSaturday !== '')
+		vals['removeBlockSaturday'] = removeBlockSaturday;
+
 	var removeBlockCompleteName = $formFilters.find('.removeBlockCompleteName').val() === 'true';
 	var setBlockCompleteName = removeBlockCompleteName ? null : $formValues.find('.setBlockCompleteName').val();
 	if(removeBlockCompleteName || setBlockCompleteName != null && setBlockCompleteName !== '')
@@ -387,6 +432,10 @@ function patchSchoolBlockFilters($formFilters) {
 	var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
 	if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
 		filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+	var filterSessionId = $formFilters.find('.valueSessionId').val();
+	if(filterSessionId != null && filterSessionId !== '')
+		filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
 
 	var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
 	if(filterObjectTitle != null && filterObjectTitle !== '')
@@ -496,17 +545,25 @@ function patchSchoolBlockFilters($formFilters) {
 	if(filterSeasonEnrollmentFee != null && filterSeasonEnrollmentFee !== '')
 		filters.push({ name: 'fq', value: 'seasonEnrollmentFee:' + filterSeasonEnrollmentFee });
 
+	var filterSeasonShortName = $formFilters.find('.valueSeasonShortName').val();
+	if(filterSeasonShortName != null && filterSeasonShortName !== '')
+		filters.push({ name: 'fq', value: 'seasonShortName:' + filterSeasonShortName });
+
 	var filterSeasonCompleteName = $formFilters.find('.valueSeasonCompleteName').val();
 	if(filterSeasonCompleteName != null && filterSeasonCompleteName !== '')
 		filters.push({ name: 'fq', value: 'seasonCompleteName:' + filterSeasonCompleteName });
 
-	var filterSessionStartDay = $formFilters.find('.valueSessionStartDay').val();
-	if(filterSessionStartDay != null && filterSessionStartDay !== '')
-		filters.push({ name: 'fq', value: 'sessionStartDay:' + filterSessionStartDay });
+	var filterSessionStartDate = $formFilters.find('.valueSessionStartDate').val();
+	if(filterSessionStartDate != null && filterSessionStartDate !== '')
+		filters.push({ name: 'fq', value: 'sessionStartDate:' + filterSessionStartDate });
 
-	var filterSessionEndDay = $formFilters.find('.valueSessionEndDay').val();
-	if(filterSessionEndDay != null && filterSessionEndDay !== '')
-		filters.push({ name: 'fq', value: 'sessionEndDay:' + filterSessionEndDay });
+	var filterSessionEndDate = $formFilters.find('.valueSessionEndDate').val();
+	if(filterSessionEndDate != null && filterSessionEndDate !== '')
+		filters.push({ name: 'fq', value: 'sessionEndDate:' + filterSessionEndDate });
+
+	var filterAgeShortName = $formFilters.find('.valueAgeShortName').val();
+	if(filterAgeShortName != null && filterAgeShortName !== '')
+		filters.push({ name: 'fq', value: 'ageShortName:' + filterAgeShortName });
 
 	var filterAgeCompleteName = $formFilters.find('.valueAgeCompleteName').val();
 	if(filterAgeCompleteName != null && filterAgeCompleteName !== '')
@@ -531,6 +588,10 @@ function patchSchoolBlockFilters($formFilters) {
 	var filterBlockTotalPrice = $formFilters.find('.valueBlockTotalPrice').val();
 	if(filterBlockTotalPrice != null && filterBlockTotalPrice !== '')
 		filters.push({ name: 'fq', value: 'blockTotalPrice:' + filterBlockTotalPrice });
+
+	var filterBlockShortName = $formFilters.find('.valueBlockShortName').val();
+	if(filterBlockShortName != null && filterBlockShortName !== '')
+		filters.push({ name: 'fq', value: 'blockShortName:' + filterBlockShortName });
 
 	var filterBlockCompleteName = $formFilters.find('.valueBlockCompleteName').val();
 	if(filterBlockCompleteName != null && filterBlockCompleteName !== '')
@@ -678,6 +739,10 @@ function searchSchoolBlockFilters($formFilters) {
 	if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
 		filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
+	var filterSessionId = $formFilters.find('.valueSessionId').val();
+	if(filterSessionId != null && filterSessionId !== '')
+		filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
 	var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
 	if(filterObjectTitle != null && filterObjectTitle !== '')
 		filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
@@ -786,17 +851,25 @@ function searchSchoolBlockFilters($formFilters) {
 	if(filterSeasonEnrollmentFee != null && filterSeasonEnrollmentFee !== '')
 		filters.push({ name: 'fq', value: 'seasonEnrollmentFee:' + filterSeasonEnrollmentFee });
 
+	var filterSeasonShortName = $formFilters.find('.valueSeasonShortName').val();
+	if(filterSeasonShortName != null && filterSeasonShortName !== '')
+		filters.push({ name: 'fq', value: 'seasonShortName:' + filterSeasonShortName });
+
 	var filterSeasonCompleteName = $formFilters.find('.valueSeasonCompleteName').val();
 	if(filterSeasonCompleteName != null && filterSeasonCompleteName !== '')
 		filters.push({ name: 'fq', value: 'seasonCompleteName:' + filterSeasonCompleteName });
 
-	var filterSessionStartDay = $formFilters.find('.valueSessionStartDay').val();
-	if(filterSessionStartDay != null && filterSessionStartDay !== '')
-		filters.push({ name: 'fq', value: 'sessionStartDay:' + filterSessionStartDay });
+	var filterSessionStartDate = $formFilters.find('.valueSessionStartDate').val();
+	if(filterSessionStartDate != null && filterSessionStartDate !== '')
+		filters.push({ name: 'fq', value: 'sessionStartDate:' + filterSessionStartDate });
 
-	var filterSessionEndDay = $formFilters.find('.valueSessionEndDay').val();
-	if(filterSessionEndDay != null && filterSessionEndDay !== '')
-		filters.push({ name: 'fq', value: 'sessionEndDay:' + filterSessionEndDay });
+	var filterSessionEndDate = $formFilters.find('.valueSessionEndDate').val();
+	if(filterSessionEndDate != null && filterSessionEndDate !== '')
+		filters.push({ name: 'fq', value: 'sessionEndDate:' + filterSessionEndDate });
+
+	var filterAgeShortName = $formFilters.find('.valueAgeShortName').val();
+	if(filterAgeShortName != null && filterAgeShortName !== '')
+		filters.push({ name: 'fq', value: 'ageShortName:' + filterAgeShortName });
 
 	var filterAgeCompleteName = $formFilters.find('.valueAgeCompleteName').val();
 	if(filterAgeCompleteName != null && filterAgeCompleteName !== '')
@@ -821,6 +894,10 @@ function searchSchoolBlockFilters($formFilters) {
 	var filterBlockTotalPrice = $formFilters.find('.valueBlockTotalPrice').val();
 	if(filterBlockTotalPrice != null && filterBlockTotalPrice !== '')
 		filters.push({ name: 'fq', value: 'blockTotalPrice:' + filterBlockTotalPrice });
+
+	var filterBlockShortName = $formFilters.find('.valueBlockShortName').val();
+	if(filterBlockShortName != null && filterBlockShortName !== '')
+		filters.push({ name: 'fq', value: 'blockShortName:' + filterBlockShortName });
 
 	var filterBlockCompleteName = $formFilters.find('.valueBlockCompleteName').val();
 	if(filterBlockCompleteName != null && filterBlockCompleteName !== '')

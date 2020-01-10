@@ -41,13 +41,13 @@ async function postSchoolSession($formValues, success, error) {
 	if(valueDeleted != null && valueDeleted !== '')
 		vals['deleted'] = valueDeleted;
 
-	var valueSessionStartDay = $formValues.find('.valueSessionStartDay').val();
-	if(valueSessionStartDay != null && valueSessionStartDay !== '')
-		vals['sessionStartDay'] = valueSessionStartDay;
+	var valueSessionStartDate = $formValues.find('.valueSessionStartDate').val();
+	if(valueSessionStartDate != null && valueSessionStartDate !== '')
+		vals['sessionStartDate'] = valueSessionStartDate;
 
-	var valueSessionEndDay = $formValues.find('.valueSessionEndDay').val();
-	if(valueSessionEndDay != null && valueSessionEndDay !== '')
-		vals['sessionEndDay'] = valueSessionEndDay;
+	var valueSessionEndDate = $formValues.find('.valueSessionEndDate').val();
+	if(valueSessionEndDate != null && valueSessionEndDate !== '')
+		vals['sessionEndDate'] = valueSessionEndDate;
 
 	var valueSeasonKey = $formValues.find('.valueSeasonKey').val();
 	if(valueSeasonKey != null && valueSeasonKey !== '')
@@ -56,6 +56,10 @@ async function postSchoolSession($formValues, success, error) {
 	var valueAgeKeys = $formValues.find('.valueAgeKeys').val();
 	if(valueAgeKeys != null && valueAgeKeys !== '')
 		vals['ageKeys'] = valueAgeKeys;
+
+	var valueSchoolAddress = $formValues.find('.valueSchoolAddress').val();
+	if(valueSchoolAddress != null && valueSchoolAddress !== '')
+		vals['schoolAddress'] = valueSchoolAddress;
 
 	var valueSessionCompleteName = $formValues.find('.valueSessionCompleteName').val();
 	if(valueSessionCompleteName != null && valueSessionCompleteName !== '')
@@ -157,27 +161,27 @@ async function patchSchoolSession($formFilters, $formValues, success, error) {
 	if(removeDeleted != null && removeDeleted !== '')
 		vals['removeDeleted'] = removeDeleted;
 
-	var removeSessionStartDay = $formFilters.find('.removeSessionStartDay').val() === 'true';
-	var setSessionStartDay = removeSessionStartDay ? null : $formValues.find('.setSessionStartDay').val();
-	if(removeSessionStartDay || setSessionStartDay != null && setSessionStartDay !== '')
-		vals['setSessionStartDay'] = setSessionStartDay;
-	var addSessionStartDay = $formValues.find('.addSessionStartDay').val();
-	if(addSessionStartDay != null && addSessionStartDay !== '')
-		vals['addSessionStartDay'] = addSessionStartDay;
-	var removeSessionStartDay = $formValues.find('.removeSessionStartDay').val();
-	if(removeSessionStartDay != null && removeSessionStartDay !== '')
-		vals['removeSessionStartDay'] = removeSessionStartDay;
+	var removeSessionStartDate = $formFilters.find('.removeSessionStartDate').val() === 'true';
+	var setSessionStartDate = removeSessionStartDate ? null : $formValues.find('.setSessionStartDate').val();
+	if(removeSessionStartDate || setSessionStartDate != null && setSessionStartDate !== '')
+		vals['setSessionStartDate'] = setSessionStartDate;
+	var addSessionStartDate = $formValues.find('.addSessionStartDate').val();
+	if(addSessionStartDate != null && addSessionStartDate !== '')
+		vals['addSessionStartDate'] = addSessionStartDate;
+	var removeSessionStartDate = $formValues.find('.removeSessionStartDate').val();
+	if(removeSessionStartDate != null && removeSessionStartDate !== '')
+		vals['removeSessionStartDate'] = removeSessionStartDate;
 
-	var removeSessionEndDay = $formFilters.find('.removeSessionEndDay').val() === 'true';
-	var setSessionEndDay = removeSessionEndDay ? null : $formValues.find('.setSessionEndDay').val();
-	if(removeSessionEndDay || setSessionEndDay != null && setSessionEndDay !== '')
-		vals['setSessionEndDay'] = setSessionEndDay;
-	var addSessionEndDay = $formValues.find('.addSessionEndDay').val();
-	if(addSessionEndDay != null && addSessionEndDay !== '')
-		vals['addSessionEndDay'] = addSessionEndDay;
-	var removeSessionEndDay = $formValues.find('.removeSessionEndDay').val();
-	if(removeSessionEndDay != null && removeSessionEndDay !== '')
-		vals['removeSessionEndDay'] = removeSessionEndDay;
+	var removeSessionEndDate = $formFilters.find('.removeSessionEndDate').val() === 'true';
+	var setSessionEndDate = removeSessionEndDate ? null : $formValues.find('.setSessionEndDate').val();
+	if(removeSessionEndDate || setSessionEndDate != null && setSessionEndDate !== '')
+		vals['setSessionEndDate'] = setSessionEndDate;
+	var addSessionEndDate = $formValues.find('.addSessionEndDate').val();
+	if(addSessionEndDate != null && addSessionEndDate !== '')
+		vals['addSessionEndDate'] = addSessionEndDate;
+	var removeSessionEndDate = $formValues.find('.removeSessionEndDate').val();
+	if(removeSessionEndDate != null && removeSessionEndDate !== '')
+		vals['removeSessionEndDate'] = removeSessionEndDate;
 
 	var removeSeasonKey = $formFilters.find('.removeSeasonKey').val() === 'true';
 	var setSeasonKey = removeSeasonKey ? null : $formValues.find('.setSeasonKey').val();
@@ -200,6 +204,17 @@ async function patchSchoolSession($formFilters, $formValues, success, error) {
 	var removeAgeKeys = $formValues.find('.removeAgeKeys').val();
 	if(removeAgeKeys != null && removeAgeKeys !== '')
 		vals['removeAgeKeys'] = removeAgeKeys;
+
+	var removeSchoolAddress = $formFilters.find('.removeSchoolAddress').val() === 'true';
+	var setSchoolAddress = removeSchoolAddress ? null : $formValues.find('.setSchoolAddress').val();
+	if(removeSchoolAddress || setSchoolAddress != null && setSchoolAddress !== '')
+		vals['setSchoolAddress'] = setSchoolAddress;
+	var addSchoolAddress = $formValues.find('.addSchoolAddress').val();
+	if(addSchoolAddress != null && addSchoolAddress !== '')
+		vals['addSchoolAddress'] = addSchoolAddress;
+	var removeSchoolAddress = $formValues.find('.removeSchoolAddress').val();
+	if(removeSchoolAddress != null && removeSchoolAddress !== '')
+		vals['removeSchoolAddress'] = removeSchoolAddress;
 
 	var removeSessionCompleteName = $formFilters.find('.removeSessionCompleteName').val() === 'true';
 	var setSessionCompleteName = removeSessionCompleteName ? null : $formValues.find('.setSessionCompleteName').val();
@@ -242,13 +257,13 @@ function patchSchoolSessionFilters($formFilters) {
 	if(filterDeleted != null && filterDeleted === true)
 		filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
-	var filterSessionStartDay = $formFilters.find('.valueSessionStartDay').val();
-	if(filterSessionStartDay != null && filterSessionStartDay !== '')
-		filters.push({ name: 'fq', value: 'sessionStartDay:' + filterSessionStartDay });
+	var filterSessionStartDate = $formFilters.find('.valueSessionStartDate').val();
+	if(filterSessionStartDate != null && filterSessionStartDate !== '')
+		filters.push({ name: 'fq', value: 'sessionStartDate:' + filterSessionStartDate });
 
-	var filterSessionEndDay = $formFilters.find('.valueSessionEndDay').val();
-	if(filterSessionEndDay != null && filterSessionEndDay !== '')
-		filters.push({ name: 'fq', value: 'sessionEndDay:' + filterSessionEndDay });
+	var filterSessionEndDate = $formFilters.find('.valueSessionEndDate').val();
+	if(filterSessionEndDate != null && filterSessionEndDate !== '')
+		filters.push({ name: 'fq', value: 'sessionEndDate:' + filterSessionEndDate });
 
 	var filterSeasonKey = $formFilters.find('.valueSeasonKey').val();
 	if(filterSeasonKey != null && filterSeasonKey !== '')
@@ -273,6 +288,10 @@ function patchSchoolSessionFilters($formFilters) {
 	var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
 	if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
 		filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+	var filterSessionId = $formFilters.find('.valueSessionId').val();
+	if(filterSessionId != null && filterSessionId !== '')
+		filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
 
 	var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
 	if(filterObjectTitle != null && filterObjectTitle !== '')
@@ -370,9 +389,17 @@ function patchSchoolSessionFilters($formFilters) {
 	if(filterSeasonEnrollmentFee != null && filterSeasonEnrollmentFee !== '')
 		filters.push({ name: 'fq', value: 'seasonEnrollmentFee:' + filterSeasonEnrollmentFee });
 
+	var filterSeasonShortName = $formFilters.find('.valueSeasonShortName').val();
+	if(filterSeasonShortName != null && filterSeasonShortName !== '')
+		filters.push({ name: 'fq', value: 'seasonShortName:' + filterSeasonShortName });
+
 	var filterSeasonCompleteName = $formFilters.find('.valueSeasonCompleteName').val();
 	if(filterSeasonCompleteName != null && filterSeasonCompleteName !== '')
 		filters.push({ name: 'fq', value: 'seasonCompleteName:' + filterSeasonCompleteName });
+
+	var filterSessionShortName = $formFilters.find('.valueSessionShortName').val();
+	if(filterSessionShortName != null && filterSessionShortName !== '')
+		filters.push({ name: 'fq', value: 'sessionShortName:' + filterSessionShortName });
 
 	var filterSessionCompleteName = $formFilters.find('.valueSessionCompleteName').val();
 	if(filterSessionCompleteName != null && filterSessionCompleteName !== '')
@@ -464,13 +491,13 @@ function searchSchoolSessionFilters($formFilters) {
 	if(filterDeleted != null && filterDeleted === true)
 		filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
-	var filterSessionStartDay = $formFilters.find('.valueSessionStartDay').val();
-	if(filterSessionStartDay != null && filterSessionStartDay !== '')
-		filters.push({ name: 'fq', value: 'sessionStartDay:' + filterSessionStartDay });
+	var filterSessionStartDate = $formFilters.find('.valueSessionStartDate').val();
+	if(filterSessionStartDate != null && filterSessionStartDate !== '')
+		filters.push({ name: 'fq', value: 'sessionStartDate:' + filterSessionStartDate });
 
-	var filterSessionEndDay = $formFilters.find('.valueSessionEndDay').val();
-	if(filterSessionEndDay != null && filterSessionEndDay !== '')
-		filters.push({ name: 'fq', value: 'sessionEndDay:' + filterSessionEndDay });
+	var filterSessionEndDate = $formFilters.find('.valueSessionEndDate').val();
+	if(filterSessionEndDate != null && filterSessionEndDate !== '')
+		filters.push({ name: 'fq', value: 'sessionEndDate:' + filterSessionEndDate });
 
 	var filterSeasonKey = $formFilters.find('.valueSeasonKey').val();
 	if(filterSeasonKey != null && filterSeasonKey !== '')
@@ -495,6 +522,10 @@ function searchSchoolSessionFilters($formFilters) {
 	var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
 	if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
 		filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+	var filterSessionId = $formFilters.find('.valueSessionId').val();
+	if(filterSessionId != null && filterSessionId !== '')
+		filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
 
 	var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
 	if(filterObjectTitle != null && filterObjectTitle !== '')
@@ -592,9 +623,17 @@ function searchSchoolSessionFilters($formFilters) {
 	if(filterSeasonEnrollmentFee != null && filterSeasonEnrollmentFee !== '')
 		filters.push({ name: 'fq', value: 'seasonEnrollmentFee:' + filterSeasonEnrollmentFee });
 
+	var filterSeasonShortName = $formFilters.find('.valueSeasonShortName').val();
+	if(filterSeasonShortName != null && filterSeasonShortName !== '')
+		filters.push({ name: 'fq', value: 'seasonShortName:' + filterSeasonShortName });
+
 	var filterSeasonCompleteName = $formFilters.find('.valueSeasonCompleteName').val();
 	if(filterSeasonCompleteName != null && filterSeasonCompleteName !== '')
 		filters.push({ name: 'fq', value: 'seasonCompleteName:' + filterSeasonCompleteName });
+
+	var filterSessionShortName = $formFilters.find('.valueSessionShortName').val();
+	if(filterSessionShortName != null && filterSessionShortName !== '')
+		filters.push({ name: 'fq', value: 'sessionShortName:' + filterSessionShortName });
 
 	var filterSessionCompleteName = $formFilters.find('.valueSessionCompleteName').val();
 	if(filterSessionCompleteName != null && filterSessionCompleteName !== '')

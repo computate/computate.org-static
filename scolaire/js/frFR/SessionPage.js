@@ -57,6 +57,10 @@ async function postSessionScolaire($formulaireValeurs, success, error) {
 	if(valeurAgeCles != null && valeurAgeCles !== '')
 		vals['ageCles'] = valeurAgeCles;
 
+	var valeurEcoleAddresse = $formulaireValeurs.find('.valeurEcoleAddresse').val();
+	if(valeurEcoleAddresse != null && valeurEcoleAddresse !== '')
+		vals['ecoleAddresse'] = valeurEcoleAddresse;
+
 	var valeurSessionNomComplet = $formulaireValeurs.find('.valeurSessionNomComplet').val();
 	if(valeurSessionNomComplet != null && valeurSessionNomComplet !== '')
 		vals['sessionNomComplet'] = valeurSessionNomComplet;
@@ -201,6 +205,17 @@ async function patchSessionScolaire($formulaireFiltres, $formulaireValeurs, succ
 	if(removeAgeCles != null && removeAgeCles !== '')
 		vals['removeAgeCles'] = removeAgeCles;
 
+	var removeEcoleAddresse = $formulaireFiltres.find('.removeEcoleAddresse').val() === 'true';
+	var setEcoleAddresse = removeEcoleAddresse ? null : $formulaireValeurs.find('.setEcoleAddresse').val();
+	if(removeEcoleAddresse || setEcoleAddresse != null && setEcoleAddresse !== '')
+		vals['setEcoleAddresse'] = setEcoleAddresse;
+	var addEcoleAddresse = $formulaireValeurs.find('.addEcoleAddresse').val();
+	if(addEcoleAddresse != null && addEcoleAddresse !== '')
+		vals['addEcoleAddresse'] = addEcoleAddresse;
+	var removeEcoleAddresse = $formulaireValeurs.find('.removeEcoleAddresse').val();
+	if(removeEcoleAddresse != null && removeEcoleAddresse !== '')
+		vals['removeEcoleAddresse'] = removeEcoleAddresse;
+
 	var removeSessionNomComplet = $formulaireFiltres.find('.removeSessionNomComplet').val() === 'true';
 	var setSessionNomComplet = removeSessionNomComplet ? null : $formulaireValeurs.find('.setSessionNomComplet').val();
 	if(removeSessionNomComplet || setSessionNomComplet != null && setSessionNomComplet !== '')
@@ -273,6 +288,10 @@ function patchSessionScolaireFiltres($formulaireFiltres) {
 	var filtreClasseNomsCanoniques = $formulaireFiltres.find('.valeurClasseNomsCanoniques').val();
 	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
 		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
+
+	var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
+	if(filtreSessionId != null && filtreSessionId !== '')
+		filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
 
 	var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
 	if(filtreObjetTitre != null && filtreObjetTitre !== '')
@@ -370,9 +389,17 @@ function patchSessionScolaireFiltres($formulaireFiltres) {
 	if(filtreSaisonFraisInscription != null && filtreSaisonFraisInscription !== '')
 		filtres.push({ name: 'fq', value: 'saisonFraisInscription:' + filtreSaisonFraisInscription });
 
+	var filtreSaisonNomCourt = $formulaireFiltres.find('.valeurSaisonNomCourt').val();
+	if(filtreSaisonNomCourt != null && filtreSaisonNomCourt !== '')
+		filtres.push({ name: 'fq', value: 'saisonNomCourt:' + filtreSaisonNomCourt });
+
 	var filtreSaisonNomComplet = $formulaireFiltres.find('.valeurSaisonNomComplet').val();
 	if(filtreSaisonNomComplet != null && filtreSaisonNomComplet !== '')
 		filtres.push({ name: 'fq', value: 'saisonNomComplet:' + filtreSaisonNomComplet });
+
+	var filtreSessionNomCourt = $formulaireFiltres.find('.valeurSessionNomCourt').val();
+	if(filtreSessionNomCourt != null && filtreSessionNomCourt !== '')
+		filtres.push({ name: 'fq', value: 'sessionNomCourt:' + filtreSessionNomCourt });
 
 	var filtreSessionNomComplet = $formulaireFiltres.find('.valeurSessionNomComplet').val();
 	if(filtreSessionNomComplet != null && filtreSessionNomComplet !== '')
@@ -496,6 +523,10 @@ function rechercheSessionScolaireFiltres($formulaireFiltres) {
 	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
 		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
 
+	var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
+	if(filtreSessionId != null && filtreSessionId !== '')
+		filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
+
 	var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
 	if(filtreObjetTitre != null && filtreObjetTitre !== '')
 		filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
@@ -592,9 +623,17 @@ function rechercheSessionScolaireFiltres($formulaireFiltres) {
 	if(filtreSaisonFraisInscription != null && filtreSaisonFraisInscription !== '')
 		filtres.push({ name: 'fq', value: 'saisonFraisInscription:' + filtreSaisonFraisInscription });
 
+	var filtreSaisonNomCourt = $formulaireFiltres.find('.valeurSaisonNomCourt').val();
+	if(filtreSaisonNomCourt != null && filtreSaisonNomCourt !== '')
+		filtres.push({ name: 'fq', value: 'saisonNomCourt:' + filtreSaisonNomCourt });
+
 	var filtreSaisonNomComplet = $formulaireFiltres.find('.valeurSaisonNomComplet').val();
 	if(filtreSaisonNomComplet != null && filtreSaisonNomComplet !== '')
 		filtres.push({ name: 'fq', value: 'saisonNomComplet:' + filtreSaisonNomComplet });
+
+	var filtreSessionNomCourt = $formulaireFiltres.find('.valeurSessionNomCourt').val();
+	if(filtreSessionNomCourt != null && filtreSessionNomCourt !== '')
+		filtres.push({ name: 'fq', value: 'sessionNomCourt:' + filtreSessionNomCourt });
 
 	var filtreSessionNomComplet = $formulaireFiltres.find('.valeurSessionNomComplet').val();
 	if(filtreSessionNomComplet != null && filtreSessionNomComplet !== '')

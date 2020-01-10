@@ -57,6 +57,10 @@ async function postSaisonScolaire($formulaireValeurs, success, error) {
 	if(valeurSaisonFraisInscription != null && valeurSaisonFraisInscription !== '')
 		vals['saisonFraisInscription'] = valeurSaisonFraisInscription;
 
+	var valeurSaisonFuture = $formulaireValeurs.find('.valeurSaisonFuture').prop('checked');
+	if(valeurSaisonFuture != null && valeurSaisonFuture !== '')
+		vals['saisonFuture'] = valeurSaisonFuture;
+
 	var valeurSessionCles = $formulaireValeurs.find('.valeurSessionCles').val();
 	if(valeurSessionCles != null && valeurSessionCles !== '')
 		vals['sessionCles'] = valeurSessionCles;
@@ -209,6 +213,17 @@ async function patchSaisonScolaire($formulaireFiltres, $formulaireValeurs, succe
 	if(removeSaisonFraisInscription != null && removeSaisonFraisInscription !== '')
 		vals['removeSaisonFraisInscription'] = removeSaisonFraisInscription;
 
+	var removeSaisonFuture = $formulaireFiltres.find('.removeSaisonFuture').val() === 'true';
+	var setSaisonFuture = removeSaisonFuture ? null : $formulaireValeurs.find('.setSaisonFuture').prop('checked');
+	if(removeSaisonFuture || setSaisonFuture != null && setSaisonFuture !== '')
+		vals['setSaisonFuture'] = setSaisonFuture;
+	var addSaisonFuture = $formulaireValeurs.find('.addSaisonFuture').prop('checked');
+	if(addSaisonFuture != null && addSaisonFuture !== '')
+		vals['addSaisonFuture'] = addSaisonFuture;
+	var removeSaisonFuture = $formulaireValeurs.find('.removeSaisonFuture').prop('checked');
+	if(removeSaisonFuture != null && removeSaisonFuture !== '')
+		vals['removeSaisonFuture'] = removeSaisonFuture;
+
 	var removeSessionCles = $formulaireFiltres.find('.removeSessionCles').val() === 'true';
 	var setSessionCles = removeSessionCles ? null : $formulaireValeurs.find('.setSessionCles').val();
 	if(removeSessionCles || setSessionCles != null && setSessionCles !== '')
@@ -288,6 +303,10 @@ function patchSaisonScolaireFiltres($formulaireFiltres) {
 	if(filtreSaisonFraisInscription != null && filtreSaisonFraisInscription !== '')
 		filtres.push({ name: 'fq', value: 'saisonFraisInscription:' + filtreSaisonFraisInscription });
 
+	var filtreSaisonFuture = $formulaireFiltres.find('.valeurSaisonFuture').prop('checked');
+	if(filtreSaisonFuture != null && filtreSaisonFuture === true)
+		filtres.push({ name: 'fq', value: 'saisonFuture:' + filtreSaisonFuture });
+
 	var filtreSessionCles = $formulaireFiltres.find('.valeurSessionCles').val();
 	if(filtreSessionCles != null && filtreSessionCles !== '')
 		filtres.push({ name: 'fq', value: 'sessionCles:' + filtreSessionCles });
@@ -311,6 +330,10 @@ function patchSaisonScolaireFiltres($formulaireFiltres) {
 	var filtreClasseNomsCanoniques = $formulaireFiltres.find('.valeurClasseNomsCanoniques').val();
 	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
 		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
+
+	var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
+	if(filtreSessionId != null && filtreSessionId !== '')
+		filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
 
 	var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
 	if(filtreObjetTitre != null && filtreObjetTitre !== '')
@@ -383,6 +406,10 @@ function patchSaisonScolaireFiltres($formulaireFiltres) {
 	var filtreAnneeFin = $formulaireFiltres.find('.valeurAnneeFin').val();
 	if(filtreAnneeFin != null && filtreAnneeFin !== '')
 		filtres.push({ name: 'fq', value: 'anneeFin:' + filtreAnneeFin });
+
+	var filtreSaisonNomCourt = $formulaireFiltres.find('.valeurSaisonNomCourt').val();
+	if(filtreSaisonNomCourt != null && filtreSaisonNomCourt !== '')
+		filtres.push({ name: 'fq', value: 'saisonNomCourt:' + filtreSaisonNomCourt });
 
 	var filtreSaisonNomComplet = $formulaireFiltres.find('.valeurSaisonNomComplet').val();
 	if(filtreSaisonNomComplet != null && filtreSaisonNomComplet !== '')
@@ -490,6 +517,10 @@ function rechercheSaisonScolaireFiltres($formulaireFiltres) {
 	if(filtreSaisonFraisInscription != null && filtreSaisonFraisInscription !== '')
 		filtres.push({ name: 'fq', value: 'saisonFraisInscription:' + filtreSaisonFraisInscription });
 
+	var filtreSaisonFuture = $formulaireFiltres.find('.valeurSaisonFuture').prop('checked');
+	if(filtreSaisonFuture != null && filtreSaisonFuture === true)
+		filtres.push({ name: 'fq', value: 'saisonFuture:' + filtreSaisonFuture });
+
 	var filtreSessionCles = $formulaireFiltres.find('.valeurSessionCles').val();
 	if(filtreSessionCles != null && filtreSessionCles !== '')
 		filtres.push({ name: 'fq', value: 'sessionCles:' + filtreSessionCles });
@@ -513,6 +544,10 @@ function rechercheSaisonScolaireFiltres($formulaireFiltres) {
 	var filtreClasseNomsCanoniques = $formulaireFiltres.find('.valeurClasseNomsCanoniques').val();
 	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
 		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
+
+	var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
+	if(filtreSessionId != null && filtreSessionId !== '')
+		filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
 
 	var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
 	if(filtreObjetTitre != null && filtreObjetTitre !== '')
@@ -585,6 +620,10 @@ function rechercheSaisonScolaireFiltres($formulaireFiltres) {
 	var filtreAnneeFin = $formulaireFiltres.find('.valeurAnneeFin').val();
 	if(filtreAnneeFin != null && filtreAnneeFin !== '')
 		filtres.push({ name: 'fq', value: 'anneeFin:' + filtreAnneeFin });
+
+	var filtreSaisonNomCourt = $formulaireFiltres.find('.valeurSaisonNomCourt').val();
+	if(filtreSaisonNomCourt != null && filtreSaisonNomCourt !== '')
+		filtres.push({ name: 'fq', value: 'saisonNomCourt:' + filtreSaisonNomCourt });
 
 	var filtreSaisonNomComplet = $formulaireFiltres.find('.valeurSaisonNomComplet').val();
 	if(filtreSaisonNomComplet != null && filtreSaisonNomComplet !== '')

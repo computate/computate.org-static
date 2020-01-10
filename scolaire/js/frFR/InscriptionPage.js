@@ -121,9 +121,81 @@ async function postInscriptionScolaire($formulaireValeurs, success, error) {
 	if(valeurInscriptionSignature1 != null && valeurInscriptionSignature1 !== '')
 		vals['inscriptionSignature1'] = valeurInscriptionSignature1;
 
+	var valeurInscriptionSignature2 = $formulaireValeurs.find('.valeurInscriptionSignature2').val();
+	if(valeurInscriptionSignature2 != null && valeurInscriptionSignature2 !== '')
+		vals['inscriptionSignature2'] = valeurInscriptionSignature2;
+
+	var valeurInscriptionSignature3 = $formulaireValeurs.find('.valeurInscriptionSignature3').val();
+	if(valeurInscriptionSignature3 != null && valeurInscriptionSignature3 !== '')
+		vals['inscriptionSignature3'] = valeurInscriptionSignature3;
+
+	var valeurInscriptionSignature4 = $formulaireValeurs.find('.valeurInscriptionSignature4').val();
+	if(valeurInscriptionSignature4 != null && valeurInscriptionSignature4 !== '')
+		vals['inscriptionSignature4'] = valeurInscriptionSignature4;
+
+	var valeurInscriptionSignature5 = $formulaireValeurs.find('.valeurInscriptionSignature5').val();
+	if(valeurInscriptionSignature5 != null && valeurInscriptionSignature5 !== '')
+		vals['inscriptionSignature5'] = valeurInscriptionSignature5;
+
+	var valeurInscriptionSignature6 = $formulaireValeurs.find('.valeurInscriptionSignature6').val();
+	if(valeurInscriptionSignature6 != null && valeurInscriptionSignature6 !== '')
+		vals['inscriptionSignature6'] = valeurInscriptionSignature6;
+
+	var valeurInscriptionSignature7 = $formulaireValeurs.find('.valeurInscriptionSignature7').val();
+	if(valeurInscriptionSignature7 != null && valeurInscriptionSignature7 !== '')
+		vals['inscriptionSignature7'] = valeurInscriptionSignature7;
+
+	var valeurInscriptionSignature8 = $formulaireValeurs.find('.valeurInscriptionSignature8').val();
+	if(valeurInscriptionSignature8 != null && valeurInscriptionSignature8 !== '')
+		vals['inscriptionSignature8'] = valeurInscriptionSignature8;
+
+	var valeurInscriptionSignature9 = $formulaireValeurs.find('.valeurInscriptionSignature9').val();
+	if(valeurInscriptionSignature9 != null && valeurInscriptionSignature9 !== '')
+		vals['inscriptionSignature9'] = valeurInscriptionSignature9;
+
+	var valeurInscriptionSignature10 = $formulaireValeurs.find('.valeurInscriptionSignature10').val();
+	if(valeurInscriptionSignature10 != null && valeurInscriptionSignature10 !== '')
+		vals['inscriptionSignature10'] = valeurInscriptionSignature10;
+
 	var valeurInscriptionDate1 = $formulaireValeurs.find('.valeurInscriptionDate1').val();
 	if(valeurInscriptionDate1 != null && valeurInscriptionDate1 !== '')
 		vals['inscriptionDate1'] = valeurInscriptionDate1;
+
+	var valeurInscriptionDate2 = $formulaireValeurs.find('.valeurInscriptionDate2').val();
+	if(valeurInscriptionDate2 != null && valeurInscriptionDate2 !== '')
+		vals['inscriptionDate2'] = valeurInscriptionDate2;
+
+	var valeurInscriptionDate3 = $formulaireValeurs.find('.valeurInscriptionDate3').val();
+	if(valeurInscriptionDate3 != null && valeurInscriptionDate3 !== '')
+		vals['inscriptionDate3'] = valeurInscriptionDate3;
+
+	var valeurInscriptionDate4 = $formulaireValeurs.find('.valeurInscriptionDate4').val();
+	if(valeurInscriptionDate4 != null && valeurInscriptionDate4 !== '')
+		vals['inscriptionDate4'] = valeurInscriptionDate4;
+
+	var valeurInscriptionDate5 = $formulaireValeurs.find('.valeurInscriptionDate5').val();
+	if(valeurInscriptionDate5 != null && valeurInscriptionDate5 !== '')
+		vals['inscriptionDate5'] = valeurInscriptionDate5;
+
+	var valeurInscriptionDate6 = $formulaireValeurs.find('.valeurInscriptionDate6').val();
+	if(valeurInscriptionDate6 != null && valeurInscriptionDate6 !== '')
+		vals['inscriptionDate6'] = valeurInscriptionDate6;
+
+	var valeurInscriptionDate7 = $formulaireValeurs.find('.valeurInscriptionDate7').val();
+	if(valeurInscriptionDate7 != null && valeurInscriptionDate7 !== '')
+		vals['inscriptionDate7'] = valeurInscriptionDate7;
+
+	var valeurInscriptionDate8 = $formulaireValeurs.find('.valeurInscriptionDate8').val();
+	if(valeurInscriptionDate8 != null && valeurInscriptionDate8 !== '')
+		vals['inscriptionDate8'] = valeurInscriptionDate8;
+
+	var valeurInscriptionDate9 = $formulaireValeurs.find('.valeurInscriptionDate9').val();
+	if(valeurInscriptionDate9 != null && valeurInscriptionDate9 !== '')
+		vals['inscriptionDate9'] = valeurInscriptionDate9;
+
+	var valeurInscriptionDate10 = $formulaireValeurs.find('.valeurInscriptionDate10').val();
+	if(valeurInscriptionDate10 != null && valeurInscriptionDate10 !== '')
+		vals['inscriptionDate10'] = valeurInscriptionDate10;
 
 	var valeurInscriptionNomComplet = $formulaireValeurs.find('.valeurInscriptionNomComplet').val();
 	if(valeurInscriptionNomComplet != null && valeurInscriptionNomComplet !== '')
@@ -445,6 +517,105 @@ async function patchInscriptionScolaire($formulaireFiltres, $formulaireValeurs, 
 	if(removeInscriptionSignature1 != null && removeInscriptionSignature1 !== '')
 		vals['removeInscriptionSignature1'] = removeInscriptionSignature1;
 
+	var removeInscriptionSignature2 = $formulaireFiltres.find('.removeInscriptionSignature2').val() === 'true';
+	var setInscriptionSignature2 = removeInscriptionSignature2 ? null : $formulaireValeurs.find('.setInscriptionSignature2').val();
+	if(removeInscriptionSignature2 || setInscriptionSignature2 != null && setInscriptionSignature2 !== '')
+		vals['setInscriptionSignature2'] = setInscriptionSignature2;
+	var addInscriptionSignature2 = $formulaireValeurs.find('.addInscriptionSignature2').val();
+	if(addInscriptionSignature2 != null && addInscriptionSignature2 !== '')
+		vals['addInscriptionSignature2'] = addInscriptionSignature2;
+	var removeInscriptionSignature2 = $formulaireValeurs.find('.removeInscriptionSignature2').val();
+	if(removeInscriptionSignature2 != null && removeInscriptionSignature2 !== '')
+		vals['removeInscriptionSignature2'] = removeInscriptionSignature2;
+
+	var removeInscriptionSignature3 = $formulaireFiltres.find('.removeInscriptionSignature3').val() === 'true';
+	var setInscriptionSignature3 = removeInscriptionSignature3 ? null : $formulaireValeurs.find('.setInscriptionSignature3').val();
+	if(removeInscriptionSignature3 || setInscriptionSignature3 != null && setInscriptionSignature3 !== '')
+		vals['setInscriptionSignature3'] = setInscriptionSignature3;
+	var addInscriptionSignature3 = $formulaireValeurs.find('.addInscriptionSignature3').val();
+	if(addInscriptionSignature3 != null && addInscriptionSignature3 !== '')
+		vals['addInscriptionSignature3'] = addInscriptionSignature3;
+	var removeInscriptionSignature3 = $formulaireValeurs.find('.removeInscriptionSignature3').val();
+	if(removeInscriptionSignature3 != null && removeInscriptionSignature3 !== '')
+		vals['removeInscriptionSignature3'] = removeInscriptionSignature3;
+
+	var removeInscriptionSignature4 = $formulaireFiltres.find('.removeInscriptionSignature4').val() === 'true';
+	var setInscriptionSignature4 = removeInscriptionSignature4 ? null : $formulaireValeurs.find('.setInscriptionSignature4').val();
+	if(removeInscriptionSignature4 || setInscriptionSignature4 != null && setInscriptionSignature4 !== '')
+		vals['setInscriptionSignature4'] = setInscriptionSignature4;
+	var addInscriptionSignature4 = $formulaireValeurs.find('.addInscriptionSignature4').val();
+	if(addInscriptionSignature4 != null && addInscriptionSignature4 !== '')
+		vals['addInscriptionSignature4'] = addInscriptionSignature4;
+	var removeInscriptionSignature4 = $formulaireValeurs.find('.removeInscriptionSignature4').val();
+	if(removeInscriptionSignature4 != null && removeInscriptionSignature4 !== '')
+		vals['removeInscriptionSignature4'] = removeInscriptionSignature4;
+
+	var removeInscriptionSignature5 = $formulaireFiltres.find('.removeInscriptionSignature5').val() === 'true';
+	var setInscriptionSignature5 = removeInscriptionSignature5 ? null : $formulaireValeurs.find('.setInscriptionSignature5').val();
+	if(removeInscriptionSignature5 || setInscriptionSignature5 != null && setInscriptionSignature5 !== '')
+		vals['setInscriptionSignature5'] = setInscriptionSignature5;
+	var addInscriptionSignature5 = $formulaireValeurs.find('.addInscriptionSignature5').val();
+	if(addInscriptionSignature5 != null && addInscriptionSignature5 !== '')
+		vals['addInscriptionSignature5'] = addInscriptionSignature5;
+	var removeInscriptionSignature5 = $formulaireValeurs.find('.removeInscriptionSignature5').val();
+	if(removeInscriptionSignature5 != null && removeInscriptionSignature5 !== '')
+		vals['removeInscriptionSignature5'] = removeInscriptionSignature5;
+
+	var removeInscriptionSignature6 = $formulaireFiltres.find('.removeInscriptionSignature6').val() === 'true';
+	var setInscriptionSignature6 = removeInscriptionSignature6 ? null : $formulaireValeurs.find('.setInscriptionSignature6').val();
+	if(removeInscriptionSignature6 || setInscriptionSignature6 != null && setInscriptionSignature6 !== '')
+		vals['setInscriptionSignature6'] = setInscriptionSignature6;
+	var addInscriptionSignature6 = $formulaireValeurs.find('.addInscriptionSignature6').val();
+	if(addInscriptionSignature6 != null && addInscriptionSignature6 !== '')
+		vals['addInscriptionSignature6'] = addInscriptionSignature6;
+	var removeInscriptionSignature6 = $formulaireValeurs.find('.removeInscriptionSignature6').val();
+	if(removeInscriptionSignature6 != null && removeInscriptionSignature6 !== '')
+		vals['removeInscriptionSignature6'] = removeInscriptionSignature6;
+
+	var removeInscriptionSignature7 = $formulaireFiltres.find('.removeInscriptionSignature7').val() === 'true';
+	var setInscriptionSignature7 = removeInscriptionSignature7 ? null : $formulaireValeurs.find('.setInscriptionSignature7').val();
+	if(removeInscriptionSignature7 || setInscriptionSignature7 != null && setInscriptionSignature7 !== '')
+		vals['setInscriptionSignature7'] = setInscriptionSignature7;
+	var addInscriptionSignature7 = $formulaireValeurs.find('.addInscriptionSignature7').val();
+	if(addInscriptionSignature7 != null && addInscriptionSignature7 !== '')
+		vals['addInscriptionSignature7'] = addInscriptionSignature7;
+	var removeInscriptionSignature7 = $formulaireValeurs.find('.removeInscriptionSignature7').val();
+	if(removeInscriptionSignature7 != null && removeInscriptionSignature7 !== '')
+		vals['removeInscriptionSignature7'] = removeInscriptionSignature7;
+
+	var removeInscriptionSignature8 = $formulaireFiltres.find('.removeInscriptionSignature8').val() === 'true';
+	var setInscriptionSignature8 = removeInscriptionSignature8 ? null : $formulaireValeurs.find('.setInscriptionSignature8').val();
+	if(removeInscriptionSignature8 || setInscriptionSignature8 != null && setInscriptionSignature8 !== '')
+		vals['setInscriptionSignature8'] = setInscriptionSignature8;
+	var addInscriptionSignature8 = $formulaireValeurs.find('.addInscriptionSignature8').val();
+	if(addInscriptionSignature8 != null && addInscriptionSignature8 !== '')
+		vals['addInscriptionSignature8'] = addInscriptionSignature8;
+	var removeInscriptionSignature8 = $formulaireValeurs.find('.removeInscriptionSignature8').val();
+	if(removeInscriptionSignature8 != null && removeInscriptionSignature8 !== '')
+		vals['removeInscriptionSignature8'] = removeInscriptionSignature8;
+
+	var removeInscriptionSignature9 = $formulaireFiltres.find('.removeInscriptionSignature9').val() === 'true';
+	var setInscriptionSignature9 = removeInscriptionSignature9 ? null : $formulaireValeurs.find('.setInscriptionSignature9').val();
+	if(removeInscriptionSignature9 || setInscriptionSignature9 != null && setInscriptionSignature9 !== '')
+		vals['setInscriptionSignature9'] = setInscriptionSignature9;
+	var addInscriptionSignature9 = $formulaireValeurs.find('.addInscriptionSignature9').val();
+	if(addInscriptionSignature9 != null && addInscriptionSignature9 !== '')
+		vals['addInscriptionSignature9'] = addInscriptionSignature9;
+	var removeInscriptionSignature9 = $formulaireValeurs.find('.removeInscriptionSignature9').val();
+	if(removeInscriptionSignature9 != null && removeInscriptionSignature9 !== '')
+		vals['removeInscriptionSignature9'] = removeInscriptionSignature9;
+
+	var removeInscriptionSignature10 = $formulaireFiltres.find('.removeInscriptionSignature10').val() === 'true';
+	var setInscriptionSignature10 = removeInscriptionSignature10 ? null : $formulaireValeurs.find('.setInscriptionSignature10').val();
+	if(removeInscriptionSignature10 || setInscriptionSignature10 != null && setInscriptionSignature10 !== '')
+		vals['setInscriptionSignature10'] = setInscriptionSignature10;
+	var addInscriptionSignature10 = $formulaireValeurs.find('.addInscriptionSignature10').val();
+	if(addInscriptionSignature10 != null && addInscriptionSignature10 !== '')
+		vals['addInscriptionSignature10'] = addInscriptionSignature10;
+	var removeInscriptionSignature10 = $formulaireValeurs.find('.removeInscriptionSignature10').val();
+	if(removeInscriptionSignature10 != null && removeInscriptionSignature10 !== '')
+		vals['removeInscriptionSignature10'] = removeInscriptionSignature10;
+
 	var removeInscriptionDate1 = $formulaireFiltres.find('.removeInscriptionDate1').val() === 'true';
 	var setInscriptionDate1 = removeInscriptionDate1 ? null : $formulaireValeurs.find('.setInscriptionDate1').val();
 	if(removeInscriptionDate1 || setInscriptionDate1 != null && setInscriptionDate1 !== '')
@@ -455,6 +626,105 @@ async function patchInscriptionScolaire($formulaireFiltres, $formulaireValeurs, 
 	var removeInscriptionDate1 = $formulaireValeurs.find('.removeInscriptionDate1').val();
 	if(removeInscriptionDate1 != null && removeInscriptionDate1 !== '')
 		vals['removeInscriptionDate1'] = removeInscriptionDate1;
+
+	var removeInscriptionDate2 = $formulaireFiltres.find('.removeInscriptionDate2').val() === 'true';
+	var setInscriptionDate2 = removeInscriptionDate2 ? null : $formulaireValeurs.find('.setInscriptionDate2').val();
+	if(removeInscriptionDate2 || setInscriptionDate2 != null && setInscriptionDate2 !== '')
+		vals['setInscriptionDate2'] = setInscriptionDate2;
+	var addInscriptionDate2 = $formulaireValeurs.find('.addInscriptionDate2').val();
+	if(addInscriptionDate2 != null && addInscriptionDate2 !== '')
+		vals['addInscriptionDate2'] = addInscriptionDate2;
+	var removeInscriptionDate2 = $formulaireValeurs.find('.removeInscriptionDate2').val();
+	if(removeInscriptionDate2 != null && removeInscriptionDate2 !== '')
+		vals['removeInscriptionDate2'] = removeInscriptionDate2;
+
+	var removeInscriptionDate3 = $formulaireFiltres.find('.removeInscriptionDate3').val() === 'true';
+	var setInscriptionDate3 = removeInscriptionDate3 ? null : $formulaireValeurs.find('.setInscriptionDate3').val();
+	if(removeInscriptionDate3 || setInscriptionDate3 != null && setInscriptionDate3 !== '')
+		vals['setInscriptionDate3'] = setInscriptionDate3;
+	var addInscriptionDate3 = $formulaireValeurs.find('.addInscriptionDate3').val();
+	if(addInscriptionDate3 != null && addInscriptionDate3 !== '')
+		vals['addInscriptionDate3'] = addInscriptionDate3;
+	var removeInscriptionDate3 = $formulaireValeurs.find('.removeInscriptionDate3').val();
+	if(removeInscriptionDate3 != null && removeInscriptionDate3 !== '')
+		vals['removeInscriptionDate3'] = removeInscriptionDate3;
+
+	var removeInscriptionDate4 = $formulaireFiltres.find('.removeInscriptionDate4').val() === 'true';
+	var setInscriptionDate4 = removeInscriptionDate4 ? null : $formulaireValeurs.find('.setInscriptionDate4').val();
+	if(removeInscriptionDate4 || setInscriptionDate4 != null && setInscriptionDate4 !== '')
+		vals['setInscriptionDate4'] = setInscriptionDate4;
+	var addInscriptionDate4 = $formulaireValeurs.find('.addInscriptionDate4').val();
+	if(addInscriptionDate4 != null && addInscriptionDate4 !== '')
+		vals['addInscriptionDate4'] = addInscriptionDate4;
+	var removeInscriptionDate4 = $formulaireValeurs.find('.removeInscriptionDate4').val();
+	if(removeInscriptionDate4 != null && removeInscriptionDate4 !== '')
+		vals['removeInscriptionDate4'] = removeInscriptionDate4;
+
+	var removeInscriptionDate5 = $formulaireFiltres.find('.removeInscriptionDate5').val() === 'true';
+	var setInscriptionDate5 = removeInscriptionDate5 ? null : $formulaireValeurs.find('.setInscriptionDate5').val();
+	if(removeInscriptionDate5 || setInscriptionDate5 != null && setInscriptionDate5 !== '')
+		vals['setInscriptionDate5'] = setInscriptionDate5;
+	var addInscriptionDate5 = $formulaireValeurs.find('.addInscriptionDate5').val();
+	if(addInscriptionDate5 != null && addInscriptionDate5 !== '')
+		vals['addInscriptionDate5'] = addInscriptionDate5;
+	var removeInscriptionDate5 = $formulaireValeurs.find('.removeInscriptionDate5').val();
+	if(removeInscriptionDate5 != null && removeInscriptionDate5 !== '')
+		vals['removeInscriptionDate5'] = removeInscriptionDate5;
+
+	var removeInscriptionDate6 = $formulaireFiltres.find('.removeInscriptionDate6').val() === 'true';
+	var setInscriptionDate6 = removeInscriptionDate6 ? null : $formulaireValeurs.find('.setInscriptionDate6').val();
+	if(removeInscriptionDate6 || setInscriptionDate6 != null && setInscriptionDate6 !== '')
+		vals['setInscriptionDate6'] = setInscriptionDate6;
+	var addInscriptionDate6 = $formulaireValeurs.find('.addInscriptionDate6').val();
+	if(addInscriptionDate6 != null && addInscriptionDate6 !== '')
+		vals['addInscriptionDate6'] = addInscriptionDate6;
+	var removeInscriptionDate6 = $formulaireValeurs.find('.removeInscriptionDate6').val();
+	if(removeInscriptionDate6 != null && removeInscriptionDate6 !== '')
+		vals['removeInscriptionDate6'] = removeInscriptionDate6;
+
+	var removeInscriptionDate7 = $formulaireFiltres.find('.removeInscriptionDate7').val() === 'true';
+	var setInscriptionDate7 = removeInscriptionDate7 ? null : $formulaireValeurs.find('.setInscriptionDate7').val();
+	if(removeInscriptionDate7 || setInscriptionDate7 != null && setInscriptionDate7 !== '')
+		vals['setInscriptionDate7'] = setInscriptionDate7;
+	var addInscriptionDate7 = $formulaireValeurs.find('.addInscriptionDate7').val();
+	if(addInscriptionDate7 != null && addInscriptionDate7 !== '')
+		vals['addInscriptionDate7'] = addInscriptionDate7;
+	var removeInscriptionDate7 = $formulaireValeurs.find('.removeInscriptionDate7').val();
+	if(removeInscriptionDate7 != null && removeInscriptionDate7 !== '')
+		vals['removeInscriptionDate7'] = removeInscriptionDate7;
+
+	var removeInscriptionDate8 = $formulaireFiltres.find('.removeInscriptionDate8').val() === 'true';
+	var setInscriptionDate8 = removeInscriptionDate8 ? null : $formulaireValeurs.find('.setInscriptionDate8').val();
+	if(removeInscriptionDate8 || setInscriptionDate8 != null && setInscriptionDate8 !== '')
+		vals['setInscriptionDate8'] = setInscriptionDate8;
+	var addInscriptionDate8 = $formulaireValeurs.find('.addInscriptionDate8').val();
+	if(addInscriptionDate8 != null && addInscriptionDate8 !== '')
+		vals['addInscriptionDate8'] = addInscriptionDate8;
+	var removeInscriptionDate8 = $formulaireValeurs.find('.removeInscriptionDate8').val();
+	if(removeInscriptionDate8 != null && removeInscriptionDate8 !== '')
+		vals['removeInscriptionDate8'] = removeInscriptionDate8;
+
+	var removeInscriptionDate9 = $formulaireFiltres.find('.removeInscriptionDate9').val() === 'true';
+	var setInscriptionDate9 = removeInscriptionDate9 ? null : $formulaireValeurs.find('.setInscriptionDate9').val();
+	if(removeInscriptionDate9 || setInscriptionDate9 != null && setInscriptionDate9 !== '')
+		vals['setInscriptionDate9'] = setInscriptionDate9;
+	var addInscriptionDate9 = $formulaireValeurs.find('.addInscriptionDate9').val();
+	if(addInscriptionDate9 != null && addInscriptionDate9 !== '')
+		vals['addInscriptionDate9'] = addInscriptionDate9;
+	var removeInscriptionDate9 = $formulaireValeurs.find('.removeInscriptionDate9').val();
+	if(removeInscriptionDate9 != null && removeInscriptionDate9 !== '')
+		vals['removeInscriptionDate9'] = removeInscriptionDate9;
+
+	var removeInscriptionDate10 = $formulaireFiltres.find('.removeInscriptionDate10').val() === 'true';
+	var setInscriptionDate10 = removeInscriptionDate10 ? null : $formulaireValeurs.find('.setInscriptionDate10').val();
+	if(removeInscriptionDate10 || setInscriptionDate10 != null && setInscriptionDate10 !== '')
+		vals['setInscriptionDate10'] = setInscriptionDate10;
+	var addInscriptionDate10 = $formulaireValeurs.find('.addInscriptionDate10').val();
+	if(addInscriptionDate10 != null && addInscriptionDate10 !== '')
+		vals['addInscriptionDate10'] = addInscriptionDate10;
+	var removeInscriptionDate10 = $formulaireValeurs.find('.removeInscriptionDate10').val();
+	if(removeInscriptionDate10 != null && removeInscriptionDate10 !== '')
+		vals['removeInscriptionDate10'] = removeInscriptionDate10;
 
 	var removeInscriptionNomComplet = $formulaireFiltres.find('.removeInscriptionNomComplet').val() === 'true';
 	var setInscriptionNomComplet = removeInscriptionNomComplet ? null : $formulaireValeurs.find('.setInscriptionNomComplet').val();
@@ -584,6 +854,10 @@ function patchInscriptionScolaireFiltres($formulaireFiltres) {
 	var filtreClasseNomsCanoniques = $formulaireFiltres.find('.valeurClasseNomsCanoniques').val();
 	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
 		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
+
+	var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
+	if(filtreSessionId != null && filtreSessionId !== '')
+		filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
 
 	var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
 	if(filtreObjetTitre != null && filtreObjetTitre !== '')
@@ -777,9 +1051,81 @@ function patchInscriptionScolaireFiltres($formulaireFiltres) {
 	if(filtreInscriptionSignature1 != null && filtreInscriptionSignature1 !== '')
 		filtres.push({ name: 'fq', value: 'inscriptionSignature1:' + filtreInscriptionSignature1 });
 
+	var filtreInscriptionSignature2 = $formulaireFiltres.find('.valeurInscriptionSignature2').val();
+	if(filtreInscriptionSignature2 != null && filtreInscriptionSignature2 !== '')
+		filtres.push({ name: 'fq', value: 'inscriptionSignature2:' + filtreInscriptionSignature2 });
+
+	var filtreInscriptionSignature3 = $formulaireFiltres.find('.valeurInscriptionSignature3').val();
+	if(filtreInscriptionSignature3 != null && filtreInscriptionSignature3 !== '')
+		filtres.push({ name: 'fq', value: 'inscriptionSignature3:' + filtreInscriptionSignature3 });
+
+	var filtreInscriptionSignature4 = $formulaireFiltres.find('.valeurInscriptionSignature4').val();
+	if(filtreInscriptionSignature4 != null && filtreInscriptionSignature4 !== '')
+		filtres.push({ name: 'fq', value: 'inscriptionSignature4:' + filtreInscriptionSignature4 });
+
+	var filtreInscriptionSignature5 = $formulaireFiltres.find('.valeurInscriptionSignature5').val();
+	if(filtreInscriptionSignature5 != null && filtreInscriptionSignature5 !== '')
+		filtres.push({ name: 'fq', value: 'inscriptionSignature5:' + filtreInscriptionSignature5 });
+
+	var filtreInscriptionSignature6 = $formulaireFiltres.find('.valeurInscriptionSignature6').val();
+	if(filtreInscriptionSignature6 != null && filtreInscriptionSignature6 !== '')
+		filtres.push({ name: 'fq', value: 'inscriptionSignature6:' + filtreInscriptionSignature6 });
+
+	var filtreInscriptionSignature7 = $formulaireFiltres.find('.valeurInscriptionSignature7').val();
+	if(filtreInscriptionSignature7 != null && filtreInscriptionSignature7 !== '')
+		filtres.push({ name: 'fq', value: 'inscriptionSignature7:' + filtreInscriptionSignature7 });
+
+	var filtreInscriptionSignature8 = $formulaireFiltres.find('.valeurInscriptionSignature8').val();
+	if(filtreInscriptionSignature8 != null && filtreInscriptionSignature8 !== '')
+		filtres.push({ name: 'fq', value: 'inscriptionSignature8:' + filtreInscriptionSignature8 });
+
+	var filtreInscriptionSignature9 = $formulaireFiltres.find('.valeurInscriptionSignature9').val();
+	if(filtreInscriptionSignature9 != null && filtreInscriptionSignature9 !== '')
+		filtres.push({ name: 'fq', value: 'inscriptionSignature9:' + filtreInscriptionSignature9 });
+
+	var filtreInscriptionSignature10 = $formulaireFiltres.find('.valeurInscriptionSignature10').val();
+	if(filtreInscriptionSignature10 != null && filtreInscriptionSignature10 !== '')
+		filtres.push({ name: 'fq', value: 'inscriptionSignature10:' + filtreInscriptionSignature10 });
+
 	var filtreInscriptionDate1 = $formulaireFiltres.find('.valeurInscriptionDate1').val();
 	if(filtreInscriptionDate1 != null && filtreInscriptionDate1 !== '')
 		filtres.push({ name: 'fq', value: 'inscriptionDate1:' + filtreInscriptionDate1 });
+
+	var filtreInscriptionDate2 = $formulaireFiltres.find('.valeurInscriptionDate2').val();
+	if(filtreInscriptionDate2 != null && filtreInscriptionDate2 !== '')
+		filtres.push({ name: 'fq', value: 'inscriptionDate2:' + filtreInscriptionDate2 });
+
+	var filtreInscriptionDate3 = $formulaireFiltres.find('.valeurInscriptionDate3').val();
+	if(filtreInscriptionDate3 != null && filtreInscriptionDate3 !== '')
+		filtres.push({ name: 'fq', value: 'inscriptionDate3:' + filtreInscriptionDate3 });
+
+	var filtreInscriptionDate4 = $formulaireFiltres.find('.valeurInscriptionDate4').val();
+	if(filtreInscriptionDate4 != null && filtreInscriptionDate4 !== '')
+		filtres.push({ name: 'fq', value: 'inscriptionDate4:' + filtreInscriptionDate4 });
+
+	var filtreInscriptionDate5 = $formulaireFiltres.find('.valeurInscriptionDate5').val();
+	if(filtreInscriptionDate5 != null && filtreInscriptionDate5 !== '')
+		filtres.push({ name: 'fq', value: 'inscriptionDate5:' + filtreInscriptionDate5 });
+
+	var filtreInscriptionDate6 = $formulaireFiltres.find('.valeurInscriptionDate6').val();
+	if(filtreInscriptionDate6 != null && filtreInscriptionDate6 !== '')
+		filtres.push({ name: 'fq', value: 'inscriptionDate6:' + filtreInscriptionDate6 });
+
+	var filtreInscriptionDate7 = $formulaireFiltres.find('.valeurInscriptionDate7').val();
+	if(filtreInscriptionDate7 != null && filtreInscriptionDate7 !== '')
+		filtres.push({ name: 'fq', value: 'inscriptionDate7:' + filtreInscriptionDate7 });
+
+	var filtreInscriptionDate8 = $formulaireFiltres.find('.valeurInscriptionDate8').val();
+	if(filtreInscriptionDate8 != null && filtreInscriptionDate8 !== '')
+		filtres.push({ name: 'fq', value: 'inscriptionDate8:' + filtreInscriptionDate8 });
+
+	var filtreInscriptionDate9 = $formulaireFiltres.find('.valeurInscriptionDate9').val();
+	if(filtreInscriptionDate9 != null && filtreInscriptionDate9 !== '')
+		filtres.push({ name: 'fq', value: 'inscriptionDate9:' + filtreInscriptionDate9 });
+
+	var filtreInscriptionDate10 = $formulaireFiltres.find('.valeurInscriptionDate10').val();
+	if(filtreInscriptionDate10 != null && filtreInscriptionDate10 !== '')
+		filtres.push({ name: 'fq', value: 'inscriptionDate10:' + filtreInscriptionDate10 });
 
 	var filtreInscriptionNomComplet = $formulaireFiltres.find('.valeurInscriptionNomComplet').val();
 	if(filtreInscriptionNomComplet != null && filtreInscriptionNomComplet !== '')
@@ -959,6 +1305,10 @@ function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
 		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
 
+	var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
+	if(filtreSessionId != null && filtreSessionId !== '')
+		filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
+
 	var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
 	if(filtreObjetTitre != null && filtreObjetTitre !== '')
 		filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
@@ -1151,9 +1501,81 @@ function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 	if(filtreInscriptionSignature1 != null && filtreInscriptionSignature1 !== '')
 		filtres.push({ name: 'fq', value: 'inscriptionSignature1:' + filtreInscriptionSignature1 });
 
+	var filtreInscriptionSignature2 = $formulaireFiltres.find('.valeurInscriptionSignature2').val();
+	if(filtreInscriptionSignature2 != null && filtreInscriptionSignature2 !== '')
+		filtres.push({ name: 'fq', value: 'inscriptionSignature2:' + filtreInscriptionSignature2 });
+
+	var filtreInscriptionSignature3 = $formulaireFiltres.find('.valeurInscriptionSignature3').val();
+	if(filtreInscriptionSignature3 != null && filtreInscriptionSignature3 !== '')
+		filtres.push({ name: 'fq', value: 'inscriptionSignature3:' + filtreInscriptionSignature3 });
+
+	var filtreInscriptionSignature4 = $formulaireFiltres.find('.valeurInscriptionSignature4').val();
+	if(filtreInscriptionSignature4 != null && filtreInscriptionSignature4 !== '')
+		filtres.push({ name: 'fq', value: 'inscriptionSignature4:' + filtreInscriptionSignature4 });
+
+	var filtreInscriptionSignature5 = $formulaireFiltres.find('.valeurInscriptionSignature5').val();
+	if(filtreInscriptionSignature5 != null && filtreInscriptionSignature5 !== '')
+		filtres.push({ name: 'fq', value: 'inscriptionSignature5:' + filtreInscriptionSignature5 });
+
+	var filtreInscriptionSignature6 = $formulaireFiltres.find('.valeurInscriptionSignature6').val();
+	if(filtreInscriptionSignature6 != null && filtreInscriptionSignature6 !== '')
+		filtres.push({ name: 'fq', value: 'inscriptionSignature6:' + filtreInscriptionSignature6 });
+
+	var filtreInscriptionSignature7 = $formulaireFiltres.find('.valeurInscriptionSignature7').val();
+	if(filtreInscriptionSignature7 != null && filtreInscriptionSignature7 !== '')
+		filtres.push({ name: 'fq', value: 'inscriptionSignature7:' + filtreInscriptionSignature7 });
+
+	var filtreInscriptionSignature8 = $formulaireFiltres.find('.valeurInscriptionSignature8').val();
+	if(filtreInscriptionSignature8 != null && filtreInscriptionSignature8 !== '')
+		filtres.push({ name: 'fq', value: 'inscriptionSignature8:' + filtreInscriptionSignature8 });
+
+	var filtreInscriptionSignature9 = $formulaireFiltres.find('.valeurInscriptionSignature9').val();
+	if(filtreInscriptionSignature9 != null && filtreInscriptionSignature9 !== '')
+		filtres.push({ name: 'fq', value: 'inscriptionSignature9:' + filtreInscriptionSignature9 });
+
+	var filtreInscriptionSignature10 = $formulaireFiltres.find('.valeurInscriptionSignature10').val();
+	if(filtreInscriptionSignature10 != null && filtreInscriptionSignature10 !== '')
+		filtres.push({ name: 'fq', value: 'inscriptionSignature10:' + filtreInscriptionSignature10 });
+
 	var filtreInscriptionDate1 = $formulaireFiltres.find('.valeurInscriptionDate1').val();
 	if(filtreInscriptionDate1 != null && filtreInscriptionDate1 !== '')
 		filtres.push({ name: 'fq', value: 'inscriptionDate1:' + filtreInscriptionDate1 });
+
+	var filtreInscriptionDate2 = $formulaireFiltres.find('.valeurInscriptionDate2').val();
+	if(filtreInscriptionDate2 != null && filtreInscriptionDate2 !== '')
+		filtres.push({ name: 'fq', value: 'inscriptionDate2:' + filtreInscriptionDate2 });
+
+	var filtreInscriptionDate3 = $formulaireFiltres.find('.valeurInscriptionDate3').val();
+	if(filtreInscriptionDate3 != null && filtreInscriptionDate3 !== '')
+		filtres.push({ name: 'fq', value: 'inscriptionDate3:' + filtreInscriptionDate3 });
+
+	var filtreInscriptionDate4 = $formulaireFiltres.find('.valeurInscriptionDate4').val();
+	if(filtreInscriptionDate4 != null && filtreInscriptionDate4 !== '')
+		filtres.push({ name: 'fq', value: 'inscriptionDate4:' + filtreInscriptionDate4 });
+
+	var filtreInscriptionDate5 = $formulaireFiltres.find('.valeurInscriptionDate5').val();
+	if(filtreInscriptionDate5 != null && filtreInscriptionDate5 !== '')
+		filtres.push({ name: 'fq', value: 'inscriptionDate5:' + filtreInscriptionDate5 });
+
+	var filtreInscriptionDate6 = $formulaireFiltres.find('.valeurInscriptionDate6').val();
+	if(filtreInscriptionDate6 != null && filtreInscriptionDate6 !== '')
+		filtres.push({ name: 'fq', value: 'inscriptionDate6:' + filtreInscriptionDate6 });
+
+	var filtreInscriptionDate7 = $formulaireFiltres.find('.valeurInscriptionDate7').val();
+	if(filtreInscriptionDate7 != null && filtreInscriptionDate7 !== '')
+		filtres.push({ name: 'fq', value: 'inscriptionDate7:' + filtreInscriptionDate7 });
+
+	var filtreInscriptionDate8 = $formulaireFiltres.find('.valeurInscriptionDate8').val();
+	if(filtreInscriptionDate8 != null && filtreInscriptionDate8 !== '')
+		filtres.push({ name: 'fq', value: 'inscriptionDate8:' + filtreInscriptionDate8 });
+
+	var filtreInscriptionDate9 = $formulaireFiltres.find('.valeurInscriptionDate9').val();
+	if(filtreInscriptionDate9 != null && filtreInscriptionDate9 !== '')
+		filtres.push({ name: 'fq', value: 'inscriptionDate9:' + filtreInscriptionDate9 });
+
+	var filtreInscriptionDate10 = $formulaireFiltres.find('.valeurInscriptionDate10').val();
+	if(filtreInscriptionDate10 != null && filtreInscriptionDate10 !== '')
+		filtres.push({ name: 'fq', value: 'inscriptionDate10:' + filtreInscriptionDate10 });
 
 	var filtreInscriptionNomComplet = $formulaireFiltres.find('.valeurInscriptionNomComplet').val();
 	if(filtreInscriptionNomComplet != null && filtreInscriptionNomComplet !== '')
