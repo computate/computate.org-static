@@ -6,7 +6,7 @@ async function postPaiementScolaire($formulaireValeurs, success, error) {
 	if(success == null) {
 		success = function( data, textStatus, jQxhr ) {
 			ajouterLueur($formulaireValeurs.next('button'));
-			var url = data['pageUrl'];
+			var url = data['pageUrlPk'];
 			if(url)
 				window.location.href = url;
 		};
@@ -312,6 +312,10 @@ function patchPaiementScolaireFiltres($formulaireFiltres) {
 	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
 		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
 
+	var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
+	if(filtreSessionId != null && filtreSessionId !== '')
+		filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
+
 	var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
 	if(filtreObjetTitre != null && filtreObjetTitre !== '')
 		filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
@@ -320,9 +324,13 @@ function patchPaiementScolaireFiltres($formulaireFiltres) {
 	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
 		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
 
-	var filtrePageUrl = $formulaireFiltres.find('.valeurPageUrl').val();
-	if(filtrePageUrl != null && filtrePageUrl !== '')
-		filtres.push({ name: 'fq', value: 'pageUrl:' + filtrePageUrl });
+	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
+	if(filtrePageUrlId != null && filtrePageUrlId !== '')
+		filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
+
+	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
+	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
+		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
 
 	var filtreEcoleCles = $formulaireFiltres.find('.valeurEcoleCles').val();
 	if(filtreEcoleCles != null && filtreEcoleCles !== '')
@@ -502,6 +510,10 @@ function recherchePaiementScolaireFiltres($formulaireFiltres) {
 	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
 		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
 
+	var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
+	if(filtreSessionId != null && filtreSessionId !== '')
+		filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
+
 	var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
 	if(filtreObjetTitre != null && filtreObjetTitre !== '')
 		filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
@@ -510,9 +522,13 @@ function recherchePaiementScolaireFiltres($formulaireFiltres) {
 	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
 		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
 
-	var filtrePageUrl = $formulaireFiltres.find('.valeurPageUrl').val();
-	if(filtrePageUrl != null && filtrePageUrl !== '')
-		filtres.push({ name: 'fq', value: 'pageUrl:' + filtrePageUrl });
+	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
+	if(filtrePageUrlId != null && filtrePageUrlId !== '')
+		filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
+
+	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
+	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
+		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
 
 	var filtreEcoleCles = $formulaireFiltres.find('.valeurEcoleCles').val();
 	if(filtreEcoleCles != null && filtreEcoleCles !== '')
@@ -586,7 +602,7 @@ function suggerePaiementScolaireObjetSuggere($formulaireFiltres, $list) {
 			var $i = $('<i>').attr('class', 'fas fa-search-dollar w3-padding-small ');
 			var $span = $('<span>').attr('class', '').text(o['paiementNomComplet']);
 			var $li = $('<li>');
-			var $a = $('<a>').attr('href', o['pageUrl']);
+			var $a = $('<a>').attr('href', o['pageUrlPk']);
 			$a.append($i);
 			$a.append($span);
 			$li.append($a);
@@ -603,7 +619,7 @@ function suggerePaiementScolaireInscriptionCles(filtres, $list, pk = null) {
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-edit w3-padding-small ');
 			var $span = $('<span>').attr('class', '').text(o['inscriptionNomComplet']);
-			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrl'] + '#' + pk);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);
 			$a.append($span);
 			var val = o['paiementCles'];

@@ -6,7 +6,7 @@ async function postEnfantScolaire($formulaireValeurs, success, error) {
 	if(success == null) {
 		success = function( data, textStatus, jQxhr ) {
 			ajouterLueur($formulaireValeurs.next('button'));
-			var url = data['pageUrl'];
+			var url = data['pageUrlPk'];
 			if(url)
 				window.location.href = url;
 		};
@@ -25,13 +25,13 @@ async function postEnfantScolaire($formulaireValeurs, success, error) {
 	if(valeurCree != null && valeurCree !== '')
 		vals['cree'] = valeurCree;
 
-	var valeurObjetId = $formulaireValeurs.find('.valeurObjetId').val();
-	if(valeurObjetId != null && valeurObjetId !== '')
-		vals['objetId'] = valeurObjetId;
-
 	var valeurModifie = $formulaireValeurs.find('.valeurModifie').val();
 	if(valeurModifie != null && valeurModifie !== '')
 		vals['modifie'] = valeurModifie;
+
+	var valeurObjetId = $formulaireValeurs.find('.valeurObjetId').val();
+	if(valeurObjetId != null && valeurObjetId !== '')
+		vals['objetId'] = valeurObjetId;
 
 	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
 	if(valeurArchive != null && valeurArchive !== '')
@@ -60,10 +60,6 @@ async function postEnfantScolaire($formulaireValeurs, success, error) {
 	var valeurPersonneAgeEnSeptembre = $formulaireValeurs.find('.valeurPersonneAgeEnSeptembre').val();
 	if(valeurPersonneAgeEnSeptembre != null && valeurPersonneAgeEnSeptembre !== '')
 		vals['personneAgeEnSeptembre'] = valeurPersonneAgeEnSeptembre;
-
-	var valeurEnfantVaccinsAJour = $formulaireValeurs.find('.valeurEnfantVaccinsAJour').prop('checked');
-	if(valeurEnfantVaccinsAJour != null && valeurEnfantVaccinsAJour !== '')
-		vals['enfantVaccinsAJour'] = valeurEnfantVaccinsAJour;
 
 	var valeurEnfantPropre = $formulaireValeurs.find('.valeurEnfantPropre').prop('checked');
 	if(valeurEnfantPropre != null && valeurEnfantPropre !== '')
@@ -145,17 +141,6 @@ async function patchEnfantScolaire($formulaireFiltres, $formulaireValeurs, succe
 	if(removeCree != null && removeCree !== '')
 		vals['removeCree'] = removeCree;
 
-	var removeObjetId = $formulaireFiltres.find('.removeObjetId').val() === 'true';
-	var setObjetId = removeObjetId ? null : $formulaireValeurs.find('.setObjetId').val();
-	if(removeObjetId || setObjetId != null && setObjetId !== '')
-		vals['setObjetId'] = setObjetId;
-	var addObjetId = $formulaireValeurs.find('.addObjetId').val();
-	if(addObjetId != null && addObjetId !== '')
-		vals['addObjetId'] = addObjetId;
-	var removeObjetId = $formulaireValeurs.find('.removeObjetId').val();
-	if(removeObjetId != null && removeObjetId !== '')
-		vals['removeObjetId'] = removeObjetId;
-
 	var removeModifie = $formulaireFiltres.find('.removeModifie').val() === 'true';
 	var setModifie = removeModifie ? null : $formulaireValeurs.find('.setModifie').val();
 	if(removeModifie || setModifie != null && setModifie !== '')
@@ -166,6 +151,17 @@ async function patchEnfantScolaire($formulaireFiltres, $formulaireValeurs, succe
 	var removeModifie = $formulaireValeurs.find('.removeModifie').val();
 	if(removeModifie != null && removeModifie !== '')
 		vals['removeModifie'] = removeModifie;
+
+	var removeObjetId = $formulaireFiltres.find('.removeObjetId').val() === 'true';
+	var setObjetId = removeObjetId ? null : $formulaireValeurs.find('.setObjetId').val();
+	if(removeObjetId || setObjetId != null && setObjetId !== '')
+		vals['setObjetId'] = setObjetId;
+	var addObjetId = $formulaireValeurs.find('.addObjetId').val();
+	if(addObjetId != null && addObjetId !== '')
+		vals['addObjetId'] = addObjetId;
+	var removeObjetId = $formulaireValeurs.find('.removeObjetId').val();
+	if(removeObjetId != null && removeObjetId !== '')
+		vals['removeObjetId'] = removeObjetId;
 
 	var removeArchive = $formulaireFiltres.find('.removeArchive').val() === 'true';
 	var setArchive = removeArchive ? null : $formulaireValeurs.find('.setArchive').prop('checked');
@@ -243,17 +239,6 @@ async function patchEnfantScolaire($formulaireFiltres, $formulaireValeurs, succe
 	var removePersonneAgeEnSeptembre = $formulaireValeurs.find('.removePersonneAgeEnSeptembre').val();
 	if(removePersonneAgeEnSeptembre != null && removePersonneAgeEnSeptembre !== '')
 		vals['removePersonneAgeEnSeptembre'] = removePersonneAgeEnSeptembre;
-
-	var removeEnfantVaccinsAJour = $formulaireFiltres.find('.removeEnfantVaccinsAJour').val() === 'true';
-	var setEnfantVaccinsAJour = removeEnfantVaccinsAJour ? null : $formulaireValeurs.find('.setEnfantVaccinsAJour').prop('checked');
-	if(removeEnfantVaccinsAJour || setEnfantVaccinsAJour != null && setEnfantVaccinsAJour !== '')
-		vals['setEnfantVaccinsAJour'] = setEnfantVaccinsAJour;
-	var addEnfantVaccinsAJour = $formulaireValeurs.find('.addEnfantVaccinsAJour').prop('checked');
-	if(addEnfantVaccinsAJour != null && addEnfantVaccinsAJour !== '')
-		vals['addEnfantVaccinsAJour'] = addEnfantVaccinsAJour;
-	var removeEnfantVaccinsAJour = $formulaireValeurs.find('.removeEnfantVaccinsAJour').prop('checked');
-	if(removeEnfantVaccinsAJour != null && removeEnfantVaccinsAJour !== '')
-		vals['removeEnfantVaccinsAJour'] = removeEnfantVaccinsAJour;
 
 	var removeEnfantPropre = $formulaireFiltres.find('.removeEnfantPropre').val() === 'true';
 	var setEnfantPropre = removeEnfantPropre ? null : $formulaireValeurs.find('.setEnfantPropre').prop('checked');
@@ -346,13 +331,13 @@ function patchEnfantScolaireFiltres($formulaireFiltres) {
 	if(filtreCree != null && filtreCree !== '')
 		filtres.push({ name: 'fq', value: 'cree:' + filtreCree });
 
-	var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
-	if(filtreObjetId != null && filtreObjetId !== '')
-		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
-
 	var filtreModifie = $formulaireFiltres.find('.valeurModifie').val();
 	if(filtreModifie != null && filtreModifie !== '')
 		filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
+
+	var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
+	if(filtreObjetId != null && filtreObjetId !== '')
+		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
 
 	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
 	if(filtreArchive != null && filtreArchive === true)
@@ -382,10 +367,6 @@ function patchEnfantScolaireFiltres($formulaireFiltres) {
 	if(filtrePersonneAgeEnSeptembre != null && filtrePersonneAgeEnSeptembre !== '')
 		filtres.push({ name: 'fq', value: 'personneAgeEnSeptembre:' + filtrePersonneAgeEnSeptembre });
 
-	var filtreEnfantVaccinsAJour = $formulaireFiltres.find('.valeurEnfantVaccinsAJour').prop('checked');
-	if(filtreEnfantVaccinsAJour != null && filtreEnfantVaccinsAJour === true)
-		filtres.push({ name: 'fq', value: 'enfantVaccinsAJour:' + filtreEnfantVaccinsAJour });
-
 	var filtreEnfantPropre = $formulaireFiltres.find('.valeurEnfantPropre').prop('checked');
 	if(filtreEnfantPropre != null && filtreEnfantPropre === true)
 		filtres.push({ name: 'fq', value: 'enfantPropre:' + filtreEnfantPropre });
@@ -410,14 +391,6 @@ function patchEnfantScolaireFiltres($formulaireFiltres) {
 	if(filtreInscriptionCles != null && filtreInscriptionCles !== '')
 		filtres.push({ name: 'fq', value: 'inscriptionCles:' + filtreInscriptionCles });
 
-	var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
-	if(filtreSessionId != null && filtreSessionId !== '')
-		filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
-
-	var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
-	if(filtreObjetTitre != null && filtreObjetTitre !== '')
-		filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
-
 	var filtreId = $formulaireFiltres.find('.valeurId').val();
 	if(filtreId != null && filtreId !== '')
 		filtres.push({ name: 'fq', value: 'id:' + filtreId });
@@ -434,13 +407,25 @@ function patchEnfantScolaireFiltres($formulaireFiltres) {
 	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
 		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
 
+	var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
+	if(filtreSessionId != null && filtreSessionId !== '')
+		filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
+
+	var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
+	if(filtreObjetTitre != null && filtreObjetTitre !== '')
+		filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
+
 	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
 	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
 		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
 
-	var filtrePageUrl = $formulaireFiltres.find('.valeurPageUrl').val();
-	if(filtrePageUrl != null && filtrePageUrl !== '')
-		filtres.push({ name: 'fq', value: 'pageUrl:' + filtrePageUrl });
+	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
+	if(filtrePageUrlId != null && filtrePageUrlId !== '')
+		filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
+
+	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
+	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
+		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
 
 	var filtreEnfantCle = $formulaireFiltres.find('.valeurEnfantCle').val();
 	if(filtreEnfantCle != null && filtreEnfantCle !== '')
@@ -560,13 +545,13 @@ function rechercheEnfantScolaireFiltres($formulaireFiltres) {
 	if(filtreCree != null && filtreCree !== '')
 		filtres.push({ name: 'fq', value: 'cree:' + filtreCree });
 
-	var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
-	if(filtreObjetId != null && filtreObjetId !== '')
-		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
-
 	var filtreModifie = $formulaireFiltres.find('.valeurModifie').val();
 	if(filtreModifie != null && filtreModifie !== '')
 		filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
+
+	var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
+	if(filtreObjetId != null && filtreObjetId !== '')
+		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
 
 	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
 	if(filtreArchive != null && filtreArchive === true)
@@ -596,10 +581,6 @@ function rechercheEnfantScolaireFiltres($formulaireFiltres) {
 	if(filtrePersonneAgeEnSeptembre != null && filtrePersonneAgeEnSeptembre !== '')
 		filtres.push({ name: 'fq', value: 'personneAgeEnSeptembre:' + filtrePersonneAgeEnSeptembre });
 
-	var filtreEnfantVaccinsAJour = $formulaireFiltres.find('.valeurEnfantVaccinsAJour').prop('checked');
-	if(filtreEnfantVaccinsAJour != null && filtreEnfantVaccinsAJour === true)
-		filtres.push({ name: 'fq', value: 'enfantVaccinsAJour:' + filtreEnfantVaccinsAJour });
-
 	var filtreEnfantPropre = $formulaireFiltres.find('.valeurEnfantPropre').prop('checked');
 	if(filtreEnfantPropre != null && filtreEnfantPropre === true)
 		filtres.push({ name: 'fq', value: 'enfantPropre:' + filtreEnfantPropre });
@@ -624,14 +605,6 @@ function rechercheEnfantScolaireFiltres($formulaireFiltres) {
 	if(filtreInscriptionCles != null && filtreInscriptionCles !== '')
 		filtres.push({ name: 'fq', value: 'inscriptionCles:' + filtreInscriptionCles });
 
-	var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
-	if(filtreSessionId != null && filtreSessionId !== '')
-		filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
-
-	var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
-	if(filtreObjetTitre != null && filtreObjetTitre !== '')
-		filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
-
 	var filtreId = $formulaireFiltres.find('.valeurId').val();
 	if(filtreId != null && filtreId !== '')
 		filtres.push({ name: 'fq', value: 'id:' + filtreId });
@@ -648,13 +621,25 @@ function rechercheEnfantScolaireFiltres($formulaireFiltres) {
 	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
 		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
 
+	var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
+	if(filtreSessionId != null && filtreSessionId !== '')
+		filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
+
+	var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
+	if(filtreObjetTitre != null && filtreObjetTitre !== '')
+		filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
+
 	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
 	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
 		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
 
-	var filtrePageUrl = $formulaireFiltres.find('.valeurPageUrl').val();
-	if(filtrePageUrl != null && filtrePageUrl !== '')
-		filtres.push({ name: 'fq', value: 'pageUrl:' + filtrePageUrl });
+	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
+	if(filtrePageUrlId != null && filtrePageUrlId !== '')
+		filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
+
+	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
+	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
+		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
 
 	var filtreEnfantCle = $formulaireFiltres.find('.valeurEnfantCle').val();
 	if(filtreEnfantCle != null && filtreEnfantCle !== '')
@@ -724,7 +709,7 @@ function suggereEnfantScolaireObjetSuggere($formulaireFiltres, $list) {
 			var $i = $('<i>').attr('class', 'far fa-child w3-padding-small ');
 			var $span = $('<span>').attr('class', '').text(o['enfantNomComplet']);
 			var $li = $('<li>');
-			var $a = $('<a>').attr('href', o['pageUrl']);
+			var $a = $('<a>').attr('href', o['pageUrlPk']);
 			$a.append($i);
 			$a.append($span);
 			$li.append($a);
@@ -741,7 +726,7 @@ function suggereEnfantScolaireInscriptionCles(filtres, $list, pk = null) {
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-edit w3-padding-small ');
 			var $span = $('<span>').attr('class', '').text(o['inscriptionNomComplet']);
-			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrl'] + '#' + pk);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);
 			$a.append($span);
 			var val = o['enfantCle'];

@@ -6,7 +6,7 @@ async function postEnrollmentDesign($formValues, success, error) {
 	if(success == null) {
 		success = function( data, textStatus, jQxhr ) {
 			addGlow($formValues.next('button'));
-			var url = data['pageUrl'];
+			var url = data['pageUrlPk'];
 			if(url)
 				window.location.href = url;
 		};
@@ -255,6 +255,10 @@ function patchEnrollmentDesignFilters($formFilters) {
 	if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
 		filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
+	var filterSessionId = $formFilters.find('.valueSessionId').val();
+	if(filterSessionId != null && filterSessionId !== '')
+		filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
 	var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
 	if(filterObjectTitle != null && filterObjectTitle !== '')
 		filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
@@ -263,9 +267,17 @@ function patchEnrollmentDesignFilters($formFilters) {
 	if(filterObjectSuggest != null && filterObjectSuggest !== '')
 		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
 
-	var filterPageUrl = $formFilters.find('.valuePageUrl').val();
-	if(filterPageUrl != null && filterPageUrl !== '')
-		filters.push({ name: 'fq', value: 'pageUrl:' + filterPageUrl });
+	var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
+	if(filterPageUrlId != null && filterPageUrlId !== '')
+		filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
+
+	var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+	if(filterPageUrlPk != null && filterPageUrlPk !== '')
+		filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
+
+	var filterEnrollmentDesignKey = $formFilters.find('.valueEnrollmentDesignKey').val();
+	if(filterEnrollmentDesignKey != null && filterEnrollmentDesignKey !== '')
+		filters.push({ name: 'fq', value: 'enrollmentDesignKey:' + filterEnrollmentDesignKey });
 
 	var filterSchoolKey = $formFilters.find('.valueSchoolKey').val();
 	if(filterSchoolKey != null && filterSchoolKey !== '')
@@ -278,10 +290,6 @@ function patchEnrollmentDesignFilters($formFilters) {
 	var filterSchoolLocation = $formFilters.find('.valueSchoolLocation').val();
 	if(filterSchoolLocation != null && filterSchoolLocation !== '')
 		filters.push({ name: 'fq', value: 'schoolLocation:' + filterSchoolLocation });
-
-	var filterEnrollmentDesignKey = $formFilters.find('.valueEnrollmentDesignKey').val();
-	if(filterEnrollmentDesignKey != null && filterEnrollmentDesignKey !== '')
-		filters.push({ name: 'fq', value: 'enrollmentDesignKey:' + filterEnrollmentDesignKey });
 
 	var filterYearStart = $formFilters.find('.valueYearStart').val();
 	if(filterYearStart != null && filterYearStart !== '')
@@ -417,6 +425,10 @@ function searchEnrollmentDesignFilters($formFilters) {
 	if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
 		filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
+	var filterSessionId = $formFilters.find('.valueSessionId').val();
+	if(filterSessionId != null && filterSessionId !== '')
+		filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
 	var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
 	if(filterObjectTitle != null && filterObjectTitle !== '')
 		filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
@@ -425,9 +437,17 @@ function searchEnrollmentDesignFilters($formFilters) {
 	if(filterObjectSuggest != null && filterObjectSuggest !== '')
 		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
 
-	var filterPageUrl = $formFilters.find('.valuePageUrl').val();
-	if(filterPageUrl != null && filterPageUrl !== '')
-		filters.push({ name: 'fq', value: 'pageUrl:' + filterPageUrl });
+	var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
+	if(filterPageUrlId != null && filterPageUrlId !== '')
+		filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
+
+	var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+	if(filterPageUrlPk != null && filterPageUrlPk !== '')
+		filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
+
+	var filterEnrollmentDesignKey = $formFilters.find('.valueEnrollmentDesignKey').val();
+	if(filterEnrollmentDesignKey != null && filterEnrollmentDesignKey !== '')
+		filters.push({ name: 'fq', value: 'enrollmentDesignKey:' + filterEnrollmentDesignKey });
 
 	var filterSchoolKey = $formFilters.find('.valueSchoolKey').val();
 	if(filterSchoolKey != null && filterSchoolKey !== '')
@@ -440,10 +460,6 @@ function searchEnrollmentDesignFilters($formFilters) {
 	var filterSchoolLocation = $formFilters.find('.valueSchoolLocation').val();
 	if(filterSchoolLocation != null && filterSchoolLocation !== '')
 		filters.push({ name: 'fq', value: 'schoolLocation:' + filterSchoolLocation });
-
-	var filterEnrollmentDesignKey = $formFilters.find('.valueEnrollmentDesignKey').val();
-	if(filterEnrollmentDesignKey != null && filterEnrollmentDesignKey !== '')
-		filters.push({ name: 'fq', value: 'enrollmentDesignKey:' + filterEnrollmentDesignKey });
 
 	var filterYearStart = $formFilters.find('.valueYearStart').val();
 	if(filterYearStart != null && filterYearStart !== '')
@@ -485,7 +501,7 @@ function suggestEnrollmentDesignObjectSuggest($formFilters, $list) {
 			var $i = $('<i>').attr('class', 'far fa-bell w3-padding-small ');
 			var $span = $('<span>').attr('class', '').text(o['enrollmentDesignCompleteName']);
 			var $li = $('<li>');
-			var $a = $('<a>').attr('href', o['pageUrl']);
+			var $a = $('<a>').attr('href', o['pageUrlPk']);
 			$a.append($i);
 			$a.append($span);
 			$li.append($a);
@@ -502,7 +518,7 @@ function suggestEnrollmentDesignHtmlPartKeys(filters, $list, pk = null) {
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-sun w3-padding-small ');
 			var $span = $('<span>').attr('class', '').text(o['objectTitle']);
-			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrl'] + '#' + pk);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);
 			$a.append($span);
 			var val = o['enrollmentDesignKey'];

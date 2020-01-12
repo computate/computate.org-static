@@ -6,7 +6,7 @@ async function postInscriptionScolaire($formulaireValeurs, success, error) {
 	if(success == null) {
 		success = function( data, textStatus, jQxhr ) {
 			ajouterLueur($formulaireValeurs.next('button'));
-			var url = data['pageUrl'];
+			var url = data['pageUrlPk'];
 			if(url)
 				window.location.href = url;
 		};
@@ -867,9 +867,13 @@ function patchInscriptionScolaireFiltres($formulaireFiltres) {
 	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
 		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
 
-	var filtrePageUrl = $formulaireFiltres.find('.valeurPageUrl').val();
-	if(filtrePageUrl != null && filtrePageUrl !== '')
-		filtres.push({ name: 'fq', value: 'pageUrl:' + filtrePageUrl });
+	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
+	if(filtrePageUrlId != null && filtrePageUrlId !== '')
+		filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
+
+	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
+	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
+		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
 
 	var filtreInscriptionCle = $formulaireFiltres.find('.valeurInscriptionCle').val();
 	if(filtreInscriptionCle != null && filtreInscriptionCle !== '')
@@ -1046,46 +1050,6 @@ function patchInscriptionScolaireFiltres($formulaireFiltres) {
 	var filtreInscriptionNomsParents = $formulaireFiltres.find('.valeurInscriptionNomsParents').val();
 	if(filtreInscriptionNomsParents != null && filtreInscriptionNomsParents !== '')
 		filtres.push({ name: 'fq', value: 'inscriptionNomsParents:' + filtreInscriptionNomsParents });
-
-	var filtreInscriptionSignature1 = $formulaireFiltres.find('.valeurInscriptionSignature1').val();
-	if(filtreInscriptionSignature1 != null && filtreInscriptionSignature1 !== '')
-		filtres.push({ name: 'fq', value: 'inscriptionSignature1:' + filtreInscriptionSignature1 });
-
-	var filtreInscriptionSignature2 = $formulaireFiltres.find('.valeurInscriptionSignature2').val();
-	if(filtreInscriptionSignature2 != null && filtreInscriptionSignature2 !== '')
-		filtres.push({ name: 'fq', value: 'inscriptionSignature2:' + filtreInscriptionSignature2 });
-
-	var filtreInscriptionSignature3 = $formulaireFiltres.find('.valeurInscriptionSignature3').val();
-	if(filtreInscriptionSignature3 != null && filtreInscriptionSignature3 !== '')
-		filtres.push({ name: 'fq', value: 'inscriptionSignature3:' + filtreInscriptionSignature3 });
-
-	var filtreInscriptionSignature4 = $formulaireFiltres.find('.valeurInscriptionSignature4').val();
-	if(filtreInscriptionSignature4 != null && filtreInscriptionSignature4 !== '')
-		filtres.push({ name: 'fq', value: 'inscriptionSignature4:' + filtreInscriptionSignature4 });
-
-	var filtreInscriptionSignature5 = $formulaireFiltres.find('.valeurInscriptionSignature5').val();
-	if(filtreInscriptionSignature5 != null && filtreInscriptionSignature5 !== '')
-		filtres.push({ name: 'fq', value: 'inscriptionSignature5:' + filtreInscriptionSignature5 });
-
-	var filtreInscriptionSignature6 = $formulaireFiltres.find('.valeurInscriptionSignature6').val();
-	if(filtreInscriptionSignature6 != null && filtreInscriptionSignature6 !== '')
-		filtres.push({ name: 'fq', value: 'inscriptionSignature6:' + filtreInscriptionSignature6 });
-
-	var filtreInscriptionSignature7 = $formulaireFiltres.find('.valeurInscriptionSignature7').val();
-	if(filtreInscriptionSignature7 != null && filtreInscriptionSignature7 !== '')
-		filtres.push({ name: 'fq', value: 'inscriptionSignature7:' + filtreInscriptionSignature7 });
-
-	var filtreInscriptionSignature8 = $formulaireFiltres.find('.valeurInscriptionSignature8').val();
-	if(filtreInscriptionSignature8 != null && filtreInscriptionSignature8 !== '')
-		filtres.push({ name: 'fq', value: 'inscriptionSignature8:' + filtreInscriptionSignature8 });
-
-	var filtreInscriptionSignature9 = $formulaireFiltres.find('.valeurInscriptionSignature9').val();
-	if(filtreInscriptionSignature9 != null && filtreInscriptionSignature9 !== '')
-		filtres.push({ name: 'fq', value: 'inscriptionSignature9:' + filtreInscriptionSignature9 });
-
-	var filtreInscriptionSignature10 = $formulaireFiltres.find('.valeurInscriptionSignature10').val();
-	if(filtreInscriptionSignature10 != null && filtreInscriptionSignature10 !== '')
-		filtres.push({ name: 'fq', value: 'inscriptionSignature10:' + filtreInscriptionSignature10 });
 
 	var filtreInscriptionDate1 = $formulaireFiltres.find('.valeurInscriptionDate1').val();
 	if(filtreInscriptionDate1 != null && filtreInscriptionDate1 !== '')
@@ -1317,9 +1281,13 @@ function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
 		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
 
-	var filtrePageUrl = $formulaireFiltres.find('.valeurPageUrl').val();
-	if(filtrePageUrl != null && filtrePageUrl !== '')
-		filtres.push({ name: 'fq', value: 'pageUrl:' + filtrePageUrl });
+	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
+	if(filtrePageUrlId != null && filtrePageUrlId !== '')
+		filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
+
+	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
+	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
+		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
 
 	var filtreInscriptionCle = $formulaireFiltres.find('.valeurInscriptionCle').val();
 	if(filtreInscriptionCle != null && filtreInscriptionCle !== '')
@@ -1497,46 +1465,6 @@ function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 	if(filtreInscriptionNomsParents != null && filtreInscriptionNomsParents !== '')
 		filtres.push({ name: 'fq', value: 'inscriptionNomsParents:' + filtreInscriptionNomsParents });
 
-	var filtreInscriptionSignature1 = $formulaireFiltres.find('.valeurInscriptionSignature1').val();
-	if(filtreInscriptionSignature1 != null && filtreInscriptionSignature1 !== '')
-		filtres.push({ name: 'fq', value: 'inscriptionSignature1:' + filtreInscriptionSignature1 });
-
-	var filtreInscriptionSignature2 = $formulaireFiltres.find('.valeurInscriptionSignature2').val();
-	if(filtreInscriptionSignature2 != null && filtreInscriptionSignature2 !== '')
-		filtres.push({ name: 'fq', value: 'inscriptionSignature2:' + filtreInscriptionSignature2 });
-
-	var filtreInscriptionSignature3 = $formulaireFiltres.find('.valeurInscriptionSignature3').val();
-	if(filtreInscriptionSignature3 != null && filtreInscriptionSignature3 !== '')
-		filtres.push({ name: 'fq', value: 'inscriptionSignature3:' + filtreInscriptionSignature3 });
-
-	var filtreInscriptionSignature4 = $formulaireFiltres.find('.valeurInscriptionSignature4').val();
-	if(filtreInscriptionSignature4 != null && filtreInscriptionSignature4 !== '')
-		filtres.push({ name: 'fq', value: 'inscriptionSignature4:' + filtreInscriptionSignature4 });
-
-	var filtreInscriptionSignature5 = $formulaireFiltres.find('.valeurInscriptionSignature5').val();
-	if(filtreInscriptionSignature5 != null && filtreInscriptionSignature5 !== '')
-		filtres.push({ name: 'fq', value: 'inscriptionSignature5:' + filtreInscriptionSignature5 });
-
-	var filtreInscriptionSignature6 = $formulaireFiltres.find('.valeurInscriptionSignature6').val();
-	if(filtreInscriptionSignature6 != null && filtreInscriptionSignature6 !== '')
-		filtres.push({ name: 'fq', value: 'inscriptionSignature6:' + filtreInscriptionSignature6 });
-
-	var filtreInscriptionSignature7 = $formulaireFiltres.find('.valeurInscriptionSignature7').val();
-	if(filtreInscriptionSignature7 != null && filtreInscriptionSignature7 !== '')
-		filtres.push({ name: 'fq', value: 'inscriptionSignature7:' + filtreInscriptionSignature7 });
-
-	var filtreInscriptionSignature8 = $formulaireFiltres.find('.valeurInscriptionSignature8').val();
-	if(filtreInscriptionSignature8 != null && filtreInscriptionSignature8 !== '')
-		filtres.push({ name: 'fq', value: 'inscriptionSignature8:' + filtreInscriptionSignature8 });
-
-	var filtreInscriptionSignature9 = $formulaireFiltres.find('.valeurInscriptionSignature9').val();
-	if(filtreInscriptionSignature9 != null && filtreInscriptionSignature9 !== '')
-		filtres.push({ name: 'fq', value: 'inscriptionSignature9:' + filtreInscriptionSignature9 });
-
-	var filtreInscriptionSignature10 = $formulaireFiltres.find('.valeurInscriptionSignature10').val();
-	if(filtreInscriptionSignature10 != null && filtreInscriptionSignature10 !== '')
-		filtres.push({ name: 'fq', value: 'inscriptionSignature10:' + filtreInscriptionSignature10 });
-
 	var filtreInscriptionDate1 = $formulaireFiltres.find('.valeurInscriptionDate1').val();
 	if(filtreInscriptionDate1 != null && filtreInscriptionDate1 !== '')
 		filtres.push({ name: 'fq', value: 'inscriptionDate1:' + filtreInscriptionDate1 });
@@ -1601,7 +1529,7 @@ function suggereInscriptionScolaireObjetSuggere($formulaireFiltres, $list) {
 			var $i = $('<i>').attr('class', 'fas fa-edit w3-padding-small ');
 			var $span = $('<span>').attr('class', '').text(o['inscriptionNomComplet']);
 			var $li = $('<li>');
-			var $a = $('<a>').attr('href', o['pageUrl']);
+			var $a = $('<a>').attr('href', o['pageUrlPk']);
 			$a.append($i);
 			$a.append($span);
 			$li.append($a);
@@ -1618,7 +1546,7 @@ function suggereInscriptionScolaireBlocCles(filtres, $list, pk = null) {
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-bell w3-padding-small ');
 			var $span = $('<span>').attr('class', '').text(o['blocNomComplet']);
-			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrl'] + '#' + pk);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);
 			$a.append($span);
 			var val = o['inscriptionCles'];
@@ -1650,7 +1578,7 @@ function suggereInscriptionScolaireEnfantCle(filtres, $list, pk = null) {
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-child w3-padding-small ');
 			var $span = $('<span>').attr('class', '').text(o['enfantNomComplet']);
-			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrl'] + '#' + pk);
+			var $a = $('<span>');
 			$a.append($i);
 			$a.append($span);
 			var val = o['inscriptionCles'];
@@ -1682,7 +1610,7 @@ function suggereInscriptionScolaireMereCles(filtres, $list, pk = null) {
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-female w3-padding-small ');
 			var $span = $('<span>').attr('class', '').text(o['mereNomComplet']);
-			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrl'] + '#' + pk);
+			var $a = $('<span>');
 			$a.append($i);
 			$a.append($span);
 			var val = o['inscriptionCles'];
@@ -1714,7 +1642,7 @@ function suggereInscriptionScolairePereCles(filtres, $list, pk = null) {
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-male w3-padding-small ');
 			var $span = $('<span>').attr('class', '').text(o['pereNomComplet']);
-			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrl'] + '#' + pk);
+			var $a = $('<span>');
 			$a.append($i);
 			$a.append($span);
 			var val = o['inscriptionCles'];
@@ -1746,7 +1674,7 @@ function suggereInscriptionScolaireGardienCles(filtres, $list, pk = null) {
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-phone w3-padding-small ');
 			var $span = $('<span>').attr('class', '').text(o['gardienNomComplet']);
-			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrl'] + '#' + pk);
+			var $a = $('<span>');
 			$a.append($i);
 			$a.append($span);
 			var val = o['inscriptionCles'];
@@ -1778,7 +1706,7 @@ function suggereInscriptionScolairePaiementCles(filtres, $list, pk = null) {
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-search-dollar w3-padding-small ');
 			var $span = $('<span>').attr('class', '').text(o['paiementNomComplet']);
-			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrl'] + '#' + pk);
+			var $a = $('<span>');
 			$a.append($i);
 			$a.append($span);
 			var val = o['inscriptionCles'];

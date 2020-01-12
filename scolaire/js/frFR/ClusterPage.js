@@ -6,7 +6,7 @@ async function postCluster($formulaireValeurs, success, error) {
 	if(success == null) {
 		success = function( data, textStatus, jQxhr ) {
 			ajouterLueur($formulaireValeurs.next('button'));
-			var url = data['pageUrl'];
+			var url = data['pageUrlPk'];
 			if(url)
 				window.location.href = url;
 		};
@@ -195,9 +195,13 @@ function patchClusterFiltres($formulaireFiltres) {
 	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
 		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
 
-	var filtrePageUrl = $formulaireFiltres.find('.valeurPageUrl').val();
-	if(filtrePageUrl != null && filtrePageUrl !== '')
-		filtres.push({ name: 'fq', value: 'pageUrl:' + filtrePageUrl });
+	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
+	if(filtrePageUrlId != null && filtrePageUrlId !== '')
+		filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
+
+	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
+	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
+		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
 	return filtres;
 }
 
@@ -313,9 +317,13 @@ function rechercheClusterFiltres($formulaireFiltres) {
 	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
 		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
 
-	var filtrePageUrl = $formulaireFiltres.find('.valeurPageUrl').val();
-	if(filtrePageUrl != null && filtrePageUrl !== '')
-		filtres.push({ name: 'fq', value: 'pageUrl:' + filtrePageUrl });
+	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
+	if(filtrePageUrlId != null && filtrePageUrlId !== '')
+		filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
+
+	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
+	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
+		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
 	return filtres;
 }
 
@@ -337,7 +345,7 @@ function suggereClusterObjetSuggere($formulaireFiltres, $list) {
 			var $i = $('<i>').attr('class', 'far fa-fort-awesome w3-padding-small ');
 			var $span = $('<span>').attr('class', '').text(o['objetTitre']);
 			var $li = $('<li>');
-			var $a = $('<a>').attr('href', o['pageUrl']);
+			var $a = $('<a>').attr('href', o['pageUrlPk']);
 			$a.append($i);
 			$a.append($span);
 			$li.append($a);
@@ -365,13 +373,13 @@ async function websocketCluster(success) {
 				var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
 				var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
 				var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
-				var $header = $('<div>').attr('class', 'w3-container fa-green ').attr('id', 'header-' + id);
+				var $header = $('<div>').attr('class', 'w3-container fa-gray ').attr('id', 'header-' + id);
 				var $i = $('<i>').attr('class', 'far fa-fort-awesome w3-margin-right ').attr('id', 'icon-' + id);
 				var $headerSpan = $('<span>').attr('class', '').text('modifier clusters');
 				var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
 				var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
 				var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
-				var $progress = $('<div>').attr('class', 'w3-green ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
+				var $progress = $('<div>').attr('class', 'w3-gray ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
 				$card.append($header);
 				$header.append($i);
 				$header.append($headerSpan);

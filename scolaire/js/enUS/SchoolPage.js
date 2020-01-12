@@ -6,7 +6,7 @@ async function postSchool($formValues, success, error) {
 	if(success == null) {
 		success = function( data, textStatus, jQxhr ) {
 			addGlow($formValues.next('button'));
-			var url = data['pageUrl'];
+			var url = data['pageUrlPk'];
 			if(url)
 				window.location.href = url;
 		};
@@ -25,13 +25,13 @@ async function postSchool($formValues, success, error) {
 	if(valueCreated != null && valueCreated !== '')
 		vals['created'] = valueCreated;
 
-	var valueObjectId = $formValues.find('.valueObjectId').val();
-	if(valueObjectId != null && valueObjectId !== '')
-		vals['objectId'] = valueObjectId;
-
 	var valueModified = $formValues.find('.valueModified').val();
 	if(valueModified != null && valueModified !== '')
 		vals['modified'] = valueModified;
+
+	var valueObjectId = $formValues.find('.valueObjectId').val();
+	if(valueObjectId != null && valueObjectId !== '')
+		vals['objectId'] = valueObjectId;
 
 	var valueArchived = $formValues.find('.valueArchived').prop('checked');
 	if(valueArchived != null && valueArchived !== '')
@@ -121,17 +121,6 @@ async function patchSchool($formFilters, $formValues, success, error) {
 	if(removeCreated != null && removeCreated !== '')
 		vals['removeCreated'] = removeCreated;
 
-	var removeObjectId = $formFilters.find('.removeObjectId').val() === 'true';
-	var setObjectId = removeObjectId ? null : $formValues.find('.setObjectId').val();
-	if(removeObjectId || setObjectId != null && setObjectId !== '')
-		vals['setObjectId'] = setObjectId;
-	var addObjectId = $formValues.find('.addObjectId').val();
-	if(addObjectId != null && addObjectId !== '')
-		vals['addObjectId'] = addObjectId;
-	var removeObjectId = $formValues.find('.removeObjectId').val();
-	if(removeObjectId != null && removeObjectId !== '')
-		vals['removeObjectId'] = removeObjectId;
-
 	var removeModified = $formFilters.find('.removeModified').val() === 'true';
 	var setModified = removeModified ? null : $formValues.find('.setModified').val();
 	if(removeModified || setModified != null && setModified !== '')
@@ -142,6 +131,17 @@ async function patchSchool($formFilters, $formValues, success, error) {
 	var removeModified = $formValues.find('.removeModified').val();
 	if(removeModified != null && removeModified !== '')
 		vals['removeModified'] = removeModified;
+
+	var removeObjectId = $formFilters.find('.removeObjectId').val() === 'true';
+	var setObjectId = removeObjectId ? null : $formValues.find('.setObjectId').val();
+	if(removeObjectId || setObjectId != null && setObjectId !== '')
+		vals['setObjectId'] = setObjectId;
+	var addObjectId = $formValues.find('.addObjectId').val();
+	if(addObjectId != null && addObjectId !== '')
+		vals['addObjectId'] = addObjectId;
+	var removeObjectId = $formValues.find('.removeObjectId').val();
+	if(removeObjectId != null && removeObjectId !== '')
+		vals['removeObjectId'] = removeObjectId;
 
 	var removeArchived = $formFilters.find('.removeArchived').val() === 'true';
 	var setArchived = removeArchived ? null : $formValues.find('.setArchived').prop('checked');
@@ -256,13 +256,13 @@ function patchSchoolFilters($formFilters) {
 	if(filterCreated != null && filterCreated !== '')
 		filters.push({ name: 'fq', value: 'created:' + filterCreated });
 
-	var filterObjectId = $formFilters.find('.valueObjectId').val();
-	if(filterObjectId != null && filterObjectId !== '')
-		filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
-
 	var filterModified = $formFilters.find('.valueModified').val();
 	if(filterModified != null && filterModified !== '')
 		filters.push({ name: 'fq', value: 'modified:' + filterModified });
+
+	var filterObjectId = $formFilters.find('.valueObjectId').val();
+	if(filterObjectId != null && filterObjectId !== '')
+		filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
 
 	var filterArchived = $formFilters.find('.valueArchived').prop('checked');
 	if(filterArchived != null && filterArchived === true)
@@ -296,14 +296,6 @@ function patchSchoolFilters($formFilters) {
 	if(filterYearKeys != null && filterYearKeys !== '')
 		filters.push({ name: 'fq', value: 'yearKeys:' + filterYearKeys });
 
-	var filterSessionId = $formFilters.find('.valueSessionId').val();
-	if(filterSessionId != null && filterSessionId !== '')
-		filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
-
-	var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
-	if(filterObjectTitle != null && filterObjectTitle !== '')
-		filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
-
 	var filterId = $formFilters.find('.valueId').val();
 	if(filterId != null && filterId !== '')
 		filters.push({ name: 'fq', value: 'id:' + filterId });
@@ -320,13 +312,25 @@ function patchSchoolFilters($formFilters) {
 	if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
 		filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
+	var filterSessionId = $formFilters.find('.valueSessionId').val();
+	if(filterSessionId != null && filterSessionId !== '')
+		filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+	var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
+	if(filterObjectTitle != null && filterObjectTitle !== '')
+		filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
+
 	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
 	if(filterObjectSuggest != null && filterObjectSuggest !== '')
 		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
 
-	var filterPageUrl = $formFilters.find('.valuePageUrl').val();
-	if(filterPageUrl != null && filterPageUrl !== '')
-		filters.push({ name: 'fq', value: 'pageUrl:' + filterPageUrl });
+	var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
+	if(filterPageUrlId != null && filterPageUrlId !== '')
+		filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
+
+	var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+	if(filterPageUrlPk != null && filterPageUrlPk !== '')
+		filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
 	var filterSchoolKey = $formFilters.find('.valueSchoolKey').val();
 	if(filterSchoolKey != null && filterSchoolKey !== '')
@@ -438,13 +442,13 @@ function searchSchoolFilters($formFilters) {
 	if(filterCreated != null && filterCreated !== '')
 		filters.push({ name: 'fq', value: 'created:' + filterCreated });
 
-	var filterObjectId = $formFilters.find('.valueObjectId').val();
-	if(filterObjectId != null && filterObjectId !== '')
-		filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
-
 	var filterModified = $formFilters.find('.valueModified').val();
 	if(filterModified != null && filterModified !== '')
 		filters.push({ name: 'fq', value: 'modified:' + filterModified });
+
+	var filterObjectId = $formFilters.find('.valueObjectId').val();
+	if(filterObjectId != null && filterObjectId !== '')
+		filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
 
 	var filterArchived = $formFilters.find('.valueArchived').prop('checked');
 	if(filterArchived != null && filterArchived === true)
@@ -478,14 +482,6 @@ function searchSchoolFilters($formFilters) {
 	if(filterYearKeys != null && filterYearKeys !== '')
 		filters.push({ name: 'fq', value: 'yearKeys:' + filterYearKeys });
 
-	var filterSessionId = $formFilters.find('.valueSessionId').val();
-	if(filterSessionId != null && filterSessionId !== '')
-		filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
-
-	var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
-	if(filterObjectTitle != null && filterObjectTitle !== '')
-		filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
-
 	var filterId = $formFilters.find('.valueId').val();
 	if(filterId != null && filterId !== '')
 		filters.push({ name: 'fq', value: 'id:' + filterId });
@@ -502,13 +498,25 @@ function searchSchoolFilters($formFilters) {
 	if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
 		filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
+	var filterSessionId = $formFilters.find('.valueSessionId').val();
+	if(filterSessionId != null && filterSessionId !== '')
+		filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+	var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
+	if(filterObjectTitle != null && filterObjectTitle !== '')
+		filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
+
 	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
 	if(filterObjectSuggest != null && filterObjectSuggest !== '')
 		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
 
-	var filterPageUrl = $formFilters.find('.valuePageUrl').val();
-	if(filterPageUrl != null && filterPageUrl !== '')
-		filters.push({ name: 'fq', value: 'pageUrl:' + filterPageUrl });
+	var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
+	if(filterPageUrlId != null && filterPageUrlId !== '')
+		filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
+
+	var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+	if(filterPageUrlPk != null && filterPageUrlPk !== '')
+		filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
 	var filterSchoolKey = $formFilters.find('.valueSchoolKey').val();
 	if(filterSchoolKey != null && filterSchoolKey !== '')
@@ -570,7 +578,7 @@ function suggestSchoolObjectSuggest($formFilters, $list) {
 			var $i = $('<i>').attr('class', 'far fa-school w3-padding-small ');
 			var $span = $('<span>').attr('class', '').text(o['schoolCompleteName']);
 			var $li = $('<li>');
-			var $a = $('<a>').attr('href', o['pageUrl']);
+			var $a = $('<a>').attr('href', o['pageUrlPk']);
 			$a.append($i);
 			$a.append($span);
 			$li.append($a);
@@ -587,7 +595,7 @@ function suggestSchoolYearKeys(filters, $list, pk = null) {
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-calendar-check w3-padding-small ');
 			var $span = $('<span>').attr('class', '').text(o['yearCompleteName']);
-			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrl'] + '#' + pk);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);
 			$a.append($span);
 			var val = o['schoolKey'];
