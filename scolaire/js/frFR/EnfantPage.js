@@ -61,26 +61,6 @@ async function postEnfantScolaire($formulaireValeurs, success, error) {
 	if(valeurPersonneAgeEnSeptembre != null && valeurPersonneAgeEnSeptembre !== '')
 		vals['personneAgeEnSeptembre'] = valeurPersonneAgeEnSeptembre;
 
-	var valeurEnfantPropre = $formulaireValeurs.find('.valeurEnfantPropre').prop('checked');
-	if(valeurEnfantPropre != null && valeurEnfantPropre !== '')
-		vals['enfantPropre'] = valeurEnfantPropre;
-
-	var valeurEnfantConditionsMedicales = $formulaireValeurs.find('.valeurEnfantConditionsMedicales').val();
-	if(valeurEnfantConditionsMedicales != null && valeurEnfantConditionsMedicales !== '')
-		vals['enfantConditionsMedicales'] = valeurEnfantConditionsMedicales;
-
-	var valeurEnfantEcolesPrecedemmentFrequentees = $formulaireValeurs.find('.valeurEnfantEcolesPrecedemmentFrequentees').val();
-	if(valeurEnfantEcolesPrecedemmentFrequentees != null && valeurEnfantEcolesPrecedemmentFrequentees !== '')
-		vals['enfantEcolesPrecedemmentFrequentees'] = valeurEnfantEcolesPrecedemmentFrequentees;
-
-	var valeurEnfantDescription = $formulaireValeurs.find('.valeurEnfantDescription').val();
-	if(valeurEnfantDescription != null && valeurEnfantDescription !== '')
-		vals['enfantDescription'] = valeurEnfantDescription;
-
-	var valeurEnfantObjectifs = $formulaireValeurs.find('.valeurEnfantObjectifs').val();
-	if(valeurEnfantObjectifs != null && valeurEnfantObjectifs !== '')
-		vals['enfantObjectifs'] = valeurEnfantObjectifs;
-
 	var valeurInscriptionCles = $formulaireValeurs.find('.valeurInscriptionCles').val();
 	if(valeurInscriptionCles != null && valeurInscriptionCles !== '')
 		vals['inscriptionCles'] = valeurInscriptionCles;
@@ -240,61 +220,6 @@ async function patchEnfantScolaire($formulaireFiltres, $formulaireValeurs, succe
 	if(removePersonneAgeEnSeptembre != null && removePersonneAgeEnSeptembre !== '')
 		vals['removePersonneAgeEnSeptembre'] = removePersonneAgeEnSeptembre;
 
-	var removeEnfantPropre = $formulaireFiltres.find('.removeEnfantPropre').val() === 'true';
-	var setEnfantPropre = removeEnfantPropre ? null : $formulaireValeurs.find('.setEnfantPropre').prop('checked');
-	if(removeEnfantPropre || setEnfantPropre != null && setEnfantPropre !== '')
-		vals['setEnfantPropre'] = setEnfantPropre;
-	var addEnfantPropre = $formulaireValeurs.find('.addEnfantPropre').prop('checked');
-	if(addEnfantPropre != null && addEnfantPropre !== '')
-		vals['addEnfantPropre'] = addEnfantPropre;
-	var removeEnfantPropre = $formulaireValeurs.find('.removeEnfantPropre').prop('checked');
-	if(removeEnfantPropre != null && removeEnfantPropre !== '')
-		vals['removeEnfantPropre'] = removeEnfantPropre;
-
-	var removeEnfantConditionsMedicales = $formulaireFiltres.find('.removeEnfantConditionsMedicales').val() === 'true';
-	var setEnfantConditionsMedicales = removeEnfantConditionsMedicales ? null : $formulaireValeurs.find('.setEnfantConditionsMedicales').val();
-	if(removeEnfantConditionsMedicales || setEnfantConditionsMedicales != null && setEnfantConditionsMedicales !== '')
-		vals['setEnfantConditionsMedicales'] = setEnfantConditionsMedicales;
-	var addEnfantConditionsMedicales = $formulaireValeurs.find('.addEnfantConditionsMedicales').val();
-	if(addEnfantConditionsMedicales != null && addEnfantConditionsMedicales !== '')
-		vals['addEnfantConditionsMedicales'] = addEnfantConditionsMedicales;
-	var removeEnfantConditionsMedicales = $formulaireValeurs.find('.removeEnfantConditionsMedicales').val();
-	if(removeEnfantConditionsMedicales != null && removeEnfantConditionsMedicales !== '')
-		vals['removeEnfantConditionsMedicales'] = removeEnfantConditionsMedicales;
-
-	var removeEnfantEcolesPrecedemmentFrequentees = $formulaireFiltres.find('.removeEnfantEcolesPrecedemmentFrequentees').val() === 'true';
-	var setEnfantEcolesPrecedemmentFrequentees = removeEnfantEcolesPrecedemmentFrequentees ? null : $formulaireValeurs.find('.setEnfantEcolesPrecedemmentFrequentees').val();
-	if(removeEnfantEcolesPrecedemmentFrequentees || setEnfantEcolesPrecedemmentFrequentees != null && setEnfantEcolesPrecedemmentFrequentees !== '')
-		vals['setEnfantEcolesPrecedemmentFrequentees'] = setEnfantEcolesPrecedemmentFrequentees;
-	var addEnfantEcolesPrecedemmentFrequentees = $formulaireValeurs.find('.addEnfantEcolesPrecedemmentFrequentees').val();
-	if(addEnfantEcolesPrecedemmentFrequentees != null && addEnfantEcolesPrecedemmentFrequentees !== '')
-		vals['addEnfantEcolesPrecedemmentFrequentees'] = addEnfantEcolesPrecedemmentFrequentees;
-	var removeEnfantEcolesPrecedemmentFrequentees = $formulaireValeurs.find('.removeEnfantEcolesPrecedemmentFrequentees').val();
-	if(removeEnfantEcolesPrecedemmentFrequentees != null && removeEnfantEcolesPrecedemmentFrequentees !== '')
-		vals['removeEnfantEcolesPrecedemmentFrequentees'] = removeEnfantEcolesPrecedemmentFrequentees;
-
-	var removeEnfantDescription = $formulaireFiltres.find('.removeEnfantDescription').val() === 'true';
-	var setEnfantDescription = removeEnfantDescription ? null : $formulaireValeurs.find('.setEnfantDescription').val();
-	if(removeEnfantDescription || setEnfantDescription != null && setEnfantDescription !== '')
-		vals['setEnfantDescription'] = setEnfantDescription;
-	var addEnfantDescription = $formulaireValeurs.find('.addEnfantDescription').val();
-	if(addEnfantDescription != null && addEnfantDescription !== '')
-		vals['addEnfantDescription'] = addEnfantDescription;
-	var removeEnfantDescription = $formulaireValeurs.find('.removeEnfantDescription').val();
-	if(removeEnfantDescription != null && removeEnfantDescription !== '')
-		vals['removeEnfantDescription'] = removeEnfantDescription;
-
-	var removeEnfantObjectifs = $formulaireFiltres.find('.removeEnfantObjectifs').val() === 'true';
-	var setEnfantObjectifs = removeEnfantObjectifs ? null : $formulaireValeurs.find('.setEnfantObjectifs').val();
-	if(removeEnfantObjectifs || setEnfantObjectifs != null && setEnfantObjectifs !== '')
-		vals['setEnfantObjectifs'] = setEnfantObjectifs;
-	var addEnfantObjectifs = $formulaireValeurs.find('.addEnfantObjectifs').val();
-	if(addEnfantObjectifs != null && addEnfantObjectifs !== '')
-		vals['addEnfantObjectifs'] = addEnfantObjectifs;
-	var removeEnfantObjectifs = $formulaireValeurs.find('.removeEnfantObjectifs').val();
-	if(removeEnfantObjectifs != null && removeEnfantObjectifs !== '')
-		vals['removeEnfantObjectifs'] = removeEnfantObjectifs;
-
 	var removeInscriptionCles = $formulaireFiltres.find('.removeInscriptionCles').val() === 'true';
 	var setInscriptionCles = removeInscriptionCles ? null : $formulaireValeurs.find('.setInscriptionCles').val();
 	if(removeInscriptionCles || setInscriptionCles != null && setInscriptionCles !== '')
@@ -366,26 +291,6 @@ function patchEnfantScolaireFiltres($formulaireFiltres) {
 	var filtrePersonneAgeEnSeptembre = $formulaireFiltres.find('.valeurPersonneAgeEnSeptembre').val();
 	if(filtrePersonneAgeEnSeptembre != null && filtrePersonneAgeEnSeptembre !== '')
 		filtres.push({ name: 'fq', value: 'personneAgeEnSeptembre:' + filtrePersonneAgeEnSeptembre });
-
-	var filtreEnfantPropre = $formulaireFiltres.find('.valeurEnfantPropre').prop('checked');
-	if(filtreEnfantPropre != null && filtreEnfantPropre === true)
-		filtres.push({ name: 'fq', value: 'enfantPropre:' + filtreEnfantPropre });
-
-	var filtreEnfantConditionsMedicales = $formulaireFiltres.find('.valeurEnfantConditionsMedicales').val();
-	if(filtreEnfantConditionsMedicales != null && filtreEnfantConditionsMedicales !== '')
-		filtres.push({ name: 'fq', value: 'enfantConditionsMedicales:' + filtreEnfantConditionsMedicales });
-
-	var filtreEnfantEcolesPrecedemmentFrequentees = $formulaireFiltres.find('.valeurEnfantEcolesPrecedemmentFrequentees').val();
-	if(filtreEnfantEcolesPrecedemmentFrequentees != null && filtreEnfantEcolesPrecedemmentFrequentees !== '')
-		filtres.push({ name: 'fq', value: 'enfantEcolesPrecedemmentFrequentees:' + filtreEnfantEcolesPrecedemmentFrequentees });
-
-	var filtreEnfantDescription = $formulaireFiltres.find('.valeurEnfantDescription').val();
-	if(filtreEnfantDescription != null && filtreEnfantDescription !== '')
-		filtres.push({ name: 'fq', value: 'enfantDescription:' + filtreEnfantDescription });
-
-	var filtreEnfantObjectifs = $formulaireFiltres.find('.valeurEnfantObjectifs').val();
-	if(filtreEnfantObjectifs != null && filtreEnfantObjectifs !== '')
-		filtres.push({ name: 'fq', value: 'enfantObjectifs:' + filtreEnfantObjectifs });
 
 	var filtreInscriptionCles = $formulaireFiltres.find('.valeurInscriptionCles').val();
 	if(filtreInscriptionCles != null && filtreInscriptionCles !== '')
@@ -580,26 +485,6 @@ function rechercheEnfantScolaireFiltres($formulaireFiltres) {
 	var filtrePersonneAgeEnSeptembre = $formulaireFiltres.find('.valeurPersonneAgeEnSeptembre').val();
 	if(filtrePersonneAgeEnSeptembre != null && filtrePersonneAgeEnSeptembre !== '')
 		filtres.push({ name: 'fq', value: 'personneAgeEnSeptembre:' + filtrePersonneAgeEnSeptembre });
-
-	var filtreEnfantPropre = $formulaireFiltres.find('.valeurEnfantPropre').prop('checked');
-	if(filtreEnfantPropre != null && filtreEnfantPropre === true)
-		filtres.push({ name: 'fq', value: 'enfantPropre:' + filtreEnfantPropre });
-
-	var filtreEnfantConditionsMedicales = $formulaireFiltres.find('.valeurEnfantConditionsMedicales').val();
-	if(filtreEnfantConditionsMedicales != null && filtreEnfantConditionsMedicales !== '')
-		filtres.push({ name: 'fq', value: 'enfantConditionsMedicales:' + filtreEnfantConditionsMedicales });
-
-	var filtreEnfantEcolesPrecedemmentFrequentees = $formulaireFiltres.find('.valeurEnfantEcolesPrecedemmentFrequentees').val();
-	if(filtreEnfantEcolesPrecedemmentFrequentees != null && filtreEnfantEcolesPrecedemmentFrequentees !== '')
-		filtres.push({ name: 'fq', value: 'enfantEcolesPrecedemmentFrequentees:' + filtreEnfantEcolesPrecedemmentFrequentees });
-
-	var filtreEnfantDescription = $formulaireFiltres.find('.valeurEnfantDescription').val();
-	if(filtreEnfantDescription != null && filtreEnfantDescription !== '')
-		filtres.push({ name: 'fq', value: 'enfantDescription:' + filtreEnfantDescription });
-
-	var filtreEnfantObjectifs = $formulaireFiltres.find('.valeurEnfantObjectifs').val();
-	if(filtreEnfantObjectifs != null && filtreEnfantObjectifs !== '')
-		filtres.push({ name: 'fq', value: 'enfantObjectifs:' + filtreEnfantObjectifs });
 
 	var filtreInscriptionCles = $formulaireFiltres.find('.valeurInscriptionCles').val();
 	if(filtreInscriptionCles != null && filtreInscriptionCles !== '')

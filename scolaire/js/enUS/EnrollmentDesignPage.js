@@ -41,9 +41,9 @@ async function postEnrollmentDesign($formValues, success, error) {
 	if(valueDeleted != null && valueDeleted !== '')
 		vals['deleted'] = valueDeleted;
 
-	var valueYearKey = $formValues.find('.valueYearKey').val();
-	if(valueYearKey != null && valueYearKey !== '')
-		vals['yearKey'] = valueYearKey;
+	var valueEnrollmentDesignCompleteName = $formValues.find('.valueEnrollmentDesignCompleteName').val();
+	if(valueEnrollmentDesignCompleteName != null && valueEnrollmentDesignCompleteName !== '')
+		vals['enrollmentDesignCompleteName'] = valueEnrollmentDesignCompleteName;
 
 	var valueHtmlPartKeys = $formValues.find('.valueHtmlPartKeys').val();
 	if(valueHtmlPartKeys != null && valueHtmlPartKeys !== '')
@@ -52,10 +52,6 @@ async function postEnrollmentDesign($formValues, success, error) {
 	var valueEnrollmentKeys = $formValues.find('.valueEnrollmentKeys').val();
 	if(valueEnrollmentKeys != null && valueEnrollmentKeys !== '')
 		vals['enrollmentKeys'] = valueEnrollmentKeys;
-
-	var valueEnrollmentDesignCompleteName = $formValues.find('.valueEnrollmentDesignCompleteName').val();
-	if(valueEnrollmentDesignCompleteName != null && valueEnrollmentDesignCompleteName !== '')
-		vals['enrollmentDesignCompleteName'] = valueEnrollmentDesignCompleteName;
 
 	$.ajax({
 		url: '/api/enrollment-design'
@@ -153,16 +149,16 @@ async function patchEnrollmentDesign($formFilters, $formValues, success, error) 
 	if(removeDeleted != null && removeDeleted !== '')
 		vals['removeDeleted'] = removeDeleted;
 
-	var removeYearKey = $formFilters.find('.removeYearKey').val() === 'true';
-	var setYearKey = removeYearKey ? null : $formValues.find('.setYearKey').val();
-	if(removeYearKey || setYearKey != null && setYearKey !== '')
-		vals['setYearKey'] = setYearKey;
-	var addYearKey = $formValues.find('.addYearKey').val();
-	if(addYearKey != null && addYearKey !== '')
-		vals['addYearKey'] = addYearKey;
-	var removeYearKey = $formValues.find('.removeYearKey').val();
-	if(removeYearKey != null && removeYearKey !== '')
-		vals['removeYearKey'] = removeYearKey;
+	var removeEnrollmentDesignCompleteName = $formFilters.find('.removeEnrollmentDesignCompleteName').val() === 'true';
+	var setEnrollmentDesignCompleteName = removeEnrollmentDesignCompleteName ? null : $formValues.find('.setEnrollmentDesignCompleteName').val();
+	if(removeEnrollmentDesignCompleteName || setEnrollmentDesignCompleteName != null && setEnrollmentDesignCompleteName !== '')
+		vals['setEnrollmentDesignCompleteName'] = setEnrollmentDesignCompleteName;
+	var addEnrollmentDesignCompleteName = $formValues.find('.addEnrollmentDesignCompleteName').val();
+	if(addEnrollmentDesignCompleteName != null && addEnrollmentDesignCompleteName !== '')
+		vals['addEnrollmentDesignCompleteName'] = addEnrollmentDesignCompleteName;
+	var removeEnrollmentDesignCompleteName = $formValues.find('.removeEnrollmentDesignCompleteName').val();
+	if(removeEnrollmentDesignCompleteName != null && removeEnrollmentDesignCompleteName !== '')
+		vals['removeEnrollmentDesignCompleteName'] = removeEnrollmentDesignCompleteName;
 
 	var removeHtmlPartKeys = $formFilters.find('.removeHtmlPartKeys').val() === 'true';
 	var setHtmlPartKeys = removeHtmlPartKeys ? null : $formValues.find('.setHtmlPartKeys').val();
@@ -185,17 +181,6 @@ async function patchEnrollmentDesign($formFilters, $formValues, success, error) 
 	var removeEnrollmentKeys = $formValues.find('.removeEnrollmentKeys').val();
 	if(removeEnrollmentKeys != null && removeEnrollmentKeys !== '')
 		vals['removeEnrollmentKeys'] = removeEnrollmentKeys;
-
-	var removeEnrollmentDesignCompleteName = $formFilters.find('.removeEnrollmentDesignCompleteName').val() === 'true';
-	var setEnrollmentDesignCompleteName = removeEnrollmentDesignCompleteName ? null : $formValues.find('.setEnrollmentDesignCompleteName').val();
-	if(removeEnrollmentDesignCompleteName || setEnrollmentDesignCompleteName != null && setEnrollmentDesignCompleteName !== '')
-		vals['setEnrollmentDesignCompleteName'] = setEnrollmentDesignCompleteName;
-	var addEnrollmentDesignCompleteName = $formValues.find('.addEnrollmentDesignCompleteName').val();
-	if(addEnrollmentDesignCompleteName != null && addEnrollmentDesignCompleteName !== '')
-		vals['addEnrollmentDesignCompleteName'] = addEnrollmentDesignCompleteName;
-	var removeEnrollmentDesignCompleteName = $formValues.find('.removeEnrollmentDesignCompleteName').val();
-	if(removeEnrollmentDesignCompleteName != null && removeEnrollmentDesignCompleteName !== '')
-		vals['removeEnrollmentDesignCompleteName'] = removeEnrollmentDesignCompleteName;
 
 	patchEnrollmentDesignVals(filters, vals, success, error);
 }
@@ -227,9 +212,9 @@ function patchEnrollmentDesignFilters($formFilters) {
 	if(filterDeleted != null && filterDeleted === true)
 		filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
-	var filterYearKey = $formFilters.find('.valueYearKey').val();
-	if(filterYearKey != null && filterYearKey !== '')
-		filters.push({ name: 'fq', value: 'yearKey:' + filterYearKey });
+	var filterEnrollmentDesignCompleteName = $formFilters.find('.valueEnrollmentDesignCompleteName').val();
+	if(filterEnrollmentDesignCompleteName != null && filterEnrollmentDesignCompleteName !== '')
+		filters.push({ name: 'fq', value: 'enrollmentDesignCompleteName:' + filterEnrollmentDesignCompleteName });
 
 	var filterHtmlPartKeys = $formFilters.find('.valueHtmlPartKeys').val();
 	if(filterHtmlPartKeys != null && filterHtmlPartKeys !== '')
@@ -279,6 +264,10 @@ function patchEnrollmentDesignFilters($formFilters) {
 	if(filterEnrollmentDesignKey != null && filterEnrollmentDesignKey !== '')
 		filters.push({ name: 'fq', value: 'enrollmentDesignKey:' + filterEnrollmentDesignKey });
 
+	var filterYearKey = $formFilters.find('.valueYearKey').val();
+	if(filterYearKey != null && filterYearKey !== '')
+		filters.push({ name: 'fq', value: 'yearKey:' + filterYearKey });
+
 	var filterSchoolKey = $formFilters.find('.valueSchoolKey').val();
 	if(filterSchoolKey != null && filterSchoolKey !== '')
 		filters.push({ name: 'fq', value: 'schoolKey:' + filterSchoolKey });
@@ -306,10 +295,6 @@ function patchEnrollmentDesignFilters($formFilters) {
 	var filterYearCompleteName = $formFilters.find('.valueYearCompleteName').val();
 	if(filterYearCompleteName != null && filterYearCompleteName !== '')
 		filters.push({ name: 'fq', value: 'yearCompleteName:' + filterYearCompleteName });
-
-	var filterEnrollmentDesignCompleteName = $formFilters.find('.valueEnrollmentDesignCompleteName').val();
-	if(filterEnrollmentDesignCompleteName != null && filterEnrollmentDesignCompleteName !== '')
-		filters.push({ name: 'fq', value: 'enrollmentDesignCompleteName:' + filterEnrollmentDesignCompleteName });
 	return filters;
 }
 
@@ -397,9 +382,9 @@ function searchEnrollmentDesignFilters($formFilters) {
 	if(filterDeleted != null && filterDeleted === true)
 		filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
-	var filterYearKey = $formFilters.find('.valueYearKey').val();
-	if(filterYearKey != null && filterYearKey !== '')
-		filters.push({ name: 'fq', value: 'yearKey:' + filterYearKey });
+	var filterEnrollmentDesignCompleteName = $formFilters.find('.valueEnrollmentDesignCompleteName').val();
+	if(filterEnrollmentDesignCompleteName != null && filterEnrollmentDesignCompleteName !== '')
+		filters.push({ name: 'fq', value: 'enrollmentDesignCompleteName:' + filterEnrollmentDesignCompleteName });
 
 	var filterHtmlPartKeys = $formFilters.find('.valueHtmlPartKeys').val();
 	if(filterHtmlPartKeys != null && filterHtmlPartKeys !== '')
@@ -449,6 +434,10 @@ function searchEnrollmentDesignFilters($formFilters) {
 	if(filterEnrollmentDesignKey != null && filterEnrollmentDesignKey !== '')
 		filters.push({ name: 'fq', value: 'enrollmentDesignKey:' + filterEnrollmentDesignKey });
 
+	var filterYearKey = $formFilters.find('.valueYearKey').val();
+	if(filterYearKey != null && filterYearKey !== '')
+		filters.push({ name: 'fq', value: 'yearKey:' + filterYearKey });
+
 	var filterSchoolKey = $formFilters.find('.valueSchoolKey').val();
 	if(filterSchoolKey != null && filterSchoolKey !== '')
 		filters.push({ name: 'fq', value: 'schoolKey:' + filterSchoolKey });
@@ -476,10 +465,6 @@ function searchEnrollmentDesignFilters($formFilters) {
 	var filterYearCompleteName = $formFilters.find('.valueYearCompleteName').val();
 	if(filterYearCompleteName != null && filterYearCompleteName !== '')
 		filters.push({ name: 'fq', value: 'yearCompleteName:' + filterYearCompleteName });
-
-	var filterEnrollmentDesignCompleteName = $formFilters.find('.valueEnrollmentDesignCompleteName').val();
-	if(filterEnrollmentDesignCompleteName != null && filterEnrollmentDesignCompleteName !== '')
-		filters.push({ name: 'fq', value: 'enrollmentDesignCompleteName:' + filterEnrollmentDesignCompleteName });
 	return filters;
 }
 

@@ -61,26 +61,6 @@ async function postSchoolChild($formValues, success, error) {
 	if(valuePersonAgeInSeptember != null && valuePersonAgeInSeptember !== '')
 		vals['personAgeInSeptember'] = valuePersonAgeInSeptember;
 
-	var valueChildPottyTrained = $formValues.find('.valueChildPottyTrained').prop('checked');
-	if(valueChildPottyTrained != null && valueChildPottyTrained !== '')
-		vals['childPottyTrained'] = valueChildPottyTrained;
-
-	var valueChildMedicalConditions = $formValues.find('.valueChildMedicalConditions').val();
-	if(valueChildMedicalConditions != null && valueChildMedicalConditions !== '')
-		vals['childMedicalConditions'] = valueChildMedicalConditions;
-
-	var valueChildPreviousSchoolsAttended = $formValues.find('.valueChildPreviousSchoolsAttended').val();
-	if(valueChildPreviousSchoolsAttended != null && valueChildPreviousSchoolsAttended !== '')
-		vals['childPreviousSchoolsAttended'] = valueChildPreviousSchoolsAttended;
-
-	var valueChildDescription = $formValues.find('.valueChildDescription').val();
-	if(valueChildDescription != null && valueChildDescription !== '')
-		vals['childDescription'] = valueChildDescription;
-
-	var valueChildObjectives = $formValues.find('.valueChildObjectives').val();
-	if(valueChildObjectives != null && valueChildObjectives !== '')
-		vals['childObjectives'] = valueChildObjectives;
-
 	var valueEnrollmentKeys = $formValues.find('.valueEnrollmentKeys').val();
 	if(valueEnrollmentKeys != null && valueEnrollmentKeys !== '')
 		vals['enrollmentKeys'] = valueEnrollmentKeys;
@@ -240,61 +220,6 @@ async function patchSchoolChild($formFilters, $formValues, success, error) {
 	if(removePersonAgeInSeptember != null && removePersonAgeInSeptember !== '')
 		vals['removePersonAgeInSeptember'] = removePersonAgeInSeptember;
 
-	var removeChildPottyTrained = $formFilters.find('.removeChildPottyTrained').val() === 'true';
-	var setChildPottyTrained = removeChildPottyTrained ? null : $formValues.find('.setChildPottyTrained').prop('checked');
-	if(removeChildPottyTrained || setChildPottyTrained != null && setChildPottyTrained !== '')
-		vals['setChildPottyTrained'] = setChildPottyTrained;
-	var addChildPottyTrained = $formValues.find('.addChildPottyTrained').prop('checked');
-	if(addChildPottyTrained != null && addChildPottyTrained !== '')
-		vals['addChildPottyTrained'] = addChildPottyTrained;
-	var removeChildPottyTrained = $formValues.find('.removeChildPottyTrained').prop('checked');
-	if(removeChildPottyTrained != null && removeChildPottyTrained !== '')
-		vals['removeChildPottyTrained'] = removeChildPottyTrained;
-
-	var removeChildMedicalConditions = $formFilters.find('.removeChildMedicalConditions').val() === 'true';
-	var setChildMedicalConditions = removeChildMedicalConditions ? null : $formValues.find('.setChildMedicalConditions').val();
-	if(removeChildMedicalConditions || setChildMedicalConditions != null && setChildMedicalConditions !== '')
-		vals['setChildMedicalConditions'] = setChildMedicalConditions;
-	var addChildMedicalConditions = $formValues.find('.addChildMedicalConditions').val();
-	if(addChildMedicalConditions != null && addChildMedicalConditions !== '')
-		vals['addChildMedicalConditions'] = addChildMedicalConditions;
-	var removeChildMedicalConditions = $formValues.find('.removeChildMedicalConditions').val();
-	if(removeChildMedicalConditions != null && removeChildMedicalConditions !== '')
-		vals['removeChildMedicalConditions'] = removeChildMedicalConditions;
-
-	var removeChildPreviousSchoolsAttended = $formFilters.find('.removeChildPreviousSchoolsAttended').val() === 'true';
-	var setChildPreviousSchoolsAttended = removeChildPreviousSchoolsAttended ? null : $formValues.find('.setChildPreviousSchoolsAttended').val();
-	if(removeChildPreviousSchoolsAttended || setChildPreviousSchoolsAttended != null && setChildPreviousSchoolsAttended !== '')
-		vals['setChildPreviousSchoolsAttended'] = setChildPreviousSchoolsAttended;
-	var addChildPreviousSchoolsAttended = $formValues.find('.addChildPreviousSchoolsAttended').val();
-	if(addChildPreviousSchoolsAttended != null && addChildPreviousSchoolsAttended !== '')
-		vals['addChildPreviousSchoolsAttended'] = addChildPreviousSchoolsAttended;
-	var removeChildPreviousSchoolsAttended = $formValues.find('.removeChildPreviousSchoolsAttended').val();
-	if(removeChildPreviousSchoolsAttended != null && removeChildPreviousSchoolsAttended !== '')
-		vals['removeChildPreviousSchoolsAttended'] = removeChildPreviousSchoolsAttended;
-
-	var removeChildDescription = $formFilters.find('.removeChildDescription').val() === 'true';
-	var setChildDescription = removeChildDescription ? null : $formValues.find('.setChildDescription').val();
-	if(removeChildDescription || setChildDescription != null && setChildDescription !== '')
-		vals['setChildDescription'] = setChildDescription;
-	var addChildDescription = $formValues.find('.addChildDescription').val();
-	if(addChildDescription != null && addChildDescription !== '')
-		vals['addChildDescription'] = addChildDescription;
-	var removeChildDescription = $formValues.find('.removeChildDescription').val();
-	if(removeChildDescription != null && removeChildDescription !== '')
-		vals['removeChildDescription'] = removeChildDescription;
-
-	var removeChildObjectives = $formFilters.find('.removeChildObjectives').val() === 'true';
-	var setChildObjectives = removeChildObjectives ? null : $formValues.find('.setChildObjectives').val();
-	if(removeChildObjectives || setChildObjectives != null && setChildObjectives !== '')
-		vals['setChildObjectives'] = setChildObjectives;
-	var addChildObjectives = $formValues.find('.addChildObjectives').val();
-	if(addChildObjectives != null && addChildObjectives !== '')
-		vals['addChildObjectives'] = addChildObjectives;
-	var removeChildObjectives = $formValues.find('.removeChildObjectives').val();
-	if(removeChildObjectives != null && removeChildObjectives !== '')
-		vals['removeChildObjectives'] = removeChildObjectives;
-
 	var removeEnrollmentKeys = $formFilters.find('.removeEnrollmentKeys').val() === 'true';
 	var setEnrollmentKeys = removeEnrollmentKeys ? null : $formValues.find('.setEnrollmentKeys').val();
 	if(removeEnrollmentKeys || setEnrollmentKeys != null && setEnrollmentKeys !== '')
@@ -366,26 +291,6 @@ function patchSchoolChildFilters($formFilters) {
 	var filterPersonAgeInSeptember = $formFilters.find('.valuePersonAgeInSeptember').val();
 	if(filterPersonAgeInSeptember != null && filterPersonAgeInSeptember !== '')
 		filters.push({ name: 'fq', value: 'personAgeInSeptember:' + filterPersonAgeInSeptember });
-
-	var filterChildPottyTrained = $formFilters.find('.valueChildPottyTrained').prop('checked');
-	if(filterChildPottyTrained != null && filterChildPottyTrained === true)
-		filters.push({ name: 'fq', value: 'childPottyTrained:' + filterChildPottyTrained });
-
-	var filterChildMedicalConditions = $formFilters.find('.valueChildMedicalConditions').val();
-	if(filterChildMedicalConditions != null && filterChildMedicalConditions !== '')
-		filters.push({ name: 'fq', value: 'childMedicalConditions:' + filterChildMedicalConditions });
-
-	var filterChildPreviousSchoolsAttended = $formFilters.find('.valueChildPreviousSchoolsAttended').val();
-	if(filterChildPreviousSchoolsAttended != null && filterChildPreviousSchoolsAttended !== '')
-		filters.push({ name: 'fq', value: 'childPreviousSchoolsAttended:' + filterChildPreviousSchoolsAttended });
-
-	var filterChildDescription = $formFilters.find('.valueChildDescription').val();
-	if(filterChildDescription != null && filterChildDescription !== '')
-		filters.push({ name: 'fq', value: 'childDescription:' + filterChildDescription });
-
-	var filterChildObjectives = $formFilters.find('.valueChildObjectives').val();
-	if(filterChildObjectives != null && filterChildObjectives !== '')
-		filters.push({ name: 'fq', value: 'childObjectives:' + filterChildObjectives });
 
 	var filterEnrollmentKeys = $formFilters.find('.valueEnrollmentKeys').val();
 	if(filterEnrollmentKeys != null && filterEnrollmentKeys !== '')
@@ -580,26 +485,6 @@ function searchSchoolChildFilters($formFilters) {
 	var filterPersonAgeInSeptember = $formFilters.find('.valuePersonAgeInSeptember').val();
 	if(filterPersonAgeInSeptember != null && filterPersonAgeInSeptember !== '')
 		filters.push({ name: 'fq', value: 'personAgeInSeptember:' + filterPersonAgeInSeptember });
-
-	var filterChildPottyTrained = $formFilters.find('.valueChildPottyTrained').prop('checked');
-	if(filterChildPottyTrained != null && filterChildPottyTrained === true)
-		filters.push({ name: 'fq', value: 'childPottyTrained:' + filterChildPottyTrained });
-
-	var filterChildMedicalConditions = $formFilters.find('.valueChildMedicalConditions').val();
-	if(filterChildMedicalConditions != null && filterChildMedicalConditions !== '')
-		filters.push({ name: 'fq', value: 'childMedicalConditions:' + filterChildMedicalConditions });
-
-	var filterChildPreviousSchoolsAttended = $formFilters.find('.valueChildPreviousSchoolsAttended').val();
-	if(filterChildPreviousSchoolsAttended != null && filterChildPreviousSchoolsAttended !== '')
-		filters.push({ name: 'fq', value: 'childPreviousSchoolsAttended:' + filterChildPreviousSchoolsAttended });
-
-	var filterChildDescription = $formFilters.find('.valueChildDescription').val();
-	if(filterChildDescription != null && filterChildDescription !== '')
-		filters.push({ name: 'fq', value: 'childDescription:' + filterChildDescription });
-
-	var filterChildObjectives = $formFilters.find('.valueChildObjectives').val();
-	if(filterChildObjectives != null && filterChildObjectives !== '')
-		filters.push({ name: 'fq', value: 'childObjectives:' + filterChildObjectives });
 
 	var filterEnrollmentKeys = $formFilters.find('.valueEnrollmentKeys').val();
 	if(filterEnrollmentKeys != null && filterEnrollmentKeys !== '')

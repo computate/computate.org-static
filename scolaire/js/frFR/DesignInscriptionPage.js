@@ -41,9 +41,9 @@ async function postDesignInscription($formulaireValeurs, success, error) {
 	if(valeurSupprime != null && valeurSupprime !== '')
 		vals['supprime'] = valeurSupprime;
 
-	var valeurAnneeCle = $formulaireValeurs.find('.valeurAnneeCle').val();
-	if(valeurAnneeCle != null && valeurAnneeCle !== '')
-		vals['anneeCle'] = valeurAnneeCle;
+	var valeurDesignInscriptionNomComplet = $formulaireValeurs.find('.valeurDesignInscriptionNomComplet').val();
+	if(valeurDesignInscriptionNomComplet != null && valeurDesignInscriptionNomComplet !== '')
+		vals['designInscriptionNomComplet'] = valeurDesignInscriptionNomComplet;
 
 	var valeurPartHtmlCles = $formulaireValeurs.find('.valeurPartHtmlCles').val();
 	if(valeurPartHtmlCles != null && valeurPartHtmlCles !== '')
@@ -52,10 +52,6 @@ async function postDesignInscription($formulaireValeurs, success, error) {
 	var valeurInscriptionCles = $formulaireValeurs.find('.valeurInscriptionCles').val();
 	if(valeurInscriptionCles != null && valeurInscriptionCles !== '')
 		vals['inscriptionCles'] = valeurInscriptionCles;
-
-	var valeurDesignInscriptionNomComplet = $formulaireValeurs.find('.valeurDesignInscriptionNomComplet').val();
-	if(valeurDesignInscriptionNomComplet != null && valeurDesignInscriptionNomComplet !== '')
-		vals['designInscriptionNomComplet'] = valeurDesignInscriptionNomComplet;
 
 	$.ajax({
 		url: '/api/design-inscription'
@@ -153,16 +149,16 @@ async function patchDesignInscription($formulaireFiltres, $formulaireValeurs, su
 	if(removeSupprime != null && removeSupprime !== '')
 		vals['removeSupprime'] = removeSupprime;
 
-	var removeAnneeCle = $formulaireFiltres.find('.removeAnneeCle').val() === 'true';
-	var setAnneeCle = removeAnneeCle ? null : $formulaireValeurs.find('.setAnneeCle').val();
-	if(removeAnneeCle || setAnneeCle != null && setAnneeCle !== '')
-		vals['setAnneeCle'] = setAnneeCle;
-	var addAnneeCle = $formulaireValeurs.find('.addAnneeCle').val();
-	if(addAnneeCle != null && addAnneeCle !== '')
-		vals['addAnneeCle'] = addAnneeCle;
-	var removeAnneeCle = $formulaireValeurs.find('.removeAnneeCle').val();
-	if(removeAnneeCle != null && removeAnneeCle !== '')
-		vals['removeAnneeCle'] = removeAnneeCle;
+	var removeDesignInscriptionNomComplet = $formulaireFiltres.find('.removeDesignInscriptionNomComplet').val() === 'true';
+	var setDesignInscriptionNomComplet = removeDesignInscriptionNomComplet ? null : $formulaireValeurs.find('.setDesignInscriptionNomComplet').val();
+	if(removeDesignInscriptionNomComplet || setDesignInscriptionNomComplet != null && setDesignInscriptionNomComplet !== '')
+		vals['setDesignInscriptionNomComplet'] = setDesignInscriptionNomComplet;
+	var addDesignInscriptionNomComplet = $formulaireValeurs.find('.addDesignInscriptionNomComplet').val();
+	if(addDesignInscriptionNomComplet != null && addDesignInscriptionNomComplet !== '')
+		vals['addDesignInscriptionNomComplet'] = addDesignInscriptionNomComplet;
+	var removeDesignInscriptionNomComplet = $formulaireValeurs.find('.removeDesignInscriptionNomComplet').val();
+	if(removeDesignInscriptionNomComplet != null && removeDesignInscriptionNomComplet !== '')
+		vals['removeDesignInscriptionNomComplet'] = removeDesignInscriptionNomComplet;
 
 	var removePartHtmlCles = $formulaireFiltres.find('.removePartHtmlCles').val() === 'true';
 	var setPartHtmlCles = removePartHtmlCles ? null : $formulaireValeurs.find('.setPartHtmlCles').val();
@@ -185,17 +181,6 @@ async function patchDesignInscription($formulaireFiltres, $formulaireValeurs, su
 	var removeInscriptionCles = $formulaireValeurs.find('.removeInscriptionCles').val();
 	if(removeInscriptionCles != null && removeInscriptionCles !== '')
 		vals['removeInscriptionCles'] = removeInscriptionCles;
-
-	var removeDesignInscriptionNomComplet = $formulaireFiltres.find('.removeDesignInscriptionNomComplet').val() === 'true';
-	var setDesignInscriptionNomComplet = removeDesignInscriptionNomComplet ? null : $formulaireValeurs.find('.setDesignInscriptionNomComplet').val();
-	if(removeDesignInscriptionNomComplet || setDesignInscriptionNomComplet != null && setDesignInscriptionNomComplet !== '')
-		vals['setDesignInscriptionNomComplet'] = setDesignInscriptionNomComplet;
-	var addDesignInscriptionNomComplet = $formulaireValeurs.find('.addDesignInscriptionNomComplet').val();
-	if(addDesignInscriptionNomComplet != null && addDesignInscriptionNomComplet !== '')
-		vals['addDesignInscriptionNomComplet'] = addDesignInscriptionNomComplet;
-	var removeDesignInscriptionNomComplet = $formulaireValeurs.find('.removeDesignInscriptionNomComplet').val();
-	if(removeDesignInscriptionNomComplet != null && removeDesignInscriptionNomComplet !== '')
-		vals['removeDesignInscriptionNomComplet'] = removeDesignInscriptionNomComplet;
 
 	patchDesignInscriptionVals(filtres, vals, success, error);
 }
@@ -227,9 +212,9 @@ function patchDesignInscriptionFiltres($formulaireFiltres) {
 	if(filtreSupprime != null && filtreSupprime === true)
 		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
-	var filtreAnneeCle = $formulaireFiltres.find('.valeurAnneeCle').val();
-	if(filtreAnneeCle != null && filtreAnneeCle !== '')
-		filtres.push({ name: 'fq', value: 'anneeCle:' + filtreAnneeCle });
+	var filtreDesignInscriptionNomComplet = $formulaireFiltres.find('.valeurDesignInscriptionNomComplet').val();
+	if(filtreDesignInscriptionNomComplet != null && filtreDesignInscriptionNomComplet !== '')
+		filtres.push({ name: 'fq', value: 'designInscriptionNomComplet:' + filtreDesignInscriptionNomComplet });
 
 	var filtrePartHtmlCles = $formulaireFiltres.find('.valeurPartHtmlCles').val();
 	if(filtrePartHtmlCles != null && filtrePartHtmlCles !== '')
@@ -279,6 +264,10 @@ function patchDesignInscriptionFiltres($formulaireFiltres) {
 	if(filtreDesignInscriptionCle != null && filtreDesignInscriptionCle !== '')
 		filtres.push({ name: 'fq', value: 'designInscriptionCle:' + filtreDesignInscriptionCle });
 
+	var filtreAnneeCle = $formulaireFiltres.find('.valeurAnneeCle').val();
+	if(filtreAnneeCle != null && filtreAnneeCle !== '')
+		filtres.push({ name: 'fq', value: 'anneeCle:' + filtreAnneeCle });
+
 	var filtreEcoleCle = $formulaireFiltres.find('.valeurEcoleCle').val();
 	if(filtreEcoleCle != null && filtreEcoleCle !== '')
 		filtres.push({ name: 'fq', value: 'ecoleCle:' + filtreEcoleCle });
@@ -306,10 +295,6 @@ function patchDesignInscriptionFiltres($formulaireFiltres) {
 	var filtreAnneeNomComplet = $formulaireFiltres.find('.valeurAnneeNomComplet').val();
 	if(filtreAnneeNomComplet != null && filtreAnneeNomComplet !== '')
 		filtres.push({ name: 'fq', value: 'anneeNomComplet:' + filtreAnneeNomComplet });
-
-	var filtreDesignInscriptionNomComplet = $formulaireFiltres.find('.valeurDesignInscriptionNomComplet').val();
-	if(filtreDesignInscriptionNomComplet != null && filtreDesignInscriptionNomComplet !== '')
-		filtres.push({ name: 'fq', value: 'designInscriptionNomComplet:' + filtreDesignInscriptionNomComplet });
 	return filtres;
 }
 
@@ -397,9 +382,9 @@ function rechercheDesignInscriptionFiltres($formulaireFiltres) {
 	if(filtreSupprime != null && filtreSupprime === true)
 		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
-	var filtreAnneeCle = $formulaireFiltres.find('.valeurAnneeCle').val();
-	if(filtreAnneeCle != null && filtreAnneeCle !== '')
-		filtres.push({ name: 'fq', value: 'anneeCle:' + filtreAnneeCle });
+	var filtreDesignInscriptionNomComplet = $formulaireFiltres.find('.valeurDesignInscriptionNomComplet').val();
+	if(filtreDesignInscriptionNomComplet != null && filtreDesignInscriptionNomComplet !== '')
+		filtres.push({ name: 'fq', value: 'designInscriptionNomComplet:' + filtreDesignInscriptionNomComplet });
 
 	var filtrePartHtmlCles = $formulaireFiltres.find('.valeurPartHtmlCles').val();
 	if(filtrePartHtmlCles != null && filtrePartHtmlCles !== '')
@@ -449,6 +434,10 @@ function rechercheDesignInscriptionFiltres($formulaireFiltres) {
 	if(filtreDesignInscriptionCle != null && filtreDesignInscriptionCle !== '')
 		filtres.push({ name: 'fq', value: 'designInscriptionCle:' + filtreDesignInscriptionCle });
 
+	var filtreAnneeCle = $formulaireFiltres.find('.valeurAnneeCle').val();
+	if(filtreAnneeCle != null && filtreAnneeCle !== '')
+		filtres.push({ name: 'fq', value: 'anneeCle:' + filtreAnneeCle });
+
 	var filtreEcoleCle = $formulaireFiltres.find('.valeurEcoleCle').val();
 	if(filtreEcoleCle != null && filtreEcoleCle !== '')
 		filtres.push({ name: 'fq', value: 'ecoleCle:' + filtreEcoleCle });
@@ -476,10 +465,6 @@ function rechercheDesignInscriptionFiltres($formulaireFiltres) {
 	var filtreAnneeNomComplet = $formulaireFiltres.find('.valeurAnneeNomComplet').val();
 	if(filtreAnneeNomComplet != null && filtreAnneeNomComplet !== '')
 		filtres.push({ name: 'fq', value: 'anneeNomComplet:' + filtreAnneeNomComplet });
-
-	var filtreDesignInscriptionNomComplet = $formulaireFiltres.find('.valeurDesignInscriptionNomComplet').val();
-	if(filtreDesignInscriptionNomComplet != null && filtreDesignInscriptionNomComplet !== '')
-		filtres.push({ name: 'fq', value: 'designInscriptionNomComplet:' + filtreDesignInscriptionNomComplet });
 	return filtres;
 }
 
