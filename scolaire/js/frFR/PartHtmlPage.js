@@ -17,21 +17,21 @@ async function postPartHtml($formulaireValeurs, success, error) {
 		};
 	}
 
-	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
-	if(valeurPk != null && valeurPk !== '')
-		vals['pk'] = valeurPk;
-
 	var valeurCree = $formulaireValeurs.find('.valeurCree').val();
 	if(valeurCree != null && valeurCree !== '')
 		vals['cree'] = valeurCree;
 
-	var valeurModifie = $formulaireValeurs.find('.valeurModifie').val();
-	if(valeurModifie != null && valeurModifie !== '')
-		vals['modifie'] = valeurModifie;
+	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
+	if(valeurPk != null && valeurPk !== '')
+		vals['pk'] = valeurPk;
 
 	var valeurObjetId = $formulaireValeurs.find('.valeurObjetId').val();
 	if(valeurObjetId != null && valeurObjetId !== '')
 		vals['objetId'] = valeurObjetId;
+
+	var valeurModifie = $formulaireValeurs.find('.valeurModifie').val();
+	if(valeurModifie != null && valeurModifie !== '')
+		vals['modifie'] = valeurModifie;
 
 	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
 	if(valeurArchive != null && valeurArchive !== '')
@@ -81,6 +81,10 @@ async function postPartHtml($formulaireValeurs, success, error) {
 	if(valeurHtmlVar != null && valeurHtmlVar !== '')
 		vals['htmlVar'] = valeurHtmlVar;
 
+	var valeurHtmlVarSpan = $formulaireValeurs.find('.valeurHtmlVarSpan').val();
+	if(valeurHtmlVarSpan != null && valeurHtmlVarSpan !== '')
+		vals['htmlVarSpan'] = valeurHtmlVarSpan;
+
 	var valeurHtmlVarForm = $formulaireValeurs.find('.valeurHtmlVarForm').val();
 	if(valeurHtmlVarForm != null && valeurHtmlVarForm !== '')
 		vals['htmlVarForm'] = valeurHtmlVarForm;
@@ -92,6 +96,10 @@ async function postPartHtml($formulaireValeurs, success, error) {
 	var valeurHtmlVarForEach = $formulaireValeurs.find('.valeurHtmlVarForEach').val();
 	if(valeurHtmlVarForEach != null && valeurHtmlVarForEach !== '')
 		vals['htmlVarForEach'] = valeurHtmlVarForEach;
+
+	var valeurHtmlExclure = $formulaireValeurs.find('.valeurHtmlExclure').prop('checked');
+	if(valeurHtmlExclure != null && valeurHtmlExclure !== '')
+		vals['htmlExclure'] = valeurHtmlExclure;
 
 	var valeurPdfExclure = $formulaireValeurs.find('.valeurPdfExclure').prop('checked');
 	if(valeurPdfExclure != null && valeurPdfExclure !== '')
@@ -167,17 +175,6 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, success, er
 
 	var vals = {};
 
-	var removePk = $formulaireFiltres.find('.removePk').val() === 'true';
-	var setPk = removePk ? null : $formulaireValeurs.find('.setPk').val();
-	if(removePk || setPk != null && setPk !== '')
-		vals['setPk'] = setPk;
-	var addPk = $formulaireValeurs.find('.addPk').val();
-	if(addPk != null && addPk !== '')
-		vals['addPk'] = addPk;
-	var removePk = $formulaireValeurs.find('.removePk').val();
-	if(removePk != null && removePk !== '')
-		vals['removePk'] = removePk;
-
 	var removeCree = $formulaireFiltres.find('.removeCree').val() === 'true';
 	var setCree = removeCree ? null : $formulaireValeurs.find('.setCree').val();
 	if(removeCree || setCree != null && setCree !== '')
@@ -189,16 +186,16 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, success, er
 	if(removeCree != null && removeCree !== '')
 		vals['removeCree'] = removeCree;
 
-	var removeModifie = $formulaireFiltres.find('.removeModifie').val() === 'true';
-	var setModifie = removeModifie ? null : $formulaireValeurs.find('.setModifie').val();
-	if(removeModifie || setModifie != null && setModifie !== '')
-		vals['setModifie'] = setModifie;
-	var addModifie = $formulaireValeurs.find('.addModifie').val();
-	if(addModifie != null && addModifie !== '')
-		vals['addModifie'] = addModifie;
-	var removeModifie = $formulaireValeurs.find('.removeModifie').val();
-	if(removeModifie != null && removeModifie !== '')
-		vals['removeModifie'] = removeModifie;
+	var removePk = $formulaireFiltres.find('.removePk').val() === 'true';
+	var setPk = removePk ? null : $formulaireValeurs.find('.setPk').val();
+	if(removePk || setPk != null && setPk !== '')
+		vals['setPk'] = setPk;
+	var addPk = $formulaireValeurs.find('.addPk').val();
+	if(addPk != null && addPk !== '')
+		vals['addPk'] = addPk;
+	var removePk = $formulaireValeurs.find('.removePk').val();
+	if(removePk != null && removePk !== '')
+		vals['removePk'] = removePk;
 
 	var removeObjetId = $formulaireFiltres.find('.removeObjetId').val() === 'true';
 	var setObjetId = removeObjetId ? null : $formulaireValeurs.find('.setObjetId').val();
@@ -210,6 +207,17 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, success, er
 	var removeObjetId = $formulaireValeurs.find('.removeObjetId').val();
 	if(removeObjetId != null && removeObjetId !== '')
 		vals['removeObjetId'] = removeObjetId;
+
+	var removeModifie = $formulaireFiltres.find('.removeModifie').val() === 'true';
+	var setModifie = removeModifie ? null : $formulaireValeurs.find('.setModifie').val();
+	if(removeModifie || setModifie != null && setModifie !== '')
+		vals['setModifie'] = setModifie;
+	var addModifie = $formulaireValeurs.find('.addModifie').val();
+	if(addModifie != null && addModifie !== '')
+		vals['addModifie'] = addModifie;
+	var removeModifie = $formulaireValeurs.find('.removeModifie').val();
+	if(removeModifie != null && removeModifie !== '')
+		vals['removeModifie'] = removeModifie;
 
 	var removeArchive = $formulaireFiltres.find('.removeArchive').val() === 'true';
 	var setArchive = removeArchive ? null : $formulaireValeurs.find('.setArchive').prop('checked');
@@ -343,6 +351,17 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, success, er
 	if(removeHtmlVar != null && removeHtmlVar !== '')
 		vals['removeHtmlVar'] = removeHtmlVar;
 
+	var removeHtmlVarSpan = $formulaireFiltres.find('.removeHtmlVarSpan').val() === 'true';
+	var setHtmlVarSpan = removeHtmlVarSpan ? null : $formulaireValeurs.find('.setHtmlVarSpan').val();
+	if(removeHtmlVarSpan || setHtmlVarSpan != null && setHtmlVarSpan !== '')
+		vals['setHtmlVarSpan'] = setHtmlVarSpan;
+	var addHtmlVarSpan = $formulaireValeurs.find('.addHtmlVarSpan').val();
+	if(addHtmlVarSpan != null && addHtmlVarSpan !== '')
+		vals['addHtmlVarSpan'] = addHtmlVarSpan;
+	var removeHtmlVarSpan = $formulaireValeurs.find('.removeHtmlVarSpan').val();
+	if(removeHtmlVarSpan != null && removeHtmlVarSpan !== '')
+		vals['removeHtmlVarSpan'] = removeHtmlVarSpan;
+
 	var removeHtmlVarForm = $formulaireFiltres.find('.removeHtmlVarForm').val() === 'true';
 	var setHtmlVarForm = removeHtmlVarForm ? null : $formulaireValeurs.find('.setHtmlVarForm').val();
 	if(removeHtmlVarForm || setHtmlVarForm != null && setHtmlVarForm !== '')
@@ -375,6 +394,17 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, success, er
 	var removeHtmlVarForEach = $formulaireValeurs.find('.removeHtmlVarForEach').val();
 	if(removeHtmlVarForEach != null && removeHtmlVarForEach !== '')
 		vals['removeHtmlVarForEach'] = removeHtmlVarForEach;
+
+	var removeHtmlExclure = $formulaireFiltres.find('.removeHtmlExclure').val() === 'true';
+	var setHtmlExclure = removeHtmlExclure ? null : $formulaireValeurs.find('.setHtmlExclure').prop('checked');
+	if(removeHtmlExclure || setHtmlExclure != null && setHtmlExclure !== '')
+		vals['setHtmlExclure'] = setHtmlExclure;
+	var addHtmlExclure = $formulaireValeurs.find('.addHtmlExclure').prop('checked');
+	if(addHtmlExclure != null && addHtmlExclure !== '')
+		vals['addHtmlExclure'] = addHtmlExclure;
+	var removeHtmlExclure = $formulaireValeurs.find('.removeHtmlExclure').prop('checked');
+	if(removeHtmlExclure != null && removeHtmlExclure !== '')
+		vals['removeHtmlExclure'] = removeHtmlExclure;
 
 	var removePdfExclure = $formulaireFiltres.find('.removePdfExclure').val() === 'true';
 	var setPdfExclure = removePdfExclure ? null : $formulaireValeurs.find('.setPdfExclure').prop('checked');
@@ -503,21 +533,21 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, success, er
 function patchPartHtmlFiltres($formulaireFiltres) {
 	var filtres = [];
 
-	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
-	if(filtrePk != null && filtrePk !== '')
-		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
-
 	var filtreCree = $formulaireFiltres.find('.valeurCree').val();
 	if(filtreCree != null && filtreCree !== '')
 		filtres.push({ name: 'fq', value: 'cree:' + filtreCree });
 
-	var filtreModifie = $formulaireFiltres.find('.valeurModifie').val();
-	if(filtreModifie != null && filtreModifie !== '')
-		filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
+	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
+	if(filtrePk != null && filtrePk !== '')
+		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
 
 	var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
 	if(filtreObjetId != null && filtreObjetId !== '')
 		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
+
+	var filtreModifie = $formulaireFiltres.find('.valeurModifie').val();
+	if(filtreModifie != null && filtreModifie !== '')
+		filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
 
 	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
 	if(filtreArchive != null && filtreArchive === true)
@@ -567,6 +597,10 @@ function patchPartHtmlFiltres($formulaireFiltres) {
 	if(filtreHtmlVar != null && filtreHtmlVar !== '')
 		filtres.push({ name: 'fq', value: 'htmlVar:' + filtreHtmlVar });
 
+	var filtreHtmlVarSpan = $formulaireFiltres.find('.valeurHtmlVarSpan').val();
+	if(filtreHtmlVarSpan != null && filtreHtmlVarSpan !== '')
+		filtres.push({ name: 'fq', value: 'htmlVarSpan:' + filtreHtmlVarSpan });
+
 	var filtreHtmlVarForm = $formulaireFiltres.find('.valeurHtmlVarForm').val();
 	if(filtreHtmlVarForm != null && filtreHtmlVarForm !== '')
 		filtres.push({ name: 'fq', value: 'htmlVarForm:' + filtreHtmlVarForm });
@@ -578,6 +612,10 @@ function patchPartHtmlFiltres($formulaireFiltres) {
 	var filtreHtmlVarForEach = $formulaireFiltres.find('.valeurHtmlVarForEach').val();
 	if(filtreHtmlVarForEach != null && filtreHtmlVarForEach !== '')
 		filtres.push({ name: 'fq', value: 'htmlVarForEach:' + filtreHtmlVarForEach });
+
+	var filtreHtmlExclure = $formulaireFiltres.find('.valeurHtmlExclure').prop('checked');
+	if(filtreHtmlExclure != null && filtreHtmlExclure === true)
+		filtres.push({ name: 'fq', value: 'htmlExclure:' + filtreHtmlExclure });
 
 	var filtrePdfExclure = $formulaireFiltres.find('.valeurPdfExclure').prop('checked');
 	if(filtrePdfExclure != null && filtrePdfExclure === true)
@@ -623,9 +661,9 @@ function patchPartHtmlFiltres($formulaireFiltres) {
 	if(filtreTri10 != null && filtreTri10 !== '')
 		filtres.push({ name: 'fq', value: 'tri10:' + filtreTri10 });
 
-	var filtreId = $formulaireFiltres.find('.valeurId').val();
-	if(filtreId != null && filtreId !== '')
-		filtres.push({ name: 'fq', value: 'id:' + filtreId });
+	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
+	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
+		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
 
 	var filtreClasseNomCanonique = $formulaireFiltres.find('.valeurClasseNomCanonique').val();
 	if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
@@ -647,6 +685,10 @@ function patchPartHtmlFiltres($formulaireFiltres) {
 	if(filtreObjetTitre != null && filtreObjetTitre !== '')
 		filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
 
+	var filtreId = $formulaireFiltres.find('.valeurId').val();
+	if(filtreId != null && filtreId !== '')
+		filtres.push({ name: 'fq', value: 'id:' + filtreId });
+
 	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
 	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
 		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
@@ -654,10 +696,6 @@ function patchPartHtmlFiltres($formulaireFiltres) {
 	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
 	if(filtrePageUrlId != null && filtrePageUrlId !== '')
 		filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
-
-	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
-	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
-		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
 
 	var filtrePartHtmlCle = $formulaireFiltres.find('.valeurPartHtmlCle').val();
 	if(filtrePartHtmlCle != null && filtrePartHtmlCle !== '')
@@ -725,21 +763,21 @@ async function recherchePartHtml($formulaireFiltres, success, error) {
 function recherchePartHtmlFiltres($formulaireFiltres) {
 	var filtres = [];
 
-	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
-	if(filtrePk != null && filtrePk !== '')
-		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
-
 	var filtreCree = $formulaireFiltres.find('.valeurCree').val();
 	if(filtreCree != null && filtreCree !== '')
 		filtres.push({ name: 'fq', value: 'cree:' + filtreCree });
 
-	var filtreModifie = $formulaireFiltres.find('.valeurModifie').val();
-	if(filtreModifie != null && filtreModifie !== '')
-		filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
+	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
+	if(filtrePk != null && filtrePk !== '')
+		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
 
 	var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
 	if(filtreObjetId != null && filtreObjetId !== '')
 		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
+
+	var filtreModifie = $formulaireFiltres.find('.valeurModifie').val();
+	if(filtreModifie != null && filtreModifie !== '')
+		filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
 
 	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
 	if(filtreArchive != null && filtreArchive === true)
@@ -789,6 +827,10 @@ function recherchePartHtmlFiltres($formulaireFiltres) {
 	if(filtreHtmlVar != null && filtreHtmlVar !== '')
 		filtres.push({ name: 'fq', value: 'htmlVar:' + filtreHtmlVar });
 
+	var filtreHtmlVarSpan = $formulaireFiltres.find('.valeurHtmlVarSpan').val();
+	if(filtreHtmlVarSpan != null && filtreHtmlVarSpan !== '')
+		filtres.push({ name: 'fq', value: 'htmlVarSpan:' + filtreHtmlVarSpan });
+
 	var filtreHtmlVarForm = $formulaireFiltres.find('.valeurHtmlVarForm').val();
 	if(filtreHtmlVarForm != null && filtreHtmlVarForm !== '')
 		filtres.push({ name: 'fq', value: 'htmlVarForm:' + filtreHtmlVarForm });
@@ -800,6 +842,10 @@ function recherchePartHtmlFiltres($formulaireFiltres) {
 	var filtreHtmlVarForEach = $formulaireFiltres.find('.valeurHtmlVarForEach').val();
 	if(filtreHtmlVarForEach != null && filtreHtmlVarForEach !== '')
 		filtres.push({ name: 'fq', value: 'htmlVarForEach:' + filtreHtmlVarForEach });
+
+	var filtreHtmlExclure = $formulaireFiltres.find('.valeurHtmlExclure').prop('checked');
+	if(filtreHtmlExclure != null && filtreHtmlExclure === true)
+		filtres.push({ name: 'fq', value: 'htmlExclure:' + filtreHtmlExclure });
 
 	var filtrePdfExclure = $formulaireFiltres.find('.valeurPdfExclure').prop('checked');
 	if(filtrePdfExclure != null && filtrePdfExclure === true)
@@ -845,9 +891,9 @@ function recherchePartHtmlFiltres($formulaireFiltres) {
 	if(filtreTri10 != null && filtreTri10 !== '')
 		filtres.push({ name: 'fq', value: 'tri10:' + filtreTri10 });
 
-	var filtreId = $formulaireFiltres.find('.valeurId').val();
-	if(filtreId != null && filtreId !== '')
-		filtres.push({ name: 'fq', value: 'id:' + filtreId });
+	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
+	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
+		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
 
 	var filtreClasseNomCanonique = $formulaireFiltres.find('.valeurClasseNomCanonique').val();
 	if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
@@ -869,6 +915,10 @@ function recherchePartHtmlFiltres($formulaireFiltres) {
 	if(filtreObjetTitre != null && filtreObjetTitre !== '')
 		filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
 
+	var filtreId = $formulaireFiltres.find('.valeurId').val();
+	if(filtreId != null && filtreId !== '')
+		filtres.push({ name: 'fq', value: 'id:' + filtreId });
+
 	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
 	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
 		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
@@ -876,10 +926,6 @@ function recherchePartHtmlFiltres($formulaireFiltres) {
 	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
 	if(filtrePageUrlId != null && filtrePageUrlId !== '')
 		filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
-
-	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
-	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
-		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
 
 	var filtrePartHtmlCle = $formulaireFiltres.find('.valeurPartHtmlCle').val();
 	if(filtrePartHtmlCle != null && filtrePartHtmlCle !== '')
@@ -962,10 +1008,9 @@ function suggerePartHtmlDesignInscriptionCle(filtres, $list, pk = null) {
 }
 
 async function websocketPartHtml(success) {
-	var eventBus = new EventBus('/eventbus');
-	eventBus.onopen = function () {
+	window.eventBus.onopen = function () {
 
-		eventBus.registerHandler('websocketPartHtml', function (error, message) {
+		window.eventBus.registerHandler('websocketPartHtml', function (error, message) {
 			var json = JSON.parse(message['body']);
 			var id = json['id'];
 			var pk = json['pk'];
@@ -1002,8 +1047,149 @@ async function websocketPartHtml(success) {
 			}
 		});
 
-		eventBus.registerHandler('websocketDesignInscription', function (error, message) {
+		window.eventBus.registerHandler('websocketDesignInscription', function (error, message) {
 			$('#Page_designInscriptionCle').trigger('oninput');
 		});
 	}
+}
+async function websocketPartHtmlInner(requetePatch) {
+	var pk = requetePatch['pk'];
+	var pks = requetePatch['pks'];
+	var classes = requetePatch['classes'];
+	var vars = requetePatch['vars'];
+
+	if(pk != null) {
+		rechercherPartHtmlVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
+			var o = data['list'][0];
+			if(vars.includes('cree')) {
+				$('.inputPartHtml' + pk + 'Cree').val(o['cree']);
+				$('.varPartHtml' + pk + 'Cree').text(o['cree']);
+			}
+			if(vars.includes('modifie')) {
+				$('.inputPartHtml' + pk + 'Modifie').val(o['modifie']);
+				$('.varPartHtml' + pk + 'Modifie').text(o['modifie']);
+			}
+			if(vars.includes('archive')) {
+				$('.inputPartHtml' + pk + 'Archive').val(o['archive']);
+				$('.varPartHtml' + pk + 'Archive').text(o['archive']);
+			}
+			if(vars.includes('supprime')) {
+				$('.inputPartHtml' + pk + 'Supprime').val(o['supprime']);
+				$('.varPartHtml' + pk + 'Supprime').text(o['supprime']);
+			}
+			if(vars.includes('designInscriptionCle')) {
+				$('.inputPartHtml' + pk + 'DesignInscriptionCle').val(o['designInscriptionCle']);
+				$('.varPartHtml' + pk + 'DesignInscriptionCle').text(o['designInscriptionCle']);
+			}
+			if(vars.includes('htmlLien')) {
+				$('.inputPartHtml' + pk + 'HtmlLien').val(o['htmlLien']);
+				$('.varPartHtml' + pk + 'HtmlLien').text(o['htmlLien']);
+			}
+			if(vars.includes('htmlElement')) {
+				$('.inputPartHtml' + pk + 'HtmlElement').val(o['htmlElement']);
+				$('.varPartHtml' + pk + 'HtmlElement').text(o['htmlElement']);
+			}
+			if(vars.includes('htmlId')) {
+				$('.inputPartHtml' + pk + 'HtmlId').val(o['htmlId']);
+				$('.varPartHtml' + pk + 'HtmlId').text(o['htmlId']);
+			}
+			if(vars.includes('htmlClasses')) {
+				$('.inputPartHtml' + pk + 'HtmlClasses').val(o['htmlClasses']);
+				$('.varPartHtml' + pk + 'HtmlClasses').text(o['htmlClasses']);
+			}
+			if(vars.includes('htmlStyle')) {
+				$('.inputPartHtml' + pk + 'HtmlStyle').val(o['htmlStyle']);
+				$('.varPartHtml' + pk + 'HtmlStyle').text(o['htmlStyle']);
+			}
+			if(vars.includes('htmlAvant')) {
+				$('.inputPartHtml' + pk + 'HtmlAvant').val(o['htmlAvant']);
+				$('.varPartHtml' + pk + 'HtmlAvant').text(o['htmlAvant']);
+			}
+			if(vars.includes('htmlApres')) {
+				$('.inputPartHtml' + pk + 'HtmlApres').val(o['htmlApres']);
+				$('.varPartHtml' + pk + 'HtmlApres').text(o['htmlApres']);
+			}
+			if(vars.includes('htmlTexte')) {
+				$('.inputPartHtml' + pk + 'HtmlTexte').val(o['htmlTexte']);
+				$('.varPartHtml' + pk + 'HtmlTexte').text(o['htmlTexte']);
+			}
+			if(vars.includes('htmlVar')) {
+				$('.inputPartHtml' + pk + 'HtmlVar').val(o['htmlVar']);
+				$('.varPartHtml' + pk + 'HtmlVar').text(o['htmlVar']);
+			}
+			if(vars.includes('htmlVarSpan')) {
+				$('.inputPartHtml' + pk + 'HtmlVarSpan').val(o['htmlVarSpan']);
+				$('.varPartHtml' + pk + 'HtmlVarSpan').text(o['htmlVarSpan']);
+			}
+			if(vars.includes('htmlVarForm')) {
+				$('.inputPartHtml' + pk + 'HtmlVarForm').val(o['htmlVarForm']);
+				$('.varPartHtml' + pk + 'HtmlVarForm').text(o['htmlVarForm']);
+			}
+			if(vars.includes('htmlVarInput')) {
+				$('.inputPartHtml' + pk + 'HtmlVarInput').val(o['htmlVarInput']);
+				$('.varPartHtml' + pk + 'HtmlVarInput').text(o['htmlVarInput']);
+			}
+			if(vars.includes('htmlVarForEach')) {
+				$('.inputPartHtml' + pk + 'HtmlVarForEach').val(o['htmlVarForEach']);
+				$('.varPartHtml' + pk + 'HtmlVarForEach').text(o['htmlVarForEach']);
+			}
+			if(vars.includes('htmlExclure')) {
+				$('.inputPartHtml' + pk + 'HtmlExclure').val(o['htmlExclure']);
+				$('.varPartHtml' + pk + 'HtmlExclure').text(o['htmlExclure']);
+			}
+			if(vars.includes('pdfExclure')) {
+				$('.inputPartHtml' + pk + 'PdfExclure').val(o['pdfExclure']);
+				$('.varPartHtml' + pk + 'PdfExclure').text(o['pdfExclure']);
+			}
+			if(vars.includes('tri1')) {
+				$('.inputPartHtml' + pk + 'Tri1').val(o['tri1']);
+				$('.varPartHtml' + pk + 'Tri1').text(o['tri1']);
+			}
+			if(vars.includes('tri2')) {
+				$('.inputPartHtml' + pk + 'Tri2').val(o['tri2']);
+				$('.varPartHtml' + pk + 'Tri2').text(o['tri2']);
+			}
+			if(vars.includes('tri3')) {
+				$('.inputPartHtml' + pk + 'Tri3').val(o['tri3']);
+				$('.varPartHtml' + pk + 'Tri3').text(o['tri3']);
+			}
+			if(vars.includes('tri4')) {
+				$('.inputPartHtml' + pk + 'Tri4').val(o['tri4']);
+				$('.varPartHtml' + pk + 'Tri4').text(o['tri4']);
+			}
+			if(vars.includes('tri5')) {
+				$('.inputPartHtml' + pk + 'Tri5').val(o['tri5']);
+				$('.varPartHtml' + pk + 'Tri5').text(o['tri5']);
+			}
+			if(vars.includes('tri6')) {
+				$('.inputPartHtml' + pk + 'Tri6').val(o['tri6']);
+				$('.varPartHtml' + pk + 'Tri6').text(o['tri6']);
+			}
+			if(vars.includes('tri7')) {
+				$('.inputPartHtml' + pk + 'Tri7').val(o['tri7']);
+				$('.varPartHtml' + pk + 'Tri7').text(o['tri7']);
+			}
+			if(vars.includes('tri8')) {
+				$('.inputPartHtml' + pk + 'Tri8').val(o['tri8']);
+				$('.varPartHtml' + pk + 'Tri8').text(o['tri8']);
+			}
+			if(vars.includes('tri9')) {
+				$('.inputPartHtml' + pk + 'Tri9').val(o['tri9']);
+				$('.varPartHtml' + pk + 'Tri9').text(o['tri9']);
+			}
+			if(vars.includes('tri10')) {
+				$('.inputPartHtml' + pk + 'Tri10').val(o['tri10']);
+				$('.varPartHtml' + pk + 'Tri10').text(o['tri10']);
+			}
+		});
+	}
+
+	if(pks) {
+		for(i=0; i < pks.length; i++) {
+			var pk2 = pks[i];
+			var c = classes[i];
+			await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
+		}
+	}
+	await patchPartHtmlVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 }

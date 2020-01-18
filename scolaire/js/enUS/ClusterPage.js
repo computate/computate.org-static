@@ -17,21 +17,21 @@ async function postCluster($formValues, success, error) {
 		};
 	}
 
-	var valuePk = $formValues.find('.valuePk').val();
-	if(valuePk != null && valuePk !== '')
-		vals['pk'] = valuePk;
-
 	var valueCreated = $formValues.find('.valueCreated').val();
 	if(valueCreated != null && valueCreated !== '')
 		vals['created'] = valueCreated;
 
-	var valueModified = $formValues.find('.valueModified').val();
-	if(valueModified != null && valueModified !== '')
-		vals['modified'] = valueModified;
+	var valuePk = $formValues.find('.valuePk').val();
+	if(valuePk != null && valuePk !== '')
+		vals['pk'] = valuePk;
 
 	var valueObjectId = $formValues.find('.valueObjectId').val();
 	if(valueObjectId != null && valueObjectId !== '')
 		vals['objectId'] = valueObjectId;
+
+	var valueModified = $formValues.find('.valueModified').val();
+	if(valueModified != null && valueModified !== '')
+		vals['modified'] = valueModified;
 
 	var valueArchived = $formValues.find('.valueArchived').prop('checked');
 	if(valueArchived != null && valueArchived !== '')
@@ -71,17 +71,6 @@ async function patchCluster($formFilters, $formValues, success, error) {
 
 	var vals = {};
 
-	var removePk = $formFilters.find('.removePk').val() === 'true';
-	var setPk = removePk ? null : $formValues.find('.setPk').val();
-	if(removePk || setPk != null && setPk !== '')
-		vals['setPk'] = setPk;
-	var addPk = $formValues.find('.addPk').val();
-	if(addPk != null && addPk !== '')
-		vals['addPk'] = addPk;
-	var removePk = $formValues.find('.removePk').val();
-	if(removePk != null && removePk !== '')
-		vals['removePk'] = removePk;
-
 	var removeCreated = $formFilters.find('.removeCreated').val() === 'true';
 	var setCreated = removeCreated ? null : $formValues.find('.setCreated').val();
 	if(removeCreated || setCreated != null && setCreated !== '')
@@ -93,16 +82,16 @@ async function patchCluster($formFilters, $formValues, success, error) {
 	if(removeCreated != null && removeCreated !== '')
 		vals['removeCreated'] = removeCreated;
 
-	var removeModified = $formFilters.find('.removeModified').val() === 'true';
-	var setModified = removeModified ? null : $formValues.find('.setModified').val();
-	if(removeModified || setModified != null && setModified !== '')
-		vals['setModified'] = setModified;
-	var addModified = $formValues.find('.addModified').val();
-	if(addModified != null && addModified !== '')
-		vals['addModified'] = addModified;
-	var removeModified = $formValues.find('.removeModified').val();
-	if(removeModified != null && removeModified !== '')
-		vals['removeModified'] = removeModified;
+	var removePk = $formFilters.find('.removePk').val() === 'true';
+	var setPk = removePk ? null : $formValues.find('.setPk').val();
+	if(removePk || setPk != null && setPk !== '')
+		vals['setPk'] = setPk;
+	var addPk = $formValues.find('.addPk').val();
+	if(addPk != null && addPk !== '')
+		vals['addPk'] = addPk;
+	var removePk = $formValues.find('.removePk').val();
+	if(removePk != null && removePk !== '')
+		vals['removePk'] = removePk;
 
 	var removeObjectId = $formFilters.find('.removeObjectId').val() === 'true';
 	var setObjectId = removeObjectId ? null : $formValues.find('.setObjectId').val();
@@ -114,6 +103,17 @@ async function patchCluster($formFilters, $formValues, success, error) {
 	var removeObjectId = $formValues.find('.removeObjectId').val();
 	if(removeObjectId != null && removeObjectId !== '')
 		vals['removeObjectId'] = removeObjectId;
+
+	var removeModified = $formFilters.find('.removeModified').val() === 'true';
+	var setModified = removeModified ? null : $formValues.find('.setModified').val();
+	if(removeModified || setModified != null && setModified !== '')
+		vals['setModified'] = setModified;
+	var addModified = $formValues.find('.addModified').val();
+	if(addModified != null && addModified !== '')
+		vals['addModified'] = addModified;
+	var removeModified = $formValues.find('.removeModified').val();
+	if(removeModified != null && removeModified !== '')
+		vals['removeModified'] = removeModified;
 
 	var removeArchived = $formFilters.find('.removeArchived').val() === 'true';
 	var setArchived = removeArchived ? null : $formValues.find('.setArchived').prop('checked');
@@ -143,21 +143,21 @@ async function patchCluster($formFilters, $formValues, success, error) {
 function patchClusterFilters($formFilters) {
 	var filters = [];
 
-	var filterPk = $formFilters.find('.valuePk').val();
-	if(filterPk != null && filterPk !== '')
-		filters.push({ name: 'fq', value: 'pk:' + filterPk });
-
 	var filterCreated = $formFilters.find('.valueCreated').val();
 	if(filterCreated != null && filterCreated !== '')
 		filters.push({ name: 'fq', value: 'created:' + filterCreated });
 
-	var filterModified = $formFilters.find('.valueModified').val();
-	if(filterModified != null && filterModified !== '')
-		filters.push({ name: 'fq', value: 'modified:' + filterModified });
+	var filterPk = $formFilters.find('.valuePk').val();
+	if(filterPk != null && filterPk !== '')
+		filters.push({ name: 'fq', value: 'pk:' + filterPk });
 
 	var filterObjectId = $formFilters.find('.valueObjectId').val();
 	if(filterObjectId != null && filterObjectId !== '')
 		filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
+
+	var filterModified = $formFilters.find('.valueModified').val();
+	if(filterModified != null && filterModified !== '')
+		filters.push({ name: 'fq', value: 'modified:' + filterModified });
 
 	var filterArchived = $formFilters.find('.valueArchived').prop('checked');
 	if(filterArchived != null && filterArchived === true)
@@ -167,9 +167,9 @@ function patchClusterFilters($formFilters) {
 	if(filterDeleted != null && filterDeleted === true)
 		filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
-	var filterId = $formFilters.find('.valueId').val();
-	if(filterId != null && filterId !== '')
-		filters.push({ name: 'fq', value: 'id:' + filterId });
+	var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+	if(filterPageUrlPk != null && filterPageUrlPk !== '')
+		filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
 	var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
 	if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -191,6 +191,10 @@ function patchClusterFilters($formFilters) {
 	if(filterObjectTitle != null && filterObjectTitle !== '')
 		filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
+	var filterId = $formFilters.find('.valueId').val();
+	if(filterId != null && filterId !== '')
+		filters.push({ name: 'fq', value: 'id:' + filterId });
+
 	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
 	if(filterObjectSuggest != null && filterObjectSuggest !== '')
 		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
@@ -198,10 +202,6 @@ function patchClusterFilters($formFilters) {
 	var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
 	if(filterPageUrlId != null && filterPageUrlId !== '')
 		filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
-
-	var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-	if(filterPageUrlPk != null && filterPageUrlPk !== '')
-		filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 	return filters;
 }
 
@@ -265,21 +265,21 @@ async function searchCluster($formFilters, success, error) {
 function searchClusterFilters($formFilters) {
 	var filters = [];
 
-	var filterPk = $formFilters.find('.valuePk').val();
-	if(filterPk != null && filterPk !== '')
-		filters.push({ name: 'fq', value: 'pk:' + filterPk });
-
 	var filterCreated = $formFilters.find('.valueCreated').val();
 	if(filterCreated != null && filterCreated !== '')
 		filters.push({ name: 'fq', value: 'created:' + filterCreated });
 
-	var filterModified = $formFilters.find('.valueModified').val();
-	if(filterModified != null && filterModified !== '')
-		filters.push({ name: 'fq', value: 'modified:' + filterModified });
+	var filterPk = $formFilters.find('.valuePk').val();
+	if(filterPk != null && filterPk !== '')
+		filters.push({ name: 'fq', value: 'pk:' + filterPk });
 
 	var filterObjectId = $formFilters.find('.valueObjectId').val();
 	if(filterObjectId != null && filterObjectId !== '')
 		filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
+
+	var filterModified = $formFilters.find('.valueModified').val();
+	if(filterModified != null && filterModified !== '')
+		filters.push({ name: 'fq', value: 'modified:' + filterModified });
 
 	var filterArchived = $formFilters.find('.valueArchived').prop('checked');
 	if(filterArchived != null && filterArchived === true)
@@ -289,9 +289,9 @@ function searchClusterFilters($formFilters) {
 	if(filterDeleted != null && filterDeleted === true)
 		filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
-	var filterId = $formFilters.find('.valueId').val();
-	if(filterId != null && filterId !== '')
-		filters.push({ name: 'fq', value: 'id:' + filterId });
+	var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+	if(filterPageUrlPk != null && filterPageUrlPk !== '')
+		filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
 	var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
 	if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -313,6 +313,10 @@ function searchClusterFilters($formFilters) {
 	if(filterObjectTitle != null && filterObjectTitle !== '')
 		filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
+	var filterId = $formFilters.find('.valueId').val();
+	if(filterId != null && filterId !== '')
+		filters.push({ name: 'fq', value: 'id:' + filterId });
+
 	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
 	if(filterObjectSuggest != null && filterObjectSuggest !== '')
 		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
@@ -320,10 +324,6 @@ function searchClusterFilters($formFilters) {
 	var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
 	if(filterPageUrlId != null && filterPageUrlId !== '')
 		filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
-
-	var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-	if(filterPageUrlPk != null && filterPageUrlPk !== '')
-		filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 	return filters;
 }
 

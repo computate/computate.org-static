@@ -17,21 +17,21 @@ async function postBlocScolaire($formulaireValeurs, success, error) {
 		};
 	}
 
-	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
-	if(valeurPk != null && valeurPk !== '')
-		vals['pk'] = valeurPk;
-
 	var valeurCree = $formulaireValeurs.find('.valeurCree').val();
 	if(valeurCree != null && valeurCree !== '')
 		vals['cree'] = valeurCree;
 
-	var valeurModifie = $formulaireValeurs.find('.valeurModifie').val();
-	if(valeurModifie != null && valeurModifie !== '')
-		vals['modifie'] = valeurModifie;
+	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
+	if(valeurPk != null && valeurPk !== '')
+		vals['pk'] = valeurPk;
 
 	var valeurObjetId = $formulaireValeurs.find('.valeurObjetId').val();
 	if(valeurObjetId != null && valeurObjetId !== '')
 		vals['objetId'] = valeurObjetId;
+
+	var valeurModifie = $formulaireValeurs.find('.valeurModifie').val();
+	if(valeurModifie != null && valeurModifie !== '')
+		vals['modifie'] = valeurModifie;
 
 	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
 	if(valeurArchive != null && valeurArchive !== '')
@@ -127,17 +127,6 @@ async function patchBlocScolaire($formulaireFiltres, $formulaireValeurs, success
 
 	var vals = {};
 
-	var removePk = $formulaireFiltres.find('.removePk').val() === 'true';
-	var setPk = removePk ? null : $formulaireValeurs.find('.setPk').val();
-	if(removePk || setPk != null && setPk !== '')
-		vals['setPk'] = setPk;
-	var addPk = $formulaireValeurs.find('.addPk').val();
-	if(addPk != null && addPk !== '')
-		vals['addPk'] = addPk;
-	var removePk = $formulaireValeurs.find('.removePk').val();
-	if(removePk != null && removePk !== '')
-		vals['removePk'] = removePk;
-
 	var removeCree = $formulaireFiltres.find('.removeCree').val() === 'true';
 	var setCree = removeCree ? null : $formulaireValeurs.find('.setCree').val();
 	if(removeCree || setCree != null && setCree !== '')
@@ -149,16 +138,16 @@ async function patchBlocScolaire($formulaireFiltres, $formulaireValeurs, success
 	if(removeCree != null && removeCree !== '')
 		vals['removeCree'] = removeCree;
 
-	var removeModifie = $formulaireFiltres.find('.removeModifie').val() === 'true';
-	var setModifie = removeModifie ? null : $formulaireValeurs.find('.setModifie').val();
-	if(removeModifie || setModifie != null && setModifie !== '')
-		vals['setModifie'] = setModifie;
-	var addModifie = $formulaireValeurs.find('.addModifie').val();
-	if(addModifie != null && addModifie !== '')
-		vals['addModifie'] = addModifie;
-	var removeModifie = $formulaireValeurs.find('.removeModifie').val();
-	if(removeModifie != null && removeModifie !== '')
-		vals['removeModifie'] = removeModifie;
+	var removePk = $formulaireFiltres.find('.removePk').val() === 'true';
+	var setPk = removePk ? null : $formulaireValeurs.find('.setPk').val();
+	if(removePk || setPk != null && setPk !== '')
+		vals['setPk'] = setPk;
+	var addPk = $formulaireValeurs.find('.addPk').val();
+	if(addPk != null && addPk !== '')
+		vals['addPk'] = addPk;
+	var removePk = $formulaireValeurs.find('.removePk').val();
+	if(removePk != null && removePk !== '')
+		vals['removePk'] = removePk;
 
 	var removeObjetId = $formulaireFiltres.find('.removeObjetId').val() === 'true';
 	var setObjetId = removeObjetId ? null : $formulaireValeurs.find('.setObjetId').val();
@@ -170,6 +159,17 @@ async function patchBlocScolaire($formulaireFiltres, $formulaireValeurs, success
 	var removeObjetId = $formulaireValeurs.find('.removeObjetId').val();
 	if(removeObjetId != null && removeObjetId !== '')
 		vals['removeObjetId'] = removeObjetId;
+
+	var removeModifie = $formulaireFiltres.find('.removeModifie').val() === 'true';
+	var setModifie = removeModifie ? null : $formulaireValeurs.find('.setModifie').val();
+	if(removeModifie || setModifie != null && setModifie !== '')
+		vals['setModifie'] = setModifie;
+	var addModifie = $formulaireValeurs.find('.addModifie').val();
+	if(addModifie != null && addModifie !== '')
+		vals['addModifie'] = addModifie;
+	var removeModifie = $formulaireValeurs.find('.removeModifie').val();
+	if(removeModifie != null && removeModifie !== '')
+		vals['removeModifie'] = removeModifie;
 
 	var removeArchive = $formulaireFiltres.find('.removeArchive').val() === 'true';
 	var setArchive = removeArchive ? null : $formulaireValeurs.find('.setArchive').prop('checked');
@@ -353,21 +353,21 @@ async function patchBlocScolaire($formulaireFiltres, $formulaireValeurs, success
 function patchBlocScolaireFiltres($formulaireFiltres) {
 	var filtres = [];
 
-	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
-	if(filtrePk != null && filtrePk !== '')
-		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
-
 	var filtreCree = $formulaireFiltres.find('.valeurCree').val();
 	if(filtreCree != null && filtreCree !== '')
 		filtres.push({ name: 'fq', value: 'cree:' + filtreCree });
 
-	var filtreModifie = $formulaireFiltres.find('.valeurModifie').val();
-	if(filtreModifie != null && filtreModifie !== '')
-		filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
+	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
+	if(filtrePk != null && filtrePk !== '')
+		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
 
 	var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
 	if(filtreObjetId != null && filtreObjetId !== '')
 		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
+
+	var filtreModifie = $formulaireFiltres.find('.valeurModifie').val();
+	if(filtreModifie != null && filtreModifie !== '')
+		filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
 
 	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
 	if(filtreArchive != null && filtreArchive === true)
@@ -417,9 +417,9 @@ function patchBlocScolaireFiltres($formulaireFiltres) {
 	if(filtreInscriptionCles != null && filtreInscriptionCles !== '')
 		filtres.push({ name: 'fq', value: 'inscriptionCles:' + filtreInscriptionCles });
 
-	var filtreId = $formulaireFiltres.find('.valeurId').val();
-	if(filtreId != null && filtreId !== '')
-		filtres.push({ name: 'fq', value: 'id:' + filtreId });
+	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
+	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
+		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
 
 	var filtreClasseNomCanonique = $formulaireFiltres.find('.valeurClasseNomCanonique').val();
 	if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
@@ -441,6 +441,10 @@ function patchBlocScolaireFiltres($formulaireFiltres) {
 	if(filtreObjetTitre != null && filtreObjetTitre !== '')
 		filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
 
+	var filtreId = $formulaireFiltres.find('.valeurId').val();
+	if(filtreId != null && filtreId !== '')
+		filtres.push({ name: 'fq', value: 'id:' + filtreId });
+
 	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
 	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
 		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
@@ -448,10 +452,6 @@ function patchBlocScolaireFiltres($formulaireFiltres) {
 	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
 	if(filtrePageUrlId != null && filtrePageUrlId !== '')
 		filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
-
-	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
-	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
-		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
 
 	var filtreBlocCle = $formulaireFiltres.find('.valeurBlocCle').val();
 	if(filtreBlocCle != null && filtreBlocCle !== '')
@@ -596,6 +596,10 @@ function patchBlocScolaireFiltres($formulaireFiltres) {
 	var filtreBlocNomCourt = $formulaireFiltres.find('.valeurBlocNomCourt').val();
 	if(filtreBlocNomCourt != null && filtreBlocNomCourt !== '')
 		filtres.push({ name: 'fq', value: 'blocNomCourt:' + filtreBlocNomCourt });
+
+	var filtreBlocNomAdmin = $formulaireFiltres.find('.valeurBlocNomAdmin').val();
+	if(filtreBlocNomAdmin != null && filtreBlocNomAdmin !== '')
+		filtres.push({ name: 'fq', value: 'blocNomAdmin:' + filtreBlocNomAdmin });
 
 	var filtreBlocNomComplet = $formulaireFiltres.find('.valeurBlocNomComplet').val();
 	if(filtreBlocNomComplet != null && filtreBlocNomComplet !== '')
@@ -663,21 +667,21 @@ async function rechercheBlocScolaire($formulaireFiltres, success, error) {
 function rechercheBlocScolaireFiltres($formulaireFiltres) {
 	var filtres = [];
 
-	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
-	if(filtrePk != null && filtrePk !== '')
-		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
-
 	var filtreCree = $formulaireFiltres.find('.valeurCree').val();
 	if(filtreCree != null && filtreCree !== '')
 		filtres.push({ name: 'fq', value: 'cree:' + filtreCree });
 
-	var filtreModifie = $formulaireFiltres.find('.valeurModifie').val();
-	if(filtreModifie != null && filtreModifie !== '')
-		filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
+	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
+	if(filtrePk != null && filtrePk !== '')
+		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
 
 	var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
 	if(filtreObjetId != null && filtreObjetId !== '')
 		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
+
+	var filtreModifie = $formulaireFiltres.find('.valeurModifie').val();
+	if(filtreModifie != null && filtreModifie !== '')
+		filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
 
 	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
 	if(filtreArchive != null && filtreArchive === true)
@@ -727,9 +731,9 @@ function rechercheBlocScolaireFiltres($formulaireFiltres) {
 	if(filtreInscriptionCles != null && filtreInscriptionCles !== '')
 		filtres.push({ name: 'fq', value: 'inscriptionCles:' + filtreInscriptionCles });
 
-	var filtreId = $formulaireFiltres.find('.valeurId').val();
-	if(filtreId != null && filtreId !== '')
-		filtres.push({ name: 'fq', value: 'id:' + filtreId });
+	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
+	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
+		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
 
 	var filtreClasseNomCanonique = $formulaireFiltres.find('.valeurClasseNomCanonique').val();
 	if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
@@ -751,6 +755,10 @@ function rechercheBlocScolaireFiltres($formulaireFiltres) {
 	if(filtreObjetTitre != null && filtreObjetTitre !== '')
 		filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
 
+	var filtreId = $formulaireFiltres.find('.valeurId').val();
+	if(filtreId != null && filtreId !== '')
+		filtres.push({ name: 'fq', value: 'id:' + filtreId });
+
 	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
 	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
 		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
@@ -758,10 +766,6 @@ function rechercheBlocScolaireFiltres($formulaireFiltres) {
 	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
 	if(filtrePageUrlId != null && filtrePageUrlId !== '')
 		filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
-
-	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
-	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
-		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
 
 	var filtreBlocCle = $formulaireFiltres.find('.valeurBlocCle').val();
 	if(filtreBlocCle != null && filtreBlocCle !== '')
@@ -906,6 +910,10 @@ function rechercheBlocScolaireFiltres($formulaireFiltres) {
 	var filtreBlocNomCourt = $formulaireFiltres.find('.valeurBlocNomCourt').val();
 	if(filtreBlocNomCourt != null && filtreBlocNomCourt !== '')
 		filtres.push({ name: 'fq', value: 'blocNomCourt:' + filtreBlocNomCourt });
+
+	var filtreBlocNomAdmin = $formulaireFiltres.find('.valeurBlocNomAdmin').val();
+	if(filtreBlocNomAdmin != null && filtreBlocNomAdmin !== '')
+		filtres.push({ name: 'fq', value: 'blocNomAdmin:' + filtreBlocNomAdmin });
 
 	var filtreBlocNomComplet = $formulaireFiltres.find('.valeurBlocNomComplet').val();
 	if(filtreBlocNomComplet != null && filtreBlocNomComplet !== '')
@@ -1007,10 +1015,9 @@ function suggereBlocScolaireAgeCle(filtres, $list, pk = null) {
 }
 
 async function websocketBlocScolaire(success) {
-	var eventBus = new EventBus('/eventbus');
-	eventBus.onopen = function () {
+	window.eventBus.onopen = function () {
 
-		eventBus.registerHandler('websocketBlocScolaire', function (error, message) {
+		window.eventBus.registerHandler('websocketBlocScolaire', function (error, message) {
 			var json = JSON.parse(message['body']);
 			var id = json['id'];
 			var pk = json['pk'];
@@ -1047,12 +1054,101 @@ async function websocketBlocScolaire(success) {
 			}
 		});
 
-		eventBus.registerHandler('websocketInscriptionScolaire', function (error, message) {
+		window.eventBus.registerHandler('websocketInscriptionScolaire', function (error, message) {
 			$('#Page_inscriptionCles').trigger('oninput');
 		});
 
-		eventBus.registerHandler('websocketAgeScolaire', function (error, message) {
+		window.eventBus.registerHandler('websocketAgeScolaire', function (error, message) {
 			$('#Page_ageCle').trigger('oninput');
 		});
 	}
+}
+async function websocketBlocScolaireInner(requetePatch) {
+	var pk = requetePatch['pk'];
+	var pks = requetePatch['pks'];
+	var classes = requetePatch['classes'];
+	var vars = requetePatch['vars'];
+
+	if(pk != null) {
+		rechercherBlocScolaireVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
+			var o = data['list'][0];
+			if(vars.includes('cree')) {
+				$('.inputBlocScolaire' + pk + 'Cree').val(o['cree']);
+				$('.varBlocScolaire' + pk + 'Cree').text(o['cree']);
+			}
+			if(vars.includes('modifie')) {
+				$('.inputBlocScolaire' + pk + 'Modifie').val(o['modifie']);
+				$('.varBlocScolaire' + pk + 'Modifie').text(o['modifie']);
+			}
+			if(vars.includes('archive')) {
+				$('.inputBlocScolaire' + pk + 'Archive').val(o['archive']);
+				$('.varBlocScolaire' + pk + 'Archive').text(o['archive']);
+			}
+			if(vars.includes('supprime')) {
+				$('.inputBlocScolaire' + pk + 'Supprime').val(o['supprime']);
+				$('.varBlocScolaire' + pk + 'Supprime').text(o['supprime']);
+			}
+			if(vars.includes('blocHeureDebut')) {
+				$('.inputBlocScolaire' + pk + 'BlocHeureDebut').val(o['blocHeureDebut']);
+				$('.varBlocScolaire' + pk + 'BlocHeureDebut').text(o['blocHeureDebut']);
+			}
+			if(vars.includes('blocHeureFin')) {
+				$('.inputBlocScolaire' + pk + 'BlocHeureFin').val(o['blocHeureFin']);
+				$('.varBlocScolaire' + pk + 'BlocHeureFin').text(o['blocHeureFin']);
+			}
+			if(vars.includes('blocPrixParMois')) {
+				$('.inputBlocScolaire' + pk + 'BlocPrixParMois').val(o['blocPrixParMois']);
+				$('.varBlocScolaire' + pk + 'BlocPrixParMois').text(o['blocPrixParMois']);
+			}
+			if(vars.includes('blocLundi')) {
+				$('.inputBlocScolaire' + pk + 'BlocLundi').val(o['blocLundi']);
+				$('.varBlocScolaire' + pk + 'BlocLundi').text(o['blocLundi']);
+			}
+			if(vars.includes('blocMardi')) {
+				$('.inputBlocScolaire' + pk + 'BlocMardi').val(o['blocMardi']);
+				$('.varBlocScolaire' + pk + 'BlocMardi').text(o['blocMardi']);
+			}
+			if(vars.includes('blocMercredi')) {
+				$('.inputBlocScolaire' + pk + 'BlocMercredi').val(o['blocMercredi']);
+				$('.varBlocScolaire' + pk + 'BlocMercredi').text(o['blocMercredi']);
+			}
+			if(vars.includes('blocJeudi')) {
+				$('.inputBlocScolaire' + pk + 'BlocJeudi').val(o['blocJeudi']);
+				$('.varBlocScolaire' + pk + 'BlocJeudi').text(o['blocJeudi']);
+			}
+			if(vars.includes('blocVendredi')) {
+				$('.inputBlocScolaire' + pk + 'BlocVendredi').val(o['blocVendredi']);
+				$('.varBlocScolaire' + pk + 'BlocVendredi').text(o['blocVendredi']);
+			}
+			if(vars.includes('ageCle')) {
+				$('.inputBlocScolaire' + pk + 'AgeCle').val(o['ageCle']);
+				$('.varBlocScolaire' + pk + 'AgeCle').text(o['ageCle']);
+			}
+			if(vars.includes('inscriptionCles')) {
+				$('.inputBlocScolaire' + pk + 'InscriptionCles').val(o['inscriptionCles']);
+				$('.varBlocScolaire' + pk + 'InscriptionCles').text(o['inscriptionCles']);
+			}
+			if(vars.includes('ecoleAddresse')) {
+				$('.inputBlocScolaire' + pk + 'EcoleAddresse').val(o['ecoleAddresse']);
+				$('.varBlocScolaire' + pk + 'EcoleAddresse').text(o['ecoleAddresse']);
+			}
+			if(vars.includes('blocDimanche')) {
+				$('.inputBlocScolaire' + pk + 'BlocDimanche').val(o['blocDimanche']);
+				$('.varBlocScolaire' + pk + 'BlocDimanche').text(o['blocDimanche']);
+			}
+			if(vars.includes('blocSamedi')) {
+				$('.inputBlocScolaire' + pk + 'BlocSamedi').val(o['blocSamedi']);
+				$('.varBlocScolaire' + pk + 'BlocSamedi').text(o['blocSamedi']);
+			}
+		});
+	}
+
+	if(pks) {
+		for(i=0; i < pks.length; i++) {
+			var pk2 = pks[i];
+			var c = classes[i];
+			await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
+		}
+	}
+	await patchBlocScolaireVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 }

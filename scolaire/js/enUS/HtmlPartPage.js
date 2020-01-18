@@ -17,21 +17,21 @@ async function postHtmlPart($formValues, success, error) {
 		};
 	}
 
-	var valuePk = $formValues.find('.valuePk').val();
-	if(valuePk != null && valuePk !== '')
-		vals['pk'] = valuePk;
-
 	var valueCreated = $formValues.find('.valueCreated').val();
 	if(valueCreated != null && valueCreated !== '')
 		vals['created'] = valueCreated;
 
-	var valueModified = $formValues.find('.valueModified').val();
-	if(valueModified != null && valueModified !== '')
-		vals['modified'] = valueModified;
+	var valuePk = $formValues.find('.valuePk').val();
+	if(valuePk != null && valuePk !== '')
+		vals['pk'] = valuePk;
 
 	var valueObjectId = $formValues.find('.valueObjectId').val();
 	if(valueObjectId != null && valueObjectId !== '')
 		vals['objectId'] = valueObjectId;
+
+	var valueModified = $formValues.find('.valueModified').val();
+	if(valueModified != null && valueModified !== '')
+		vals['modified'] = valueModified;
 
 	var valueArchived = $formValues.find('.valueArchived').prop('checked');
 	if(valueArchived != null && valueArchived !== '')
@@ -81,6 +81,10 @@ async function postHtmlPart($formValues, success, error) {
 	if(valueHtmlVar != null && valueHtmlVar !== '')
 		vals['htmlVar'] = valueHtmlVar;
 
+	var valueHtmlVarSpan = $formValues.find('.valueHtmlVarSpan').val();
+	if(valueHtmlVarSpan != null && valueHtmlVarSpan !== '')
+		vals['htmlVarSpan'] = valueHtmlVarSpan;
+
 	var valueHtmlVarForm = $formValues.find('.valueHtmlVarForm').val();
 	if(valueHtmlVarForm != null && valueHtmlVarForm !== '')
 		vals['htmlVarForm'] = valueHtmlVarForm;
@@ -92,6 +96,10 @@ async function postHtmlPart($formValues, success, error) {
 	var valueHtmlVarForEach = $formValues.find('.valueHtmlVarForEach').val();
 	if(valueHtmlVarForEach != null && valueHtmlVarForEach !== '')
 		vals['htmlVarForEach'] = valueHtmlVarForEach;
+
+	var valueHtmlExclude = $formValues.find('.valueHtmlExclude').prop('checked');
+	if(valueHtmlExclude != null && valueHtmlExclude !== '')
+		vals['htmlExclude'] = valueHtmlExclude;
 
 	var valuePdfExclude = $formValues.find('.valuePdfExclude').prop('checked');
 	if(valuePdfExclude != null && valuePdfExclude !== '')
@@ -167,17 +175,6 @@ async function patchHtmlPart($formFilters, $formValues, success, error) {
 
 	var vals = {};
 
-	var removePk = $formFilters.find('.removePk').val() === 'true';
-	var setPk = removePk ? null : $formValues.find('.setPk').val();
-	if(removePk || setPk != null && setPk !== '')
-		vals['setPk'] = setPk;
-	var addPk = $formValues.find('.addPk').val();
-	if(addPk != null && addPk !== '')
-		vals['addPk'] = addPk;
-	var removePk = $formValues.find('.removePk').val();
-	if(removePk != null && removePk !== '')
-		vals['removePk'] = removePk;
-
 	var removeCreated = $formFilters.find('.removeCreated').val() === 'true';
 	var setCreated = removeCreated ? null : $formValues.find('.setCreated').val();
 	if(removeCreated || setCreated != null && setCreated !== '')
@@ -189,16 +186,16 @@ async function patchHtmlPart($formFilters, $formValues, success, error) {
 	if(removeCreated != null && removeCreated !== '')
 		vals['removeCreated'] = removeCreated;
 
-	var removeModified = $formFilters.find('.removeModified').val() === 'true';
-	var setModified = removeModified ? null : $formValues.find('.setModified').val();
-	if(removeModified || setModified != null && setModified !== '')
-		vals['setModified'] = setModified;
-	var addModified = $formValues.find('.addModified').val();
-	if(addModified != null && addModified !== '')
-		vals['addModified'] = addModified;
-	var removeModified = $formValues.find('.removeModified').val();
-	if(removeModified != null && removeModified !== '')
-		vals['removeModified'] = removeModified;
+	var removePk = $formFilters.find('.removePk').val() === 'true';
+	var setPk = removePk ? null : $formValues.find('.setPk').val();
+	if(removePk || setPk != null && setPk !== '')
+		vals['setPk'] = setPk;
+	var addPk = $formValues.find('.addPk').val();
+	if(addPk != null && addPk !== '')
+		vals['addPk'] = addPk;
+	var removePk = $formValues.find('.removePk').val();
+	if(removePk != null && removePk !== '')
+		vals['removePk'] = removePk;
 
 	var removeObjectId = $formFilters.find('.removeObjectId').val() === 'true';
 	var setObjectId = removeObjectId ? null : $formValues.find('.setObjectId').val();
@@ -210,6 +207,17 @@ async function patchHtmlPart($formFilters, $formValues, success, error) {
 	var removeObjectId = $formValues.find('.removeObjectId').val();
 	if(removeObjectId != null && removeObjectId !== '')
 		vals['removeObjectId'] = removeObjectId;
+
+	var removeModified = $formFilters.find('.removeModified').val() === 'true';
+	var setModified = removeModified ? null : $formValues.find('.setModified').val();
+	if(removeModified || setModified != null && setModified !== '')
+		vals['setModified'] = setModified;
+	var addModified = $formValues.find('.addModified').val();
+	if(addModified != null && addModified !== '')
+		vals['addModified'] = addModified;
+	var removeModified = $formValues.find('.removeModified').val();
+	if(removeModified != null && removeModified !== '')
+		vals['removeModified'] = removeModified;
 
 	var removeArchived = $formFilters.find('.removeArchived').val() === 'true';
 	var setArchived = removeArchived ? null : $formValues.find('.setArchived').prop('checked');
@@ -343,6 +351,17 @@ async function patchHtmlPart($formFilters, $formValues, success, error) {
 	if(removeHtmlVar != null && removeHtmlVar !== '')
 		vals['removeHtmlVar'] = removeHtmlVar;
 
+	var removeHtmlVarSpan = $formFilters.find('.removeHtmlVarSpan').val() === 'true';
+	var setHtmlVarSpan = removeHtmlVarSpan ? null : $formValues.find('.setHtmlVarSpan').val();
+	if(removeHtmlVarSpan || setHtmlVarSpan != null && setHtmlVarSpan !== '')
+		vals['setHtmlVarSpan'] = setHtmlVarSpan;
+	var addHtmlVarSpan = $formValues.find('.addHtmlVarSpan').val();
+	if(addHtmlVarSpan != null && addHtmlVarSpan !== '')
+		vals['addHtmlVarSpan'] = addHtmlVarSpan;
+	var removeHtmlVarSpan = $formValues.find('.removeHtmlVarSpan').val();
+	if(removeHtmlVarSpan != null && removeHtmlVarSpan !== '')
+		vals['removeHtmlVarSpan'] = removeHtmlVarSpan;
+
 	var removeHtmlVarForm = $formFilters.find('.removeHtmlVarForm').val() === 'true';
 	var setHtmlVarForm = removeHtmlVarForm ? null : $formValues.find('.setHtmlVarForm').val();
 	if(removeHtmlVarForm || setHtmlVarForm != null && setHtmlVarForm !== '')
@@ -375,6 +394,17 @@ async function patchHtmlPart($formFilters, $formValues, success, error) {
 	var removeHtmlVarForEach = $formValues.find('.removeHtmlVarForEach').val();
 	if(removeHtmlVarForEach != null && removeHtmlVarForEach !== '')
 		vals['removeHtmlVarForEach'] = removeHtmlVarForEach;
+
+	var removeHtmlExclude = $formFilters.find('.removeHtmlExclude').val() === 'true';
+	var setHtmlExclude = removeHtmlExclude ? null : $formValues.find('.setHtmlExclude').prop('checked');
+	if(removeHtmlExclude || setHtmlExclude != null && setHtmlExclude !== '')
+		vals['setHtmlExclude'] = setHtmlExclude;
+	var addHtmlExclude = $formValues.find('.addHtmlExclude').prop('checked');
+	if(addHtmlExclude != null && addHtmlExclude !== '')
+		vals['addHtmlExclude'] = addHtmlExclude;
+	var removeHtmlExclude = $formValues.find('.removeHtmlExclude').prop('checked');
+	if(removeHtmlExclude != null && removeHtmlExclude !== '')
+		vals['removeHtmlExclude'] = removeHtmlExclude;
 
 	var removePdfExclude = $formFilters.find('.removePdfExclude').val() === 'true';
 	var setPdfExclude = removePdfExclude ? null : $formValues.find('.setPdfExclude').prop('checked');
@@ -503,21 +533,21 @@ async function patchHtmlPart($formFilters, $formValues, success, error) {
 function patchHtmlPartFilters($formFilters) {
 	var filters = [];
 
-	var filterPk = $formFilters.find('.valuePk').val();
-	if(filterPk != null && filterPk !== '')
-		filters.push({ name: 'fq', value: 'pk:' + filterPk });
-
 	var filterCreated = $formFilters.find('.valueCreated').val();
 	if(filterCreated != null && filterCreated !== '')
 		filters.push({ name: 'fq', value: 'created:' + filterCreated });
 
-	var filterModified = $formFilters.find('.valueModified').val();
-	if(filterModified != null && filterModified !== '')
-		filters.push({ name: 'fq', value: 'modified:' + filterModified });
+	var filterPk = $formFilters.find('.valuePk').val();
+	if(filterPk != null && filterPk !== '')
+		filters.push({ name: 'fq', value: 'pk:' + filterPk });
 
 	var filterObjectId = $formFilters.find('.valueObjectId').val();
 	if(filterObjectId != null && filterObjectId !== '')
 		filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
+
+	var filterModified = $formFilters.find('.valueModified').val();
+	if(filterModified != null && filterModified !== '')
+		filters.push({ name: 'fq', value: 'modified:' + filterModified });
 
 	var filterArchived = $formFilters.find('.valueArchived').prop('checked');
 	if(filterArchived != null && filterArchived === true)
@@ -567,6 +597,10 @@ function patchHtmlPartFilters($formFilters) {
 	if(filterHtmlVar != null && filterHtmlVar !== '')
 		filters.push({ name: 'fq', value: 'htmlVar:' + filterHtmlVar });
 
+	var filterHtmlVarSpan = $formFilters.find('.valueHtmlVarSpan').val();
+	if(filterHtmlVarSpan != null && filterHtmlVarSpan !== '')
+		filters.push({ name: 'fq', value: 'htmlVarSpan:' + filterHtmlVarSpan });
+
 	var filterHtmlVarForm = $formFilters.find('.valueHtmlVarForm').val();
 	if(filterHtmlVarForm != null && filterHtmlVarForm !== '')
 		filters.push({ name: 'fq', value: 'htmlVarForm:' + filterHtmlVarForm });
@@ -578,6 +612,10 @@ function patchHtmlPartFilters($formFilters) {
 	var filterHtmlVarForEach = $formFilters.find('.valueHtmlVarForEach').val();
 	if(filterHtmlVarForEach != null && filterHtmlVarForEach !== '')
 		filters.push({ name: 'fq', value: 'htmlVarForEach:' + filterHtmlVarForEach });
+
+	var filterHtmlExclude = $formFilters.find('.valueHtmlExclude').prop('checked');
+	if(filterHtmlExclude != null && filterHtmlExclude === true)
+		filters.push({ name: 'fq', value: 'htmlExclude:' + filterHtmlExclude });
 
 	var filterPdfExclude = $formFilters.find('.valuePdfExclude').prop('checked');
 	if(filterPdfExclude != null && filterPdfExclude === true)
@@ -623,9 +661,9 @@ function patchHtmlPartFilters($formFilters) {
 	if(filterSort10 != null && filterSort10 !== '')
 		filters.push({ name: 'fq', value: 'sort10:' + filterSort10 });
 
-	var filterId = $formFilters.find('.valueId').val();
-	if(filterId != null && filterId !== '')
-		filters.push({ name: 'fq', value: 'id:' + filterId });
+	var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+	if(filterPageUrlPk != null && filterPageUrlPk !== '')
+		filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
 	var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
 	if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -647,6 +685,10 @@ function patchHtmlPartFilters($formFilters) {
 	if(filterObjectTitle != null && filterObjectTitle !== '')
 		filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
+	var filterId = $formFilters.find('.valueId').val();
+	if(filterId != null && filterId !== '')
+		filters.push({ name: 'fq', value: 'id:' + filterId });
+
 	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
 	if(filterObjectSuggest != null && filterObjectSuggest !== '')
 		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
@@ -654,10 +696,6 @@ function patchHtmlPartFilters($formFilters) {
 	var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
 	if(filterPageUrlId != null && filterPageUrlId !== '')
 		filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
-
-	var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-	if(filterPageUrlPk != null && filterPageUrlPk !== '')
-		filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
 	var filterHtmlPartKey = $formFilters.find('.valueHtmlPartKey').val();
 	if(filterHtmlPartKey != null && filterHtmlPartKey !== '')
@@ -725,21 +763,21 @@ async function searchHtmlPart($formFilters, success, error) {
 function searchHtmlPartFilters($formFilters) {
 	var filters = [];
 
-	var filterPk = $formFilters.find('.valuePk').val();
-	if(filterPk != null && filterPk !== '')
-		filters.push({ name: 'fq', value: 'pk:' + filterPk });
-
 	var filterCreated = $formFilters.find('.valueCreated').val();
 	if(filterCreated != null && filterCreated !== '')
 		filters.push({ name: 'fq', value: 'created:' + filterCreated });
 
-	var filterModified = $formFilters.find('.valueModified').val();
-	if(filterModified != null && filterModified !== '')
-		filters.push({ name: 'fq', value: 'modified:' + filterModified });
+	var filterPk = $formFilters.find('.valuePk').val();
+	if(filterPk != null && filterPk !== '')
+		filters.push({ name: 'fq', value: 'pk:' + filterPk });
 
 	var filterObjectId = $formFilters.find('.valueObjectId').val();
 	if(filterObjectId != null && filterObjectId !== '')
 		filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
+
+	var filterModified = $formFilters.find('.valueModified').val();
+	if(filterModified != null && filterModified !== '')
+		filters.push({ name: 'fq', value: 'modified:' + filterModified });
 
 	var filterArchived = $formFilters.find('.valueArchived').prop('checked');
 	if(filterArchived != null && filterArchived === true)
@@ -789,6 +827,10 @@ function searchHtmlPartFilters($formFilters) {
 	if(filterHtmlVar != null && filterHtmlVar !== '')
 		filters.push({ name: 'fq', value: 'htmlVar:' + filterHtmlVar });
 
+	var filterHtmlVarSpan = $formFilters.find('.valueHtmlVarSpan').val();
+	if(filterHtmlVarSpan != null && filterHtmlVarSpan !== '')
+		filters.push({ name: 'fq', value: 'htmlVarSpan:' + filterHtmlVarSpan });
+
 	var filterHtmlVarForm = $formFilters.find('.valueHtmlVarForm').val();
 	if(filterHtmlVarForm != null && filterHtmlVarForm !== '')
 		filters.push({ name: 'fq', value: 'htmlVarForm:' + filterHtmlVarForm });
@@ -800,6 +842,10 @@ function searchHtmlPartFilters($formFilters) {
 	var filterHtmlVarForEach = $formFilters.find('.valueHtmlVarForEach').val();
 	if(filterHtmlVarForEach != null && filterHtmlVarForEach !== '')
 		filters.push({ name: 'fq', value: 'htmlVarForEach:' + filterHtmlVarForEach });
+
+	var filterHtmlExclude = $formFilters.find('.valueHtmlExclude').prop('checked');
+	if(filterHtmlExclude != null && filterHtmlExclude === true)
+		filters.push({ name: 'fq', value: 'htmlExclude:' + filterHtmlExclude });
 
 	var filterPdfExclude = $formFilters.find('.valuePdfExclude').prop('checked');
 	if(filterPdfExclude != null && filterPdfExclude === true)
@@ -845,9 +891,9 @@ function searchHtmlPartFilters($formFilters) {
 	if(filterSort10 != null && filterSort10 !== '')
 		filters.push({ name: 'fq', value: 'sort10:' + filterSort10 });
 
-	var filterId = $formFilters.find('.valueId').val();
-	if(filterId != null && filterId !== '')
-		filters.push({ name: 'fq', value: 'id:' + filterId });
+	var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+	if(filterPageUrlPk != null && filterPageUrlPk !== '')
+		filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
 	var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
 	if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -869,6 +915,10 @@ function searchHtmlPartFilters($formFilters) {
 	if(filterObjectTitle != null && filterObjectTitle !== '')
 		filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
+	var filterId = $formFilters.find('.valueId').val();
+	if(filterId != null && filterId !== '')
+		filters.push({ name: 'fq', value: 'id:' + filterId });
+
 	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
 	if(filterObjectSuggest != null && filterObjectSuggest !== '')
 		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
@@ -876,10 +926,6 @@ function searchHtmlPartFilters($formFilters) {
 	var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
 	if(filterPageUrlId != null && filterPageUrlId !== '')
 		filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
-
-	var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-	if(filterPageUrlPk != null && filterPageUrlPk !== '')
-		filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
 	var filterHtmlPartKey = $formFilters.find('.valueHtmlPartKey').val();
 	if(filterHtmlPartKey != null && filterHtmlPartKey !== '')
@@ -962,10 +1008,9 @@ function suggestHtmlPartEnrollmentDesignKey(filters, $list, pk = null) {
 }
 
 async function websocketHtmlPart(success) {
-	var eventBus = new EventBus('/eventbus');
-	eventBus.onopen = function () {
+	window.eventBus.onopen = function () {
 
-		eventBus.registerHandler('websocketHtmlPart', function (error, message) {
+		window.eventBus.registerHandler('websocketHtmlPart', function (error, message) {
 			var json = JSON.parse(message['body']);
 			var id = json['id'];
 			var pk = json['pk'];
@@ -1002,8 +1047,149 @@ async function websocketHtmlPart(success) {
 			}
 		});
 
-		eventBus.registerHandler('websocketEnrollmentDesign', function (error, message) {
+		window.eventBus.registerHandler('websocketEnrollmentDesign', function (error, message) {
 			$('#Page_enrollmentDesignKey').trigger('oninput');
 		});
 	}
+}
+async function websocketHtmlPartInner(patchRequest) {
+	var pk = patchRequest['pk'];
+	var pks = patchRequest['pks'];
+	var classes = patchRequest['classes'];
+	var vars = patchRequest['vars'];
+
+	if(pk != null) {
+		searchHtmlPartVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
+			var o = data['list'][0];
+			if(vars.includes('created')) {
+				$('.inputHtmlPart' + pk + 'Created').val(o['created']);
+				$('.varHtmlPart' + pk + 'Created').text(o['created']);
+			}
+			if(vars.includes('modified')) {
+				$('.inputHtmlPart' + pk + 'Modified').val(o['modified']);
+				$('.varHtmlPart' + pk + 'Modified').text(o['modified']);
+			}
+			if(vars.includes('archived')) {
+				$('.inputHtmlPart' + pk + 'Archived').val(o['archived']);
+				$('.varHtmlPart' + pk + 'Archived').text(o['archived']);
+			}
+			if(vars.includes('deleted')) {
+				$('.inputHtmlPart' + pk + 'Deleted').val(o['deleted']);
+				$('.varHtmlPart' + pk + 'Deleted').text(o['deleted']);
+			}
+			if(vars.includes('enrollmentDesignKey')) {
+				$('.inputHtmlPart' + pk + 'EnrollmentDesignKey').val(o['enrollmentDesignKey']);
+				$('.varHtmlPart' + pk + 'EnrollmentDesignKey').text(o['enrollmentDesignKey']);
+			}
+			if(vars.includes('htmlLink')) {
+				$('.inputHtmlPart' + pk + 'HtmlLink').val(o['htmlLink']);
+				$('.varHtmlPart' + pk + 'HtmlLink').text(o['htmlLink']);
+			}
+			if(vars.includes('htmlElement')) {
+				$('.inputHtmlPart' + pk + 'HtmlElement').val(o['htmlElement']);
+				$('.varHtmlPart' + pk + 'HtmlElement').text(o['htmlElement']);
+			}
+			if(vars.includes('htmlId')) {
+				$('.inputHtmlPart' + pk + 'HtmlId').val(o['htmlId']);
+				$('.varHtmlPart' + pk + 'HtmlId').text(o['htmlId']);
+			}
+			if(vars.includes('htmlClasses')) {
+				$('.inputHtmlPart' + pk + 'HtmlClasses').val(o['htmlClasses']);
+				$('.varHtmlPart' + pk + 'HtmlClasses').text(o['htmlClasses']);
+			}
+			if(vars.includes('htmlStyle')) {
+				$('.inputHtmlPart' + pk + 'HtmlStyle').val(o['htmlStyle']);
+				$('.varHtmlPart' + pk + 'HtmlStyle').text(o['htmlStyle']);
+			}
+			if(vars.includes('htmlBefore')) {
+				$('.inputHtmlPart' + pk + 'HtmlBefore').val(o['htmlBefore']);
+				$('.varHtmlPart' + pk + 'HtmlBefore').text(o['htmlBefore']);
+			}
+			if(vars.includes('htmlAfter')) {
+				$('.inputHtmlPart' + pk + 'HtmlAfter').val(o['htmlAfter']);
+				$('.varHtmlPart' + pk + 'HtmlAfter').text(o['htmlAfter']);
+			}
+			if(vars.includes('htmlText')) {
+				$('.inputHtmlPart' + pk + 'HtmlText').val(o['htmlText']);
+				$('.varHtmlPart' + pk + 'HtmlText').text(o['htmlText']);
+			}
+			if(vars.includes('htmlVar')) {
+				$('.inputHtmlPart' + pk + 'HtmlVar').val(o['htmlVar']);
+				$('.varHtmlPart' + pk + 'HtmlVar').text(o['htmlVar']);
+			}
+			if(vars.includes('htmlVarSpan')) {
+				$('.inputHtmlPart' + pk + 'HtmlVarSpan').val(o['htmlVarSpan']);
+				$('.varHtmlPart' + pk + 'HtmlVarSpan').text(o['htmlVarSpan']);
+			}
+			if(vars.includes('htmlVarForm')) {
+				$('.inputHtmlPart' + pk + 'HtmlVarForm').val(o['htmlVarForm']);
+				$('.varHtmlPart' + pk + 'HtmlVarForm').text(o['htmlVarForm']);
+			}
+			if(vars.includes('htmlVarInput')) {
+				$('.inputHtmlPart' + pk + 'HtmlVarInput').val(o['htmlVarInput']);
+				$('.varHtmlPart' + pk + 'HtmlVarInput').text(o['htmlVarInput']);
+			}
+			if(vars.includes('htmlVarForEach')) {
+				$('.inputHtmlPart' + pk + 'HtmlVarForEach').val(o['htmlVarForEach']);
+				$('.varHtmlPart' + pk + 'HtmlVarForEach').text(o['htmlVarForEach']);
+			}
+			if(vars.includes('htmlExclude')) {
+				$('.inputHtmlPart' + pk + 'HtmlExclude').val(o['htmlExclude']);
+				$('.varHtmlPart' + pk + 'HtmlExclude').text(o['htmlExclude']);
+			}
+			if(vars.includes('pdfExclude')) {
+				$('.inputHtmlPart' + pk + 'PdfExclude').val(o['pdfExclude']);
+				$('.varHtmlPart' + pk + 'PdfExclude').text(o['pdfExclude']);
+			}
+			if(vars.includes('sort1')) {
+				$('.inputHtmlPart' + pk + 'Sort1').val(o['sort1']);
+				$('.varHtmlPart' + pk + 'Sort1').text(o['sort1']);
+			}
+			if(vars.includes('sort2')) {
+				$('.inputHtmlPart' + pk + 'Sort2').val(o['sort2']);
+				$('.varHtmlPart' + pk + 'Sort2').text(o['sort2']);
+			}
+			if(vars.includes('sort3')) {
+				$('.inputHtmlPart' + pk + 'Sort3').val(o['sort3']);
+				$('.varHtmlPart' + pk + 'Sort3').text(o['sort3']);
+			}
+			if(vars.includes('sort4')) {
+				$('.inputHtmlPart' + pk + 'Sort4').val(o['sort4']);
+				$('.varHtmlPart' + pk + 'Sort4').text(o['sort4']);
+			}
+			if(vars.includes('sort5')) {
+				$('.inputHtmlPart' + pk + 'Sort5').val(o['sort5']);
+				$('.varHtmlPart' + pk + 'Sort5').text(o['sort5']);
+			}
+			if(vars.includes('sort6')) {
+				$('.inputHtmlPart' + pk + 'Sort6').val(o['sort6']);
+				$('.varHtmlPart' + pk + 'Sort6').text(o['sort6']);
+			}
+			if(vars.includes('sort7')) {
+				$('.inputHtmlPart' + pk + 'Sort7').val(o['sort7']);
+				$('.varHtmlPart' + pk + 'Sort7').text(o['sort7']);
+			}
+			if(vars.includes('sort8')) {
+				$('.inputHtmlPart' + pk + 'Sort8').val(o['sort8']);
+				$('.varHtmlPart' + pk + 'Sort8').text(o['sort8']);
+			}
+			if(vars.includes('sort9')) {
+				$('.inputHtmlPart' + pk + 'Sort9').val(o['sort9']);
+				$('.varHtmlPart' + pk + 'Sort9').text(o['sort9']);
+			}
+			if(vars.includes('sort10')) {
+				$('.inputHtmlPart' + pk + 'Sort10').val(o['sort10']);
+				$('.varHtmlPart' + pk + 'Sort10').text(o['sort10']);
+			}
+		});
+	}
+
+	if(pks) {
+		for(i=0; i < pks.length; i++) {
+			var pk2 = pks[i];
+			var c = classes[i];
+			await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
+		}
+	}
+	await patchHtmlPartVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 }

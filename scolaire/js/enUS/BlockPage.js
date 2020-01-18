@@ -17,21 +17,21 @@ async function postSchoolBlock($formValues, success, error) {
 		};
 	}
 
-	var valuePk = $formValues.find('.valuePk').val();
-	if(valuePk != null && valuePk !== '')
-		vals['pk'] = valuePk;
-
 	var valueCreated = $formValues.find('.valueCreated').val();
 	if(valueCreated != null && valueCreated !== '')
 		vals['created'] = valueCreated;
 
-	var valueModified = $formValues.find('.valueModified').val();
-	if(valueModified != null && valueModified !== '')
-		vals['modified'] = valueModified;
+	var valuePk = $formValues.find('.valuePk').val();
+	if(valuePk != null && valuePk !== '')
+		vals['pk'] = valuePk;
 
 	var valueObjectId = $formValues.find('.valueObjectId').val();
 	if(valueObjectId != null && valueObjectId !== '')
 		vals['objectId'] = valueObjectId;
+
+	var valueModified = $formValues.find('.valueModified').val();
+	if(valueModified != null && valueModified !== '')
+		vals['modified'] = valueModified;
 
 	var valueArchived = $formValues.find('.valueArchived').prop('checked');
 	if(valueArchived != null && valueArchived !== '')
@@ -127,17 +127,6 @@ async function patchSchoolBlock($formFilters, $formValues, success, error) {
 
 	var vals = {};
 
-	var removePk = $formFilters.find('.removePk').val() === 'true';
-	var setPk = removePk ? null : $formValues.find('.setPk').val();
-	if(removePk || setPk != null && setPk !== '')
-		vals['setPk'] = setPk;
-	var addPk = $formValues.find('.addPk').val();
-	if(addPk != null && addPk !== '')
-		vals['addPk'] = addPk;
-	var removePk = $formValues.find('.removePk').val();
-	if(removePk != null && removePk !== '')
-		vals['removePk'] = removePk;
-
 	var removeCreated = $formFilters.find('.removeCreated').val() === 'true';
 	var setCreated = removeCreated ? null : $formValues.find('.setCreated').val();
 	if(removeCreated || setCreated != null && setCreated !== '')
@@ -149,16 +138,16 @@ async function patchSchoolBlock($formFilters, $formValues, success, error) {
 	if(removeCreated != null && removeCreated !== '')
 		vals['removeCreated'] = removeCreated;
 
-	var removeModified = $formFilters.find('.removeModified').val() === 'true';
-	var setModified = removeModified ? null : $formValues.find('.setModified').val();
-	if(removeModified || setModified != null && setModified !== '')
-		vals['setModified'] = setModified;
-	var addModified = $formValues.find('.addModified').val();
-	if(addModified != null && addModified !== '')
-		vals['addModified'] = addModified;
-	var removeModified = $formValues.find('.removeModified').val();
-	if(removeModified != null && removeModified !== '')
-		vals['removeModified'] = removeModified;
+	var removePk = $formFilters.find('.removePk').val() === 'true';
+	var setPk = removePk ? null : $formValues.find('.setPk').val();
+	if(removePk || setPk != null && setPk !== '')
+		vals['setPk'] = setPk;
+	var addPk = $formValues.find('.addPk').val();
+	if(addPk != null && addPk !== '')
+		vals['addPk'] = addPk;
+	var removePk = $formValues.find('.removePk').val();
+	if(removePk != null && removePk !== '')
+		vals['removePk'] = removePk;
 
 	var removeObjectId = $formFilters.find('.removeObjectId').val() === 'true';
 	var setObjectId = removeObjectId ? null : $formValues.find('.setObjectId').val();
@@ -170,6 +159,17 @@ async function patchSchoolBlock($formFilters, $formValues, success, error) {
 	var removeObjectId = $formValues.find('.removeObjectId').val();
 	if(removeObjectId != null && removeObjectId !== '')
 		vals['removeObjectId'] = removeObjectId;
+
+	var removeModified = $formFilters.find('.removeModified').val() === 'true';
+	var setModified = removeModified ? null : $formValues.find('.setModified').val();
+	if(removeModified || setModified != null && setModified !== '')
+		vals['setModified'] = setModified;
+	var addModified = $formValues.find('.addModified').val();
+	if(addModified != null && addModified !== '')
+		vals['addModified'] = addModified;
+	var removeModified = $formValues.find('.removeModified').val();
+	if(removeModified != null && removeModified !== '')
+		vals['removeModified'] = removeModified;
 
 	var removeArchived = $formFilters.find('.removeArchived').val() === 'true';
 	var setArchived = removeArchived ? null : $formValues.find('.setArchived').prop('checked');
@@ -353,21 +353,21 @@ async function patchSchoolBlock($formFilters, $formValues, success, error) {
 function patchSchoolBlockFilters($formFilters) {
 	var filters = [];
 
-	var filterPk = $formFilters.find('.valuePk').val();
-	if(filterPk != null && filterPk !== '')
-		filters.push({ name: 'fq', value: 'pk:' + filterPk });
-
 	var filterCreated = $formFilters.find('.valueCreated').val();
 	if(filterCreated != null && filterCreated !== '')
 		filters.push({ name: 'fq', value: 'created:' + filterCreated });
 
-	var filterModified = $formFilters.find('.valueModified').val();
-	if(filterModified != null && filterModified !== '')
-		filters.push({ name: 'fq', value: 'modified:' + filterModified });
+	var filterPk = $formFilters.find('.valuePk').val();
+	if(filterPk != null && filterPk !== '')
+		filters.push({ name: 'fq', value: 'pk:' + filterPk });
 
 	var filterObjectId = $formFilters.find('.valueObjectId').val();
 	if(filterObjectId != null && filterObjectId !== '')
 		filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
+
+	var filterModified = $formFilters.find('.valueModified').val();
+	if(filterModified != null && filterModified !== '')
+		filters.push({ name: 'fq', value: 'modified:' + filterModified });
 
 	var filterArchived = $formFilters.find('.valueArchived').prop('checked');
 	if(filterArchived != null && filterArchived === true)
@@ -417,9 +417,9 @@ function patchSchoolBlockFilters($formFilters) {
 	if(filterEnrollmentKeys != null && filterEnrollmentKeys !== '')
 		filters.push({ name: 'fq', value: 'enrollmentKeys:' + filterEnrollmentKeys });
 
-	var filterId = $formFilters.find('.valueId').val();
-	if(filterId != null && filterId !== '')
-		filters.push({ name: 'fq', value: 'id:' + filterId });
+	var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+	if(filterPageUrlPk != null && filterPageUrlPk !== '')
+		filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
 	var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
 	if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -441,6 +441,10 @@ function patchSchoolBlockFilters($formFilters) {
 	if(filterObjectTitle != null && filterObjectTitle !== '')
 		filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
+	var filterId = $formFilters.find('.valueId').val();
+	if(filterId != null && filterId !== '')
+		filters.push({ name: 'fq', value: 'id:' + filterId });
+
 	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
 	if(filterObjectSuggest != null && filterObjectSuggest !== '')
 		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
@@ -448,10 +452,6 @@ function patchSchoolBlockFilters($formFilters) {
 	var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
 	if(filterPageUrlId != null && filterPageUrlId !== '')
 		filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
-
-	var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-	if(filterPageUrlPk != null && filterPageUrlPk !== '')
-		filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
 	var filterBlockKey = $formFilters.find('.valueBlockKey').val();
 	if(filterBlockKey != null && filterBlockKey !== '')
@@ -596,6 +596,10 @@ function patchSchoolBlockFilters($formFilters) {
 	var filterBlockShortName = $formFilters.find('.valueBlockShortName').val();
 	if(filterBlockShortName != null && filterBlockShortName !== '')
 		filters.push({ name: 'fq', value: 'blockShortName:' + filterBlockShortName });
+
+	var filterBlockAdminName = $formFilters.find('.valueBlockAdminName').val();
+	if(filterBlockAdminName != null && filterBlockAdminName !== '')
+		filters.push({ name: 'fq', value: 'blockAdminName:' + filterBlockAdminName });
 
 	var filterBlockCompleteName = $formFilters.find('.valueBlockCompleteName').val();
 	if(filterBlockCompleteName != null && filterBlockCompleteName !== '')
@@ -663,21 +667,21 @@ async function searchSchoolBlock($formFilters, success, error) {
 function searchSchoolBlockFilters($formFilters) {
 	var filters = [];
 
-	var filterPk = $formFilters.find('.valuePk').val();
-	if(filterPk != null && filterPk !== '')
-		filters.push({ name: 'fq', value: 'pk:' + filterPk });
-
 	var filterCreated = $formFilters.find('.valueCreated').val();
 	if(filterCreated != null && filterCreated !== '')
 		filters.push({ name: 'fq', value: 'created:' + filterCreated });
 
-	var filterModified = $formFilters.find('.valueModified').val();
-	if(filterModified != null && filterModified !== '')
-		filters.push({ name: 'fq', value: 'modified:' + filterModified });
+	var filterPk = $formFilters.find('.valuePk').val();
+	if(filterPk != null && filterPk !== '')
+		filters.push({ name: 'fq', value: 'pk:' + filterPk });
 
 	var filterObjectId = $formFilters.find('.valueObjectId').val();
 	if(filterObjectId != null && filterObjectId !== '')
 		filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
+
+	var filterModified = $formFilters.find('.valueModified').val();
+	if(filterModified != null && filterModified !== '')
+		filters.push({ name: 'fq', value: 'modified:' + filterModified });
 
 	var filterArchived = $formFilters.find('.valueArchived').prop('checked');
 	if(filterArchived != null && filterArchived === true)
@@ -727,9 +731,9 @@ function searchSchoolBlockFilters($formFilters) {
 	if(filterEnrollmentKeys != null && filterEnrollmentKeys !== '')
 		filters.push({ name: 'fq', value: 'enrollmentKeys:' + filterEnrollmentKeys });
 
-	var filterId = $formFilters.find('.valueId').val();
-	if(filterId != null && filterId !== '')
-		filters.push({ name: 'fq', value: 'id:' + filterId });
+	var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+	if(filterPageUrlPk != null && filterPageUrlPk !== '')
+		filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
 	var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
 	if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -751,6 +755,10 @@ function searchSchoolBlockFilters($formFilters) {
 	if(filterObjectTitle != null && filterObjectTitle !== '')
 		filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
+	var filterId = $formFilters.find('.valueId').val();
+	if(filterId != null && filterId !== '')
+		filters.push({ name: 'fq', value: 'id:' + filterId });
+
 	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
 	if(filterObjectSuggest != null && filterObjectSuggest !== '')
 		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
@@ -758,10 +766,6 @@ function searchSchoolBlockFilters($formFilters) {
 	var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
 	if(filterPageUrlId != null && filterPageUrlId !== '')
 		filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
-
-	var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-	if(filterPageUrlPk != null && filterPageUrlPk !== '')
-		filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
 	var filterBlockKey = $formFilters.find('.valueBlockKey').val();
 	if(filterBlockKey != null && filterBlockKey !== '')
@@ -906,6 +910,10 @@ function searchSchoolBlockFilters($formFilters) {
 	var filterBlockShortName = $formFilters.find('.valueBlockShortName').val();
 	if(filterBlockShortName != null && filterBlockShortName !== '')
 		filters.push({ name: 'fq', value: 'blockShortName:' + filterBlockShortName });
+
+	var filterBlockAdminName = $formFilters.find('.valueBlockAdminName').val();
+	if(filterBlockAdminName != null && filterBlockAdminName !== '')
+		filters.push({ name: 'fq', value: 'blockAdminName:' + filterBlockAdminName });
 
 	var filterBlockCompleteName = $formFilters.find('.valueBlockCompleteName').val();
 	if(filterBlockCompleteName != null && filterBlockCompleteName !== '')
@@ -1007,10 +1015,9 @@ function suggestSchoolBlockAgeKey(filters, $list, pk = null) {
 }
 
 async function websocketSchoolBlock(success) {
-	var eventBus = new EventBus('/eventbus');
-	eventBus.onopen = function () {
+	window.eventBus.onopen = function () {
 
-		eventBus.registerHandler('websocketSchoolBlock', function (error, message) {
+		window.eventBus.registerHandler('websocketSchoolBlock', function (error, message) {
 			var json = JSON.parse(message['body']);
 			var id = json['id'];
 			var pk = json['pk'];
@@ -1047,12 +1054,101 @@ async function websocketSchoolBlock(success) {
 			}
 		});
 
-		eventBus.registerHandler('websocketSchoolEnrollment', function (error, message) {
+		window.eventBus.registerHandler('websocketSchoolEnrollment', function (error, message) {
 			$('#Page_enrollmentKeys').trigger('oninput');
 		});
 
-		eventBus.registerHandler('websocketSchoolAge', function (error, message) {
+		window.eventBus.registerHandler('websocketSchoolAge', function (error, message) {
 			$('#Page_ageKey').trigger('oninput');
 		});
 	}
+}
+async function websocketSchoolBlockInner(patchRequest) {
+	var pk = patchRequest['pk'];
+	var pks = patchRequest['pks'];
+	var classes = patchRequest['classes'];
+	var vars = patchRequest['vars'];
+
+	if(pk != null) {
+		searchSchoolBlockVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
+			var o = data['list'][0];
+			if(vars.includes('created')) {
+				$('.inputSchoolBlock' + pk + 'Created').val(o['created']);
+				$('.varSchoolBlock' + pk + 'Created').text(o['created']);
+			}
+			if(vars.includes('modified')) {
+				$('.inputSchoolBlock' + pk + 'Modified').val(o['modified']);
+				$('.varSchoolBlock' + pk + 'Modified').text(o['modified']);
+			}
+			if(vars.includes('archived')) {
+				$('.inputSchoolBlock' + pk + 'Archived').val(o['archived']);
+				$('.varSchoolBlock' + pk + 'Archived').text(o['archived']);
+			}
+			if(vars.includes('deleted')) {
+				$('.inputSchoolBlock' + pk + 'Deleted').val(o['deleted']);
+				$('.varSchoolBlock' + pk + 'Deleted').text(o['deleted']);
+			}
+			if(vars.includes('blockStartTime')) {
+				$('.inputSchoolBlock' + pk + 'BlockStartTime').val(o['blockStartTime']);
+				$('.varSchoolBlock' + pk + 'BlockStartTime').text(o['blockStartTime']);
+			}
+			if(vars.includes('blockEndTime')) {
+				$('.inputSchoolBlock' + pk + 'BlockEndTime').val(o['blockEndTime']);
+				$('.varSchoolBlock' + pk + 'BlockEndTime').text(o['blockEndTime']);
+			}
+			if(vars.includes('blockPricePerMonth')) {
+				$('.inputSchoolBlock' + pk + 'BlockPricePerMonth').val(o['blockPricePerMonth']);
+				$('.varSchoolBlock' + pk + 'BlockPricePerMonth').text(o['blockPricePerMonth']);
+			}
+			if(vars.includes('blockMonday')) {
+				$('.inputSchoolBlock' + pk + 'BlockMonday').val(o['blockMonday']);
+				$('.varSchoolBlock' + pk + 'BlockMonday').text(o['blockMonday']);
+			}
+			if(vars.includes('blockTuesday')) {
+				$('.inputSchoolBlock' + pk + 'BlockTuesday').val(o['blockTuesday']);
+				$('.varSchoolBlock' + pk + 'BlockTuesday').text(o['blockTuesday']);
+			}
+			if(vars.includes('blockWednesday')) {
+				$('.inputSchoolBlock' + pk + 'BlockWednesday').val(o['blockWednesday']);
+				$('.varSchoolBlock' + pk + 'BlockWednesday').text(o['blockWednesday']);
+			}
+			if(vars.includes('blockThursday')) {
+				$('.inputSchoolBlock' + pk + 'BlockThursday').val(o['blockThursday']);
+				$('.varSchoolBlock' + pk + 'BlockThursday').text(o['blockThursday']);
+			}
+			if(vars.includes('blockFriday')) {
+				$('.inputSchoolBlock' + pk + 'BlockFriday').val(o['blockFriday']);
+				$('.varSchoolBlock' + pk + 'BlockFriday').text(o['blockFriday']);
+			}
+			if(vars.includes('ageKey')) {
+				$('.inputSchoolBlock' + pk + 'AgeKey').val(o['ageKey']);
+				$('.varSchoolBlock' + pk + 'AgeKey').text(o['ageKey']);
+			}
+			if(vars.includes('enrollmentKeys')) {
+				$('.inputSchoolBlock' + pk + 'EnrollmentKeys').val(o['enrollmentKeys']);
+				$('.varSchoolBlock' + pk + 'EnrollmentKeys').text(o['enrollmentKeys']);
+			}
+			if(vars.includes('schoolAddress')) {
+				$('.inputSchoolBlock' + pk + 'SchoolAddress').val(o['schoolAddress']);
+				$('.varSchoolBlock' + pk + 'SchoolAddress').text(o['schoolAddress']);
+			}
+			if(vars.includes('blockSunday')) {
+				$('.inputSchoolBlock' + pk + 'BlockSunday').val(o['blockSunday']);
+				$('.varSchoolBlock' + pk + 'BlockSunday').text(o['blockSunday']);
+			}
+			if(vars.includes('blockSaturday')) {
+				$('.inputSchoolBlock' + pk + 'BlockSaturday').val(o['blockSaturday']);
+				$('.varSchoolBlock' + pk + 'BlockSaturday').text(o['blockSaturday']);
+			}
+		});
+	}
+
+	if(pks) {
+		for(i=0; i < pks.length; i++) {
+			var pk2 = pks[i];
+			var c = classes[i];
+			await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
+		}
+	}
+	await patchSchoolBlockVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 }

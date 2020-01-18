@@ -17,21 +17,21 @@ async function postSchoolEnrollment($formValues, success, error) {
 		};
 	}
 
-	var valuePk = $formValues.find('.valuePk').val();
-	if(valuePk != null && valuePk !== '')
-		vals['pk'] = valuePk;
-
 	var valueCreated = $formValues.find('.valueCreated').val();
 	if(valueCreated != null && valueCreated !== '')
 		vals['created'] = valueCreated;
 
-	var valueModified = $formValues.find('.valueModified').val();
-	if(valueModified != null && valueModified !== '')
-		vals['modified'] = valueModified;
+	var valuePk = $formValues.find('.valuePk').val();
+	if(valuePk != null && valuePk !== '')
+		vals['pk'] = valuePk;
 
 	var valueObjectId = $formValues.find('.valueObjectId').val();
 	if(valueObjectId != null && valueObjectId !== '')
 		vals['objectId'] = valueObjectId;
+
+	var valueModified = $formValues.find('.valueModified').val();
+	if(valueModified != null && valueModified !== '')
+		vals['modified'] = valueModified;
 
 	var valueArchived = $formValues.find('.valueArchived').prop('checked');
 	if(valueArchived != null && valueArchived !== '')
@@ -57,6 +57,10 @@ async function postSchoolEnrollment($formValues, success, error) {
 	if(valueEnrollmentPaymentComplete != null && valueEnrollmentPaymentComplete !== '')
 		vals['enrollmentPaymentComplete'] = valueEnrollmentPaymentComplete;
 
+	var valueChildPottyTrained = $formValues.find('.valueChildPottyTrained').prop('checked');
+	if(valueChildPottyTrained != null && valueChildPottyTrained !== '')
+		vals['childPottyTrained'] = valueChildPottyTrained;
+
 	var valueEnrollmentPaymentEachMonth = $formValues.find('.valueEnrollmentPaymentEachMonth').prop('checked');
 	if(valueEnrollmentPaymentEachMonth != null && valueEnrollmentPaymentEachMonth !== '')
 		vals['enrollmentPaymentEachMonth'] = valueEnrollmentPaymentEachMonth;
@@ -64,10 +68,6 @@ async function postSchoolEnrollment($formValues, success, error) {
 	var valueFamilyMarried = $formValues.find('.valueFamilyMarried').prop('checked');
 	if(valueFamilyMarried != null && valueFamilyMarried !== '')
 		vals['familyMarried'] = valueFamilyMarried;
-
-	var valueChildPottyTrained = $formValues.find('.valueChildPottyTrained').prop('checked');
-	if(valueChildPottyTrained != null && valueChildPottyTrained !== '')
-		vals['childPottyTrained'] = valueChildPottyTrained;
 
 	var valueFamilySeparated = $formValues.find('.valueFamilySeparated').prop('checked');
 	if(valueFamilySeparated != null && valueFamilySeparated !== '')
@@ -81,17 +81,9 @@ async function postSchoolEnrollment($formValues, success, error) {
 	if(valueFamilyAddress != null && valueFamilyAddress !== '')
 		vals['familyAddress'] = valueFamilyAddress;
 
-	var valueChildMedicalConditions = $formValues.find('.valueChildMedicalConditions').val();
-	if(valueChildMedicalConditions != null && valueChildMedicalConditions !== '')
-		vals['childMedicalConditions'] = valueChildMedicalConditions;
-
 	var valueEnrollmentSpecialConsiderations = $formValues.find('.valueEnrollmentSpecialConsiderations').val();
 	if(valueEnrollmentSpecialConsiderations != null && valueEnrollmentSpecialConsiderations !== '')
 		vals['enrollmentSpecialConsiderations'] = valueEnrollmentSpecialConsiderations;
-
-	var valueChildPreviousSchoolsAttended = $formValues.find('.valueChildPreviousSchoolsAttended').val();
-	if(valueChildPreviousSchoolsAttended != null && valueChildPreviousSchoolsAttended !== '')
-		vals['childPreviousSchoolsAttended'] = valueChildPreviousSchoolsAttended;
 
 	var valueFamilyHowDoYouKnowTheSchool = $formValues.find('.valueFamilyHowDoYouKnowTheSchool').val();
 	if(valueFamilyHowDoYouKnowTheSchool != null && valueFamilyHowDoYouKnowTheSchool !== '')
@@ -101,17 +93,25 @@ async function postSchoolEnrollment($formValues, success, error) {
 	if(valueBlockKeys != null && valueBlockKeys !== '')
 		vals['blockKeys'] = valueBlockKeys;
 
+	var valueChildMedicalConditions = $formValues.find('.valueChildMedicalConditions').val();
+	if(valueChildMedicalConditions != null && valueChildMedicalConditions !== '')
+		vals['childMedicalConditions'] = valueChildMedicalConditions;
+
+	var valueChildPreviousSchoolsAttended = $formValues.find('.valueChildPreviousSchoolsAttended').val();
+	if(valueChildPreviousSchoolsAttended != null && valueChildPreviousSchoolsAttended !== '')
+		vals['childPreviousSchoolsAttended'] = valueChildPreviousSchoolsAttended;
+
 	var valueChildDescription = $formValues.find('.valueChildDescription').val();
 	if(valueChildDescription != null && valueChildDescription !== '')
 		vals['childDescription'] = valueChildDescription;
 
-	var valueChildKey = $formValues.find('.valueChildKey').val();
-	if(valueChildKey != null && valueChildKey !== '')
-		vals['childKey'] = valueChildKey;
-
 	var valueChildObjectives = $formValues.find('.valueChildObjectives').val();
 	if(valueChildObjectives != null && valueChildObjectives !== '')
 		vals['childObjectives'] = valueChildObjectives;
+
+	var valueChildKey = $formValues.find('.valueChildKey').val();
+	if(valueChildKey != null && valueChildKey !== '')
+		vals['childKey'] = valueChildKey;
 
 	var valueMomKeys = $formValues.find('.valueMomKeys').val();
 	if(valueMomKeys != null && valueMomKeys !== '')
@@ -121,6 +121,10 @@ async function postSchoolEnrollment($formValues, success, error) {
 	if(valueDadKeys != null && valueDadKeys !== '')
 		vals['dadKeys'] = valueDadKeys;
 
+	var valueEnrollmentFormKey = $formValues.find('.valueEnrollmentFormKey').val();
+	if(valueEnrollmentFormKey != null && valueEnrollmentFormKey !== '')
+		vals['enrollmentFormKey'] = valueEnrollmentFormKey;
+
 	var valueGuardianKeys = $formValues.find('.valueGuardianKeys').val();
 	if(valueGuardianKeys != null && valueGuardianKeys !== '')
 		vals['guardianKeys'] = valueGuardianKeys;
@@ -129,13 +133,21 @@ async function postSchoolEnrollment($formValues, success, error) {
 	if(valuePaymentKeys != null && valuePaymentKeys !== '')
 		vals['paymentKeys'] = valuePaymentKeys;
 
-	var valueEnrollmentFormKey = $formValues.find('.valueEnrollmentFormKey').val();
-	if(valueEnrollmentFormKey != null && valueEnrollmentFormKey !== '')
-		vals['enrollmentFormKey'] = valueEnrollmentFormKey;
+	var valueChildCompleteName = $formValues.find('.valueChildCompleteName').val();
+	if(valueChildCompleteName != null && valueChildCompleteName !== '')
+		vals['childCompleteName'] = valueChildCompleteName;
+
+	var valueChildBirthDate = $formValues.find('.valueChildBirthDate').val();
+	if(valueChildBirthDate != null && valueChildBirthDate !== '')
+		vals['childBirthDate'] = valueChildBirthDate;
 
 	var valueSchoolAddress = $formValues.find('.valueSchoolAddress').val();
 	if(valueSchoolAddress != null && valueSchoolAddress !== '')
 		vals['schoolAddress'] = valueSchoolAddress;
+
+	var valueEnrollmentParentNames = $formValues.find('.valueEnrollmentParentNames').val();
+	if(valueEnrollmentParentNames != null && valueEnrollmentParentNames !== '')
+		vals['enrollmentParentNames'] = valueEnrollmentParentNames;
 
 	var valueEnrollmentSignature1 = $formValues.find('.valueEnrollmentSignature1').val();
 	if(valueEnrollmentSignature1 != null && valueEnrollmentSignature1 !== '')
@@ -251,17 +263,6 @@ async function patchSchoolEnrollment($formFilters, $formValues, success, error) 
 
 	var vals = {};
 
-	var removePk = $formFilters.find('.removePk').val() === 'true';
-	var setPk = removePk ? null : $formValues.find('.setPk').val();
-	if(removePk || setPk != null && setPk !== '')
-		vals['setPk'] = setPk;
-	var addPk = $formValues.find('.addPk').val();
-	if(addPk != null && addPk !== '')
-		vals['addPk'] = addPk;
-	var removePk = $formValues.find('.removePk').val();
-	if(removePk != null && removePk !== '')
-		vals['removePk'] = removePk;
-
 	var removeCreated = $formFilters.find('.removeCreated').val() === 'true';
 	var setCreated = removeCreated ? null : $formValues.find('.setCreated').val();
 	if(removeCreated || setCreated != null && setCreated !== '')
@@ -273,16 +274,16 @@ async function patchSchoolEnrollment($formFilters, $formValues, success, error) 
 	if(removeCreated != null && removeCreated !== '')
 		vals['removeCreated'] = removeCreated;
 
-	var removeModified = $formFilters.find('.removeModified').val() === 'true';
-	var setModified = removeModified ? null : $formValues.find('.setModified').val();
-	if(removeModified || setModified != null && setModified !== '')
-		vals['setModified'] = setModified;
-	var addModified = $formValues.find('.addModified').val();
-	if(addModified != null && addModified !== '')
-		vals['addModified'] = addModified;
-	var removeModified = $formValues.find('.removeModified').val();
-	if(removeModified != null && removeModified !== '')
-		vals['removeModified'] = removeModified;
+	var removePk = $formFilters.find('.removePk').val() === 'true';
+	var setPk = removePk ? null : $formValues.find('.setPk').val();
+	if(removePk || setPk != null && setPk !== '')
+		vals['setPk'] = setPk;
+	var addPk = $formValues.find('.addPk').val();
+	if(addPk != null && addPk !== '')
+		vals['addPk'] = addPk;
+	var removePk = $formValues.find('.removePk').val();
+	if(removePk != null && removePk !== '')
+		vals['removePk'] = removePk;
 
 	var removeObjectId = $formFilters.find('.removeObjectId').val() === 'true';
 	var setObjectId = removeObjectId ? null : $formValues.find('.setObjectId').val();
@@ -294,6 +295,17 @@ async function patchSchoolEnrollment($formFilters, $formValues, success, error) 
 	var removeObjectId = $formValues.find('.removeObjectId').val();
 	if(removeObjectId != null && removeObjectId !== '')
 		vals['removeObjectId'] = removeObjectId;
+
+	var removeModified = $formFilters.find('.removeModified').val() === 'true';
+	var setModified = removeModified ? null : $formValues.find('.setModified').val();
+	if(removeModified || setModified != null && setModified !== '')
+		vals['setModified'] = setModified;
+	var addModified = $formValues.find('.addModified').val();
+	if(addModified != null && addModified !== '')
+		vals['addModified'] = addModified;
+	var removeModified = $formValues.find('.removeModified').val();
+	if(removeModified != null && removeModified !== '')
+		vals['removeModified'] = removeModified;
 
 	var removeArchived = $formFilters.find('.removeArchived').val() === 'true';
 	var setArchived = removeArchived ? null : $formValues.find('.setArchived').prop('checked');
@@ -361,6 +373,17 @@ async function patchSchoolEnrollment($formFilters, $formValues, success, error) 
 	if(removeEnrollmentPaymentComplete != null && removeEnrollmentPaymentComplete !== '')
 		vals['removeEnrollmentPaymentComplete'] = removeEnrollmentPaymentComplete;
 
+	var removeChildPottyTrained = $formFilters.find('.removeChildPottyTrained').val() === 'true';
+	var setChildPottyTrained = removeChildPottyTrained ? null : $formValues.find('.setChildPottyTrained').prop('checked');
+	if(removeChildPottyTrained || setChildPottyTrained != null && setChildPottyTrained !== '')
+		vals['setChildPottyTrained'] = setChildPottyTrained;
+	var addChildPottyTrained = $formValues.find('.addChildPottyTrained').prop('checked');
+	if(addChildPottyTrained != null && addChildPottyTrained !== '')
+		vals['addChildPottyTrained'] = addChildPottyTrained;
+	var removeChildPottyTrained = $formValues.find('.removeChildPottyTrained').prop('checked');
+	if(removeChildPottyTrained != null && removeChildPottyTrained !== '')
+		vals['removeChildPottyTrained'] = removeChildPottyTrained;
+
 	var removeEnrollmentPaymentEachMonth = $formFilters.find('.removeEnrollmentPaymentEachMonth').val() === 'true';
 	var setEnrollmentPaymentEachMonth = removeEnrollmentPaymentEachMonth ? null : $formValues.find('.setEnrollmentPaymentEachMonth').prop('checked');
 	if(removeEnrollmentPaymentEachMonth || setEnrollmentPaymentEachMonth != null && setEnrollmentPaymentEachMonth !== '')
@@ -382,17 +405,6 @@ async function patchSchoolEnrollment($formFilters, $formValues, success, error) 
 	var removeFamilyMarried = $formValues.find('.removeFamilyMarried').prop('checked');
 	if(removeFamilyMarried != null && removeFamilyMarried !== '')
 		vals['removeFamilyMarried'] = removeFamilyMarried;
-
-	var removeChildPottyTrained = $formFilters.find('.removeChildPottyTrained').val() === 'true';
-	var setChildPottyTrained = removeChildPottyTrained ? null : $formValues.find('.setChildPottyTrained').prop('checked');
-	if(removeChildPottyTrained || setChildPottyTrained != null && setChildPottyTrained !== '')
-		vals['setChildPottyTrained'] = setChildPottyTrained;
-	var addChildPottyTrained = $formValues.find('.addChildPottyTrained').prop('checked');
-	if(addChildPottyTrained != null && addChildPottyTrained !== '')
-		vals['addChildPottyTrained'] = addChildPottyTrained;
-	var removeChildPottyTrained = $formValues.find('.removeChildPottyTrained').prop('checked');
-	if(removeChildPottyTrained != null && removeChildPottyTrained !== '')
-		vals['removeChildPottyTrained'] = removeChildPottyTrained;
 
 	var removeFamilySeparated = $formFilters.find('.removeFamilySeparated').val() === 'true';
 	var setFamilySeparated = removeFamilySeparated ? null : $formValues.find('.setFamilySeparated').prop('checked');
@@ -427,17 +439,6 @@ async function patchSchoolEnrollment($formFilters, $formValues, success, error) 
 	if(removeFamilyAddress != null && removeFamilyAddress !== '')
 		vals['removeFamilyAddress'] = removeFamilyAddress;
 
-	var removeChildMedicalConditions = $formFilters.find('.removeChildMedicalConditions').val() === 'true';
-	var setChildMedicalConditions = removeChildMedicalConditions ? null : $formValues.find('.setChildMedicalConditions').val();
-	if(removeChildMedicalConditions || setChildMedicalConditions != null && setChildMedicalConditions !== '')
-		vals['setChildMedicalConditions'] = setChildMedicalConditions;
-	var addChildMedicalConditions = $formValues.find('.addChildMedicalConditions').val();
-	if(addChildMedicalConditions != null && addChildMedicalConditions !== '')
-		vals['addChildMedicalConditions'] = addChildMedicalConditions;
-	var removeChildMedicalConditions = $formValues.find('.removeChildMedicalConditions').val();
-	if(removeChildMedicalConditions != null && removeChildMedicalConditions !== '')
-		vals['removeChildMedicalConditions'] = removeChildMedicalConditions;
-
 	var removeEnrollmentSpecialConsiderations = $formFilters.find('.removeEnrollmentSpecialConsiderations').val() === 'true';
 	var setEnrollmentSpecialConsiderations = removeEnrollmentSpecialConsiderations ? null : $formValues.find('.setEnrollmentSpecialConsiderations').val();
 	if(removeEnrollmentSpecialConsiderations || setEnrollmentSpecialConsiderations != null && setEnrollmentSpecialConsiderations !== '')
@@ -448,17 +449,6 @@ async function patchSchoolEnrollment($formFilters, $formValues, success, error) 
 	var removeEnrollmentSpecialConsiderations = $formValues.find('.removeEnrollmentSpecialConsiderations').val();
 	if(removeEnrollmentSpecialConsiderations != null && removeEnrollmentSpecialConsiderations !== '')
 		vals['removeEnrollmentSpecialConsiderations'] = removeEnrollmentSpecialConsiderations;
-
-	var removeChildPreviousSchoolsAttended = $formFilters.find('.removeChildPreviousSchoolsAttended').val() === 'true';
-	var setChildPreviousSchoolsAttended = removeChildPreviousSchoolsAttended ? null : $formValues.find('.setChildPreviousSchoolsAttended').val();
-	if(removeChildPreviousSchoolsAttended || setChildPreviousSchoolsAttended != null && setChildPreviousSchoolsAttended !== '')
-		vals['setChildPreviousSchoolsAttended'] = setChildPreviousSchoolsAttended;
-	var addChildPreviousSchoolsAttended = $formValues.find('.addChildPreviousSchoolsAttended').val();
-	if(addChildPreviousSchoolsAttended != null && addChildPreviousSchoolsAttended !== '')
-		vals['addChildPreviousSchoolsAttended'] = addChildPreviousSchoolsAttended;
-	var removeChildPreviousSchoolsAttended = $formValues.find('.removeChildPreviousSchoolsAttended').val();
-	if(removeChildPreviousSchoolsAttended != null && removeChildPreviousSchoolsAttended !== '')
-		vals['removeChildPreviousSchoolsAttended'] = removeChildPreviousSchoolsAttended;
 
 	var removeFamilyHowDoYouKnowTheSchool = $formFilters.find('.removeFamilyHowDoYouKnowTheSchool').val() === 'true';
 	var setFamilyHowDoYouKnowTheSchool = removeFamilyHowDoYouKnowTheSchool ? null : $formValues.find('.setFamilyHowDoYouKnowTheSchool').val();
@@ -482,6 +472,28 @@ async function patchSchoolEnrollment($formFilters, $formValues, success, error) 
 	if(removeBlockKeys != null && removeBlockKeys !== '')
 		vals['removeBlockKeys'] = removeBlockKeys;
 
+	var removeChildMedicalConditions = $formFilters.find('.removeChildMedicalConditions').val() === 'true';
+	var setChildMedicalConditions = removeChildMedicalConditions ? null : $formValues.find('.setChildMedicalConditions').val();
+	if(removeChildMedicalConditions || setChildMedicalConditions != null && setChildMedicalConditions !== '')
+		vals['setChildMedicalConditions'] = setChildMedicalConditions;
+	var addChildMedicalConditions = $formValues.find('.addChildMedicalConditions').val();
+	if(addChildMedicalConditions != null && addChildMedicalConditions !== '')
+		vals['addChildMedicalConditions'] = addChildMedicalConditions;
+	var removeChildMedicalConditions = $formValues.find('.removeChildMedicalConditions').val();
+	if(removeChildMedicalConditions != null && removeChildMedicalConditions !== '')
+		vals['removeChildMedicalConditions'] = removeChildMedicalConditions;
+
+	var removeChildPreviousSchoolsAttended = $formFilters.find('.removeChildPreviousSchoolsAttended').val() === 'true';
+	var setChildPreviousSchoolsAttended = removeChildPreviousSchoolsAttended ? null : $formValues.find('.setChildPreviousSchoolsAttended').val();
+	if(removeChildPreviousSchoolsAttended || setChildPreviousSchoolsAttended != null && setChildPreviousSchoolsAttended !== '')
+		vals['setChildPreviousSchoolsAttended'] = setChildPreviousSchoolsAttended;
+	var addChildPreviousSchoolsAttended = $formValues.find('.addChildPreviousSchoolsAttended').val();
+	if(addChildPreviousSchoolsAttended != null && addChildPreviousSchoolsAttended !== '')
+		vals['addChildPreviousSchoolsAttended'] = addChildPreviousSchoolsAttended;
+	var removeChildPreviousSchoolsAttended = $formValues.find('.removeChildPreviousSchoolsAttended').val();
+	if(removeChildPreviousSchoolsAttended != null && removeChildPreviousSchoolsAttended !== '')
+		vals['removeChildPreviousSchoolsAttended'] = removeChildPreviousSchoolsAttended;
+
 	var removeChildDescription = $formFilters.find('.removeChildDescription').val() === 'true';
 	var setChildDescription = removeChildDescription ? null : $formValues.find('.setChildDescription').val();
 	if(removeChildDescription || setChildDescription != null && setChildDescription !== '')
@@ -493,17 +505,6 @@ async function patchSchoolEnrollment($formFilters, $formValues, success, error) 
 	if(removeChildDescription != null && removeChildDescription !== '')
 		vals['removeChildDescription'] = removeChildDescription;
 
-	var removeChildKey = $formFilters.find('.removeChildKey').val() === 'true';
-	var setChildKey = removeChildKey ? null : $formValues.find('.setChildKey').val();
-	if(removeChildKey || setChildKey != null && setChildKey !== '')
-		vals['setChildKey'] = setChildKey;
-	var addChildKey = $formValues.find('.addChildKey').val();
-	if(addChildKey != null && addChildKey !== '')
-		vals['addChildKey'] = addChildKey;
-	var removeChildKey = $formValues.find('.removeChildKey').val();
-	if(removeChildKey != null && removeChildKey !== '')
-		vals['removeChildKey'] = removeChildKey;
-
 	var removeChildObjectives = $formFilters.find('.removeChildObjectives').val() === 'true';
 	var setChildObjectives = removeChildObjectives ? null : $formValues.find('.setChildObjectives').val();
 	if(removeChildObjectives || setChildObjectives != null && setChildObjectives !== '')
@@ -514,6 +515,17 @@ async function patchSchoolEnrollment($formFilters, $formValues, success, error) 
 	var removeChildObjectives = $formValues.find('.removeChildObjectives').val();
 	if(removeChildObjectives != null && removeChildObjectives !== '')
 		vals['removeChildObjectives'] = removeChildObjectives;
+
+	var removeChildKey = $formFilters.find('.removeChildKey').val() === 'true';
+	var setChildKey = removeChildKey ? null : $formValues.find('.setChildKey').val();
+	if(removeChildKey || setChildKey != null && setChildKey !== '')
+		vals['setChildKey'] = setChildKey;
+	var addChildKey = $formValues.find('.addChildKey').val();
+	if(addChildKey != null && addChildKey !== '')
+		vals['addChildKey'] = addChildKey;
+	var removeChildKey = $formValues.find('.removeChildKey').val();
+	if(removeChildKey != null && removeChildKey !== '')
+		vals['removeChildKey'] = removeChildKey;
 
 	var removeMomKeys = $formFilters.find('.removeMomKeys').val() === 'true';
 	var setMomKeys = removeMomKeys ? null : $formValues.find('.setMomKeys').val();
@@ -537,6 +549,17 @@ async function patchSchoolEnrollment($formFilters, $formValues, success, error) 
 	if(removeDadKeys != null && removeDadKeys !== '')
 		vals['removeDadKeys'] = removeDadKeys;
 
+	var removeEnrollmentFormKey = $formFilters.find('.removeEnrollmentFormKey').val() === 'true';
+	var setEnrollmentFormKey = removeEnrollmentFormKey ? null : $formValues.find('.setEnrollmentFormKey').val();
+	if(removeEnrollmentFormKey || setEnrollmentFormKey != null && setEnrollmentFormKey !== '')
+		vals['setEnrollmentFormKey'] = setEnrollmentFormKey;
+	var addEnrollmentFormKey = $formValues.find('.addEnrollmentFormKey').val();
+	if(addEnrollmentFormKey != null && addEnrollmentFormKey !== '')
+		vals['addEnrollmentFormKey'] = addEnrollmentFormKey;
+	var removeEnrollmentFormKey = $formValues.find('.removeEnrollmentFormKey').val();
+	if(removeEnrollmentFormKey != null && removeEnrollmentFormKey !== '')
+		vals['removeEnrollmentFormKey'] = removeEnrollmentFormKey;
+
 	var removeGuardianKeys = $formFilters.find('.removeGuardianKeys').val() === 'true';
 	var setGuardianKeys = removeGuardianKeys ? null : $formValues.find('.setGuardianKeys').val();
 	if(removeGuardianKeys || setGuardianKeys != null && setGuardianKeys !== '')
@@ -559,16 +582,27 @@ async function patchSchoolEnrollment($formFilters, $formValues, success, error) 
 	if(removePaymentKeys != null && removePaymentKeys !== '')
 		vals['removePaymentKeys'] = removePaymentKeys;
 
-	var removeEnrollmentFormKey = $formFilters.find('.removeEnrollmentFormKey').val() === 'true';
-	var setEnrollmentFormKey = removeEnrollmentFormKey ? null : $formValues.find('.setEnrollmentFormKey').val();
-	if(removeEnrollmentFormKey || setEnrollmentFormKey != null && setEnrollmentFormKey !== '')
-		vals['setEnrollmentFormKey'] = setEnrollmentFormKey;
-	var addEnrollmentFormKey = $formValues.find('.addEnrollmentFormKey').val();
-	if(addEnrollmentFormKey != null && addEnrollmentFormKey !== '')
-		vals['addEnrollmentFormKey'] = addEnrollmentFormKey;
-	var removeEnrollmentFormKey = $formValues.find('.removeEnrollmentFormKey').val();
-	if(removeEnrollmentFormKey != null && removeEnrollmentFormKey !== '')
-		vals['removeEnrollmentFormKey'] = removeEnrollmentFormKey;
+	var removeChildCompleteName = $formFilters.find('.removeChildCompleteName').val() === 'true';
+	var setChildCompleteName = removeChildCompleteName ? null : $formValues.find('.setChildCompleteName').val();
+	if(removeChildCompleteName || setChildCompleteName != null && setChildCompleteName !== '')
+		vals['setChildCompleteName'] = setChildCompleteName;
+	var addChildCompleteName = $formValues.find('.addChildCompleteName').val();
+	if(addChildCompleteName != null && addChildCompleteName !== '')
+		vals['addChildCompleteName'] = addChildCompleteName;
+	var removeChildCompleteName = $formValues.find('.removeChildCompleteName').val();
+	if(removeChildCompleteName != null && removeChildCompleteName !== '')
+		vals['removeChildCompleteName'] = removeChildCompleteName;
+
+	var removeChildBirthDate = $formFilters.find('.removeChildBirthDate').val() === 'true';
+	var setChildBirthDate = removeChildBirthDate ? null : $formValues.find('.setChildBirthDate').val();
+	if(removeChildBirthDate || setChildBirthDate != null && setChildBirthDate !== '')
+		vals['setChildBirthDate'] = setChildBirthDate;
+	var addChildBirthDate = $formValues.find('.addChildBirthDate').val();
+	if(addChildBirthDate != null && addChildBirthDate !== '')
+		vals['addChildBirthDate'] = addChildBirthDate;
+	var removeChildBirthDate = $formValues.find('.removeChildBirthDate').val();
+	if(removeChildBirthDate != null && removeChildBirthDate !== '')
+		vals['removeChildBirthDate'] = removeChildBirthDate;
 
 	var removeSchoolAddress = $formFilters.find('.removeSchoolAddress').val() === 'true';
 	var setSchoolAddress = removeSchoolAddress ? null : $formValues.find('.setSchoolAddress').val();
@@ -580,6 +614,17 @@ async function patchSchoolEnrollment($formFilters, $formValues, success, error) 
 	var removeSchoolAddress = $formValues.find('.removeSchoolAddress').val();
 	if(removeSchoolAddress != null && removeSchoolAddress !== '')
 		vals['removeSchoolAddress'] = removeSchoolAddress;
+
+	var removeEnrollmentParentNames = $formFilters.find('.removeEnrollmentParentNames').val() === 'true';
+	var setEnrollmentParentNames = removeEnrollmentParentNames ? null : $formValues.find('.setEnrollmentParentNames').val();
+	if(removeEnrollmentParentNames || setEnrollmentParentNames != null && setEnrollmentParentNames !== '')
+		vals['setEnrollmentParentNames'] = setEnrollmentParentNames;
+	var addEnrollmentParentNames = $formValues.find('.addEnrollmentParentNames').val();
+	if(addEnrollmentParentNames != null && addEnrollmentParentNames !== '')
+		vals['addEnrollmentParentNames'] = addEnrollmentParentNames;
+	var removeEnrollmentParentNames = $formValues.find('.removeEnrollmentParentNames').val();
+	if(removeEnrollmentParentNames != null && removeEnrollmentParentNames !== '')
+		vals['removeEnrollmentParentNames'] = removeEnrollmentParentNames;
 
 	var removeEnrollmentSignature1 = $formFilters.find('.removeEnrollmentSignature1').val() === 'true';
 	var setEnrollmentSignature1 = removeEnrollmentSignature1 ? null : $formValues.find('.setEnrollmentSignature1').val();
@@ -818,21 +863,21 @@ async function patchSchoolEnrollment($formFilters, $formValues, success, error) 
 function patchSchoolEnrollmentFilters($formFilters) {
 	var filters = [];
 
-	var filterPk = $formFilters.find('.valuePk').val();
-	if(filterPk != null && filterPk !== '')
-		filters.push({ name: 'fq', value: 'pk:' + filterPk });
-
 	var filterCreated = $formFilters.find('.valueCreated').val();
 	if(filterCreated != null && filterCreated !== '')
 		filters.push({ name: 'fq', value: 'created:' + filterCreated });
 
-	var filterModified = $formFilters.find('.valueModified').val();
-	if(filterModified != null && filterModified !== '')
-		filters.push({ name: 'fq', value: 'modified:' + filterModified });
+	var filterPk = $formFilters.find('.valuePk').val();
+	if(filterPk != null && filterPk !== '')
+		filters.push({ name: 'fq', value: 'pk:' + filterPk });
 
 	var filterObjectId = $formFilters.find('.valueObjectId').val();
 	if(filterObjectId != null && filterObjectId !== '')
 		filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
+
+	var filterModified = $formFilters.find('.valueModified').val();
+	if(filterModified != null && filterModified !== '')
+		filters.push({ name: 'fq', value: 'modified:' + filterModified });
 
 	var filterArchived = $formFilters.find('.valueArchived').prop('checked');
 	if(filterArchived != null && filterArchived === true)
@@ -858,6 +903,10 @@ function patchSchoolEnrollmentFilters($formFilters) {
 	if(filterEnrollmentPaymentComplete != null && filterEnrollmentPaymentComplete === true)
 		filters.push({ name: 'fq', value: 'enrollmentPaymentComplete:' + filterEnrollmentPaymentComplete });
 
+	var filterChildPottyTrained = $formFilters.find('.valueChildPottyTrained').prop('checked');
+	if(filterChildPottyTrained != null && filterChildPottyTrained === true)
+		filters.push({ name: 'fq', value: 'childPottyTrained:' + filterChildPottyTrained });
+
 	var filterEnrollmentPaymentEachMonth = $formFilters.find('.valueEnrollmentPaymentEachMonth').prop('checked');
 	if(filterEnrollmentPaymentEachMonth != null && filterEnrollmentPaymentEachMonth === true)
 		filters.push({ name: 'fq', value: 'enrollmentPaymentEachMonth:' + filterEnrollmentPaymentEachMonth });
@@ -865,10 +914,6 @@ function patchSchoolEnrollmentFilters($formFilters) {
 	var filterFamilyMarried = $formFilters.find('.valueFamilyMarried').prop('checked');
 	if(filterFamilyMarried != null && filterFamilyMarried === true)
 		filters.push({ name: 'fq', value: 'familyMarried:' + filterFamilyMarried });
-
-	var filterChildPottyTrained = $formFilters.find('.valueChildPottyTrained').prop('checked');
-	if(filterChildPottyTrained != null && filterChildPottyTrained === true)
-		filters.push({ name: 'fq', value: 'childPottyTrained:' + filterChildPottyTrained });
 
 	var filterFamilySeparated = $formFilters.find('.valueFamilySeparated').prop('checked');
 	if(filterFamilySeparated != null && filterFamilySeparated === true)
@@ -882,17 +927,9 @@ function patchSchoolEnrollmentFilters($formFilters) {
 	if(filterFamilyAddress != null && filterFamilyAddress !== '')
 		filters.push({ name: 'fq', value: 'familyAddress:' + filterFamilyAddress });
 
-	var filterChildMedicalConditions = $formFilters.find('.valueChildMedicalConditions').val();
-	if(filterChildMedicalConditions != null && filterChildMedicalConditions !== '')
-		filters.push({ name: 'fq', value: 'childMedicalConditions:' + filterChildMedicalConditions });
-
 	var filterEnrollmentSpecialConsiderations = $formFilters.find('.valueEnrollmentSpecialConsiderations').val();
 	if(filterEnrollmentSpecialConsiderations != null && filterEnrollmentSpecialConsiderations !== '')
 		filters.push({ name: 'fq', value: 'enrollmentSpecialConsiderations:' + filterEnrollmentSpecialConsiderations });
-
-	var filterChildPreviousSchoolsAttended = $formFilters.find('.valueChildPreviousSchoolsAttended').val();
-	if(filterChildPreviousSchoolsAttended != null && filterChildPreviousSchoolsAttended !== '')
-		filters.push({ name: 'fq', value: 'childPreviousSchoolsAttended:' + filterChildPreviousSchoolsAttended });
 
 	var filterFamilyHowDoYouKnowTheSchool = $formFilters.find('.valueFamilyHowDoYouKnowTheSchool').val();
 	if(filterFamilyHowDoYouKnowTheSchool != null && filterFamilyHowDoYouKnowTheSchool !== '')
@@ -902,17 +939,25 @@ function patchSchoolEnrollmentFilters($formFilters) {
 	if(filterBlockKeys != null && filterBlockKeys !== '')
 		filters.push({ name: 'fq', value: 'blockKeys:' + filterBlockKeys });
 
+	var filterChildMedicalConditions = $formFilters.find('.valueChildMedicalConditions').val();
+	if(filterChildMedicalConditions != null && filterChildMedicalConditions !== '')
+		filters.push({ name: 'fq', value: 'childMedicalConditions:' + filterChildMedicalConditions });
+
+	var filterChildPreviousSchoolsAttended = $formFilters.find('.valueChildPreviousSchoolsAttended').val();
+	if(filterChildPreviousSchoolsAttended != null && filterChildPreviousSchoolsAttended !== '')
+		filters.push({ name: 'fq', value: 'childPreviousSchoolsAttended:' + filterChildPreviousSchoolsAttended });
+
 	var filterChildDescription = $formFilters.find('.valueChildDescription').val();
 	if(filterChildDescription != null && filterChildDescription !== '')
 		filters.push({ name: 'fq', value: 'childDescription:' + filterChildDescription });
 
-	var filterChildKey = $formFilters.find('.valueChildKey').val();
-	if(filterChildKey != null && filterChildKey !== '')
-		filters.push({ name: 'fq', value: 'childKey:' + filterChildKey });
-
 	var filterChildObjectives = $formFilters.find('.valueChildObjectives').val();
 	if(filterChildObjectives != null && filterChildObjectives !== '')
 		filters.push({ name: 'fq', value: 'childObjectives:' + filterChildObjectives });
+
+	var filterChildKey = $formFilters.find('.valueChildKey').val();
+	if(filterChildKey != null && filterChildKey !== '')
+		filters.push({ name: 'fq', value: 'childKey:' + filterChildKey });
 
 	var filterMomKeys = $formFilters.find('.valueMomKeys').val();
 	if(filterMomKeys != null && filterMomKeys !== '')
@@ -922,6 +967,10 @@ function patchSchoolEnrollmentFilters($formFilters) {
 	if(filterDadKeys != null && filterDadKeys !== '')
 		filters.push({ name: 'fq', value: 'dadKeys:' + filterDadKeys });
 
+	var filterEnrollmentFormKey = $formFilters.find('.valueEnrollmentFormKey').val();
+	if(filterEnrollmentFormKey != null && filterEnrollmentFormKey !== '')
+		filters.push({ name: 'fq', value: 'enrollmentFormKey:' + filterEnrollmentFormKey });
+
 	var filterGuardianKeys = $formFilters.find('.valueGuardianKeys').val();
 	if(filterGuardianKeys != null && filterGuardianKeys !== '')
 		filters.push({ name: 'fq', value: 'guardianKeys:' + filterGuardianKeys });
@@ -930,13 +979,9 @@ function patchSchoolEnrollmentFilters($formFilters) {
 	if(filterPaymentKeys != null && filterPaymentKeys !== '')
 		filters.push({ name: 'fq', value: 'paymentKeys:' + filterPaymentKeys });
 
-	var filterEnrollmentFormKey = $formFilters.find('.valueEnrollmentFormKey').val();
-	if(filterEnrollmentFormKey != null && filterEnrollmentFormKey !== '')
-		filters.push({ name: 'fq', value: 'enrollmentFormKey:' + filterEnrollmentFormKey });
-
-	var filterId = $formFilters.find('.valueId').val();
-	if(filterId != null && filterId !== '')
-		filters.push({ name: 'fq', value: 'id:' + filterId });
+	var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+	if(filterPageUrlPk != null && filterPageUrlPk !== '')
+		filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
 	var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
 	if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -958,6 +1003,10 @@ function patchSchoolEnrollmentFilters($formFilters) {
 	if(filterObjectTitle != null && filterObjectTitle !== '')
 		filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
+	var filterId = $formFilters.find('.valueId').val();
+	if(filterId != null && filterId !== '')
+		filters.push({ name: 'fq', value: 'id:' + filterId });
+
 	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
 	if(filterObjectSuggest != null && filterObjectSuggest !== '')
 		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
@@ -965,10 +1014,6 @@ function patchSchoolEnrollmentFilters($formFilters) {
 	var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
 	if(filterPageUrlId != null && filterPageUrlId !== '')
 		filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
-
-	var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-	if(filterPageUrlPk != null && filterPageUrlPk !== '')
-		filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
 	var filterEnrollmentKey = $formFilters.find('.valueEnrollmentKey').val();
 	if(filterEnrollmentKey != null && filterEnrollmentKey !== '')
@@ -1025,6 +1070,10 @@ function patchSchoolEnrollmentFilters($formFilters) {
 	var filterChildCompleteName = $formFilters.find('.valueChildCompleteName').val();
 	if(filterChildCompleteName != null && filterChildCompleteName !== '')
 		filters.push({ name: 'fq', value: 'childCompleteName:' + filterChildCompleteName });
+
+	var filterChildBirthDate = $formFilters.find('.valueChildBirthDate').val();
+	if(filterChildBirthDate != null && filterChildBirthDate !== '')
+		filters.push({ name: 'fq', value: 'childBirthDate:' + filterChildBirthDate });
 
 	var filterSchoolName = $formFilters.find('.valueSchoolName').val();
 	if(filterSchoolName != null && filterSchoolName !== '')
@@ -1141,6 +1190,10 @@ function patchSchoolEnrollmentFilters($formFilters) {
 	var filterBlockTotalPrice = $formFilters.find('.valueBlockTotalPrice').val();
 	if(filterBlockTotalPrice != null && filterBlockTotalPrice !== '')
 		filters.push({ name: 'fq', value: 'blockTotalPrice:' + filterBlockTotalPrice });
+
+	var filterBlockAdminName = $formFilters.find('.valueBlockAdminName').val();
+	if(filterBlockAdminName != null && filterBlockAdminName !== '')
+		filters.push({ name: 'fq', value: 'blockAdminName:' + filterBlockAdminName });
 
 	var filterEnrollmentParentNames = $formFilters.find('.valueEnrollmentParentNames').val();
 	if(filterEnrollmentParentNames != null && filterEnrollmentParentNames !== '')
@@ -1252,21 +1305,21 @@ async function searchSchoolEnrollment($formFilters, success, error) {
 function searchSchoolEnrollmentFilters($formFilters) {
 	var filters = [];
 
-	var filterPk = $formFilters.find('.valuePk').val();
-	if(filterPk != null && filterPk !== '')
-		filters.push({ name: 'fq', value: 'pk:' + filterPk });
-
 	var filterCreated = $formFilters.find('.valueCreated').val();
 	if(filterCreated != null && filterCreated !== '')
 		filters.push({ name: 'fq', value: 'created:' + filterCreated });
 
-	var filterModified = $formFilters.find('.valueModified').val();
-	if(filterModified != null && filterModified !== '')
-		filters.push({ name: 'fq', value: 'modified:' + filterModified });
+	var filterPk = $formFilters.find('.valuePk').val();
+	if(filterPk != null && filterPk !== '')
+		filters.push({ name: 'fq', value: 'pk:' + filterPk });
 
 	var filterObjectId = $formFilters.find('.valueObjectId').val();
 	if(filterObjectId != null && filterObjectId !== '')
 		filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
+
+	var filterModified = $formFilters.find('.valueModified').val();
+	if(filterModified != null && filterModified !== '')
+		filters.push({ name: 'fq', value: 'modified:' + filterModified });
 
 	var filterArchived = $formFilters.find('.valueArchived').prop('checked');
 	if(filterArchived != null && filterArchived === true)
@@ -1292,6 +1345,10 @@ function searchSchoolEnrollmentFilters($formFilters) {
 	if(filterEnrollmentPaymentComplete != null && filterEnrollmentPaymentComplete === true)
 		filters.push({ name: 'fq', value: 'enrollmentPaymentComplete:' + filterEnrollmentPaymentComplete });
 
+	var filterChildPottyTrained = $formFilters.find('.valueChildPottyTrained').prop('checked');
+	if(filterChildPottyTrained != null && filterChildPottyTrained === true)
+		filters.push({ name: 'fq', value: 'childPottyTrained:' + filterChildPottyTrained });
+
 	var filterEnrollmentPaymentEachMonth = $formFilters.find('.valueEnrollmentPaymentEachMonth').prop('checked');
 	if(filterEnrollmentPaymentEachMonth != null && filterEnrollmentPaymentEachMonth === true)
 		filters.push({ name: 'fq', value: 'enrollmentPaymentEachMonth:' + filterEnrollmentPaymentEachMonth });
@@ -1299,10 +1356,6 @@ function searchSchoolEnrollmentFilters($formFilters) {
 	var filterFamilyMarried = $formFilters.find('.valueFamilyMarried').prop('checked');
 	if(filterFamilyMarried != null && filterFamilyMarried === true)
 		filters.push({ name: 'fq', value: 'familyMarried:' + filterFamilyMarried });
-
-	var filterChildPottyTrained = $formFilters.find('.valueChildPottyTrained').prop('checked');
-	if(filterChildPottyTrained != null && filterChildPottyTrained === true)
-		filters.push({ name: 'fq', value: 'childPottyTrained:' + filterChildPottyTrained });
 
 	var filterFamilySeparated = $formFilters.find('.valueFamilySeparated').prop('checked');
 	if(filterFamilySeparated != null && filterFamilySeparated === true)
@@ -1316,17 +1369,9 @@ function searchSchoolEnrollmentFilters($formFilters) {
 	if(filterFamilyAddress != null && filterFamilyAddress !== '')
 		filters.push({ name: 'fq', value: 'familyAddress:' + filterFamilyAddress });
 
-	var filterChildMedicalConditions = $formFilters.find('.valueChildMedicalConditions').val();
-	if(filterChildMedicalConditions != null && filterChildMedicalConditions !== '')
-		filters.push({ name: 'fq', value: 'childMedicalConditions:' + filterChildMedicalConditions });
-
 	var filterEnrollmentSpecialConsiderations = $formFilters.find('.valueEnrollmentSpecialConsiderations').val();
 	if(filterEnrollmentSpecialConsiderations != null && filterEnrollmentSpecialConsiderations !== '')
 		filters.push({ name: 'fq', value: 'enrollmentSpecialConsiderations:' + filterEnrollmentSpecialConsiderations });
-
-	var filterChildPreviousSchoolsAttended = $formFilters.find('.valueChildPreviousSchoolsAttended').val();
-	if(filterChildPreviousSchoolsAttended != null && filterChildPreviousSchoolsAttended !== '')
-		filters.push({ name: 'fq', value: 'childPreviousSchoolsAttended:' + filterChildPreviousSchoolsAttended });
 
 	var filterFamilyHowDoYouKnowTheSchool = $formFilters.find('.valueFamilyHowDoYouKnowTheSchool').val();
 	if(filterFamilyHowDoYouKnowTheSchool != null && filterFamilyHowDoYouKnowTheSchool !== '')
@@ -1336,17 +1381,25 @@ function searchSchoolEnrollmentFilters($formFilters) {
 	if(filterBlockKeys != null && filterBlockKeys !== '')
 		filters.push({ name: 'fq', value: 'blockKeys:' + filterBlockKeys });
 
+	var filterChildMedicalConditions = $formFilters.find('.valueChildMedicalConditions').val();
+	if(filterChildMedicalConditions != null && filterChildMedicalConditions !== '')
+		filters.push({ name: 'fq', value: 'childMedicalConditions:' + filterChildMedicalConditions });
+
+	var filterChildPreviousSchoolsAttended = $formFilters.find('.valueChildPreviousSchoolsAttended').val();
+	if(filterChildPreviousSchoolsAttended != null && filterChildPreviousSchoolsAttended !== '')
+		filters.push({ name: 'fq', value: 'childPreviousSchoolsAttended:' + filterChildPreviousSchoolsAttended });
+
 	var filterChildDescription = $formFilters.find('.valueChildDescription').val();
 	if(filterChildDescription != null && filterChildDescription !== '')
 		filters.push({ name: 'fq', value: 'childDescription:' + filterChildDescription });
 
-	var filterChildKey = $formFilters.find('.valueChildKey').val();
-	if(filterChildKey != null && filterChildKey !== '')
-		filters.push({ name: 'fq', value: 'childKey:' + filterChildKey });
-
 	var filterChildObjectives = $formFilters.find('.valueChildObjectives').val();
 	if(filterChildObjectives != null && filterChildObjectives !== '')
 		filters.push({ name: 'fq', value: 'childObjectives:' + filterChildObjectives });
+
+	var filterChildKey = $formFilters.find('.valueChildKey').val();
+	if(filterChildKey != null && filterChildKey !== '')
+		filters.push({ name: 'fq', value: 'childKey:' + filterChildKey });
 
 	var filterMomKeys = $formFilters.find('.valueMomKeys').val();
 	if(filterMomKeys != null && filterMomKeys !== '')
@@ -1356,6 +1409,10 @@ function searchSchoolEnrollmentFilters($formFilters) {
 	if(filterDadKeys != null && filterDadKeys !== '')
 		filters.push({ name: 'fq', value: 'dadKeys:' + filterDadKeys });
 
+	var filterEnrollmentFormKey = $formFilters.find('.valueEnrollmentFormKey').val();
+	if(filterEnrollmentFormKey != null && filterEnrollmentFormKey !== '')
+		filters.push({ name: 'fq', value: 'enrollmentFormKey:' + filterEnrollmentFormKey });
+
 	var filterGuardianKeys = $formFilters.find('.valueGuardianKeys').val();
 	if(filterGuardianKeys != null && filterGuardianKeys !== '')
 		filters.push({ name: 'fq', value: 'guardianKeys:' + filterGuardianKeys });
@@ -1364,13 +1421,9 @@ function searchSchoolEnrollmentFilters($formFilters) {
 	if(filterPaymentKeys != null && filterPaymentKeys !== '')
 		filters.push({ name: 'fq', value: 'paymentKeys:' + filterPaymentKeys });
 
-	var filterEnrollmentFormKey = $formFilters.find('.valueEnrollmentFormKey').val();
-	if(filterEnrollmentFormKey != null && filterEnrollmentFormKey !== '')
-		filters.push({ name: 'fq', value: 'enrollmentFormKey:' + filterEnrollmentFormKey });
-
-	var filterId = $formFilters.find('.valueId').val();
-	if(filterId != null && filterId !== '')
-		filters.push({ name: 'fq', value: 'id:' + filterId });
+	var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+	if(filterPageUrlPk != null && filterPageUrlPk !== '')
+		filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
 	var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
 	if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -1392,6 +1445,10 @@ function searchSchoolEnrollmentFilters($formFilters) {
 	if(filterObjectTitle != null && filterObjectTitle !== '')
 		filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
+	var filterId = $formFilters.find('.valueId').val();
+	if(filterId != null && filterId !== '')
+		filters.push({ name: 'fq', value: 'id:' + filterId });
+
 	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
 	if(filterObjectSuggest != null && filterObjectSuggest !== '')
 		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
@@ -1399,10 +1456,6 @@ function searchSchoolEnrollmentFilters($formFilters) {
 	var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
 	if(filterPageUrlId != null && filterPageUrlId !== '')
 		filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
-
-	var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-	if(filterPageUrlPk != null && filterPageUrlPk !== '')
-		filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
 	var filterEnrollmentKey = $formFilters.find('.valueEnrollmentKey').val();
 	if(filterEnrollmentKey != null && filterEnrollmentKey !== '')
@@ -1459,6 +1512,10 @@ function searchSchoolEnrollmentFilters($formFilters) {
 	var filterChildCompleteName = $formFilters.find('.valueChildCompleteName').val();
 	if(filterChildCompleteName != null && filterChildCompleteName !== '')
 		filters.push({ name: 'fq', value: 'childCompleteName:' + filterChildCompleteName });
+
+	var filterChildBirthDate = $formFilters.find('.valueChildBirthDate').val();
+	if(filterChildBirthDate != null && filterChildBirthDate !== '')
+		filters.push({ name: 'fq', value: 'childBirthDate:' + filterChildBirthDate });
 
 	var filterSchoolName = $formFilters.find('.valueSchoolName').val();
 	if(filterSchoolName != null && filterSchoolName !== '')
@@ -1575,6 +1632,10 @@ function searchSchoolEnrollmentFilters($formFilters) {
 	var filterBlockTotalPrice = $formFilters.find('.valueBlockTotalPrice').val();
 	if(filterBlockTotalPrice != null && filterBlockTotalPrice !== '')
 		filters.push({ name: 'fq', value: 'blockTotalPrice:' + filterBlockTotalPrice });
+
+	var filterBlockAdminName = $formFilters.find('.valueBlockAdminName').val();
+	if(filterBlockAdminName != null && filterBlockAdminName !== '')
+		filters.push({ name: 'fq', value: 'blockAdminName:' + filterBlockAdminName });
 
 	var filterEnrollmentParentNames = $formFilters.find('.valueEnrollmentParentNames').val();
 	if(filterEnrollmentParentNames != null && filterEnrollmentParentNames !== '')
@@ -1848,10 +1909,9 @@ function suggestSchoolEnrollmentPaymentKeys(filters, $list, pk = null) {
 }
 
 async function websocketSchoolEnrollment(success) {
-	var eventBus = new EventBus('/eventbus');
-	eventBus.onopen = function () {
+	window.eventBus.onopen = function () {
 
-		eventBus.registerHandler('websocketSchoolEnrollment', function (error, message) {
+		window.eventBus.registerHandler('websocketSchoolEnrollment', function (error, message) {
 			var json = JSON.parse(message['body']);
 			var id = json['id'];
 			var pk = json['pk'];
@@ -1888,28 +1948,252 @@ async function websocketSchoolEnrollment(success) {
 			}
 		});
 
-		eventBus.registerHandler('websocketSchoolBlock', function (error, message) {
+		window.eventBus.registerHandler('websocketSchoolBlock', function (error, message) {
 			$('#Page_blockKeys').trigger('oninput');
 		});
 
-		eventBus.registerHandler('websocketSchoolChild', function (error, message) {
+		window.eventBus.registerHandler('websocketSchoolChild', function (error, message) {
 			$('#Page_childKey').trigger('oninput');
 		});
 
-		eventBus.registerHandler('websocketSchoolMom', function (error, message) {
+		window.eventBus.registerHandler('websocketSchoolMom', function (error, message) {
 			$('#Page_momKeys').trigger('oninput');
 		});
 
-		eventBus.registerHandler('websocketSchoolDad', function (error, message) {
+		window.eventBus.registerHandler('websocketSchoolDad', function (error, message) {
 			$('#Page_dadKeys').trigger('oninput');
 		});
 
-		eventBus.registerHandler('websocketSchoolGuardian', function (error, message) {
+		window.eventBus.registerHandler('websocketSchoolGuardian', function (error, message) {
 			$('#Page_guardianKeys').trigger('oninput');
 		});
 
-		eventBus.registerHandler('websocketSchoolPayment', function (error, message) {
+		window.eventBus.registerHandler('websocketSchoolPayment', function (error, message) {
 			$('#Page_paymentKeys').trigger('oninput');
 		});
+	}
+}
+async function websocketSchoolEnrollmentInner(patchRequest) {
+	var pk = patchRequest['pk'];
+	var pks = patchRequest['pks'];
+	var classes = patchRequest['classes'];
+	var vars = patchRequest['vars'];
+	var empty = patchRequest['empty'];
+
+	if(pk != null) {
+		searchSchoolEnrollmentVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
+			var o = data['list'][0];
+			if(vars.includes('created')) {
+				$('.inputSchoolEnrollment' + pk + 'Created').val(o['created']);
+				$('.varSchoolEnrollment' + pk + 'Created').text(o['created']);
+			}
+			if(vars.includes('modified')) {
+				$('.inputSchoolEnrollment' + pk + 'Modified').val(o['modified']);
+				$('.varSchoolEnrollment' + pk + 'Modified').text(o['modified']);
+			}
+			if(vars.includes('archived')) {
+				$('.inputSchoolEnrollment' + pk + 'Archived').val(o['archived']);
+				$('.varSchoolEnrollment' + pk + 'Archived').text(o['archived']);
+			}
+			if(vars.includes('deleted')) {
+				$('.inputSchoolEnrollment' + pk + 'Deleted').val(o['deleted']);
+				$('.varSchoolEnrollment' + pk + 'Deleted').text(o['deleted']);
+			}
+			if(vars.includes('enrollmentApproved')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentApproved').val(o['enrollmentApproved']);
+				$('.varSchoolEnrollment' + pk + 'EnrollmentApproved').text(o['enrollmentApproved']);
+			}
+			if(vars.includes('enrollmentImmunizations')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentImmunizations').val(o['enrollmentImmunizations']);
+				$('.varSchoolEnrollment' + pk + 'EnrollmentImmunizations').text(o['enrollmentImmunizations']);
+			}
+			if(vars.includes('enrollmentGroupName')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentGroupName').val(o['enrollmentGroupName']);
+				$('.varSchoolEnrollment' + pk + 'EnrollmentGroupName').text(o['enrollmentGroupName']);
+			}
+			if(vars.includes('enrollmentPaymentComplete')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentPaymentComplete').val(o['enrollmentPaymentComplete']);
+				$('.varSchoolEnrollment' + pk + 'EnrollmentPaymentComplete').text(o['enrollmentPaymentComplete']);
+			}
+			if(vars.includes('childPottyTrained')) {
+				$('.inputSchoolEnrollment' + pk + 'ChildPottyTrained').val(o['childPottyTrained']);
+				$('.varSchoolEnrollment' + pk + 'ChildPottyTrained').text(o['childPottyTrained']);
+			}
+			if(vars.includes('enrollmentPaymentEachMonth')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentPaymentEachMonth').val(o['enrollmentPaymentEachMonth']);
+				$('.varSchoolEnrollment' + pk + 'EnrollmentPaymentEachMonth').text(o['enrollmentPaymentEachMonth']);
+			}
+			if(vars.includes('familyMarried')) {
+				$('.inputSchoolEnrollment' + pk + 'FamilyMarried').val(o['familyMarried']);
+				$('.varSchoolEnrollment' + pk + 'FamilyMarried').text(o['familyMarried']);
+			}
+			if(vars.includes('familySeparated')) {
+				$('.inputSchoolEnrollment' + pk + 'FamilySeparated').val(o['familySeparated']);
+				$('.varSchoolEnrollment' + pk + 'FamilySeparated').text(o['familySeparated']);
+			}
+			if(vars.includes('familyDivorced')) {
+				$('.inputSchoolEnrollment' + pk + 'FamilyDivorced').val(o['familyDivorced']);
+				$('.varSchoolEnrollment' + pk + 'FamilyDivorced').text(o['familyDivorced']);
+			}
+			if(vars.includes('familyAddress')) {
+				$('.inputSchoolEnrollment' + pk + 'FamilyAddress').val(o['familyAddress']);
+				$('.varSchoolEnrollment' + pk + 'FamilyAddress').text(o['familyAddress']);
+			}
+			if(vars.includes('enrollmentSpecialConsiderations')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentSpecialConsiderations').val(o['enrollmentSpecialConsiderations']);
+				$('.varSchoolEnrollment' + pk + 'EnrollmentSpecialConsiderations').text(o['enrollmentSpecialConsiderations']);
+			}
+			if(vars.includes('familyHowDoYouKnowTheSchool')) {
+				$('.inputSchoolEnrollment' + pk + 'FamilyHowDoYouKnowTheSchool').val(o['familyHowDoYouKnowTheSchool']);
+				$('.varSchoolEnrollment' + pk + 'FamilyHowDoYouKnowTheSchool').text(o['familyHowDoYouKnowTheSchool']);
+			}
+			if(vars.includes('blockKeys')) {
+				$('.inputSchoolEnrollment' + pk + 'BlockKeys').val(o['blockKeys']);
+				$('.varSchoolEnrollment' + pk + 'BlockKeys').text(o['blockKeys']);
+			}
+			if(vars.includes('childMedicalConditions')) {
+				$('.inputSchoolEnrollment' + pk + 'ChildMedicalConditions').val(o['childMedicalConditions']);
+				$('.varSchoolEnrollment' + pk + 'ChildMedicalConditions').text(o['childMedicalConditions']);
+			}
+			if(vars.includes('childPreviousSchoolsAttended')) {
+				$('.inputSchoolEnrollment' + pk + 'ChildPreviousSchoolsAttended').val(o['childPreviousSchoolsAttended']);
+				$('.varSchoolEnrollment' + pk + 'ChildPreviousSchoolsAttended').text(o['childPreviousSchoolsAttended']);
+			}
+			if(vars.includes('childDescription')) {
+				$('.inputSchoolEnrollment' + pk + 'ChildDescription').val(o['childDescription']);
+				$('.varSchoolEnrollment' + pk + 'ChildDescription').text(o['childDescription']);
+			}
+			if(vars.includes('childObjectives')) {
+				$('.inputSchoolEnrollment' + pk + 'ChildObjectives').val(o['childObjectives']);
+				$('.varSchoolEnrollment' + pk + 'ChildObjectives').text(o['childObjectives']);
+			}
+			if(vars.includes('childKey')) {
+				$('.inputSchoolEnrollment' + pk + 'ChildKey').val(o['childKey']);
+				$('.varSchoolEnrollment' + pk + 'ChildKey').text(o['childKey']);
+			}
+			if(vars.includes('momKeys')) {
+				$('.inputSchoolEnrollment' + pk + 'MomKeys').val(o['momKeys']);
+				$('.varSchoolEnrollment' + pk + 'MomKeys').text(o['momKeys']);
+			}
+			if(vars.includes('dadKeys')) {
+				$('.inputSchoolEnrollment' + pk + 'DadKeys').val(o['dadKeys']);
+				$('.varSchoolEnrollment' + pk + 'DadKeys').text(o['dadKeys']);
+			}
+			if(vars.includes('guardianKeys')) {
+				$('.inputSchoolEnrollment' + pk + 'GuardianKeys').val(o['guardianKeys']);
+				$('.varSchoolEnrollment' + pk + 'GuardianKeys').text(o['guardianKeys']);
+			}
+			if(vars.includes('paymentKeys')) {
+				$('.inputSchoolEnrollment' + pk + 'PaymentKeys').val(o['paymentKeys']);
+				$('.varSchoolEnrollment' + pk + 'PaymentKeys').text(o['paymentKeys']);
+			}
+			if(vars.includes('childCompleteName')) {
+				$('.inputSchoolEnrollment' + pk + 'ChildCompleteName').val(o['childCompleteName']);
+				$('.varSchoolEnrollment' + pk + 'ChildCompleteName').text(o['childCompleteName']);
+			}
+			if(vars.includes('childBirthDate')) {
+				$('.inputSchoolEnrollment' + pk + 'ChildBirthDate').val(o['childBirthDate']);
+				$('.varSchoolEnrollment' + pk + 'ChildBirthDate').text(o['childBirthDate']);
+			}
+			if(vars.includes('schoolAddress')) {
+				$('.inputSchoolEnrollment' + pk + 'SchoolAddress').val(o['schoolAddress']);
+				$('.varSchoolEnrollment' + pk + 'SchoolAddress').text(o['schoolAddress']);
+			}
+			if(vars.includes('enrollmentParentNames')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentParentNames').val(o['enrollmentParentNames']);
+				$('.varSchoolEnrollment' + pk + 'EnrollmentParentNames').text(o['enrollmentParentNames']);
+			}
+			if(vars.includes('enrollmentSignature1')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentSignature1').val(o['enrollmentSignature1']);
+				$('.varSchoolEnrollment' + pk + 'EnrollmentSignature1').text(o['enrollmentSignature1']);
+			}
+			if(vars.includes('enrollmentSignature2')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentSignature2').val(o['enrollmentSignature2']);
+				$('.varSchoolEnrollment' + pk + 'EnrollmentSignature2').text(o['enrollmentSignature2']);
+			}
+			if(vars.includes('enrollmentSignature3')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentSignature3').val(o['enrollmentSignature3']);
+				$('.varSchoolEnrollment' + pk + 'EnrollmentSignature3').text(o['enrollmentSignature3']);
+			}
+			if(vars.includes('enrollmentSignature4')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentSignature4').val(o['enrollmentSignature4']);
+				$('.varSchoolEnrollment' + pk + 'EnrollmentSignature4').text(o['enrollmentSignature4']);
+			}
+			if(vars.includes('enrollmentSignature5')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentSignature5').val(o['enrollmentSignature5']);
+				$('.varSchoolEnrollment' + pk + 'EnrollmentSignature5').text(o['enrollmentSignature5']);
+			}
+			if(vars.includes('enrollmentSignature6')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentSignature6').val(o['enrollmentSignature6']);
+				$('.varSchoolEnrollment' + pk + 'EnrollmentSignature6').text(o['enrollmentSignature6']);
+			}
+			if(vars.includes('enrollmentSignature7')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentSignature7').val(o['enrollmentSignature7']);
+				$('.varSchoolEnrollment' + pk + 'EnrollmentSignature7').text(o['enrollmentSignature7']);
+			}
+			if(vars.includes('enrollmentSignature8')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentSignature8').val(o['enrollmentSignature8']);
+				$('.varSchoolEnrollment' + pk + 'EnrollmentSignature8').text(o['enrollmentSignature8']);
+			}
+			if(vars.includes('enrollmentSignature9')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentSignature9').val(o['enrollmentSignature9']);
+				$('.varSchoolEnrollment' + pk + 'EnrollmentSignature9').text(o['enrollmentSignature9']);
+			}
+			if(vars.includes('enrollmentSignature10')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentSignature10').val(o['enrollmentSignature10']);
+				$('.varSchoolEnrollment' + pk + 'EnrollmentSignature10').text(o['enrollmentSignature10']);
+			}
+			if(vars.includes('enrollmentDate1')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentDate1').val(o['enrollmentDate1']);
+				$('.varSchoolEnrollment' + pk + 'EnrollmentDate1').text(o['enrollmentDate1']);
+			}
+			if(vars.includes('enrollmentDate2')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentDate2').val(o['enrollmentDate2']);
+				$('.varSchoolEnrollment' + pk + 'EnrollmentDate2').text(o['enrollmentDate2']);
+			}
+			if(vars.includes('enrollmentDate3')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentDate3').val(o['enrollmentDate3']);
+				$('.varSchoolEnrollment' + pk + 'EnrollmentDate3').text(o['enrollmentDate3']);
+			}
+			if(vars.includes('enrollmentDate4')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentDate4').val(o['enrollmentDate4']);
+				$('.varSchoolEnrollment' + pk + 'EnrollmentDate4').text(o['enrollmentDate4']);
+			}
+			if(vars.includes('enrollmentDate5')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentDate5').val(o['enrollmentDate5']);
+				$('.varSchoolEnrollment' + pk + 'EnrollmentDate5').text(o['enrollmentDate5']);
+			}
+			if(vars.includes('enrollmentDate6')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentDate6').val(o['enrollmentDate6']);
+				$('.varSchoolEnrollment' + pk + 'EnrollmentDate6').text(o['enrollmentDate6']);
+			}
+			if(vars.includes('enrollmentDate7')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentDate7').val(o['enrollmentDate7']);
+				$('.varSchoolEnrollment' + pk + 'EnrollmentDate7').text(o['enrollmentDate7']);
+			}
+			if(vars.includes('enrollmentDate8')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentDate8').val(o['enrollmentDate8']);
+				$('.varSchoolEnrollment' + pk + 'EnrollmentDate8').text(o['enrollmentDate8']);
+			}
+			if(vars.includes('enrollmentDate9')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentDate9').val(o['enrollmentDate9']);
+				$('.varSchoolEnrollment' + pk + 'EnrollmentDate9').text(o['enrollmentDate9']);
+			}
+			if(vars.includes('enrollmentDate10')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentDate10').val(o['enrollmentDate10']);
+				$('.varSchoolEnrollment' + pk + 'EnrollmentDate10').text(o['enrollmentDate10']);
+			}
+		});
+	}
+
+	if(!empty) {
+		if(pks) {
+			for(i=0; i < pks.length; i++) {
+				var pk2 = pks[i];
+				var c = classes[i];
+				await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
+			}
+		}
+		await patchSchoolEnrollmentVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 	}
 }

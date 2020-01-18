@@ -17,21 +17,21 @@ async function postInscriptionScolaire($formulaireValeurs, success, error) {
 		};
 	}
 
-	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
-	if(valeurPk != null && valeurPk !== '')
-		vals['pk'] = valeurPk;
-
 	var valeurCree = $formulaireValeurs.find('.valeurCree').val();
 	if(valeurCree != null && valeurCree !== '')
 		vals['cree'] = valeurCree;
 
-	var valeurModifie = $formulaireValeurs.find('.valeurModifie').val();
-	if(valeurModifie != null && valeurModifie !== '')
-		vals['modifie'] = valeurModifie;
+	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
+	if(valeurPk != null && valeurPk !== '')
+		vals['pk'] = valeurPk;
 
 	var valeurObjetId = $formulaireValeurs.find('.valeurObjetId').val();
 	if(valeurObjetId != null && valeurObjetId !== '')
 		vals['objetId'] = valeurObjetId;
+
+	var valeurModifie = $formulaireValeurs.find('.valeurModifie').val();
+	if(valeurModifie != null && valeurModifie !== '')
+		vals['modifie'] = valeurModifie;
 
 	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
 	if(valeurArchive != null && valeurArchive !== '')
@@ -57,6 +57,10 @@ async function postInscriptionScolaire($formulaireValeurs, success, error) {
 	if(valeurInscriptionPaimentComplet != null && valeurInscriptionPaimentComplet !== '')
 		vals['inscriptionPaimentComplet'] = valeurInscriptionPaimentComplet;
 
+	var valeurEnfantPropre = $formulaireValeurs.find('.valeurEnfantPropre').prop('checked');
+	if(valeurEnfantPropre != null && valeurEnfantPropre !== '')
+		vals['enfantPropre'] = valeurEnfantPropre;
+
 	var valeurInscriptionPaimentChaqueMois = $formulaireValeurs.find('.valeurInscriptionPaimentChaqueMois').prop('checked');
 	if(valeurInscriptionPaimentChaqueMois != null && valeurInscriptionPaimentChaqueMois !== '')
 		vals['inscriptionPaimentChaqueMois'] = valeurInscriptionPaimentChaqueMois;
@@ -64,10 +68,6 @@ async function postInscriptionScolaire($formulaireValeurs, success, error) {
 	var valeurFamilleMarie = $formulaireValeurs.find('.valeurFamilleMarie').prop('checked');
 	if(valeurFamilleMarie != null && valeurFamilleMarie !== '')
 		vals['familleMarie'] = valeurFamilleMarie;
-
-	var valeurEnfantPropre = $formulaireValeurs.find('.valeurEnfantPropre').prop('checked');
-	if(valeurEnfantPropre != null && valeurEnfantPropre !== '')
-		vals['enfantPropre'] = valeurEnfantPropre;
 
 	var valeurFamilleSepare = $formulaireValeurs.find('.valeurFamilleSepare').prop('checked');
 	if(valeurFamilleSepare != null && valeurFamilleSepare !== '')
@@ -81,17 +81,9 @@ async function postInscriptionScolaire($formulaireValeurs, success, error) {
 	if(valeurFamilleAddresse != null && valeurFamilleAddresse !== '')
 		vals['familleAddresse'] = valeurFamilleAddresse;
 
-	var valeurEnfantConditionsMedicales = $formulaireValeurs.find('.valeurEnfantConditionsMedicales').val();
-	if(valeurEnfantConditionsMedicales != null && valeurEnfantConditionsMedicales !== '')
-		vals['enfantConditionsMedicales'] = valeurEnfantConditionsMedicales;
-
 	var valeurInscriptionConsiderationsSpeciales = $formulaireValeurs.find('.valeurInscriptionConsiderationsSpeciales').val();
 	if(valeurInscriptionConsiderationsSpeciales != null && valeurInscriptionConsiderationsSpeciales !== '')
 		vals['inscriptionConsiderationsSpeciales'] = valeurInscriptionConsiderationsSpeciales;
-
-	var valeurEnfantEcolesPrecedemmentFrequentees = $formulaireValeurs.find('.valeurEnfantEcolesPrecedemmentFrequentees').val();
-	if(valeurEnfantEcolesPrecedemmentFrequentees != null && valeurEnfantEcolesPrecedemmentFrequentees !== '')
-		vals['enfantEcolesPrecedemmentFrequentees'] = valeurEnfantEcolesPrecedemmentFrequentees;
 
 	var valeurFamilleCommentVousConnaissezEcole = $formulaireValeurs.find('.valeurFamilleCommentVousConnaissezEcole').val();
 	if(valeurFamilleCommentVousConnaissezEcole != null && valeurFamilleCommentVousConnaissezEcole !== '')
@@ -101,17 +93,25 @@ async function postInscriptionScolaire($formulaireValeurs, success, error) {
 	if(valeurBlocCles != null && valeurBlocCles !== '')
 		vals['blocCles'] = valeurBlocCles;
 
+	var valeurEnfantConditionsMedicales = $formulaireValeurs.find('.valeurEnfantConditionsMedicales').val();
+	if(valeurEnfantConditionsMedicales != null && valeurEnfantConditionsMedicales !== '')
+		vals['enfantConditionsMedicales'] = valeurEnfantConditionsMedicales;
+
+	var valeurEnfantEcolesPrecedemmentFrequentees = $formulaireValeurs.find('.valeurEnfantEcolesPrecedemmentFrequentees').val();
+	if(valeurEnfantEcolesPrecedemmentFrequentees != null && valeurEnfantEcolesPrecedemmentFrequentees !== '')
+		vals['enfantEcolesPrecedemmentFrequentees'] = valeurEnfantEcolesPrecedemmentFrequentees;
+
 	var valeurEnfantDescription = $formulaireValeurs.find('.valeurEnfantDescription').val();
 	if(valeurEnfantDescription != null && valeurEnfantDescription !== '')
 		vals['enfantDescription'] = valeurEnfantDescription;
 
-	var valeurEnfantCle = $formulaireValeurs.find('.valeurEnfantCle').val();
-	if(valeurEnfantCle != null && valeurEnfantCle !== '')
-		vals['enfantCle'] = valeurEnfantCle;
-
 	var valeurEnfantObjectifs = $formulaireValeurs.find('.valeurEnfantObjectifs').val();
 	if(valeurEnfantObjectifs != null && valeurEnfantObjectifs !== '')
 		vals['enfantObjectifs'] = valeurEnfantObjectifs;
+
+	var valeurEnfantCle = $formulaireValeurs.find('.valeurEnfantCle').val();
+	if(valeurEnfantCle != null && valeurEnfantCle !== '')
+		vals['enfantCle'] = valeurEnfantCle;
 
 	var valeurMereCles = $formulaireValeurs.find('.valeurMereCles').val();
 	if(valeurMereCles != null && valeurMereCles !== '')
@@ -121,6 +121,10 @@ async function postInscriptionScolaire($formulaireValeurs, success, error) {
 	if(valeurPereCles != null && valeurPereCles !== '')
 		vals['pereCles'] = valeurPereCles;
 
+	var valeurFormInscriptionCle = $formulaireValeurs.find('.valeurFormInscriptionCle').val();
+	if(valeurFormInscriptionCle != null && valeurFormInscriptionCle !== '')
+		vals['formInscriptionCle'] = valeurFormInscriptionCle;
+
 	var valeurGardienCles = $formulaireValeurs.find('.valeurGardienCles').val();
 	if(valeurGardienCles != null && valeurGardienCles !== '')
 		vals['gardienCles'] = valeurGardienCles;
@@ -129,13 +133,21 @@ async function postInscriptionScolaire($formulaireValeurs, success, error) {
 	if(valeurPaiementCles != null && valeurPaiementCles !== '')
 		vals['paiementCles'] = valeurPaiementCles;
 
-	var valeurFormInscriptionCle = $formulaireValeurs.find('.valeurFormInscriptionCle').val();
-	if(valeurFormInscriptionCle != null && valeurFormInscriptionCle !== '')
-		vals['formInscriptionCle'] = valeurFormInscriptionCle;
+	var valeurEnfantNomComplet = $formulaireValeurs.find('.valeurEnfantNomComplet').val();
+	if(valeurEnfantNomComplet != null && valeurEnfantNomComplet !== '')
+		vals['enfantNomComplet'] = valeurEnfantNomComplet;
+
+	var valeurEnfantDateNaissance = $formulaireValeurs.find('.valeurEnfantDateNaissance').val();
+	if(valeurEnfantDateNaissance != null && valeurEnfantDateNaissance !== '')
+		vals['enfantDateNaissance'] = valeurEnfantDateNaissance;
 
 	var valeurEcoleAddresse = $formulaireValeurs.find('.valeurEcoleAddresse').val();
 	if(valeurEcoleAddresse != null && valeurEcoleAddresse !== '')
 		vals['ecoleAddresse'] = valeurEcoleAddresse;
+
+	var valeurInscriptionNomsParents = $formulaireValeurs.find('.valeurInscriptionNomsParents').val();
+	if(valeurInscriptionNomsParents != null && valeurInscriptionNomsParents !== '')
+		vals['inscriptionNomsParents'] = valeurInscriptionNomsParents;
 
 	var valeurInscriptionSignature1 = $formulaireValeurs.find('.valeurInscriptionSignature1').val();
 	if(valeurInscriptionSignature1 != null && valeurInscriptionSignature1 !== '')
@@ -251,17 +263,6 @@ async function patchInscriptionScolaire($formulaireFiltres, $formulaireValeurs, 
 
 	var vals = {};
 
-	var removePk = $formulaireFiltres.find('.removePk').val() === 'true';
-	var setPk = removePk ? null : $formulaireValeurs.find('.setPk').val();
-	if(removePk || setPk != null && setPk !== '')
-		vals['setPk'] = setPk;
-	var addPk = $formulaireValeurs.find('.addPk').val();
-	if(addPk != null && addPk !== '')
-		vals['addPk'] = addPk;
-	var removePk = $formulaireValeurs.find('.removePk').val();
-	if(removePk != null && removePk !== '')
-		vals['removePk'] = removePk;
-
 	var removeCree = $formulaireFiltres.find('.removeCree').val() === 'true';
 	var setCree = removeCree ? null : $formulaireValeurs.find('.setCree').val();
 	if(removeCree || setCree != null && setCree !== '')
@@ -273,16 +274,16 @@ async function patchInscriptionScolaire($formulaireFiltres, $formulaireValeurs, 
 	if(removeCree != null && removeCree !== '')
 		vals['removeCree'] = removeCree;
 
-	var removeModifie = $formulaireFiltres.find('.removeModifie').val() === 'true';
-	var setModifie = removeModifie ? null : $formulaireValeurs.find('.setModifie').val();
-	if(removeModifie || setModifie != null && setModifie !== '')
-		vals['setModifie'] = setModifie;
-	var addModifie = $formulaireValeurs.find('.addModifie').val();
-	if(addModifie != null && addModifie !== '')
-		vals['addModifie'] = addModifie;
-	var removeModifie = $formulaireValeurs.find('.removeModifie').val();
-	if(removeModifie != null && removeModifie !== '')
-		vals['removeModifie'] = removeModifie;
+	var removePk = $formulaireFiltres.find('.removePk').val() === 'true';
+	var setPk = removePk ? null : $formulaireValeurs.find('.setPk').val();
+	if(removePk || setPk != null && setPk !== '')
+		vals['setPk'] = setPk;
+	var addPk = $formulaireValeurs.find('.addPk').val();
+	if(addPk != null && addPk !== '')
+		vals['addPk'] = addPk;
+	var removePk = $formulaireValeurs.find('.removePk').val();
+	if(removePk != null && removePk !== '')
+		vals['removePk'] = removePk;
 
 	var removeObjetId = $formulaireFiltres.find('.removeObjetId').val() === 'true';
 	var setObjetId = removeObjetId ? null : $formulaireValeurs.find('.setObjetId').val();
@@ -294,6 +295,17 @@ async function patchInscriptionScolaire($formulaireFiltres, $formulaireValeurs, 
 	var removeObjetId = $formulaireValeurs.find('.removeObjetId').val();
 	if(removeObjetId != null && removeObjetId !== '')
 		vals['removeObjetId'] = removeObjetId;
+
+	var removeModifie = $formulaireFiltres.find('.removeModifie').val() === 'true';
+	var setModifie = removeModifie ? null : $formulaireValeurs.find('.setModifie').val();
+	if(removeModifie || setModifie != null && setModifie !== '')
+		vals['setModifie'] = setModifie;
+	var addModifie = $formulaireValeurs.find('.addModifie').val();
+	if(addModifie != null && addModifie !== '')
+		vals['addModifie'] = addModifie;
+	var removeModifie = $formulaireValeurs.find('.removeModifie').val();
+	if(removeModifie != null && removeModifie !== '')
+		vals['removeModifie'] = removeModifie;
 
 	var removeArchive = $formulaireFiltres.find('.removeArchive').val() === 'true';
 	var setArchive = removeArchive ? null : $formulaireValeurs.find('.setArchive').prop('checked');
@@ -361,6 +373,17 @@ async function patchInscriptionScolaire($formulaireFiltres, $formulaireValeurs, 
 	if(removeInscriptionPaimentComplet != null && removeInscriptionPaimentComplet !== '')
 		vals['removeInscriptionPaimentComplet'] = removeInscriptionPaimentComplet;
 
+	var removeEnfantPropre = $formulaireFiltres.find('.removeEnfantPropre').val() === 'true';
+	var setEnfantPropre = removeEnfantPropre ? null : $formulaireValeurs.find('.setEnfantPropre').prop('checked');
+	if(removeEnfantPropre || setEnfantPropre != null && setEnfantPropre !== '')
+		vals['setEnfantPropre'] = setEnfantPropre;
+	var addEnfantPropre = $formulaireValeurs.find('.addEnfantPropre').prop('checked');
+	if(addEnfantPropre != null && addEnfantPropre !== '')
+		vals['addEnfantPropre'] = addEnfantPropre;
+	var removeEnfantPropre = $formulaireValeurs.find('.removeEnfantPropre').prop('checked');
+	if(removeEnfantPropre != null && removeEnfantPropre !== '')
+		vals['removeEnfantPropre'] = removeEnfantPropre;
+
 	var removeInscriptionPaimentChaqueMois = $formulaireFiltres.find('.removeInscriptionPaimentChaqueMois').val() === 'true';
 	var setInscriptionPaimentChaqueMois = removeInscriptionPaimentChaqueMois ? null : $formulaireValeurs.find('.setInscriptionPaimentChaqueMois').prop('checked');
 	if(removeInscriptionPaimentChaqueMois || setInscriptionPaimentChaqueMois != null && setInscriptionPaimentChaqueMois !== '')
@@ -382,17 +405,6 @@ async function patchInscriptionScolaire($formulaireFiltres, $formulaireValeurs, 
 	var removeFamilleMarie = $formulaireValeurs.find('.removeFamilleMarie').prop('checked');
 	if(removeFamilleMarie != null && removeFamilleMarie !== '')
 		vals['removeFamilleMarie'] = removeFamilleMarie;
-
-	var removeEnfantPropre = $formulaireFiltres.find('.removeEnfantPropre').val() === 'true';
-	var setEnfantPropre = removeEnfantPropre ? null : $formulaireValeurs.find('.setEnfantPropre').prop('checked');
-	if(removeEnfantPropre || setEnfantPropre != null && setEnfantPropre !== '')
-		vals['setEnfantPropre'] = setEnfantPropre;
-	var addEnfantPropre = $formulaireValeurs.find('.addEnfantPropre').prop('checked');
-	if(addEnfantPropre != null && addEnfantPropre !== '')
-		vals['addEnfantPropre'] = addEnfantPropre;
-	var removeEnfantPropre = $formulaireValeurs.find('.removeEnfantPropre').prop('checked');
-	if(removeEnfantPropre != null && removeEnfantPropre !== '')
-		vals['removeEnfantPropre'] = removeEnfantPropre;
 
 	var removeFamilleSepare = $formulaireFiltres.find('.removeFamilleSepare').val() === 'true';
 	var setFamilleSepare = removeFamilleSepare ? null : $formulaireValeurs.find('.setFamilleSepare').prop('checked');
@@ -427,17 +439,6 @@ async function patchInscriptionScolaire($formulaireFiltres, $formulaireValeurs, 
 	if(removeFamilleAddresse != null && removeFamilleAddresse !== '')
 		vals['removeFamilleAddresse'] = removeFamilleAddresse;
 
-	var removeEnfantConditionsMedicales = $formulaireFiltres.find('.removeEnfantConditionsMedicales').val() === 'true';
-	var setEnfantConditionsMedicales = removeEnfantConditionsMedicales ? null : $formulaireValeurs.find('.setEnfantConditionsMedicales').val();
-	if(removeEnfantConditionsMedicales || setEnfantConditionsMedicales != null && setEnfantConditionsMedicales !== '')
-		vals['setEnfantConditionsMedicales'] = setEnfantConditionsMedicales;
-	var addEnfantConditionsMedicales = $formulaireValeurs.find('.addEnfantConditionsMedicales').val();
-	if(addEnfantConditionsMedicales != null && addEnfantConditionsMedicales !== '')
-		vals['addEnfantConditionsMedicales'] = addEnfantConditionsMedicales;
-	var removeEnfantConditionsMedicales = $formulaireValeurs.find('.removeEnfantConditionsMedicales').val();
-	if(removeEnfantConditionsMedicales != null && removeEnfantConditionsMedicales !== '')
-		vals['removeEnfantConditionsMedicales'] = removeEnfantConditionsMedicales;
-
 	var removeInscriptionConsiderationsSpeciales = $formulaireFiltres.find('.removeInscriptionConsiderationsSpeciales').val() === 'true';
 	var setInscriptionConsiderationsSpeciales = removeInscriptionConsiderationsSpeciales ? null : $formulaireValeurs.find('.setInscriptionConsiderationsSpeciales').val();
 	if(removeInscriptionConsiderationsSpeciales || setInscriptionConsiderationsSpeciales != null && setInscriptionConsiderationsSpeciales !== '')
@@ -448,17 +449,6 @@ async function patchInscriptionScolaire($formulaireFiltres, $formulaireValeurs, 
 	var removeInscriptionConsiderationsSpeciales = $formulaireValeurs.find('.removeInscriptionConsiderationsSpeciales').val();
 	if(removeInscriptionConsiderationsSpeciales != null && removeInscriptionConsiderationsSpeciales !== '')
 		vals['removeInscriptionConsiderationsSpeciales'] = removeInscriptionConsiderationsSpeciales;
-
-	var removeEnfantEcolesPrecedemmentFrequentees = $formulaireFiltres.find('.removeEnfantEcolesPrecedemmentFrequentees').val() === 'true';
-	var setEnfantEcolesPrecedemmentFrequentees = removeEnfantEcolesPrecedemmentFrequentees ? null : $formulaireValeurs.find('.setEnfantEcolesPrecedemmentFrequentees').val();
-	if(removeEnfantEcolesPrecedemmentFrequentees || setEnfantEcolesPrecedemmentFrequentees != null && setEnfantEcolesPrecedemmentFrequentees !== '')
-		vals['setEnfantEcolesPrecedemmentFrequentees'] = setEnfantEcolesPrecedemmentFrequentees;
-	var addEnfantEcolesPrecedemmentFrequentees = $formulaireValeurs.find('.addEnfantEcolesPrecedemmentFrequentees').val();
-	if(addEnfantEcolesPrecedemmentFrequentees != null && addEnfantEcolesPrecedemmentFrequentees !== '')
-		vals['addEnfantEcolesPrecedemmentFrequentees'] = addEnfantEcolesPrecedemmentFrequentees;
-	var removeEnfantEcolesPrecedemmentFrequentees = $formulaireValeurs.find('.removeEnfantEcolesPrecedemmentFrequentees').val();
-	if(removeEnfantEcolesPrecedemmentFrequentees != null && removeEnfantEcolesPrecedemmentFrequentees !== '')
-		vals['removeEnfantEcolesPrecedemmentFrequentees'] = removeEnfantEcolesPrecedemmentFrequentees;
 
 	var removeFamilleCommentVousConnaissezEcole = $formulaireFiltres.find('.removeFamilleCommentVousConnaissezEcole').val() === 'true';
 	var setFamilleCommentVousConnaissezEcole = removeFamilleCommentVousConnaissezEcole ? null : $formulaireValeurs.find('.setFamilleCommentVousConnaissezEcole').val();
@@ -482,6 +472,28 @@ async function patchInscriptionScolaire($formulaireFiltres, $formulaireValeurs, 
 	if(removeBlocCles != null && removeBlocCles !== '')
 		vals['removeBlocCles'] = removeBlocCles;
 
+	var removeEnfantConditionsMedicales = $formulaireFiltres.find('.removeEnfantConditionsMedicales').val() === 'true';
+	var setEnfantConditionsMedicales = removeEnfantConditionsMedicales ? null : $formulaireValeurs.find('.setEnfantConditionsMedicales').val();
+	if(removeEnfantConditionsMedicales || setEnfantConditionsMedicales != null && setEnfantConditionsMedicales !== '')
+		vals['setEnfantConditionsMedicales'] = setEnfantConditionsMedicales;
+	var addEnfantConditionsMedicales = $formulaireValeurs.find('.addEnfantConditionsMedicales').val();
+	if(addEnfantConditionsMedicales != null && addEnfantConditionsMedicales !== '')
+		vals['addEnfantConditionsMedicales'] = addEnfantConditionsMedicales;
+	var removeEnfantConditionsMedicales = $formulaireValeurs.find('.removeEnfantConditionsMedicales').val();
+	if(removeEnfantConditionsMedicales != null && removeEnfantConditionsMedicales !== '')
+		vals['removeEnfantConditionsMedicales'] = removeEnfantConditionsMedicales;
+
+	var removeEnfantEcolesPrecedemmentFrequentees = $formulaireFiltres.find('.removeEnfantEcolesPrecedemmentFrequentees').val() === 'true';
+	var setEnfantEcolesPrecedemmentFrequentees = removeEnfantEcolesPrecedemmentFrequentees ? null : $formulaireValeurs.find('.setEnfantEcolesPrecedemmentFrequentees').val();
+	if(removeEnfantEcolesPrecedemmentFrequentees || setEnfantEcolesPrecedemmentFrequentees != null && setEnfantEcolesPrecedemmentFrequentees !== '')
+		vals['setEnfantEcolesPrecedemmentFrequentees'] = setEnfantEcolesPrecedemmentFrequentees;
+	var addEnfantEcolesPrecedemmentFrequentees = $formulaireValeurs.find('.addEnfantEcolesPrecedemmentFrequentees').val();
+	if(addEnfantEcolesPrecedemmentFrequentees != null && addEnfantEcolesPrecedemmentFrequentees !== '')
+		vals['addEnfantEcolesPrecedemmentFrequentees'] = addEnfantEcolesPrecedemmentFrequentees;
+	var removeEnfantEcolesPrecedemmentFrequentees = $formulaireValeurs.find('.removeEnfantEcolesPrecedemmentFrequentees').val();
+	if(removeEnfantEcolesPrecedemmentFrequentees != null && removeEnfantEcolesPrecedemmentFrequentees !== '')
+		vals['removeEnfantEcolesPrecedemmentFrequentees'] = removeEnfantEcolesPrecedemmentFrequentees;
+
 	var removeEnfantDescription = $formulaireFiltres.find('.removeEnfantDescription').val() === 'true';
 	var setEnfantDescription = removeEnfantDescription ? null : $formulaireValeurs.find('.setEnfantDescription').val();
 	if(removeEnfantDescription || setEnfantDescription != null && setEnfantDescription !== '')
@@ -493,17 +505,6 @@ async function patchInscriptionScolaire($formulaireFiltres, $formulaireValeurs, 
 	if(removeEnfantDescription != null && removeEnfantDescription !== '')
 		vals['removeEnfantDescription'] = removeEnfantDescription;
 
-	var removeEnfantCle = $formulaireFiltres.find('.removeEnfantCle').val() === 'true';
-	var setEnfantCle = removeEnfantCle ? null : $formulaireValeurs.find('.setEnfantCle').val();
-	if(removeEnfantCle || setEnfantCle != null && setEnfantCle !== '')
-		vals['setEnfantCle'] = setEnfantCle;
-	var addEnfantCle = $formulaireValeurs.find('.addEnfantCle').val();
-	if(addEnfantCle != null && addEnfantCle !== '')
-		vals['addEnfantCle'] = addEnfantCle;
-	var removeEnfantCle = $formulaireValeurs.find('.removeEnfantCle').val();
-	if(removeEnfantCle != null && removeEnfantCle !== '')
-		vals['removeEnfantCle'] = removeEnfantCle;
-
 	var removeEnfantObjectifs = $formulaireFiltres.find('.removeEnfantObjectifs').val() === 'true';
 	var setEnfantObjectifs = removeEnfantObjectifs ? null : $formulaireValeurs.find('.setEnfantObjectifs').val();
 	if(removeEnfantObjectifs || setEnfantObjectifs != null && setEnfantObjectifs !== '')
@@ -514,6 +515,17 @@ async function patchInscriptionScolaire($formulaireFiltres, $formulaireValeurs, 
 	var removeEnfantObjectifs = $formulaireValeurs.find('.removeEnfantObjectifs').val();
 	if(removeEnfantObjectifs != null && removeEnfantObjectifs !== '')
 		vals['removeEnfantObjectifs'] = removeEnfantObjectifs;
+
+	var removeEnfantCle = $formulaireFiltres.find('.removeEnfantCle').val() === 'true';
+	var setEnfantCle = removeEnfantCle ? null : $formulaireValeurs.find('.setEnfantCle').val();
+	if(removeEnfantCle || setEnfantCle != null && setEnfantCle !== '')
+		vals['setEnfantCle'] = setEnfantCle;
+	var addEnfantCle = $formulaireValeurs.find('.addEnfantCle').val();
+	if(addEnfantCle != null && addEnfantCle !== '')
+		vals['addEnfantCle'] = addEnfantCle;
+	var removeEnfantCle = $formulaireValeurs.find('.removeEnfantCle').val();
+	if(removeEnfantCle != null && removeEnfantCle !== '')
+		vals['removeEnfantCle'] = removeEnfantCle;
 
 	var removeMereCles = $formulaireFiltres.find('.removeMereCles').val() === 'true';
 	var setMereCles = removeMereCles ? null : $formulaireValeurs.find('.setMereCles').val();
@@ -537,6 +549,17 @@ async function patchInscriptionScolaire($formulaireFiltres, $formulaireValeurs, 
 	if(removePereCles != null && removePereCles !== '')
 		vals['removePereCles'] = removePereCles;
 
+	var removeFormInscriptionCle = $formulaireFiltres.find('.removeFormInscriptionCle').val() === 'true';
+	var setFormInscriptionCle = removeFormInscriptionCle ? null : $formulaireValeurs.find('.setFormInscriptionCle').val();
+	if(removeFormInscriptionCle || setFormInscriptionCle != null && setFormInscriptionCle !== '')
+		vals['setFormInscriptionCle'] = setFormInscriptionCle;
+	var addFormInscriptionCle = $formulaireValeurs.find('.addFormInscriptionCle').val();
+	if(addFormInscriptionCle != null && addFormInscriptionCle !== '')
+		vals['addFormInscriptionCle'] = addFormInscriptionCle;
+	var removeFormInscriptionCle = $formulaireValeurs.find('.removeFormInscriptionCle').val();
+	if(removeFormInscriptionCle != null && removeFormInscriptionCle !== '')
+		vals['removeFormInscriptionCle'] = removeFormInscriptionCle;
+
 	var removeGardienCles = $formulaireFiltres.find('.removeGardienCles').val() === 'true';
 	var setGardienCles = removeGardienCles ? null : $formulaireValeurs.find('.setGardienCles').val();
 	if(removeGardienCles || setGardienCles != null && setGardienCles !== '')
@@ -559,16 +582,27 @@ async function patchInscriptionScolaire($formulaireFiltres, $formulaireValeurs, 
 	if(removePaiementCles != null && removePaiementCles !== '')
 		vals['removePaiementCles'] = removePaiementCles;
 
-	var removeFormInscriptionCle = $formulaireFiltres.find('.removeFormInscriptionCle').val() === 'true';
-	var setFormInscriptionCle = removeFormInscriptionCle ? null : $formulaireValeurs.find('.setFormInscriptionCle').val();
-	if(removeFormInscriptionCle || setFormInscriptionCle != null && setFormInscriptionCle !== '')
-		vals['setFormInscriptionCle'] = setFormInscriptionCle;
-	var addFormInscriptionCle = $formulaireValeurs.find('.addFormInscriptionCle').val();
-	if(addFormInscriptionCle != null && addFormInscriptionCle !== '')
-		vals['addFormInscriptionCle'] = addFormInscriptionCle;
-	var removeFormInscriptionCle = $formulaireValeurs.find('.removeFormInscriptionCle').val();
-	if(removeFormInscriptionCle != null && removeFormInscriptionCle !== '')
-		vals['removeFormInscriptionCle'] = removeFormInscriptionCle;
+	var removeEnfantNomComplet = $formulaireFiltres.find('.removeEnfantNomComplet').val() === 'true';
+	var setEnfantNomComplet = removeEnfantNomComplet ? null : $formulaireValeurs.find('.setEnfantNomComplet').val();
+	if(removeEnfantNomComplet || setEnfantNomComplet != null && setEnfantNomComplet !== '')
+		vals['setEnfantNomComplet'] = setEnfantNomComplet;
+	var addEnfantNomComplet = $formulaireValeurs.find('.addEnfantNomComplet').val();
+	if(addEnfantNomComplet != null && addEnfantNomComplet !== '')
+		vals['addEnfantNomComplet'] = addEnfantNomComplet;
+	var removeEnfantNomComplet = $formulaireValeurs.find('.removeEnfantNomComplet').val();
+	if(removeEnfantNomComplet != null && removeEnfantNomComplet !== '')
+		vals['removeEnfantNomComplet'] = removeEnfantNomComplet;
+
+	var removeEnfantDateNaissance = $formulaireFiltres.find('.removeEnfantDateNaissance').val() === 'true';
+	var setEnfantDateNaissance = removeEnfantDateNaissance ? null : $formulaireValeurs.find('.setEnfantDateNaissance').val();
+	if(removeEnfantDateNaissance || setEnfantDateNaissance != null && setEnfantDateNaissance !== '')
+		vals['setEnfantDateNaissance'] = setEnfantDateNaissance;
+	var addEnfantDateNaissance = $formulaireValeurs.find('.addEnfantDateNaissance').val();
+	if(addEnfantDateNaissance != null && addEnfantDateNaissance !== '')
+		vals['addEnfantDateNaissance'] = addEnfantDateNaissance;
+	var removeEnfantDateNaissance = $formulaireValeurs.find('.removeEnfantDateNaissance').val();
+	if(removeEnfantDateNaissance != null && removeEnfantDateNaissance !== '')
+		vals['removeEnfantDateNaissance'] = removeEnfantDateNaissance;
 
 	var removeEcoleAddresse = $formulaireFiltres.find('.removeEcoleAddresse').val() === 'true';
 	var setEcoleAddresse = removeEcoleAddresse ? null : $formulaireValeurs.find('.setEcoleAddresse').val();
@@ -580,6 +614,17 @@ async function patchInscriptionScolaire($formulaireFiltres, $formulaireValeurs, 
 	var removeEcoleAddresse = $formulaireValeurs.find('.removeEcoleAddresse').val();
 	if(removeEcoleAddresse != null && removeEcoleAddresse !== '')
 		vals['removeEcoleAddresse'] = removeEcoleAddresse;
+
+	var removeInscriptionNomsParents = $formulaireFiltres.find('.removeInscriptionNomsParents').val() === 'true';
+	var setInscriptionNomsParents = removeInscriptionNomsParents ? null : $formulaireValeurs.find('.setInscriptionNomsParents').val();
+	if(removeInscriptionNomsParents || setInscriptionNomsParents != null && setInscriptionNomsParents !== '')
+		vals['setInscriptionNomsParents'] = setInscriptionNomsParents;
+	var addInscriptionNomsParents = $formulaireValeurs.find('.addInscriptionNomsParents').val();
+	if(addInscriptionNomsParents != null && addInscriptionNomsParents !== '')
+		vals['addInscriptionNomsParents'] = addInscriptionNomsParents;
+	var removeInscriptionNomsParents = $formulaireValeurs.find('.removeInscriptionNomsParents').val();
+	if(removeInscriptionNomsParents != null && removeInscriptionNomsParents !== '')
+		vals['removeInscriptionNomsParents'] = removeInscriptionNomsParents;
 
 	var removeInscriptionSignature1 = $formulaireFiltres.find('.removeInscriptionSignature1').val() === 'true';
 	var setInscriptionSignature1 = removeInscriptionSignature1 ? null : $formulaireValeurs.find('.setInscriptionSignature1').val();
@@ -818,21 +863,21 @@ async function patchInscriptionScolaire($formulaireFiltres, $formulaireValeurs, 
 function patchInscriptionScolaireFiltres($formulaireFiltres) {
 	var filtres = [];
 
-	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
-	if(filtrePk != null && filtrePk !== '')
-		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
-
 	var filtreCree = $formulaireFiltres.find('.valeurCree').val();
 	if(filtreCree != null && filtreCree !== '')
 		filtres.push({ name: 'fq', value: 'cree:' + filtreCree });
 
-	var filtreModifie = $formulaireFiltres.find('.valeurModifie').val();
-	if(filtreModifie != null && filtreModifie !== '')
-		filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
+	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
+	if(filtrePk != null && filtrePk !== '')
+		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
 
 	var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
 	if(filtreObjetId != null && filtreObjetId !== '')
 		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
+
+	var filtreModifie = $formulaireFiltres.find('.valeurModifie').val();
+	if(filtreModifie != null && filtreModifie !== '')
+		filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
 
 	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
 	if(filtreArchive != null && filtreArchive === true)
@@ -858,6 +903,10 @@ function patchInscriptionScolaireFiltres($formulaireFiltres) {
 	if(filtreInscriptionPaimentComplet != null && filtreInscriptionPaimentComplet === true)
 		filtres.push({ name: 'fq', value: 'inscriptionPaimentComplet:' + filtreInscriptionPaimentComplet });
 
+	var filtreEnfantPropre = $formulaireFiltres.find('.valeurEnfantPropre').prop('checked');
+	if(filtreEnfantPropre != null && filtreEnfantPropre === true)
+		filtres.push({ name: 'fq', value: 'enfantPropre:' + filtreEnfantPropre });
+
 	var filtreInscriptionPaimentChaqueMois = $formulaireFiltres.find('.valeurInscriptionPaimentChaqueMois').prop('checked');
 	if(filtreInscriptionPaimentChaqueMois != null && filtreInscriptionPaimentChaqueMois === true)
 		filtres.push({ name: 'fq', value: 'inscriptionPaimentChaqueMois:' + filtreInscriptionPaimentChaqueMois });
@@ -865,10 +914,6 @@ function patchInscriptionScolaireFiltres($formulaireFiltres) {
 	var filtreFamilleMarie = $formulaireFiltres.find('.valeurFamilleMarie').prop('checked');
 	if(filtreFamilleMarie != null && filtreFamilleMarie === true)
 		filtres.push({ name: 'fq', value: 'familleMarie:' + filtreFamilleMarie });
-
-	var filtreEnfantPropre = $formulaireFiltres.find('.valeurEnfantPropre').prop('checked');
-	if(filtreEnfantPropre != null && filtreEnfantPropre === true)
-		filtres.push({ name: 'fq', value: 'enfantPropre:' + filtreEnfantPropre });
 
 	var filtreFamilleSepare = $formulaireFiltres.find('.valeurFamilleSepare').prop('checked');
 	if(filtreFamilleSepare != null && filtreFamilleSepare === true)
@@ -882,17 +927,9 @@ function patchInscriptionScolaireFiltres($formulaireFiltres) {
 	if(filtreFamilleAddresse != null && filtreFamilleAddresse !== '')
 		filtres.push({ name: 'fq', value: 'familleAddresse:' + filtreFamilleAddresse });
 
-	var filtreEnfantConditionsMedicales = $formulaireFiltres.find('.valeurEnfantConditionsMedicales').val();
-	if(filtreEnfantConditionsMedicales != null && filtreEnfantConditionsMedicales !== '')
-		filtres.push({ name: 'fq', value: 'enfantConditionsMedicales:' + filtreEnfantConditionsMedicales });
-
 	var filtreInscriptionConsiderationsSpeciales = $formulaireFiltres.find('.valeurInscriptionConsiderationsSpeciales').val();
 	if(filtreInscriptionConsiderationsSpeciales != null && filtreInscriptionConsiderationsSpeciales !== '')
 		filtres.push({ name: 'fq', value: 'inscriptionConsiderationsSpeciales:' + filtreInscriptionConsiderationsSpeciales });
-
-	var filtreEnfantEcolesPrecedemmentFrequentees = $formulaireFiltres.find('.valeurEnfantEcolesPrecedemmentFrequentees').val();
-	if(filtreEnfantEcolesPrecedemmentFrequentees != null && filtreEnfantEcolesPrecedemmentFrequentees !== '')
-		filtres.push({ name: 'fq', value: 'enfantEcolesPrecedemmentFrequentees:' + filtreEnfantEcolesPrecedemmentFrequentees });
 
 	var filtreFamilleCommentVousConnaissezEcole = $formulaireFiltres.find('.valeurFamilleCommentVousConnaissezEcole').val();
 	if(filtreFamilleCommentVousConnaissezEcole != null && filtreFamilleCommentVousConnaissezEcole !== '')
@@ -902,17 +939,25 @@ function patchInscriptionScolaireFiltres($formulaireFiltres) {
 	if(filtreBlocCles != null && filtreBlocCles !== '')
 		filtres.push({ name: 'fq', value: 'blocCles:' + filtreBlocCles });
 
+	var filtreEnfantConditionsMedicales = $formulaireFiltres.find('.valeurEnfantConditionsMedicales').val();
+	if(filtreEnfantConditionsMedicales != null && filtreEnfantConditionsMedicales !== '')
+		filtres.push({ name: 'fq', value: 'enfantConditionsMedicales:' + filtreEnfantConditionsMedicales });
+
+	var filtreEnfantEcolesPrecedemmentFrequentees = $formulaireFiltres.find('.valeurEnfantEcolesPrecedemmentFrequentees').val();
+	if(filtreEnfantEcolesPrecedemmentFrequentees != null && filtreEnfantEcolesPrecedemmentFrequentees !== '')
+		filtres.push({ name: 'fq', value: 'enfantEcolesPrecedemmentFrequentees:' + filtreEnfantEcolesPrecedemmentFrequentees });
+
 	var filtreEnfantDescription = $formulaireFiltres.find('.valeurEnfantDescription').val();
 	if(filtreEnfantDescription != null && filtreEnfantDescription !== '')
 		filtres.push({ name: 'fq', value: 'enfantDescription:' + filtreEnfantDescription });
 
-	var filtreEnfantCle = $formulaireFiltres.find('.valeurEnfantCle').val();
-	if(filtreEnfantCle != null && filtreEnfantCle !== '')
-		filtres.push({ name: 'fq', value: 'enfantCle:' + filtreEnfantCle });
-
 	var filtreEnfantObjectifs = $formulaireFiltres.find('.valeurEnfantObjectifs').val();
 	if(filtreEnfantObjectifs != null && filtreEnfantObjectifs !== '')
 		filtres.push({ name: 'fq', value: 'enfantObjectifs:' + filtreEnfantObjectifs });
+
+	var filtreEnfantCle = $formulaireFiltres.find('.valeurEnfantCle').val();
+	if(filtreEnfantCle != null && filtreEnfantCle !== '')
+		filtres.push({ name: 'fq', value: 'enfantCle:' + filtreEnfantCle });
 
 	var filtreMereCles = $formulaireFiltres.find('.valeurMereCles').val();
 	if(filtreMereCles != null && filtreMereCles !== '')
@@ -922,6 +967,10 @@ function patchInscriptionScolaireFiltres($formulaireFiltres) {
 	if(filtrePereCles != null && filtrePereCles !== '')
 		filtres.push({ name: 'fq', value: 'pereCles:' + filtrePereCles });
 
+	var filtreFormInscriptionCle = $formulaireFiltres.find('.valeurFormInscriptionCle').val();
+	if(filtreFormInscriptionCle != null && filtreFormInscriptionCle !== '')
+		filtres.push({ name: 'fq', value: 'formInscriptionCle:' + filtreFormInscriptionCle });
+
 	var filtreGardienCles = $formulaireFiltres.find('.valeurGardienCles').val();
 	if(filtreGardienCles != null && filtreGardienCles !== '')
 		filtres.push({ name: 'fq', value: 'gardienCles:' + filtreGardienCles });
@@ -930,13 +979,9 @@ function patchInscriptionScolaireFiltres($formulaireFiltres) {
 	if(filtrePaiementCles != null && filtrePaiementCles !== '')
 		filtres.push({ name: 'fq', value: 'paiementCles:' + filtrePaiementCles });
 
-	var filtreFormInscriptionCle = $formulaireFiltres.find('.valeurFormInscriptionCle').val();
-	if(filtreFormInscriptionCle != null && filtreFormInscriptionCle !== '')
-		filtres.push({ name: 'fq', value: 'formInscriptionCle:' + filtreFormInscriptionCle });
-
-	var filtreId = $formulaireFiltres.find('.valeurId').val();
-	if(filtreId != null && filtreId !== '')
-		filtres.push({ name: 'fq', value: 'id:' + filtreId });
+	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
+	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
+		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
 
 	var filtreClasseNomCanonique = $formulaireFiltres.find('.valeurClasseNomCanonique').val();
 	if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
@@ -958,6 +1003,10 @@ function patchInscriptionScolaireFiltres($formulaireFiltres) {
 	if(filtreObjetTitre != null && filtreObjetTitre !== '')
 		filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
 
+	var filtreId = $formulaireFiltres.find('.valeurId').val();
+	if(filtreId != null && filtreId !== '')
+		filtres.push({ name: 'fq', value: 'id:' + filtreId });
+
 	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
 	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
 		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
@@ -965,10 +1014,6 @@ function patchInscriptionScolaireFiltres($formulaireFiltres) {
 	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
 	if(filtrePageUrlId != null && filtrePageUrlId !== '')
 		filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
-
-	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
-	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
-		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
 
 	var filtreInscriptionCle = $formulaireFiltres.find('.valeurInscriptionCle').val();
 	if(filtreInscriptionCle != null && filtreInscriptionCle !== '')
@@ -1025,6 +1070,10 @@ function patchInscriptionScolaireFiltres($formulaireFiltres) {
 	var filtreEnfantNomComplet = $formulaireFiltres.find('.valeurEnfantNomComplet').val();
 	if(filtreEnfantNomComplet != null && filtreEnfantNomComplet !== '')
 		filtres.push({ name: 'fq', value: 'enfantNomComplet:' + filtreEnfantNomComplet });
+
+	var filtreEnfantDateNaissance = $formulaireFiltres.find('.valeurEnfantDateNaissance').val();
+	if(filtreEnfantDateNaissance != null && filtreEnfantDateNaissance !== '')
+		filtres.push({ name: 'fq', value: 'enfantDateNaissance:' + filtreEnfantDateNaissance });
 
 	var filtreEcoleNom = $formulaireFiltres.find('.valeurEcoleNom').val();
 	if(filtreEcoleNom != null && filtreEcoleNom !== '')
@@ -1141,6 +1190,10 @@ function patchInscriptionScolaireFiltres($formulaireFiltres) {
 	var filtreBlocPrixTotal = $formulaireFiltres.find('.valeurBlocPrixTotal').val();
 	if(filtreBlocPrixTotal != null && filtreBlocPrixTotal !== '')
 		filtres.push({ name: 'fq', value: 'blocPrixTotal:' + filtreBlocPrixTotal });
+
+	var filtreBlocNomAdmin = $formulaireFiltres.find('.valeurBlocNomAdmin').val();
+	if(filtreBlocNomAdmin != null && filtreBlocNomAdmin !== '')
+		filtres.push({ name: 'fq', value: 'blocNomAdmin:' + filtreBlocNomAdmin });
 
 	var filtreInscriptionNomsParents = $formulaireFiltres.find('.valeurInscriptionNomsParents').val();
 	if(filtreInscriptionNomsParents != null && filtreInscriptionNomsParents !== '')
@@ -1252,21 +1305,21 @@ async function rechercheInscriptionScolaire($formulaireFiltres, success, error) 
 function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 	var filtres = [];
 
-	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
-	if(filtrePk != null && filtrePk !== '')
-		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
-
 	var filtreCree = $formulaireFiltres.find('.valeurCree').val();
 	if(filtreCree != null && filtreCree !== '')
 		filtres.push({ name: 'fq', value: 'cree:' + filtreCree });
 
-	var filtreModifie = $formulaireFiltres.find('.valeurModifie').val();
-	if(filtreModifie != null && filtreModifie !== '')
-		filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
+	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
+	if(filtrePk != null && filtrePk !== '')
+		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
 
 	var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
 	if(filtreObjetId != null && filtreObjetId !== '')
 		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
+
+	var filtreModifie = $formulaireFiltres.find('.valeurModifie').val();
+	if(filtreModifie != null && filtreModifie !== '')
+		filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
 
 	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
 	if(filtreArchive != null && filtreArchive === true)
@@ -1292,6 +1345,10 @@ function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 	if(filtreInscriptionPaimentComplet != null && filtreInscriptionPaimentComplet === true)
 		filtres.push({ name: 'fq', value: 'inscriptionPaimentComplet:' + filtreInscriptionPaimentComplet });
 
+	var filtreEnfantPropre = $formulaireFiltres.find('.valeurEnfantPropre').prop('checked');
+	if(filtreEnfantPropre != null && filtreEnfantPropre === true)
+		filtres.push({ name: 'fq', value: 'enfantPropre:' + filtreEnfantPropre });
+
 	var filtreInscriptionPaimentChaqueMois = $formulaireFiltres.find('.valeurInscriptionPaimentChaqueMois').prop('checked');
 	if(filtreInscriptionPaimentChaqueMois != null && filtreInscriptionPaimentChaqueMois === true)
 		filtres.push({ name: 'fq', value: 'inscriptionPaimentChaqueMois:' + filtreInscriptionPaimentChaqueMois });
@@ -1299,10 +1356,6 @@ function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 	var filtreFamilleMarie = $formulaireFiltres.find('.valeurFamilleMarie').prop('checked');
 	if(filtreFamilleMarie != null && filtreFamilleMarie === true)
 		filtres.push({ name: 'fq', value: 'familleMarie:' + filtreFamilleMarie });
-
-	var filtreEnfantPropre = $formulaireFiltres.find('.valeurEnfantPropre').prop('checked');
-	if(filtreEnfantPropre != null && filtreEnfantPropre === true)
-		filtres.push({ name: 'fq', value: 'enfantPropre:' + filtreEnfantPropre });
 
 	var filtreFamilleSepare = $formulaireFiltres.find('.valeurFamilleSepare').prop('checked');
 	if(filtreFamilleSepare != null && filtreFamilleSepare === true)
@@ -1316,17 +1369,9 @@ function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 	if(filtreFamilleAddresse != null && filtreFamilleAddresse !== '')
 		filtres.push({ name: 'fq', value: 'familleAddresse:' + filtreFamilleAddresse });
 
-	var filtreEnfantConditionsMedicales = $formulaireFiltres.find('.valeurEnfantConditionsMedicales').val();
-	if(filtreEnfantConditionsMedicales != null && filtreEnfantConditionsMedicales !== '')
-		filtres.push({ name: 'fq', value: 'enfantConditionsMedicales:' + filtreEnfantConditionsMedicales });
-
 	var filtreInscriptionConsiderationsSpeciales = $formulaireFiltres.find('.valeurInscriptionConsiderationsSpeciales').val();
 	if(filtreInscriptionConsiderationsSpeciales != null && filtreInscriptionConsiderationsSpeciales !== '')
 		filtres.push({ name: 'fq', value: 'inscriptionConsiderationsSpeciales:' + filtreInscriptionConsiderationsSpeciales });
-
-	var filtreEnfantEcolesPrecedemmentFrequentees = $formulaireFiltres.find('.valeurEnfantEcolesPrecedemmentFrequentees').val();
-	if(filtreEnfantEcolesPrecedemmentFrequentees != null && filtreEnfantEcolesPrecedemmentFrequentees !== '')
-		filtres.push({ name: 'fq', value: 'enfantEcolesPrecedemmentFrequentees:' + filtreEnfantEcolesPrecedemmentFrequentees });
 
 	var filtreFamilleCommentVousConnaissezEcole = $formulaireFiltres.find('.valeurFamilleCommentVousConnaissezEcole').val();
 	if(filtreFamilleCommentVousConnaissezEcole != null && filtreFamilleCommentVousConnaissezEcole !== '')
@@ -1336,17 +1381,25 @@ function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 	if(filtreBlocCles != null && filtreBlocCles !== '')
 		filtres.push({ name: 'fq', value: 'blocCles:' + filtreBlocCles });
 
+	var filtreEnfantConditionsMedicales = $formulaireFiltres.find('.valeurEnfantConditionsMedicales').val();
+	if(filtreEnfantConditionsMedicales != null && filtreEnfantConditionsMedicales !== '')
+		filtres.push({ name: 'fq', value: 'enfantConditionsMedicales:' + filtreEnfantConditionsMedicales });
+
+	var filtreEnfantEcolesPrecedemmentFrequentees = $formulaireFiltres.find('.valeurEnfantEcolesPrecedemmentFrequentees').val();
+	if(filtreEnfantEcolesPrecedemmentFrequentees != null && filtreEnfantEcolesPrecedemmentFrequentees !== '')
+		filtres.push({ name: 'fq', value: 'enfantEcolesPrecedemmentFrequentees:' + filtreEnfantEcolesPrecedemmentFrequentees });
+
 	var filtreEnfantDescription = $formulaireFiltres.find('.valeurEnfantDescription').val();
 	if(filtreEnfantDescription != null && filtreEnfantDescription !== '')
 		filtres.push({ name: 'fq', value: 'enfantDescription:' + filtreEnfantDescription });
 
-	var filtreEnfantCle = $formulaireFiltres.find('.valeurEnfantCle').val();
-	if(filtreEnfantCle != null && filtreEnfantCle !== '')
-		filtres.push({ name: 'fq', value: 'enfantCle:' + filtreEnfantCle });
-
 	var filtreEnfantObjectifs = $formulaireFiltres.find('.valeurEnfantObjectifs').val();
 	if(filtreEnfantObjectifs != null && filtreEnfantObjectifs !== '')
 		filtres.push({ name: 'fq', value: 'enfantObjectifs:' + filtreEnfantObjectifs });
+
+	var filtreEnfantCle = $formulaireFiltres.find('.valeurEnfantCle').val();
+	if(filtreEnfantCle != null && filtreEnfantCle !== '')
+		filtres.push({ name: 'fq', value: 'enfantCle:' + filtreEnfantCle });
 
 	var filtreMereCles = $formulaireFiltres.find('.valeurMereCles').val();
 	if(filtreMereCles != null && filtreMereCles !== '')
@@ -1356,6 +1409,10 @@ function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 	if(filtrePereCles != null && filtrePereCles !== '')
 		filtres.push({ name: 'fq', value: 'pereCles:' + filtrePereCles });
 
+	var filtreFormInscriptionCle = $formulaireFiltres.find('.valeurFormInscriptionCle').val();
+	if(filtreFormInscriptionCle != null && filtreFormInscriptionCle !== '')
+		filtres.push({ name: 'fq', value: 'formInscriptionCle:' + filtreFormInscriptionCle });
+
 	var filtreGardienCles = $formulaireFiltres.find('.valeurGardienCles').val();
 	if(filtreGardienCles != null && filtreGardienCles !== '')
 		filtres.push({ name: 'fq', value: 'gardienCles:' + filtreGardienCles });
@@ -1364,13 +1421,9 @@ function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 	if(filtrePaiementCles != null && filtrePaiementCles !== '')
 		filtres.push({ name: 'fq', value: 'paiementCles:' + filtrePaiementCles });
 
-	var filtreFormInscriptionCle = $formulaireFiltres.find('.valeurFormInscriptionCle').val();
-	if(filtreFormInscriptionCle != null && filtreFormInscriptionCle !== '')
-		filtres.push({ name: 'fq', value: 'formInscriptionCle:' + filtreFormInscriptionCle });
-
-	var filtreId = $formulaireFiltres.find('.valeurId').val();
-	if(filtreId != null && filtreId !== '')
-		filtres.push({ name: 'fq', value: 'id:' + filtreId });
+	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
+	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
+		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
 
 	var filtreClasseNomCanonique = $formulaireFiltres.find('.valeurClasseNomCanonique').val();
 	if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
@@ -1392,6 +1445,10 @@ function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 	if(filtreObjetTitre != null && filtreObjetTitre !== '')
 		filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
 
+	var filtreId = $formulaireFiltres.find('.valeurId').val();
+	if(filtreId != null && filtreId !== '')
+		filtres.push({ name: 'fq', value: 'id:' + filtreId });
+
 	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
 	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
 		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
@@ -1399,10 +1456,6 @@ function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
 	if(filtrePageUrlId != null && filtrePageUrlId !== '')
 		filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
-
-	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
-	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
-		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
 
 	var filtreInscriptionCle = $formulaireFiltres.find('.valeurInscriptionCle').val();
 	if(filtreInscriptionCle != null && filtreInscriptionCle !== '')
@@ -1459,6 +1512,10 @@ function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 	var filtreEnfantNomComplet = $formulaireFiltres.find('.valeurEnfantNomComplet').val();
 	if(filtreEnfantNomComplet != null && filtreEnfantNomComplet !== '')
 		filtres.push({ name: 'fq', value: 'enfantNomComplet:' + filtreEnfantNomComplet });
+
+	var filtreEnfantDateNaissance = $formulaireFiltres.find('.valeurEnfantDateNaissance').val();
+	if(filtreEnfantDateNaissance != null && filtreEnfantDateNaissance !== '')
+		filtres.push({ name: 'fq', value: 'enfantDateNaissance:' + filtreEnfantDateNaissance });
 
 	var filtreEcoleNom = $formulaireFiltres.find('.valeurEcoleNom').val();
 	if(filtreEcoleNom != null && filtreEcoleNom !== '')
@@ -1575,6 +1632,10 @@ function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 	var filtreBlocPrixTotal = $formulaireFiltres.find('.valeurBlocPrixTotal').val();
 	if(filtreBlocPrixTotal != null && filtreBlocPrixTotal !== '')
 		filtres.push({ name: 'fq', value: 'blocPrixTotal:' + filtreBlocPrixTotal });
+
+	var filtreBlocNomAdmin = $formulaireFiltres.find('.valeurBlocNomAdmin').val();
+	if(filtreBlocNomAdmin != null && filtreBlocNomAdmin !== '')
+		filtres.push({ name: 'fq', value: 'blocNomAdmin:' + filtreBlocNomAdmin });
 
 	var filtreInscriptionNomsParents = $formulaireFiltres.find('.valeurInscriptionNomsParents').val();
 	if(filtreInscriptionNomsParents != null && filtreInscriptionNomsParents !== '')
@@ -1848,10 +1909,9 @@ function suggereInscriptionScolairePaiementCles(filtres, $list, pk = null) {
 }
 
 async function websocketInscriptionScolaire(success) {
-	var eventBus = new EventBus('/eventbus');
-	eventBus.onopen = function () {
+	window.eventBus.onopen = function () {
 
-		eventBus.registerHandler('websocketInscriptionScolaire', function (error, message) {
+		window.eventBus.registerHandler('websocketInscriptionScolaire', function (error, message) {
 			var json = JSON.parse(message['body']);
 			var id = json['id'];
 			var pk = json['pk'];
@@ -1888,28 +1948,252 @@ async function websocketInscriptionScolaire(success) {
 			}
 		});
 
-		eventBus.registerHandler('websocketBlocScolaire', function (error, message) {
+		window.eventBus.registerHandler('websocketBlocScolaire', function (error, message) {
 			$('#Page_blocCles').trigger('oninput');
 		});
 
-		eventBus.registerHandler('websocketEnfantScolaire', function (error, message) {
+		window.eventBus.registerHandler('websocketEnfantScolaire', function (error, message) {
 			$('#Page_enfantCle').trigger('oninput');
 		});
 
-		eventBus.registerHandler('websocketMereScolaire', function (error, message) {
+		window.eventBus.registerHandler('websocketMereScolaire', function (error, message) {
 			$('#Page_mereCles').trigger('oninput');
 		});
 
-		eventBus.registerHandler('websocketPereScolaire', function (error, message) {
+		window.eventBus.registerHandler('websocketPereScolaire', function (error, message) {
 			$('#Page_pereCles').trigger('oninput');
 		});
 
-		eventBus.registerHandler('websocketGardienScolaire', function (error, message) {
+		window.eventBus.registerHandler('websocketGardienScolaire', function (error, message) {
 			$('#Page_gardienCles').trigger('oninput');
 		});
 
-		eventBus.registerHandler('websocketPaiementScolaire', function (error, message) {
+		window.eventBus.registerHandler('websocketPaiementScolaire', function (error, message) {
 			$('#Page_paiementCles').trigger('oninput');
 		});
+	}
+}
+async function websocketInscriptionScolaireInner(requetePatch) {
+	var pk = requetePatch['pk'];
+	var pks = requetePatch['pks'];
+	var classes = requetePatch['classes'];
+	var vars = requetePatch['vars'];
+	var empty = requetePatch['empty'];
+
+	if(pk != null) {
+		rechercherInscriptionScolaireVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
+			var o = data['list'][0];
+			if(vars.includes('cree')) {
+				$('.inputInscriptionScolaire' + pk + 'Cree').val(o['cree']);
+				$('.varInscriptionScolaire' + pk + 'Cree').text(o['cree']);
+			}
+			if(vars.includes('modifie')) {
+				$('.inputInscriptionScolaire' + pk + 'Modifie').val(o['modifie']);
+				$('.varInscriptionScolaire' + pk + 'Modifie').text(o['modifie']);
+			}
+			if(vars.includes('archive')) {
+				$('.inputInscriptionScolaire' + pk + 'Archive').val(o['archive']);
+				$('.varInscriptionScolaire' + pk + 'Archive').text(o['archive']);
+			}
+			if(vars.includes('supprime')) {
+				$('.inputInscriptionScolaire' + pk + 'Supprime').val(o['supprime']);
+				$('.varInscriptionScolaire' + pk + 'Supprime').text(o['supprime']);
+			}
+			if(vars.includes('inscriptionApprouve')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionApprouve').val(o['inscriptionApprouve']);
+				$('.varInscriptionScolaire' + pk + 'InscriptionApprouve').text(o['inscriptionApprouve']);
+			}
+			if(vars.includes('inscriptionImmunisations')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionImmunisations').val(o['inscriptionImmunisations']);
+				$('.varInscriptionScolaire' + pk + 'InscriptionImmunisations').text(o['inscriptionImmunisations']);
+			}
+			if(vars.includes('inscriptionNomGroupe')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionNomGroupe').val(o['inscriptionNomGroupe']);
+				$('.varInscriptionScolaire' + pk + 'InscriptionNomGroupe').text(o['inscriptionNomGroupe']);
+			}
+			if(vars.includes('inscriptionPaimentComplet')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionPaimentComplet').val(o['inscriptionPaimentComplet']);
+				$('.varInscriptionScolaire' + pk + 'InscriptionPaimentComplet').text(o['inscriptionPaimentComplet']);
+			}
+			if(vars.includes('enfantPropre')) {
+				$('.inputInscriptionScolaire' + pk + 'EnfantPropre').val(o['enfantPropre']);
+				$('.varInscriptionScolaire' + pk + 'EnfantPropre').text(o['enfantPropre']);
+			}
+			if(vars.includes('inscriptionPaimentChaqueMois')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionPaimentChaqueMois').val(o['inscriptionPaimentChaqueMois']);
+				$('.varInscriptionScolaire' + pk + 'InscriptionPaimentChaqueMois').text(o['inscriptionPaimentChaqueMois']);
+			}
+			if(vars.includes('familleMarie')) {
+				$('.inputInscriptionScolaire' + pk + 'FamilleMarie').val(o['familleMarie']);
+				$('.varInscriptionScolaire' + pk + 'FamilleMarie').text(o['familleMarie']);
+			}
+			if(vars.includes('familleSepare')) {
+				$('.inputInscriptionScolaire' + pk + 'FamilleSepare').val(o['familleSepare']);
+				$('.varInscriptionScolaire' + pk + 'FamilleSepare').text(o['familleSepare']);
+			}
+			if(vars.includes('familleDivorce')) {
+				$('.inputInscriptionScolaire' + pk + 'FamilleDivorce').val(o['familleDivorce']);
+				$('.varInscriptionScolaire' + pk + 'FamilleDivorce').text(o['familleDivorce']);
+			}
+			if(vars.includes('familleAddresse')) {
+				$('.inputInscriptionScolaire' + pk + 'FamilleAddresse').val(o['familleAddresse']);
+				$('.varInscriptionScolaire' + pk + 'FamilleAddresse').text(o['familleAddresse']);
+			}
+			if(vars.includes('inscriptionConsiderationsSpeciales')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionConsiderationsSpeciales').val(o['inscriptionConsiderationsSpeciales']);
+				$('.varInscriptionScolaire' + pk + 'InscriptionConsiderationsSpeciales').text(o['inscriptionConsiderationsSpeciales']);
+			}
+			if(vars.includes('familleCommentVousConnaissezEcole')) {
+				$('.inputInscriptionScolaire' + pk + 'FamilleCommentVousConnaissezEcole').val(o['familleCommentVousConnaissezEcole']);
+				$('.varInscriptionScolaire' + pk + 'FamilleCommentVousConnaissezEcole').text(o['familleCommentVousConnaissezEcole']);
+			}
+			if(vars.includes('blocCles')) {
+				$('.inputInscriptionScolaire' + pk + 'BlocCles').val(o['blocCles']);
+				$('.varInscriptionScolaire' + pk + 'BlocCles').text(o['blocCles']);
+			}
+			if(vars.includes('enfantConditionsMedicales')) {
+				$('.inputInscriptionScolaire' + pk + 'EnfantConditionsMedicales').val(o['enfantConditionsMedicales']);
+				$('.varInscriptionScolaire' + pk + 'EnfantConditionsMedicales').text(o['enfantConditionsMedicales']);
+			}
+			if(vars.includes('enfantEcolesPrecedemmentFrequentees')) {
+				$('.inputInscriptionScolaire' + pk + 'EnfantEcolesPrecedemmentFrequentees').val(o['enfantEcolesPrecedemmentFrequentees']);
+				$('.varInscriptionScolaire' + pk + 'EnfantEcolesPrecedemmentFrequentees').text(o['enfantEcolesPrecedemmentFrequentees']);
+			}
+			if(vars.includes('enfantDescription')) {
+				$('.inputInscriptionScolaire' + pk + 'EnfantDescription').val(o['enfantDescription']);
+				$('.varInscriptionScolaire' + pk + 'EnfantDescription').text(o['enfantDescription']);
+			}
+			if(vars.includes('enfantObjectifs')) {
+				$('.inputInscriptionScolaire' + pk + 'EnfantObjectifs').val(o['enfantObjectifs']);
+				$('.varInscriptionScolaire' + pk + 'EnfantObjectifs').text(o['enfantObjectifs']);
+			}
+			if(vars.includes('enfantCle')) {
+				$('.inputInscriptionScolaire' + pk + 'EnfantCle').val(o['enfantCle']);
+				$('.varInscriptionScolaire' + pk + 'EnfantCle').text(o['enfantCle']);
+			}
+			if(vars.includes('mereCles')) {
+				$('.inputInscriptionScolaire' + pk + 'MereCles').val(o['mereCles']);
+				$('.varInscriptionScolaire' + pk + 'MereCles').text(o['mereCles']);
+			}
+			if(vars.includes('pereCles')) {
+				$('.inputInscriptionScolaire' + pk + 'PereCles').val(o['pereCles']);
+				$('.varInscriptionScolaire' + pk + 'PereCles').text(o['pereCles']);
+			}
+			if(vars.includes('gardienCles')) {
+				$('.inputInscriptionScolaire' + pk + 'GardienCles').val(o['gardienCles']);
+				$('.varInscriptionScolaire' + pk + 'GardienCles').text(o['gardienCles']);
+			}
+			if(vars.includes('paiementCles')) {
+				$('.inputInscriptionScolaire' + pk + 'PaiementCles').val(o['paiementCles']);
+				$('.varInscriptionScolaire' + pk + 'PaiementCles').text(o['paiementCles']);
+			}
+			if(vars.includes('enfantNomComplet')) {
+				$('.inputInscriptionScolaire' + pk + 'EnfantNomComplet').val(o['enfantNomComplet']);
+				$('.varInscriptionScolaire' + pk + 'EnfantNomComplet').text(o['enfantNomComplet']);
+			}
+			if(vars.includes('enfantDateNaissance')) {
+				$('.inputInscriptionScolaire' + pk + 'EnfantDateNaissance').val(o['enfantDateNaissance']);
+				$('.varInscriptionScolaire' + pk + 'EnfantDateNaissance').text(o['enfantDateNaissance']);
+			}
+			if(vars.includes('ecoleAddresse')) {
+				$('.inputInscriptionScolaire' + pk + 'EcoleAddresse').val(o['ecoleAddresse']);
+				$('.varInscriptionScolaire' + pk + 'EcoleAddresse').text(o['ecoleAddresse']);
+			}
+			if(vars.includes('inscriptionNomsParents')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionNomsParents').val(o['inscriptionNomsParents']);
+				$('.varInscriptionScolaire' + pk + 'InscriptionNomsParents').text(o['inscriptionNomsParents']);
+			}
+			if(vars.includes('inscriptionSignature1')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature1').val(o['inscriptionSignature1']);
+				$('.varInscriptionScolaire' + pk + 'InscriptionSignature1').text(o['inscriptionSignature1']);
+			}
+			if(vars.includes('inscriptionSignature2')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature2').val(o['inscriptionSignature2']);
+				$('.varInscriptionScolaire' + pk + 'InscriptionSignature2').text(o['inscriptionSignature2']);
+			}
+			if(vars.includes('inscriptionSignature3')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature3').val(o['inscriptionSignature3']);
+				$('.varInscriptionScolaire' + pk + 'InscriptionSignature3').text(o['inscriptionSignature3']);
+			}
+			if(vars.includes('inscriptionSignature4')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature4').val(o['inscriptionSignature4']);
+				$('.varInscriptionScolaire' + pk + 'InscriptionSignature4').text(o['inscriptionSignature4']);
+			}
+			if(vars.includes('inscriptionSignature5')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature5').val(o['inscriptionSignature5']);
+				$('.varInscriptionScolaire' + pk + 'InscriptionSignature5').text(o['inscriptionSignature5']);
+			}
+			if(vars.includes('inscriptionSignature6')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature6').val(o['inscriptionSignature6']);
+				$('.varInscriptionScolaire' + pk + 'InscriptionSignature6').text(o['inscriptionSignature6']);
+			}
+			if(vars.includes('inscriptionSignature7')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature7').val(o['inscriptionSignature7']);
+				$('.varInscriptionScolaire' + pk + 'InscriptionSignature7').text(o['inscriptionSignature7']);
+			}
+			if(vars.includes('inscriptionSignature8')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature8').val(o['inscriptionSignature8']);
+				$('.varInscriptionScolaire' + pk + 'InscriptionSignature8').text(o['inscriptionSignature8']);
+			}
+			if(vars.includes('inscriptionSignature9')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature9').val(o['inscriptionSignature9']);
+				$('.varInscriptionScolaire' + pk + 'InscriptionSignature9').text(o['inscriptionSignature9']);
+			}
+			if(vars.includes('inscriptionSignature10')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature10').val(o['inscriptionSignature10']);
+				$('.varInscriptionScolaire' + pk + 'InscriptionSignature10').text(o['inscriptionSignature10']);
+			}
+			if(vars.includes('inscriptionDate1')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionDate1').val(o['inscriptionDate1']);
+				$('.varInscriptionScolaire' + pk + 'InscriptionDate1').text(o['inscriptionDate1']);
+			}
+			if(vars.includes('inscriptionDate2')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionDate2').val(o['inscriptionDate2']);
+				$('.varInscriptionScolaire' + pk + 'InscriptionDate2').text(o['inscriptionDate2']);
+			}
+			if(vars.includes('inscriptionDate3')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionDate3').val(o['inscriptionDate3']);
+				$('.varInscriptionScolaire' + pk + 'InscriptionDate3').text(o['inscriptionDate3']);
+			}
+			if(vars.includes('inscriptionDate4')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionDate4').val(o['inscriptionDate4']);
+				$('.varInscriptionScolaire' + pk + 'InscriptionDate4').text(o['inscriptionDate4']);
+			}
+			if(vars.includes('inscriptionDate5')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionDate5').val(o['inscriptionDate5']);
+				$('.varInscriptionScolaire' + pk + 'InscriptionDate5').text(o['inscriptionDate5']);
+			}
+			if(vars.includes('inscriptionDate6')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionDate6').val(o['inscriptionDate6']);
+				$('.varInscriptionScolaire' + pk + 'InscriptionDate6').text(o['inscriptionDate6']);
+			}
+			if(vars.includes('inscriptionDate7')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionDate7').val(o['inscriptionDate7']);
+				$('.varInscriptionScolaire' + pk + 'InscriptionDate7').text(o['inscriptionDate7']);
+			}
+			if(vars.includes('inscriptionDate8')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionDate8').val(o['inscriptionDate8']);
+				$('.varInscriptionScolaire' + pk + 'InscriptionDate8').text(o['inscriptionDate8']);
+			}
+			if(vars.includes('inscriptionDate9')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionDate9').val(o['inscriptionDate9']);
+				$('.varInscriptionScolaire' + pk + 'InscriptionDate9').text(o['inscriptionDate9']);
+			}
+			if(vars.includes('inscriptionDate10')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionDate10').val(o['inscriptionDate10']);
+				$('.varInscriptionScolaire' + pk + 'InscriptionDate10').text(o['inscriptionDate10']);
+			}
+		});
+	}
+
+	if(!empty) {
+		if(pks) {
+			for(i=0; i < pks.length; i++) {
+				var pk2 = pks[i];
+				var c = classes[i];
+				await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
+			}
+		}
+		await patchInscriptionScolaireVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 	}
 }
