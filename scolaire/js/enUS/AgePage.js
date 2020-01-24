@@ -393,9 +393,9 @@ function patchSchoolAgeFilters($formFilters) {
 	if(filterSeasonWinter != null && filterSeasonWinter === true)
 		filters.push({ name: 'fq', value: 'seasonWinter:' + filterSeasonWinter });
 
-	var filterSeasonEnrollmentFee = $formFilters.find('.valueSeasonEnrollmentFee').val();
-	if(filterSeasonEnrollmentFee != null && filterSeasonEnrollmentFee !== '')
-		filters.push({ name: 'fq', value: 'seasonEnrollmentFee:' + filterSeasonEnrollmentFee });
+	var filterYearEnrollmentFee = $formFilters.find('.valueYearEnrollmentFee').val();
+	if(filterYearEnrollmentFee != null && filterYearEnrollmentFee !== '')
+		filters.push({ name: 'fq', value: 'yearEnrollmentFee:' + filterYearEnrollmentFee });
 
 	var filterSeasonShortName = $formFilters.find('.valueSeasonShortName').val();
 	if(filterSeasonShortName != null && filterSeasonShortName !== '')
@@ -647,9 +647,9 @@ function searchSchoolAgeFilters($formFilters) {
 	if(filterSeasonWinter != null && filterSeasonWinter === true)
 		filters.push({ name: 'fq', value: 'seasonWinter:' + filterSeasonWinter });
 
-	var filterSeasonEnrollmentFee = $formFilters.find('.valueSeasonEnrollmentFee').val();
-	if(filterSeasonEnrollmentFee != null && filterSeasonEnrollmentFee !== '')
-		filters.push({ name: 'fq', value: 'seasonEnrollmentFee:' + filterSeasonEnrollmentFee });
+	var filterYearEnrollmentFee = $formFilters.find('.valueYearEnrollmentFee').val();
+	if(filterYearEnrollmentFee != null && filterYearEnrollmentFee !== '')
+		filters.push({ name: 'fq', value: 'yearEnrollmentFee:' + filterYearEnrollmentFee });
 
 	var filterSeasonShortName = $formFilters.find('.valueSeasonShortName').val();
 	if(filterSeasonShortName != null && filterSeasonShortName !== '')
@@ -828,6 +828,7 @@ async function websocketSchoolAgeInner(patchRequest) {
 	var pks = patchRequest['pks'];
 	var classes = patchRequest['classes'];
 	var vars = patchRequest['vars'];
+	var empty = patchRequest['empty'];
 
 	if(pk != null) {
 		searchSchoolAgeVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
@@ -871,12 +872,14 @@ async function websocketSchoolAgeInner(patchRequest) {
 		});
 	}
 
-	if(pks) {
-		for(i=0; i < pks.length; i++) {
-			var pk2 = pks[i];
-			var c = classes[i];
-			await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
+	if(!empty) {
+		if(pks) {
+			for(i=0; i < pks.length; i++) {
+				var pk2 = pks[i];
+				var c = classes[i];
+				await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
+			}
 		}
+		await patchSchoolAgeVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 	}
-	await patchSchoolAgeVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 }

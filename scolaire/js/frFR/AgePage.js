@@ -393,9 +393,9 @@ function patchAgeScolaireFiltres($formulaireFiltres) {
 	if(filtreSaisonHiver != null && filtreSaisonHiver === true)
 		filtres.push({ name: 'fq', value: 'saisonHiver:' + filtreSaisonHiver });
 
-	var filtreSaisonFraisInscription = $formulaireFiltres.find('.valeurSaisonFraisInscription').val();
-	if(filtreSaisonFraisInscription != null && filtreSaisonFraisInscription !== '')
-		filtres.push({ name: 'fq', value: 'saisonFraisInscription:' + filtreSaisonFraisInscription });
+	var filtreAnneeFraisInscription = $formulaireFiltres.find('.valeurAnneeFraisInscription').val();
+	if(filtreAnneeFraisInscription != null && filtreAnneeFraisInscription !== '')
+		filtres.push({ name: 'fq', value: 'anneeFraisInscription:' + filtreAnneeFraisInscription });
 
 	var filtreSaisonNomCourt = $formulaireFiltres.find('.valeurSaisonNomCourt').val();
 	if(filtreSaisonNomCourt != null && filtreSaisonNomCourt !== '')
@@ -647,9 +647,9 @@ function rechercheAgeScolaireFiltres($formulaireFiltres) {
 	if(filtreSaisonHiver != null && filtreSaisonHiver === true)
 		filtres.push({ name: 'fq', value: 'saisonHiver:' + filtreSaisonHiver });
 
-	var filtreSaisonFraisInscription = $formulaireFiltres.find('.valeurSaisonFraisInscription').val();
-	if(filtreSaisonFraisInscription != null && filtreSaisonFraisInscription !== '')
-		filtres.push({ name: 'fq', value: 'saisonFraisInscription:' + filtreSaisonFraisInscription });
+	var filtreAnneeFraisInscription = $formulaireFiltres.find('.valeurAnneeFraisInscription').val();
+	if(filtreAnneeFraisInscription != null && filtreAnneeFraisInscription !== '')
+		filtres.push({ name: 'fq', value: 'anneeFraisInscription:' + filtreAnneeFraisInscription });
 
 	var filtreSaisonNomCourt = $formulaireFiltres.find('.valeurSaisonNomCourt').val();
 	if(filtreSaisonNomCourt != null && filtreSaisonNomCourt !== '')
@@ -828,6 +828,7 @@ async function websocketAgeScolaireInner(requetePatch) {
 	var pks = requetePatch['pks'];
 	var classes = requetePatch['classes'];
 	var vars = requetePatch['vars'];
+	var empty = requetePatch['empty'];
 
 	if(pk != null) {
 		rechercherAgeScolaireVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
@@ -871,12 +872,14 @@ async function websocketAgeScolaireInner(requetePatch) {
 		});
 	}
 
-	if(pks) {
-		for(i=0; i < pks.length; i++) {
-			var pk2 = pks[i];
-			var c = classes[i];
-			await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
+	if(!empty) {
+		if(pks) {
+			for(i=0; i < pks.length; i++) {
+				var pk2 = pks[i];
+				var c = classes[i];
+				await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
+			}
 		}
+		await patchAgeScolaireVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 	}
-	await patchAgeScolaireVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 }

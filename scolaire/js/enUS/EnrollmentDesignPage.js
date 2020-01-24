@@ -49,10 +49,6 @@ async function postEnrollmentDesign($formValues, success, error) {
 	if(valueHtmlPartKeys != null && valueHtmlPartKeys !== '')
 		vals['htmlPartKeys'] = valueHtmlPartKeys;
 
-	var valueEnrollmentKeys = $formValues.find('.valueEnrollmentKeys').val();
-	if(valueEnrollmentKeys != null && valueEnrollmentKeys !== '')
-		vals['enrollmentKeys'] = valueEnrollmentKeys;
-
 	$.ajax({
 		url: '/api/enrollment-design'
 		, dataType: 'json'
@@ -171,17 +167,6 @@ async function patchEnrollmentDesign($formFilters, $formValues, success, error) 
 	if(removeHtmlPartKeys != null && removeHtmlPartKeys !== '')
 		vals['removeHtmlPartKeys'] = removeHtmlPartKeys;
 
-	var removeEnrollmentKeys = $formFilters.find('.removeEnrollmentKeys').val() === 'true';
-	var setEnrollmentKeys = removeEnrollmentKeys ? null : $formValues.find('.setEnrollmentKeys').val();
-	if(removeEnrollmentKeys || setEnrollmentKeys != null && setEnrollmentKeys !== '')
-		vals['setEnrollmentKeys'] = setEnrollmentKeys;
-	var addEnrollmentKeys = $formValues.find('.addEnrollmentKeys').val();
-	if(addEnrollmentKeys != null && addEnrollmentKeys !== '')
-		vals['addEnrollmentKeys'] = addEnrollmentKeys;
-	var removeEnrollmentKeys = $formValues.find('.removeEnrollmentKeys').val();
-	if(removeEnrollmentKeys != null && removeEnrollmentKeys !== '')
-		vals['removeEnrollmentKeys'] = removeEnrollmentKeys;
-
 	patchEnrollmentDesignVals(filters, vals, success, error);
 }
 
@@ -219,10 +204,6 @@ function patchEnrollmentDesignFilters($formFilters) {
 	var filterHtmlPartKeys = $formFilters.find('.valueHtmlPartKeys').val();
 	if(filterHtmlPartKeys != null && filterHtmlPartKeys !== '')
 		filters.push({ name: 'fq', value: 'htmlPartKeys:' + filterHtmlPartKeys });
-
-	var filterEnrollmentKeys = $formFilters.find('.valueEnrollmentKeys').val();
-	if(filterEnrollmentKeys != null && filterEnrollmentKeys !== '')
-		filters.push({ name: 'fq', value: 'enrollmentKeys:' + filterEnrollmentKeys });
 
 	var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
 	if(filterPageUrlPk != null && filterPageUrlPk !== '')
@@ -267,6 +248,10 @@ function patchEnrollmentDesignFilters($formFilters) {
 	var filterYearKey = $formFilters.find('.valueYearKey').val();
 	if(filterYearKey != null && filterYearKey !== '')
 		filters.push({ name: 'fq', value: 'yearKey:' + filterYearKey });
+
+	var filterEnrollmentKeys = $formFilters.find('.valueEnrollmentKeys').val();
+	if(filterEnrollmentKeys != null && filterEnrollmentKeys !== '')
+		filters.push({ name: 'fq', value: 'enrollmentKeys:' + filterEnrollmentKeys });
 
 	var filterSchoolKey = $formFilters.find('.valueSchoolKey').val();
 	if(filterSchoolKey != null && filterSchoolKey !== '')
@@ -390,10 +375,6 @@ function searchEnrollmentDesignFilters($formFilters) {
 	if(filterHtmlPartKeys != null && filterHtmlPartKeys !== '')
 		filters.push({ name: 'fq', value: 'htmlPartKeys:' + filterHtmlPartKeys });
 
-	var filterEnrollmentKeys = $formFilters.find('.valueEnrollmentKeys').val();
-	if(filterEnrollmentKeys != null && filterEnrollmentKeys !== '')
-		filters.push({ name: 'fq', value: 'enrollmentKeys:' + filterEnrollmentKeys });
-
 	var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
 	if(filterPageUrlPk != null && filterPageUrlPk !== '')
 		filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
@@ -437,6 +418,10 @@ function searchEnrollmentDesignFilters($formFilters) {
 	var filterYearKey = $formFilters.find('.valueYearKey').val();
 	if(filterYearKey != null && filterYearKey !== '')
 		filters.push({ name: 'fq', value: 'yearKey:' + filterYearKey });
+
+	var filterEnrollmentKeys = $formFilters.find('.valueEnrollmentKeys').val();
+	if(filterEnrollmentKeys != null && filterEnrollmentKeys !== '')
+		filters.push({ name: 'fq', value: 'enrollmentKeys:' + filterEnrollmentKeys });
 
 	var filterSchoolKey = $formFilters.find('.valueSchoolKey').val();
 	if(filterSchoolKey != null && filterSchoolKey !== '')
@@ -757,6 +742,7 @@ async function websocketEnrollmentDesignInner(patchRequest) {
 	var pks = patchRequest['pks'];
 	var classes = patchRequest['classes'];
 	var vars = patchRequest['vars'];
+	var empty = patchRequest['empty'];
 
 	if(pk != null) {
 		searchEnrollmentDesignVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
@@ -788,12 +774,14 @@ async function websocketEnrollmentDesignInner(patchRequest) {
 		});
 	}
 
-	if(pks) {
-		for(i=0; i < pks.length; i++) {
-			var pk2 = pks[i];
-			var c = classes[i];
-			await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
+	if(!empty) {
+		if(pks) {
+			for(i=0; i < pks.length; i++) {
+				var pk2 = pks[i];
+				var c = classes[i];
+				await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
+			}
 		}
+		await patchEnrollmentDesignVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 	}
-	await patchEnrollmentDesignVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 }

@@ -695,6 +695,7 @@ async function websocketPaiementScolaireInner(requetePatch) {
 	var pks = requetePatch['pks'];
 	var classes = requetePatch['classes'];
 	var vars = requetePatch['vars'];
+	var empty = requetePatch['empty'];
 
 	if(pk != null) {
 		rechercherPaiementScolaireVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
@@ -742,12 +743,14 @@ async function websocketPaiementScolaireInner(requetePatch) {
 		});
 	}
 
-	if(pks) {
-		for(i=0; i < pks.length; i++) {
-			var pk2 = pks[i];
-			var c = classes[i];
-			await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
+	if(!empty) {
+		if(pks) {
+			for(i=0; i < pks.length; i++) {
+				var pk2 = pks[i];
+				var c = classes[i];
+				await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
+			}
 		}
+		await patchPaiementScolaireVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 	}
-	await patchPaiementScolaireVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 }

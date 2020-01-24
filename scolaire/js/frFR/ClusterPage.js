@@ -17,21 +17,21 @@ async function postCluster($formulaireValeurs, success, error) {
 		};
 	}
 
-	var valeurCree = $formulaireValeurs.find('.valeurCree').val();
-	if(valeurCree != null && valeurCree !== '')
-		vals['cree'] = valeurCree;
-
 	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
 	if(valeurPk != null && valeurPk !== '')
 		vals['pk'] = valeurPk;
 
-	var valeurObjetId = $formulaireValeurs.find('.valeurObjetId').val();
-	if(valeurObjetId != null && valeurObjetId !== '')
-		vals['objetId'] = valeurObjetId;
+	var valeurCree = $formulaireValeurs.find('.valeurCree').val();
+	if(valeurCree != null && valeurCree !== '')
+		vals['cree'] = valeurCree;
 
 	var valeurModifie = $formulaireValeurs.find('.valeurModifie').val();
 	if(valeurModifie != null && valeurModifie !== '')
 		vals['modifie'] = valeurModifie;
+
+	var valeurObjetId = $formulaireValeurs.find('.valeurObjetId').val();
+	if(valeurObjetId != null && valeurObjetId !== '')
+		vals['objetId'] = valeurObjetId;
 
 	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
 	if(valeurArchive != null && valeurArchive !== '')
@@ -71,17 +71,6 @@ async function patchCluster($formulaireFiltres, $formulaireValeurs, success, err
 
 	var vals = {};
 
-	var removeCree = $formulaireFiltres.find('.removeCree').val() === 'true';
-	var setCree = removeCree ? null : $formulaireValeurs.find('.setCree').val();
-	if(removeCree || setCree != null && setCree !== '')
-		vals['setCree'] = setCree;
-	var addCree = $formulaireValeurs.find('.addCree').val();
-	if(addCree != null && addCree !== '')
-		vals['addCree'] = addCree;
-	var removeCree = $formulaireValeurs.find('.removeCree').val();
-	if(removeCree != null && removeCree !== '')
-		vals['removeCree'] = removeCree;
-
 	var removePk = $formulaireFiltres.find('.removePk').val() === 'true';
 	var setPk = removePk ? null : $formulaireValeurs.find('.setPk').val();
 	if(removePk || setPk != null && setPk !== '')
@@ -93,16 +82,16 @@ async function patchCluster($formulaireFiltres, $formulaireValeurs, success, err
 	if(removePk != null && removePk !== '')
 		vals['removePk'] = removePk;
 
-	var removeObjetId = $formulaireFiltres.find('.removeObjetId').val() === 'true';
-	var setObjetId = removeObjetId ? null : $formulaireValeurs.find('.setObjetId').val();
-	if(removeObjetId || setObjetId != null && setObjetId !== '')
-		vals['setObjetId'] = setObjetId;
-	var addObjetId = $formulaireValeurs.find('.addObjetId').val();
-	if(addObjetId != null && addObjetId !== '')
-		vals['addObjetId'] = addObjetId;
-	var removeObjetId = $formulaireValeurs.find('.removeObjetId').val();
-	if(removeObjetId != null && removeObjetId !== '')
-		vals['removeObjetId'] = removeObjetId;
+	var removeCree = $formulaireFiltres.find('.removeCree').val() === 'true';
+	var setCree = removeCree ? null : $formulaireValeurs.find('.setCree').val();
+	if(removeCree || setCree != null && setCree !== '')
+		vals['setCree'] = setCree;
+	var addCree = $formulaireValeurs.find('.addCree').val();
+	if(addCree != null && addCree !== '')
+		vals['addCree'] = addCree;
+	var removeCree = $formulaireValeurs.find('.removeCree').val();
+	if(removeCree != null && removeCree !== '')
+		vals['removeCree'] = removeCree;
 
 	var removeModifie = $formulaireFiltres.find('.removeModifie').val() === 'true';
 	var setModifie = removeModifie ? null : $formulaireValeurs.find('.setModifie').val();
@@ -114,6 +103,17 @@ async function patchCluster($formulaireFiltres, $formulaireValeurs, success, err
 	var removeModifie = $formulaireValeurs.find('.removeModifie').val();
 	if(removeModifie != null && removeModifie !== '')
 		vals['removeModifie'] = removeModifie;
+
+	var removeObjetId = $formulaireFiltres.find('.removeObjetId').val() === 'true';
+	var setObjetId = removeObjetId ? null : $formulaireValeurs.find('.setObjetId').val();
+	if(removeObjetId || setObjetId != null && setObjetId !== '')
+		vals['setObjetId'] = setObjetId;
+	var addObjetId = $formulaireValeurs.find('.addObjetId').val();
+	if(addObjetId != null && addObjetId !== '')
+		vals['addObjetId'] = addObjetId;
+	var removeObjetId = $formulaireValeurs.find('.removeObjetId').val();
+	if(removeObjetId != null && removeObjetId !== '')
+		vals['removeObjetId'] = removeObjetId;
 
 	var removeArchive = $formulaireFiltres.find('.removeArchive').val() === 'true';
 	var setArchive = removeArchive ? null : $formulaireValeurs.find('.setArchive').prop('checked');
@@ -143,21 +143,21 @@ async function patchCluster($formulaireFiltres, $formulaireValeurs, success, err
 function patchClusterFiltres($formulaireFiltres) {
 	var filtres = [];
 
-	var filtreCree = $formulaireFiltres.find('.valeurCree').val();
-	if(filtreCree != null && filtreCree !== '')
-		filtres.push({ name: 'fq', value: 'cree:' + filtreCree });
-
 	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
 	if(filtrePk != null && filtrePk !== '')
 		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
 
-	var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
-	if(filtreObjetId != null && filtreObjetId !== '')
-		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
+	var filtreCree = $formulaireFiltres.find('.valeurCree').val();
+	if(filtreCree != null && filtreCree !== '')
+		filtres.push({ name: 'fq', value: 'cree:' + filtreCree });
 
 	var filtreModifie = $formulaireFiltres.find('.valeurModifie').val();
 	if(filtreModifie != null && filtreModifie !== '')
 		filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
+
+	var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
+	if(filtreObjetId != null && filtreObjetId !== '')
+		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
 
 	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
 	if(filtreArchive != null && filtreArchive === true)
@@ -167,9 +167,9 @@ function patchClusterFiltres($formulaireFiltres) {
 	if(filtreSupprime != null && filtreSupprime === true)
 		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
-	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
-	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
-		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
+	var filtreId = $formulaireFiltres.find('.valeurId').val();
+	if(filtreId != null && filtreId !== '')
+		filtres.push({ name: 'fq', value: 'id:' + filtreId });
 
 	var filtreClasseNomCanonique = $formulaireFiltres.find('.valeurClasseNomCanonique').val();
 	if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
@@ -191,10 +191,6 @@ function patchClusterFiltres($formulaireFiltres) {
 	if(filtreObjetTitre != null && filtreObjetTitre !== '')
 		filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
 
-	var filtreId = $formulaireFiltres.find('.valeurId').val();
-	if(filtreId != null && filtreId !== '')
-		filtres.push({ name: 'fq', value: 'id:' + filtreId });
-
 	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
 	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
 		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
@@ -202,6 +198,10 @@ function patchClusterFiltres($formulaireFiltres) {
 	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
 	if(filtrePageUrlId != null && filtrePageUrlId !== '')
 		filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
+
+	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
+	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
+		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
 	return filtres;
 }
 
@@ -265,21 +265,21 @@ async function rechercheCluster($formulaireFiltres, success, error) {
 function rechercheClusterFiltres($formulaireFiltres) {
 	var filtres = [];
 
-	var filtreCree = $formulaireFiltres.find('.valeurCree').val();
-	if(filtreCree != null && filtreCree !== '')
-		filtres.push({ name: 'fq', value: 'cree:' + filtreCree });
-
 	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
 	if(filtrePk != null && filtrePk !== '')
 		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
 
-	var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
-	if(filtreObjetId != null && filtreObjetId !== '')
-		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
+	var filtreCree = $formulaireFiltres.find('.valeurCree').val();
+	if(filtreCree != null && filtreCree !== '')
+		filtres.push({ name: 'fq', value: 'cree:' + filtreCree });
 
 	var filtreModifie = $formulaireFiltres.find('.valeurModifie').val();
 	if(filtreModifie != null && filtreModifie !== '')
 		filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
+
+	var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
+	if(filtreObjetId != null && filtreObjetId !== '')
+		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
 
 	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
 	if(filtreArchive != null && filtreArchive === true)
@@ -289,9 +289,9 @@ function rechercheClusterFiltres($formulaireFiltres) {
 	if(filtreSupprime != null && filtreSupprime === true)
 		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
-	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
-	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
-		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
+	var filtreId = $formulaireFiltres.find('.valeurId').val();
+	if(filtreId != null && filtreId !== '')
+		filtres.push({ name: 'fq', value: 'id:' + filtreId });
 
 	var filtreClasseNomCanonique = $formulaireFiltres.find('.valeurClasseNomCanonique').val();
 	if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
@@ -313,10 +313,6 @@ function rechercheClusterFiltres($formulaireFiltres) {
 	if(filtreObjetTitre != null && filtreObjetTitre !== '')
 		filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
 
-	var filtreId = $formulaireFiltres.find('.valeurId').val();
-	if(filtreId != null && filtreId !== '')
-		filtres.push({ name: 'fq', value: 'id:' + filtreId });
-
 	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
 	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
 		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
@@ -324,6 +320,10 @@ function rechercheClusterFiltres($formulaireFiltres) {
 	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
 	if(filtrePageUrlId != null && filtrePageUrlId !== '')
 		filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
+
+	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
+	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
+		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
 	return filtres;
 }
 
@@ -357,16 +357,14 @@ function suggereClusterObjetSuggere($formulaireFiltres, $list) {
 }
 
 async function websocketCluster(success) {
-	var eventBus = new EventBus('/eventbus');
-	eventBus.onopen = function () {
+	window.eventBus.onopen = function () {
 
-		eventBus.registerHandler('websocketCluster', function (error, message) {
+		window.eventBus.registerHandler('websocketCluster', function (error, message) {
 			var json = JSON.parse(message['body']);
 			var id = json['id'];
 			var pk = json['pk'];
 			var pks = json['pks'];
 			var empty = json['empty'];
-			if(!empty) {
 				var numFound = json['numFound'];
 				var numPATCH = json['numPATCH'];
 				var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
@@ -394,7 +392,46 @@ async function websocketCluster(success) {
 				$('.w3-content').append($box);
 				if(success)
 					success(json);
+		});
+	}
+}
+async function websocketClusterInner(requetePatch) {
+	var pk = requetePatch['pk'];
+	var pks = requetePatch['pks'];
+	var classes = requetePatch['classes'];
+	var vars = requetePatch['vars'];
+	var empty = requetePatch['empty'];
+
+	if(pk != null) {
+		rechercherClusterVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
+			var o = data['list'][0];
+			if(vars.includes('cree')) {
+				$('.inputCluster' + pk + 'Cree').val(o['cree']);
+				$('.varCluster' + pk + 'Cree').text(o['cree']);
+			}
+			if(vars.includes('modifie')) {
+				$('.inputCluster' + pk + 'Modifie').val(o['modifie']);
+				$('.varCluster' + pk + 'Modifie').text(o['modifie']);
+			}
+			if(vars.includes('archive')) {
+				$('.inputCluster' + pk + 'Archive').val(o['archive']);
+				$('.varCluster' + pk + 'Archive').text(o['archive']);
+			}
+			if(vars.includes('supprime')) {
+				$('.inputCluster' + pk + 'Supprime').val(o['supprime']);
+				$('.varCluster' + pk + 'Supprime').text(o['supprime']);
 			}
 		});
+	}
+
+	if(!empty) {
+		if(pks) {
+			for(i=0; i < pks.length; i++) {
+				var pk2 = pks[i];
+				var c = classes[i];
+				await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
+			}
+		}
+		await patchClusterVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 	}
 }

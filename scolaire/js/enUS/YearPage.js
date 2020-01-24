@@ -49,6 +49,10 @@ async function postSchoolYear($formValues, success, error) {
 	if(valueYearEnd != null && valueYearEnd !== '')
 		vals['yearEnd'] = valueYearEnd;
 
+	var valueYearEnrollmentFee = $formValues.find('.valueYearEnrollmentFee').val();
+	if(valueYearEnrollmentFee != null && valueYearEnrollmentFee !== '')
+		vals['yearEnrollmentFee'] = valueYearEnrollmentFee;
+
 	var valueSchoolKey = $formValues.find('.valueSchoolKey').val();
 	if(valueSchoolKey != null && valueSchoolKey !== '')
 		vals['schoolKey'] = valueSchoolKey;
@@ -183,6 +187,17 @@ async function patchSchoolYear($formFilters, $formValues, success, error) {
 	if(removeYearEnd != null && removeYearEnd !== '')
 		vals['removeYearEnd'] = removeYearEnd;
 
+	var removeYearEnrollmentFee = $formFilters.find('.removeYearEnrollmentFee').val() === 'true';
+	var setYearEnrollmentFee = removeYearEnrollmentFee ? null : $formValues.find('.setYearEnrollmentFee').val();
+	if(removeYearEnrollmentFee || setYearEnrollmentFee != null && setYearEnrollmentFee !== '')
+		vals['setYearEnrollmentFee'] = setYearEnrollmentFee;
+	var addYearEnrollmentFee = $formValues.find('.addYearEnrollmentFee').val();
+	if(addYearEnrollmentFee != null && addYearEnrollmentFee !== '')
+		vals['addYearEnrollmentFee'] = addYearEnrollmentFee;
+	var removeYearEnrollmentFee = $formValues.find('.removeYearEnrollmentFee').val();
+	if(removeYearEnrollmentFee != null && removeYearEnrollmentFee !== '')
+		vals['removeYearEnrollmentFee'] = removeYearEnrollmentFee;
+
 	var removeSchoolKey = $formFilters.find('.removeSchoolKey').val() === 'true';
 	var setSchoolKey = removeSchoolKey ? null : $formValues.find('.setSchoolKey').val();
 	if(removeSchoolKey || setSchoolKey != null && setSchoolKey !== '')
@@ -264,6 +279,10 @@ function patchSchoolYearFilters($formFilters) {
 	var filterYearEnd = $formFilters.find('.valueYearEnd').val();
 	if(filterYearEnd != null && filterYearEnd !== '')
 		filters.push({ name: 'fq', value: 'yearEnd:' + filterYearEnd });
+
+	var filterYearEnrollmentFee = $formFilters.find('.valueYearEnrollmentFee').val();
+	if(filterYearEnrollmentFee != null && filterYearEnrollmentFee !== '')
+		filters.push({ name: 'fq', value: 'yearEnrollmentFee:' + filterYearEnrollmentFee });
 
 	var filterSchoolKey = $formFilters.find('.valueSchoolKey').val();
 	if(filterSchoolKey != null && filterSchoolKey !== '')
@@ -458,6 +477,10 @@ function searchSchoolYearFilters($formFilters) {
 	var filterYearEnd = $formFilters.find('.valueYearEnd').val();
 	if(filterYearEnd != null && filterYearEnd !== '')
 		filters.push({ name: 'fq', value: 'yearEnd:' + filterYearEnd });
+
+	var filterYearEnrollmentFee = $formFilters.find('.valueYearEnrollmentFee').val();
+	if(filterYearEnrollmentFee != null && filterYearEnrollmentFee !== '')
+		filters.push({ name: 'fq', value: 'yearEnrollmentFee:' + filterYearEnrollmentFee });
 
 	var filterSchoolKey = $formFilters.find('.valueSchoolKey').val();
 	if(filterSchoolKey != null && filterSchoolKey !== '')
@@ -708,6 +731,7 @@ async function websocketSchoolYearInner(patchRequest) {
 	var pks = patchRequest['pks'];
 	var classes = patchRequest['classes'];
 	var vars = patchRequest['vars'];
+	var empty = patchRequest['empty'];
 
 	if(pk != null) {
 		searchSchoolYearVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
@@ -736,6 +760,10 @@ async function websocketSchoolYearInner(patchRequest) {
 				$('.inputSchoolYear' + pk + 'YearEnd').val(o['yearEnd']);
 				$('.varSchoolYear' + pk + 'YearEnd').text(o['yearEnd']);
 			}
+			if(vars.includes('yearEnrollmentFee')) {
+				$('.inputSchoolYear' + pk + 'YearEnrollmentFee').val(o['yearEnrollmentFee']);
+				$('.varSchoolYear' + pk + 'YearEnrollmentFee').text(o['yearEnrollmentFee']);
+			}
 			if(vars.includes('schoolKey')) {
 				$('.inputSchoolYear' + pk + 'SchoolKey').val(o['schoolKey']);
 				$('.varSchoolYear' + pk + 'SchoolKey').text(o['schoolKey']);
@@ -747,12 +775,14 @@ async function websocketSchoolYearInner(patchRequest) {
 		});
 	}
 
-	if(pks) {
-		for(i=0; i < pks.length; i++) {
-			var pk2 = pks[i];
-			var c = classes[i];
-			await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
+	if(!empty) {
+		if(pks) {
+			for(i=0; i < pks.length; i++) {
+				var pk2 = pks[i];
+				var c = classes[i];
+				await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
+			}
 		}
+		await patchSchoolYearVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 	}
-	await patchSchoolYearVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 }

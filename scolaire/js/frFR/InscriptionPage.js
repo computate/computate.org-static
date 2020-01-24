@@ -17,21 +17,21 @@ async function postInscriptionScolaire($formulaireValeurs, success, error) {
 		};
 	}
 
-	var valeurCree = $formulaireValeurs.find('.valeurCree').val();
-	if(valeurCree != null && valeurCree !== '')
-		vals['cree'] = valeurCree;
-
 	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
 	if(valeurPk != null && valeurPk !== '')
 		vals['pk'] = valeurPk;
 
-	var valeurObjetId = $formulaireValeurs.find('.valeurObjetId').val();
-	if(valeurObjetId != null && valeurObjetId !== '')
-		vals['objetId'] = valeurObjetId;
+	var valeurCree = $formulaireValeurs.find('.valeurCree').val();
+	if(valeurCree != null && valeurCree !== '')
+		vals['cree'] = valeurCree;
 
 	var valeurModifie = $formulaireValeurs.find('.valeurModifie').val();
 	if(valeurModifie != null && valeurModifie !== '')
 		vals['modifie'] = valeurModifie;
+
+	var valeurObjetId = $formulaireValeurs.find('.valeurObjetId').val();
+	if(valeurObjetId != null && valeurObjetId !== '')
+		vals['objetId'] = valeurObjetId;
 
 	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
 	if(valeurArchive != null && valeurArchive !== '')
@@ -263,17 +263,6 @@ async function patchInscriptionScolaire($formulaireFiltres, $formulaireValeurs, 
 
 	var vals = {};
 
-	var removeCree = $formulaireFiltres.find('.removeCree').val() === 'true';
-	var setCree = removeCree ? null : $formulaireValeurs.find('.setCree').val();
-	if(removeCree || setCree != null && setCree !== '')
-		vals['setCree'] = setCree;
-	var addCree = $formulaireValeurs.find('.addCree').val();
-	if(addCree != null && addCree !== '')
-		vals['addCree'] = addCree;
-	var removeCree = $formulaireValeurs.find('.removeCree').val();
-	if(removeCree != null && removeCree !== '')
-		vals['removeCree'] = removeCree;
-
 	var removePk = $formulaireFiltres.find('.removePk').val() === 'true';
 	var setPk = removePk ? null : $formulaireValeurs.find('.setPk').val();
 	if(removePk || setPk != null && setPk !== '')
@@ -285,16 +274,16 @@ async function patchInscriptionScolaire($formulaireFiltres, $formulaireValeurs, 
 	if(removePk != null && removePk !== '')
 		vals['removePk'] = removePk;
 
-	var removeObjetId = $formulaireFiltres.find('.removeObjetId').val() === 'true';
-	var setObjetId = removeObjetId ? null : $formulaireValeurs.find('.setObjetId').val();
-	if(removeObjetId || setObjetId != null && setObjetId !== '')
-		vals['setObjetId'] = setObjetId;
-	var addObjetId = $formulaireValeurs.find('.addObjetId').val();
-	if(addObjetId != null && addObjetId !== '')
-		vals['addObjetId'] = addObjetId;
-	var removeObjetId = $formulaireValeurs.find('.removeObjetId').val();
-	if(removeObjetId != null && removeObjetId !== '')
-		vals['removeObjetId'] = removeObjetId;
+	var removeCree = $formulaireFiltres.find('.removeCree').val() === 'true';
+	var setCree = removeCree ? null : $formulaireValeurs.find('.setCree').val();
+	if(removeCree || setCree != null && setCree !== '')
+		vals['setCree'] = setCree;
+	var addCree = $formulaireValeurs.find('.addCree').val();
+	if(addCree != null && addCree !== '')
+		vals['addCree'] = addCree;
+	var removeCree = $formulaireValeurs.find('.removeCree').val();
+	if(removeCree != null && removeCree !== '')
+		vals['removeCree'] = removeCree;
 
 	var removeModifie = $formulaireFiltres.find('.removeModifie').val() === 'true';
 	var setModifie = removeModifie ? null : $formulaireValeurs.find('.setModifie').val();
@@ -306,6 +295,17 @@ async function patchInscriptionScolaire($formulaireFiltres, $formulaireValeurs, 
 	var removeModifie = $formulaireValeurs.find('.removeModifie').val();
 	if(removeModifie != null && removeModifie !== '')
 		vals['removeModifie'] = removeModifie;
+
+	var removeObjetId = $formulaireFiltres.find('.removeObjetId').val() === 'true';
+	var setObjetId = removeObjetId ? null : $formulaireValeurs.find('.setObjetId').val();
+	if(removeObjetId || setObjetId != null && setObjetId !== '')
+		vals['setObjetId'] = setObjetId;
+	var addObjetId = $formulaireValeurs.find('.addObjetId').val();
+	if(addObjetId != null && addObjetId !== '')
+		vals['addObjetId'] = addObjetId;
+	var removeObjetId = $formulaireValeurs.find('.removeObjetId').val();
+	if(removeObjetId != null && removeObjetId !== '')
+		vals['removeObjetId'] = removeObjetId;
 
 	var removeArchive = $formulaireFiltres.find('.removeArchive').val() === 'true';
 	var setArchive = removeArchive ? null : $formulaireValeurs.find('.setArchive').prop('checked');
@@ -863,21 +863,21 @@ async function patchInscriptionScolaire($formulaireFiltres, $formulaireValeurs, 
 function patchInscriptionScolaireFiltres($formulaireFiltres) {
 	var filtres = [];
 
-	var filtreCree = $formulaireFiltres.find('.valeurCree').val();
-	if(filtreCree != null && filtreCree !== '')
-		filtres.push({ name: 'fq', value: 'cree:' + filtreCree });
-
 	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
 	if(filtrePk != null && filtrePk !== '')
 		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
 
-	var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
-	if(filtreObjetId != null && filtreObjetId !== '')
-		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
+	var filtreCree = $formulaireFiltres.find('.valeurCree').val();
+	if(filtreCree != null && filtreCree !== '')
+		filtres.push({ name: 'fq', value: 'cree:' + filtreCree });
 
 	var filtreModifie = $formulaireFiltres.find('.valeurModifie').val();
 	if(filtreModifie != null && filtreModifie !== '')
 		filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
+
+	var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
+	if(filtreObjetId != null && filtreObjetId !== '')
+		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
 
 	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
 	if(filtreArchive != null && filtreArchive === true)
@@ -979,9 +979,9 @@ function patchInscriptionScolaireFiltres($formulaireFiltres) {
 	if(filtrePaiementCles != null && filtrePaiementCles !== '')
 		filtres.push({ name: 'fq', value: 'paiementCles:' + filtrePaiementCles });
 
-	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
-	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
-		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
+	var filtreId = $formulaireFiltres.find('.valeurId').val();
+	if(filtreId != null && filtreId !== '')
+		filtres.push({ name: 'fq', value: 'id:' + filtreId });
 
 	var filtreClasseNomCanonique = $formulaireFiltres.find('.valeurClasseNomCanonique').val();
 	if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
@@ -1003,10 +1003,6 @@ function patchInscriptionScolaireFiltres($formulaireFiltres) {
 	if(filtreObjetTitre != null && filtreObjetTitre !== '')
 		filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
 
-	var filtreId = $formulaireFiltres.find('.valeurId').val();
-	if(filtreId != null && filtreId !== '')
-		filtres.push({ name: 'fq', value: 'id:' + filtreId });
-
 	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
 	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
 		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
@@ -1015,17 +1011,21 @@ function patchInscriptionScolaireFiltres($formulaireFiltres) {
 	if(filtrePageUrlId != null && filtrePageUrlId !== '')
 		filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
 
+	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
+	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
+		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
+
 	var filtreInscriptionCle = $formulaireFiltres.find('.valeurInscriptionCle').val();
 	if(filtreInscriptionCle != null && filtreInscriptionCle !== '')
 		filtres.push({ name: 'fq', value: 'inscriptionCle:' + filtreInscriptionCle });
 
-	var filtreEcoleCle = $formulaireFiltres.find('.valeurEcoleCle').val();
-	if(filtreEcoleCle != null && filtreEcoleCle !== '')
-		filtres.push({ name: 'fq', value: 'ecoleCle:' + filtreEcoleCle });
-
 	var filtreAnneeCle = $formulaireFiltres.find('.valeurAnneeCle').val();
 	if(filtreAnneeCle != null && filtreAnneeCle !== '')
 		filtres.push({ name: 'fq', value: 'anneeCle:' + filtreAnneeCle });
+
+	var filtreEcoleCle = $formulaireFiltres.find('.valeurEcoleCle').val();
+	if(filtreEcoleCle != null && filtreEcoleCle !== '')
+		filtres.push({ name: 'fq', value: 'ecoleCle:' + filtreEcoleCle });
 
 	var filtreSaisonCle = $formulaireFiltres.find('.valeurSaisonCle').val();
 	if(filtreSaisonCle != null && filtreSaisonCle !== '')
@@ -1119,9 +1119,9 @@ function patchInscriptionScolaireFiltres($formulaireFiltres) {
 	if(filtreSaisonHiver != null && filtreSaisonHiver === true)
 		filtres.push({ name: 'fq', value: 'saisonHiver:' + filtreSaisonHiver });
 
-	var filtreSaisonFraisInscription = $formulaireFiltres.find('.valeurSaisonFraisInscription').val();
-	if(filtreSaisonFraisInscription != null && filtreSaisonFraisInscription !== '')
-		filtres.push({ name: 'fq', value: 'saisonFraisInscription:' + filtreSaisonFraisInscription });
+	var filtreAnneeFraisInscription = $formulaireFiltres.find('.valeurAnneeFraisInscription').val();
+	if(filtreAnneeFraisInscription != null && filtreAnneeFraisInscription !== '')
+		filtres.push({ name: 'fq', value: 'anneeFraisInscription:' + filtreAnneeFraisInscription });
 
 	var filtreSaisonNomComplet = $formulaireFiltres.find('.valeurSaisonNomComplet').val();
 	if(filtreSaisonNomComplet != null && filtreSaisonNomComplet !== '')
@@ -1194,6 +1194,14 @@ function patchInscriptionScolaireFiltres($formulaireFiltres) {
 	var filtreBlocNomAdmin = $formulaireFiltres.find('.valeurBlocNomAdmin').val();
 	if(filtreBlocNomAdmin != null && filtreBlocNomAdmin !== '')
 		filtres.push({ name: 'fq', value: 'blocNomAdmin:' + filtreBlocNomAdmin });
+
+	var filtreBlocNomCourt = $formulaireFiltres.find('.valeurBlocNomCourt').val();
+	if(filtreBlocNomCourt != null && filtreBlocNomCourt !== '')
+		filtres.push({ name: 'fq', value: 'blocNomCourt:' + filtreBlocNomCourt });
+
+	var filtreBlocNomComplet = $formulaireFiltres.find('.valeurBlocNomComplet').val();
+	if(filtreBlocNomComplet != null && filtreBlocNomComplet !== '')
+		filtres.push({ name: 'fq', value: 'blocNomComplet:' + filtreBlocNomComplet });
 
 	var filtreInscriptionNomsParents = $formulaireFiltres.find('.valeurInscriptionNomsParents').val();
 	if(filtreInscriptionNomsParents != null && filtreInscriptionNomsParents !== '')
@@ -1305,21 +1313,21 @@ async function rechercheInscriptionScolaire($formulaireFiltres, success, error) 
 function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 	var filtres = [];
 
-	var filtreCree = $formulaireFiltres.find('.valeurCree').val();
-	if(filtreCree != null && filtreCree !== '')
-		filtres.push({ name: 'fq', value: 'cree:' + filtreCree });
-
 	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
 	if(filtrePk != null && filtrePk !== '')
 		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
 
-	var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
-	if(filtreObjetId != null && filtreObjetId !== '')
-		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
+	var filtreCree = $formulaireFiltres.find('.valeurCree').val();
+	if(filtreCree != null && filtreCree !== '')
+		filtres.push({ name: 'fq', value: 'cree:' + filtreCree });
 
 	var filtreModifie = $formulaireFiltres.find('.valeurModifie').val();
 	if(filtreModifie != null && filtreModifie !== '')
 		filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
+
+	var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
+	if(filtreObjetId != null && filtreObjetId !== '')
+		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
 
 	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
 	if(filtreArchive != null && filtreArchive === true)
@@ -1421,9 +1429,9 @@ function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 	if(filtrePaiementCles != null && filtrePaiementCles !== '')
 		filtres.push({ name: 'fq', value: 'paiementCles:' + filtrePaiementCles });
 
-	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
-	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
-		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
+	var filtreId = $formulaireFiltres.find('.valeurId').val();
+	if(filtreId != null && filtreId !== '')
+		filtres.push({ name: 'fq', value: 'id:' + filtreId });
 
 	var filtreClasseNomCanonique = $formulaireFiltres.find('.valeurClasseNomCanonique').val();
 	if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
@@ -1445,10 +1453,6 @@ function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 	if(filtreObjetTitre != null && filtreObjetTitre !== '')
 		filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
 
-	var filtreId = $formulaireFiltres.find('.valeurId').val();
-	if(filtreId != null && filtreId !== '')
-		filtres.push({ name: 'fq', value: 'id:' + filtreId });
-
 	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
 	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
 		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
@@ -1457,17 +1461,21 @@ function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 	if(filtrePageUrlId != null && filtrePageUrlId !== '')
 		filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
 
+	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
+	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
+		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
+
 	var filtreInscriptionCle = $formulaireFiltres.find('.valeurInscriptionCle').val();
 	if(filtreInscriptionCle != null && filtreInscriptionCle !== '')
 		filtres.push({ name: 'fq', value: 'inscriptionCle:' + filtreInscriptionCle });
 
-	var filtreEcoleCle = $formulaireFiltres.find('.valeurEcoleCle').val();
-	if(filtreEcoleCle != null && filtreEcoleCle !== '')
-		filtres.push({ name: 'fq', value: 'ecoleCle:' + filtreEcoleCle });
-
 	var filtreAnneeCle = $formulaireFiltres.find('.valeurAnneeCle').val();
 	if(filtreAnneeCle != null && filtreAnneeCle !== '')
 		filtres.push({ name: 'fq', value: 'anneeCle:' + filtreAnneeCle });
+
+	var filtreEcoleCle = $formulaireFiltres.find('.valeurEcoleCle').val();
+	if(filtreEcoleCle != null && filtreEcoleCle !== '')
+		filtres.push({ name: 'fq', value: 'ecoleCle:' + filtreEcoleCle });
 
 	var filtreSaisonCle = $formulaireFiltres.find('.valeurSaisonCle').val();
 	if(filtreSaisonCle != null && filtreSaisonCle !== '')
@@ -1561,9 +1569,9 @@ function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 	if(filtreSaisonHiver != null && filtreSaisonHiver === true)
 		filtres.push({ name: 'fq', value: 'saisonHiver:' + filtreSaisonHiver });
 
-	var filtreSaisonFraisInscription = $formulaireFiltres.find('.valeurSaisonFraisInscription').val();
-	if(filtreSaisonFraisInscription != null && filtreSaisonFraisInscription !== '')
-		filtres.push({ name: 'fq', value: 'saisonFraisInscription:' + filtreSaisonFraisInscription });
+	var filtreAnneeFraisInscription = $formulaireFiltres.find('.valeurAnneeFraisInscription').val();
+	if(filtreAnneeFraisInscription != null && filtreAnneeFraisInscription !== '')
+		filtres.push({ name: 'fq', value: 'anneeFraisInscription:' + filtreAnneeFraisInscription });
 
 	var filtreSaisonNomComplet = $formulaireFiltres.find('.valeurSaisonNomComplet').val();
 	if(filtreSaisonNomComplet != null && filtreSaisonNomComplet !== '')
@@ -1636,6 +1644,14 @@ function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 	var filtreBlocNomAdmin = $formulaireFiltres.find('.valeurBlocNomAdmin').val();
 	if(filtreBlocNomAdmin != null && filtreBlocNomAdmin !== '')
 		filtres.push({ name: 'fq', value: 'blocNomAdmin:' + filtreBlocNomAdmin });
+
+	var filtreBlocNomCourt = $formulaireFiltres.find('.valeurBlocNomCourt').val();
+	if(filtreBlocNomCourt != null && filtreBlocNomCourt !== '')
+		filtres.push({ name: 'fq', value: 'blocNomCourt:' + filtreBlocNomCourt });
+
+	var filtreBlocNomComplet = $formulaireFiltres.find('.valeurBlocNomComplet').val();
+	if(filtreBlocNomComplet != null && filtreBlocNomComplet !== '')
+		filtres.push({ name: 'fq', value: 'blocNomComplet:' + filtreBlocNomComplet });
 
 	var filtreInscriptionNomsParents = $formulaireFiltres.find('.valeurInscriptionNomsParents').val();
 	if(filtreInscriptionNomsParents != null && filtreInscriptionNomsParents !== '')
@@ -1714,6 +1730,38 @@ function suggereInscriptionScolaireObjetSuggere($formulaireFiltres, $list) {
 	};
 	error = function( jqXhr, textStatus, errorThrown ) {};
 	rechercherInscriptionScolaireVals($formulaireFiltres, success, error);
+}
+
+function suggereInscriptionScolaireAnneeCle(filtres, $list, pk = null) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'fa fa-calendar-check w3-padding-small ');
+			var $span = $('<span>').attr('class', '').text(o['anneeNomComplet']);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
+			$a.append($i);
+			$a.append($span);
+			var val = o['inscriptionCles'];
+			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
+			var $input = $('<input>');
+			$input.attr('id', 'GET_anneeCle_' + pk + '_inscriptionCles_' + o['pk']);
+			$input.attr('class', 'w3-check ');
+			$input.attr('onchange', "var $input = $('#GET_anneeCle_" + pk + "_inscriptionCles_" + o['pk'] + "'); patchInscriptionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'set' : 'remove') + 'AnneeCle']: \"" + o['pk'] + "\" } ); ");
+			$input.attr('onclick', 'enleverLueur($(this)); ');
+			$input.attr('type', 'checkbox');
+			if(checked)
+				$input.attr('checked', 'checked');
+			var $li = $('<li>');
+			$li.append($input);
+			$li.append($a);
+			$list.append($li);
+		});
+		var focusId = $('#InscriptionScolaireForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	rechercheAnneeScolaireVals(filtres, success, error);
 }
 
 function suggereInscriptionScolaireBlocCles(filtres, $list, pk = null) {
@@ -1917,7 +1965,6 @@ async function websocketInscriptionScolaire(success) {
 			var pk = json['pk'];
 			var pks = json['pks'];
 			var empty = json['empty'];
-			if(!empty) {
 				var numFound = json['numFound'];
 				var numPATCH = json['numPATCH'];
 				var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
@@ -1945,7 +1992,10 @@ async function websocketInscriptionScolaire(success) {
 				$('.w3-content').append($box);
 				if(success)
 					success(json);
-			}
+		});
+
+		window.eventBus.registerHandler('websocketAnneeScolaire', function (error, message) {
+			$('#Page_anneeCle').trigger('oninput');
 		});
 
 		window.eventBus.registerHandler('websocketBlocScolaire', function (error, message) {
@@ -2086,6 +2136,10 @@ async function websocketInscriptionScolaireInner(requetePatch) {
 			if(vars.includes('paiementCles')) {
 				$('.inputInscriptionScolaire' + pk + 'PaiementCles').val(o['paiementCles']);
 				$('.varInscriptionScolaire' + pk + 'PaiementCles').text(o['paiementCles']);
+			}
+			if(vars.includes('anneeCle')) {
+				$('.inputInscriptionScolaire' + pk + 'AnneeCle').val(o['anneeCle']);
+				$('.varInscriptionScolaire' + pk + 'AnneeCle').text(o['anneeCle']);
 			}
 			if(vars.includes('enfantNomComplet')) {
 				$('.inputInscriptionScolaire' + pk + 'EnfantNomComplet').val(o['enfantNomComplet']);

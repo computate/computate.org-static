@@ -53,10 +53,6 @@ async function postSaisonScolaire($formulaireValeurs, success, error) {
 	if(valeurSaisonHiver != null && valeurSaisonHiver !== '')
 		vals['saisonHiver'] = valeurSaisonHiver;
 
-	var valeurSaisonFraisInscription = $formulaireValeurs.find('.valeurSaisonFraisInscription').val();
-	if(valeurSaisonFraisInscription != null && valeurSaisonFraisInscription !== '')
-		vals['saisonFraisInscription'] = valeurSaisonFraisInscription;
-
 	var valeurSaisonFuture = $formulaireValeurs.find('.valeurSaisonFuture').prop('checked');
 	if(valeurSaisonFuture != null && valeurSaisonFuture !== '')
 		vals['saisonFuture'] = valeurSaisonFuture;
@@ -202,17 +198,6 @@ async function patchSaisonScolaire($formulaireFiltres, $formulaireValeurs, succe
 	if(removeSaisonHiver != null && removeSaisonHiver !== '')
 		vals['removeSaisonHiver'] = removeSaisonHiver;
 
-	var removeSaisonFraisInscription = $formulaireFiltres.find('.removeSaisonFraisInscription').val() === 'true';
-	var setSaisonFraisInscription = removeSaisonFraisInscription ? null : $formulaireValeurs.find('.setSaisonFraisInscription').val();
-	if(removeSaisonFraisInscription || setSaisonFraisInscription != null && setSaisonFraisInscription !== '')
-		vals['setSaisonFraisInscription'] = setSaisonFraisInscription;
-	var addSaisonFraisInscription = $formulaireValeurs.find('.addSaisonFraisInscription').val();
-	if(addSaisonFraisInscription != null && addSaisonFraisInscription !== '')
-		vals['addSaisonFraisInscription'] = addSaisonFraisInscription;
-	var removeSaisonFraisInscription = $formulaireValeurs.find('.removeSaisonFraisInscription').val();
-	if(removeSaisonFraisInscription != null && removeSaisonFraisInscription !== '')
-		vals['removeSaisonFraisInscription'] = removeSaisonFraisInscription;
-
 	var removeSaisonFuture = $formulaireFiltres.find('.removeSaisonFuture').val() === 'true';
 	var setSaisonFuture = removeSaisonFuture ? null : $formulaireValeurs.find('.setSaisonFuture').prop('checked');
 	if(removeSaisonFuture || setSaisonFuture != null && setSaisonFuture !== '')
@@ -298,10 +283,6 @@ function patchSaisonScolaireFiltres($formulaireFiltres) {
 	var filtreSaisonHiver = $formulaireFiltres.find('.valeurSaisonHiver').prop('checked');
 	if(filtreSaisonHiver != null && filtreSaisonHiver === true)
 		filtres.push({ name: 'fq', value: 'saisonHiver:' + filtreSaisonHiver });
-
-	var filtreSaisonFraisInscription = $formulaireFiltres.find('.valeurSaisonFraisInscription').val();
-	if(filtreSaisonFraisInscription != null && filtreSaisonFraisInscription !== '')
-		filtres.push({ name: 'fq', value: 'saisonFraisInscription:' + filtreSaisonFraisInscription });
 
 	var filtreSaisonFuture = $formulaireFiltres.find('.valeurSaisonFuture').prop('checked');
 	if(filtreSaisonFuture != null && filtreSaisonFuture === true)
@@ -410,6 +391,10 @@ function patchSaisonScolaireFiltres($formulaireFiltres) {
 	var filtreAnneeFin = $formulaireFiltres.find('.valeurAnneeFin').val();
 	if(filtreAnneeFin != null && filtreAnneeFin !== '')
 		filtres.push({ name: 'fq', value: 'anneeFin:' + filtreAnneeFin });
+
+	var filtreAnneeFraisInscription = $formulaireFiltres.find('.valeurAnneeFraisInscription').val();
+	if(filtreAnneeFraisInscription != null && filtreAnneeFraisInscription !== '')
+		filtres.push({ name: 'fq', value: 'anneeFraisInscription:' + filtreAnneeFraisInscription });
 
 	var filtreSaisonNomCourt = $formulaireFiltres.find('.valeurSaisonNomCourt').val();
 	if(filtreSaisonNomCourt != null && filtreSaisonNomCourt !== '')
@@ -517,10 +502,6 @@ function rechercheSaisonScolaireFiltres($formulaireFiltres) {
 	if(filtreSaisonHiver != null && filtreSaisonHiver === true)
 		filtres.push({ name: 'fq', value: 'saisonHiver:' + filtreSaisonHiver });
 
-	var filtreSaisonFraisInscription = $formulaireFiltres.find('.valeurSaisonFraisInscription').val();
-	if(filtreSaisonFraisInscription != null && filtreSaisonFraisInscription !== '')
-		filtres.push({ name: 'fq', value: 'saisonFraisInscription:' + filtreSaisonFraisInscription });
-
 	var filtreSaisonFuture = $formulaireFiltres.find('.valeurSaisonFuture').prop('checked');
 	if(filtreSaisonFuture != null && filtreSaisonFuture === true)
 		filtres.push({ name: 'fq', value: 'saisonFuture:' + filtreSaisonFuture });
@@ -628,6 +609,10 @@ function rechercheSaisonScolaireFiltres($formulaireFiltres) {
 	var filtreAnneeFin = $formulaireFiltres.find('.valeurAnneeFin').val();
 	if(filtreAnneeFin != null && filtreAnneeFin !== '')
 		filtres.push({ name: 'fq', value: 'anneeFin:' + filtreAnneeFin });
+
+	var filtreAnneeFraisInscription = $formulaireFiltres.find('.valeurAnneeFraisInscription').val();
+	if(filtreAnneeFraisInscription != null && filtreAnneeFraisInscription !== '')
+		filtres.push({ name: 'fq', value: 'anneeFraisInscription:' + filtreAnneeFraisInscription });
 
 	var filtreSaisonNomCourt = $formulaireFiltres.find('.valeurSaisonNomCourt').val();
 	if(filtreSaisonNomCourt != null && filtreSaisonNomCourt !== '')
@@ -786,6 +771,7 @@ async function websocketSaisonScolaireInner(requetePatch) {
 	var pks = requetePatch['pks'];
 	var classes = requetePatch['classes'];
 	var vars = requetePatch['vars'];
+	var empty = requetePatch['empty'];
 
 	if(pk != null) {
 		rechercherSaisonScolaireVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
@@ -818,10 +804,6 @@ async function websocketSaisonScolaireInner(requetePatch) {
 				$('.inputSaisonScolaire' + pk + 'SaisonHiver').val(o['saisonHiver']);
 				$('.varSaisonScolaire' + pk + 'SaisonHiver').text(o['saisonHiver']);
 			}
-			if(vars.includes('saisonFraisInscription')) {
-				$('.inputSaisonScolaire' + pk + 'SaisonFraisInscription').val(o['saisonFraisInscription']);
-				$('.varSaisonScolaire' + pk + 'SaisonFraisInscription').text(o['saisonFraisInscription']);
-			}
 			if(vars.includes('saisonFuture')) {
 				$('.inputSaisonScolaire' + pk + 'SaisonFuture').val(o['saisonFuture']);
 				$('.varSaisonScolaire' + pk + 'SaisonFuture').text(o['saisonFuture']);
@@ -837,12 +819,14 @@ async function websocketSaisonScolaireInner(requetePatch) {
 		});
 	}
 
-	if(pks) {
-		for(i=0; i < pks.length; i++) {
-			var pk2 = pks[i];
-			var c = classes[i];
-			await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
+	if(!empty) {
+		if(pks) {
+			for(i=0; i < pks.length; i++) {
+				var pk2 = pks[i];
+				var c = classes[i];
+				await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
+			}
 		}
+		await patchSaisonScolaireVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 	}
-	await patchSaisonScolaireVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 }

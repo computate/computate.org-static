@@ -49,10 +49,6 @@ async function postDesignInscription($formulaireValeurs, success, error) {
 	if(valeurPartHtmlCles != null && valeurPartHtmlCles !== '')
 		vals['partHtmlCles'] = valeurPartHtmlCles;
 
-	var valeurInscriptionCles = $formulaireValeurs.find('.valeurInscriptionCles').val();
-	if(valeurInscriptionCles != null && valeurInscriptionCles !== '')
-		vals['inscriptionCles'] = valeurInscriptionCles;
-
 	$.ajax({
 		url: '/api/design-inscription'
 		, dataType: 'json'
@@ -171,17 +167,6 @@ async function patchDesignInscription($formulaireFiltres, $formulaireValeurs, su
 	if(removePartHtmlCles != null && removePartHtmlCles !== '')
 		vals['removePartHtmlCles'] = removePartHtmlCles;
 
-	var removeInscriptionCles = $formulaireFiltres.find('.removeInscriptionCles').val() === 'true';
-	var setInscriptionCles = removeInscriptionCles ? null : $formulaireValeurs.find('.setInscriptionCles').val();
-	if(removeInscriptionCles || setInscriptionCles != null && setInscriptionCles !== '')
-		vals['setInscriptionCles'] = setInscriptionCles;
-	var addInscriptionCles = $formulaireValeurs.find('.addInscriptionCles').val();
-	if(addInscriptionCles != null && addInscriptionCles !== '')
-		vals['addInscriptionCles'] = addInscriptionCles;
-	var removeInscriptionCles = $formulaireValeurs.find('.removeInscriptionCles').val();
-	if(removeInscriptionCles != null && removeInscriptionCles !== '')
-		vals['removeInscriptionCles'] = removeInscriptionCles;
-
 	patchDesignInscriptionVals(filtres, vals, success, error);
 }
 
@@ -219,10 +204,6 @@ function patchDesignInscriptionFiltres($formulaireFiltres) {
 	var filtrePartHtmlCles = $formulaireFiltres.find('.valeurPartHtmlCles').val();
 	if(filtrePartHtmlCles != null && filtrePartHtmlCles !== '')
 		filtres.push({ name: 'fq', value: 'partHtmlCles:' + filtrePartHtmlCles });
-
-	var filtreInscriptionCles = $formulaireFiltres.find('.valeurInscriptionCles').val();
-	if(filtreInscriptionCles != null && filtreInscriptionCles !== '')
-		filtres.push({ name: 'fq', value: 'inscriptionCles:' + filtreInscriptionCles });
 
 	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
 	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
@@ -267,6 +248,10 @@ function patchDesignInscriptionFiltres($formulaireFiltres) {
 	var filtreAnneeCle = $formulaireFiltres.find('.valeurAnneeCle').val();
 	if(filtreAnneeCle != null && filtreAnneeCle !== '')
 		filtres.push({ name: 'fq', value: 'anneeCle:' + filtreAnneeCle });
+
+	var filtreInscriptionCles = $formulaireFiltres.find('.valeurInscriptionCles').val();
+	if(filtreInscriptionCles != null && filtreInscriptionCles !== '')
+		filtres.push({ name: 'fq', value: 'inscriptionCles:' + filtreInscriptionCles });
 
 	var filtreEcoleCle = $formulaireFiltres.find('.valeurEcoleCle').val();
 	if(filtreEcoleCle != null && filtreEcoleCle !== '')
@@ -390,10 +375,6 @@ function rechercheDesignInscriptionFiltres($formulaireFiltres) {
 	if(filtrePartHtmlCles != null && filtrePartHtmlCles !== '')
 		filtres.push({ name: 'fq', value: 'partHtmlCles:' + filtrePartHtmlCles });
 
-	var filtreInscriptionCles = $formulaireFiltres.find('.valeurInscriptionCles').val();
-	if(filtreInscriptionCles != null && filtreInscriptionCles !== '')
-		filtres.push({ name: 'fq', value: 'inscriptionCles:' + filtreInscriptionCles });
-
 	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
 	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
 		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
@@ -437,6 +418,10 @@ function rechercheDesignInscriptionFiltres($formulaireFiltres) {
 	var filtreAnneeCle = $formulaireFiltres.find('.valeurAnneeCle').val();
 	if(filtreAnneeCle != null && filtreAnneeCle !== '')
 		filtres.push({ name: 'fq', value: 'anneeCle:' + filtreAnneeCle });
+
+	var filtreInscriptionCles = $formulaireFiltres.find('.valeurInscriptionCles').val();
+	if(filtreInscriptionCles != null && filtreInscriptionCles !== '')
+		filtres.push({ name: 'fq', value: 'inscriptionCles:' + filtreInscriptionCles });
 
 	var filtreEcoleCle = $formulaireFiltres.find('.valeurEcoleCle').val();
 	if(filtreEcoleCle != null && filtreEcoleCle !== '')
@@ -757,6 +742,7 @@ async function websocketDesignInscriptionInner(requetePatch) {
 	var pks = requetePatch['pks'];
 	var classes = requetePatch['classes'];
 	var vars = requetePatch['vars'];
+	var empty = requetePatch['empty'];
 
 	if(pk != null) {
 		rechercherDesignInscriptionVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
@@ -788,12 +774,14 @@ async function websocketDesignInscriptionInner(requetePatch) {
 		});
 	}
 
-	if(pks) {
-		for(i=0; i < pks.length; i++) {
-			var pk2 = pks[i];
-			var c = classes[i];
-			await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
+	if(!empty) {
+		if(pks) {
+			for(i=0; i < pks.length; i++) {
+				var pk2 = pks[i];
+				var c = classes[i];
+				await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
+			}
 		}
+		await patchDesignInscriptionVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 	}
-	await patchDesignInscriptionVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 }

@@ -53,10 +53,6 @@ async function postSchoolSeason($formValues, success, error) {
 	if(valueSeasonWinter != null && valueSeasonWinter !== '')
 		vals['seasonWinter'] = valueSeasonWinter;
 
-	var valueSeasonEnrollmentFee = $formValues.find('.valueSeasonEnrollmentFee').val();
-	if(valueSeasonEnrollmentFee != null && valueSeasonEnrollmentFee !== '')
-		vals['seasonEnrollmentFee'] = valueSeasonEnrollmentFee;
-
 	var valueSeasonFuture = $formValues.find('.valueSeasonFuture').prop('checked');
 	if(valueSeasonFuture != null && valueSeasonFuture !== '')
 		vals['seasonFuture'] = valueSeasonFuture;
@@ -202,17 +198,6 @@ async function patchSchoolSeason($formFilters, $formValues, success, error) {
 	if(removeSeasonWinter != null && removeSeasonWinter !== '')
 		vals['removeSeasonWinter'] = removeSeasonWinter;
 
-	var removeSeasonEnrollmentFee = $formFilters.find('.removeSeasonEnrollmentFee').val() === 'true';
-	var setSeasonEnrollmentFee = removeSeasonEnrollmentFee ? null : $formValues.find('.setSeasonEnrollmentFee').val();
-	if(removeSeasonEnrollmentFee || setSeasonEnrollmentFee != null && setSeasonEnrollmentFee !== '')
-		vals['setSeasonEnrollmentFee'] = setSeasonEnrollmentFee;
-	var addSeasonEnrollmentFee = $formValues.find('.addSeasonEnrollmentFee').val();
-	if(addSeasonEnrollmentFee != null && addSeasonEnrollmentFee !== '')
-		vals['addSeasonEnrollmentFee'] = addSeasonEnrollmentFee;
-	var removeSeasonEnrollmentFee = $formValues.find('.removeSeasonEnrollmentFee').val();
-	if(removeSeasonEnrollmentFee != null && removeSeasonEnrollmentFee !== '')
-		vals['removeSeasonEnrollmentFee'] = removeSeasonEnrollmentFee;
-
 	var removeSeasonFuture = $formFilters.find('.removeSeasonFuture').val() === 'true';
 	var setSeasonFuture = removeSeasonFuture ? null : $formValues.find('.setSeasonFuture').prop('checked');
 	if(removeSeasonFuture || setSeasonFuture != null && setSeasonFuture !== '')
@@ -298,10 +283,6 @@ function patchSchoolSeasonFilters($formFilters) {
 	var filterSeasonWinter = $formFilters.find('.valueSeasonWinter').prop('checked');
 	if(filterSeasonWinter != null && filterSeasonWinter === true)
 		filters.push({ name: 'fq', value: 'seasonWinter:' + filterSeasonWinter });
-
-	var filterSeasonEnrollmentFee = $formFilters.find('.valueSeasonEnrollmentFee').val();
-	if(filterSeasonEnrollmentFee != null && filterSeasonEnrollmentFee !== '')
-		filters.push({ name: 'fq', value: 'seasonEnrollmentFee:' + filterSeasonEnrollmentFee });
 
 	var filterSeasonFuture = $formFilters.find('.valueSeasonFuture').prop('checked');
 	if(filterSeasonFuture != null && filterSeasonFuture === true)
@@ -410,6 +391,10 @@ function patchSchoolSeasonFilters($formFilters) {
 	var filterYearEnd = $formFilters.find('.valueYearEnd').val();
 	if(filterYearEnd != null && filterYearEnd !== '')
 		filters.push({ name: 'fq', value: 'yearEnd:' + filterYearEnd });
+
+	var filterYearEnrollmentFee = $formFilters.find('.valueYearEnrollmentFee').val();
+	if(filterYearEnrollmentFee != null && filterYearEnrollmentFee !== '')
+		filters.push({ name: 'fq', value: 'yearEnrollmentFee:' + filterYearEnrollmentFee });
 
 	var filterSeasonShortName = $formFilters.find('.valueSeasonShortName').val();
 	if(filterSeasonShortName != null && filterSeasonShortName !== '')
@@ -517,10 +502,6 @@ function searchSchoolSeasonFilters($formFilters) {
 	if(filterSeasonWinter != null && filterSeasonWinter === true)
 		filters.push({ name: 'fq', value: 'seasonWinter:' + filterSeasonWinter });
 
-	var filterSeasonEnrollmentFee = $formFilters.find('.valueSeasonEnrollmentFee').val();
-	if(filterSeasonEnrollmentFee != null && filterSeasonEnrollmentFee !== '')
-		filters.push({ name: 'fq', value: 'seasonEnrollmentFee:' + filterSeasonEnrollmentFee });
-
 	var filterSeasonFuture = $formFilters.find('.valueSeasonFuture').prop('checked');
 	if(filterSeasonFuture != null && filterSeasonFuture === true)
 		filters.push({ name: 'fq', value: 'seasonFuture:' + filterSeasonFuture });
@@ -628,6 +609,10 @@ function searchSchoolSeasonFilters($formFilters) {
 	var filterYearEnd = $formFilters.find('.valueYearEnd').val();
 	if(filterYearEnd != null && filterYearEnd !== '')
 		filters.push({ name: 'fq', value: 'yearEnd:' + filterYearEnd });
+
+	var filterYearEnrollmentFee = $formFilters.find('.valueYearEnrollmentFee').val();
+	if(filterYearEnrollmentFee != null && filterYearEnrollmentFee !== '')
+		filters.push({ name: 'fq', value: 'yearEnrollmentFee:' + filterYearEnrollmentFee });
 
 	var filterSeasonShortName = $formFilters.find('.valueSeasonShortName').val();
 	if(filterSeasonShortName != null && filterSeasonShortName !== '')
@@ -786,6 +771,7 @@ async function websocketSchoolSeasonInner(patchRequest) {
 	var pks = patchRequest['pks'];
 	var classes = patchRequest['classes'];
 	var vars = patchRequest['vars'];
+	var empty = patchRequest['empty'];
 
 	if(pk != null) {
 		searchSchoolSeasonVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
@@ -818,10 +804,6 @@ async function websocketSchoolSeasonInner(patchRequest) {
 				$('.inputSchoolSeason' + pk + 'SeasonWinter').val(o['seasonWinter']);
 				$('.varSchoolSeason' + pk + 'SeasonWinter').text(o['seasonWinter']);
 			}
-			if(vars.includes('seasonEnrollmentFee')) {
-				$('.inputSchoolSeason' + pk + 'SeasonEnrollmentFee').val(o['seasonEnrollmentFee']);
-				$('.varSchoolSeason' + pk + 'SeasonEnrollmentFee').text(o['seasonEnrollmentFee']);
-			}
 			if(vars.includes('seasonFuture')) {
 				$('.inputSchoolSeason' + pk + 'SeasonFuture').val(o['seasonFuture']);
 				$('.varSchoolSeason' + pk + 'SeasonFuture').text(o['seasonFuture']);
@@ -837,12 +819,14 @@ async function websocketSchoolSeasonInner(patchRequest) {
 		});
 	}
 
-	if(pks) {
-		for(i=0; i < pks.length; i++) {
-			var pk2 = pks[i];
-			var c = classes[i];
-			await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
+	if(!empty) {
+		if(pks) {
+			for(i=0; i < pks.length; i++) {
+				var pk2 = pks[i];
+				var c = classes[i];
+				await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
+			}
 		}
+		await patchSchoolSeasonVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 	}
-	await patchSchoolSeasonVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 }

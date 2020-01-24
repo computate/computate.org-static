@@ -273,6 +273,7 @@ async function websocketSiteUserInner(patchRequest) {
 	var pks = patchRequest['pks'];
 	var classes = patchRequest['classes'];
 	var vars = patchRequest['vars'];
+	var empty = patchRequest['empty'];
 
 	if(pk != null) {
 		searchSiteUserVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
@@ -308,12 +309,14 @@ async function websocketSiteUserInner(patchRequest) {
 		});
 	}
 
-	if(pks) {
-		for(i=0; i < pks.length; i++) {
-			var pk2 = pks[i];
-			var c = classes[i];
-			await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
+	if(!empty) {
+		if(pks) {
+			for(i=0; i < pks.length; i++) {
+				var pk2 = pks[i];
+				var c = classes[i];
+				await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
+			}
 		}
+		await patchSiteUserVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 	}
-	await patchSiteUserVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 }

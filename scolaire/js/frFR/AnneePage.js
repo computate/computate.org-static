@@ -49,6 +49,10 @@ async function postAnneeScolaire($formulaireValeurs, success, error) {
 	if(valeurAnneeFin != null && valeurAnneeFin !== '')
 		vals['anneeFin'] = valeurAnneeFin;
 
+	var valeurAnneeFraisInscription = $formulaireValeurs.find('.valeurAnneeFraisInscription').val();
+	if(valeurAnneeFraisInscription != null && valeurAnneeFraisInscription !== '')
+		vals['anneeFraisInscription'] = valeurAnneeFraisInscription;
+
 	var valeurEcoleCle = $formulaireValeurs.find('.valeurEcoleCle').val();
 	if(valeurEcoleCle != null && valeurEcoleCle !== '')
 		vals['ecoleCle'] = valeurEcoleCle;
@@ -183,6 +187,17 @@ async function patchAnneeScolaire($formulaireFiltres, $formulaireValeurs, succes
 	if(removeAnneeFin != null && removeAnneeFin !== '')
 		vals['removeAnneeFin'] = removeAnneeFin;
 
+	var removeAnneeFraisInscription = $formulaireFiltres.find('.removeAnneeFraisInscription').val() === 'true';
+	var setAnneeFraisInscription = removeAnneeFraisInscription ? null : $formulaireValeurs.find('.setAnneeFraisInscription').val();
+	if(removeAnneeFraisInscription || setAnneeFraisInscription != null && setAnneeFraisInscription !== '')
+		vals['setAnneeFraisInscription'] = setAnneeFraisInscription;
+	var addAnneeFraisInscription = $formulaireValeurs.find('.addAnneeFraisInscription').val();
+	if(addAnneeFraisInscription != null && addAnneeFraisInscription !== '')
+		vals['addAnneeFraisInscription'] = addAnneeFraisInscription;
+	var removeAnneeFraisInscription = $formulaireValeurs.find('.removeAnneeFraisInscription').val();
+	if(removeAnneeFraisInscription != null && removeAnneeFraisInscription !== '')
+		vals['removeAnneeFraisInscription'] = removeAnneeFraisInscription;
+
 	var removeEcoleCle = $formulaireFiltres.find('.removeEcoleCle').val() === 'true';
 	var setEcoleCle = removeEcoleCle ? null : $formulaireValeurs.find('.setEcoleCle').val();
 	if(removeEcoleCle || setEcoleCle != null && setEcoleCle !== '')
@@ -264,6 +279,10 @@ function patchAnneeScolaireFiltres($formulaireFiltres) {
 	var filtreAnneeFin = $formulaireFiltres.find('.valeurAnneeFin').val();
 	if(filtreAnneeFin != null && filtreAnneeFin !== '')
 		filtres.push({ name: 'fq', value: 'anneeFin:' + filtreAnneeFin });
+
+	var filtreAnneeFraisInscription = $formulaireFiltres.find('.valeurAnneeFraisInscription').val();
+	if(filtreAnneeFraisInscription != null && filtreAnneeFraisInscription !== '')
+		filtres.push({ name: 'fq', value: 'anneeFraisInscription:' + filtreAnneeFraisInscription });
 
 	var filtreEcoleCle = $formulaireFiltres.find('.valeurEcoleCle').val();
 	if(filtreEcoleCle != null && filtreEcoleCle !== '')
@@ -458,6 +477,10 @@ function rechercheAnneeScolaireFiltres($formulaireFiltres) {
 	var filtreAnneeFin = $formulaireFiltres.find('.valeurAnneeFin').val();
 	if(filtreAnneeFin != null && filtreAnneeFin !== '')
 		filtres.push({ name: 'fq', value: 'anneeFin:' + filtreAnneeFin });
+
+	var filtreAnneeFraisInscription = $formulaireFiltres.find('.valeurAnneeFraisInscription').val();
+	if(filtreAnneeFraisInscription != null && filtreAnneeFraisInscription !== '')
+		filtres.push({ name: 'fq', value: 'anneeFraisInscription:' + filtreAnneeFraisInscription });
 
 	var filtreEcoleCle = $formulaireFiltres.find('.valeurEcoleCle').val();
 	if(filtreEcoleCle != null && filtreEcoleCle !== '')
@@ -708,6 +731,7 @@ async function websocketAnneeScolaireInner(requetePatch) {
 	var pks = requetePatch['pks'];
 	var classes = requetePatch['classes'];
 	var vars = requetePatch['vars'];
+	var empty = requetePatch['empty'];
 
 	if(pk != null) {
 		rechercherAnneeScolaireVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
@@ -736,6 +760,10 @@ async function websocketAnneeScolaireInner(requetePatch) {
 				$('.inputAnneeScolaire' + pk + 'AnneeFin').val(o['anneeFin']);
 				$('.varAnneeScolaire' + pk + 'AnneeFin').text(o['anneeFin']);
 			}
+			if(vars.includes('anneeFraisInscription')) {
+				$('.inputAnneeScolaire' + pk + 'AnneeFraisInscription').val(o['anneeFraisInscription']);
+				$('.varAnneeScolaire' + pk + 'AnneeFraisInscription').text(o['anneeFraisInscription']);
+			}
 			if(vars.includes('ecoleCle')) {
 				$('.inputAnneeScolaire' + pk + 'EcoleCle').val(o['ecoleCle']);
 				$('.varAnneeScolaire' + pk + 'EcoleCle').text(o['ecoleCle']);
@@ -747,12 +775,14 @@ async function websocketAnneeScolaireInner(requetePatch) {
 		});
 	}
 
-	if(pks) {
-		for(i=0; i < pks.length; i++) {
-			var pk2 = pks[i];
-			var c = classes[i];
-			await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
+	if(!empty) {
+		if(pks) {
+			for(i=0; i < pks.length; i++) {
+				var pk2 = pks[i];
+				var c = classes[i];
+				await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
+			}
 		}
+		await patchAnneeScolaireVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 	}
-	await patchAnneeScolaireVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 }
