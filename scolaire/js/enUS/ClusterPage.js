@@ -41,6 +41,10 @@ async function postCluster($formValues, success, error) {
 	if(valueDeleted != null && valueDeleted !== '')
 		vals['deleted'] = valueDeleted;
 
+	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
+	if(valueObjectTitle != null && valueObjectTitle !== '')
+		vals['objectTitle'] = valueObjectTitle;
+
 	$.ajax({
 		url: '/api/cluster'
 		, dataType: 'json'
@@ -57,6 +61,54 @@ function postClusterVals(vals, success, error) {
 		url: '/api/cluster'
 		, dataType: 'json'
 		, type: 'POST'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(vals)
+		, success: success
+		, error: error
+	});
+}
+
+// PUT //
+
+async function putCluster($formValues) {
+	var vals = {};
+
+	var valuePk = $formValues.find('.valuePk').val();
+	if(valuePk != null && valuePk !== '')
+		vals['pk'] = valuePk;
+
+	var valueCreated = $formValues.find('.valueCreated').val();
+	if(valueCreated != null && valueCreated !== '')
+		vals['created'] = valueCreated;
+
+	var valueModified = $formValues.find('.valueModified').val();
+	if(valueModified != null && valueModified !== '')
+		vals['modified'] = valueModified;
+
+	var valueObjectId = $formValues.find('.valueObjectId').val();
+	if(valueObjectId != null && valueObjectId !== '')
+		vals['objectId'] = valueObjectId;
+
+	var valueArchived = $formValues.find('.valueArchived').prop('checked');
+	if(valueArchived != null && valueArchived !== '')
+		vals['archived'] = valueArchived;
+
+	var valueDeleted = $formValues.find('.valueDeleted').prop('checked');
+	if(valueDeleted != null && valueDeleted !== '')
+		vals['deleted'] = valueDeleted;
+
+	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
+	if(valueObjectTitle != null && valueObjectTitle !== '')
+		vals['objectTitle'] = valueObjectTitle;
+
+	putClusterVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+}
+
+function putClusterVals(filters, vals, success, error) {
+	$.ajax({
+		url: '/api/cluster?' + $.param(filters)
+		, dataType: 'json'
+		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
 		, data: JSON.stringify(vals)
 		, success: success
@@ -137,6 +189,17 @@ async function patchCluster($formFilters, $formValues, success, error) {
 	if(removeDeleted != null && removeDeleted !== '')
 		vals['removeDeleted'] = removeDeleted;
 
+	var removeObjectTitle = $formFilters.find('.removeObjectTitle').val() === 'true';
+	var setObjectTitle = removeObjectTitle ? null : $formValues.find('.setObjectTitle').val();
+	if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
+		vals['setObjectTitle'] = setObjectTitle;
+	var addObjectTitle = $formValues.find('.addObjectTitle').val();
+	if(addObjectTitle != null && addObjectTitle !== '')
+		vals['addObjectTitle'] = addObjectTitle;
+	var removeObjectTitle = $formValues.find('.removeObjectTitle').val();
+	if(removeObjectTitle != null && removeObjectTitle !== '')
+		vals['removeObjectTitle'] = removeObjectTitle;
+
 	patchClusterVals(filters, vals, success, error);
 }
 
@@ -167,6 +230,10 @@ function patchClusterFilters($formFilters) {
 	if(filterDeleted != null && filterDeleted === true)
 		filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
+	var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+	if(filterInheritPk != null && filterInheritPk !== '')
+		filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+
 	var filterId = $formFilters.find('.valueId').val();
 	if(filterId != null && filterId !== '')
 		filters.push({ name: 'fq', value: 'id:' + filterId });
@@ -186,6 +253,10 @@ function patchClusterFilters($formFilters) {
 	var filterSessionId = $formFilters.find('.valueSessionId').val();
 	if(filterSessionId != null && filterSessionId !== '')
 		filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+	var filterSaves = $formFilters.find('.valueSaves').val();
+	if(filterSaves != null && filterSaves !== '')
+		filters.push({ name: 'fq', value: 'saves:' + filterSaves });
 
 	var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
 	if(filterObjectTitle != null && filterObjectTitle !== '')
@@ -289,6 +360,10 @@ function searchClusterFilters($formFilters) {
 	if(filterDeleted != null && filterDeleted === true)
 		filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
+	var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+	if(filterInheritPk != null && filterInheritPk !== '')
+		filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+
 	var filterId = $formFilters.find('.valueId').val();
 	if(filterId != null && filterId !== '')
 		filters.push({ name: 'fq', value: 'id:' + filterId });
@@ -308,6 +383,10 @@ function searchClusterFilters($formFilters) {
 	var filterSessionId = $formFilters.find('.valueSessionId').val();
 	if(filterSessionId != null && filterSessionId !== '')
 		filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+	var filterSaves = $formFilters.find('.valueSaves').val();
+	if(filterSaves != null && filterSaves !== '')
+		filters.push({ name: 'fq', value: 'saves:' + filterSaves });
 
 	var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
 	if(filterObjectTitle != null && filterObjectTitle !== '')
@@ -395,12 +474,12 @@ async function websocketCluster(success) {
 		});
 	}
 }
-async function websocketClusterInner(patchRequest) {
-	var pk = patchRequest['pk'];
-	var pks = patchRequest['pks'];
-	var classes = patchRequest['classes'];
-	var vars = patchRequest['vars'];
-	var empty = patchRequest['empty'];
+async function websocketClusterInner(apiRequest) {
+	var pk = apiRequest['pk'];
+	var pks = apiRequest['pks'];
+	var classes = apiRequest['classes'];
+	var vars = apiRequest['vars'];
+	var empty = apiRequest['empty'];
 
 	if(pk != null) {
 		searchClusterVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {

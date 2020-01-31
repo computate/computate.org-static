@@ -41,6 +41,10 @@ async function postCluster($formulaireValeurs, success, error) {
 	if(valeurSupprime != null && valeurSupprime !== '')
 		vals['supprime'] = valeurSupprime;
 
+	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
+	if(valeurObjetTitre != null && valeurObjetTitre !== '')
+		vals['objetTitre'] = valeurObjetTitre;
+
 	$.ajax({
 		url: '/api/cluster'
 		, dataType: 'json'
@@ -57,6 +61,54 @@ function postClusterVals(vals, success, error) {
 		url: '/api/cluster'
 		, dataType: 'json'
 		, type: 'POST'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(vals)
+		, success: success
+		, error: error
+	});
+}
+
+// PUT //
+
+async function putCluster($formulaireValeurs) {
+	var vals = {};
+
+	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
+	if(valeurPk != null && valeurPk !== '')
+		vals['pk'] = valeurPk;
+
+	var valeurCree = $formulaireValeurs.find('.valeurCree').val();
+	if(valeurCree != null && valeurCree !== '')
+		vals['cree'] = valeurCree;
+
+	var valeurModifie = $formulaireValeurs.find('.valeurModifie').val();
+	if(valeurModifie != null && valeurModifie !== '')
+		vals['modifie'] = valeurModifie;
+
+	var valeurObjetId = $formulaireValeurs.find('.valeurObjetId').val();
+	if(valeurObjetId != null && valeurObjetId !== '')
+		vals['objetId'] = valeurObjetId;
+
+	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
+	if(valeurArchive != null && valeurArchive !== '')
+		vals['archive'] = valeurArchive;
+
+	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').prop('checked');
+	if(valeurSupprime != null && valeurSupprime !== '')
+		vals['supprime'] = valeurSupprime;
+
+	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
+	if(valeurObjetTitre != null && valeurObjetTitre !== '')
+		vals['objetTitre'] = valeurObjetTitre;
+
+	putClusterVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+}
+
+function putClusterVals(filtres, vals, success, error) {
+	$.ajax({
+		url: '/api/cluster?' + $.param(filtres)
+		, dataType: 'json'
+		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
 		, data: JSON.stringify(vals)
 		, success: success
@@ -137,6 +189,17 @@ async function patchCluster($formulaireFiltres, $formulaireValeurs, success, err
 	if(removeSupprime != null && removeSupprime !== '')
 		vals['removeSupprime'] = removeSupprime;
 
+	var removeObjetTitre = $formulaireFiltres.find('.removeObjetTitre').val() === 'true';
+	var setObjetTitre = removeObjetTitre ? null : $formulaireValeurs.find('.setObjetTitre').val();
+	if(removeObjetTitre || setObjetTitre != null && setObjetTitre !== '')
+		vals['setObjetTitre'] = setObjetTitre;
+	var addObjetTitre = $formulaireValeurs.find('.addObjetTitre').val();
+	if(addObjetTitre != null && addObjetTitre !== '')
+		vals['addObjetTitre'] = addObjetTitre;
+	var removeObjetTitre = $formulaireValeurs.find('.removeObjetTitre').val();
+	if(removeObjetTitre != null && removeObjetTitre !== '')
+		vals['removeObjetTitre'] = removeObjetTitre;
+
 	patchClusterVals(filtres, vals, success, error);
 }
 
@@ -167,6 +230,10 @@ function patchClusterFiltres($formulaireFiltres) {
 	if(filtreSupprime != null && filtreSupprime === true)
 		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
+	var filtreInheritPk = $formulaireFiltres.find('.valeurInheritPk').val();
+	if(filtreInheritPk != null && filtreInheritPk !== '')
+		filtres.push({ name: 'fq', value: 'inheritPk:' + filtreInheritPk });
+
 	var filtreId = $formulaireFiltres.find('.valeurId').val();
 	if(filtreId != null && filtreId !== '')
 		filtres.push({ name: 'fq', value: 'id:' + filtreId });
@@ -186,6 +253,10 @@ function patchClusterFiltres($formulaireFiltres) {
 	var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
 	if(filtreSessionId != null && filtreSessionId !== '')
 		filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
+
+	var filtreSauvegardes = $formulaireFiltres.find('.valeurSauvegardes').val();
+	if(filtreSauvegardes != null && filtreSauvegardes !== '')
+		filtres.push({ name: 'fq', value: 'sauvegardes:' + filtreSauvegardes });
 
 	var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
 	if(filtreObjetTitre != null && filtreObjetTitre !== '')
@@ -289,6 +360,10 @@ function rechercheClusterFiltres($formulaireFiltres) {
 	if(filtreSupprime != null && filtreSupprime === true)
 		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
+	var filtreInheritPk = $formulaireFiltres.find('.valeurInheritPk').val();
+	if(filtreInheritPk != null && filtreInheritPk !== '')
+		filtres.push({ name: 'fq', value: 'inheritPk:' + filtreInheritPk });
+
 	var filtreId = $formulaireFiltres.find('.valeurId').val();
 	if(filtreId != null && filtreId !== '')
 		filtres.push({ name: 'fq', value: 'id:' + filtreId });
@@ -308,6 +383,10 @@ function rechercheClusterFiltres($formulaireFiltres) {
 	var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
 	if(filtreSessionId != null && filtreSessionId !== '')
 		filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
+
+	var filtreSauvegardes = $formulaireFiltres.find('.valeurSauvegardes').val();
+	if(filtreSauvegardes != null && filtreSauvegardes !== '')
+		filtres.push({ name: 'fq', value: 'sauvegardes:' + filtreSauvegardes });
 
 	var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
 	if(filtreObjetTitre != null && filtreObjetTitre !== '')
@@ -395,12 +474,12 @@ async function websocketCluster(success) {
 		});
 	}
 }
-async function websocketClusterInner(requetePatch) {
-	var pk = requetePatch['pk'];
-	var pks = requetePatch['pks'];
-	var classes = requetePatch['classes'];
-	var vars = requetePatch['vars'];
-	var empty = requetePatch['empty'];
+async function websocketClusterInner(requeteApi) {
+	var pk = requeteApi['pk'];
+	var pks = requeteApi['pks'];
+	var classes = requeteApi['classes'];
+	var vars = requeteApi['vars'];
+	var empty = requeteApi['empty'];
 
 	if(pk != null) {
 		rechercherClusterVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {

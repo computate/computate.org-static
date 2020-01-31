@@ -17,21 +17,21 @@ async function postSessionScolaire($formulaireValeurs, success, error) {
 		};
 	}
 
-	var valeurCree = $formulaireValeurs.find('.valeurCree').val();
-	if(valeurCree != null && valeurCree !== '')
-		vals['cree'] = valeurCree;
-
 	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
 	if(valeurPk != null && valeurPk !== '')
 		vals['pk'] = valeurPk;
 
-	var valeurObjetId = $formulaireValeurs.find('.valeurObjetId').val();
-	if(valeurObjetId != null && valeurObjetId !== '')
-		vals['objetId'] = valeurObjetId;
+	var valeurCree = $formulaireValeurs.find('.valeurCree').val();
+	if(valeurCree != null && valeurCree !== '')
+		vals['cree'] = valeurCree;
 
 	var valeurModifie = $formulaireValeurs.find('.valeurModifie').val();
 	if(valeurModifie != null && valeurModifie !== '')
 		vals['modifie'] = valeurModifie;
+
+	var valeurObjetId = $formulaireValeurs.find('.valeurObjetId').val();
+	if(valeurObjetId != null && valeurObjetId !== '')
+		vals['objetId'] = valeurObjetId;
 
 	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
 	if(valeurArchive != null && valeurArchive !== '')
@@ -49,13 +49,17 @@ async function postSessionScolaire($formulaireValeurs, success, error) {
 	if(valeurSessionJourFin != null && valeurSessionJourFin !== '')
 		vals['sessionJourFin'] = valeurSessionJourFin;
 
-	var valeurSaisonCle = $formulaireValeurs.find('.valeurSaisonCle').val();
+	var valeurSaisonCle = $formulaireValeurs.find('input.valeurSaisonCle:checked').val();
 	if(valeurSaisonCle != null && valeurSaisonCle !== '')
 		vals['saisonCle'] = valeurSaisonCle;
 
-	var valeurAgeCles = $formulaireValeurs.find('.valeurAgeCles').val();
+	var valeurAgeCles = $formulaireValeurs.find('input.valeurAgeCles:checked').val();
 	if(valeurAgeCles != null && valeurAgeCles !== '')
 		vals['ageCles'] = valeurAgeCles;
+
+	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
+	if(valeurObjetTitre != null && valeurObjetTitre !== '')
+		vals['objetTitre'] = valeurObjetTitre;
 
 	var valeurEcoleAddresse = $formulaireValeurs.find('.valeurEcoleAddresse').val();
 	if(valeurEcoleAddresse != null && valeurEcoleAddresse !== '')
@@ -95,17 +99,6 @@ async function patchSessionScolaire($formulaireFiltres, $formulaireValeurs, succ
 
 	var vals = {};
 
-	var removeCree = $formulaireFiltres.find('.removeCree').val() === 'true';
-	var setCree = removeCree ? null : $formulaireValeurs.find('.setCree').val();
-	if(removeCree || setCree != null && setCree !== '')
-		vals['setCree'] = setCree;
-	var addCree = $formulaireValeurs.find('.addCree').val();
-	if(addCree != null && addCree !== '')
-		vals['addCree'] = addCree;
-	var removeCree = $formulaireValeurs.find('.removeCree').val();
-	if(removeCree != null && removeCree !== '')
-		vals['removeCree'] = removeCree;
-
 	var removePk = $formulaireFiltres.find('.removePk').val() === 'true';
 	var setPk = removePk ? null : $formulaireValeurs.find('.setPk').val();
 	if(removePk || setPk != null && setPk !== '')
@@ -117,16 +110,16 @@ async function patchSessionScolaire($formulaireFiltres, $formulaireValeurs, succ
 	if(removePk != null && removePk !== '')
 		vals['removePk'] = removePk;
 
-	var removeObjetId = $formulaireFiltres.find('.removeObjetId').val() === 'true';
-	var setObjetId = removeObjetId ? null : $formulaireValeurs.find('.setObjetId').val();
-	if(removeObjetId || setObjetId != null && setObjetId !== '')
-		vals['setObjetId'] = setObjetId;
-	var addObjetId = $formulaireValeurs.find('.addObjetId').val();
-	if(addObjetId != null && addObjetId !== '')
-		vals['addObjetId'] = addObjetId;
-	var removeObjetId = $formulaireValeurs.find('.removeObjetId').val();
-	if(removeObjetId != null && removeObjetId !== '')
-		vals['removeObjetId'] = removeObjetId;
+	var removeCree = $formulaireFiltres.find('.removeCree').val() === 'true';
+	var setCree = removeCree ? null : $formulaireValeurs.find('.setCree').val();
+	if(removeCree || setCree != null && setCree !== '')
+		vals['setCree'] = setCree;
+	var addCree = $formulaireValeurs.find('.addCree').val();
+	if(addCree != null && addCree !== '')
+		vals['addCree'] = addCree;
+	var removeCree = $formulaireValeurs.find('.removeCree').val();
+	if(removeCree != null && removeCree !== '')
+		vals['removeCree'] = removeCree;
 
 	var removeModifie = $formulaireFiltres.find('.removeModifie').val() === 'true';
 	var setModifie = removeModifie ? null : $formulaireValeurs.find('.setModifie').val();
@@ -138,6 +131,17 @@ async function patchSessionScolaire($formulaireFiltres, $formulaireValeurs, succ
 	var removeModifie = $formulaireValeurs.find('.removeModifie').val();
 	if(removeModifie != null && removeModifie !== '')
 		vals['removeModifie'] = removeModifie;
+
+	var removeObjetId = $formulaireFiltres.find('.removeObjetId').val() === 'true';
+	var setObjetId = removeObjetId ? null : $formulaireValeurs.find('.setObjetId').val();
+	if(removeObjetId || setObjetId != null && setObjetId !== '')
+		vals['setObjetId'] = setObjetId;
+	var addObjetId = $formulaireValeurs.find('.addObjetId').val();
+	if(addObjetId != null && addObjetId !== '')
+		vals['addObjetId'] = addObjetId;
+	var removeObjetId = $formulaireValeurs.find('.removeObjetId').val();
+	if(removeObjetId != null && removeObjetId !== '')
+		vals['removeObjetId'] = removeObjetId;
 
 	var removeArchive = $formulaireFiltres.find('.removeArchive').val() === 'true';
 	var setArchive = removeArchive ? null : $formulaireValeurs.find('.setArchive').prop('checked');
@@ -205,6 +209,17 @@ async function patchSessionScolaire($formulaireFiltres, $formulaireValeurs, succ
 	if(removeAgeCles != null && removeAgeCles !== '')
 		vals['removeAgeCles'] = removeAgeCles;
 
+	var removeObjetTitre = $formulaireFiltres.find('.removeObjetTitre').val() === 'true';
+	var setObjetTitre = removeObjetTitre ? null : $formulaireValeurs.find('.setObjetTitre').val();
+	if(removeObjetTitre || setObjetTitre != null && setObjetTitre !== '')
+		vals['setObjetTitre'] = setObjetTitre;
+	var addObjetTitre = $formulaireValeurs.find('.addObjetTitre').val();
+	if(addObjetTitre != null && addObjetTitre !== '')
+		vals['addObjetTitre'] = addObjetTitre;
+	var removeObjetTitre = $formulaireValeurs.find('.removeObjetTitre').val();
+	if(removeObjetTitre != null && removeObjetTitre !== '')
+		vals['removeObjetTitre'] = removeObjetTitre;
+
 	var removeEcoleAddresse = $formulaireFiltres.find('.removeEcoleAddresse').val() === 'true';
 	var setEcoleAddresse = removeEcoleAddresse ? null : $formulaireValeurs.find('.setEcoleAddresse').val();
 	if(removeEcoleAddresse || setEcoleAddresse != null && setEcoleAddresse !== '')
@@ -233,21 +248,21 @@ async function patchSessionScolaire($formulaireFiltres, $formulaireValeurs, succ
 function patchSessionScolaireFiltres($formulaireFiltres) {
 	var filtres = [];
 
-	var filtreCree = $formulaireFiltres.find('.valeurCree').val();
-	if(filtreCree != null && filtreCree !== '')
-		filtres.push({ name: 'fq', value: 'cree:' + filtreCree });
-
 	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
 	if(filtrePk != null && filtrePk !== '')
 		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
 
-	var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
-	if(filtreObjetId != null && filtreObjetId !== '')
-		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
+	var filtreCree = $formulaireFiltres.find('.valeurCree').val();
+	if(filtreCree != null && filtreCree !== '')
+		filtres.push({ name: 'fq', value: 'cree:' + filtreCree });
 
 	var filtreModifie = $formulaireFiltres.find('.valeurModifie').val();
 	if(filtreModifie != null && filtreModifie !== '')
 		filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
+
+	var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
+	if(filtreObjetId != null && filtreObjetId !== '')
+		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
 
 	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
 	if(filtreArchive != null && filtreArchive === true)
@@ -273,9 +288,13 @@ function patchSessionScolaireFiltres($formulaireFiltres) {
 	if(filtreAgeCles != null && filtreAgeCles !== '')
 		filtres.push({ name: 'fq', value: 'ageCles:' + filtreAgeCles });
 
-	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
-	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
-		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
+	var filtreInheritPk = $formulaireFiltres.find('.valeurInheritPk').val();
+	if(filtreInheritPk != null && filtreInheritPk !== '')
+		filtres.push({ name: 'fq', value: 'inheritPk:' + filtreInheritPk });
+
+	var filtreId = $formulaireFiltres.find('.valeurId').val();
+	if(filtreId != null && filtreId !== '')
+		filtres.push({ name: 'fq', value: 'id:' + filtreId });
 
 	var filtreClasseNomCanonique = $formulaireFiltres.find('.valeurClasseNomCanonique').val();
 	if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
@@ -293,13 +312,13 @@ function patchSessionScolaireFiltres($formulaireFiltres) {
 	if(filtreSessionId != null && filtreSessionId !== '')
 		filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
 
+	var filtreSauvegardes = $formulaireFiltres.find('.valeurSauvegardes').val();
+	if(filtreSauvegardes != null && filtreSauvegardes !== '')
+		filtres.push({ name: 'fq', value: 'sauvegardes:' + filtreSauvegardes });
+
 	var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
 	if(filtreObjetTitre != null && filtreObjetTitre !== '')
 		filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
-
-	var filtreId = $formulaireFiltres.find('.valeurId').val();
-	if(filtreId != null && filtreId !== '')
-		filtres.push({ name: 'fq', value: 'id:' + filtreId });
 
 	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
 	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
@@ -308,6 +327,10 @@ function patchSessionScolaireFiltres($formulaireFiltres) {
 	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
 	if(filtrePageUrlId != null && filtrePageUrlId !== '')
 		filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
+
+	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
+	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
+		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
 
 	var filtreSessionCle = $formulaireFiltres.find('.valeurSessionCle').val();
 	if(filtreSessionCle != null && filtreSessionCle !== '')
@@ -471,21 +494,21 @@ async function rechercheSessionScolaire($formulaireFiltres, success, error) {
 function rechercheSessionScolaireFiltres($formulaireFiltres) {
 	var filtres = [];
 
-	var filtreCree = $formulaireFiltres.find('.valeurCree').val();
-	if(filtreCree != null && filtreCree !== '')
-		filtres.push({ name: 'fq', value: 'cree:' + filtreCree });
-
 	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
 	if(filtrePk != null && filtrePk !== '')
 		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
 
-	var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
-	if(filtreObjetId != null && filtreObjetId !== '')
-		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
+	var filtreCree = $formulaireFiltres.find('.valeurCree').val();
+	if(filtreCree != null && filtreCree !== '')
+		filtres.push({ name: 'fq', value: 'cree:' + filtreCree });
 
 	var filtreModifie = $formulaireFiltres.find('.valeurModifie').val();
 	if(filtreModifie != null && filtreModifie !== '')
 		filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
+
+	var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
+	if(filtreObjetId != null && filtreObjetId !== '')
+		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
 
 	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
 	if(filtreArchive != null && filtreArchive === true)
@@ -511,9 +534,13 @@ function rechercheSessionScolaireFiltres($formulaireFiltres) {
 	if(filtreAgeCles != null && filtreAgeCles !== '')
 		filtres.push({ name: 'fq', value: 'ageCles:' + filtreAgeCles });
 
-	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
-	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
-		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
+	var filtreInheritPk = $formulaireFiltres.find('.valeurInheritPk').val();
+	if(filtreInheritPk != null && filtreInheritPk !== '')
+		filtres.push({ name: 'fq', value: 'inheritPk:' + filtreInheritPk });
+
+	var filtreId = $formulaireFiltres.find('.valeurId').val();
+	if(filtreId != null && filtreId !== '')
+		filtres.push({ name: 'fq', value: 'id:' + filtreId });
 
 	var filtreClasseNomCanonique = $formulaireFiltres.find('.valeurClasseNomCanonique').val();
 	if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
@@ -531,13 +558,13 @@ function rechercheSessionScolaireFiltres($formulaireFiltres) {
 	if(filtreSessionId != null && filtreSessionId !== '')
 		filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
 
+	var filtreSauvegardes = $formulaireFiltres.find('.valeurSauvegardes').val();
+	if(filtreSauvegardes != null && filtreSauvegardes !== '')
+		filtres.push({ name: 'fq', value: 'sauvegardes:' + filtreSauvegardes });
+
 	var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
 	if(filtreObjetTitre != null && filtreObjetTitre !== '')
 		filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
-
-	var filtreId = $formulaireFiltres.find('.valeurId').val();
-	if(filtreId != null && filtreId !== '')
-		filtres.push({ name: 'fq', value: 'id:' + filtreId });
 
 	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
 	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
@@ -546,6 +573,10 @@ function rechercheSessionScolaireFiltres($formulaireFiltres) {
 	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
 	if(filtrePageUrlId != null && filtrePageUrlId !== '')
 		filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
+
+	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
+	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
+		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
 
 	var filtreSessionCle = $formulaireFiltres.find('.valeurSessionCle').val();
 	if(filtreSessionCle != null && filtreSessionCle !== '')
@@ -691,9 +722,12 @@ function suggereSessionScolaireAgeCles(filtres, $list, pk = null) {
 			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
 			var $input = $('<input>');
 			$input.attr('id', 'GET_ageCles_' + pk + '_sessionCle_' + o['pk']);
-			$input.attr('class', 'w3-check ');
-			$input.attr('onchange', "var $input = $('#GET_ageCles_" + pk + "_sessionCle_" + o['pk'] + "'); patchSessionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'AgeCles']: \"" + o['pk'] + "\" } ); ");
-			$input.attr('onclick', 'enleverLueur($(this)); ');
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valeurAgeCles w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_ageCles_" + pk + "_sessionCle_" + o['pk'] + "'); patchSessionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'AgeCles']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'enleverLueur($(this)); ');
+			}
 			$input.attr('type', 'checkbox');
 			if(checked)
 				$input.attr('checked', 'checked');
@@ -723,9 +757,12 @@ function suggereSessionScolaireSaisonCle(filtres, $list, pk = null) {
 			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
 			var $input = $('<input>');
 			$input.attr('id', 'GET_saisonCle_' + pk + '_sessionCles_' + o['pk']);
-			$input.attr('class', 'w3-check ');
-			$input.attr('onchange', "var $input = $('#GET_saisonCle_" + pk + "_sessionCles_" + o['pk'] + "'); patchSessionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'set' : 'remove') + 'SaisonCle']: \"" + o['pk'] + "\" } ); ");
-			$input.attr('onclick', 'enleverLueur($(this)); ');
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valeurSaisonCle w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_saisonCle_" + pk + "_sessionCles_" + o['pk'] + "'); patchSessionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'set' : 'remove') + 'SaisonCle']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'enleverLueur($(this)); ');
+			}
 			$input.attr('type', 'checkbox');
 			if(checked)
 				$input.attr('checked', 'checked');
@@ -751,7 +788,6 @@ async function websocketSessionScolaire(success) {
 			var pk = json['pk'];
 			var pks = json['pks'];
 			var empty = json['empty'];
-			if(!empty) {
 				var numFound = json['numFound'];
 				var numPATCH = json['numPATCH'];
 				var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
@@ -779,7 +815,6 @@ async function websocketSessionScolaire(success) {
 				$('.w3-content').append($box);
 				if(success)
 					success(json);
-			}
 		});
 
 		window.eventBus.registerHandler('websocketAgeScolaire', function (error, message) {
@@ -791,12 +826,12 @@ async function websocketSessionScolaire(success) {
 		});
 	}
 }
-async function websocketSessionScolaireInner(requetePatch) {
-	var pk = requetePatch['pk'];
-	var pks = requetePatch['pks'];
-	var classes = requetePatch['classes'];
-	var vars = requetePatch['vars'];
-	var empty = requetePatch['empty'];
+async function websocketSessionScolaireInner(requeteApi) {
+	var pk = requeteApi['pk'];
+	var pks = requeteApi['pks'];
+	var classes = requeteApi['classes'];
+	var vars = requeteApi['vars'];
+	var empty = requeteApi['empty'];
 
 	if(pk != null) {
 		rechercherSessionScolaireVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
@@ -848,6 +883,7 @@ async function websocketSessionScolaireInner(requetePatch) {
 				await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
 			}
 		}
-		await patchSessionScolaireVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
+		if(pk)
+			await patchSessionScolaireVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 	}
 }

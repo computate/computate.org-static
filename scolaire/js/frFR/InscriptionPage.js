@@ -89,7 +89,7 @@ async function postInscriptionScolaire($formulaireValeurs, success, error) {
 	if(valeurFamilleCommentVousConnaissezEcole != null && valeurFamilleCommentVousConnaissezEcole !== '')
 		vals['familleCommentVousConnaissezEcole'] = valeurFamilleCommentVousConnaissezEcole;
 
-	var valeurBlocCles = $formulaireValeurs.find('.valeurBlocCles').val();
+	var valeurBlocCles = $formulaireValeurs.find('input.valeurBlocCles:checked').val();
 	if(valeurBlocCles != null && valeurBlocCles !== '')
 		vals['blocCles'] = valeurBlocCles;
 
@@ -109,15 +109,15 @@ async function postInscriptionScolaire($formulaireValeurs, success, error) {
 	if(valeurEnfantObjectifs != null && valeurEnfantObjectifs !== '')
 		vals['enfantObjectifs'] = valeurEnfantObjectifs;
 
-	var valeurEnfantCle = $formulaireValeurs.find('.valeurEnfantCle').val();
+	var valeurEnfantCle = $formulaireValeurs.find('input.valeurEnfantCle:checked').val();
 	if(valeurEnfantCle != null && valeurEnfantCle !== '')
 		vals['enfantCle'] = valeurEnfantCle;
 
-	var valeurMereCles = $formulaireValeurs.find('.valeurMereCles').val();
+	var valeurMereCles = $formulaireValeurs.find('input.valeurMereCles:checked').val();
 	if(valeurMereCles != null && valeurMereCles !== '')
 		vals['mereCles'] = valeurMereCles;
 
-	var valeurPereCles = $formulaireValeurs.find('.valeurPereCles').val();
+	var valeurPereCles = $formulaireValeurs.find('input.valeurPereCles:checked').val();
 	if(valeurPereCles != null && valeurPereCles !== '')
 		vals['pereCles'] = valeurPereCles;
 
@@ -125,13 +125,17 @@ async function postInscriptionScolaire($formulaireValeurs, success, error) {
 	if(valeurFormInscriptionCle != null && valeurFormInscriptionCle !== '')
 		vals['formInscriptionCle'] = valeurFormInscriptionCle;
 
-	var valeurGardienCles = $formulaireValeurs.find('.valeurGardienCles').val();
+	var valeurGardienCles = $formulaireValeurs.find('input.valeurGardienCles:checked').val();
 	if(valeurGardienCles != null && valeurGardienCles !== '')
 		vals['gardienCles'] = valeurGardienCles;
 
-	var valeurPaiementCles = $formulaireValeurs.find('.valeurPaiementCles').val();
+	var valeurPaiementCles = $formulaireValeurs.find('input.valeurPaiementCles:checked').val();
 	if(valeurPaiementCles != null && valeurPaiementCles !== '')
 		vals['paiementCles'] = valeurPaiementCles;
+
+	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
+	if(valeurObjetTitre != null && valeurObjetTitre !== '')
+		vals['objetTitre'] = valeurObjetTitre;
 
 	var valeurEnfantNomComplet = $formulaireValeurs.find('.valeurEnfantNomComplet').val();
 	if(valeurEnfantNomComplet != null && valeurEnfantNomComplet !== '')
@@ -582,6 +586,17 @@ async function patchInscriptionScolaire($formulaireFiltres, $formulaireValeurs, 
 	if(removePaiementCles != null && removePaiementCles !== '')
 		vals['removePaiementCles'] = removePaiementCles;
 
+	var removeObjetTitre = $formulaireFiltres.find('.removeObjetTitre').val() === 'true';
+	var setObjetTitre = removeObjetTitre ? null : $formulaireValeurs.find('.setObjetTitre').val();
+	if(removeObjetTitre || setObjetTitre != null && setObjetTitre !== '')
+		vals['setObjetTitre'] = setObjetTitre;
+	var addObjetTitre = $formulaireValeurs.find('.addObjetTitre').val();
+	if(addObjetTitre != null && addObjetTitre !== '')
+		vals['addObjetTitre'] = addObjetTitre;
+	var removeObjetTitre = $formulaireValeurs.find('.removeObjetTitre').val();
+	if(removeObjetTitre != null && removeObjetTitre !== '')
+		vals['removeObjetTitre'] = removeObjetTitre;
+
 	var removeEnfantNomComplet = $formulaireFiltres.find('.removeEnfantNomComplet').val() === 'true';
 	var setEnfantNomComplet = removeEnfantNomComplet ? null : $formulaireValeurs.find('.setEnfantNomComplet').val();
 	if(removeEnfantNomComplet || setEnfantNomComplet != null && setEnfantNomComplet !== '')
@@ -979,6 +994,10 @@ function patchInscriptionScolaireFiltres($formulaireFiltres) {
 	if(filtrePaiementCles != null && filtrePaiementCles !== '')
 		filtres.push({ name: 'fq', value: 'paiementCles:' + filtrePaiementCles });
 
+	var filtreInheritPk = $formulaireFiltres.find('.valeurInheritPk').val();
+	if(filtreInheritPk != null && filtreInheritPk !== '')
+		filtres.push({ name: 'fq', value: 'inheritPk:' + filtreInheritPk });
+
 	var filtreId = $formulaireFiltres.find('.valeurId').val();
 	if(filtreId != null && filtreId !== '')
 		filtres.push({ name: 'fq', value: 'id:' + filtreId });
@@ -998,6 +1017,10 @@ function patchInscriptionScolaireFiltres($formulaireFiltres) {
 	var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
 	if(filtreSessionId != null && filtreSessionId !== '')
 		filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
+
+	var filtreSauvegardes = $formulaireFiltres.find('.valeurSauvegardes').val();
+	if(filtreSauvegardes != null && filtreSauvegardes !== '')
+		filtres.push({ name: 'fq', value: 'sauvegardes:' + filtreSauvegardes });
 
 	var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
 	if(filtreObjetTitre != null && filtreObjetTitre !== '')
@@ -1429,6 +1452,10 @@ function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 	if(filtrePaiementCles != null && filtrePaiementCles !== '')
 		filtres.push({ name: 'fq', value: 'paiementCles:' + filtrePaiementCles });
 
+	var filtreInheritPk = $formulaireFiltres.find('.valeurInheritPk').val();
+	if(filtreInheritPk != null && filtreInheritPk !== '')
+		filtres.push({ name: 'fq', value: 'inheritPk:' + filtreInheritPk });
+
 	var filtreId = $formulaireFiltres.find('.valeurId').val();
 	if(filtreId != null && filtreId !== '')
 		filtres.push({ name: 'fq', value: 'id:' + filtreId });
@@ -1448,6 +1475,10 @@ function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 	var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
 	if(filtreSessionId != null && filtreSessionId !== '')
 		filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
+
+	var filtreSauvegardes = $formulaireFiltres.find('.valeurSauvegardes').val();
+	if(filtreSauvegardes != null && filtreSauvegardes !== '')
+		filtres.push({ name: 'fq', value: 'sauvegardes:' + filtreSauvegardes });
 
 	var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
 	if(filtreObjetTitre != null && filtreObjetTitre !== '')
@@ -1745,9 +1776,12 @@ function suggereInscriptionScolaireAnneeCle(filtres, $list, pk = null) {
 			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
 			var $input = $('<input>');
 			$input.attr('id', 'GET_anneeCle_' + pk + '_inscriptionCles_' + o['pk']);
-			$input.attr('class', 'w3-check ');
-			$input.attr('onchange', "var $input = $('#GET_anneeCle_" + pk + "_inscriptionCles_" + o['pk'] + "'); patchInscriptionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'set' : 'remove') + 'AnneeCle']: \"" + o['pk'] + "\" } ); ");
-			$input.attr('onclick', 'enleverLueur($(this)); ');
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valeurAnneeCle w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_anneeCle_" + pk + "_inscriptionCles_" + o['pk'] + "'); patchInscriptionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'set' : 'remove') + 'AnneeCle']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'enleverLueur($(this)); ');
+			}
 			$input.attr('type', 'checkbox');
 			if(checked)
 				$input.attr('checked', 'checked');
@@ -1777,9 +1811,12 @@ function suggereInscriptionScolaireBlocCles(filtres, $list, pk = null) {
 			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
 			var $input = $('<input>');
 			$input.attr('id', 'GET_blocCles_' + pk + '_inscriptionCles_' + o['pk']);
-			$input.attr('class', 'w3-check ');
-			$input.attr('onchange', "var $input = $('#GET_blocCles_" + pk + "_inscriptionCles_" + o['pk'] + "'); patchInscriptionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'BlocCles']: \"" + o['pk'] + "\" } ); ");
-			$input.attr('onclick', 'enleverLueur($(this)); ');
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valeurBlocCles w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_blocCles_" + pk + "_inscriptionCles_" + o['pk'] + "'); patchInscriptionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'BlocCles']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'enleverLueur($(this)); ');
+			}
 			$input.attr('type', 'checkbox');
 			if(checked)
 				$input.attr('checked', 'checked');
@@ -1809,9 +1846,12 @@ function suggereInscriptionScolaireEnfantCle(filtres, $list, pk = null) {
 			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
 			var $input = $('<input>');
 			$input.attr('id', 'GET_enfantCle_' + pk + '_inscriptionCles_' + o['pk']);
-			$input.attr('class', 'w3-check ');
-			$input.attr('onchange', "var $input = $('#GET_enfantCle_" + pk + "_inscriptionCles_" + o['pk'] + "'); patchInscriptionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'set' : 'remove') + 'EnfantCle']: \"" + o['pk'] + "\" } ); ");
-			$input.attr('onclick', 'enleverLueur($(this)); ');
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valeurEnfantCle w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_enfantCle_" + pk + "_inscriptionCles_" + o['pk'] + "'); patchInscriptionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'set' : 'remove') + 'EnfantCle']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'enleverLueur($(this)); ');
+			}
 			$input.attr('type', 'checkbox');
 			if(checked)
 				$input.attr('checked', 'checked');
@@ -1841,9 +1881,12 @@ function suggereInscriptionScolaireMereCles(filtres, $list, pk = null) {
 			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
 			var $input = $('<input>');
 			$input.attr('id', 'GET_mereCles_' + pk + '_inscriptionCles_' + o['pk']);
-			$input.attr('class', 'w3-check ');
-			$input.attr('onchange', "var $input = $('#GET_mereCles_" + pk + "_inscriptionCles_" + o['pk'] + "'); patchInscriptionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'MereCles']: \"" + o['pk'] + "\" } ); ");
-			$input.attr('onclick', 'enleverLueur($(this)); ');
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valeurMereCles w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_mereCles_" + pk + "_inscriptionCles_" + o['pk'] + "'); patchInscriptionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'MereCles']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'enleverLueur($(this)); ');
+			}
 			$input.attr('type', 'checkbox');
 			if(checked)
 				$input.attr('checked', 'checked');
@@ -1873,9 +1916,12 @@ function suggereInscriptionScolairePereCles(filtres, $list, pk = null) {
 			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
 			var $input = $('<input>');
 			$input.attr('id', 'GET_pereCles_' + pk + '_inscriptionCles_' + o['pk']);
-			$input.attr('class', 'w3-check ');
-			$input.attr('onchange', "var $input = $('#GET_pereCles_" + pk + "_inscriptionCles_" + o['pk'] + "'); patchInscriptionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'PereCles']: \"" + o['pk'] + "\" } ); ");
-			$input.attr('onclick', 'enleverLueur($(this)); ');
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valeurPereCles w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_pereCles_" + pk + "_inscriptionCles_" + o['pk'] + "'); patchInscriptionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'PereCles']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'enleverLueur($(this)); ');
+			}
 			$input.attr('type', 'checkbox');
 			if(checked)
 				$input.attr('checked', 'checked');
@@ -1905,9 +1951,12 @@ function suggereInscriptionScolaireGardienCles(filtres, $list, pk = null) {
 			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
 			var $input = $('<input>');
 			$input.attr('id', 'GET_gardienCles_' + pk + '_inscriptionCles_' + o['pk']);
-			$input.attr('class', 'w3-check ');
-			$input.attr('onchange', "var $input = $('#GET_gardienCles_" + pk + "_inscriptionCles_" + o['pk'] + "'); patchInscriptionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'GardienCles']: \"" + o['pk'] + "\" } ); ");
-			$input.attr('onclick', 'enleverLueur($(this)); ');
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valeurGardienCles w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_gardienCles_" + pk + "_inscriptionCles_" + o['pk'] + "'); patchInscriptionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'GardienCles']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'enleverLueur($(this)); ');
+			}
 			$input.attr('type', 'checkbox');
 			if(checked)
 				$input.attr('checked', 'checked');
@@ -1937,9 +1986,12 @@ function suggereInscriptionScolairePaiementCles(filtres, $list, pk = null) {
 			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
 			var $input = $('<input>');
 			$input.attr('id', 'GET_paiementCles_' + pk + '_inscriptionCles_' + o['pk']);
-			$input.attr('class', 'w3-check ');
-			$input.attr('onchange', "var $input = $('#GET_paiementCles_" + pk + "_inscriptionCles_" + o['pk'] + "'); patchInscriptionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'PaiementCles']: \"" + o['pk'] + "\" } ); ");
-			$input.attr('onclick', 'enleverLueur($(this)); ');
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valeurPaiementCles w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_paiementCles_" + pk + "_inscriptionCles_" + o['pk'] + "'); patchInscriptionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'PaiementCles']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'enleverLueur($(this)); ');
+			}
 			$input.attr('type', 'checkbox');
 			if(checked)
 				$input.attr('checked', 'checked');
@@ -2023,12 +2075,12 @@ async function websocketInscriptionScolaire(success) {
 		});
 	}
 }
-async function websocketInscriptionScolaireInner(requetePatch) {
-	var pk = requetePatch['pk'];
-	var pks = requetePatch['pks'];
-	var classes = requetePatch['classes'];
-	var vars = requetePatch['vars'];
-	var empty = requetePatch['empty'];
+async function websocketInscriptionScolaireInner(requeteApi) {
+	var pk = requeteApi['pk'];
+	var pks = requeteApi['pks'];
+	var classes = requeteApi['classes'];
+	var vars = requeteApi['vars'];
+	var empty = requeteApi['empty'];
 
 	if(pk != null) {
 		rechercherInscriptionScolaireVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
@@ -2248,6 +2300,7 @@ async function websocketInscriptionScolaireInner(requetePatch) {
 				await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
 			}
 		}
-		await patchInscriptionScolaireVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
+		if(pk)
+			await patchInscriptionScolaireVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 	}
 }

@@ -89,7 +89,7 @@ async function postSchoolEnrollment($formValues, success, error) {
 	if(valueFamilyHowDoYouKnowTheSchool != null && valueFamilyHowDoYouKnowTheSchool !== '')
 		vals['familyHowDoYouKnowTheSchool'] = valueFamilyHowDoYouKnowTheSchool;
 
-	var valueBlockKeys = $formValues.find('.valueBlockKeys').val();
+	var valueBlockKeys = $formValues.find('input.valueBlockKeys:checked').val();
 	if(valueBlockKeys != null && valueBlockKeys !== '')
 		vals['blockKeys'] = valueBlockKeys;
 
@@ -109,15 +109,15 @@ async function postSchoolEnrollment($formValues, success, error) {
 	if(valueChildObjectives != null && valueChildObjectives !== '')
 		vals['childObjectives'] = valueChildObjectives;
 
-	var valueChildKey = $formValues.find('.valueChildKey').val();
+	var valueChildKey = $formValues.find('input.valueChildKey:checked').val();
 	if(valueChildKey != null && valueChildKey !== '')
 		vals['childKey'] = valueChildKey;
 
-	var valueMomKeys = $formValues.find('.valueMomKeys').val();
+	var valueMomKeys = $formValues.find('input.valueMomKeys:checked').val();
 	if(valueMomKeys != null && valueMomKeys !== '')
 		vals['momKeys'] = valueMomKeys;
 
-	var valueDadKeys = $formValues.find('.valueDadKeys').val();
+	var valueDadKeys = $formValues.find('input.valueDadKeys:checked').val();
 	if(valueDadKeys != null && valueDadKeys !== '')
 		vals['dadKeys'] = valueDadKeys;
 
@@ -125,13 +125,17 @@ async function postSchoolEnrollment($formValues, success, error) {
 	if(valueEnrollmentFormKey != null && valueEnrollmentFormKey !== '')
 		vals['enrollmentFormKey'] = valueEnrollmentFormKey;
 
-	var valueGuardianKeys = $formValues.find('.valueGuardianKeys').val();
+	var valueGuardianKeys = $formValues.find('input.valueGuardianKeys:checked').val();
 	if(valueGuardianKeys != null && valueGuardianKeys !== '')
 		vals['guardianKeys'] = valueGuardianKeys;
 
-	var valuePaymentKeys = $formValues.find('.valuePaymentKeys').val();
+	var valuePaymentKeys = $formValues.find('input.valuePaymentKeys:checked').val();
 	if(valuePaymentKeys != null && valuePaymentKeys !== '')
 		vals['paymentKeys'] = valuePaymentKeys;
+
+	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
+	if(valueObjectTitle != null && valueObjectTitle !== '')
+		vals['objectTitle'] = valueObjectTitle;
 
 	var valueChildCompleteName = $formValues.find('.valueChildCompleteName').val();
 	if(valueChildCompleteName != null && valueChildCompleteName !== '')
@@ -582,6 +586,17 @@ async function patchSchoolEnrollment($formFilters, $formValues, success, error) 
 	if(removePaymentKeys != null && removePaymentKeys !== '')
 		vals['removePaymentKeys'] = removePaymentKeys;
 
+	var removeObjectTitle = $formFilters.find('.removeObjectTitle').val() === 'true';
+	var setObjectTitle = removeObjectTitle ? null : $formValues.find('.setObjectTitle').val();
+	if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
+		vals['setObjectTitle'] = setObjectTitle;
+	var addObjectTitle = $formValues.find('.addObjectTitle').val();
+	if(addObjectTitle != null && addObjectTitle !== '')
+		vals['addObjectTitle'] = addObjectTitle;
+	var removeObjectTitle = $formValues.find('.removeObjectTitle').val();
+	if(removeObjectTitle != null && removeObjectTitle !== '')
+		vals['removeObjectTitle'] = removeObjectTitle;
+
 	var removeChildCompleteName = $formFilters.find('.removeChildCompleteName').val() === 'true';
 	var setChildCompleteName = removeChildCompleteName ? null : $formValues.find('.setChildCompleteName').val();
 	if(removeChildCompleteName || setChildCompleteName != null && setChildCompleteName !== '')
@@ -979,6 +994,10 @@ function patchSchoolEnrollmentFilters($formFilters) {
 	if(filterPaymentKeys != null && filterPaymentKeys !== '')
 		filters.push({ name: 'fq', value: 'paymentKeys:' + filterPaymentKeys });
 
+	var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+	if(filterInheritPk != null && filterInheritPk !== '')
+		filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+
 	var filterId = $formFilters.find('.valueId').val();
 	if(filterId != null && filterId !== '')
 		filters.push({ name: 'fq', value: 'id:' + filterId });
@@ -998,6 +1017,10 @@ function patchSchoolEnrollmentFilters($formFilters) {
 	var filterSessionId = $formFilters.find('.valueSessionId').val();
 	if(filterSessionId != null && filterSessionId !== '')
 		filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+	var filterSaves = $formFilters.find('.valueSaves').val();
+	if(filterSaves != null && filterSaves !== '')
+		filters.push({ name: 'fq', value: 'saves:' + filterSaves });
 
 	var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
 	if(filterObjectTitle != null && filterObjectTitle !== '')
@@ -1429,6 +1452,10 @@ function searchSchoolEnrollmentFilters($formFilters) {
 	if(filterPaymentKeys != null && filterPaymentKeys !== '')
 		filters.push({ name: 'fq', value: 'paymentKeys:' + filterPaymentKeys });
 
+	var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+	if(filterInheritPk != null && filterInheritPk !== '')
+		filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+
 	var filterId = $formFilters.find('.valueId').val();
 	if(filterId != null && filterId !== '')
 		filters.push({ name: 'fq', value: 'id:' + filterId });
@@ -1448,6 +1475,10 @@ function searchSchoolEnrollmentFilters($formFilters) {
 	var filterSessionId = $formFilters.find('.valueSessionId').val();
 	if(filterSessionId != null && filterSessionId !== '')
 		filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+	var filterSaves = $formFilters.find('.valueSaves').val();
+	if(filterSaves != null && filterSaves !== '')
+		filters.push({ name: 'fq', value: 'saves:' + filterSaves });
 
 	var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
 	if(filterObjectTitle != null && filterObjectTitle !== '')
@@ -1745,9 +1776,12 @@ function suggestSchoolEnrollmentYearKey(filters, $list, pk = null) {
 			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
 			var $input = $('<input>');
 			$input.attr('id', 'GET_yearKey_' + pk + '_enrollmentKeys_' + o['pk']);
-			$input.attr('class', 'w3-check ');
-			$input.attr('onchange', "var $input = $('#GET_yearKey_" + pk + "_enrollmentKeys_" + o['pk'] + "'); patchSchoolEnrollmentVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'set' : 'remove') + 'YearKey']: \"" + o['pk'] + "\" } ); ");
-			$input.attr('onclick', 'removeGlow($(this)); ');
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valueYearKey w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_yearKey_" + pk + "_enrollmentKeys_" + o['pk'] + "'); patchSchoolEnrollmentVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'set' : 'remove') + 'YearKey']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'removeGlow($(this)); ');
+			}
 			$input.attr('type', 'checkbox');
 			if(checked)
 				$input.attr('checked', 'checked');
@@ -1777,9 +1811,12 @@ function suggestSchoolEnrollmentBlockKeys(filters, $list, pk = null) {
 			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
 			var $input = $('<input>');
 			$input.attr('id', 'GET_blockKeys_' + pk + '_enrollmentKeys_' + o['pk']);
-			$input.attr('class', 'w3-check ');
-			$input.attr('onchange', "var $input = $('#GET_blockKeys_" + pk + "_enrollmentKeys_" + o['pk'] + "'); patchSchoolEnrollmentVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'BlockKeys']: \"" + o['pk'] + "\" } ); ");
-			$input.attr('onclick', 'removeGlow($(this)); ');
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valueBlockKeys w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_blockKeys_" + pk + "_enrollmentKeys_" + o['pk'] + "'); patchSchoolEnrollmentVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'BlockKeys']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'removeGlow($(this)); ');
+			}
 			$input.attr('type', 'checkbox');
 			if(checked)
 				$input.attr('checked', 'checked');
@@ -1809,9 +1846,12 @@ function suggestSchoolEnrollmentChildKey(filters, $list, pk = null) {
 			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
 			var $input = $('<input>');
 			$input.attr('id', 'GET_childKey_' + pk + '_enrollmentKeys_' + o['pk']);
-			$input.attr('class', 'w3-check ');
-			$input.attr('onchange', "var $input = $('#GET_childKey_" + pk + "_enrollmentKeys_" + o['pk'] + "'); patchSchoolEnrollmentVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'set' : 'remove') + 'ChildKey']: \"" + o['pk'] + "\" } ); ");
-			$input.attr('onclick', 'removeGlow($(this)); ');
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valueChildKey w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_childKey_" + pk + "_enrollmentKeys_" + o['pk'] + "'); patchSchoolEnrollmentVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'set' : 'remove') + 'ChildKey']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'removeGlow($(this)); ');
+			}
 			$input.attr('type', 'checkbox');
 			if(checked)
 				$input.attr('checked', 'checked');
@@ -1841,9 +1881,12 @@ function suggestSchoolEnrollmentMomKeys(filters, $list, pk = null) {
 			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
 			var $input = $('<input>');
 			$input.attr('id', 'GET_momKeys_' + pk + '_enrollmentKeys_' + o['pk']);
-			$input.attr('class', 'w3-check ');
-			$input.attr('onchange', "var $input = $('#GET_momKeys_" + pk + "_enrollmentKeys_" + o['pk'] + "'); patchSchoolEnrollmentVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'MomKeys']: \"" + o['pk'] + "\" } ); ");
-			$input.attr('onclick', 'removeGlow($(this)); ');
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valueMomKeys w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_momKeys_" + pk + "_enrollmentKeys_" + o['pk'] + "'); patchSchoolEnrollmentVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'MomKeys']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'removeGlow($(this)); ');
+			}
 			$input.attr('type', 'checkbox');
 			if(checked)
 				$input.attr('checked', 'checked');
@@ -1873,9 +1916,12 @@ function suggestSchoolEnrollmentDadKeys(filters, $list, pk = null) {
 			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
 			var $input = $('<input>');
 			$input.attr('id', 'GET_dadKeys_' + pk + '_enrollmentKeys_' + o['pk']);
-			$input.attr('class', 'w3-check ');
-			$input.attr('onchange', "var $input = $('#GET_dadKeys_" + pk + "_enrollmentKeys_" + o['pk'] + "'); patchSchoolEnrollmentVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'DadKeys']: \"" + o['pk'] + "\" } ); ");
-			$input.attr('onclick', 'removeGlow($(this)); ');
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valueDadKeys w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_dadKeys_" + pk + "_enrollmentKeys_" + o['pk'] + "'); patchSchoolEnrollmentVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'DadKeys']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'removeGlow($(this)); ');
+			}
 			$input.attr('type', 'checkbox');
 			if(checked)
 				$input.attr('checked', 'checked');
@@ -1905,9 +1951,12 @@ function suggestSchoolEnrollmentGuardianKeys(filters, $list, pk = null) {
 			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
 			var $input = $('<input>');
 			$input.attr('id', 'GET_guardianKeys_' + pk + '_enrollmentKeys_' + o['pk']);
-			$input.attr('class', 'w3-check ');
-			$input.attr('onchange', "var $input = $('#GET_guardianKeys_" + pk + "_enrollmentKeys_" + o['pk'] + "'); patchSchoolEnrollmentVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'GuardianKeys']: \"" + o['pk'] + "\" } ); ");
-			$input.attr('onclick', 'removeGlow($(this)); ');
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valueGuardianKeys w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_guardianKeys_" + pk + "_enrollmentKeys_" + o['pk'] + "'); patchSchoolEnrollmentVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'GuardianKeys']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'removeGlow($(this)); ');
+			}
 			$input.attr('type', 'checkbox');
 			if(checked)
 				$input.attr('checked', 'checked');
@@ -1937,9 +1986,12 @@ function suggestSchoolEnrollmentPaymentKeys(filters, $list, pk = null) {
 			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
 			var $input = $('<input>');
 			$input.attr('id', 'GET_paymentKeys_' + pk + '_enrollmentKeys_' + o['pk']);
-			$input.attr('class', 'w3-check ');
-			$input.attr('onchange', "var $input = $('#GET_paymentKeys_" + pk + "_enrollmentKeys_" + o['pk'] + "'); patchSchoolEnrollmentVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'PaymentKeys']: \"" + o['pk'] + "\" } ); ");
-			$input.attr('onclick', 'removeGlow($(this)); ');
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valuePaymentKeys w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_paymentKeys_" + pk + "_enrollmentKeys_" + o['pk'] + "'); patchSchoolEnrollmentVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'PaymentKeys']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'removeGlow($(this)); ');
+			}
 			$input.attr('type', 'checkbox');
 			if(checked)
 				$input.attr('checked', 'checked');
@@ -2023,12 +2075,12 @@ async function websocketSchoolEnrollment(success) {
 		});
 	}
 }
-async function websocketSchoolEnrollmentInner(patchRequest) {
-	var pk = patchRequest['pk'];
-	var pks = patchRequest['pks'];
-	var classes = patchRequest['classes'];
-	var vars = patchRequest['vars'];
-	var empty = patchRequest['empty'];
+async function websocketSchoolEnrollmentInner(apiRequest) {
+	var pk = apiRequest['pk'];
+	var pks = apiRequest['pks'];
+	var classes = apiRequest['classes'];
+	var vars = apiRequest['vars'];
+	var empty = apiRequest['empty'];
 
 	if(pk != null) {
 		searchSchoolEnrollmentVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
@@ -2248,6 +2300,7 @@ async function websocketSchoolEnrollmentInner(patchRequest) {
 				await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
 			}
 		}
-		await patchSchoolEnrollmentVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
+		if(pk)
+			await patchSchoolEnrollmentVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 	}
 }
