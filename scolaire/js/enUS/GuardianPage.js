@@ -77,10 +77,6 @@ async function postSchoolGuardian($formValues, success, error) {
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
 
-	var valueGuardianCompleteName = $formValues.find('.valueGuardianCompleteName').val();
-	if(valueGuardianCompleteName != null && valueGuardianCompleteName !== '')
-		vals['guardianCompleteName'] = valueGuardianCompleteName;
-
 	$.ajax({
 		url: '/api/guardian'
 		, dataType: 'json'
@@ -97,6 +93,86 @@ function postSchoolGuardianVals(vals, success, error) {
 		url: '/api/guardian'
 		, dataType: 'json'
 		, type: 'POST'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(vals)
+		, success: success
+		, error: error
+	});
+}
+
+// PUT //
+
+async function putSchoolGuardian($formValues, success, error) {
+	var vals = {};
+
+	var valuePk = $formValues.find('.valuePk').val();
+	if(valuePk != null && valuePk !== '')
+		vals['pk'] = valuePk;
+
+	var valueCreated = $formValues.find('.valueCreated').val();
+	if(valueCreated != null && valueCreated !== '')
+		vals['created'] = valueCreated;
+
+	var valueModified = $formValues.find('.valueModified').val();
+	if(valueModified != null && valueModified !== '')
+		vals['modified'] = valueModified;
+
+	var valueObjectId = $formValues.find('.valueObjectId').val();
+	if(valueObjectId != null && valueObjectId !== '')
+		vals['objectId'] = valueObjectId;
+
+	var valueArchived = $formValues.find('.valueArchived').prop('checked');
+	if(valueArchived != null && valueArchived !== '')
+		vals['archived'] = valueArchived;
+
+	var valueDeleted = $formValues.find('.valueDeleted').prop('checked');
+	if(valueDeleted != null && valueDeleted !== '')
+		vals['deleted'] = valueDeleted;
+
+	var valuePersonFirstName = $formValues.find('.valuePersonFirstName').val();
+	if(valuePersonFirstName != null && valuePersonFirstName !== '')
+		vals['personFirstName'] = valuePersonFirstName;
+
+	var valueFamilyName = $formValues.find('.valueFamilyName').val();
+	if(valueFamilyName != null && valueFamilyName !== '')
+		vals['familyName'] = valueFamilyName;
+
+	var valuePersonFirstNamePreferred = $formValues.find('.valuePersonFirstNamePreferred').val();
+	if(valuePersonFirstNamePreferred != null && valuePersonFirstNamePreferred !== '')
+		vals['personFirstNamePreferred'] = valuePersonFirstNamePreferred;
+
+	var valuePersonPhoneNumber = $formValues.find('.valuePersonPhoneNumber').val();
+	if(valuePersonPhoneNumber != null && valuePersonPhoneNumber !== '')
+		vals['personPhoneNumber'] = valuePersonPhoneNumber;
+
+	var valuePersonRelation = $formValues.find('.valuePersonRelation').val();
+	if(valuePersonRelation != null && valuePersonRelation !== '')
+		vals['personRelation'] = valuePersonRelation;
+
+	var valuePersonEmergencyContact = $formValues.find('.valuePersonEmergencyContact').prop('checked');
+	if(valuePersonEmergencyContact != null && valuePersonEmergencyContact !== '')
+		vals['personEmergencyContact'] = valuePersonEmergencyContact;
+
+	var valuePersonPickup = $formValues.find('.valuePersonPickup').prop('checked');
+	if(valuePersonPickup != null && valuePersonPickup !== '')
+		vals['personPickup'] = valuePersonPickup;
+
+	var valueEnrollmentKeys = $formValues.find('input.valueEnrollmentKeys:checked').val();
+	if(valueEnrollmentKeys != null && valueEnrollmentKeys !== '')
+		vals['enrollmentKeys'] = valueEnrollmentKeys;
+
+	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
+	if(valueObjectTitle != null && valueObjectTitle !== '')
+		vals['objectTitle'] = valueObjectTitle;
+
+	putSchoolGuardianVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+}
+
+function putSchoolGuardianVals(filters, vals, success, error) {
+	$.ajax({
+		url: '/api/guardian?' + $.param(filters)
+		, dataType: 'json'
+		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
 		, data: JSON.stringify(vals)
 		, success: success
@@ -276,18 +352,7 @@ async function patchSchoolGuardian($formFilters, $formValues, success, error) {
 	if(removeObjectTitle != null && removeObjectTitle !== '')
 		vals['removeObjectTitle'] = removeObjectTitle;
 
-	var removeGuardianCompleteName = $formFilters.find('.removeGuardianCompleteName').val() === 'true';
-	var setGuardianCompleteName = removeGuardianCompleteName ? null : $formValues.find('.setGuardianCompleteName').val();
-	if(removeGuardianCompleteName || setGuardianCompleteName != null && setGuardianCompleteName !== '')
-		vals['setGuardianCompleteName'] = setGuardianCompleteName;
-	var addGuardianCompleteName = $formValues.find('.addGuardianCompleteName').val();
-	if(addGuardianCompleteName != null && addGuardianCompleteName !== '')
-		vals['addGuardianCompleteName'] = addGuardianCompleteName;
-	var removeGuardianCompleteName = $formValues.find('.removeGuardianCompleteName').val();
-	if(removeGuardianCompleteName != null && removeGuardianCompleteName !== '')
-		vals['removeGuardianCompleteName'] = removeGuardianCompleteName;
-
-	patchSchoolGuardianVals(filters, vals, success, error);
+	patchSchoolGuardianVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
 }
 
 function patchSchoolGuardianFilters($formFilters) {
@@ -700,7 +765,7 @@ function suggestSchoolGuardianObjectSuggest($formFilters, $list) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'far fa-phone w3-padding-small ');
+			var $i = $('<i>').attr('class', 'far fa-phone ');
 			var $span = $('<span>').attr('class', '').text(o['guardianCompleteName']);
 			var $li = $('<li>');
 			var $a = $('<a>').attr('href', o['pageUrlPk']);
@@ -718,7 +783,7 @@ function suggestSchoolGuardianEnrollmentKeys(filters, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-edit w3-padding-small ');
+			var $i = $('<i>').attr('class', 'fa fa-edit ');
 			var $span = $('<span>').attr('class', '').text(o['enrollmentCompleteName']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);

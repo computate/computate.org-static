@@ -76,6 +76,62 @@ function postDesignInscriptionVals(vals, success, error) {
 	});
 }
 
+// PUT //
+
+async function putDesignInscription($formulaireValeurs, success, error) {
+	var vals = {};
+
+	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
+	if(valeurPk != null && valeurPk !== '')
+		vals['pk'] = valeurPk;
+
+	var valeurCree = $formulaireValeurs.find('.valeurCree').val();
+	if(valeurCree != null && valeurCree !== '')
+		vals['cree'] = valeurCree;
+
+	var valeurModifie = $formulaireValeurs.find('.valeurModifie').val();
+	if(valeurModifie != null && valeurModifie !== '')
+		vals['modifie'] = valeurModifie;
+
+	var valeurObjetId = $formulaireValeurs.find('.valeurObjetId').val();
+	if(valeurObjetId != null && valeurObjetId !== '')
+		vals['objetId'] = valeurObjetId;
+
+	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
+	if(valeurArchive != null && valeurArchive !== '')
+		vals['archive'] = valeurArchive;
+
+	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').prop('checked');
+	if(valeurSupprime != null && valeurSupprime !== '')
+		vals['supprime'] = valeurSupprime;
+
+	var valeurDesignInscriptionNomComplet = $formulaireValeurs.find('.valeurDesignInscriptionNomComplet').val();
+	if(valeurDesignInscriptionNomComplet != null && valeurDesignInscriptionNomComplet !== '')
+		vals['designInscriptionNomComplet'] = valeurDesignInscriptionNomComplet;
+
+	var valeurPartHtmlCles = $formulaireValeurs.find('input.valeurPartHtmlCles:checked').val();
+	if(valeurPartHtmlCles != null && valeurPartHtmlCles !== '')
+		vals['partHtmlCles'] = valeurPartHtmlCles;
+
+	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
+	if(valeurObjetTitre != null && valeurObjetTitre !== '')
+		vals['objetTitre'] = valeurObjetTitre;
+
+	putDesignInscriptionVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+}
+
+function putDesignInscriptionVals(filtres, vals, success, error) {
+	$.ajax({
+		url: '/api/design-inscription?' + $.param(filtres)
+		, dataType: 'json'
+		, type: 'PUT'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(vals)
+		, success: success
+		, error: error
+	});
+}
+
 // PATCH //
 
 async function patchDesignInscription($formulaireFiltres, $formulaireValeurs, success, error) {
@@ -182,7 +238,7 @@ async function patchDesignInscription($formulaireFiltres, $formulaireValeurs, su
 	if(removeObjetTitre != null && removeObjetTitre !== '')
 		vals['removeObjetTitre'] = removeObjetTitre;
 
-	patchDesignInscriptionVals(filtres, vals, success, error);
+	patchDesignInscriptionVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
 }
 
 function patchDesignInscriptionFiltres($formulaireFiltres) {
@@ -499,7 +555,7 @@ function suggereDesignInscriptionObjetSuggere($formulaireFiltres, $list) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'far fa-bell w3-padding-small ');
+			var $i = $('<i>').attr('class', 'far fa-drafting-compass ');
 			var $span = $('<span>').attr('class', '').text(o['designInscriptionNomComplet']);
 			var $li = $('<li>');
 			var $a = $('<a>').attr('href', o['pageUrlPk']);
@@ -517,7 +573,7 @@ function suggereDesignInscriptionPartHtmlCles(filtres, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-sun w3-padding-small ');
+			var $i = $('<i>').attr('class', 'fa fa-sun ');
 			var $span = $('<span>').attr('class', '').text(o['objetTitre']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);
@@ -742,7 +798,7 @@ async function websocketDesignInscription(success) {
 				var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
 				var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
 				var $header = $('<div>').attr('class', 'w3-container fa-indigo ').attr('id', 'header-' + id);
-				var $i = $('<i>').attr('class', 'far fa-bell w3-margin-right ').attr('id', 'icon-' + id);
+				var $i = $('<i>').attr('class', 'far fa-drafting-compass w3-margin-right ').attr('id', 'icon-' + id);
 				var $headerSpan = $('<span>').attr('class', '').text('modifier design d'inscriptions');
 				var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
 				var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);

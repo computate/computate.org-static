@@ -69,10 +69,6 @@ async function postSchoolYear($formValues, success, error) {
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
 
-	var valueYearCompleteName = $formValues.find('.valueYearCompleteName').val();
-	if(valueYearCompleteName != null && valueYearCompleteName !== '')
-		vals['yearCompleteName'] = valueYearCompleteName;
-
 	$.ajax({
 		url: '/api/year'
 		, dataType: 'json'
@@ -89,6 +85,78 @@ function postSchoolYearVals(vals, success, error) {
 		url: '/api/year'
 		, dataType: 'json'
 		, type: 'POST'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(vals)
+		, success: success
+		, error: error
+	});
+}
+
+// PUT //
+
+async function putSchoolYear($formValues, success, error) {
+	var vals = {};
+
+	var valuePk = $formValues.find('.valuePk').val();
+	if(valuePk != null && valuePk !== '')
+		vals['pk'] = valuePk;
+
+	var valueCreated = $formValues.find('.valueCreated').val();
+	if(valueCreated != null && valueCreated !== '')
+		vals['created'] = valueCreated;
+
+	var valueModified = $formValues.find('.valueModified').val();
+	if(valueModified != null && valueModified !== '')
+		vals['modified'] = valueModified;
+
+	var valueObjectId = $formValues.find('.valueObjectId').val();
+	if(valueObjectId != null && valueObjectId !== '')
+		vals['objectId'] = valueObjectId;
+
+	var valueArchived = $formValues.find('.valueArchived').prop('checked');
+	if(valueArchived != null && valueArchived !== '')
+		vals['archived'] = valueArchived;
+
+	var valueDeleted = $formValues.find('.valueDeleted').prop('checked');
+	if(valueDeleted != null && valueDeleted !== '')
+		vals['deleted'] = valueDeleted;
+
+	var valueYearStart = $formValues.find('.valueYearStart').val();
+	if(valueYearStart != null && valueYearStart !== '')
+		vals['yearStart'] = valueYearStart;
+
+	var valueYearEnd = $formValues.find('.valueYearEnd').val();
+	if(valueYearEnd != null && valueYearEnd !== '')
+		vals['yearEnd'] = valueYearEnd;
+
+	var valueYearEnrollmentFee = $formValues.find('.valueYearEnrollmentFee').val();
+	if(valueYearEnrollmentFee != null && valueYearEnrollmentFee !== '')
+		vals['yearEnrollmentFee'] = valueYearEnrollmentFee;
+
+	var valueSchoolKey = $formValues.find('input.valueSchoolKey:checked').val();
+	if(valueSchoolKey != null && valueSchoolKey !== '')
+		vals['schoolKey'] = valueSchoolKey;
+
+	var valueSeasonKeys = $formValues.find('input.valueSeasonKeys:checked').val();
+	if(valueSeasonKeys != null && valueSeasonKeys !== '')
+		vals['seasonKeys'] = valueSeasonKeys;
+
+	var valueEnrollmentFormKey = $formValues.find('.valueEnrollmentFormKey').val();
+	if(valueEnrollmentFormKey != null && valueEnrollmentFormKey !== '')
+		vals['enrollmentFormKey'] = valueEnrollmentFormKey;
+
+	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
+	if(valueObjectTitle != null && valueObjectTitle !== '')
+		vals['objectTitle'] = valueObjectTitle;
+
+	putSchoolYearVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+}
+
+function putSchoolYearVals(filters, vals, success, error) {
+	$.ajax({
+		url: '/api/year?' + $.param(filters)
+		, dataType: 'json'
+		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
 		, data: JSON.stringify(vals)
 		, success: success
@@ -246,18 +314,7 @@ async function patchSchoolYear($formFilters, $formValues, success, error) {
 	if(removeObjectTitle != null && removeObjectTitle !== '')
 		vals['removeObjectTitle'] = removeObjectTitle;
 
-	var removeYearCompleteName = $formFilters.find('.removeYearCompleteName').val() === 'true';
-	var setYearCompleteName = removeYearCompleteName ? null : $formValues.find('.setYearCompleteName').val();
-	if(removeYearCompleteName || setYearCompleteName != null && setYearCompleteName !== '')
-		vals['setYearCompleteName'] = setYearCompleteName;
-	var addYearCompleteName = $formValues.find('.addYearCompleteName').val();
-	if(addYearCompleteName != null && addYearCompleteName !== '')
-		vals['addYearCompleteName'] = addYearCompleteName;
-	var removeYearCompleteName = $formValues.find('.removeYearCompleteName').val();
-	if(removeYearCompleteName != null && removeYearCompleteName !== '')
-		vals['removeYearCompleteName'] = removeYearCompleteName;
-
-	patchSchoolYearVals(filters, vals, success, error);
+	patchSchoolYearVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
 }
 
 function patchSchoolYearFilters($formFilters) {
@@ -630,7 +687,7 @@ function suggestSchoolYearObjectSuggest($formFilters, $list) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'far fa-calendar-check w3-padding-small ');
+			var $i = $('<i>').attr('class', 'far fa-calendar-check ');
 			var $span = $('<span>').attr('class', '').text(o['yearCompleteName']);
 			var $li = $('<li>');
 			var $a = $('<a>').attr('href', o['pageUrlPk']);
@@ -648,7 +705,7 @@ function suggestSchoolYearSchoolKey(filters, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-school w3-padding-small ');
+			var $i = $('<i>').attr('class', 'fa fa-school ');
 			var $span = $('<span>').attr('class', '').text(o['schoolCompleteName']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);
@@ -683,7 +740,7 @@ function suggestSchoolYearSeasonKeys(filters, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-sun w3-padding-small ');
+			var $i = $('<i>').attr('class', 'fa fa-sun ');
 			var $span = $('<span>').attr('class', '').text(o['seasonCompleteName']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);

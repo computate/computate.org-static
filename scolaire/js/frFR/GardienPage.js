@@ -77,10 +77,6 @@ async function postGardienScolaire($formulaireValeurs, success, error) {
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 		vals['objetTitre'] = valeurObjetTitre;
 
-	var valeurGardienNomComplet = $formulaireValeurs.find('.valeurGardienNomComplet').val();
-	if(valeurGardienNomComplet != null && valeurGardienNomComplet !== '')
-		vals['gardienNomComplet'] = valeurGardienNomComplet;
-
 	$.ajax({
 		url: '/api/gardien'
 		, dataType: 'json'
@@ -97,6 +93,86 @@ function postGardienScolaireVals(vals, success, error) {
 		url: '/api/gardien'
 		, dataType: 'json'
 		, type: 'POST'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(vals)
+		, success: success
+		, error: error
+	});
+}
+
+// PUT //
+
+async function putGardienScolaire($formulaireValeurs, success, error) {
+	var vals = {};
+
+	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
+	if(valeurPk != null && valeurPk !== '')
+		vals['pk'] = valeurPk;
+
+	var valeurCree = $formulaireValeurs.find('.valeurCree').val();
+	if(valeurCree != null && valeurCree !== '')
+		vals['cree'] = valeurCree;
+
+	var valeurModifie = $formulaireValeurs.find('.valeurModifie').val();
+	if(valeurModifie != null && valeurModifie !== '')
+		vals['modifie'] = valeurModifie;
+
+	var valeurObjetId = $formulaireValeurs.find('.valeurObjetId').val();
+	if(valeurObjetId != null && valeurObjetId !== '')
+		vals['objetId'] = valeurObjetId;
+
+	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
+	if(valeurArchive != null && valeurArchive !== '')
+		vals['archive'] = valeurArchive;
+
+	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').prop('checked');
+	if(valeurSupprime != null && valeurSupprime !== '')
+		vals['supprime'] = valeurSupprime;
+
+	var valeurPersonnePrenom = $formulaireValeurs.find('.valeurPersonnePrenom').val();
+	if(valeurPersonnePrenom != null && valeurPersonnePrenom !== '')
+		vals['personnePrenom'] = valeurPersonnePrenom;
+
+	var valeurFamilleNom = $formulaireValeurs.find('.valeurFamilleNom').val();
+	if(valeurFamilleNom != null && valeurFamilleNom !== '')
+		vals['familleNom'] = valeurFamilleNom;
+
+	var valeurPersonnePrenomPrefere = $formulaireValeurs.find('.valeurPersonnePrenomPrefere').val();
+	if(valeurPersonnePrenomPrefere != null && valeurPersonnePrenomPrefere !== '')
+		vals['personnePrenomPrefere'] = valeurPersonnePrenomPrefere;
+
+	var valeurPersonneNumeroTelephone = $formulaireValeurs.find('.valeurPersonneNumeroTelephone').val();
+	if(valeurPersonneNumeroTelephone != null && valeurPersonneNumeroTelephone !== '')
+		vals['personneNumeroTelephone'] = valeurPersonneNumeroTelephone;
+
+	var valeurPersonneRelation = $formulaireValeurs.find('.valeurPersonneRelation').val();
+	if(valeurPersonneRelation != null && valeurPersonneRelation !== '')
+		vals['personneRelation'] = valeurPersonneRelation;
+
+	var valeurPersonneContactUrgence = $formulaireValeurs.find('.valeurPersonneContactUrgence').prop('checked');
+	if(valeurPersonneContactUrgence != null && valeurPersonneContactUrgence !== '')
+		vals['personneContactUrgence'] = valeurPersonneContactUrgence;
+
+	var valeurPersonneChercher = $formulaireValeurs.find('.valeurPersonneChercher').prop('checked');
+	if(valeurPersonneChercher != null && valeurPersonneChercher !== '')
+		vals['personneChercher'] = valeurPersonneChercher;
+
+	var valeurInscriptionCles = $formulaireValeurs.find('input.valeurInscriptionCles:checked').val();
+	if(valeurInscriptionCles != null && valeurInscriptionCles !== '')
+		vals['inscriptionCles'] = valeurInscriptionCles;
+
+	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
+	if(valeurObjetTitre != null && valeurObjetTitre !== '')
+		vals['objetTitre'] = valeurObjetTitre;
+
+	putGardienScolaireVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+}
+
+function putGardienScolaireVals(filtres, vals, success, error) {
+	$.ajax({
+		url: '/api/gardien?' + $.param(filtres)
+		, dataType: 'json'
+		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
 		, data: JSON.stringify(vals)
 		, success: success
@@ -276,18 +352,7 @@ async function patchGardienScolaire($formulaireFiltres, $formulaireValeurs, succ
 	if(removeObjetTitre != null && removeObjetTitre !== '')
 		vals['removeObjetTitre'] = removeObjetTitre;
 
-	var removeGardienNomComplet = $formulaireFiltres.find('.removeGardienNomComplet').val() === 'true';
-	var setGardienNomComplet = removeGardienNomComplet ? null : $formulaireValeurs.find('.setGardienNomComplet').val();
-	if(removeGardienNomComplet || setGardienNomComplet != null && setGardienNomComplet !== '')
-		vals['setGardienNomComplet'] = setGardienNomComplet;
-	var addGardienNomComplet = $formulaireValeurs.find('.addGardienNomComplet').val();
-	if(addGardienNomComplet != null && addGardienNomComplet !== '')
-		vals['addGardienNomComplet'] = addGardienNomComplet;
-	var removeGardienNomComplet = $formulaireValeurs.find('.removeGardienNomComplet').val();
-	if(removeGardienNomComplet != null && removeGardienNomComplet !== '')
-		vals['removeGardienNomComplet'] = removeGardienNomComplet;
-
-	patchGardienScolaireVals(filtres, vals, success, error);
+	patchGardienScolaireVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
 }
 
 function patchGardienScolaireFiltres($formulaireFiltres) {
@@ -700,7 +765,7 @@ function suggereGardienScolaireObjetSuggere($formulaireFiltres, $list) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'far fa-phone w3-padding-small ');
+			var $i = $('<i>').attr('class', 'far fa-phone ');
 			var $span = $('<span>').attr('class', '').text(o['gardienNomComplet']);
 			var $li = $('<li>');
 			var $a = $('<a>').attr('href', o['pageUrlPk']);
@@ -718,7 +783,7 @@ function suggereGardienScolaireInscriptionCles(filtres, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-edit w3-padding-small ');
+			var $i = $('<i>').attr('class', 'fa fa-edit ');
 			var $span = $('<span>').attr('class', '').text(o['inscriptionNomComplet']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);

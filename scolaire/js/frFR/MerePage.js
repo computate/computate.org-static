@@ -89,10 +89,6 @@ async function postMereScolaire($formulaireValeurs, success, error) {
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 		vals['objetTitre'] = valeurObjetTitre;
 
-	var valeurMereNomComplet = $formulaireValeurs.find('.valeurMereNomComplet').val();
-	if(valeurMereNomComplet != null && valeurMereNomComplet !== '')
-		vals['mereNomComplet'] = valeurMereNomComplet;
-
 	$.ajax({
 		url: '/api/mere'
 		, dataType: 'json'
@@ -109,6 +105,98 @@ function postMereScolaireVals(vals, success, error) {
 		url: '/api/mere'
 		, dataType: 'json'
 		, type: 'POST'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(vals)
+		, success: success
+		, error: error
+	});
+}
+
+// PUT //
+
+async function putMereScolaire($formulaireValeurs, success, error) {
+	var vals = {};
+
+	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
+	if(valeurPk != null && valeurPk !== '')
+		vals['pk'] = valeurPk;
+
+	var valeurCree = $formulaireValeurs.find('.valeurCree').val();
+	if(valeurCree != null && valeurCree !== '')
+		vals['cree'] = valeurCree;
+
+	var valeurModifie = $formulaireValeurs.find('.valeurModifie').val();
+	if(valeurModifie != null && valeurModifie !== '')
+		vals['modifie'] = valeurModifie;
+
+	var valeurObjetId = $formulaireValeurs.find('.valeurObjetId').val();
+	if(valeurObjetId != null && valeurObjetId !== '')
+		vals['objetId'] = valeurObjetId;
+
+	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
+	if(valeurArchive != null && valeurArchive !== '')
+		vals['archive'] = valeurArchive;
+
+	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').prop('checked');
+	if(valeurSupprime != null && valeurSupprime !== '')
+		vals['supprime'] = valeurSupprime;
+
+	var valeurPersonnePrenom = $formulaireValeurs.find('.valeurPersonnePrenom').val();
+	if(valeurPersonnePrenom != null && valeurPersonnePrenom !== '')
+		vals['personnePrenom'] = valeurPersonnePrenom;
+
+	var valeurFamilleNom = $formulaireValeurs.find('.valeurFamilleNom').val();
+	if(valeurFamilleNom != null && valeurFamilleNom !== '')
+		vals['familleNom'] = valeurFamilleNom;
+
+	var valeurPersonnePrenomPrefere = $formulaireValeurs.find('.valeurPersonnePrenomPrefere').val();
+	if(valeurPersonnePrenomPrefere != null && valeurPersonnePrenomPrefere !== '')
+		vals['personnePrenomPrefere'] = valeurPersonnePrenomPrefere;
+
+	var valeurPersonneMail = $formulaireValeurs.find('.valeurPersonneMail').val();
+	if(valeurPersonneMail != null && valeurPersonneMail !== '')
+		vals['personneMail'] = valeurPersonneMail;
+
+	var valeurPersonneNumeroTelephone = $formulaireValeurs.find('.valeurPersonneNumeroTelephone').val();
+	if(valeurPersonneNumeroTelephone != null && valeurPersonneNumeroTelephone !== '')
+		vals['personneNumeroTelephone'] = valeurPersonneNumeroTelephone;
+
+	var valeurPersonneOccupation = $formulaireValeurs.find('.valeurPersonneOccupation').val();
+	if(valeurPersonneOccupation != null && valeurPersonneOccupation !== '')
+		vals['personneOccupation'] = valeurPersonneOccupation;
+
+	var valeurPersonneSms = $formulaireValeurs.find('.valeurPersonneSms').prop('checked');
+	if(valeurPersonneSms != null && valeurPersonneSms !== '')
+		vals['personneSms'] = valeurPersonneSms;
+
+	var valeurPersonneRecevoirMail = $formulaireValeurs.find('.valeurPersonneRecevoirMail').prop('checked');
+	if(valeurPersonneRecevoirMail != null && valeurPersonneRecevoirMail !== '')
+		vals['personneRecevoirMail'] = valeurPersonneRecevoirMail;
+
+	var valeurPersonneContactUrgence = $formulaireValeurs.find('.valeurPersonneContactUrgence').prop('checked');
+	if(valeurPersonneContactUrgence != null && valeurPersonneContactUrgence !== '')
+		vals['personneContactUrgence'] = valeurPersonneContactUrgence;
+
+	var valeurPersonneChercher = $formulaireValeurs.find('.valeurPersonneChercher').prop('checked');
+	if(valeurPersonneChercher != null && valeurPersonneChercher !== '')
+		vals['personneChercher'] = valeurPersonneChercher;
+
+	var valeurInscriptionCles = $formulaireValeurs.find('input.valeurInscriptionCles:checked').val();
+	if(valeurInscriptionCles != null && valeurInscriptionCles !== '')
+		vals['inscriptionCles'] = valeurInscriptionCles;
+
+	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
+	if(valeurObjetTitre != null && valeurObjetTitre !== '')
+		vals['objetTitre'] = valeurObjetTitre;
+
+	putMereScolaireVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+}
+
+function putMereScolaireVals(filtres, vals, success, error) {
+	$.ajax({
+		url: '/api/mere?' + $.param(filtres)
+		, dataType: 'json'
+		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
 		, data: JSON.stringify(vals)
 		, success: success
@@ -321,18 +409,7 @@ async function patchMereScolaire($formulaireFiltres, $formulaireValeurs, success
 	if(removeObjetTitre != null && removeObjetTitre !== '')
 		vals['removeObjetTitre'] = removeObjetTitre;
 
-	var removeMereNomComplet = $formulaireFiltres.find('.removeMereNomComplet').val() === 'true';
-	var setMereNomComplet = removeMereNomComplet ? null : $formulaireValeurs.find('.setMereNomComplet').val();
-	if(removeMereNomComplet || setMereNomComplet != null && setMereNomComplet !== '')
-		vals['setMereNomComplet'] = setMereNomComplet;
-	var addMereNomComplet = $formulaireValeurs.find('.addMereNomComplet').val();
-	if(addMereNomComplet != null && addMereNomComplet !== '')
-		vals['addMereNomComplet'] = addMereNomComplet;
-	var removeMereNomComplet = $formulaireValeurs.find('.removeMereNomComplet').val();
-	if(removeMereNomComplet != null && removeMereNomComplet !== '')
-		vals['removeMereNomComplet'] = removeMereNomComplet;
-
-	patchMereScolaireVals(filtres, vals, success, error);
+	patchMereScolaireVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
 }
 
 function patchMereScolaireFiltres($formulaireFiltres) {
@@ -745,7 +822,7 @@ function suggereMereScolaireObjetSuggere($formulaireFiltres, $list) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'far fa-female w3-padding-small ');
+			var $i = $('<i>').attr('class', 'far fa-female ');
 			var $span = $('<span>').attr('class', '').text(o['mereNomComplet']);
 			var $li = $('<li>');
 			var $a = $('<a>').attr('href', o['pageUrlPk']);
@@ -763,7 +840,7 @@ function suggereMereScolaireInscriptionCles(filtres, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-edit w3-padding-small ');
+			var $i = $('<i>').attr('class', 'fa fa-edit ');
 			var $span = $('<span>').attr('class', '').text(o['inscriptionNomComplet']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);

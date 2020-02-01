@@ -69,10 +69,6 @@ async function postPaiementScolaire($formulaireValeurs, success, error) {
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 		vals['objetTitre'] = valeurObjetTitre;
 
-	var valeurPaiementNomComplet = $formulaireValeurs.find('.valeurPaiementNomComplet').val();
-	if(valeurPaiementNomComplet != null && valeurPaiementNomComplet !== '')
-		vals['paiementNomComplet'] = valeurPaiementNomComplet;
-
 	$.ajax({
 		url: '/api/paiement'
 		, dataType: 'json'
@@ -89,6 +85,78 @@ function postPaiementScolaireVals(vals, success, error) {
 		url: '/api/paiement'
 		, dataType: 'json'
 		, type: 'POST'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(vals)
+		, success: success
+		, error: error
+	});
+}
+
+// PUT //
+
+async function putPaiementScolaire($formulaireValeurs, success, error) {
+	var vals = {};
+
+	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
+	if(valeurPk != null && valeurPk !== '')
+		vals['pk'] = valeurPk;
+
+	var valeurCree = $formulaireValeurs.find('.valeurCree').val();
+	if(valeurCree != null && valeurCree !== '')
+		vals['cree'] = valeurCree;
+
+	var valeurModifie = $formulaireValeurs.find('.valeurModifie').val();
+	if(valeurModifie != null && valeurModifie !== '')
+		vals['modifie'] = valeurModifie;
+
+	var valeurObjetId = $formulaireValeurs.find('.valeurObjetId').val();
+	if(valeurObjetId != null && valeurObjetId !== '')
+		vals['objetId'] = valeurObjetId;
+
+	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
+	if(valeurArchive != null && valeurArchive !== '')
+		vals['archive'] = valeurArchive;
+
+	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').prop('checked');
+	if(valeurSupprime != null && valeurSupprime !== '')
+		vals['supprime'] = valeurSupprime;
+
+	var valeurPaiementDate = $formulaireValeurs.find('.valeurPaiementDate').val();
+	if(valeurPaiementDate != null && valeurPaiementDate !== '')
+		vals['paiementDate'] = valeurPaiementDate;
+
+	var valeurPaiementMontant = $formulaireValeurs.find('.valeurPaiementMontant').val();
+	if(valeurPaiementMontant != null && valeurPaiementMontant !== '')
+		vals['paiementMontant'] = valeurPaiementMontant;
+
+	var valeurPaiementEspeces = $formulaireValeurs.find('.valeurPaiementEspeces').prop('checked');
+	if(valeurPaiementEspeces != null && valeurPaiementEspeces !== '')
+		vals['paiementEspeces'] = valeurPaiementEspeces;
+
+	var valeurPaiementCheque = $formulaireValeurs.find('.valeurPaiementCheque').prop('checked');
+	if(valeurPaiementCheque != null && valeurPaiementCheque !== '')
+		vals['paiementCheque'] = valeurPaiementCheque;
+
+	var valeurPaiementDescription = $formulaireValeurs.find('.valeurPaiementDescription').val();
+	if(valeurPaiementDescription != null && valeurPaiementDescription !== '')
+		vals['paiementDescription'] = valeurPaiementDescription;
+
+	var valeurInscriptionCles = $formulaireValeurs.find('input.valeurInscriptionCles:checked').val();
+	if(valeurInscriptionCles != null && valeurInscriptionCles !== '')
+		vals['inscriptionCles'] = valeurInscriptionCles;
+
+	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
+	if(valeurObjetTitre != null && valeurObjetTitre !== '')
+		vals['objetTitre'] = valeurObjetTitre;
+
+	putPaiementScolaireVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+}
+
+function putPaiementScolaireVals(filtres, vals, success, error) {
+	$.ajax({
+		url: '/api/paiement?' + $.param(filtres)
+		, dataType: 'json'
+		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
 		, data: JSON.stringify(vals)
 		, success: success
@@ -246,18 +314,7 @@ async function patchPaiementScolaire($formulaireFiltres, $formulaireValeurs, suc
 	if(removeObjetTitre != null && removeObjetTitre !== '')
 		vals['removeObjetTitre'] = removeObjetTitre;
 
-	var removePaiementNomComplet = $formulaireFiltres.find('.removePaiementNomComplet').val() === 'true';
-	var setPaiementNomComplet = removePaiementNomComplet ? null : $formulaireValeurs.find('.setPaiementNomComplet').val();
-	if(removePaiementNomComplet || setPaiementNomComplet != null && setPaiementNomComplet !== '')
-		vals['setPaiementNomComplet'] = setPaiementNomComplet;
-	var addPaiementNomComplet = $formulaireValeurs.find('.addPaiementNomComplet').val();
-	if(addPaiementNomComplet != null && addPaiementNomComplet !== '')
-		vals['addPaiementNomComplet'] = addPaiementNomComplet;
-	var removePaiementNomComplet = $formulaireValeurs.find('.removePaiementNomComplet').val();
-	if(removePaiementNomComplet != null && removePaiementNomComplet !== '')
-		vals['removePaiementNomComplet'] = removePaiementNomComplet;
-
-	patchPaiementScolaireVals(filtres, vals, success, error);
+	patchPaiementScolaireVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
 }
 
 function patchPaiementScolaireFiltres($formulaireFiltres) {
@@ -630,7 +687,7 @@ function suggerePaiementScolaireObjetSuggere($formulaireFiltres, $list) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fas fa-search-dollar w3-padding-small ');
+			var $i = $('<i>').attr('class', 'fas fa-search-dollar ');
 			var $span = $('<span>').attr('class', '').text(o['paiementNomComplet']);
 			var $li = $('<li>');
 			var $a = $('<a>').attr('href', o['pageUrlPk']);
@@ -648,7 +705,7 @@ function suggerePaiementScolaireInscriptionCles(filtres, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-edit w3-padding-small ');
+			var $i = $('<i>').attr('class', 'fa fa-edit ');
 			var $span = $('<span>').attr('class', '').text(o['inscriptionNomComplet']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);

@@ -65,10 +65,6 @@ async function postSessionScolaire($formulaireValeurs, success, error) {
 	if(valeurEcoleAddresse != null && valeurEcoleAddresse !== '')
 		vals['ecoleAddresse'] = valeurEcoleAddresse;
 
-	var valeurSessionNomComplet = $formulaireValeurs.find('.valeurSessionNomComplet').val();
-	if(valeurSessionNomComplet != null && valeurSessionNomComplet !== '')
-		vals['sessionNomComplet'] = valeurSessionNomComplet;
-
 	$.ajax({
 		url: '/api/session'
 		, dataType: 'json'
@@ -85,6 +81,74 @@ function postSessionScolaireVals(vals, success, error) {
 		url: '/api/session'
 		, dataType: 'json'
 		, type: 'POST'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(vals)
+		, success: success
+		, error: error
+	});
+}
+
+// PUT //
+
+async function putSessionScolaire($formulaireValeurs, success, error) {
+	var vals = {};
+
+	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
+	if(valeurPk != null && valeurPk !== '')
+		vals['pk'] = valeurPk;
+
+	var valeurCree = $formulaireValeurs.find('.valeurCree').val();
+	if(valeurCree != null && valeurCree !== '')
+		vals['cree'] = valeurCree;
+
+	var valeurModifie = $formulaireValeurs.find('.valeurModifie').val();
+	if(valeurModifie != null && valeurModifie !== '')
+		vals['modifie'] = valeurModifie;
+
+	var valeurObjetId = $formulaireValeurs.find('.valeurObjetId').val();
+	if(valeurObjetId != null && valeurObjetId !== '')
+		vals['objetId'] = valeurObjetId;
+
+	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
+	if(valeurArchive != null && valeurArchive !== '')
+		vals['archive'] = valeurArchive;
+
+	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').prop('checked');
+	if(valeurSupprime != null && valeurSupprime !== '')
+		vals['supprime'] = valeurSupprime;
+
+	var valeurSessionJourDebut = $formulaireValeurs.find('.valeurSessionJourDebut').val();
+	if(valeurSessionJourDebut != null && valeurSessionJourDebut !== '')
+		vals['sessionJourDebut'] = valeurSessionJourDebut;
+
+	var valeurSessionJourFin = $formulaireValeurs.find('.valeurSessionJourFin').val();
+	if(valeurSessionJourFin != null && valeurSessionJourFin !== '')
+		vals['sessionJourFin'] = valeurSessionJourFin;
+
+	var valeurSaisonCle = $formulaireValeurs.find('input.valeurSaisonCle:checked').val();
+	if(valeurSaisonCle != null && valeurSaisonCle !== '')
+		vals['saisonCle'] = valeurSaisonCle;
+
+	var valeurAgeCles = $formulaireValeurs.find('input.valeurAgeCles:checked').val();
+	if(valeurAgeCles != null && valeurAgeCles !== '')
+		vals['ageCles'] = valeurAgeCles;
+
+	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
+	if(valeurObjetTitre != null && valeurObjetTitre !== '')
+		vals['objetTitre'] = valeurObjetTitre;
+
+	var valeurEcoleAddresse = $formulaireValeurs.find('.valeurEcoleAddresse').val();
+	if(valeurEcoleAddresse != null && valeurEcoleAddresse !== '')
+		vals['ecoleAddresse'] = valeurEcoleAddresse;
+
+	putSessionScolaireVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+}
+
+function putSessionScolaireVals(filtres, vals, success, error) {
+	$.ajax({
+		url: '/api/session?' + $.param(filtres)
+		, dataType: 'json'
+		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
 		, data: JSON.stringify(vals)
 		, success: success
@@ -231,18 +295,7 @@ async function patchSessionScolaire($formulaireFiltres, $formulaireValeurs, succ
 	if(removeEcoleAddresse != null && removeEcoleAddresse !== '')
 		vals['removeEcoleAddresse'] = removeEcoleAddresse;
 
-	var removeSessionNomComplet = $formulaireFiltres.find('.removeSessionNomComplet').val() === 'true';
-	var setSessionNomComplet = removeSessionNomComplet ? null : $formulaireValeurs.find('.setSessionNomComplet').val();
-	if(removeSessionNomComplet || setSessionNomComplet != null && setSessionNomComplet !== '')
-		vals['setSessionNomComplet'] = setSessionNomComplet;
-	var addSessionNomComplet = $formulaireValeurs.find('.addSessionNomComplet').val();
-	if(addSessionNomComplet != null && addSessionNomComplet !== '')
-		vals['addSessionNomComplet'] = addSessionNomComplet;
-	var removeSessionNomComplet = $formulaireValeurs.find('.removeSessionNomComplet').val();
-	if(removeSessionNomComplet != null && removeSessionNomComplet !== '')
-		vals['removeSessionNomComplet'] = removeSessionNomComplet;
-
-	patchSessionScolaireVals(filtres, vals, success, error);
+	patchSessionScolaireVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
 }
 
 function patchSessionScolaireFiltres($formulaireFiltres) {
@@ -695,7 +748,7 @@ function suggereSessionScolaireObjetSuggere($formulaireFiltres, $list) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fad fa-graduation-cap w3-padding-small ');
+			var $i = $('<i>').attr('class', 'fad fa-graduation-cap ');
 			var $span = $('<span>').attr('class', '').text(o['sessionNomComplet']);
 			var $li = $('<li>');
 			var $a = $('<a>').attr('href', o['pageUrlPk']);
@@ -713,7 +766,7 @@ function suggereSessionScolaireAgeCles(filtres, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-birthday-cake w3-padding-small ');
+			var $i = $('<i>').attr('class', 'fa fa-birthday-cake ');
 			var $span = $('<span>').attr('class', '').text(o['ageNomComplet']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);
@@ -748,7 +801,7 @@ function suggereSessionScolaireSaisonCle(filtres, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-sun w3-padding-small ');
+			var $i = $('<i>').attr('class', 'fa fa-sun ');
 			var $span = $('<span>').attr('class', '').text(o['saisonNomComplet']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);

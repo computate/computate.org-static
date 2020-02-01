@@ -177,6 +177,10 @@ textarea {
 	width: 1.4em;
 	text-align: center;
 }
+.svg-inline--fa {
+	margin: 0 3px;
+}
+
 .site-highlight {
 	font-family: arial,sans-serif;
 	font-size: small;

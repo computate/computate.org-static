@@ -1144,7 +1144,7 @@ function suggestHtmlPartObjectSuggest($formFilters, $list) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'far fa-sun w3-padding-small ');
+			var $i = $('<i>').attr('class', 'far fa-sun ');
 			var $span = $('<span>').attr('class', '').text(o['objectTitle']);
 			var $li = $('<li>');
 			var $a = $('<a>').attr('href', o['pageUrlPk']);
@@ -1162,7 +1162,7 @@ function suggestHtmlPartEnrollmentDesignKey(filters, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-bell w3-padding-small ');
+			var $i = $('<i>').attr('class', 'fa fa-bell ');
 			var $span = $('<span>').attr('class', '').text(o['enrollmentDesignCompleteName']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);

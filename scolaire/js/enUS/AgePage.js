@@ -65,10 +65,6 @@ async function postSchoolAge($formValues, success, error) {
 	if(valueSchoolAddress != null && valueSchoolAddress !== '')
 		vals['schoolAddress'] = valueSchoolAddress;
 
-	var valueAgeCompleteName = $formValues.find('.valueAgeCompleteName').val();
-	if(valueAgeCompleteName != null && valueAgeCompleteName !== '')
-		vals['ageCompleteName'] = valueAgeCompleteName;
-
 	$.ajax({
 		url: '/api/age'
 		, dataType: 'json'
@@ -85,6 +81,74 @@ function postSchoolAgeVals(vals, success, error) {
 		url: '/api/age'
 		, dataType: 'json'
 		, type: 'POST'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(vals)
+		, success: success
+		, error: error
+	});
+}
+
+// PUT //
+
+async function putSchoolAge($formValues, success, error) {
+	var vals = {};
+
+	var valuePk = $formValues.find('.valuePk').val();
+	if(valuePk != null && valuePk !== '')
+		vals['pk'] = valuePk;
+
+	var valueCreated = $formValues.find('.valueCreated').val();
+	if(valueCreated != null && valueCreated !== '')
+		vals['created'] = valueCreated;
+
+	var valueModified = $formValues.find('.valueModified').val();
+	if(valueModified != null && valueModified !== '')
+		vals['modified'] = valueModified;
+
+	var valueObjectId = $formValues.find('.valueObjectId').val();
+	if(valueObjectId != null && valueObjectId !== '')
+		vals['objectId'] = valueObjectId;
+
+	var valueArchived = $formValues.find('.valueArchived').prop('checked');
+	if(valueArchived != null && valueArchived !== '')
+		vals['archived'] = valueArchived;
+
+	var valueDeleted = $formValues.find('.valueDeleted').prop('checked');
+	if(valueDeleted != null && valueDeleted !== '')
+		vals['deleted'] = valueDeleted;
+
+	var valueAgeStart = $formValues.find('.valueAgeStart').val();
+	if(valueAgeStart != null && valueAgeStart !== '')
+		vals['ageStart'] = valueAgeStart;
+
+	var valueAgeEnd = $formValues.find('.valueAgeEnd').val();
+	if(valueAgeEnd != null && valueAgeEnd !== '')
+		vals['ageEnd'] = valueAgeEnd;
+
+	var valueSessionKey = $formValues.find('input.valueSessionKey:checked').val();
+	if(valueSessionKey != null && valueSessionKey !== '')
+		vals['sessionKey'] = valueSessionKey;
+
+	var valueBlockKeys = $formValues.find('input.valueBlockKeys:checked').val();
+	if(valueBlockKeys != null && valueBlockKeys !== '')
+		vals['blockKeys'] = valueBlockKeys;
+
+	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
+	if(valueObjectTitle != null && valueObjectTitle !== '')
+		vals['objectTitle'] = valueObjectTitle;
+
+	var valueSchoolAddress = $formValues.find('.valueSchoolAddress').val();
+	if(valueSchoolAddress != null && valueSchoolAddress !== '')
+		vals['schoolAddress'] = valueSchoolAddress;
+
+	putSchoolAgeVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+}
+
+function putSchoolAgeVals(filters, vals, success, error) {
+	$.ajax({
+		url: '/api/age?' + $.param(filters)
+		, dataType: 'json'
+		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
 		, data: JSON.stringify(vals)
 		, success: success
@@ -231,18 +295,7 @@ async function patchSchoolAge($formFilters, $formValues, success, error) {
 	if(removeSchoolAddress != null && removeSchoolAddress !== '')
 		vals['removeSchoolAddress'] = removeSchoolAddress;
 
-	var removeAgeCompleteName = $formFilters.find('.removeAgeCompleteName').val() === 'true';
-	var setAgeCompleteName = removeAgeCompleteName ? null : $formValues.find('.setAgeCompleteName').val();
-	if(removeAgeCompleteName || setAgeCompleteName != null && setAgeCompleteName !== '')
-		vals['setAgeCompleteName'] = setAgeCompleteName;
-	var addAgeCompleteName = $formValues.find('.addAgeCompleteName').val();
-	if(addAgeCompleteName != null && addAgeCompleteName !== '')
-		vals['addAgeCompleteName'] = addAgeCompleteName;
-	var removeAgeCompleteName = $formValues.find('.removeAgeCompleteName').val();
-	if(removeAgeCompleteName != null && removeAgeCompleteName !== '')
-		vals['removeAgeCompleteName'] = removeAgeCompleteName;
-
-	patchSchoolAgeVals(filters, vals, success, error);
+	patchSchoolAgeVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
 }
 
 function patchSchoolAgeFilters($formFilters) {
@@ -727,7 +780,7 @@ function suggestSchoolAgeObjectSuggest($formFilters, $list) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fad fa-birthday-cake w3-padding-small ');
+			var $i = $('<i>').attr('class', 'fad fa-birthday-cake ');
 			var $span = $('<span>').attr('class', '').text(o['ageCompleteName']);
 			var $li = $('<li>');
 			var $a = $('<a>').attr('href', o['pageUrlPk']);
@@ -745,7 +798,7 @@ function suggestSchoolAgeBlockKeys(filters, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-bell w3-padding-small ');
+			var $i = $('<i>').attr('class', 'fa fa-bell ');
 			var $span = $('<span>').attr('class', '').text(o['blockCompleteName']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);
@@ -780,7 +833,7 @@ function suggestSchoolAgeSessionKey(filters, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-graduation-cap w3-padding-small ');
+			var $i = $('<i>').attr('class', 'fa fa-graduation-cap ');
 			var $span = $('<span>').attr('class', '').text(o['sessionCompleteName']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);

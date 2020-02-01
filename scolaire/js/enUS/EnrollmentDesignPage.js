@@ -76,6 +76,62 @@ function postEnrollmentDesignVals(vals, success, error) {
 	});
 }
 
+// PUT //
+
+async function putEnrollmentDesign($formValues, success, error) {
+	var vals = {};
+
+	var valuePk = $formValues.find('.valuePk').val();
+	if(valuePk != null && valuePk !== '')
+		vals['pk'] = valuePk;
+
+	var valueCreated = $formValues.find('.valueCreated').val();
+	if(valueCreated != null && valueCreated !== '')
+		vals['created'] = valueCreated;
+
+	var valueModified = $formValues.find('.valueModified').val();
+	if(valueModified != null && valueModified !== '')
+		vals['modified'] = valueModified;
+
+	var valueObjectId = $formValues.find('.valueObjectId').val();
+	if(valueObjectId != null && valueObjectId !== '')
+		vals['objectId'] = valueObjectId;
+
+	var valueArchived = $formValues.find('.valueArchived').prop('checked');
+	if(valueArchived != null && valueArchived !== '')
+		vals['archived'] = valueArchived;
+
+	var valueDeleted = $formValues.find('.valueDeleted').prop('checked');
+	if(valueDeleted != null && valueDeleted !== '')
+		vals['deleted'] = valueDeleted;
+
+	var valueEnrollmentDesignCompleteName = $formValues.find('.valueEnrollmentDesignCompleteName').val();
+	if(valueEnrollmentDesignCompleteName != null && valueEnrollmentDesignCompleteName !== '')
+		vals['enrollmentDesignCompleteName'] = valueEnrollmentDesignCompleteName;
+
+	var valueHtmlPartKeys = $formValues.find('input.valueHtmlPartKeys:checked').val();
+	if(valueHtmlPartKeys != null && valueHtmlPartKeys !== '')
+		vals['htmlPartKeys'] = valueHtmlPartKeys;
+
+	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
+	if(valueObjectTitle != null && valueObjectTitle !== '')
+		vals['objectTitle'] = valueObjectTitle;
+
+	putEnrollmentDesignVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+}
+
+function putEnrollmentDesignVals(filters, vals, success, error) {
+	$.ajax({
+		url: '/api/enrollment-design?' + $.param(filters)
+		, dataType: 'json'
+		, type: 'PUT'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(vals)
+		, success: success
+		, error: error
+	});
+}
+
 // PATCH //
 
 async function patchEnrollmentDesign($formFilters, $formValues, success, error) {
@@ -182,7 +238,7 @@ async function patchEnrollmentDesign($formFilters, $formValues, success, error) 
 	if(removeObjectTitle != null && removeObjectTitle !== '')
 		vals['removeObjectTitle'] = removeObjectTitle;
 
-	patchEnrollmentDesignVals(filters, vals, success, error);
+	patchEnrollmentDesignVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
 }
 
 function patchEnrollmentDesignFilters($formFilters) {
@@ -499,7 +555,7 @@ function suggestEnrollmentDesignObjectSuggest($formFilters, $list) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'far fa-bell w3-padding-small ');
+			var $i = $('<i>').attr('class', 'far fa-drafting-compass ');
 			var $span = $('<span>').attr('class', '').text(o['enrollmentDesignCompleteName']);
 			var $li = $('<li>');
 			var $a = $('<a>').attr('href', o['pageUrlPk']);
@@ -517,7 +573,7 @@ function suggestEnrollmentDesignHtmlPartKeys(filters, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-sun w3-padding-small ');
+			var $i = $('<i>').attr('class', 'fa fa-sun ');
 			var $span = $('<span>').attr('class', '').text(o['objectTitle']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);
@@ -742,7 +798,7 @@ async function websocketEnrollmentDesign(success) {
 				var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
 				var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
 				var $header = $('<div>').attr('class', 'w3-container fa-indigo ').attr('id', 'header-' + id);
-				var $i = $('<i>').attr('class', 'far fa-bell w3-margin-right ').attr('id', 'icon-' + id);
+				var $i = $('<i>').attr('class', 'far fa-drafting-compass w3-margin-right ').attr('id', 'icon-' + id);
 				var $headerSpan = $('<span>').attr('class', '').text('modify enrollment designs');
 				var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
 				var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);

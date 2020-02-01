@@ -60,3 +60,48 @@ textarea {
 	background-size: 20px; 
 }
 */
+
+
+body {
+	font-size: 10px;
+	font-family: sans-serif; 
+} 
+table {
+	width: 100%; 
+	border-collapse: collapse;
+	border-top: 0.3px solid gray;
+	border-left: 0.3px solid gray;
+}
+td, th {
+	padding: 0 0.2em;
+	border-bottom: 0.3px solid gray;
+	border-right: 0.3px solid gray;
+}
+.enfantNom {
+	font-weight: bold; 
+	width: 80px; 
+}
+.enfantNomPresence {
+	font-weight: bold; 
+	width: 120px; 
+}
+.attendanceEmpty {
+	font-weight: bold; 
+	width: 30px; 
+}
+.enfantDateNaissance {
+	width: 35px; 
+}
+.enfantConditionsMedicales {
+	width: 50px; 
+}
+.rapport-titre {
+	font-weight: bold; 
+	font-size: 15px;
+}
+.rapportMedicalesEnfantNom, .rapportPhotosEnfantNom {
+	width: 150px; 
+}
+.rapportEnfantConditionsMedicales, .rapportPhotos {
+	width: 520px; 
+}

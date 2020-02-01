@@ -69,10 +69,6 @@ async function postSchoolPayment($formValues, success, error) {
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
 
-	var valuePaymentCompleteName = $formValues.find('.valuePaymentCompleteName').val();
-	if(valuePaymentCompleteName != null && valuePaymentCompleteName !== '')
-		vals['paymentCompleteName'] = valuePaymentCompleteName;
-
 	$.ajax({
 		url: '/api/payment'
 		, dataType: 'json'
@@ -89,6 +85,78 @@ function postSchoolPaymentVals(vals, success, error) {
 		url: '/api/payment'
 		, dataType: 'json'
 		, type: 'POST'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(vals)
+		, success: success
+		, error: error
+	});
+}
+
+// PUT //
+
+async function putSchoolPayment($formValues, success, error) {
+	var vals = {};
+
+	var valuePk = $formValues.find('.valuePk').val();
+	if(valuePk != null && valuePk !== '')
+		vals['pk'] = valuePk;
+
+	var valueCreated = $formValues.find('.valueCreated').val();
+	if(valueCreated != null && valueCreated !== '')
+		vals['created'] = valueCreated;
+
+	var valueModified = $formValues.find('.valueModified').val();
+	if(valueModified != null && valueModified !== '')
+		vals['modified'] = valueModified;
+
+	var valueObjectId = $formValues.find('.valueObjectId').val();
+	if(valueObjectId != null && valueObjectId !== '')
+		vals['objectId'] = valueObjectId;
+
+	var valueArchived = $formValues.find('.valueArchived').prop('checked');
+	if(valueArchived != null && valueArchived !== '')
+		vals['archived'] = valueArchived;
+
+	var valueDeleted = $formValues.find('.valueDeleted').prop('checked');
+	if(valueDeleted != null && valueDeleted !== '')
+		vals['deleted'] = valueDeleted;
+
+	var valuePaymentDate = $formValues.find('.valuePaymentDate').val();
+	if(valuePaymentDate != null && valuePaymentDate !== '')
+		vals['paymentDate'] = valuePaymentDate;
+
+	var valuePaymentAmount = $formValues.find('.valuePaymentAmount').val();
+	if(valuePaymentAmount != null && valuePaymentAmount !== '')
+		vals['paymentAmount'] = valuePaymentAmount;
+
+	var valuePaymentCash = $formValues.find('.valuePaymentCash').prop('checked');
+	if(valuePaymentCash != null && valuePaymentCash !== '')
+		vals['paymentCash'] = valuePaymentCash;
+
+	var valuePaymentCheck = $formValues.find('.valuePaymentCheck').prop('checked');
+	if(valuePaymentCheck != null && valuePaymentCheck !== '')
+		vals['paymentCheck'] = valuePaymentCheck;
+
+	var valuePaymentDescription = $formValues.find('.valuePaymentDescription').val();
+	if(valuePaymentDescription != null && valuePaymentDescription !== '')
+		vals['paymentDescription'] = valuePaymentDescription;
+
+	var valueEnrollmentKeys = $formValues.find('input.valueEnrollmentKeys:checked').val();
+	if(valueEnrollmentKeys != null && valueEnrollmentKeys !== '')
+		vals['enrollmentKeys'] = valueEnrollmentKeys;
+
+	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
+	if(valueObjectTitle != null && valueObjectTitle !== '')
+		vals['objectTitle'] = valueObjectTitle;
+
+	putSchoolPaymentVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+}
+
+function putSchoolPaymentVals(filters, vals, success, error) {
+	$.ajax({
+		url: '/api/payment?' + $.param(filters)
+		, dataType: 'json'
+		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
 		, data: JSON.stringify(vals)
 		, success: success
@@ -246,18 +314,7 @@ async function patchSchoolPayment($formFilters, $formValues, success, error) {
 	if(removeObjectTitle != null && removeObjectTitle !== '')
 		vals['removeObjectTitle'] = removeObjectTitle;
 
-	var removePaymentCompleteName = $formFilters.find('.removePaymentCompleteName').val() === 'true';
-	var setPaymentCompleteName = removePaymentCompleteName ? null : $formValues.find('.setPaymentCompleteName').val();
-	if(removePaymentCompleteName || setPaymentCompleteName != null && setPaymentCompleteName !== '')
-		vals['setPaymentCompleteName'] = setPaymentCompleteName;
-	var addPaymentCompleteName = $formValues.find('.addPaymentCompleteName').val();
-	if(addPaymentCompleteName != null && addPaymentCompleteName !== '')
-		vals['addPaymentCompleteName'] = addPaymentCompleteName;
-	var removePaymentCompleteName = $formValues.find('.removePaymentCompleteName').val();
-	if(removePaymentCompleteName != null && removePaymentCompleteName !== '')
-		vals['removePaymentCompleteName'] = removePaymentCompleteName;
-
-	patchSchoolPaymentVals(filters, vals, success, error);
+	patchSchoolPaymentVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
 }
 
 function patchSchoolPaymentFilters($formFilters) {
@@ -630,7 +687,7 @@ function suggestSchoolPaymentObjectSuggest($formFilters, $list) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fas fa-search-dollar w3-padding-small ');
+			var $i = $('<i>').attr('class', 'fas fa-search-dollar ');
 			var $span = $('<span>').attr('class', '').text(o['paymentCompleteName']);
 			var $li = $('<li>');
 			var $a = $('<a>').attr('href', o['pageUrlPk']);
@@ -648,7 +705,7 @@ function suggestSchoolPaymentEnrollmentKeys(filters, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-edit w3-padding-small ');
+			var $i = $('<i>').attr('class', 'fa fa-edit ');
 			var $span = $('<span>').attr('class', '').text(o['enrollmentCompleteName']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);

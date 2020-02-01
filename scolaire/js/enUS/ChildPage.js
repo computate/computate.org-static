@@ -69,10 +69,6 @@ async function postSchoolChild($formValues, success, error) {
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
 
-	var valueChildCompleteName = $formValues.find('.valueChildCompleteName').val();
-	if(valueChildCompleteName != null && valueChildCompleteName !== '')
-		vals['childCompleteName'] = valueChildCompleteName;
-
 	$.ajax({
 		url: '/api/child'
 		, dataType: 'json'
@@ -89,6 +85,78 @@ function postSchoolChildVals(vals, success, error) {
 		url: '/api/child'
 		, dataType: 'json'
 		, type: 'POST'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(vals)
+		, success: success
+		, error: error
+	});
+}
+
+// PUT //
+
+async function putSchoolChild($formValues, success, error) {
+	var vals = {};
+
+	var valuePk = $formValues.find('.valuePk').val();
+	if(valuePk != null && valuePk !== '')
+		vals['pk'] = valuePk;
+
+	var valueCreated = $formValues.find('.valueCreated').val();
+	if(valueCreated != null && valueCreated !== '')
+		vals['created'] = valueCreated;
+
+	var valueModified = $formValues.find('.valueModified').val();
+	if(valueModified != null && valueModified !== '')
+		vals['modified'] = valueModified;
+
+	var valueObjectId = $formValues.find('.valueObjectId').val();
+	if(valueObjectId != null && valueObjectId !== '')
+		vals['objectId'] = valueObjectId;
+
+	var valueArchived = $formValues.find('.valueArchived').prop('checked');
+	if(valueArchived != null && valueArchived !== '')
+		vals['archived'] = valueArchived;
+
+	var valueDeleted = $formValues.find('.valueDeleted').prop('checked');
+	if(valueDeleted != null && valueDeleted !== '')
+		vals['deleted'] = valueDeleted;
+
+	var valuePersonFirstName = $formValues.find('.valuePersonFirstName').val();
+	if(valuePersonFirstName != null && valuePersonFirstName !== '')
+		vals['personFirstName'] = valuePersonFirstName;
+
+	var valueFamilyName = $formValues.find('.valueFamilyName').val();
+	if(valueFamilyName != null && valueFamilyName !== '')
+		vals['familyName'] = valueFamilyName;
+
+	var valuePersonFirstNamePreferred = $formValues.find('.valuePersonFirstNamePreferred').val();
+	if(valuePersonFirstNamePreferred != null && valuePersonFirstNamePreferred !== '')
+		vals['personFirstNamePreferred'] = valuePersonFirstNamePreferred;
+
+	var valuePersonBirthDate = $formValues.find('.valuePersonBirthDate').val();
+	if(valuePersonBirthDate != null && valuePersonBirthDate !== '')
+		vals['personBirthDate'] = valuePersonBirthDate;
+
+	var valuePersonAgeInSeptember = $formValues.find('.valuePersonAgeInSeptember').val();
+	if(valuePersonAgeInSeptember != null && valuePersonAgeInSeptember !== '')
+		vals['personAgeInSeptember'] = valuePersonAgeInSeptember;
+
+	var valueEnrollmentKeys = $formValues.find('input.valueEnrollmentKeys:checked').val();
+	if(valueEnrollmentKeys != null && valueEnrollmentKeys !== '')
+		vals['enrollmentKeys'] = valueEnrollmentKeys;
+
+	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
+	if(valueObjectTitle != null && valueObjectTitle !== '')
+		vals['objectTitle'] = valueObjectTitle;
+
+	putSchoolChildVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+}
+
+function putSchoolChildVals(filters, vals, success, error) {
+	$.ajax({
+		url: '/api/child?' + $.param(filters)
+		, dataType: 'json'
+		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
 		, data: JSON.stringify(vals)
 		, success: success
@@ -246,18 +314,7 @@ async function patchSchoolChild($formFilters, $formValues, success, error) {
 	if(removeObjectTitle != null && removeObjectTitle !== '')
 		vals['removeObjectTitle'] = removeObjectTitle;
 
-	var removeChildCompleteName = $formFilters.find('.removeChildCompleteName').val() === 'true';
-	var setChildCompleteName = removeChildCompleteName ? null : $formValues.find('.setChildCompleteName').val();
-	if(removeChildCompleteName || setChildCompleteName != null && setChildCompleteName !== '')
-		vals['setChildCompleteName'] = setChildCompleteName;
-	var addChildCompleteName = $formValues.find('.addChildCompleteName').val();
-	if(addChildCompleteName != null && addChildCompleteName !== '')
-		vals['addChildCompleteName'] = addChildCompleteName;
-	var removeChildCompleteName = $formValues.find('.removeChildCompleteName').val();
-	if(removeChildCompleteName != null && removeChildCompleteName !== '')
-		vals['removeChildCompleteName'] = removeChildCompleteName;
-
-	patchSchoolChildVals(filters, vals, success, error);
+	patchSchoolChildVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
 }
 
 function patchSchoolChildFilters($formFilters) {
@@ -622,7 +679,7 @@ function suggestSchoolChildObjectSuggest($formFilters, $list) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'far fa-child w3-padding-small ');
+			var $i = $('<i>').attr('class', 'far fa-child ');
 			var $span = $('<span>').attr('class', '').text(o['childCompleteName']);
 			var $li = $('<li>');
 			var $a = $('<a>').attr('href', o['pageUrlPk']);
@@ -640,7 +697,7 @@ function suggestSchoolChildEnrollmentKeys(filters, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-edit w3-padding-small ');
+			var $i = $('<i>').attr('class', 'fa fa-edit ');
 			var $span = $('<span>').attr('class', '').text(o['enrollmentCompleteName']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);

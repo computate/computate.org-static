@@ -70,7 +70,7 @@ function postClusterVals(vals, success, error) {
 
 // PUT //
 
-async function putCluster($formValues) {
+async function putCluster($formValues, success, error) {
 	var vals = {};
 
 	var valuePk = $formValues.find('.valuePk').val();
@@ -200,7 +200,7 @@ async function patchCluster($formFilters, $formValues, success, error) {
 	if(removeObjectTitle != null && removeObjectTitle !== '')
 		vals['removeObjectTitle'] = removeObjectTitle;
 
-	patchClusterVals(filters, vals, success, error);
+	patchClusterVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
 }
 
 function patchClusterFilters($formFilters) {
@@ -230,18 +230,6 @@ function patchClusterFilters($formFilters) {
 	if(filterDeleted != null && filterDeleted === true)
 		filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
-	var filterInheritPk = $formFilters.find('.valueInheritPk').val();
-	if(filterInheritPk != null && filterInheritPk !== '')
-		filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
-
-	var filterId = $formFilters.find('.valueId').val();
-	if(filterId != null && filterId !== '')
-		filters.push({ name: 'fq', value: 'id:' + filterId });
-
-	var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
-	if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
-		filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
-
 	var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
 	if(filterClassSimpleName != null && filterClassSimpleName !== '')
 		filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
@@ -253,6 +241,18 @@ function patchClusterFilters($formFilters) {
 	var filterSessionId = $formFilters.find('.valueSessionId').val();
 	if(filterSessionId != null && filterSessionId !== '')
 		filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+	var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+	if(filterInheritPk != null && filterInheritPk !== '')
+		filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+
+	var filterId = $formFilters.find('.valueId').val();
+	if(filterId != null && filterId !== '')
+		filters.push({ name: 'fq', value: 'id:' + filterId });
+
+	var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
+	if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
+		filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
 
 	var filterSaves = $formFilters.find('.valueSaves').val();
 	if(filterSaves != null && filterSaves !== '')
@@ -360,18 +360,6 @@ function searchClusterFilters($formFilters) {
 	if(filterDeleted != null && filterDeleted === true)
 		filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
-	var filterInheritPk = $formFilters.find('.valueInheritPk').val();
-	if(filterInheritPk != null && filterInheritPk !== '')
-		filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
-
-	var filterId = $formFilters.find('.valueId').val();
-	if(filterId != null && filterId !== '')
-		filters.push({ name: 'fq', value: 'id:' + filterId });
-
-	var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
-	if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
-		filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
-
 	var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
 	if(filterClassSimpleName != null && filterClassSimpleName !== '')
 		filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
@@ -383,6 +371,18 @@ function searchClusterFilters($formFilters) {
 	var filterSessionId = $formFilters.find('.valueSessionId').val();
 	if(filterSessionId != null && filterSessionId !== '')
 		filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+	var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+	if(filterInheritPk != null && filterInheritPk !== '')
+		filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+
+	var filterId = $formFilters.find('.valueId').val();
+	if(filterId != null && filterId !== '')
+		filters.push({ name: 'fq', value: 'id:' + filterId });
+
+	var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
+	if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
+		filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
 
 	var filterSaves = $formFilters.find('.valueSaves').val();
 	if(filterSaves != null && filterSaves !== '')
@@ -421,7 +421,7 @@ function suggestClusterObjectSuggest($formFilters, $list) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'far fa-fort-awesome w3-padding-small ');
+			var $i = $('<i>').attr('class', 'far fa-fort-awesome ');
 			var $span = $('<span>').attr('class', '').text(o['objectTitle']);
 			var $li = $('<li>');
 			var $a = $('<a>').attr('href', o['pageUrlPk']);
@@ -511,6 +511,7 @@ async function websocketClusterInner(apiRequest) {
 				await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
 			}
 		}
-		await patchClusterVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
+		if(pk)
+			await patchClusterVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 	}
 }

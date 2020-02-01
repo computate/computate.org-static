@@ -69,10 +69,6 @@ async function postAnneeScolaire($formulaireValeurs, success, error) {
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 		vals['objetTitre'] = valeurObjetTitre;
 
-	var valeurAnneeNomComplet = $formulaireValeurs.find('.valeurAnneeNomComplet').val();
-	if(valeurAnneeNomComplet != null && valeurAnneeNomComplet !== '')
-		vals['anneeNomComplet'] = valeurAnneeNomComplet;
-
 	$.ajax({
 		url: '/api/annee'
 		, dataType: 'json'
@@ -89,6 +85,78 @@ function postAnneeScolaireVals(vals, success, error) {
 		url: '/api/annee'
 		, dataType: 'json'
 		, type: 'POST'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(vals)
+		, success: success
+		, error: error
+	});
+}
+
+// PUT //
+
+async function putAnneeScolaire($formulaireValeurs, success, error) {
+	var vals = {};
+
+	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
+	if(valeurPk != null && valeurPk !== '')
+		vals['pk'] = valeurPk;
+
+	var valeurCree = $formulaireValeurs.find('.valeurCree').val();
+	if(valeurCree != null && valeurCree !== '')
+		vals['cree'] = valeurCree;
+
+	var valeurModifie = $formulaireValeurs.find('.valeurModifie').val();
+	if(valeurModifie != null && valeurModifie !== '')
+		vals['modifie'] = valeurModifie;
+
+	var valeurObjetId = $formulaireValeurs.find('.valeurObjetId').val();
+	if(valeurObjetId != null && valeurObjetId !== '')
+		vals['objetId'] = valeurObjetId;
+
+	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
+	if(valeurArchive != null && valeurArchive !== '')
+		vals['archive'] = valeurArchive;
+
+	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').prop('checked');
+	if(valeurSupprime != null && valeurSupprime !== '')
+		vals['supprime'] = valeurSupprime;
+
+	var valeurAnneeDebut = $formulaireValeurs.find('.valeurAnneeDebut').val();
+	if(valeurAnneeDebut != null && valeurAnneeDebut !== '')
+		vals['anneeDebut'] = valeurAnneeDebut;
+
+	var valeurAnneeFin = $formulaireValeurs.find('.valeurAnneeFin').val();
+	if(valeurAnneeFin != null && valeurAnneeFin !== '')
+		vals['anneeFin'] = valeurAnneeFin;
+
+	var valeurAnneeFraisInscription = $formulaireValeurs.find('.valeurAnneeFraisInscription').val();
+	if(valeurAnneeFraisInscription != null && valeurAnneeFraisInscription !== '')
+		vals['anneeFraisInscription'] = valeurAnneeFraisInscription;
+
+	var valeurEcoleCle = $formulaireValeurs.find('input.valeurEcoleCle:checked').val();
+	if(valeurEcoleCle != null && valeurEcoleCle !== '')
+		vals['ecoleCle'] = valeurEcoleCle;
+
+	var valeurSaisonCles = $formulaireValeurs.find('input.valeurSaisonCles:checked').val();
+	if(valeurSaisonCles != null && valeurSaisonCles !== '')
+		vals['saisonCles'] = valeurSaisonCles;
+
+	var valeurFormInscriptionCle = $formulaireValeurs.find('.valeurFormInscriptionCle').val();
+	if(valeurFormInscriptionCle != null && valeurFormInscriptionCle !== '')
+		vals['formInscriptionCle'] = valeurFormInscriptionCle;
+
+	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
+	if(valeurObjetTitre != null && valeurObjetTitre !== '')
+		vals['objetTitre'] = valeurObjetTitre;
+
+	putAnneeScolaireVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+}
+
+function putAnneeScolaireVals(filtres, vals, success, error) {
+	$.ajax({
+		url: '/api/annee?' + $.param(filtres)
+		, dataType: 'json'
+		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
 		, data: JSON.stringify(vals)
 		, success: success
@@ -246,18 +314,7 @@ async function patchAnneeScolaire($formulaireFiltres, $formulaireValeurs, succes
 	if(removeObjetTitre != null && removeObjetTitre !== '')
 		vals['removeObjetTitre'] = removeObjetTitre;
 
-	var removeAnneeNomComplet = $formulaireFiltres.find('.removeAnneeNomComplet').val() === 'true';
-	var setAnneeNomComplet = removeAnneeNomComplet ? null : $formulaireValeurs.find('.setAnneeNomComplet').val();
-	if(removeAnneeNomComplet || setAnneeNomComplet != null && setAnneeNomComplet !== '')
-		vals['setAnneeNomComplet'] = setAnneeNomComplet;
-	var addAnneeNomComplet = $formulaireValeurs.find('.addAnneeNomComplet').val();
-	if(addAnneeNomComplet != null && addAnneeNomComplet !== '')
-		vals['addAnneeNomComplet'] = addAnneeNomComplet;
-	var removeAnneeNomComplet = $formulaireValeurs.find('.removeAnneeNomComplet').val();
-	if(removeAnneeNomComplet != null && removeAnneeNomComplet !== '')
-		vals['removeAnneeNomComplet'] = removeAnneeNomComplet;
-
-	patchAnneeScolaireVals(filtres, vals, success, error);
+	patchAnneeScolaireVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
 }
 
 function patchAnneeScolaireFiltres($formulaireFiltres) {
@@ -630,7 +687,7 @@ function suggereAnneeScolaireObjetSuggere($formulaireFiltres, $list) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'far fa-calendar-check w3-padding-small ');
+			var $i = $('<i>').attr('class', 'far fa-calendar-check ');
 			var $span = $('<span>').attr('class', '').text(o['anneeNomComplet']);
 			var $li = $('<li>');
 			var $a = $('<a>').attr('href', o['pageUrlPk']);
@@ -648,7 +705,7 @@ function suggereAnneeScolaireEcoleCle(filtres, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-school w3-padding-small ');
+			var $i = $('<i>').attr('class', 'fa fa-school ');
 			var $span = $('<span>').attr('class', '').text(o['ecoleNomComplet']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);
@@ -683,7 +740,7 @@ function suggereAnneeScolaireSaisonCles(filtres, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-sun w3-padding-small ');
+			var $i = $('<i>').attr('class', 'fa fa-sun ');
 			var $span = $('<span>').attr('class', '').text(o['saisonNomComplet']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);

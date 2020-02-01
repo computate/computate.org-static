@@ -65,10 +65,6 @@ async function postSchoolSession($formValues, success, error) {
 	if(valueSchoolAddress != null && valueSchoolAddress !== '')
 		vals['schoolAddress'] = valueSchoolAddress;
 
-	var valueSessionCompleteName = $formValues.find('.valueSessionCompleteName').val();
-	if(valueSessionCompleteName != null && valueSessionCompleteName !== '')
-		vals['sessionCompleteName'] = valueSessionCompleteName;
-
 	$.ajax({
 		url: '/api/session'
 		, dataType: 'json'
@@ -85,6 +81,74 @@ function postSchoolSessionVals(vals, success, error) {
 		url: '/api/session'
 		, dataType: 'json'
 		, type: 'POST'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(vals)
+		, success: success
+		, error: error
+	});
+}
+
+// PUT //
+
+async function putSchoolSession($formValues, success, error) {
+	var vals = {};
+
+	var valuePk = $formValues.find('.valuePk').val();
+	if(valuePk != null && valuePk !== '')
+		vals['pk'] = valuePk;
+
+	var valueCreated = $formValues.find('.valueCreated').val();
+	if(valueCreated != null && valueCreated !== '')
+		vals['created'] = valueCreated;
+
+	var valueModified = $formValues.find('.valueModified').val();
+	if(valueModified != null && valueModified !== '')
+		vals['modified'] = valueModified;
+
+	var valueObjectId = $formValues.find('.valueObjectId').val();
+	if(valueObjectId != null && valueObjectId !== '')
+		vals['objectId'] = valueObjectId;
+
+	var valueArchived = $formValues.find('.valueArchived').prop('checked');
+	if(valueArchived != null && valueArchived !== '')
+		vals['archived'] = valueArchived;
+
+	var valueDeleted = $formValues.find('.valueDeleted').prop('checked');
+	if(valueDeleted != null && valueDeleted !== '')
+		vals['deleted'] = valueDeleted;
+
+	var valueSessionStartDate = $formValues.find('.valueSessionStartDate').val();
+	if(valueSessionStartDate != null && valueSessionStartDate !== '')
+		vals['sessionStartDate'] = valueSessionStartDate;
+
+	var valueSessionEndDate = $formValues.find('.valueSessionEndDate').val();
+	if(valueSessionEndDate != null && valueSessionEndDate !== '')
+		vals['sessionEndDate'] = valueSessionEndDate;
+
+	var valueSeasonKey = $formValues.find('input.valueSeasonKey:checked').val();
+	if(valueSeasonKey != null && valueSeasonKey !== '')
+		vals['seasonKey'] = valueSeasonKey;
+
+	var valueAgeKeys = $formValues.find('input.valueAgeKeys:checked').val();
+	if(valueAgeKeys != null && valueAgeKeys !== '')
+		vals['ageKeys'] = valueAgeKeys;
+
+	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
+	if(valueObjectTitle != null && valueObjectTitle !== '')
+		vals['objectTitle'] = valueObjectTitle;
+
+	var valueSchoolAddress = $formValues.find('.valueSchoolAddress').val();
+	if(valueSchoolAddress != null && valueSchoolAddress !== '')
+		vals['schoolAddress'] = valueSchoolAddress;
+
+	putSchoolSessionVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+}
+
+function putSchoolSessionVals(filters, vals, success, error) {
+	$.ajax({
+		url: '/api/session?' + $.param(filters)
+		, dataType: 'json'
+		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
 		, data: JSON.stringify(vals)
 		, success: success
@@ -231,18 +295,7 @@ async function patchSchoolSession($formFilters, $formValues, success, error) {
 	if(removeSchoolAddress != null && removeSchoolAddress !== '')
 		vals['removeSchoolAddress'] = removeSchoolAddress;
 
-	var removeSessionCompleteName = $formFilters.find('.removeSessionCompleteName').val() === 'true';
-	var setSessionCompleteName = removeSessionCompleteName ? null : $formValues.find('.setSessionCompleteName').val();
-	if(removeSessionCompleteName || setSessionCompleteName != null && setSessionCompleteName !== '')
-		vals['setSessionCompleteName'] = setSessionCompleteName;
-	var addSessionCompleteName = $formValues.find('.addSessionCompleteName').val();
-	if(addSessionCompleteName != null && addSessionCompleteName !== '')
-		vals['addSessionCompleteName'] = addSessionCompleteName;
-	var removeSessionCompleteName = $formValues.find('.removeSessionCompleteName').val();
-	if(removeSessionCompleteName != null && removeSessionCompleteName !== '')
-		vals['removeSessionCompleteName'] = removeSessionCompleteName;
-
-	patchSchoolSessionVals(filters, vals, success, error);
+	patchSchoolSessionVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
 }
 
 function patchSchoolSessionFilters($formFilters) {
@@ -695,7 +748,7 @@ function suggestSchoolSessionObjectSuggest($formFilters, $list) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fad fa-graduation-cap w3-padding-small ');
+			var $i = $('<i>').attr('class', 'fad fa-graduation-cap ');
 			var $span = $('<span>').attr('class', '').text(o['sessionCompleteName']);
 			var $li = $('<li>');
 			var $a = $('<a>').attr('href', o['pageUrlPk']);
@@ -713,7 +766,7 @@ function suggestSchoolSessionAgeKeys(filters, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-birthday-cake w3-padding-small ');
+			var $i = $('<i>').attr('class', 'fa fa-birthday-cake ');
 			var $span = $('<span>').attr('class', '').text(o['ageCompleteName']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);
@@ -748,7 +801,7 @@ function suggestSchoolSessionSeasonKey(filters, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-sun w3-padding-small ');
+			var $i = $('<i>').attr('class', 'fa fa-sun ');
 			var $span = $('<span>').attr('class', '').text(o['seasonCompleteName']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);
