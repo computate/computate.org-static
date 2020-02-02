@@ -230,18 +230,6 @@ function patchClusterFilters($formFilters) {
 	if(filterDeleted != null && filterDeleted === true)
 		filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
-	var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
-	if(filterClassSimpleName != null && filterClassSimpleName !== '')
-		filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
-
-	var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
-	if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-		filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
-
-	var filterSessionId = $formFilters.find('.valueSessionId').val();
-	if(filterSessionId != null && filterSessionId !== '')
-		filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
-
 	var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 	if(filterInheritPk != null && filterInheritPk !== '')
 		filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
@@ -253,6 +241,18 @@ function patchClusterFilters($formFilters) {
 	var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
 	if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
 		filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+
+	var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
+	if(filterClassSimpleName != null && filterClassSimpleName !== '')
+		filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+
+	var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
+	if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+		filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+	var filterSessionId = $formFilters.find('.valueSessionId').val();
+	if(filterSessionId != null && filterSessionId !== '')
+		filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
 
 	var filterSaves = $formFilters.find('.valueSaves').val();
 	if(filterSaves != null && filterSaves !== '')
@@ -360,18 +360,6 @@ function searchClusterFilters($formFilters) {
 	if(filterDeleted != null && filterDeleted === true)
 		filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
-	var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
-	if(filterClassSimpleName != null && filterClassSimpleName !== '')
-		filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
-
-	var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
-	if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-		filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
-
-	var filterSessionId = $formFilters.find('.valueSessionId').val();
-	if(filterSessionId != null && filterSessionId !== '')
-		filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
-
 	var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 	if(filterInheritPk != null && filterInheritPk !== '')
 		filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
@@ -383,6 +371,18 @@ function searchClusterFilters($formFilters) {
 	var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
 	if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
 		filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+
+	var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
+	if(filterClassSimpleName != null && filterClassSimpleName !== '')
+		filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+
+	var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
+	if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+		filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+	var filterSessionId = $formFilters.find('.valueSessionId').val();
+	if(filterSessionId != null && filterSessionId !== '')
+		filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
 
 	var filterSaves = $formFilters.find('.valueSaves').val();
 	if(filterSaves != null && filterSaves !== '')

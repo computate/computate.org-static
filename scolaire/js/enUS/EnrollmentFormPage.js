@@ -1192,18 +1192,6 @@ function patchSchoolEnrollmentFilters($formFilters) {
 	if(filterPaymentKeys != null && filterPaymentKeys !== '')
 		filters.push({ name: 'fq', value: 'paymentKeys:' + filterPaymentKeys });
 
-	var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
-	if(filterClassSimpleName != null && filterClassSimpleName !== '')
-		filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
-
-	var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
-	if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-		filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
-
-	var filterSessionId = $formFilters.find('.valueSessionId').val();
-	if(filterSessionId != null && filterSessionId !== '')
-		filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
-
 	var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 	if(filterInheritPk != null && filterInheritPk !== '')
 		filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
@@ -1216,9 +1204,17 @@ function patchSchoolEnrollmentFilters($formFilters) {
 	if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
 		filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
 
-	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
-	if(filterObjectSuggest != null && filterObjectSuggest !== '')
-		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+	var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
+	if(filterClassSimpleName != null && filterClassSimpleName !== '')
+		filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+
+	var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
+	if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+		filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+	var filterSessionId = $formFilters.find('.valueSessionId').val();
+	if(filterSessionId != null && filterSessionId !== '')
+		filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
 
 	var filterSaves = $formFilters.find('.valueSaves').val();
 	if(filterSaves != null && filterSaves !== '')
@@ -1227,6 +1223,10 @@ function patchSchoolEnrollmentFilters($formFilters) {
 	var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
 	if(filterObjectTitle != null && filterObjectTitle !== '')
 		filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
+
+	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
+	if(filterObjectSuggest != null && filterObjectSuggest !== '')
+		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
 
 	var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
 	if(filterPageUrlId != null && filterPageUrlId !== '')
@@ -1650,18 +1650,6 @@ function searchSchoolEnrollmentFilters($formFilters) {
 	if(filterPaymentKeys != null && filterPaymentKeys !== '')
 		filters.push({ name: 'fq', value: 'paymentKeys:' + filterPaymentKeys });
 
-	var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
-	if(filterClassSimpleName != null && filterClassSimpleName !== '')
-		filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
-
-	var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
-	if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-		filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
-
-	var filterSessionId = $formFilters.find('.valueSessionId').val();
-	if(filterSessionId != null && filterSessionId !== '')
-		filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
-
 	var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 	if(filterInheritPk != null && filterInheritPk !== '')
 		filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
@@ -1674,9 +1662,17 @@ function searchSchoolEnrollmentFilters($formFilters) {
 	if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
 		filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
 
-	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
-	if(filterObjectSuggest != null && filterObjectSuggest !== '')
-		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+	var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
+	if(filterClassSimpleName != null && filterClassSimpleName !== '')
+		filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+
+	var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
+	if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+		filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+	var filterSessionId = $formFilters.find('.valueSessionId').val();
+	if(filterSessionId != null && filterSessionId !== '')
+		filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
 
 	var filterSaves = $formFilters.find('.valueSaves').val();
 	if(filterSaves != null && filterSaves !== '')
@@ -1685,6 +1681,10 @@ function searchSchoolEnrollmentFilters($formFilters) {
 	var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
 	if(filterObjectTitle != null && filterObjectTitle !== '')
 		filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
+
+	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
+	if(filterObjectSuggest != null && filterObjectSuggest !== '')
+		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
 
 	var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
 	if(filterPageUrlId != null && filterPageUrlId !== '')

@@ -230,18 +230,6 @@ function patchClusterFiltres($formulaireFiltres) {
 	if(filtreSupprime != null && filtreSupprime === true)
 		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
-	var filtreClasseNomSimple = $formulaireFiltres.find('.valeurClasseNomSimple').val();
-	if(filtreClasseNomSimple != null && filtreClasseNomSimple !== '')
-		filtres.push({ name: 'fq', value: 'classeNomSimple:' + filtreClasseNomSimple });
-
-	var filtreClasseNomsCanoniques = $formulaireFiltres.find('.valeurClasseNomsCanoniques').val();
-	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
-		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
-
-	var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
-	if(filtreSessionId != null && filtreSessionId !== '')
-		filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
-
 	var filtreInheritPk = $formulaireFiltres.find('.valeurInheritPk').val();
 	if(filtreInheritPk != null && filtreInheritPk !== '')
 		filtres.push({ name: 'fq', value: 'inheritPk:' + filtreInheritPk });
@@ -254,9 +242,17 @@ function patchClusterFiltres($formulaireFiltres) {
 	if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
 		filtres.push({ name: 'fq', value: 'classeNomCanonique:' + filtreClasseNomCanonique });
 
-	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
-	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
-		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
+	var filtreClasseNomSimple = $formulaireFiltres.find('.valeurClasseNomSimple').val();
+	if(filtreClasseNomSimple != null && filtreClasseNomSimple !== '')
+		filtres.push({ name: 'fq', value: 'classeNomSimple:' + filtreClasseNomSimple });
+
+	var filtreClasseNomsCanoniques = $formulaireFiltres.find('.valeurClasseNomsCanoniques').val();
+	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
+		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
+
+	var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
+	if(filtreSessionId != null && filtreSessionId !== '')
+		filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
 
 	var filtreSauvegardes = $formulaireFiltres.find('.valeurSauvegardes').val();
 	if(filtreSauvegardes != null && filtreSauvegardes !== '')
@@ -265,6 +261,10 @@ function patchClusterFiltres($formulaireFiltres) {
 	var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
 	if(filtreObjetTitre != null && filtreObjetTitre !== '')
 		filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
+
+	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
+	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
+		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
 
 	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
 	if(filtrePageUrlId != null && filtrePageUrlId !== '')
@@ -360,18 +360,6 @@ function rechercheClusterFiltres($formulaireFiltres) {
 	if(filtreSupprime != null && filtreSupprime === true)
 		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
-	var filtreClasseNomSimple = $formulaireFiltres.find('.valeurClasseNomSimple').val();
-	if(filtreClasseNomSimple != null && filtreClasseNomSimple !== '')
-		filtres.push({ name: 'fq', value: 'classeNomSimple:' + filtreClasseNomSimple });
-
-	var filtreClasseNomsCanoniques = $formulaireFiltres.find('.valeurClasseNomsCanoniques').val();
-	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
-		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
-
-	var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
-	if(filtreSessionId != null && filtreSessionId !== '')
-		filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
-
 	var filtreInheritPk = $formulaireFiltres.find('.valeurInheritPk').val();
 	if(filtreInheritPk != null && filtreInheritPk !== '')
 		filtres.push({ name: 'fq', value: 'inheritPk:' + filtreInheritPk });
@@ -384,9 +372,17 @@ function rechercheClusterFiltres($formulaireFiltres) {
 	if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
 		filtres.push({ name: 'fq', value: 'classeNomCanonique:' + filtreClasseNomCanonique });
 
-	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
-	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
-		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
+	var filtreClasseNomSimple = $formulaireFiltres.find('.valeurClasseNomSimple').val();
+	if(filtreClasseNomSimple != null && filtreClasseNomSimple !== '')
+		filtres.push({ name: 'fq', value: 'classeNomSimple:' + filtreClasseNomSimple });
+
+	var filtreClasseNomsCanoniques = $formulaireFiltres.find('.valeurClasseNomsCanoniques').val();
+	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
+		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
+
+	var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
+	if(filtreSessionId != null && filtreSessionId !== '')
+		filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
 
 	var filtreSauvegardes = $formulaireFiltres.find('.valeurSauvegardes').val();
 	if(filtreSauvegardes != null && filtreSauvegardes !== '')
@@ -395,6 +391,10 @@ function rechercheClusterFiltres($formulaireFiltres) {
 	var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
 	if(filtreObjetTitre != null && filtreObjetTitre !== '')
 		filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
+
+	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
+	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
+		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
 
 	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
 	if(filtrePageUrlId != null && filtrePageUrlId !== '')

@@ -61,10 +61,6 @@ async function postSchoolYear($formValues, success, error) {
 	if(valueSeasonKeys != null && valueSeasonKeys !== '')
 		vals['seasonKeys'] = valueSeasonKeys;
 
-	var valueEnrollmentFormKey = $formValues.find('.valueEnrollmentFormKey').val();
-	if(valueEnrollmentFormKey != null && valueEnrollmentFormKey !== '')
-		vals['enrollmentFormKey'] = valueEnrollmentFormKey;
-
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
@@ -140,10 +136,6 @@ async function putSchoolYear($formValues, success, error) {
 	var valueSeasonKeys = $formValues.find('input.valueSeasonKeys:checked').val();
 	if(valueSeasonKeys != null && valueSeasonKeys !== '')
 		vals['seasonKeys'] = valueSeasonKeys;
-
-	var valueEnrollmentFormKey = $formValues.find('.valueEnrollmentFormKey').val();
-	if(valueEnrollmentFormKey != null && valueEnrollmentFormKey !== '')
-		vals['enrollmentFormKey'] = valueEnrollmentFormKey;
 
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
@@ -292,17 +284,6 @@ async function patchSchoolYear($formFilters, $formValues, success, error) {
 	if(removeSeasonKeys != null && removeSeasonKeys !== '')
 		vals['removeSeasonKeys'] = removeSeasonKeys;
 
-	var removeEnrollmentFormKey = $formFilters.find('.removeEnrollmentFormKey').val() === 'true';
-	var setEnrollmentFormKey = removeEnrollmentFormKey ? null : $formValues.find('.setEnrollmentFormKey').val();
-	if(removeEnrollmentFormKey || setEnrollmentFormKey != null && setEnrollmentFormKey !== '')
-		vals['setEnrollmentFormKey'] = setEnrollmentFormKey;
-	var addEnrollmentFormKey = $formValues.find('.addEnrollmentFormKey').val();
-	if(addEnrollmentFormKey != null && addEnrollmentFormKey !== '')
-		vals['addEnrollmentFormKey'] = addEnrollmentFormKey;
-	var removeEnrollmentFormKey = $formValues.find('.removeEnrollmentFormKey').val();
-	if(removeEnrollmentFormKey != null && removeEnrollmentFormKey !== '')
-		vals['removeEnrollmentFormKey'] = removeEnrollmentFormKey;
-
 	var removeObjectTitle = $formFilters.find('.removeObjectTitle').val() === 'true';
 	var setObjectTitle = removeObjectTitle ? null : $formValues.find('.setObjectTitle').val();
 	if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
@@ -363,10 +344,6 @@ function patchSchoolYearFilters($formFilters) {
 	var filterSeasonKeys = $formFilters.find('.valueSeasonKeys').val();
 	if(filterSeasonKeys != null && filterSeasonKeys !== '')
 		filters.push({ name: 'fq', value: 'seasonKeys:' + filterSeasonKeys });
-
-	var filterEnrollmentFormKey = $formFilters.find('.valueEnrollmentFormKey').val();
-	if(filterEnrollmentFormKey != null && filterEnrollmentFormKey !== '')
-		filters.push({ name: 'fq', value: 'enrollmentFormKey:' + filterEnrollmentFormKey });
 
 	var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 	if(filterInheritPk != null && filterInheritPk !== '')
@@ -455,6 +432,10 @@ function patchSchoolYearFilters($formFilters) {
 	var filterSchoolAdministratorName = $formFilters.find('.valueSchoolAdministratorName').val();
 	if(filterSchoolAdministratorName != null && filterSchoolAdministratorName !== '')
 		filters.push({ name: 'fq', value: 'schoolAdministratorName:' + filterSchoolAdministratorName });
+
+	var filterEnrollmentFormKey = $formFilters.find('.valueEnrollmentFormKey').val();
+	if(filterEnrollmentFormKey != null && filterEnrollmentFormKey !== '')
+		filters.push({ name: 'fq', value: 'enrollmentFormKey:' + filterEnrollmentFormKey });
 
 	var filterYearShortName = $formFilters.find('.valueYearShortName').val();
 	if(filterYearShortName != null && filterYearShortName !== '')
@@ -570,10 +551,6 @@ function searchSchoolYearFilters($formFilters) {
 	if(filterSeasonKeys != null && filterSeasonKeys !== '')
 		filters.push({ name: 'fq', value: 'seasonKeys:' + filterSeasonKeys });
 
-	var filterEnrollmentFormKey = $formFilters.find('.valueEnrollmentFormKey').val();
-	if(filterEnrollmentFormKey != null && filterEnrollmentFormKey !== '')
-		filters.push({ name: 'fq', value: 'enrollmentFormKey:' + filterEnrollmentFormKey });
-
 	var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 	if(filterInheritPk != null && filterInheritPk !== '')
 		filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
@@ -661,6 +638,10 @@ function searchSchoolYearFilters($formFilters) {
 	var filterSchoolAdministratorName = $formFilters.find('.valueSchoolAdministratorName').val();
 	if(filterSchoolAdministratorName != null && filterSchoolAdministratorName !== '')
 		filters.push({ name: 'fq', value: 'schoolAdministratorName:' + filterSchoolAdministratorName });
+
+	var filterEnrollmentFormKey = $formFilters.find('.valueEnrollmentFormKey').val();
+	if(filterEnrollmentFormKey != null && filterEnrollmentFormKey !== '')
+		filters.push({ name: 'fq', value: 'enrollmentFormKey:' + filterEnrollmentFormKey });
 
 	var filterYearShortName = $formFilters.find('.valueYearShortName').val();
 	if(filterYearShortName != null && filterYearShortName !== '')

@@ -61,10 +61,6 @@ async function postAnneeScolaire($formulaireValeurs, success, error) {
 	if(valeurSaisonCles != null && valeurSaisonCles !== '')
 		vals['saisonCles'] = valeurSaisonCles;
 
-	var valeurFormInscriptionCle = $formulaireValeurs.find('.valeurFormInscriptionCle').val();
-	if(valeurFormInscriptionCle != null && valeurFormInscriptionCle !== '')
-		vals['formInscriptionCle'] = valeurFormInscriptionCle;
-
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 		vals['objetTitre'] = valeurObjetTitre;
@@ -140,10 +136,6 @@ async function putAnneeScolaire($formulaireValeurs, success, error) {
 	var valeurSaisonCles = $formulaireValeurs.find('input.valeurSaisonCles:checked').val();
 	if(valeurSaisonCles != null && valeurSaisonCles !== '')
 		vals['saisonCles'] = valeurSaisonCles;
-
-	var valeurFormInscriptionCle = $formulaireValeurs.find('.valeurFormInscriptionCle').val();
-	if(valeurFormInscriptionCle != null && valeurFormInscriptionCle !== '')
-		vals['formInscriptionCle'] = valeurFormInscriptionCle;
 
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
@@ -292,17 +284,6 @@ async function patchAnneeScolaire($formulaireFiltres, $formulaireValeurs, succes
 	if(removeSaisonCles != null && removeSaisonCles !== '')
 		vals['removeSaisonCles'] = removeSaisonCles;
 
-	var removeFormInscriptionCle = $formulaireFiltres.find('.removeFormInscriptionCle').val() === 'true';
-	var setFormInscriptionCle = removeFormInscriptionCle ? null : $formulaireValeurs.find('.setFormInscriptionCle').val();
-	if(removeFormInscriptionCle || setFormInscriptionCle != null && setFormInscriptionCle !== '')
-		vals['setFormInscriptionCle'] = setFormInscriptionCle;
-	var addFormInscriptionCle = $formulaireValeurs.find('.addFormInscriptionCle').val();
-	if(addFormInscriptionCle != null && addFormInscriptionCle !== '')
-		vals['addFormInscriptionCle'] = addFormInscriptionCle;
-	var removeFormInscriptionCle = $formulaireValeurs.find('.removeFormInscriptionCle').val();
-	if(removeFormInscriptionCle != null && removeFormInscriptionCle !== '')
-		vals['removeFormInscriptionCle'] = removeFormInscriptionCle;
-
 	var removeObjetTitre = $formulaireFiltres.find('.removeObjetTitre').val() === 'true';
 	var setObjetTitre = removeObjetTitre ? null : $formulaireValeurs.find('.setObjetTitre').val();
 	if(removeObjetTitre || setObjetTitre != null && setObjetTitre !== '')
@@ -363,10 +344,6 @@ function patchAnneeScolaireFiltres($formulaireFiltres) {
 	var filtreSaisonCles = $formulaireFiltres.find('.valeurSaisonCles').val();
 	if(filtreSaisonCles != null && filtreSaisonCles !== '')
 		filtres.push({ name: 'fq', value: 'saisonCles:' + filtreSaisonCles });
-
-	var filtreFormInscriptionCle = $formulaireFiltres.find('.valeurFormInscriptionCle').val();
-	if(filtreFormInscriptionCle != null && filtreFormInscriptionCle !== '')
-		filtres.push({ name: 'fq', value: 'formInscriptionCle:' + filtreFormInscriptionCle });
 
 	var filtreInheritPk = $formulaireFiltres.find('.valeurInheritPk').val();
 	if(filtreInheritPk != null && filtreInheritPk !== '')
@@ -455,6 +432,10 @@ function patchAnneeScolaireFiltres($formulaireFiltres) {
 	var filtreEcoleAdministrateurNom = $formulaireFiltres.find('.valeurEcoleAdministrateurNom').val();
 	if(filtreEcoleAdministrateurNom != null && filtreEcoleAdministrateurNom !== '')
 		filtres.push({ name: 'fq', value: 'ecoleAdministrateurNom:' + filtreEcoleAdministrateurNom });
+
+	var filtreFormInscriptionCle = $formulaireFiltres.find('.valeurFormInscriptionCle').val();
+	if(filtreFormInscriptionCle != null && filtreFormInscriptionCle !== '')
+		filtres.push({ name: 'fq', value: 'formInscriptionCle:' + filtreFormInscriptionCle });
 
 	var filtreAnneeNomCourt = $formulaireFiltres.find('.valeurAnneeNomCourt').val();
 	if(filtreAnneeNomCourt != null && filtreAnneeNomCourt !== '')
@@ -570,10 +551,6 @@ function rechercheAnneeScolaireFiltres($formulaireFiltres) {
 	if(filtreSaisonCles != null && filtreSaisonCles !== '')
 		filtres.push({ name: 'fq', value: 'saisonCles:' + filtreSaisonCles });
 
-	var filtreFormInscriptionCle = $formulaireFiltres.find('.valeurFormInscriptionCle').val();
-	if(filtreFormInscriptionCle != null && filtreFormInscriptionCle !== '')
-		filtres.push({ name: 'fq', value: 'formInscriptionCle:' + filtreFormInscriptionCle });
-
 	var filtreInheritPk = $formulaireFiltres.find('.valeurInheritPk').val();
 	if(filtreInheritPk != null && filtreInheritPk !== '')
 		filtres.push({ name: 'fq', value: 'inheritPk:' + filtreInheritPk });
@@ -661,6 +638,10 @@ function rechercheAnneeScolaireFiltres($formulaireFiltres) {
 	var filtreEcoleAdministrateurNom = $formulaireFiltres.find('.valeurEcoleAdministrateurNom').val();
 	if(filtreEcoleAdministrateurNom != null && filtreEcoleAdministrateurNom !== '')
 		filtres.push({ name: 'fq', value: 'ecoleAdministrateurNom:' + filtreEcoleAdministrateurNom });
+
+	var filtreFormInscriptionCle = $formulaireFiltres.find('.valeurFormInscriptionCle').val();
+	if(filtreFormInscriptionCle != null && filtreFormInscriptionCle !== '')
+		filtres.push({ name: 'fq', value: 'formInscriptionCle:' + filtreFormInscriptionCle });
 
 	var filtreAnneeNomCourt = $formulaireFiltres.find('.valeurAnneeNomCourt').val();
 	if(filtreAnneeNomCourt != null && filtreAnneeNomCourt !== '')
