@@ -180,6 +180,8 @@ textarea {
 .svg-inline--fa {
 	margin: 0 3px;
 }
+.site-padding-0{padding:0!important}
+.site-padding-table{padding:0 8px!important}
 
 .site-highlight {
 	font-family: arial,sans-serif;
