@@ -479,18 +479,6 @@ function patchBlocScolaireFiltres($formulaireFiltres) {
 	if(filtreInscriptionCles != null && filtreInscriptionCles !== '')
 		filtres.push({ name: 'fq', value: 'inscriptionCles:' + filtreInscriptionCles });
 
-	var filtreClasseNomSimple = $formulaireFiltres.find('.valeurClasseNomSimple').val();
-	if(filtreClasseNomSimple != null && filtreClasseNomSimple !== '')
-		filtres.push({ name: 'fq', value: 'classeNomSimple:' + filtreClasseNomSimple });
-
-	var filtreClasseNomsCanoniques = $formulaireFiltres.find('.valeurClasseNomsCanoniques').val();
-	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
-		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
-
-	var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
-	if(filtreSessionId != null && filtreSessionId !== '')
-		filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
-
 	var filtreInheritPk = $formulaireFiltres.find('.valeurInheritPk').val();
 	if(filtreInheritPk != null && filtreInheritPk !== '')
 		filtres.push({ name: 'fq', value: 'inheritPk:' + filtreInheritPk });
@@ -503,9 +491,17 @@ function patchBlocScolaireFiltres($formulaireFiltres) {
 	if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
 		filtres.push({ name: 'fq', value: 'classeNomCanonique:' + filtreClasseNomCanonique });
 
-	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
-	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
-		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
+	var filtreClasseNomSimple = $formulaireFiltres.find('.valeurClasseNomSimple').val();
+	if(filtreClasseNomSimple != null && filtreClasseNomSimple !== '')
+		filtres.push({ name: 'fq', value: 'classeNomSimple:' + filtreClasseNomSimple });
+
+	var filtreClasseNomsCanoniques = $formulaireFiltres.find('.valeurClasseNomsCanoniques').val();
+	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
+		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
+
+	var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
+	if(filtreSessionId != null && filtreSessionId !== '')
+		filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
 
 	var filtreSauvegardes = $formulaireFiltres.find('.valeurSauvegardes').val();
 	if(filtreSauvegardes != null && filtreSauvegardes !== '')
@@ -514,6 +510,10 @@ function patchBlocScolaireFiltres($formulaireFiltres) {
 	var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
 	if(filtreObjetTitre != null && filtreObjetTitre !== '')
 		filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
+
+	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
+	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
+		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
 
 	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
 	if(filtrePageUrlId != null && filtrePageUrlId !== '')
@@ -801,18 +801,6 @@ function rechercheBlocScolaireFiltres($formulaireFiltres) {
 	if(filtreInscriptionCles != null && filtreInscriptionCles !== '')
 		filtres.push({ name: 'fq', value: 'inscriptionCles:' + filtreInscriptionCles });
 
-	var filtreClasseNomSimple = $formulaireFiltres.find('.valeurClasseNomSimple').val();
-	if(filtreClasseNomSimple != null && filtreClasseNomSimple !== '')
-		filtres.push({ name: 'fq', value: 'classeNomSimple:' + filtreClasseNomSimple });
-
-	var filtreClasseNomsCanoniques = $formulaireFiltres.find('.valeurClasseNomsCanoniques').val();
-	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
-		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
-
-	var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
-	if(filtreSessionId != null && filtreSessionId !== '')
-		filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
-
 	var filtreInheritPk = $formulaireFiltres.find('.valeurInheritPk').val();
 	if(filtreInheritPk != null && filtreInheritPk !== '')
 		filtres.push({ name: 'fq', value: 'inheritPk:' + filtreInheritPk });
@@ -825,9 +813,17 @@ function rechercheBlocScolaireFiltres($formulaireFiltres) {
 	if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
 		filtres.push({ name: 'fq', value: 'classeNomCanonique:' + filtreClasseNomCanonique });
 
-	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
-	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
-		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
+	var filtreClasseNomSimple = $formulaireFiltres.find('.valeurClasseNomSimple').val();
+	if(filtreClasseNomSimple != null && filtreClasseNomSimple !== '')
+		filtres.push({ name: 'fq', value: 'classeNomSimple:' + filtreClasseNomSimple });
+
+	var filtreClasseNomsCanoniques = $formulaireFiltres.find('.valeurClasseNomsCanoniques').val();
+	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
+		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
+
+	var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
+	if(filtreSessionId != null && filtreSessionId !== '')
+		filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
 
 	var filtreSauvegardes = $formulaireFiltres.find('.valeurSauvegardes').val();
 	if(filtreSauvegardes != null && filtreSauvegardes !== '')
@@ -836,6 +832,10 @@ function rechercheBlocScolaireFiltres($formulaireFiltres) {
 	var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
 	if(filtreObjetTitre != null && filtreObjetTitre !== '')
 		filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
+
+	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
+	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
+		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
 
 	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
 	if(filtrePageUrlId != null && filtrePageUrlId !== '')

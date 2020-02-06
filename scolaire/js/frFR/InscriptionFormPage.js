@@ -137,6 +137,10 @@ async function postInscriptionScolaire($formulaireValeurs, success, error) {
 	if(valeurEnfantNomComplet != null && valeurEnfantNomComplet !== '')
 		vals['enfantNomComplet'] = valeurEnfantNomComplet;
 
+	var valeurEnfantNomCompletPrefere = $formulaireValeurs.find('.valeurEnfantNomCompletPrefere').val();
+	if(valeurEnfantNomCompletPrefere != null && valeurEnfantNomCompletPrefere !== '')
+		vals['enfantNomCompletPrefere'] = valeurEnfantNomCompletPrefere;
+
 	var valeurEnfantDateNaissance = $formulaireValeurs.find('.valeurEnfantDateNaissance').val();
 	if(valeurEnfantDateNaissance != null && valeurEnfantDateNaissance !== '')
 		vals['enfantDateNaissance'] = valeurEnfantDateNaissance;
@@ -254,7 +258,7 @@ function postInscriptionScolaireVals(vals, success, error) {
 
 // PUT //
 
-async function putInscriptionScolaire($formulaireValeurs, success, error) {
+async function putInscriptionScolaire($formulaireValeurs, pk, success, error) {
 	var vals = {};
 
 	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
@@ -377,6 +381,10 @@ async function putInscriptionScolaire($formulaireValeurs, success, error) {
 	if(valeurEnfantNomComplet != null && valeurEnfantNomComplet !== '')
 		vals['enfantNomComplet'] = valeurEnfantNomComplet;
 
+	var valeurEnfantNomCompletPrefere = $formulaireValeurs.find('.valeurEnfantNomCompletPrefere').val();
+	if(valeurEnfantNomCompletPrefere != null && valeurEnfantNomCompletPrefere !== '')
+		vals['enfantNomCompletPrefere'] = valeurEnfantNomCompletPrefere;
+
 	var valeurEnfantDateNaissance = $formulaireValeurs.find('.valeurEnfantDateNaissance').val();
 	if(valeurEnfantDateNaissance != null && valeurEnfantDateNaissance !== '')
 		vals['enfantDateNaissance'] = valeurEnfantDateNaissance;
@@ -469,7 +477,7 @@ async function putInscriptionScolaire($formulaireValeurs, success, error) {
 	if(valeurInscriptionDate10 != null && valeurInscriptionDate10 !== '')
 		vals['inscriptionDate10'] = valeurInscriptionDate10;
 
-	putInscriptionScolaireVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+	putInscriptionScolaireVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
 function putInscriptionScolaireVals(filtres, vals, success, error) {
@@ -478,7 +486,7 @@ function putInscriptionScolaireVals(filtres, vals, success, error) {
 		, dataType: 'json'
 		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
-		, data: JSON.stringify(vals)
+		, data: JSON.stringify({patch: vals})
 		, success: success
 		, error: error
 	});
@@ -486,7 +494,7 @@ function putInscriptionScolaireVals(filtres, vals, success, error) {
 
 // PATCH //
 
-async function patchInscriptionScolaire($formulaireFiltres, $formulaireValeurs, success, error) {
+async function patchInscriptionScolaire($formulaireFiltres, $formulaireValeurs, pk, success, error) {
 	var filtres = patchInscriptionScolaireFiltres($formulaireFiltres);
 
 	var vals = {};
@@ -821,6 +829,17 @@ async function patchInscriptionScolaire($formulaireFiltres, $formulaireValeurs, 
 	if(removeEnfantNomComplet != null && removeEnfantNomComplet !== '')
 		vals['removeEnfantNomComplet'] = removeEnfantNomComplet;
 
+	var removeEnfantNomCompletPrefere = $formulaireFiltres.find('.removeEnfantNomCompletPrefere').val() === 'true';
+	var setEnfantNomCompletPrefere = removeEnfantNomCompletPrefere ? null : $formulaireValeurs.find('.setEnfantNomCompletPrefere').val();
+	if(removeEnfantNomCompletPrefere || setEnfantNomCompletPrefere != null && setEnfantNomCompletPrefere !== '')
+		vals['setEnfantNomCompletPrefere'] = setEnfantNomCompletPrefere;
+	var addEnfantNomCompletPrefere = $formulaireValeurs.find('.addEnfantNomCompletPrefere').val();
+	if(addEnfantNomCompletPrefere != null && addEnfantNomCompletPrefere !== '')
+		vals['addEnfantNomCompletPrefere'] = addEnfantNomCompletPrefere;
+	var removeEnfantNomCompletPrefere = $formulaireValeurs.find('.removeEnfantNomCompletPrefere').val();
+	if(removeEnfantNomCompletPrefere != null && removeEnfantNomCompletPrefere !== '')
+		vals['removeEnfantNomCompletPrefere'] = removeEnfantNomCompletPrefere;
+
 	var removeEnfantDateNaissance = $formulaireFiltres.find('.removeEnfantDateNaissance').val() === 'true';
 	var setEnfantDateNaissance = removeEnfantDateNaissance ? null : $formulaireValeurs.find('.setEnfantDateNaissance').val();
 	if(removeEnfantDateNaissance || setEnfantDateNaissance != null && setEnfantDateNaissance !== '')
@@ -1074,7 +1093,7 @@ async function patchInscriptionScolaire($formulaireFiltres, $formulaireValeurs, 
 	if(removeInscriptionDate10 != null && removeInscriptionDate10 !== '')
 		vals['removeInscriptionDate10'] = removeInscriptionDate10;
 
-	patchInscriptionScolaireVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+	patchInscriptionScolaireVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
 function patchInscriptionScolaireFiltres($formulaireFiltres) {
@@ -1295,6 +1314,10 @@ function patchInscriptionScolaireFiltres($formulaireFiltres) {
 	var filtreEnfantNomComplet = $formulaireFiltres.find('.valeurEnfantNomComplet').val();
 	if(filtreEnfantNomComplet != null && filtreEnfantNomComplet !== '')
 		filtres.push({ name: 'fq', value: 'enfantNomComplet:' + filtreEnfantNomComplet });
+
+	var filtreEnfantNomCompletPrefere = $formulaireFiltres.find('.valeurEnfantNomCompletPrefere').val();
+	if(filtreEnfantNomCompletPrefere != null && filtreEnfantNomCompletPrefere !== '')
+		filtres.push({ name: 'fq', value: 'enfantNomCompletPrefere:' + filtreEnfantNomCompletPrefere });
 
 	var filtreEnfantDateNaissance = $formulaireFiltres.find('.valeurEnfantDateNaissance').val();
 	if(filtreEnfantDateNaissance != null && filtreEnfantDateNaissance !== '')
@@ -1753,6 +1776,10 @@ function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 	var filtreEnfantNomComplet = $formulaireFiltres.find('.valeurEnfantNomComplet').val();
 	if(filtreEnfantNomComplet != null && filtreEnfantNomComplet !== '')
 		filtres.push({ name: 'fq', value: 'enfantNomComplet:' + filtreEnfantNomComplet });
+
+	var filtreEnfantNomCompletPrefere = $formulaireFiltres.find('.valeurEnfantNomCompletPrefere').val();
+	if(filtreEnfantNomCompletPrefere != null && filtreEnfantNomCompletPrefere !== '')
+		filtres.push({ name: 'fq', value: 'enfantNomCompletPrefere:' + filtreEnfantNomCompletPrefere });
 
 	var filtreEnfantDateNaissance = $formulaireFiltres.find('.valeurEnfantDateNaissance').val();
 	if(filtreEnfantDateNaissance != null && filtreEnfantDateNaissance !== '')
@@ -2398,6 +2425,10 @@ async function websocketInscriptionScolaireInner(requeteApi) {
 			if(vars.includes('enfantNomComplet')) {
 				$('.inputInscriptionScolaire' + pk + 'EnfantNomComplet').val(o['enfantNomComplet']);
 				$('.varInscriptionScolaire' + pk + 'EnfantNomComplet').text(o['enfantNomComplet']);
+			}
+			if(vars.includes('enfantNomCompletPrefere')) {
+				$('.inputInscriptionScolaire' + pk + 'EnfantNomCompletPrefere').val(o['enfantNomCompletPrefere']);
+				$('.varInscriptionScolaire' + pk + 'EnfantNomCompletPrefere').text(o['enfantNomCompletPrefere']);
 			}
 			if(vars.includes('enfantDateNaissance')) {
 				$('.inputInscriptionScolaire' + pk + 'EnfantDateNaissance').val(o['enfantDateNaissance']);

@@ -116,7 +116,7 @@ async function patchUtilisateurSite($formulaireFiltres, $formulaireValeurs, succ
 	if(removeObjetTitre != null && removeObjetTitre !== '')
 		vals['removeObjetTitre'] = removeObjetTitre;
 
-	patchUtilisateurSiteVals(filtres, vals, success, error);
+	patchUtilisateurSiteVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
 }
 
 function patchUtilisateurSiteFiltres($formulaireFiltres) {

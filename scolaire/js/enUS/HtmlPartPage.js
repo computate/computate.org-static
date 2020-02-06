@@ -174,7 +174,7 @@ function postHtmlPartVals(vals, success, error) {
 
 // PUT //
 
-async function putHtmlPart($formValues, success, error) {
+async function putHtmlPart($formValues, pk, success, error) {
 	var vals = {};
 
 	var valuePk = $formValues.find('.valuePk').val();
@@ -309,7 +309,7 @@ async function putHtmlPart($formValues, success, error) {
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
 
-	putHtmlPartVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+	putHtmlPartVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
 function putHtmlPartVals(filters, vals, success, error) {
@@ -318,7 +318,7 @@ function putHtmlPartVals(filters, vals, success, error) {
 		, dataType: 'json'
 		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
-		, data: JSON.stringify(vals)
+		, data: JSON.stringify({patch: vals})
 		, success: success
 		, error: error
 	});
@@ -326,7 +326,7 @@ function putHtmlPartVals(filters, vals, success, error) {
 
 // PATCH //
 
-async function patchHtmlPart($formFilters, $formValues, success, error) {
+async function patchHtmlPart($formFilters, $formValues, pk, success, error) {
 	var filters = patchHtmlPartFilters($formFilters);
 
 	var vals = {};
@@ -694,7 +694,7 @@ async function patchHtmlPart($formFilters, $formValues, success, error) {
 	if(removeObjectTitle != null && removeObjectTitle !== '')
 		vals['removeObjectTitle'] = removeObjectTitle;
 
-	patchHtmlPartVals(filters, vals, success, error);
+	patchHtmlPartVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
 function patchHtmlPartFilters($formFilters) {
@@ -1162,7 +1162,7 @@ function suggestHtmlPartEnrollmentDesignKey(filters, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-bell ');
+			var $i = $('<i>').attr('class', 'fa fa-drafting-compass ');
 			var $span = $('<span>').attr('class', '').text(o['enrollmentDesignCompleteName']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);

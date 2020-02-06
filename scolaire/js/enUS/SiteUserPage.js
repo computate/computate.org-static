@@ -116,7 +116,7 @@ async function patchSiteUser($formFilters, $formValues, success, error) {
 	if(removeObjectTitle != null && removeObjectTitle !== '')
 		vals['removeObjectTitle'] = removeObjectTitle;
 
-	patchSiteUserVals(filters, vals, success, error);
+	patchSiteUserVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
 }
 
 function patchSiteUserFilters($formFilters) {

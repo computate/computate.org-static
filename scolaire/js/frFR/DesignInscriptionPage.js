@@ -78,7 +78,7 @@ function postDesignInscriptionVals(vals, success, error) {
 
 // PUT //
 
-async function putDesignInscription($formulaireValeurs, success, error) {
+async function putDesignInscription($formulaireValeurs, pk, success, error) {
 	var vals = {};
 
 	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
@@ -117,7 +117,7 @@ async function putDesignInscription($formulaireValeurs, success, error) {
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 		vals['objetTitre'] = valeurObjetTitre;
 
-	putDesignInscriptionVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+	putDesignInscriptionVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
 function putDesignInscriptionVals(filtres, vals, success, error) {
@@ -126,7 +126,7 @@ function putDesignInscriptionVals(filtres, vals, success, error) {
 		, dataType: 'json'
 		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
-		, data: JSON.stringify(vals)
+		, data: JSON.stringify({patch: vals})
 		, success: success
 		, error: error
 	});
@@ -134,7 +134,7 @@ function putDesignInscriptionVals(filtres, vals, success, error) {
 
 // PATCH //
 
-async function patchDesignInscription($formulaireFiltres, $formulaireValeurs, success, error) {
+async function patchDesignInscription($formulaireFiltres, $formulaireValeurs, pk, success, error) {
 	var filtres = patchDesignInscriptionFiltres($formulaireFiltres);
 
 	var vals = {};
@@ -238,7 +238,7 @@ async function patchDesignInscription($formulaireFiltres, $formulaireValeurs, su
 	if(removeObjetTitre != null && removeObjetTitre !== '')
 		vals['removeObjetTitre'] = removeObjetTitre;
 
-	patchDesignInscriptionVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+	patchDesignInscriptionVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
 function patchDesignInscriptionFiltres($formulaireFiltres) {

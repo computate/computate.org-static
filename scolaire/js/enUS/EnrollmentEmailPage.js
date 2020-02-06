@@ -137,6 +137,10 @@ async function postSchoolEnrollment($formValues, success, error) {
 	if(valueChildCompleteName != null && valueChildCompleteName !== '')
 		vals['childCompleteName'] = valueChildCompleteName;
 
+	var valueChildCompleteNamePreferred = $formValues.find('.valueChildCompleteNamePreferred').val();
+	if(valueChildCompleteNamePreferred != null && valueChildCompleteNamePreferred !== '')
+		vals['childCompleteNamePreferred'] = valueChildCompleteNamePreferred;
+
 	var valueChildBirthDate = $formValues.find('.valueChildBirthDate').val();
 	if(valueChildBirthDate != null && valueChildBirthDate !== '')
 		vals['childBirthDate'] = valueChildBirthDate;
@@ -254,7 +258,7 @@ function postSchoolEnrollmentVals(vals, success, error) {
 
 // PUT //
 
-async function putSchoolEnrollment($formValues, success, error) {
+async function putSchoolEnrollment($formValues, pk, success, error) {
 	var vals = {};
 
 	var valuePk = $formValues.find('.valuePk').val();
@@ -377,6 +381,10 @@ async function putSchoolEnrollment($formValues, success, error) {
 	if(valueChildCompleteName != null && valueChildCompleteName !== '')
 		vals['childCompleteName'] = valueChildCompleteName;
 
+	var valueChildCompleteNamePreferred = $formValues.find('.valueChildCompleteNamePreferred').val();
+	if(valueChildCompleteNamePreferred != null && valueChildCompleteNamePreferred !== '')
+		vals['childCompleteNamePreferred'] = valueChildCompleteNamePreferred;
+
 	var valueChildBirthDate = $formValues.find('.valueChildBirthDate').val();
 	if(valueChildBirthDate != null && valueChildBirthDate !== '')
 		vals['childBirthDate'] = valueChildBirthDate;
@@ -469,7 +477,7 @@ async function putSchoolEnrollment($formValues, success, error) {
 	if(valueEnrollmentDate10 != null && valueEnrollmentDate10 !== '')
 		vals['enrollmentDate10'] = valueEnrollmentDate10;
 
-	putSchoolEnrollmentVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+	putSchoolEnrollmentVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
 function putSchoolEnrollmentVals(filters, vals, success, error) {
@@ -478,7 +486,7 @@ function putSchoolEnrollmentVals(filters, vals, success, error) {
 		, dataType: 'json'
 		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
-		, data: JSON.stringify(vals)
+		, data: JSON.stringify({patch: vals})
 		, success: success
 		, error: error
 	});
@@ -486,7 +494,7 @@ function putSchoolEnrollmentVals(filters, vals, success, error) {
 
 // PATCH //
 
-async function patchSchoolEnrollment($formFilters, $formValues, success, error) {
+async function patchSchoolEnrollment($formFilters, $formValues, pk, success, error) {
 	var filters = patchSchoolEnrollmentFilters($formFilters);
 
 	var vals = {};
@@ -821,6 +829,17 @@ async function patchSchoolEnrollment($formFilters, $formValues, success, error) 
 	if(removeChildCompleteName != null && removeChildCompleteName !== '')
 		vals['removeChildCompleteName'] = removeChildCompleteName;
 
+	var removeChildCompleteNamePreferred = $formFilters.find('.removeChildCompleteNamePreferred').val() === 'true';
+	var setChildCompleteNamePreferred = removeChildCompleteNamePreferred ? null : $formValues.find('.setChildCompleteNamePreferred').val();
+	if(removeChildCompleteNamePreferred || setChildCompleteNamePreferred != null && setChildCompleteNamePreferred !== '')
+		vals['setChildCompleteNamePreferred'] = setChildCompleteNamePreferred;
+	var addChildCompleteNamePreferred = $formValues.find('.addChildCompleteNamePreferred').val();
+	if(addChildCompleteNamePreferred != null && addChildCompleteNamePreferred !== '')
+		vals['addChildCompleteNamePreferred'] = addChildCompleteNamePreferred;
+	var removeChildCompleteNamePreferred = $formValues.find('.removeChildCompleteNamePreferred').val();
+	if(removeChildCompleteNamePreferred != null && removeChildCompleteNamePreferred !== '')
+		vals['removeChildCompleteNamePreferred'] = removeChildCompleteNamePreferred;
+
 	var removeChildBirthDate = $formFilters.find('.removeChildBirthDate').val() === 'true';
 	var setChildBirthDate = removeChildBirthDate ? null : $formValues.find('.setChildBirthDate').val();
 	if(removeChildBirthDate || setChildBirthDate != null && setChildBirthDate !== '')
@@ -1074,7 +1093,7 @@ async function patchSchoolEnrollment($formFilters, $formValues, success, error) 
 	if(removeEnrollmentDate10 != null && removeEnrollmentDate10 !== '')
 		vals['removeEnrollmentDate10'] = removeEnrollmentDate10;
 
-	patchSchoolEnrollmentVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+	patchSchoolEnrollmentVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
 function patchSchoolEnrollmentFilters($formFilters) {
@@ -1295,6 +1314,10 @@ function patchSchoolEnrollmentFilters($formFilters) {
 	var filterChildCompleteName = $formFilters.find('.valueChildCompleteName').val();
 	if(filterChildCompleteName != null && filterChildCompleteName !== '')
 		filters.push({ name: 'fq', value: 'childCompleteName:' + filterChildCompleteName });
+
+	var filterChildCompleteNamePreferred = $formFilters.find('.valueChildCompleteNamePreferred').val();
+	if(filterChildCompleteNamePreferred != null && filterChildCompleteNamePreferred !== '')
+		filters.push({ name: 'fq', value: 'childCompleteNamePreferred:' + filterChildCompleteNamePreferred });
 
 	var filterChildBirthDate = $formFilters.find('.valueChildBirthDate').val();
 	if(filterChildBirthDate != null && filterChildBirthDate !== '')
@@ -1753,6 +1776,10 @@ function searchSchoolEnrollmentFilters($formFilters) {
 	var filterChildCompleteName = $formFilters.find('.valueChildCompleteName').val();
 	if(filterChildCompleteName != null && filterChildCompleteName !== '')
 		filters.push({ name: 'fq', value: 'childCompleteName:' + filterChildCompleteName });
+
+	var filterChildCompleteNamePreferred = $formFilters.find('.valueChildCompleteNamePreferred').val();
+	if(filterChildCompleteNamePreferred != null && filterChildCompleteNamePreferred !== '')
+		filters.push({ name: 'fq', value: 'childCompleteNamePreferred:' + filterChildCompleteNamePreferred });
 
 	var filterChildBirthDate = $formFilters.find('.valueChildBirthDate').val();
 	if(filterChildBirthDate != null && filterChildBirthDate !== '')
@@ -2398,6 +2425,10 @@ async function websocketSchoolEnrollmentInner(apiRequest) {
 			if(vars.includes('childCompleteName')) {
 				$('.inputSchoolEnrollment' + pk + 'ChildCompleteName').val(o['childCompleteName']);
 				$('.varSchoolEnrollment' + pk + 'ChildCompleteName').text(o['childCompleteName']);
+			}
+			if(vars.includes('childCompleteNamePreferred')) {
+				$('.inputSchoolEnrollment' + pk + 'ChildCompleteNamePreferred').val(o['childCompleteNamePreferred']);
+				$('.varSchoolEnrollment' + pk + 'ChildCompleteNamePreferred').text(o['childCompleteNamePreferred']);
 			}
 			if(vars.includes('childBirthDate')) {
 				$('.inputSchoolEnrollment' + pk + 'ChildBirthDate').val(o['childBirthDate']);

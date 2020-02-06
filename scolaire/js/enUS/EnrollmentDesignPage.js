@@ -78,7 +78,7 @@ function postEnrollmentDesignVals(vals, success, error) {
 
 // PUT //
 
-async function putEnrollmentDesign($formValues, success, error) {
+async function putEnrollmentDesign($formValues, pk, success, error) {
 	var vals = {};
 
 	var valuePk = $formValues.find('.valuePk').val();
@@ -117,7 +117,7 @@ async function putEnrollmentDesign($formValues, success, error) {
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
 
-	putEnrollmentDesignVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+	putEnrollmentDesignVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
 function putEnrollmentDesignVals(filters, vals, success, error) {
@@ -126,7 +126,7 @@ function putEnrollmentDesignVals(filters, vals, success, error) {
 		, dataType: 'json'
 		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
-		, data: JSON.stringify(vals)
+		, data: JSON.stringify({patch: vals})
 		, success: success
 		, error: error
 	});
@@ -134,7 +134,7 @@ function putEnrollmentDesignVals(filters, vals, success, error) {
 
 // PATCH //
 
-async function patchEnrollmentDesign($formFilters, $formValues, success, error) {
+async function patchEnrollmentDesign($formFilters, $formValues, pk, success, error) {
 	var filters = patchEnrollmentDesignFilters($formFilters);
 
 	var vals = {};
@@ -238,7 +238,7 @@ async function patchEnrollmentDesign($formFilters, $formValues, success, error) 
 	if(removeObjectTitle != null && removeObjectTitle !== '')
 		vals['removeObjectTitle'] = removeObjectTitle;
 
-	patchEnrollmentDesignVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+	patchEnrollmentDesignVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
 function patchEnrollmentDesignFilters($formFilters) {

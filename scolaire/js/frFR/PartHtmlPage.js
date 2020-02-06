@@ -174,7 +174,7 @@ function postPartHtmlVals(vals, success, error) {
 
 // PUT //
 
-async function putPartHtml($formulaireValeurs, success, error) {
+async function putPartHtml($formulaireValeurs, pk, success, error) {
 	var vals = {};
 
 	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
@@ -309,7 +309,7 @@ async function putPartHtml($formulaireValeurs, success, error) {
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 		vals['objetTitre'] = valeurObjetTitre;
 
-	putPartHtmlVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+	putPartHtmlVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
 function putPartHtmlVals(filtres, vals, success, error) {
@@ -318,7 +318,7 @@ function putPartHtmlVals(filtres, vals, success, error) {
 		, dataType: 'json'
 		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
-		, data: JSON.stringify(vals)
+		, data: JSON.stringify({patch: vals})
 		, success: success
 		, error: error
 	});
@@ -326,7 +326,7 @@ function putPartHtmlVals(filtres, vals, success, error) {
 
 // PATCH //
 
-async function patchPartHtml($formulaireFiltres, $formulaireValeurs, success, error) {
+async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success, error) {
 	var filtres = patchPartHtmlFiltres($formulaireFiltres);
 
 	var vals = {};
@@ -694,7 +694,7 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, success, er
 	if(removeObjetTitre != null && removeObjetTitre !== '')
 		vals['removeObjetTitre'] = removeObjetTitre;
 
-	patchPartHtmlVals(filtres, vals, success, error);
+	patchPartHtmlVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
 function patchPartHtmlFiltres($formulaireFiltres) {
@@ -1162,7 +1162,7 @@ function suggerePartHtmlDesignInscriptionCle(filtres, $list, pk = null) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-bell ');
+			var $i = $('<i>').attr('class', 'fa fa-drafting-compass ');
 			var $span = $('<span>').attr('class', '').text(o['designInscriptionNomComplet']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);
