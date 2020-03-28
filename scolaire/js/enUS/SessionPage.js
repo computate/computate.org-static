@@ -90,7 +90,7 @@ function postSchoolSessionVals(vals, success, error) {
 
 // PUT //
 
-async function putSchoolSession($formValues, success, error) {
+async function putSchoolSession($formValues, pk, success, error) {
 	var vals = {};
 
 	var valuePk = $formValues.find('.valuePk').val();
@@ -141,7 +141,7 @@ async function putSchoolSession($formValues, success, error) {
 	if(valueSchoolAddress != null && valueSchoolAddress !== '')
 		vals['schoolAddress'] = valueSchoolAddress;
 
-	putSchoolSessionVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+	putSchoolSessionVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
 function putSchoolSessionVals(filters, vals, success, error) {
@@ -150,7 +150,7 @@ function putSchoolSessionVals(filters, vals, success, error) {
 		, dataType: 'json'
 		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
-		, data: JSON.stringify(vals)
+		, data: JSON.stringify({patch: vals})
 		, success: success
 		, error: error
 	});
@@ -158,7 +158,7 @@ function putSchoolSessionVals(filters, vals, success, error) {
 
 // PATCH //
 
-async function patchSchoolSession($formFilters, $formValues, success, error) {
+async function patchSchoolSession($formFilters, $formValues, pk, success, error) {
 	var filters = patchSchoolSessionFilters($formFilters);
 
 	var vals = {};
@@ -208,7 +208,11 @@ async function patchSchoolSession($formFilters, $formValues, success, error) {
 		vals['removeObjectId'] = removeObjectId;
 
 	var removeArchived = $formFilters.find('.removeArchived').val() === 'true';
-	var setArchived = removeArchived ? null : $formValues.find('.setArchived').prop('checked');
+	var valueArchivedSelectVal = $formValues.find('select.setArchived').val();
+	var valueArchived = null;
+	if(valueArchivedSelectVal !== '')
+		valueArchived = valueArchivedSelectVal == 'true';
+	setArchived = removeArchived ? null : valueArchived;
 	if(removeArchived || setArchived != null && setArchived !== '')
 		vals['setArchived'] = setArchived;
 	var addArchived = $formValues.find('.addArchived').prop('checked');
@@ -219,7 +223,11 @@ async function patchSchoolSession($formFilters, $formValues, success, error) {
 		vals['removeArchived'] = removeArchived;
 
 	var removeDeleted = $formFilters.find('.removeDeleted').val() === 'true';
-	var setDeleted = removeDeleted ? null : $formValues.find('.setDeleted').prop('checked');
+	var valueDeletedSelectVal = $formValues.find('select.setDeleted').val();
+	var valueDeleted = null;
+	if(valueDeletedSelectVal !== '')
+		valueDeleted = valueDeletedSelectVal == 'true';
+	setDeleted = removeDeleted ? null : valueDeleted;
 	if(removeDeleted || setDeleted != null && setDeleted !== '')
 		vals['setDeleted'] = setDeleted;
 	var addDeleted = $formValues.find('.addDeleted').prop('checked');
@@ -295,7 +303,7 @@ async function patchSchoolSession($formFilters, $formValues, success, error) {
 	if(removeSchoolAddress != null && removeSchoolAddress !== '')
 		vals['removeSchoolAddress'] = removeSchoolAddress;
 
-	patchSchoolSessionVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+	patchSchoolSessionVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
 function patchSchoolSessionFilters($formFilters) {
@@ -317,11 +325,23 @@ function patchSchoolSessionFilters($formFilters) {
 	if(filterObjectId != null && filterObjectId !== '')
 		filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
 
-	var filterArchived = $formFilters.find('.valueArchived').prop('checked');
+	var $filterArchivedCheckbox = $formFilters.find('input.valueArchived[type = "checkbox"]');
+	var $filterArchivedSelect = $formFilters.find('select.valueArchived');
+	var filterArchived = $filterArchivedSelect.length ? $filterArchivedSelect.val() : $filterArchivedCheckbox.prop('checked');
+	var filterArchivedSelectVal = $formFilters.find('select.filterArchived').val();
+	var filterArchived = null;
+	if(filterArchivedSelectVal !== '')
+		filterArchived = filterArchivedSelectVal == 'true';
 	if(filterArchived != null && filterArchived === true)
 		filters.push({ name: 'fq', value: 'archived:' + filterArchived });
 
-	var filterDeleted = $formFilters.find('.valueDeleted').prop('checked');
+	var $filterDeletedCheckbox = $formFilters.find('input.valueDeleted[type = "checkbox"]');
+	var $filterDeletedSelect = $formFilters.find('select.valueDeleted');
+	var filterDeleted = $filterDeletedSelect.length ? $filterDeletedSelect.val() : $filterDeletedCheckbox.prop('checked');
+	var filterDeletedSelectVal = $formFilters.find('select.filterDeleted').val();
+	var filterDeleted = null;
+	if(filterDeletedSelectVal !== '')
+		filterDeleted = filterDeletedSelectVal == 'true';
 	if(filterDeleted != null && filterDeleted === true)
 		filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
@@ -376,6 +396,10 @@ function patchSchoolSessionFilters($formFilters) {
 	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
 	if(filterObjectSuggest != null && filterObjectSuggest !== '')
 		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+
+	var filterObjectText = $formFilters.find('.valueObjectText').val();
+	if(filterObjectText != null && filterObjectText !== '')
+		filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
 
 	var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
 	if(filterPageUrlId != null && filterPageUrlId !== '')
@@ -457,11 +481,23 @@ function patchSchoolSessionFilters($formFilters) {
 	if(filterSeasonStartDate != null && filterSeasonStartDate !== '')
 		filters.push({ name: 'fq', value: 'seasonStartDate:' + filterSeasonStartDate });
 
-	var filterSeasonSummer = $formFilters.find('.valueSeasonSummer').prop('checked');
+	var $filterSeasonSummerCheckbox = $formFilters.find('input.valueSeasonSummer[type = "checkbox"]');
+	var $filterSeasonSummerSelect = $formFilters.find('select.valueSeasonSummer');
+	var filterSeasonSummer = $filterSeasonSummerSelect.length ? $filterSeasonSummerSelect.val() : $filterSeasonSummerCheckbox.prop('checked');
+	var filterSeasonSummerSelectVal = $formFilters.find('select.filterSeasonSummer').val();
+	var filterSeasonSummer = null;
+	if(filterSeasonSummerSelectVal !== '')
+		filterSeasonSummer = filterSeasonSummerSelectVal == 'true';
 	if(filterSeasonSummer != null && filterSeasonSummer === true)
 		filters.push({ name: 'fq', value: 'seasonSummer:' + filterSeasonSummer });
 
-	var filterSeasonWinter = $formFilters.find('.valueSeasonWinter').prop('checked');
+	var $filterSeasonWinterCheckbox = $formFilters.find('input.valueSeasonWinter[type = "checkbox"]');
+	var $filterSeasonWinterSelect = $formFilters.find('select.valueSeasonWinter');
+	var filterSeasonWinter = $filterSeasonWinterSelect.length ? $filterSeasonWinterSelect.val() : $filterSeasonWinterCheckbox.prop('checked');
+	var filterSeasonWinterSelectVal = $formFilters.find('select.filterSeasonWinter').val();
+	var filterSeasonWinter = null;
+	if(filterSeasonWinterSelectVal !== '')
+		filterSeasonWinter = filterSeasonWinterSelectVal == 'true';
 	if(filterSeasonWinter != null && filterSeasonWinter === true)
 		filters.push({ name: 'fq', value: 'seasonWinter:' + filterSeasonWinter });
 
@@ -518,20 +554,6 @@ async function getSchoolSession(pk) {
 	});
 }
 
-// DELETE //
-
-async function deleteSchoolSession(pk) {
-	$.ajax({
-		url: '/api/session/' + id
-		, dataType: 'json'
-		, type: 'DELETE'
-		, contentType: 'application/json; charset=utf-8'
-		, data: JSON.stringify(vals)
-		, success: success
-		, error: error
-	});
-}
-
 // Search //
 
 async function searchSchoolSession($formFilters, success, error) {
@@ -563,11 +585,23 @@ function searchSchoolSessionFilters($formFilters) {
 	if(filterObjectId != null && filterObjectId !== '')
 		filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
 
-	var filterArchived = $formFilters.find('.valueArchived').prop('checked');
+	var $filterArchivedCheckbox = $formFilters.find('input.valueArchived[type = "checkbox"]');
+	var $filterArchivedSelect = $formFilters.find('select.valueArchived');
+	var filterArchived = $filterArchivedSelect.length ? $filterArchivedSelect.val() : $filterArchivedCheckbox.prop('checked');
+	var filterArchivedSelectVal = $formFilters.find('select.filterArchived').val();
+	var filterArchived = null;
+	if(filterArchivedSelectVal !== '')
+		filterArchived = filterArchivedSelectVal == 'true';
 	if(filterArchived != null && filterArchived === true)
 		filters.push({ name: 'fq', value: 'archived:' + filterArchived });
 
-	var filterDeleted = $formFilters.find('.valueDeleted').prop('checked');
+	var $filterDeletedCheckbox = $formFilters.find('input.valueDeleted[type = "checkbox"]');
+	var $filterDeletedSelect = $formFilters.find('select.valueDeleted');
+	var filterDeleted = $filterDeletedSelect.length ? $filterDeletedSelect.val() : $filterDeletedCheckbox.prop('checked');
+	var filterDeletedSelectVal = $formFilters.find('select.filterDeleted').val();
+	var filterDeleted = null;
+	if(filterDeletedSelectVal !== '')
+		filterDeleted = filterDeletedSelectVal == 'true';
 	if(filterDeleted != null && filterDeleted === true)
 		filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
@@ -622,6 +656,10 @@ function searchSchoolSessionFilters($formFilters) {
 	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
 	if(filterObjectSuggest != null && filterObjectSuggest !== '')
 		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+
+	var filterObjectText = $formFilters.find('.valueObjectText').val();
+	if(filterObjectText != null && filterObjectText !== '')
+		filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
 
 	var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
 	if(filterPageUrlId != null && filterPageUrlId !== '')
@@ -703,11 +741,23 @@ function searchSchoolSessionFilters($formFilters) {
 	if(filterSeasonStartDate != null && filterSeasonStartDate !== '')
 		filters.push({ name: 'fq', value: 'seasonStartDate:' + filterSeasonStartDate });
 
-	var filterSeasonSummer = $formFilters.find('.valueSeasonSummer').prop('checked');
+	var $filterSeasonSummerCheckbox = $formFilters.find('input.valueSeasonSummer[type = "checkbox"]');
+	var $filterSeasonSummerSelect = $formFilters.find('select.valueSeasonSummer');
+	var filterSeasonSummer = $filterSeasonSummerSelect.length ? $filterSeasonSummerSelect.val() : $filterSeasonSummerCheckbox.prop('checked');
+	var filterSeasonSummerSelectVal = $formFilters.find('select.filterSeasonSummer').val();
+	var filterSeasonSummer = null;
+	if(filterSeasonSummerSelectVal !== '')
+		filterSeasonSummer = filterSeasonSummerSelectVal == 'true';
 	if(filterSeasonSummer != null && filterSeasonSummer === true)
 		filters.push({ name: 'fq', value: 'seasonSummer:' + filterSeasonSummer });
 
-	var filterSeasonWinter = $formFilters.find('.valueSeasonWinter').prop('checked');
+	var $filterSeasonWinterCheckbox = $formFilters.find('input.valueSeasonWinter[type = "checkbox"]');
+	var $filterSeasonWinterSelect = $formFilters.find('select.valueSeasonWinter');
+	var filterSeasonWinter = $filterSeasonWinterSelect.length ? $filterSeasonWinterSelect.val() : $filterSeasonWinterCheckbox.prop('checked');
+	var filterSeasonWinterSelectVal = $formFilters.find('select.filterSeasonWinter').val();
+	var filterSeasonWinter = null;
+	if(filterSeasonWinterSelectVal !== '')
+		filterSeasonWinter = filterSeasonWinterSelectVal == 'true';
 	if(filterSeasonWinter != null && filterSeasonWinter === true)
 		filters.push({ name: 'fq', value: 'seasonWinter:' + filterSeasonWinter });
 
@@ -762,7 +812,7 @@ function suggestSchoolSessionObjectSuggest($formFilters, $list) {
 	searchSchoolSessionVals($formFilters, success, error);
 }
 
-function suggestSchoolSessionAgeKeys(filters, $list, pk = null) {
+function suggestSchoolSessionAgeKeys(filters, $list, pk = null, attribute=true) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
@@ -772,7 +822,7 @@ function suggestSchoolSessionAgeKeys(filters, $list, pk = null) {
 			$a.append($i);
 			$a.append($span);
 			var val = o['sessionKey'];
-			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
+			var checked = Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
 			var $input = $('<input>');
 			$input.attr('id', 'GET_ageKeys_' + pk + '_sessionKey_' + o['pk']);
 			$input.attr('value', o['pk']);
@@ -785,7 +835,8 @@ function suggestSchoolSessionAgeKeys(filters, $list, pk = null) {
 			if(checked)
 				$input.attr('checked', 'checked');
 			var $li = $('<li>');
-			$li.append($input);
+			if(attribute)
+				$li.append($input);
 			$li.append($a);
 			$list.append($li);
 		});
@@ -797,7 +848,7 @@ function suggestSchoolSessionAgeKeys(filters, $list, pk = null) {
 	searchSchoolAgeVals(filters, success, error);
 }
 
-function suggestSchoolSessionSeasonKey(filters, $list, pk = null) {
+function suggestSchoolSessionSeasonKey(filters, $list, pk = null, attribute=true) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
@@ -807,7 +858,7 @@ function suggestSchoolSessionSeasonKey(filters, $list, pk = null) {
 			$a.append($i);
 			$a.append($span);
 			var val = o['sessionKeys'];
-			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
+			var checked = Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
 			var $input = $('<input>');
 			$input.attr('id', 'GET_seasonKey_' + pk + '_sessionKeys_' + o['pk']);
 			$input.attr('value', o['pk']);
@@ -820,7 +871,8 @@ function suggestSchoolSessionSeasonKey(filters, $list, pk = null) {
 			if(checked)
 				$input.attr('checked', 'checked');
 			var $li = $('<li>');
-			$li.append($input);
+			if(attribute)
+				$li.append($input);
 			$li.append($a);
 			$list.append($li);
 		});
@@ -926,17 +978,5 @@ async function websocketSchoolSessionInner(apiRequest) {
 				$('.varSchoolSession' + pk + 'SchoolAddress').text(o['schoolAddress']);
 			}
 		});
-	}
-
-	if(!empty) {
-		if(pks) {
-			for(i=0; i < pks.length; i++) {
-				var pk2 = pks[i];
-				var c = classes[i];
-				await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
-			}
-		}
-		if(pk)
-			await patchSchoolSessionVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 	}
 }

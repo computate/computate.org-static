@@ -90,7 +90,7 @@ function postAnneeScolaireVals(vals, success, error) {
 
 // PUT //
 
-async function putAnneeScolaire($formulaireValeurs, success, error) {
+async function putAnneeScolaire($formulaireValeurs, pk, success, error) {
 	var vals = {};
 
 	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
@@ -141,7 +141,7 @@ async function putAnneeScolaire($formulaireValeurs, success, error) {
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 		vals['objetTitre'] = valeurObjetTitre;
 
-	putAnneeScolaireVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+	putAnneeScolaireVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
 function putAnneeScolaireVals(filtres, vals, success, error) {
@@ -150,7 +150,7 @@ function putAnneeScolaireVals(filtres, vals, success, error) {
 		, dataType: 'json'
 		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
-		, data: JSON.stringify(vals)
+		, data: JSON.stringify({patch: vals})
 		, success: success
 		, error: error
 	});
@@ -158,7 +158,7 @@ function putAnneeScolaireVals(filtres, vals, success, error) {
 
 // PATCH //
 
-async function patchAnneeScolaire($formulaireFiltres, $formulaireValeurs, success, error) {
+async function patchAnneeScolaire($formulaireFiltres, $formulaireValeurs, pk, success, error) {
 	var filtres = patchAnneeScolaireFiltres($formulaireFiltres);
 
 	var vals = {};
@@ -208,7 +208,11 @@ async function patchAnneeScolaire($formulaireFiltres, $formulaireValeurs, succes
 		vals['removeObjetId'] = removeObjetId;
 
 	var removeArchive = $formulaireFiltres.find('.removeArchive').val() === 'true';
-	var setArchive = removeArchive ? null : $formulaireValeurs.find('.setArchive').prop('checked');
+	var valeurArchiveSelectVal = $formulaireValeurs.find('select.setArchive').val();
+	var valeurArchive = null;
+	if(valeurArchiveSelectVal !== '')
+		valeurArchive = valeurArchiveSelectVal == 'true';
+	setArchive = removeArchive ? null : valeurArchive;
 	if(removeArchive || setArchive != null && setArchive !== '')
 		vals['setArchive'] = setArchive;
 	var addArchive = $formulaireValeurs.find('.addArchive').prop('checked');
@@ -219,7 +223,11 @@ async function patchAnneeScolaire($formulaireFiltres, $formulaireValeurs, succes
 		vals['removeArchive'] = removeArchive;
 
 	var removeSupprime = $formulaireFiltres.find('.removeSupprime').val() === 'true';
-	var setSupprime = removeSupprime ? null : $formulaireValeurs.find('.setSupprime').prop('checked');
+	var valeurSupprimeSelectVal = $formulaireValeurs.find('select.setSupprime').val();
+	var valeurSupprime = null;
+	if(valeurSupprimeSelectVal !== '')
+		valeurSupprime = valeurSupprimeSelectVal == 'true';
+	setSupprime = removeSupprime ? null : valeurSupprime;
 	if(removeSupprime || setSupprime != null && setSupprime !== '')
 		vals['setSupprime'] = setSupprime;
 	var addSupprime = $formulaireValeurs.find('.addSupprime').prop('checked');
@@ -295,7 +303,7 @@ async function patchAnneeScolaire($formulaireFiltres, $formulaireValeurs, succes
 	if(removeObjetTitre != null && removeObjetTitre !== '')
 		vals['removeObjetTitre'] = removeObjetTitre;
 
-	patchAnneeScolaireVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+	patchAnneeScolaireVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
 function patchAnneeScolaireFiltres($formulaireFiltres) {
@@ -317,11 +325,23 @@ function patchAnneeScolaireFiltres($formulaireFiltres) {
 	if(filtreObjetId != null && filtreObjetId !== '')
 		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
 
-	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
+	var $filtreArchiveCheckbox = $formulaireFiltres.find('input.valeurArchive[type = "checkbox"]');
+	var $filtreArchiveSelect = $formulaireFiltres.find('select.valeurArchive');
+	var filtreArchive = $filtreArchiveSelect.length ? $filtreArchiveSelect.val() : $filtreArchiveCheckbox.prop('checked');
+	var filtreArchiveSelectVal = $formulaireFiltres.find('select.filtreArchive').val();
+	var filtreArchive = null;
+	if(filtreArchiveSelectVal !== '')
+		filtreArchive = filtreArchiveSelectVal == 'true';
 	if(filtreArchive != null && filtreArchive === true)
 		filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
 
-	var filtreSupprime = $formulaireFiltres.find('.valeurSupprime').prop('checked');
+	var $filtreSupprimeCheckbox = $formulaireFiltres.find('input.valeurSupprime[type = "checkbox"]');
+	var $filtreSupprimeSelect = $formulaireFiltres.find('select.valeurSupprime');
+	var filtreSupprime = $filtreSupprimeSelect.length ? $filtreSupprimeSelect.val() : $filtreSupprimeCheckbox.prop('checked');
+	var filtreSupprimeSelectVal = $formulaireFiltres.find('select.filtreSupprime').val();
+	var filtreSupprime = null;
+	if(filtreSupprimeSelectVal !== '')
+		filtreSupprime = filtreSupprimeSelectVal == 'true';
 	if(filtreSupprime != null && filtreSupprime === true)
 		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
@@ -380,6 +400,10 @@ function patchAnneeScolaireFiltres($formulaireFiltres) {
 	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
 	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
 		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
+
+	var filtreObjetTexte = $formulaireFiltres.find('.valeurObjetTexte').val();
+	if(filtreObjetTexte != null && filtreObjetTexte !== '')
+		filtres.push({ name: 'fq', value: 'objetTexte:' + filtreObjetTexte });
 
 	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
 	if(filtrePageUrlId != null && filtrePageUrlId !== '')
@@ -478,20 +502,6 @@ async function getAnneeScolaire(pk) {
 	});
 }
 
-// DELETE //
-
-async function deleteAnneeScolaire(pk) {
-	$.ajax({
-		url: '/api/annee/' + id
-		, dataType: 'json'
-		, type: 'DELETE'
-		, contentType: 'application/json; charset=utf-8'
-		, data: JSON.stringify(vals)
-		, success: success
-		, error: error
-	});
-}
-
 // Recherche //
 
 async function rechercheAnneeScolaire($formulaireFiltres, success, error) {
@@ -523,11 +533,23 @@ function rechercheAnneeScolaireFiltres($formulaireFiltres) {
 	if(filtreObjetId != null && filtreObjetId !== '')
 		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
 
-	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
+	var $filtreArchiveCheckbox = $formulaireFiltres.find('input.valeurArchive[type = "checkbox"]');
+	var $filtreArchiveSelect = $formulaireFiltres.find('select.valeurArchive');
+	var filtreArchive = $filtreArchiveSelect.length ? $filtreArchiveSelect.val() : $filtreArchiveCheckbox.prop('checked');
+	var filtreArchiveSelectVal = $formulaireFiltres.find('select.filtreArchive').val();
+	var filtreArchive = null;
+	if(filtreArchiveSelectVal !== '')
+		filtreArchive = filtreArchiveSelectVal == 'true';
 	if(filtreArchive != null && filtreArchive === true)
 		filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
 
-	var filtreSupprime = $formulaireFiltres.find('.valeurSupprime').prop('checked');
+	var $filtreSupprimeCheckbox = $formulaireFiltres.find('input.valeurSupprime[type = "checkbox"]');
+	var $filtreSupprimeSelect = $formulaireFiltres.find('select.valeurSupprime');
+	var filtreSupprime = $filtreSupprimeSelect.length ? $filtreSupprimeSelect.val() : $filtreSupprimeCheckbox.prop('checked');
+	var filtreSupprimeSelectVal = $formulaireFiltres.find('select.filtreSupprime').val();
+	var filtreSupprime = null;
+	if(filtreSupprimeSelectVal !== '')
+		filtreSupprime = filtreSupprimeSelectVal == 'true';
 	if(filtreSupprime != null && filtreSupprime === true)
 		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
@@ -586,6 +608,10 @@ function rechercheAnneeScolaireFiltres($formulaireFiltres) {
 	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
 	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
 		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
+
+	var filtreObjetTexte = $formulaireFiltres.find('.valeurObjetTexte').val();
+	if(filtreObjetTexte != null && filtreObjetTexte !== '')
+		filtres.push({ name: 'fq', value: 'objetTexte:' + filtreObjetTexte });
 
 	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
 	if(filtrePageUrlId != null && filtrePageUrlId !== '')
@@ -682,7 +708,7 @@ function suggereAnneeScolaireObjetSuggere($formulaireFiltres, $list) {
 	rechercherAnneeScolaireVals($formulaireFiltres, success, error);
 }
 
-function suggereAnneeScolaireEcoleCle(filtres, $list, pk = null) {
+function suggereAnneeScolaireEcoleCle(filtres, $list, pk = null, attribuer=true) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
@@ -692,7 +718,7 @@ function suggereAnneeScolaireEcoleCle(filtres, $list, pk = null) {
 			$a.append($i);
 			$a.append($span);
 			var val = o['anneeCles'];
-			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
+			var checked = Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
 			var $input = $('<input>');
 			$input.attr('id', 'GET_ecoleCle_' + pk + '_anneeCles_' + o['pk']);
 			$input.attr('value', o['pk']);
@@ -705,7 +731,8 @@ function suggereAnneeScolaireEcoleCle(filtres, $list, pk = null) {
 			if(checked)
 				$input.attr('checked', 'checked');
 			var $li = $('<li>');
-			$li.append($input);
+			if(attribuer)
+				$li.append($input);
 			$li.append($a);
 			$list.append($li);
 		});
@@ -717,7 +744,7 @@ function suggereAnneeScolaireEcoleCle(filtres, $list, pk = null) {
 	rechercheEcoleVals(filtres, success, error);
 }
 
-function suggereAnneeScolaireSaisonCles(filtres, $list, pk = null) {
+function suggereAnneeScolaireSaisonCles(filtres, $list, pk = null, attribuer=true) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
@@ -727,7 +754,7 @@ function suggereAnneeScolaireSaisonCles(filtres, $list, pk = null) {
 			$a.append($i);
 			$a.append($span);
 			var val = o['anneeCle'];
-			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
+			var checked = Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
 			var $input = $('<input>');
 			$input.attr('id', 'GET_saisonCles_' + pk + '_anneeCle_' + o['pk']);
 			$input.attr('value', o['pk']);
@@ -740,7 +767,8 @@ function suggereAnneeScolaireSaisonCles(filtres, $list, pk = null) {
 			if(checked)
 				$input.attr('checked', 'checked');
 			var $li = $('<li>');
-			$li.append($input);
+			if(attribuer)
+				$li.append($input);
 			$li.append($a);
 			$list.append($li);
 		});
@@ -846,17 +874,5 @@ async function websocketAnneeScolaireInner(requeteApi) {
 				$('.varAnneeScolaire' + pk + 'SaisonCles').text(o['saisonCles']);
 			}
 		});
-	}
-
-	if(!empty) {
-		if(pks) {
-			for(i=0; i < pks.length; i++) {
-				var pk2 = pks[i];
-				var c = classes[i];
-				await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
-			}
-		}
-		if(pk)
-			await patchAnneeScolaireVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 	}
 }

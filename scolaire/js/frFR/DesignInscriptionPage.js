@@ -45,6 +45,10 @@ async function postDesignInscription($formulaireValeurs, success, error) {
 	if(valeurDesignInscriptionNomComplet != null && valeurDesignInscriptionNomComplet !== '')
 		vals['designInscriptionNomComplet'] = valeurDesignInscriptionNomComplet;
 
+	var valeurDesignCache = $formulaireValeurs.find('.valeurDesignCache').prop('checked');
+	if(valeurDesignCache != null && valeurDesignCache !== '')
+		vals['designCache'] = valeurDesignCache;
+
 	var valeurPartHtmlCles = $formulaireValeurs.find('input.valeurPartHtmlCles:checked').val();
 	if(valeurPartHtmlCles != null && valeurPartHtmlCles !== '')
 		vals['partHtmlCles'] = valeurPartHtmlCles;
@@ -108,6 +112,10 @@ async function putDesignInscription($formulaireValeurs, pk, success, error) {
 	var valeurDesignInscriptionNomComplet = $formulaireValeurs.find('.valeurDesignInscriptionNomComplet').val();
 	if(valeurDesignInscriptionNomComplet != null && valeurDesignInscriptionNomComplet !== '')
 		vals['designInscriptionNomComplet'] = valeurDesignInscriptionNomComplet;
+
+	var valeurDesignCache = $formulaireValeurs.find('.valeurDesignCache').prop('checked');
+	if(valeurDesignCache != null && valeurDesignCache !== '')
+		vals['designCache'] = valeurDesignCache;
 
 	var valeurPartHtmlCles = $formulaireValeurs.find('input.valeurPartHtmlCles:checked').val();
 	if(valeurPartHtmlCles != null && valeurPartHtmlCles !== '')
@@ -184,7 +192,11 @@ async function patchDesignInscription($formulaireFiltres, $formulaireValeurs, pk
 		vals['removeObjetId'] = removeObjetId;
 
 	var removeArchive = $formulaireFiltres.find('.removeArchive').val() === 'true';
-	var setArchive = removeArchive ? null : $formulaireValeurs.find('.setArchive').prop('checked');
+	var valeurArchiveSelectVal = $formulaireValeurs.find('select.setArchive').val();
+	var valeurArchive = null;
+	if(valeurArchiveSelectVal !== '')
+		valeurArchive = valeurArchiveSelectVal == 'true';
+	setArchive = removeArchive ? null : valeurArchive;
 	if(removeArchive || setArchive != null && setArchive !== '')
 		vals['setArchive'] = setArchive;
 	var addArchive = $formulaireValeurs.find('.addArchive').prop('checked');
@@ -195,7 +207,11 @@ async function patchDesignInscription($formulaireFiltres, $formulaireValeurs, pk
 		vals['removeArchive'] = removeArchive;
 
 	var removeSupprime = $formulaireFiltres.find('.removeSupprime').val() === 'true';
-	var setSupprime = removeSupprime ? null : $formulaireValeurs.find('.setSupprime').prop('checked');
+	var valeurSupprimeSelectVal = $formulaireValeurs.find('select.setSupprime').val();
+	var valeurSupprime = null;
+	if(valeurSupprimeSelectVal !== '')
+		valeurSupprime = valeurSupprimeSelectVal == 'true';
+	setSupprime = removeSupprime ? null : valeurSupprime;
 	if(removeSupprime || setSupprime != null && setSupprime !== '')
 		vals['setSupprime'] = setSupprime;
 	var addSupprime = $formulaireValeurs.find('.addSupprime').prop('checked');
@@ -215,6 +231,21 @@ async function patchDesignInscription($formulaireFiltres, $formulaireValeurs, pk
 	var removeDesignInscriptionNomComplet = $formulaireValeurs.find('.removeDesignInscriptionNomComplet').val();
 	if(removeDesignInscriptionNomComplet != null && removeDesignInscriptionNomComplet !== '')
 		vals['removeDesignInscriptionNomComplet'] = removeDesignInscriptionNomComplet;
+
+	var removeDesignCache = $formulaireFiltres.find('.removeDesignCache').val() === 'true';
+	var valeurDesignCacheSelectVal = $formulaireValeurs.find('select.setDesignCache').val();
+	var valeurDesignCache = null;
+	if(valeurDesignCacheSelectVal !== '')
+		valeurDesignCache = valeurDesignCacheSelectVal == 'true';
+	setDesignCache = removeDesignCache ? null : valeurDesignCache;
+	if(removeDesignCache || setDesignCache != null && setDesignCache !== '')
+		vals['setDesignCache'] = setDesignCache;
+	var addDesignCache = $formulaireValeurs.find('.addDesignCache').prop('checked');
+	if(addDesignCache != null && addDesignCache !== '')
+		vals['addDesignCache'] = addDesignCache;
+	var removeDesignCache = $formulaireValeurs.find('.removeDesignCache').prop('checked');
+	if(removeDesignCache != null && removeDesignCache !== '')
+		vals['removeDesignCache'] = removeDesignCache;
 
 	var removePartHtmlCles = $formulaireFiltres.find('.removePartHtmlCles').val() === 'true';
 	var setPartHtmlCles = removePartHtmlCles ? null : $formulaireValeurs.find('.setPartHtmlCles').val();
@@ -260,17 +291,39 @@ function patchDesignInscriptionFiltres($formulaireFiltres) {
 	if(filtreObjetId != null && filtreObjetId !== '')
 		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
 
-	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
+	var $filtreArchiveCheckbox = $formulaireFiltres.find('input.valeurArchive[type = "checkbox"]');
+	var $filtreArchiveSelect = $formulaireFiltres.find('select.valeurArchive');
+	var filtreArchive = $filtreArchiveSelect.length ? $filtreArchiveSelect.val() : $filtreArchiveCheckbox.prop('checked');
+	var filtreArchiveSelectVal = $formulaireFiltres.find('select.filtreArchive').val();
+	var filtreArchive = null;
+	if(filtreArchiveSelectVal !== '')
+		filtreArchive = filtreArchiveSelectVal == 'true';
 	if(filtreArchive != null && filtreArchive === true)
 		filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
 
-	var filtreSupprime = $formulaireFiltres.find('.valeurSupprime').prop('checked');
+	var $filtreSupprimeCheckbox = $formulaireFiltres.find('input.valeurSupprime[type = "checkbox"]');
+	var $filtreSupprimeSelect = $formulaireFiltres.find('select.valeurSupprime');
+	var filtreSupprime = $filtreSupprimeSelect.length ? $filtreSupprimeSelect.val() : $filtreSupprimeCheckbox.prop('checked');
+	var filtreSupprimeSelectVal = $formulaireFiltres.find('select.filtreSupprime').val();
+	var filtreSupprime = null;
+	if(filtreSupprimeSelectVal !== '')
+		filtreSupprime = filtreSupprimeSelectVal == 'true';
 	if(filtreSupprime != null && filtreSupprime === true)
 		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
 	var filtreDesignInscriptionNomComplet = $formulaireFiltres.find('.valeurDesignInscriptionNomComplet').val();
 	if(filtreDesignInscriptionNomComplet != null && filtreDesignInscriptionNomComplet !== '')
 		filtres.push({ name: 'fq', value: 'designInscriptionNomComplet:' + filtreDesignInscriptionNomComplet });
+
+	var $filtreDesignCacheCheckbox = $formulaireFiltres.find('input.valeurDesignCache[type = "checkbox"]');
+	var $filtreDesignCacheSelect = $formulaireFiltres.find('select.valeurDesignCache');
+	var filtreDesignCache = $filtreDesignCacheSelect.length ? $filtreDesignCacheSelect.val() : $filtreDesignCacheCheckbox.prop('checked');
+	var filtreDesignCacheSelectVal = $formulaireFiltres.find('select.filtreDesignCache').val();
+	var filtreDesignCache = null;
+	if(filtreDesignCacheSelectVal !== '')
+		filtreDesignCache = filtreDesignCacheSelectVal == 'true';
+	if(filtreDesignCache != null && filtreDesignCache === true)
+		filtres.push({ name: 'fq', value: 'designCache:' + filtreDesignCache });
 
 	var filtrePartHtmlCles = $formulaireFiltres.find('.valeurPartHtmlCles').val();
 	if(filtrePartHtmlCles != null && filtrePartHtmlCles !== '')
@@ -311,6 +364,10 @@ function patchDesignInscriptionFiltres($formulaireFiltres) {
 	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
 	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
 		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
+
+	var filtreObjetTexte = $formulaireFiltres.find('.valeurObjetTexte').val();
+	if(filtreObjetTexte != null && filtreObjetTexte !== '')
+		filtres.push({ name: 'fq', value: 'objetTexte:' + filtreObjetTexte });
 
 	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
 	if(filtrePageUrlId != null && filtrePageUrlId !== '')
@@ -393,20 +450,6 @@ async function getDesignInscription(pk) {
 	});
 }
 
-// DELETE //
-
-async function deleteDesignInscription(pk) {
-	$.ajax({
-		url: '/api/design-inscription/' + id
-		, dataType: 'json'
-		, type: 'DELETE'
-		, contentType: 'application/json; charset=utf-8'
-		, data: JSON.stringify(vals)
-		, success: success
-		, error: error
-	});
-}
-
 // Recherche //
 
 async function rechercheDesignInscription($formulaireFiltres, success, error) {
@@ -438,17 +481,39 @@ function rechercheDesignInscriptionFiltres($formulaireFiltres) {
 	if(filtreObjetId != null && filtreObjetId !== '')
 		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
 
-	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
+	var $filtreArchiveCheckbox = $formulaireFiltres.find('input.valeurArchive[type = "checkbox"]');
+	var $filtreArchiveSelect = $formulaireFiltres.find('select.valeurArchive');
+	var filtreArchive = $filtreArchiveSelect.length ? $filtreArchiveSelect.val() : $filtreArchiveCheckbox.prop('checked');
+	var filtreArchiveSelectVal = $formulaireFiltres.find('select.filtreArchive').val();
+	var filtreArchive = null;
+	if(filtreArchiveSelectVal !== '')
+		filtreArchive = filtreArchiveSelectVal == 'true';
 	if(filtreArchive != null && filtreArchive === true)
 		filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
 
-	var filtreSupprime = $formulaireFiltres.find('.valeurSupprime').prop('checked');
+	var $filtreSupprimeCheckbox = $formulaireFiltres.find('input.valeurSupprime[type = "checkbox"]');
+	var $filtreSupprimeSelect = $formulaireFiltres.find('select.valeurSupprime');
+	var filtreSupprime = $filtreSupprimeSelect.length ? $filtreSupprimeSelect.val() : $filtreSupprimeCheckbox.prop('checked');
+	var filtreSupprimeSelectVal = $formulaireFiltres.find('select.filtreSupprime').val();
+	var filtreSupprime = null;
+	if(filtreSupprimeSelectVal !== '')
+		filtreSupprime = filtreSupprimeSelectVal == 'true';
 	if(filtreSupprime != null && filtreSupprime === true)
 		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
 	var filtreDesignInscriptionNomComplet = $formulaireFiltres.find('.valeurDesignInscriptionNomComplet').val();
 	if(filtreDesignInscriptionNomComplet != null && filtreDesignInscriptionNomComplet !== '')
 		filtres.push({ name: 'fq', value: 'designInscriptionNomComplet:' + filtreDesignInscriptionNomComplet });
+
+	var $filtreDesignCacheCheckbox = $formulaireFiltres.find('input.valeurDesignCache[type = "checkbox"]');
+	var $filtreDesignCacheSelect = $formulaireFiltres.find('select.valeurDesignCache');
+	var filtreDesignCache = $filtreDesignCacheSelect.length ? $filtreDesignCacheSelect.val() : $filtreDesignCacheCheckbox.prop('checked');
+	var filtreDesignCacheSelectVal = $formulaireFiltres.find('select.filtreDesignCache').val();
+	var filtreDesignCache = null;
+	if(filtreDesignCacheSelectVal !== '')
+		filtreDesignCache = filtreDesignCacheSelectVal == 'true';
+	if(filtreDesignCache != null && filtreDesignCache === true)
+		filtres.push({ name: 'fq', value: 'designCache:' + filtreDesignCache });
 
 	var filtrePartHtmlCles = $formulaireFiltres.find('.valeurPartHtmlCles').val();
 	if(filtrePartHtmlCles != null && filtrePartHtmlCles !== '')
@@ -489,6 +554,10 @@ function rechercheDesignInscriptionFiltres($formulaireFiltres) {
 	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
 	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
 		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
+
+	var filtreObjetTexte = $formulaireFiltres.find('.valeurObjetTexte').val();
+	if(filtreObjetTexte != null && filtreObjetTexte !== '')
+		filtres.push({ name: 'fq', value: 'objetTexte:' + filtreObjetTexte });
 
 	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
 	if(filtrePageUrlId != null && filtrePageUrlId !== '')
@@ -569,7 +638,7 @@ function suggereDesignInscriptionObjetSuggere($formulaireFiltres, $list) {
 	rechercherDesignInscriptionVals($formulaireFiltres, success, error);
 }
 
-function suggereDesignInscriptionPartHtmlCles(filtres, $list, pk = null) {
+function suggereDesignInscriptionPartHtmlCles(filtres, $list, pk = null, attribuer=true) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
@@ -579,7 +648,7 @@ function suggereDesignInscriptionPartHtmlCles(filtres, $list, pk = null) {
 			$a.append($i);
 			$a.append($span);
 			var val = o['designInscriptionCle'];
-			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
+			var checked = Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
 			var $input = $('<input>');
 			$input.attr('id', 'GET_partHtmlCles_' + pk + '_designInscriptionCle_' + o['pk']);
 			$input.attr('value', o['pk']);
@@ -770,7 +839,8 @@ function suggereDesignInscriptionPartHtmlCles(filtres, $list, pk = null) {
 				$sort.append($sortInput);
 				$li.append($sort);
 			}
-			$li.append($input);
+			if(attribuer)
+				$li.append($input);
 			$li.append($a);
 			$list.append($li);
 		});
@@ -797,13 +867,13 @@ async function websocketDesignInscription(success) {
 				var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
 				var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
 				var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
-				var $header = $('<div>').attr('class', 'w3-container fa-indigo ').attr('id', 'header-' + id);
+				var $header = $('<div>').attr('class', 'w3-container fa-khaki ').attr('id', 'header-' + id);
 				var $i = $('<i>').attr('class', 'far fa-drafting-compass w3-margin-right ').attr('id', 'icon-' + id);
 				var $headerSpan = $('<span>').attr('class', '').text('modifier design d'inscriptions');
 				var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
 				var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
 				var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
-				var $progress = $('<div>').attr('class', 'w3-indigo ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
+				var $progress = $('<div>').attr('class', 'w3-khaki ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
 				$card.append($header);
 				$header.append($i);
 				$header.append($headerSpan);
@@ -855,22 +925,14 @@ async function websocketDesignInscriptionInner(requeteApi) {
 				$('.inputDesignInscription' + pk + 'DesignInscriptionNomComplet').val(o['designInscriptionNomComplet']);
 				$('.varDesignInscription' + pk + 'DesignInscriptionNomComplet').text(o['designInscriptionNomComplet']);
 			}
+			if(vars.includes('designCache')) {
+				$('.inputDesignInscription' + pk + 'DesignCache').val(o['designCache']);
+				$('.varDesignInscription' + pk + 'DesignCache').text(o['designCache']);
+			}
 			if(vars.includes('partHtmlCles')) {
 				$('.inputDesignInscription' + pk + 'PartHtmlCles').val(o['partHtmlCles']);
 				$('.varDesignInscription' + pk + 'PartHtmlCles').text(o['partHtmlCles']);
 			}
 		});
-	}
-
-	if(!empty) {
-		if(pks) {
-			for(i=0; i < pks.length; i++) {
-				var pk2 = pks[i];
-				var c = classes[i];
-				await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
-			}
-		}
-		if(pk)
-			await patchDesignInscriptionVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 	}
 }

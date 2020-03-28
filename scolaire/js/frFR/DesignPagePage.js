@@ -1,7 +1,7 @@
 
 // POST //
 
-async function postCluster($formulaireValeurs, success, error) {
+async function postDesignPage($formulaireValeurs, success, error) {
 	var vals = {};
 	if(success == null) {
 		success = function( data, textStatus, jQxhr ) {
@@ -41,12 +41,24 @@ async function postCluster($formulaireValeurs, success, error) {
 	if(valeurSupprime != null && valeurSupprime !== '')
 		vals['supprime'] = valeurSupprime;
 
+	var valeurDesignPageNomComplet = $formulaireValeurs.find('.valeurDesignPageNomComplet').val();
+	if(valeurDesignPageNomComplet != null && valeurDesignPageNomComplet !== '')
+		vals['designPageNomComplet'] = valeurDesignPageNomComplet;
+
+	var valeurDesignCache = $formulaireValeurs.find('.valeurDesignCache').prop('checked');
+	if(valeurDesignCache != null && valeurDesignCache !== '')
+		vals['designCache'] = valeurDesignCache;
+
+	var valeurPartHtmlCles = $formulaireValeurs.find('input.valeurPartHtmlCles:checked').val();
+	if(valeurPartHtmlCles != null && valeurPartHtmlCles !== '')
+		vals['partHtmlCles'] = valeurPartHtmlCles;
+
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 		vals['objetTitre'] = valeurObjetTitre;
 
 	$.ajax({
-		url: '/api/cluster'
+		url: '/api/design-page'
 		, dataType: 'json'
 		, type: 'POST'
 		, contentType: 'application/json; charset=utf-8'
@@ -56,9 +68,9 @@ async function postCluster($formulaireValeurs, success, error) {
 	});
 }
 
-function postClusterVals(vals, success, error) {
+function postDesignPageVals(vals, success, error) {
 	$.ajax({
-		url: '/api/cluster'
+		url: '/api/design-page'
 		, dataType: 'json'
 		, type: 'POST'
 		, contentType: 'application/json; charset=utf-8'
@@ -70,7 +82,7 @@ function postClusterVals(vals, success, error) {
 
 // PUT //
 
-async function putCluster($formulaireValeurs, pk, success, error) {
+async function putDesignPage($formulaireValeurs, pk, success, error) {
 	var vals = {};
 
 	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
@@ -97,16 +109,28 @@ async function putCluster($formulaireValeurs, pk, success, error) {
 	if(valeurSupprime != null && valeurSupprime !== '')
 		vals['supprime'] = valeurSupprime;
 
+	var valeurDesignPageNomComplet = $formulaireValeurs.find('.valeurDesignPageNomComplet').val();
+	if(valeurDesignPageNomComplet != null && valeurDesignPageNomComplet !== '')
+		vals['designPageNomComplet'] = valeurDesignPageNomComplet;
+
+	var valeurDesignCache = $formulaireValeurs.find('.valeurDesignCache').prop('checked');
+	if(valeurDesignCache != null && valeurDesignCache !== '')
+		vals['designCache'] = valeurDesignCache;
+
+	var valeurPartHtmlCles = $formulaireValeurs.find('input.valeurPartHtmlCles:checked').val();
+	if(valeurPartHtmlCles != null && valeurPartHtmlCles !== '')
+		vals['partHtmlCles'] = [valeurPartHtmlCles];
+
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 		vals['objetTitre'] = valeurObjetTitre;
 
-	putClusterVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
+	putDesignPageVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
-function putClusterVals(filtres, vals, success, error) {
+function putDesignPageVals(filtres, vals, success, error) {
 	$.ajax({
-		url: '/api/cluster?' + $.param(filtres)
+		url: '/api/design-page?' + $.param(filtres)
 		, dataType: 'json'
 		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
@@ -118,8 +142,8 @@ function putClusterVals(filtres, vals, success, error) {
 
 // PATCH //
 
-async function patchCluster($formulaireFiltres, $formulaireValeurs, pk, success, error) {
-	var filtres = patchClusterFiltres($formulaireFiltres);
+async function patchDesignPage($formulaireFiltres, $formulaireValeurs, pk, success, error) {
+	var filtres = patchDesignPageFiltres($formulaireFiltres);
 
 	var vals = {};
 
@@ -209,6 +233,40 @@ async function patchCluster($formulaireFiltres, $formulaireValeurs, pk, success,
 	if(removeSupprime != null && removeSupprime !== '')
 		vals['removeSupprime'] = removeSupprime;
 
+	var valeurDesignPageNomComplet = $formulaireValeurs.find('.valeurDesignPageNomComplet').val();
+	if(valeurDesignPageNomComplet != null && valeurDesignPageNomComplet !== '')
+	var removeDesignPageNomComplet = $formulaireFiltres.find('.removeDesignPageNomComplet').val() === 'true';
+	var setDesignPageNomComplet = removeDesignPageNomComplet ? null : $formulaireValeurs.find('.setDesignPageNomComplet').val();
+	if(removeDesignPageNomComplet || setDesignPageNomComplet != null && setDesignPageNomComplet !== '')
+		vals['setDesignPageNomComplet'] = setDesignPageNomComplet;
+	var addDesignPageNomComplet = $formulaireValeurs.find('.addDesignPageNomComplet').val();
+	if(addDesignPageNomComplet != null && addDesignPageNomComplet !== '')
+		vals['addDesignPageNomComplet'] = addDesignPageNomComplet;
+	var removeDesignPageNomComplet = $formulaireValeurs.find('.removeDesignPageNomComplet').val();
+	if(removeDesignPageNomComplet != null && removeDesignPageNomComplet !== '')
+		vals['removeDesignPageNomComplet'] = removeDesignPageNomComplet;
+
+	var valeurDesignCache = $formulaireValeurs.find('.valeurDesignCache').prop('checked');
+	if(valeurDesignCache != null && valeurDesignCache !== '')
+	var removeDesignCache = $formulaireFiltres.find('.removeDesignCache').val() === 'true';
+	var valeurDesignCacheSelectVal = $formulaireValeurs.find('select.setDesignCache').val();
+	var valeurDesignCache = null;
+	if(valeurDesignCacheSelectVal !== '')
+		valeurDesignCache = valeurDesignCacheSelectVal == 'true';
+	setDesignCache = removeDesignCache ? null : valeurDesignCache;
+	if(removeDesignCache || setDesignCache != null && setDesignCache !== '')
+		vals['setDesignCache'] = setDesignCache;
+	var addDesignCache = $formulaireValeurs.find('.addDesignCache').prop('checked');
+	if(addDesignCache != null && addDesignCache !== '')
+		vals['addDesignCache'] = addDesignCache;
+	var removeDesignCache = $formulaireValeurs.find('.removeDesignCache').prop('checked');
+	if(removeDesignCache != null && removeDesignCache !== '')
+		vals['removeDesignCache'] = removeDesignCache;
+
+	var valeurPartHtmlCles = $formulaireValeurs.find('input.valeurPartHtmlCles:checked').val();
+	if(valeurPartHtmlCles != null && valeurPartHtmlCles !== '')
+		vals['addPartHtmlCles'] = valeurPartHtmlCles;
+
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 	var removeObjetTitre = $formulaireFiltres.find('.removeObjetTitre').val() === 'true';
@@ -222,10 +280,10 @@ async function patchCluster($formulaireFiltres, $formulaireValeurs, pk, success,
 	if(removeObjetTitre != null && removeObjetTitre !== '')
 		vals['removeObjetTitre'] = removeObjetTitre;
 
-	patchClusterVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
+	patchDesignPageVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
-function patchClusterFiltres($formulaireFiltres) {
+function patchDesignPageFiltres($formulaireFiltres) {
 	var filtres = [];
 	if($formulaireFiltres) {
 
@@ -264,6 +322,24 @@ function patchClusterFiltres($formulaireFiltres) {
 			filtreSupprime = filtreSupprimeSelectVal == 'true';
 		if(filtreSupprime != null && filtreSupprime === true)
 			filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
+
+		var filtreDesignPageNomComplet = $formulaireFiltres.find('.valeurDesignPageNomComplet').val();
+		if(filtreDesignPageNomComplet != null && filtreDesignPageNomComplet !== '')
+			filtres.push({ name: 'fq', value: 'designPageNomComplet:' + filtreDesignPageNomComplet });
+
+		var $filtreDesignCacheCheckbox = $formulaireFiltres.find('input.valeurDesignCache[type = "checkbox"]');
+		var $filtreDesignCacheSelect = $formulaireFiltres.find('select.valeurDesignCache');
+		var filtreDesignCache = $filtreDesignCacheSelect.length ? $filtreDesignCacheSelect.val() : $filtreDesignCacheCheckbox.prop('checked');
+		var filtreDesignCacheSelectVal = $formulaireFiltres.find('select.filtreDesignCache').val();
+		var filtreDesignCache = null;
+		if(filtreDesignCacheSelectVal !== '')
+			filtreDesignCache = filtreDesignCacheSelectVal == 'true';
+		if(filtreDesignCache != null && filtreDesignCache === true)
+			filtres.push({ name: 'fq', value: 'designCache:' + filtreDesignCache });
+
+		var filtrePartHtmlCles = $formulaireFiltres.find('.valeurPartHtmlCles').val();
+		if(filtrePartHtmlCles != null && filtrePartHtmlCles !== '')
+			filtres.push({ name: 'fq', value: 'partHtmlCles:' + filtrePartHtmlCles });
 
 		var filtreInheritPk = $formulaireFiltres.find('.valeurInheritPk').val();
 		if(filtreInheritPk != null && filtreInheritPk !== '')
@@ -312,19 +388,23 @@ function patchClusterFiltres($formulaireFiltres) {
 		var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
 		if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
 			filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
+
+		var filtreDesignPageCle = $formulaireFiltres.find('.valeurDesignPageCle').val();
+		if(filtreDesignPageCle != null && filtreDesignPageCle !== '')
+			filtres.push({ name: 'fq', value: 'designPageCle:' + filtreDesignPageCle });
 	}
 	return filtres;
 }
 
-function patchClusterVal(filtres, v, val, success, error) {
+function patchDesignPageVal(filtres, v, val, success, error) {
 	var vals = {};
 	vals[v] = val;
-	patchClusterVals(filtres, vals, success, error);
+	patchDesignPageVals(filtres, vals, success, error);
 }
 
-function patchClusterVals(filtres, vals, success, error) {
+function patchDesignPageVals(filtres, vals, success, error) {
 	$.ajax({
-		url: '/api/cluster?' + $.param(filtres)
+		url: '/api/design-page?' + $.param(filtres)
 		, dataType: 'json'
 		, type: 'PATCH'
 		, contentType: 'application/json; charset=utf-8'
@@ -336,9 +416,9 @@ function patchClusterVals(filtres, vals, success, error) {
 
 // GET //
 
-async function getCluster(pk) {
+async function getDesignPage(pk) {
 	$.ajax({
-		url: '/api/cluster/' + id
+		url: '/api/design-page/' + id
 		, dataType: 'json'
 		, type: 'GET'
 		, contentType: 'application/json; charset=utf-8'
@@ -349,17 +429,17 @@ async function getCluster(pk) {
 
 // Recherche //
 
-async function rechercheCluster($formulaireFiltres, success, error) {
-	var filtres = rechercheClusterFiltres($formulaireFiltres);
+async function rechercheDesignPage($formulaireFiltres, success, error) {
+	var filtres = rechercheDesignPageFiltres($formulaireFiltres);
 	if(success == null)
 		success = function( data, textStatus, jQxhr ) {};
 	if(error == null)
 		error = function( jqXhr, textStatus, errorThrown ) {};
 
-	rechercheClusterVals(filtres, success, error);
+	rechercheDesignPageVals(filtres, success, error);
 }
 
-function rechercheClusterFiltres($formulaireFiltres) {
+function rechercheDesignPageFiltres($formulaireFiltres) {
 	var filtres = [];
 	if($formulaireFiltres) {
 
@@ -398,6 +478,24 @@ function rechercheClusterFiltres($formulaireFiltres) {
 			filtreSupprime = filtreSupprimeSelectVal == 'true';
 		if(filtreSupprime != null && filtreSupprime === true)
 			filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
+
+		var filtreDesignPageNomComplet = $formulaireFiltres.find('.valeurDesignPageNomComplet').val();
+		if(filtreDesignPageNomComplet != null && filtreDesignPageNomComplet !== '')
+			filtres.push({ name: 'fq', value: 'designPageNomComplet:' + filtreDesignPageNomComplet });
+
+		var $filtreDesignCacheCheckbox = $formulaireFiltres.find('input.valeurDesignCache[type = "checkbox"]');
+		var $filtreDesignCacheSelect = $formulaireFiltres.find('select.valeurDesignCache');
+		var filtreDesignCache = $filtreDesignCacheSelect.length ? $filtreDesignCacheSelect.val() : $filtreDesignCacheCheckbox.prop('checked');
+		var filtreDesignCacheSelectVal = $formulaireFiltres.find('select.filtreDesignCache').val();
+		var filtreDesignCache = null;
+		if(filtreDesignCacheSelectVal !== '')
+			filtreDesignCache = filtreDesignCacheSelectVal == 'true';
+		if(filtreDesignCache != null && filtreDesignCache === true)
+			filtres.push({ name: 'fq', value: 'designCache:' + filtreDesignCache });
+
+		var filtrePartHtmlCles = $formulaireFiltres.find('.valeurPartHtmlCles').val();
+		if(filtrePartHtmlCles != null && filtrePartHtmlCles !== '')
+			filtres.push({ name: 'fq', value: 'partHtmlCles:' + filtrePartHtmlCles });
 
 		var filtreInheritPk = $formulaireFiltres.find('.valeurInheritPk').val();
 		if(filtreInheritPk != null && filtreInheritPk !== '')
@@ -446,13 +544,17 @@ function rechercheClusterFiltres($formulaireFiltres) {
 		var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
 		if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
 			filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
+
+		var filtreDesignPageCle = $formulaireFiltres.find('.valeurDesignPageCle').val();
+		if(filtreDesignPageCle != null && filtreDesignPageCle !== '')
+			filtres.push({ name: 'fq', value: 'designPageCle:' + filtreDesignPageCle });
 	}
 	return filtres;
 }
 
-function rechercheClusterVals(filtres, success, error) {
+function rechercheDesignPageVals(filtres, success, error) {
 	$.ajax({
-		url: '/api/cluster?' + $.param(filtres)
+		url: '/api/design-page?' + $.param(filtres)
 		, dataType: 'json'
 		, type: 'GET'
 		, contentType: 'application/json; charset=utf-8'
@@ -461,12 +563,12 @@ function rechercheClusterVals(filtres, success, error) {
 	});
 }
 
-function suggereClusterObjetSuggere($formulaireFiltres, $list) {
+function suggereDesignPageObjetSuggere($formulaireFiltres, $list) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'far fa-fort-awesome ');
-			var $span = $('<span>').attr('class', '').text(o['objetTitre']);
+			var $i = $('<i>').attr('class', 'far fa-drafting-compass ');
+			var $span = $('<span>').attr('class', '').text(o['designPageNomComplet']);
 			var $li = $('<li>');
 			var $a = $('<a>').attr('href', o['pageUrlPk']);
 			$a.append($i);
@@ -476,13 +578,227 @@ function suggereClusterObjetSuggere($formulaireFiltres, $list) {
 		});
 	};
 	error = function( jqXhr, textStatus, errorThrown ) {};
-	rechercherClusterVals($formulaireFiltres, success, error);
+	rechercherDesignPageVals($formulaireFiltres, success, error);
 }
 
-async function websocketCluster(success) {
+function suggereDesignPagePartHtmlCles(filtres, $list, pk = null, attribuer=true) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'fa fa-sun ');
+			var $span = $('<span>').attr('class', '').text(o['objetTitre']);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
+			$a.append($i);
+			$a.append($span);
+			var val = o['designPageCles'];
+			var checked = pk == null ? false : Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
+			var $input = $('<input>');
+			$input.attr('id', 'GET_partHtmlCles_' + pk + '_designPageCles_' + o['pk']);
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valeurPartHtmlCles w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_partHtmlCles_" + pk + "_designPageCles_" + o['pk'] + "'); patchDesignPageVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'PartHtmlCles']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'enleverLueur($(this)); ');
+			}
+			$input.attr('type', 'checkbox');
+			if(checked)
+				$input.attr('checked', 'checked');
+			var $li = $('<li>');
+			var tri1 = o['tri1'];
+			var tri2 = o['tri2'];
+			var tri3 = o['tri3'];
+			var tri4 = o['tri4'];
+			var tri5 = o['tri5'];
+			var tri6 = o['tri6'];
+			var tri7 = o['tri7'];
+			var tri8 = o['tri8'];
+			var tri9 = o['tri9'];
+			var tri10 = o['tri10'];
+
+			$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+			var $sortInput = $('<input>')
+			$sortInput.attr('class', 'w3-tiny ');
+			$sortInput.attr('style', 'width: 4em; ');
+			$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri1");
+			$sortInput.attr('value', tri1).attr('onchange', 
+				"$('#DesignPageForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+				+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri1']: $(this).val() ? $(this).val() : null }"
+					+ ", function() { "
+					+ "}"
+					+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri1')); }"
+					+ " ); "); 
+			$sort.append($sortInput);
+			$li.append($sort);
+
+			if(tri1 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri2");
+				$sortInput.attr('value', tri2).attr('onchange', 
+					"$('#DesignPageForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri2']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri2')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+
+			if(tri2 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri3");
+				$sortInput.attr('value', tri3).attr('onchange', 
+					"$('#DesignPageForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri3']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri3')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+
+			if(tri3 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri4");
+				$sortInput.attr('value', tri4).attr('onchange', 
+					"$('#DesignPageForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri4']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri4')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+
+			if(tri4 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri5");
+				$sortInput.attr('value', tri5).attr('onchange', 
+					"$('#DesignPageForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri5']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri5')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+
+			if(tri5 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri6");
+				$sortInput.attr('value', tri6).attr('onchange', 
+					"$('#DesignPageForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri6']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri6')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+
+			if(tri6 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri7");
+				$sortInput.attr('value', tri7).attr('onchange', 
+					"$('#DesignPageForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri7']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri7')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+
+			if(tri7 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri8");
+				$sortInput.attr('value', tri8).attr('onchange', 
+					"$('#DesignPageForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri8']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri8')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+
+			if(tri8 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri9");
+				$sortInput.attr('value', tri9).attr('onchange', 
+					"$('#DesignPageForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri9']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri9')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+
+			if(tri9 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri10");
+				$sortInput.attr('value', tri10).attr('onchange', 
+					"$('#DesignPageForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri10']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri10')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+			if(attribuer)
+				$li.append($input);
+			$li.append($a);
+			$list.append($li);
+		});
+		var focusId = $('#DesignPageForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	recherchePartHtmlVals(filtres, success, error);
+}
+
+async function websocketDesignPage(success) {
 	window.eventBus.onopen = function () {
 
-		window.eventBus.registerHandler('websocketCluster', function (error, message) {
+		window.eventBus.registerHandler('websocketDesignPage', function (error, message) {
 			var json = JSON.parse(message['body']);
 			var id = json['id'];
 			var pk = json['pk'];
@@ -494,13 +810,13 @@ async function websocketCluster(success) {
 				var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
 				var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
 				var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
-				var $header = $('<div>').attr('class', 'w3-container fa-gray ').attr('id', 'header-' + id);
-				var $i = $('<i>').attr('class', 'far fa-fort-awesome w3-margin-right ').attr('id', 'icon-' + id);
-				var $headerSpan = $('<span>').attr('class', '').text('modifier clusters');
+				var $header = $('<div>').attr('class', 'w3-container fa-khaki ').attr('id', 'header-' + id);
+				var $i = $('<i>').attr('class', 'far fa-drafting-compass w3-margin-right ').attr('id', 'icon-' + id);
+				var $headerSpan = $('<span>').attr('class', '').text('modifier design de pages');
 				var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
 				var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
 				var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
-				var $progress = $('<div>').attr('class', 'w3-gray ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
+				var $progress = $('<div>').attr('class', 'w3-khaki ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
 				$card.append($header);
 				$header.append($i);
 				$header.append($headerSpan);
@@ -516,9 +832,13 @@ async function websocketCluster(success) {
 				if(success)
 					success(json);
 		});
+
+		window.eventBus.registerHandler('websocketPartHtml', function (error, message) {
+			$('#Page_partHtmlCles').trigger('oninput');
+		});
 	}
 }
-async function websocketClusterInner(requeteApi) {
+async function websocketDesignPageInner(requeteApi) {
 	var pk = requeteApi['pk'];
 	var pks = requeteApi['pks'];
 	var classes = requeteApi['classes'];
@@ -526,23 +846,35 @@ async function websocketClusterInner(requeteApi) {
 	var empty = requeteApi['empty'];
 
 	if(pk != null) {
-		rechercherClusterVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
+		rechercherDesignPageVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
 			if(vars.includes('cree')) {
-				$('.inputCluster' + pk + 'Cree').val(o['cree']);
-				$('.varCluster' + pk + 'Cree').text(o['cree']);
+				$('.inputDesignPage' + pk + 'Cree').val(o['cree']);
+				$('.varDesignPage' + pk + 'Cree').text(o['cree']);
 			}
 			if(vars.includes('modifie')) {
-				$('.inputCluster' + pk + 'Modifie').val(o['modifie']);
-				$('.varCluster' + pk + 'Modifie').text(o['modifie']);
+				$('.inputDesignPage' + pk + 'Modifie').val(o['modifie']);
+				$('.varDesignPage' + pk + 'Modifie').text(o['modifie']);
 			}
 			if(vars.includes('archive')) {
-				$('.inputCluster' + pk + 'Archive').val(o['archive']);
-				$('.varCluster' + pk + 'Archive').text(o['archive']);
+				$('.inputDesignPage' + pk + 'Archive').val(o['archive']);
+				$('.varDesignPage' + pk + 'Archive').text(o['archive']);
 			}
 			if(vars.includes('supprime')) {
-				$('.inputCluster' + pk + 'Supprime').val(o['supprime']);
-				$('.varCluster' + pk + 'Supprime').text(o['supprime']);
+				$('.inputDesignPage' + pk + 'Supprime').val(o['supprime']);
+				$('.varDesignPage' + pk + 'Supprime').text(o['supprime']);
+			}
+			if(vars.includes('designPageNomComplet')) {
+				$('.inputDesignPage' + pk + 'DesignPageNomComplet').val(o['designPageNomComplet']);
+				$('.varDesignPage' + pk + 'DesignPageNomComplet').text(o['designPageNomComplet']);
+			}
+			if(vars.includes('designCache')) {
+				$('.inputDesignPage' + pk + 'DesignCache').val(o['designCache']);
+				$('.varDesignPage' + pk + 'DesignCache').text(o['designCache']);
+			}
+			if(vars.includes('partHtmlCles')) {
+				$('.inputDesignPage' + pk + 'PartHtmlCles').val(o['partHtmlCles']);
+				$('.varDesignPage' + pk + 'PartHtmlCles').text(o['partHtmlCles']);
 			}
 		});
 	}

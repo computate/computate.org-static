@@ -102,7 +102,7 @@ function postGardienScolaireVals(vals, success, error) {
 
 // PUT //
 
-async function putGardienScolaire($formulaireValeurs, success, error) {
+async function putGardienScolaire($formulaireValeurs, pk, success, error) {
 	var vals = {};
 
 	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
@@ -165,7 +165,7 @@ async function putGardienScolaire($formulaireValeurs, success, error) {
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 		vals['objetTitre'] = valeurObjetTitre;
 
-	putGardienScolaireVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+	putGardienScolaireVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
 function putGardienScolaireVals(filtres, vals, success, error) {
@@ -174,7 +174,7 @@ function putGardienScolaireVals(filtres, vals, success, error) {
 		, dataType: 'json'
 		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
-		, data: JSON.stringify(vals)
+		, data: JSON.stringify({patch: vals})
 		, success: success
 		, error: error
 	});
@@ -182,7 +182,7 @@ function putGardienScolaireVals(filtres, vals, success, error) {
 
 // PATCH //
 
-async function patchGardienScolaire($formulaireFiltres, $formulaireValeurs, success, error) {
+async function patchGardienScolaire($formulaireFiltres, $formulaireValeurs, pk, success, error) {
 	var filtres = patchGardienScolaireFiltres($formulaireFiltres);
 
 	var vals = {};
@@ -232,7 +232,11 @@ async function patchGardienScolaire($formulaireFiltres, $formulaireValeurs, succ
 		vals['removeObjetId'] = removeObjetId;
 
 	var removeArchive = $formulaireFiltres.find('.removeArchive').val() === 'true';
-	var setArchive = removeArchive ? null : $formulaireValeurs.find('.setArchive').prop('checked');
+	var valeurArchiveSelectVal = $formulaireValeurs.find('select.setArchive').val();
+	var valeurArchive = null;
+	if(valeurArchiveSelectVal !== '')
+		valeurArchive = valeurArchiveSelectVal == 'true';
+	setArchive = removeArchive ? null : valeurArchive;
 	if(removeArchive || setArchive != null && setArchive !== '')
 		vals['setArchive'] = setArchive;
 	var addArchive = $formulaireValeurs.find('.addArchive').prop('checked');
@@ -243,7 +247,11 @@ async function patchGardienScolaire($formulaireFiltres, $formulaireValeurs, succ
 		vals['removeArchive'] = removeArchive;
 
 	var removeSupprime = $formulaireFiltres.find('.removeSupprime').val() === 'true';
-	var setSupprime = removeSupprime ? null : $formulaireValeurs.find('.setSupprime').prop('checked');
+	var valeurSupprimeSelectVal = $formulaireValeurs.find('select.setSupprime').val();
+	var valeurSupprime = null;
+	if(valeurSupprimeSelectVal !== '')
+		valeurSupprime = valeurSupprimeSelectVal == 'true';
+	setSupprime = removeSupprime ? null : valeurSupprime;
 	if(removeSupprime || setSupprime != null && setSupprime !== '')
 		vals['setSupprime'] = setSupprime;
 	var addSupprime = $formulaireValeurs.find('.addSupprime').prop('checked');
@@ -309,7 +317,11 @@ async function patchGardienScolaire($formulaireFiltres, $formulaireValeurs, succ
 		vals['removePersonneRelation'] = removePersonneRelation;
 
 	var removePersonneContactUrgence = $formulaireFiltres.find('.removePersonneContactUrgence').val() === 'true';
-	var setPersonneContactUrgence = removePersonneContactUrgence ? null : $formulaireValeurs.find('.setPersonneContactUrgence').prop('checked');
+	var valeurPersonneContactUrgenceSelectVal = $formulaireValeurs.find('select.setPersonneContactUrgence').val();
+	var valeurPersonneContactUrgence = null;
+	if(valeurPersonneContactUrgenceSelectVal !== '')
+		valeurPersonneContactUrgence = valeurPersonneContactUrgenceSelectVal == 'true';
+	setPersonneContactUrgence = removePersonneContactUrgence ? null : valeurPersonneContactUrgence;
 	if(removePersonneContactUrgence || setPersonneContactUrgence != null && setPersonneContactUrgence !== '')
 		vals['setPersonneContactUrgence'] = setPersonneContactUrgence;
 	var addPersonneContactUrgence = $formulaireValeurs.find('.addPersonneContactUrgence').prop('checked');
@@ -320,7 +332,11 @@ async function patchGardienScolaire($formulaireFiltres, $formulaireValeurs, succ
 		vals['removePersonneContactUrgence'] = removePersonneContactUrgence;
 
 	var removePersonneChercher = $formulaireFiltres.find('.removePersonneChercher').val() === 'true';
-	var setPersonneChercher = removePersonneChercher ? null : $formulaireValeurs.find('.setPersonneChercher').prop('checked');
+	var valeurPersonneChercherSelectVal = $formulaireValeurs.find('select.setPersonneChercher').val();
+	var valeurPersonneChercher = null;
+	if(valeurPersonneChercherSelectVal !== '')
+		valeurPersonneChercher = valeurPersonneChercherSelectVal == 'true';
+	setPersonneChercher = removePersonneChercher ? null : valeurPersonneChercher;
 	if(removePersonneChercher || setPersonneChercher != null && setPersonneChercher !== '')
 		vals['setPersonneChercher'] = setPersonneChercher;
 	var addPersonneChercher = $formulaireValeurs.find('.addPersonneChercher').prop('checked');
@@ -352,7 +368,7 @@ async function patchGardienScolaire($formulaireFiltres, $formulaireValeurs, succ
 	if(removeObjetTitre != null && removeObjetTitre !== '')
 		vals['removeObjetTitre'] = removeObjetTitre;
 
-	patchGardienScolaireVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+	patchGardienScolaireVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
 function patchGardienScolaireFiltres($formulaireFiltres) {
@@ -374,11 +390,23 @@ function patchGardienScolaireFiltres($formulaireFiltres) {
 	if(filtreObjetId != null && filtreObjetId !== '')
 		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
 
-	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
+	var $filtreArchiveCheckbox = $formulaireFiltres.find('input.valeurArchive[type = "checkbox"]');
+	var $filtreArchiveSelect = $formulaireFiltres.find('select.valeurArchive');
+	var filtreArchive = $filtreArchiveSelect.length ? $filtreArchiveSelect.val() : $filtreArchiveCheckbox.prop('checked');
+	var filtreArchiveSelectVal = $formulaireFiltres.find('select.filtreArchive').val();
+	var filtreArchive = null;
+	if(filtreArchiveSelectVal !== '')
+		filtreArchive = filtreArchiveSelectVal == 'true';
 	if(filtreArchive != null && filtreArchive === true)
 		filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
 
-	var filtreSupprime = $formulaireFiltres.find('.valeurSupprime').prop('checked');
+	var $filtreSupprimeCheckbox = $formulaireFiltres.find('input.valeurSupprime[type = "checkbox"]');
+	var $filtreSupprimeSelect = $formulaireFiltres.find('select.valeurSupprime');
+	var filtreSupprime = $filtreSupprimeSelect.length ? $filtreSupprimeSelect.val() : $filtreSupprimeCheckbox.prop('checked');
+	var filtreSupprimeSelectVal = $formulaireFiltres.find('select.filtreSupprime').val();
+	var filtreSupprime = null;
+	if(filtreSupprimeSelectVal !== '')
+		filtreSupprime = filtreSupprimeSelectVal == 'true';
 	if(filtreSupprime != null && filtreSupprime === true)
 		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
@@ -402,11 +430,23 @@ function patchGardienScolaireFiltres($formulaireFiltres) {
 	if(filtrePersonneRelation != null && filtrePersonneRelation !== '')
 		filtres.push({ name: 'fq', value: 'personneRelation:' + filtrePersonneRelation });
 
-	var filtrePersonneContactUrgence = $formulaireFiltres.find('.valeurPersonneContactUrgence').prop('checked');
+	var $filtrePersonneContactUrgenceCheckbox = $formulaireFiltres.find('input.valeurPersonneContactUrgence[type = "checkbox"]');
+	var $filtrePersonneContactUrgenceSelect = $formulaireFiltres.find('select.valeurPersonneContactUrgence');
+	var filtrePersonneContactUrgence = $filtrePersonneContactUrgenceSelect.length ? $filtrePersonneContactUrgenceSelect.val() : $filtrePersonneContactUrgenceCheckbox.prop('checked');
+	var filtrePersonneContactUrgenceSelectVal = $formulaireFiltres.find('select.filtrePersonneContactUrgence').val();
+	var filtrePersonneContactUrgence = null;
+	if(filtrePersonneContactUrgenceSelectVal !== '')
+		filtrePersonneContactUrgence = filtrePersonneContactUrgenceSelectVal == 'true';
 	if(filtrePersonneContactUrgence != null && filtrePersonneContactUrgence === true)
 		filtres.push({ name: 'fq', value: 'personneContactUrgence:' + filtrePersonneContactUrgence });
 
-	var filtrePersonneChercher = $formulaireFiltres.find('.valeurPersonneChercher').prop('checked');
+	var $filtrePersonneChercherCheckbox = $formulaireFiltres.find('input.valeurPersonneChercher[type = "checkbox"]');
+	var $filtrePersonneChercherSelect = $formulaireFiltres.find('select.valeurPersonneChercher');
+	var filtrePersonneChercher = $filtrePersonneChercherSelect.length ? $filtrePersonneChercherSelect.val() : $filtrePersonneChercherCheckbox.prop('checked');
+	var filtrePersonneChercherSelectVal = $formulaireFiltres.find('select.filtrePersonneChercher').val();
+	var filtrePersonneChercher = null;
+	if(filtrePersonneChercherSelectVal !== '')
+		filtrePersonneChercher = filtrePersonneChercherSelectVal == 'true';
 	if(filtrePersonneChercher != null && filtrePersonneChercher === true)
 		filtres.push({ name: 'fq', value: 'personneChercher:' + filtrePersonneChercher });
 
@@ -450,6 +490,10 @@ function patchGardienScolaireFiltres($formulaireFiltres) {
 	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
 		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
 
+	var filtreObjetTexte = $formulaireFiltres.find('.valeurObjetTexte').val();
+	if(filtreObjetTexte != null && filtreObjetTexte !== '')
+		filtres.push({ name: 'fq', value: 'objetTexte:' + filtreObjetTexte });
+
 	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
 	if(filtrePageUrlId != null && filtrePageUrlId !== '')
 		filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
@@ -469,6 +513,10 @@ function patchGardienScolaireFiltres($formulaireFiltres) {
 	var filtreGardienTri = $formulaireFiltres.find('.valeurGardienTri').val();
 	if(filtreGardienTri != null && filtreGardienTri !== '')
 		filtres.push({ name: 'fq', value: 'gardienTri:' + filtreGardienTri });
+
+	var filtreUtilisateurCles = $formulaireFiltres.find('.valeurUtilisateurCles').val();
+	if(filtreUtilisateurCles != null && filtreUtilisateurCles !== '')
+		filtres.push({ name: 'fq', value: 'utilisateurCles:' + filtreUtilisateurCles });
 
 	var filtreEcoleCles = $formulaireFiltres.find('.valeurEcoleCles').val();
 	if(filtreEcoleCles != null && filtreEcoleCles !== '')
@@ -510,11 +558,23 @@ function patchGardienScolaireFiltres($formulaireFiltres) {
 	if(filtrePersonneMail != null && filtrePersonneMail !== '')
 		filtres.push({ name: 'fq', value: 'personneMail:' + filtrePersonneMail });
 
-	var filtrePersonneSms = $formulaireFiltres.find('.valeurPersonneSms').prop('checked');
+	var $filtrePersonneSmsCheckbox = $formulaireFiltres.find('input.valeurPersonneSms[type = "checkbox"]');
+	var $filtrePersonneSmsSelect = $formulaireFiltres.find('select.valeurPersonneSms');
+	var filtrePersonneSms = $filtrePersonneSmsSelect.length ? $filtrePersonneSmsSelect.val() : $filtrePersonneSmsCheckbox.prop('checked');
+	var filtrePersonneSmsSelectVal = $formulaireFiltres.find('select.filtrePersonneSms').val();
+	var filtrePersonneSms = null;
+	if(filtrePersonneSmsSelectVal !== '')
+		filtrePersonneSms = filtrePersonneSmsSelectVal == 'true';
 	if(filtrePersonneSms != null && filtrePersonneSms === true)
 		filtres.push({ name: 'fq', value: 'personneSms:' + filtrePersonneSms });
 
-	var filtrePersonneRecevoirMail = $formulaireFiltres.find('.valeurPersonneRecevoirMail').prop('checked');
+	var $filtrePersonneRecevoirMailCheckbox = $formulaireFiltres.find('input.valeurPersonneRecevoirMail[type = "checkbox"]');
+	var $filtrePersonneRecevoirMailSelect = $formulaireFiltres.find('select.valeurPersonneRecevoirMail');
+	var filtrePersonneRecevoirMail = $filtrePersonneRecevoirMailSelect.length ? $filtrePersonneRecevoirMailSelect.val() : $filtrePersonneRecevoirMailCheckbox.prop('checked');
+	var filtrePersonneRecevoirMailSelectVal = $formulaireFiltres.find('select.filtrePersonneRecevoirMail').val();
+	var filtrePersonneRecevoirMail = null;
+	if(filtrePersonneRecevoirMailSelectVal !== '')
+		filtrePersonneRecevoirMail = filtrePersonneRecevoirMailSelectVal == 'true';
 	if(filtrePersonneRecevoirMail != null && filtrePersonneRecevoirMail === true)
 		filtres.push({ name: 'fq', value: 'personneRecevoirMail:' + filtrePersonneRecevoirMail });
 
@@ -555,20 +615,6 @@ async function getGardienScolaire(pk) {
 	});
 }
 
-// DELETE //
-
-async function deleteGardienScolaire(pk) {
-	$.ajax({
-		url: '/api/gardien/' + id
-		, dataType: 'json'
-		, type: 'DELETE'
-		, contentType: 'application/json; charset=utf-8'
-		, data: JSON.stringify(vals)
-		, success: success
-		, error: error
-	});
-}
-
 // Recherche //
 
 async function rechercheGardienScolaire($formulaireFiltres, success, error) {
@@ -600,11 +646,23 @@ function rechercheGardienScolaireFiltres($formulaireFiltres) {
 	if(filtreObjetId != null && filtreObjetId !== '')
 		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
 
-	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
+	var $filtreArchiveCheckbox = $formulaireFiltres.find('input.valeurArchive[type = "checkbox"]');
+	var $filtreArchiveSelect = $formulaireFiltres.find('select.valeurArchive');
+	var filtreArchive = $filtreArchiveSelect.length ? $filtreArchiveSelect.val() : $filtreArchiveCheckbox.prop('checked');
+	var filtreArchiveSelectVal = $formulaireFiltres.find('select.filtreArchive').val();
+	var filtreArchive = null;
+	if(filtreArchiveSelectVal !== '')
+		filtreArchive = filtreArchiveSelectVal == 'true';
 	if(filtreArchive != null && filtreArchive === true)
 		filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
 
-	var filtreSupprime = $formulaireFiltres.find('.valeurSupprime').prop('checked');
+	var $filtreSupprimeCheckbox = $formulaireFiltres.find('input.valeurSupprime[type = "checkbox"]');
+	var $filtreSupprimeSelect = $formulaireFiltres.find('select.valeurSupprime');
+	var filtreSupprime = $filtreSupprimeSelect.length ? $filtreSupprimeSelect.val() : $filtreSupprimeCheckbox.prop('checked');
+	var filtreSupprimeSelectVal = $formulaireFiltres.find('select.filtreSupprime').val();
+	var filtreSupprime = null;
+	if(filtreSupprimeSelectVal !== '')
+		filtreSupprime = filtreSupprimeSelectVal == 'true';
 	if(filtreSupprime != null && filtreSupprime === true)
 		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
@@ -628,11 +686,23 @@ function rechercheGardienScolaireFiltres($formulaireFiltres) {
 	if(filtrePersonneRelation != null && filtrePersonneRelation !== '')
 		filtres.push({ name: 'fq', value: 'personneRelation:' + filtrePersonneRelation });
 
-	var filtrePersonneContactUrgence = $formulaireFiltres.find('.valeurPersonneContactUrgence').prop('checked');
+	var $filtrePersonneContactUrgenceCheckbox = $formulaireFiltres.find('input.valeurPersonneContactUrgence[type = "checkbox"]');
+	var $filtrePersonneContactUrgenceSelect = $formulaireFiltres.find('select.valeurPersonneContactUrgence');
+	var filtrePersonneContactUrgence = $filtrePersonneContactUrgenceSelect.length ? $filtrePersonneContactUrgenceSelect.val() : $filtrePersonneContactUrgenceCheckbox.prop('checked');
+	var filtrePersonneContactUrgenceSelectVal = $formulaireFiltres.find('select.filtrePersonneContactUrgence').val();
+	var filtrePersonneContactUrgence = null;
+	if(filtrePersonneContactUrgenceSelectVal !== '')
+		filtrePersonneContactUrgence = filtrePersonneContactUrgenceSelectVal == 'true';
 	if(filtrePersonneContactUrgence != null && filtrePersonneContactUrgence === true)
 		filtres.push({ name: 'fq', value: 'personneContactUrgence:' + filtrePersonneContactUrgence });
 
-	var filtrePersonneChercher = $formulaireFiltres.find('.valeurPersonneChercher').prop('checked');
+	var $filtrePersonneChercherCheckbox = $formulaireFiltres.find('input.valeurPersonneChercher[type = "checkbox"]');
+	var $filtrePersonneChercherSelect = $formulaireFiltres.find('select.valeurPersonneChercher');
+	var filtrePersonneChercher = $filtrePersonneChercherSelect.length ? $filtrePersonneChercherSelect.val() : $filtrePersonneChercherCheckbox.prop('checked');
+	var filtrePersonneChercherSelectVal = $formulaireFiltres.find('select.filtrePersonneChercher').val();
+	var filtrePersonneChercher = null;
+	if(filtrePersonneChercherSelectVal !== '')
+		filtrePersonneChercher = filtrePersonneChercherSelectVal == 'true';
 	if(filtrePersonneChercher != null && filtrePersonneChercher === true)
 		filtres.push({ name: 'fq', value: 'personneChercher:' + filtrePersonneChercher });
 
@@ -676,6 +746,10 @@ function rechercheGardienScolaireFiltres($formulaireFiltres) {
 	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
 		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
 
+	var filtreObjetTexte = $formulaireFiltres.find('.valeurObjetTexte').val();
+	if(filtreObjetTexte != null && filtreObjetTexte !== '')
+		filtres.push({ name: 'fq', value: 'objetTexte:' + filtreObjetTexte });
+
 	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
 	if(filtrePageUrlId != null && filtrePageUrlId !== '')
 		filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
@@ -695,6 +769,10 @@ function rechercheGardienScolaireFiltres($formulaireFiltres) {
 	var filtreGardienTri = $formulaireFiltres.find('.valeurGardienTri').val();
 	if(filtreGardienTri != null && filtreGardienTri !== '')
 		filtres.push({ name: 'fq', value: 'gardienTri:' + filtreGardienTri });
+
+	var filtreUtilisateurCles = $formulaireFiltres.find('.valeurUtilisateurCles').val();
+	if(filtreUtilisateurCles != null && filtreUtilisateurCles !== '')
+		filtres.push({ name: 'fq', value: 'utilisateurCles:' + filtreUtilisateurCles });
 
 	var filtreEcoleCles = $formulaireFiltres.find('.valeurEcoleCles').val();
 	if(filtreEcoleCles != null && filtreEcoleCles !== '')
@@ -736,11 +814,23 @@ function rechercheGardienScolaireFiltres($formulaireFiltres) {
 	if(filtrePersonneMail != null && filtrePersonneMail !== '')
 		filtres.push({ name: 'fq', value: 'personneMail:' + filtrePersonneMail });
 
-	var filtrePersonneSms = $formulaireFiltres.find('.valeurPersonneSms').prop('checked');
+	var $filtrePersonneSmsCheckbox = $formulaireFiltres.find('input.valeurPersonneSms[type = "checkbox"]');
+	var $filtrePersonneSmsSelect = $formulaireFiltres.find('select.valeurPersonneSms');
+	var filtrePersonneSms = $filtrePersonneSmsSelect.length ? $filtrePersonneSmsSelect.val() : $filtrePersonneSmsCheckbox.prop('checked');
+	var filtrePersonneSmsSelectVal = $formulaireFiltres.find('select.filtrePersonneSms').val();
+	var filtrePersonneSms = null;
+	if(filtrePersonneSmsSelectVal !== '')
+		filtrePersonneSms = filtrePersonneSmsSelectVal == 'true';
 	if(filtrePersonneSms != null && filtrePersonneSms === true)
 		filtres.push({ name: 'fq', value: 'personneSms:' + filtrePersonneSms });
 
-	var filtrePersonneRecevoirMail = $formulaireFiltres.find('.valeurPersonneRecevoirMail').prop('checked');
+	var $filtrePersonneRecevoirMailCheckbox = $formulaireFiltres.find('input.valeurPersonneRecevoirMail[type = "checkbox"]');
+	var $filtrePersonneRecevoirMailSelect = $formulaireFiltres.find('select.valeurPersonneRecevoirMail');
+	var filtrePersonneRecevoirMail = $filtrePersonneRecevoirMailSelect.length ? $filtrePersonneRecevoirMailSelect.val() : $filtrePersonneRecevoirMailCheckbox.prop('checked');
+	var filtrePersonneRecevoirMailSelectVal = $formulaireFiltres.find('select.filtrePersonneRecevoirMail').val();
+	var filtrePersonneRecevoirMail = null;
+	if(filtrePersonneRecevoirMailSelectVal !== '')
+		filtrePersonneRecevoirMail = filtrePersonneRecevoirMailSelectVal == 'true';
 	if(filtrePersonneRecevoirMail != null && filtrePersonneRecevoirMail === true)
 		filtres.push({ name: 'fq', value: 'personneRecevoirMail:' + filtrePersonneRecevoirMail });
 
@@ -779,7 +869,7 @@ function suggereGardienScolaireObjetSuggere($formulaireFiltres, $list) {
 	rechercherGardienScolaireVals($formulaireFiltres, success, error);
 }
 
-function suggereGardienScolaireInscriptionCles(filtres, $list, pk = null) {
+function suggereGardienScolaireInscriptionCles(filtres, $list, pk = null, attribuer=true) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
@@ -789,7 +879,7 @@ function suggereGardienScolaireInscriptionCles(filtres, $list, pk = null) {
 			$a.append($i);
 			$a.append($span);
 			var val = o['gardienCles'];
-			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
+			var checked = Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
 			var $input = $('<input>');
 			$input.attr('id', 'GET_inscriptionCles_' + pk + '_gardienCles_' + o['pk']);
 			$input.attr('value', o['pk']);
@@ -802,7 +892,8 @@ function suggereGardienScolaireInscriptionCles(filtres, $list, pk = null) {
 			if(checked)
 				$input.attr('checked', 'checked');
 			var $li = $('<li>');
-			$li.append($input);
+			if(attribuer)
+				$li.append($input);
 			$li.append($a);
 			$list.append($li);
 		});
@@ -916,17 +1007,5 @@ async function websocketGardienScolaireInner(requeteApi) {
 				$('.varGardienScolaire' + pk + 'InscriptionCles').text(o['inscriptionCles']);
 			}
 		});
-	}
-
-	if(!empty) {
-		if(pks) {
-			for(i=0; i < pks.length; i++) {
-				var pk2 = pks[i];
-				var c = classes[i];
-				await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
-			}
-		}
-		if(pk)
-			await patchGardienScolaireVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 	}
 }

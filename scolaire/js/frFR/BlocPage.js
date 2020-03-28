@@ -114,7 +114,7 @@ function postBlocScolaireVals(vals, success, error) {
 
 // PUT //
 
-async function putBlocScolaire($formulaireValeurs, success, error) {
+async function putBlocScolaire($formulaireValeurs, pk, success, error) {
 	var vals = {};
 
 	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
@@ -189,7 +189,7 @@ async function putBlocScolaire($formulaireValeurs, success, error) {
 	if(valeurEcoleAddresse != null && valeurEcoleAddresse !== '')
 		vals['ecoleAddresse'] = valeurEcoleAddresse;
 
-	putBlocScolaireVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+	putBlocScolaireVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
 function putBlocScolaireVals(filtres, vals, success, error) {
@@ -198,7 +198,7 @@ function putBlocScolaireVals(filtres, vals, success, error) {
 		, dataType: 'json'
 		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
-		, data: JSON.stringify(vals)
+		, data: JSON.stringify({patch: vals})
 		, success: success
 		, error: error
 	});
@@ -206,7 +206,7 @@ function putBlocScolaireVals(filtres, vals, success, error) {
 
 // PATCH //
 
-async function patchBlocScolaire($formulaireFiltres, $formulaireValeurs, success, error) {
+async function patchBlocScolaire($formulaireFiltres, $formulaireValeurs, pk, success, error) {
 	var filtres = patchBlocScolaireFiltres($formulaireFiltres);
 
 	var vals = {};
@@ -256,7 +256,11 @@ async function patchBlocScolaire($formulaireFiltres, $formulaireValeurs, success
 		vals['removeObjetId'] = removeObjetId;
 
 	var removeArchive = $formulaireFiltres.find('.removeArchive').val() === 'true';
-	var setArchive = removeArchive ? null : $formulaireValeurs.find('.setArchive').prop('checked');
+	var valeurArchiveSelectVal = $formulaireValeurs.find('select.setArchive').val();
+	var valeurArchive = null;
+	if(valeurArchiveSelectVal !== '')
+		valeurArchive = valeurArchiveSelectVal == 'true';
+	setArchive = removeArchive ? null : valeurArchive;
 	if(removeArchive || setArchive != null && setArchive !== '')
 		vals['setArchive'] = setArchive;
 	var addArchive = $formulaireValeurs.find('.addArchive').prop('checked');
@@ -267,7 +271,11 @@ async function patchBlocScolaire($formulaireFiltres, $formulaireValeurs, success
 		vals['removeArchive'] = removeArchive;
 
 	var removeSupprime = $formulaireFiltres.find('.removeSupprime').val() === 'true';
-	var setSupprime = removeSupprime ? null : $formulaireValeurs.find('.setSupprime').prop('checked');
+	var valeurSupprimeSelectVal = $formulaireValeurs.find('select.setSupprime').val();
+	var valeurSupprime = null;
+	if(valeurSupprimeSelectVal !== '')
+		valeurSupprime = valeurSupprimeSelectVal == 'true';
+	setSupprime = removeSupprime ? null : valeurSupprime;
 	if(removeSupprime || setSupprime != null && setSupprime !== '')
 		vals['setSupprime'] = setSupprime;
 	var addSupprime = $formulaireValeurs.find('.addSupprime').prop('checked');
@@ -311,7 +319,11 @@ async function patchBlocScolaire($formulaireFiltres, $formulaireValeurs, success
 		vals['removeBlocPrixParMois'] = removeBlocPrixParMois;
 
 	var removeBlocLundi = $formulaireFiltres.find('.removeBlocLundi').val() === 'true';
-	var setBlocLundi = removeBlocLundi ? null : $formulaireValeurs.find('.setBlocLundi').prop('checked');
+	var valeurBlocLundiSelectVal = $formulaireValeurs.find('select.setBlocLundi').val();
+	var valeurBlocLundi = null;
+	if(valeurBlocLundiSelectVal !== '')
+		valeurBlocLundi = valeurBlocLundiSelectVal == 'true';
+	setBlocLundi = removeBlocLundi ? null : valeurBlocLundi;
 	if(removeBlocLundi || setBlocLundi != null && setBlocLundi !== '')
 		vals['setBlocLundi'] = setBlocLundi;
 	var addBlocLundi = $formulaireValeurs.find('.addBlocLundi').prop('checked');
@@ -322,7 +334,11 @@ async function patchBlocScolaire($formulaireFiltres, $formulaireValeurs, success
 		vals['removeBlocLundi'] = removeBlocLundi;
 
 	var removeBlocMardi = $formulaireFiltres.find('.removeBlocMardi').val() === 'true';
-	var setBlocMardi = removeBlocMardi ? null : $formulaireValeurs.find('.setBlocMardi').prop('checked');
+	var valeurBlocMardiSelectVal = $formulaireValeurs.find('select.setBlocMardi').val();
+	var valeurBlocMardi = null;
+	if(valeurBlocMardiSelectVal !== '')
+		valeurBlocMardi = valeurBlocMardiSelectVal == 'true';
+	setBlocMardi = removeBlocMardi ? null : valeurBlocMardi;
 	if(removeBlocMardi || setBlocMardi != null && setBlocMardi !== '')
 		vals['setBlocMardi'] = setBlocMardi;
 	var addBlocMardi = $formulaireValeurs.find('.addBlocMardi').prop('checked');
@@ -333,7 +349,11 @@ async function patchBlocScolaire($formulaireFiltres, $formulaireValeurs, success
 		vals['removeBlocMardi'] = removeBlocMardi;
 
 	var removeBlocMercredi = $formulaireFiltres.find('.removeBlocMercredi').val() === 'true';
-	var setBlocMercredi = removeBlocMercredi ? null : $formulaireValeurs.find('.setBlocMercredi').prop('checked');
+	var valeurBlocMercrediSelectVal = $formulaireValeurs.find('select.setBlocMercredi').val();
+	var valeurBlocMercredi = null;
+	if(valeurBlocMercrediSelectVal !== '')
+		valeurBlocMercredi = valeurBlocMercrediSelectVal == 'true';
+	setBlocMercredi = removeBlocMercredi ? null : valeurBlocMercredi;
 	if(removeBlocMercredi || setBlocMercredi != null && setBlocMercredi !== '')
 		vals['setBlocMercredi'] = setBlocMercredi;
 	var addBlocMercredi = $formulaireValeurs.find('.addBlocMercredi').prop('checked');
@@ -344,7 +364,11 @@ async function patchBlocScolaire($formulaireFiltres, $formulaireValeurs, success
 		vals['removeBlocMercredi'] = removeBlocMercredi;
 
 	var removeBlocJeudi = $formulaireFiltres.find('.removeBlocJeudi').val() === 'true';
-	var setBlocJeudi = removeBlocJeudi ? null : $formulaireValeurs.find('.setBlocJeudi').prop('checked');
+	var valeurBlocJeudiSelectVal = $formulaireValeurs.find('select.setBlocJeudi').val();
+	var valeurBlocJeudi = null;
+	if(valeurBlocJeudiSelectVal !== '')
+		valeurBlocJeudi = valeurBlocJeudiSelectVal == 'true';
+	setBlocJeudi = removeBlocJeudi ? null : valeurBlocJeudi;
 	if(removeBlocJeudi || setBlocJeudi != null && setBlocJeudi !== '')
 		vals['setBlocJeudi'] = setBlocJeudi;
 	var addBlocJeudi = $formulaireValeurs.find('.addBlocJeudi').prop('checked');
@@ -355,7 +379,11 @@ async function patchBlocScolaire($formulaireFiltres, $formulaireValeurs, success
 		vals['removeBlocJeudi'] = removeBlocJeudi;
 
 	var removeBlocVendredi = $formulaireFiltres.find('.removeBlocVendredi').val() === 'true';
-	var setBlocVendredi = removeBlocVendredi ? null : $formulaireValeurs.find('.setBlocVendredi').prop('checked');
+	var valeurBlocVendrediSelectVal = $formulaireValeurs.find('select.setBlocVendredi').val();
+	var valeurBlocVendredi = null;
+	if(valeurBlocVendrediSelectVal !== '')
+		valeurBlocVendredi = valeurBlocVendrediSelectVal == 'true';
+	setBlocVendredi = removeBlocVendredi ? null : valeurBlocVendredi;
 	if(removeBlocVendredi || setBlocVendredi != null && setBlocVendredi !== '')
 		vals['setBlocVendredi'] = setBlocVendredi;
 	var addBlocVendredi = $formulaireValeurs.find('.addBlocVendredi').prop('checked');
@@ -409,7 +437,7 @@ async function patchBlocScolaire($formulaireFiltres, $formulaireValeurs, success
 	if(removeEcoleAddresse != null && removeEcoleAddresse !== '')
 		vals['removeEcoleAddresse'] = removeEcoleAddresse;
 
-	patchBlocScolaireVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+	patchBlocScolaireVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
 function patchBlocScolaireFiltres($formulaireFiltres) {
@@ -431,11 +459,23 @@ function patchBlocScolaireFiltres($formulaireFiltres) {
 	if(filtreObjetId != null && filtreObjetId !== '')
 		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
 
-	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
+	var $filtreArchiveCheckbox = $formulaireFiltres.find('input.valeurArchive[type = "checkbox"]');
+	var $filtreArchiveSelect = $formulaireFiltres.find('select.valeurArchive');
+	var filtreArchive = $filtreArchiveSelect.length ? $filtreArchiveSelect.val() : $filtreArchiveCheckbox.prop('checked');
+	var filtreArchiveSelectVal = $formulaireFiltres.find('select.filtreArchive').val();
+	var filtreArchive = null;
+	if(filtreArchiveSelectVal !== '')
+		filtreArchive = filtreArchiveSelectVal == 'true';
 	if(filtreArchive != null && filtreArchive === true)
 		filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
 
-	var filtreSupprime = $formulaireFiltres.find('.valeurSupprime').prop('checked');
+	var $filtreSupprimeCheckbox = $formulaireFiltres.find('input.valeurSupprime[type = "checkbox"]');
+	var $filtreSupprimeSelect = $formulaireFiltres.find('select.valeurSupprime');
+	var filtreSupprime = $filtreSupprimeSelect.length ? $filtreSupprimeSelect.val() : $filtreSupprimeCheckbox.prop('checked');
+	var filtreSupprimeSelectVal = $formulaireFiltres.find('select.filtreSupprime').val();
+	var filtreSupprime = null;
+	if(filtreSupprimeSelectVal !== '')
+		filtreSupprime = filtreSupprimeSelectVal == 'true';
 	if(filtreSupprime != null && filtreSupprime === true)
 		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
@@ -451,23 +491,53 @@ function patchBlocScolaireFiltres($formulaireFiltres) {
 	if(filtreBlocPrixParMois != null && filtreBlocPrixParMois !== '')
 		filtres.push({ name: 'fq', value: 'blocPrixParMois:' + filtreBlocPrixParMois });
 
-	var filtreBlocLundi = $formulaireFiltres.find('.valeurBlocLundi').prop('checked');
+	var $filtreBlocLundiCheckbox = $formulaireFiltres.find('input.valeurBlocLundi[type = "checkbox"]');
+	var $filtreBlocLundiSelect = $formulaireFiltres.find('select.valeurBlocLundi');
+	var filtreBlocLundi = $filtreBlocLundiSelect.length ? $filtreBlocLundiSelect.val() : $filtreBlocLundiCheckbox.prop('checked');
+	var filtreBlocLundiSelectVal = $formulaireFiltres.find('select.filtreBlocLundi').val();
+	var filtreBlocLundi = null;
+	if(filtreBlocLundiSelectVal !== '')
+		filtreBlocLundi = filtreBlocLundiSelectVal == 'true';
 	if(filtreBlocLundi != null && filtreBlocLundi === true)
 		filtres.push({ name: 'fq', value: 'blocLundi:' + filtreBlocLundi });
 
-	var filtreBlocMardi = $formulaireFiltres.find('.valeurBlocMardi').prop('checked');
+	var $filtreBlocMardiCheckbox = $formulaireFiltres.find('input.valeurBlocMardi[type = "checkbox"]');
+	var $filtreBlocMardiSelect = $formulaireFiltres.find('select.valeurBlocMardi');
+	var filtreBlocMardi = $filtreBlocMardiSelect.length ? $filtreBlocMardiSelect.val() : $filtreBlocMardiCheckbox.prop('checked');
+	var filtreBlocMardiSelectVal = $formulaireFiltres.find('select.filtreBlocMardi').val();
+	var filtreBlocMardi = null;
+	if(filtreBlocMardiSelectVal !== '')
+		filtreBlocMardi = filtreBlocMardiSelectVal == 'true';
 	if(filtreBlocMardi != null && filtreBlocMardi === true)
 		filtres.push({ name: 'fq', value: 'blocMardi:' + filtreBlocMardi });
 
-	var filtreBlocMercredi = $formulaireFiltres.find('.valeurBlocMercredi').prop('checked');
+	var $filtreBlocMercrediCheckbox = $formulaireFiltres.find('input.valeurBlocMercredi[type = "checkbox"]');
+	var $filtreBlocMercrediSelect = $formulaireFiltres.find('select.valeurBlocMercredi');
+	var filtreBlocMercredi = $filtreBlocMercrediSelect.length ? $filtreBlocMercrediSelect.val() : $filtreBlocMercrediCheckbox.prop('checked');
+	var filtreBlocMercrediSelectVal = $formulaireFiltres.find('select.filtreBlocMercredi').val();
+	var filtreBlocMercredi = null;
+	if(filtreBlocMercrediSelectVal !== '')
+		filtreBlocMercredi = filtreBlocMercrediSelectVal == 'true';
 	if(filtreBlocMercredi != null && filtreBlocMercredi === true)
 		filtres.push({ name: 'fq', value: 'blocMercredi:' + filtreBlocMercredi });
 
-	var filtreBlocJeudi = $formulaireFiltres.find('.valeurBlocJeudi').prop('checked');
+	var $filtreBlocJeudiCheckbox = $formulaireFiltres.find('input.valeurBlocJeudi[type = "checkbox"]');
+	var $filtreBlocJeudiSelect = $formulaireFiltres.find('select.valeurBlocJeudi');
+	var filtreBlocJeudi = $filtreBlocJeudiSelect.length ? $filtreBlocJeudiSelect.val() : $filtreBlocJeudiCheckbox.prop('checked');
+	var filtreBlocJeudiSelectVal = $formulaireFiltres.find('select.filtreBlocJeudi').val();
+	var filtreBlocJeudi = null;
+	if(filtreBlocJeudiSelectVal !== '')
+		filtreBlocJeudi = filtreBlocJeudiSelectVal == 'true';
 	if(filtreBlocJeudi != null && filtreBlocJeudi === true)
 		filtres.push({ name: 'fq', value: 'blocJeudi:' + filtreBlocJeudi });
 
-	var filtreBlocVendredi = $formulaireFiltres.find('.valeurBlocVendredi').prop('checked');
+	var $filtreBlocVendrediCheckbox = $formulaireFiltres.find('input.valeurBlocVendredi[type = "checkbox"]');
+	var $filtreBlocVendrediSelect = $formulaireFiltres.find('select.valeurBlocVendredi');
+	var filtreBlocVendredi = $filtreBlocVendrediSelect.length ? $filtreBlocVendrediSelect.val() : $filtreBlocVendrediCheckbox.prop('checked');
+	var filtreBlocVendrediSelectVal = $formulaireFiltres.find('select.filtreBlocVendredi').val();
+	var filtreBlocVendredi = null;
+	if(filtreBlocVendrediSelectVal !== '')
+		filtreBlocVendredi = filtreBlocVendrediSelectVal == 'true';
 	if(filtreBlocVendredi != null && filtreBlocVendredi === true)
 		filtres.push({ name: 'fq', value: 'blocVendredi:' + filtreBlocVendredi });
 
@@ -514,6 +584,10 @@ function patchBlocScolaireFiltres($formulaireFiltres) {
 	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
 	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
 		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
+
+	var filtreObjetTexte = $formulaireFiltres.find('.valeurObjetTexte').val();
+	if(filtreObjetTexte != null && filtreObjetTexte !== '')
+		filtres.push({ name: 'fq', value: 'objetTexte:' + filtreObjetTexte });
 
 	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
 	if(filtrePageUrlId != null && filtrePageUrlId !== '')
@@ -607,11 +681,23 @@ function patchBlocScolaireFiltres($formulaireFiltres) {
 	if(filtreSaisonJourDebut != null && filtreSaisonJourDebut !== '')
 		filtres.push({ name: 'fq', value: 'saisonJourDebut:' + filtreSaisonJourDebut });
 
-	var filtreSaisonEte = $formulaireFiltres.find('.valeurSaisonEte').prop('checked');
+	var $filtreSaisonEteCheckbox = $formulaireFiltres.find('input.valeurSaisonEte[type = "checkbox"]');
+	var $filtreSaisonEteSelect = $formulaireFiltres.find('select.valeurSaisonEte');
+	var filtreSaisonEte = $filtreSaisonEteSelect.length ? $filtreSaisonEteSelect.val() : $filtreSaisonEteCheckbox.prop('checked');
+	var filtreSaisonEteSelectVal = $formulaireFiltres.find('select.filtreSaisonEte').val();
+	var filtreSaisonEte = null;
+	if(filtreSaisonEteSelectVal !== '')
+		filtreSaisonEte = filtreSaisonEteSelectVal == 'true';
 	if(filtreSaisonEte != null && filtreSaisonEte === true)
 		filtres.push({ name: 'fq', value: 'saisonEte:' + filtreSaisonEte });
 
-	var filtreSaisonHiver = $formulaireFiltres.find('.valeurSaisonHiver').prop('checked');
+	var $filtreSaisonHiverCheckbox = $formulaireFiltres.find('input.valeurSaisonHiver[type = "checkbox"]');
+	var $filtreSaisonHiverSelect = $formulaireFiltres.find('select.valeurSaisonHiver');
+	var filtreSaisonHiver = $filtreSaisonHiverSelect.length ? $filtreSaisonHiverSelect.val() : $filtreSaisonHiverCheckbox.prop('checked');
+	var filtreSaisonHiverSelectVal = $formulaireFiltres.find('select.filtreSaisonHiver').val();
+	var filtreSaisonHiver = null;
+	if(filtreSaisonHiverSelectVal !== '')
+		filtreSaisonHiver = filtreSaisonHiverSelectVal == 'true';
 	if(filtreSaisonHiver != null && filtreSaisonHiver === true)
 		filtres.push({ name: 'fq', value: 'saisonHiver:' + filtreSaisonHiver });
 
@@ -651,11 +737,23 @@ function patchBlocScolaireFiltres($formulaireFiltres) {
 	if(filtreAgeFin != null && filtreAgeFin !== '')
 		filtres.push({ name: 'fq', value: 'ageFin:' + filtreAgeFin });
 
-	var filtreBlocDimanche = $formulaireFiltres.find('.valeurBlocDimanche').prop('checked');
+	var $filtreBlocDimancheCheckbox = $formulaireFiltres.find('input.valeurBlocDimanche[type = "checkbox"]');
+	var $filtreBlocDimancheSelect = $formulaireFiltres.find('select.valeurBlocDimanche');
+	var filtreBlocDimanche = $filtreBlocDimancheSelect.length ? $filtreBlocDimancheSelect.val() : $filtreBlocDimancheCheckbox.prop('checked');
+	var filtreBlocDimancheSelectVal = $formulaireFiltres.find('select.filtreBlocDimanche').val();
+	var filtreBlocDimanche = null;
+	if(filtreBlocDimancheSelectVal !== '')
+		filtreBlocDimanche = filtreBlocDimancheSelectVal == 'true';
 	if(filtreBlocDimanche != null && filtreBlocDimanche === true)
 		filtres.push({ name: 'fq', value: 'blocDimanche:' + filtreBlocDimanche });
 
-	var filtreBlocSamedi = $formulaireFiltres.find('.valeurBlocSamedi').prop('checked');
+	var $filtreBlocSamediCheckbox = $formulaireFiltres.find('input.valeurBlocSamedi[type = "checkbox"]');
+	var $filtreBlocSamediSelect = $formulaireFiltres.find('select.valeurBlocSamedi');
+	var filtreBlocSamedi = $filtreBlocSamediSelect.length ? $filtreBlocSamediSelect.val() : $filtreBlocSamediCheckbox.prop('checked');
+	var filtreBlocSamediSelectVal = $formulaireFiltres.find('select.filtreBlocSamedi').val();
+	var filtreBlocSamedi = null;
+	if(filtreBlocSamediSelectVal !== '')
+		filtreBlocSamedi = filtreBlocSamediSelectVal == 'true';
 	if(filtreBlocSamedi != null && filtreBlocSamedi === true)
 		filtres.push({ name: 'fq', value: 'blocSamedi:' + filtreBlocSamedi });
 
@@ -708,20 +806,6 @@ async function getBlocScolaire(pk) {
 	});
 }
 
-// DELETE //
-
-async function deleteBlocScolaire(pk) {
-	$.ajax({
-		url: '/api/bloc/' + id
-		, dataType: 'json'
-		, type: 'DELETE'
-		, contentType: 'application/json; charset=utf-8'
-		, data: JSON.stringify(vals)
-		, success: success
-		, error: error
-	});
-}
-
 // Recherche //
 
 async function rechercheBlocScolaire($formulaireFiltres, success, error) {
@@ -753,11 +837,23 @@ function rechercheBlocScolaireFiltres($formulaireFiltres) {
 	if(filtreObjetId != null && filtreObjetId !== '')
 		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
 
-	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
+	var $filtreArchiveCheckbox = $formulaireFiltres.find('input.valeurArchive[type = "checkbox"]');
+	var $filtreArchiveSelect = $formulaireFiltres.find('select.valeurArchive');
+	var filtreArchive = $filtreArchiveSelect.length ? $filtreArchiveSelect.val() : $filtreArchiveCheckbox.prop('checked');
+	var filtreArchiveSelectVal = $formulaireFiltres.find('select.filtreArchive').val();
+	var filtreArchive = null;
+	if(filtreArchiveSelectVal !== '')
+		filtreArchive = filtreArchiveSelectVal == 'true';
 	if(filtreArchive != null && filtreArchive === true)
 		filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
 
-	var filtreSupprime = $formulaireFiltres.find('.valeurSupprime').prop('checked');
+	var $filtreSupprimeCheckbox = $formulaireFiltres.find('input.valeurSupprime[type = "checkbox"]');
+	var $filtreSupprimeSelect = $formulaireFiltres.find('select.valeurSupprime');
+	var filtreSupprime = $filtreSupprimeSelect.length ? $filtreSupprimeSelect.val() : $filtreSupprimeCheckbox.prop('checked');
+	var filtreSupprimeSelectVal = $formulaireFiltres.find('select.filtreSupprime').val();
+	var filtreSupprime = null;
+	if(filtreSupprimeSelectVal !== '')
+		filtreSupprime = filtreSupprimeSelectVal == 'true';
 	if(filtreSupprime != null && filtreSupprime === true)
 		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
@@ -773,23 +869,53 @@ function rechercheBlocScolaireFiltres($formulaireFiltres) {
 	if(filtreBlocPrixParMois != null && filtreBlocPrixParMois !== '')
 		filtres.push({ name: 'fq', value: 'blocPrixParMois:' + filtreBlocPrixParMois });
 
-	var filtreBlocLundi = $formulaireFiltres.find('.valeurBlocLundi').prop('checked');
+	var $filtreBlocLundiCheckbox = $formulaireFiltres.find('input.valeurBlocLundi[type = "checkbox"]');
+	var $filtreBlocLundiSelect = $formulaireFiltres.find('select.valeurBlocLundi');
+	var filtreBlocLundi = $filtreBlocLundiSelect.length ? $filtreBlocLundiSelect.val() : $filtreBlocLundiCheckbox.prop('checked');
+	var filtreBlocLundiSelectVal = $formulaireFiltres.find('select.filtreBlocLundi').val();
+	var filtreBlocLundi = null;
+	if(filtreBlocLundiSelectVal !== '')
+		filtreBlocLundi = filtreBlocLundiSelectVal == 'true';
 	if(filtreBlocLundi != null && filtreBlocLundi === true)
 		filtres.push({ name: 'fq', value: 'blocLundi:' + filtreBlocLundi });
 
-	var filtreBlocMardi = $formulaireFiltres.find('.valeurBlocMardi').prop('checked');
+	var $filtreBlocMardiCheckbox = $formulaireFiltres.find('input.valeurBlocMardi[type = "checkbox"]');
+	var $filtreBlocMardiSelect = $formulaireFiltres.find('select.valeurBlocMardi');
+	var filtreBlocMardi = $filtreBlocMardiSelect.length ? $filtreBlocMardiSelect.val() : $filtreBlocMardiCheckbox.prop('checked');
+	var filtreBlocMardiSelectVal = $formulaireFiltres.find('select.filtreBlocMardi').val();
+	var filtreBlocMardi = null;
+	if(filtreBlocMardiSelectVal !== '')
+		filtreBlocMardi = filtreBlocMardiSelectVal == 'true';
 	if(filtreBlocMardi != null && filtreBlocMardi === true)
 		filtres.push({ name: 'fq', value: 'blocMardi:' + filtreBlocMardi });
 
-	var filtreBlocMercredi = $formulaireFiltres.find('.valeurBlocMercredi').prop('checked');
+	var $filtreBlocMercrediCheckbox = $formulaireFiltres.find('input.valeurBlocMercredi[type = "checkbox"]');
+	var $filtreBlocMercrediSelect = $formulaireFiltres.find('select.valeurBlocMercredi');
+	var filtreBlocMercredi = $filtreBlocMercrediSelect.length ? $filtreBlocMercrediSelect.val() : $filtreBlocMercrediCheckbox.prop('checked');
+	var filtreBlocMercrediSelectVal = $formulaireFiltres.find('select.filtreBlocMercredi').val();
+	var filtreBlocMercredi = null;
+	if(filtreBlocMercrediSelectVal !== '')
+		filtreBlocMercredi = filtreBlocMercrediSelectVal == 'true';
 	if(filtreBlocMercredi != null && filtreBlocMercredi === true)
 		filtres.push({ name: 'fq', value: 'blocMercredi:' + filtreBlocMercredi });
 
-	var filtreBlocJeudi = $formulaireFiltres.find('.valeurBlocJeudi').prop('checked');
+	var $filtreBlocJeudiCheckbox = $formulaireFiltres.find('input.valeurBlocJeudi[type = "checkbox"]');
+	var $filtreBlocJeudiSelect = $formulaireFiltres.find('select.valeurBlocJeudi');
+	var filtreBlocJeudi = $filtreBlocJeudiSelect.length ? $filtreBlocJeudiSelect.val() : $filtreBlocJeudiCheckbox.prop('checked');
+	var filtreBlocJeudiSelectVal = $formulaireFiltres.find('select.filtreBlocJeudi').val();
+	var filtreBlocJeudi = null;
+	if(filtreBlocJeudiSelectVal !== '')
+		filtreBlocJeudi = filtreBlocJeudiSelectVal == 'true';
 	if(filtreBlocJeudi != null && filtreBlocJeudi === true)
 		filtres.push({ name: 'fq', value: 'blocJeudi:' + filtreBlocJeudi });
 
-	var filtreBlocVendredi = $formulaireFiltres.find('.valeurBlocVendredi').prop('checked');
+	var $filtreBlocVendrediCheckbox = $formulaireFiltres.find('input.valeurBlocVendredi[type = "checkbox"]');
+	var $filtreBlocVendrediSelect = $formulaireFiltres.find('select.valeurBlocVendredi');
+	var filtreBlocVendredi = $filtreBlocVendrediSelect.length ? $filtreBlocVendrediSelect.val() : $filtreBlocVendrediCheckbox.prop('checked');
+	var filtreBlocVendrediSelectVal = $formulaireFiltres.find('select.filtreBlocVendredi').val();
+	var filtreBlocVendredi = null;
+	if(filtreBlocVendrediSelectVal !== '')
+		filtreBlocVendredi = filtreBlocVendrediSelectVal == 'true';
 	if(filtreBlocVendredi != null && filtreBlocVendredi === true)
 		filtres.push({ name: 'fq', value: 'blocVendredi:' + filtreBlocVendredi });
 
@@ -836,6 +962,10 @@ function rechercheBlocScolaireFiltres($formulaireFiltres) {
 	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
 	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
 		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
+
+	var filtreObjetTexte = $formulaireFiltres.find('.valeurObjetTexte').val();
+	if(filtreObjetTexte != null && filtreObjetTexte !== '')
+		filtres.push({ name: 'fq', value: 'objetTexte:' + filtreObjetTexte });
 
 	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
 	if(filtrePageUrlId != null && filtrePageUrlId !== '')
@@ -929,11 +1059,23 @@ function rechercheBlocScolaireFiltres($formulaireFiltres) {
 	if(filtreSaisonJourDebut != null && filtreSaisonJourDebut !== '')
 		filtres.push({ name: 'fq', value: 'saisonJourDebut:' + filtreSaisonJourDebut });
 
-	var filtreSaisonEte = $formulaireFiltres.find('.valeurSaisonEte').prop('checked');
+	var $filtreSaisonEteCheckbox = $formulaireFiltres.find('input.valeurSaisonEte[type = "checkbox"]');
+	var $filtreSaisonEteSelect = $formulaireFiltres.find('select.valeurSaisonEte');
+	var filtreSaisonEte = $filtreSaisonEteSelect.length ? $filtreSaisonEteSelect.val() : $filtreSaisonEteCheckbox.prop('checked');
+	var filtreSaisonEteSelectVal = $formulaireFiltres.find('select.filtreSaisonEte').val();
+	var filtreSaisonEte = null;
+	if(filtreSaisonEteSelectVal !== '')
+		filtreSaisonEte = filtreSaisonEteSelectVal == 'true';
 	if(filtreSaisonEte != null && filtreSaisonEte === true)
 		filtres.push({ name: 'fq', value: 'saisonEte:' + filtreSaisonEte });
 
-	var filtreSaisonHiver = $formulaireFiltres.find('.valeurSaisonHiver').prop('checked');
+	var $filtreSaisonHiverCheckbox = $formulaireFiltres.find('input.valeurSaisonHiver[type = "checkbox"]');
+	var $filtreSaisonHiverSelect = $formulaireFiltres.find('select.valeurSaisonHiver');
+	var filtreSaisonHiver = $filtreSaisonHiverSelect.length ? $filtreSaisonHiverSelect.val() : $filtreSaisonHiverCheckbox.prop('checked');
+	var filtreSaisonHiverSelectVal = $formulaireFiltres.find('select.filtreSaisonHiver').val();
+	var filtreSaisonHiver = null;
+	if(filtreSaisonHiverSelectVal !== '')
+		filtreSaisonHiver = filtreSaisonHiverSelectVal == 'true';
 	if(filtreSaisonHiver != null && filtreSaisonHiver === true)
 		filtres.push({ name: 'fq', value: 'saisonHiver:' + filtreSaisonHiver });
 
@@ -973,11 +1115,23 @@ function rechercheBlocScolaireFiltres($formulaireFiltres) {
 	if(filtreAgeFin != null && filtreAgeFin !== '')
 		filtres.push({ name: 'fq', value: 'ageFin:' + filtreAgeFin });
 
-	var filtreBlocDimanche = $formulaireFiltres.find('.valeurBlocDimanche').prop('checked');
+	var $filtreBlocDimancheCheckbox = $formulaireFiltres.find('input.valeurBlocDimanche[type = "checkbox"]');
+	var $filtreBlocDimancheSelect = $formulaireFiltres.find('select.valeurBlocDimanche');
+	var filtreBlocDimanche = $filtreBlocDimancheSelect.length ? $filtreBlocDimancheSelect.val() : $filtreBlocDimancheCheckbox.prop('checked');
+	var filtreBlocDimancheSelectVal = $formulaireFiltres.find('select.filtreBlocDimanche').val();
+	var filtreBlocDimanche = null;
+	if(filtreBlocDimancheSelectVal !== '')
+		filtreBlocDimanche = filtreBlocDimancheSelectVal == 'true';
 	if(filtreBlocDimanche != null && filtreBlocDimanche === true)
 		filtres.push({ name: 'fq', value: 'blocDimanche:' + filtreBlocDimanche });
 
-	var filtreBlocSamedi = $formulaireFiltres.find('.valeurBlocSamedi').prop('checked');
+	var $filtreBlocSamediCheckbox = $formulaireFiltres.find('input.valeurBlocSamedi[type = "checkbox"]');
+	var $filtreBlocSamediSelect = $formulaireFiltres.find('select.valeurBlocSamedi');
+	var filtreBlocSamedi = $filtreBlocSamediSelect.length ? $filtreBlocSamediSelect.val() : $filtreBlocSamediCheckbox.prop('checked');
+	var filtreBlocSamediSelectVal = $formulaireFiltres.find('select.filtreBlocSamedi').val();
+	var filtreBlocSamedi = null;
+	if(filtreBlocSamediSelectVal !== '')
+		filtreBlocSamedi = filtreBlocSamediSelectVal == 'true';
 	if(filtreBlocSamedi != null && filtreBlocSamedi === true)
 		filtres.push({ name: 'fq', value: 'blocSamedi:' + filtreBlocSamedi });
 
@@ -1028,7 +1182,7 @@ function suggereBlocScolaireObjetSuggere($formulaireFiltres, $list) {
 	rechercherBlocScolaireVals($formulaireFiltres, success, error);
 }
 
-function suggereBlocScolaireInscriptionCles(filtres, $list, pk = null) {
+function suggereBlocScolaireInscriptionCles(filtres, $list, pk = null, attribuer=true) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
@@ -1038,7 +1192,7 @@ function suggereBlocScolaireInscriptionCles(filtres, $list, pk = null) {
 			$a.append($i);
 			$a.append($span);
 			var val = o['blocCles'];
-			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
+			var checked = Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
 			var $input = $('<input>');
 			$input.attr('id', 'GET_inscriptionCles_' + pk + '_blocCles_' + o['pk']);
 			$input.attr('value', o['pk']);
@@ -1051,7 +1205,8 @@ function suggereBlocScolaireInscriptionCles(filtres, $list, pk = null) {
 			if(checked)
 				$input.attr('checked', 'checked');
 			var $li = $('<li>');
-			$li.append($input);
+			if(attribuer)
+				$li.append($input);
 			$li.append($a);
 			$list.append($li);
 		});
@@ -1063,7 +1218,7 @@ function suggereBlocScolaireInscriptionCles(filtres, $list, pk = null) {
 	rechercheInscriptionScolaireVals(filtres, success, error);
 }
 
-function suggereBlocScolaireAgeCle(filtres, $list, pk = null) {
+function suggereBlocScolaireAgeCle(filtres, $list, pk = null, attribuer=true) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
@@ -1073,7 +1228,7 @@ function suggereBlocScolaireAgeCle(filtres, $list, pk = null) {
 			$a.append($i);
 			$a.append($span);
 			var val = o['blocCles'];
-			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
+			var checked = Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
 			var $input = $('<input>');
 			$input.attr('id', 'GET_ageCle_' + pk + '_blocCles_' + o['pk']);
 			$input.attr('value', o['pk']);
@@ -1086,7 +1241,8 @@ function suggereBlocScolaireAgeCle(filtres, $list, pk = null) {
 			if(checked)
 				$input.attr('checked', 'checked');
 			var $li = $('<li>');
-			$li.append($input);
+			if(attribuer)
+				$li.append($input);
 			$li.append($a);
 			$list.append($li);
 		});
@@ -1216,17 +1372,5 @@ async function websocketBlocScolaireInner(requeteApi) {
 				$('.varBlocScolaire' + pk + 'EcoleAddresse').text(o['ecoleAddresse']);
 			}
 		});
-	}
-
-	if(!empty) {
-		if(pks) {
-			for(i=0; i < pks.length; i++) {
-				var pk2 = pks[i];
-				var c = classes[i];
-				await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
-			}
-		}
-		if(pk)
-			await patchBlocScolaireVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 	}
 }

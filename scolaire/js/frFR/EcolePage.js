@@ -49,6 +49,10 @@ async function postEcole($formulaireValeurs, success, error) {
 	if(valeurEcoleAdministrateurNom != null && valeurEcoleAdministrateurNom !== '')
 		vals['ecoleAdministrateurNom'] = valeurEcoleAdministrateurNom;
 
+	var valeurEcoleMail = $formulaireValeurs.find('.valeurEcoleMail').val();
+	if(valeurEcoleMail != null && valeurEcoleMail !== '')
+		vals['ecoleMail'] = valeurEcoleMail;
+
 	var valeurEcoleEmplacement = $formulaireValeurs.find('.valeurEcoleEmplacement').val();
 	if(valeurEcoleEmplacement != null && valeurEcoleEmplacement !== '')
 		vals['ecoleEmplacement'] = valeurEcoleEmplacement;
@@ -94,7 +98,7 @@ function postEcoleVals(vals, success, error) {
 
 // PUT //
 
-async function putEcole($formulaireValeurs, success, error) {
+async function putEcole($formulaireValeurs, pk, success, error) {
 	var vals = {};
 
 	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
@@ -129,6 +133,10 @@ async function putEcole($formulaireValeurs, success, error) {
 	if(valeurEcoleAdministrateurNom != null && valeurEcoleAdministrateurNom !== '')
 		vals['ecoleAdministrateurNom'] = valeurEcoleAdministrateurNom;
 
+	var valeurEcoleMail = $formulaireValeurs.find('.valeurEcoleMail').val();
+	if(valeurEcoleMail != null && valeurEcoleMail !== '')
+		vals['ecoleMail'] = valeurEcoleMail;
+
 	var valeurEcoleEmplacement = $formulaireValeurs.find('.valeurEcoleEmplacement').val();
 	if(valeurEcoleEmplacement != null && valeurEcoleEmplacement !== '')
 		vals['ecoleEmplacement'] = valeurEcoleEmplacement;
@@ -149,7 +157,7 @@ async function putEcole($formulaireValeurs, success, error) {
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 		vals['objetTitre'] = valeurObjetTitre;
 
-	putEcoleVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+	putEcoleVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
 function putEcoleVals(filtres, vals, success, error) {
@@ -158,7 +166,7 @@ function putEcoleVals(filtres, vals, success, error) {
 		, dataType: 'json'
 		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
-		, data: JSON.stringify(vals)
+		, data: JSON.stringify({patch: vals})
 		, success: success
 		, error: error
 	});
@@ -166,7 +174,7 @@ function putEcoleVals(filtres, vals, success, error) {
 
 // PATCH //
 
-async function patchEcole($formulaireFiltres, $formulaireValeurs, success, error) {
+async function patchEcole($formulaireFiltres, $formulaireValeurs, pk, success, error) {
 	var filtres = patchEcoleFiltres($formulaireFiltres);
 
 	var vals = {};
@@ -216,7 +224,11 @@ async function patchEcole($formulaireFiltres, $formulaireValeurs, success, error
 		vals['removeObjetId'] = removeObjetId;
 
 	var removeArchive = $formulaireFiltres.find('.removeArchive').val() === 'true';
-	var setArchive = removeArchive ? null : $formulaireValeurs.find('.setArchive').prop('checked');
+	var valeurArchiveSelectVal = $formulaireValeurs.find('select.setArchive').val();
+	var valeurArchive = null;
+	if(valeurArchiveSelectVal !== '')
+		valeurArchive = valeurArchiveSelectVal == 'true';
+	setArchive = removeArchive ? null : valeurArchive;
 	if(removeArchive || setArchive != null && setArchive !== '')
 		vals['setArchive'] = setArchive;
 	var addArchive = $formulaireValeurs.find('.addArchive').prop('checked');
@@ -227,7 +239,11 @@ async function patchEcole($formulaireFiltres, $formulaireValeurs, success, error
 		vals['removeArchive'] = removeArchive;
 
 	var removeSupprime = $formulaireFiltres.find('.removeSupprime').val() === 'true';
-	var setSupprime = removeSupprime ? null : $formulaireValeurs.find('.setSupprime').prop('checked');
+	var valeurSupprimeSelectVal = $formulaireValeurs.find('select.setSupprime').val();
+	var valeurSupprime = null;
+	if(valeurSupprimeSelectVal !== '')
+		valeurSupprime = valeurSupprimeSelectVal == 'true';
+	setSupprime = removeSupprime ? null : valeurSupprime;
 	if(removeSupprime || setSupprime != null && setSupprime !== '')
 		vals['setSupprime'] = setSupprime;
 	var addSupprime = $formulaireValeurs.find('.addSupprime').prop('checked');
@@ -258,6 +274,17 @@ async function patchEcole($formulaireFiltres, $formulaireValeurs, success, error
 	var removeEcoleAdministrateurNom = $formulaireValeurs.find('.removeEcoleAdministrateurNom').val();
 	if(removeEcoleAdministrateurNom != null && removeEcoleAdministrateurNom !== '')
 		vals['removeEcoleAdministrateurNom'] = removeEcoleAdministrateurNom;
+
+	var removeEcoleMail = $formulaireFiltres.find('.removeEcoleMail').val() === 'true';
+	var setEcoleMail = removeEcoleMail ? null : $formulaireValeurs.find('.setEcoleMail').val();
+	if(removeEcoleMail || setEcoleMail != null && setEcoleMail !== '')
+		vals['setEcoleMail'] = setEcoleMail;
+	var addEcoleMail = $formulaireValeurs.find('.addEcoleMail').val();
+	if(addEcoleMail != null && addEcoleMail !== '')
+		vals['addEcoleMail'] = addEcoleMail;
+	var removeEcoleMail = $formulaireValeurs.find('.removeEcoleMail').val();
+	if(removeEcoleMail != null && removeEcoleMail !== '')
+		vals['removeEcoleMail'] = removeEcoleMail;
 
 	var removeEcoleEmplacement = $formulaireFiltres.find('.removeEcoleEmplacement').val() === 'true';
 	var setEcoleEmplacement = removeEcoleEmplacement ? null : $formulaireValeurs.find('.setEcoleEmplacement').val();
@@ -314,7 +341,7 @@ async function patchEcole($formulaireFiltres, $formulaireValeurs, success, error
 	if(removeObjetTitre != null && removeObjetTitre !== '')
 		vals['removeObjetTitre'] = removeObjetTitre;
 
-	patchEcoleVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+	patchEcoleVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
 function patchEcoleFiltres($formulaireFiltres) {
@@ -336,11 +363,23 @@ function patchEcoleFiltres($formulaireFiltres) {
 	if(filtreObjetId != null && filtreObjetId !== '')
 		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
 
-	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
+	var $filtreArchiveCheckbox = $formulaireFiltres.find('input.valeurArchive[type = "checkbox"]');
+	var $filtreArchiveSelect = $formulaireFiltres.find('select.valeurArchive');
+	var filtreArchive = $filtreArchiveSelect.length ? $filtreArchiveSelect.val() : $filtreArchiveCheckbox.prop('checked');
+	var filtreArchiveSelectVal = $formulaireFiltres.find('select.filtreArchive').val();
+	var filtreArchive = null;
+	if(filtreArchiveSelectVal !== '')
+		filtreArchive = filtreArchiveSelectVal == 'true';
 	if(filtreArchive != null && filtreArchive === true)
 		filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
 
-	var filtreSupprime = $formulaireFiltres.find('.valeurSupprime').prop('checked');
+	var $filtreSupprimeCheckbox = $formulaireFiltres.find('input.valeurSupprime[type = "checkbox"]');
+	var $filtreSupprimeSelect = $formulaireFiltres.find('select.valeurSupprime');
+	var filtreSupprime = $filtreSupprimeSelect.length ? $filtreSupprimeSelect.val() : $filtreSupprimeCheckbox.prop('checked');
+	var filtreSupprimeSelectVal = $formulaireFiltres.find('select.filtreSupprime').val();
+	var filtreSupprime = null;
+	if(filtreSupprimeSelectVal !== '')
+		filtreSupprime = filtreSupprimeSelectVal == 'true';
 	if(filtreSupprime != null && filtreSupprime === true)
 		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
@@ -351,6 +390,10 @@ function patchEcoleFiltres($formulaireFiltres) {
 	var filtreEcoleAdministrateurNom = $formulaireFiltres.find('.valeurEcoleAdministrateurNom').val();
 	if(filtreEcoleAdministrateurNom != null && filtreEcoleAdministrateurNom !== '')
 		filtres.push({ name: 'fq', value: 'ecoleAdministrateurNom:' + filtreEcoleAdministrateurNom });
+
+	var filtreEcoleMail = $formulaireFiltres.find('.valeurEcoleMail').val();
+	if(filtreEcoleMail != null && filtreEcoleMail !== '')
+		filtres.push({ name: 'fq', value: 'ecoleMail:' + filtreEcoleMail });
 
 	var filtreEcoleEmplacement = $formulaireFiltres.find('.valeurEcoleEmplacement').val();
 	if(filtreEcoleEmplacement != null && filtreEcoleEmplacement !== '')
@@ -403,6 +446,10 @@ function patchEcoleFiltres($formulaireFiltres) {
 	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
 	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
 		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
+
+	var filtreObjetTexte = $formulaireFiltres.find('.valeurObjetTexte').val();
+	if(filtreObjetTexte != null && filtreObjetTexte !== '')
+		filtres.push({ name: 'fq', value: 'objetTexte:' + filtreObjetTexte });
 
 	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
 	if(filtrePageUrlId != null && filtrePageUrlId !== '')
@@ -485,20 +532,6 @@ async function getEcole(pk) {
 	});
 }
 
-// DELETE //
-
-async function deleteEcole(pk) {
-	$.ajax({
-		url: '/api/ecole/' + id
-		, dataType: 'json'
-		, type: 'DELETE'
-		, contentType: 'application/json; charset=utf-8'
-		, data: JSON.stringify(vals)
-		, success: success
-		, error: error
-	});
-}
-
 // Recherche //
 
 async function rechercheEcole($formulaireFiltres, success, error) {
@@ -530,11 +563,23 @@ function rechercheEcoleFiltres($formulaireFiltres) {
 	if(filtreObjetId != null && filtreObjetId !== '')
 		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
 
-	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
+	var $filtreArchiveCheckbox = $formulaireFiltres.find('input.valeurArchive[type = "checkbox"]');
+	var $filtreArchiveSelect = $formulaireFiltres.find('select.valeurArchive');
+	var filtreArchive = $filtreArchiveSelect.length ? $filtreArchiveSelect.val() : $filtreArchiveCheckbox.prop('checked');
+	var filtreArchiveSelectVal = $formulaireFiltres.find('select.filtreArchive').val();
+	var filtreArchive = null;
+	if(filtreArchiveSelectVal !== '')
+		filtreArchive = filtreArchiveSelectVal == 'true';
 	if(filtreArchive != null && filtreArchive === true)
 		filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
 
-	var filtreSupprime = $formulaireFiltres.find('.valeurSupprime').prop('checked');
+	var $filtreSupprimeCheckbox = $formulaireFiltres.find('input.valeurSupprime[type = "checkbox"]');
+	var $filtreSupprimeSelect = $formulaireFiltres.find('select.valeurSupprime');
+	var filtreSupprime = $filtreSupprimeSelect.length ? $filtreSupprimeSelect.val() : $filtreSupprimeCheckbox.prop('checked');
+	var filtreSupprimeSelectVal = $formulaireFiltres.find('select.filtreSupprime').val();
+	var filtreSupprime = null;
+	if(filtreSupprimeSelectVal !== '')
+		filtreSupprime = filtreSupprimeSelectVal == 'true';
 	if(filtreSupprime != null && filtreSupprime === true)
 		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
@@ -545,6 +590,10 @@ function rechercheEcoleFiltres($formulaireFiltres) {
 	var filtreEcoleAdministrateurNom = $formulaireFiltres.find('.valeurEcoleAdministrateurNom').val();
 	if(filtreEcoleAdministrateurNom != null && filtreEcoleAdministrateurNom !== '')
 		filtres.push({ name: 'fq', value: 'ecoleAdministrateurNom:' + filtreEcoleAdministrateurNom });
+
+	var filtreEcoleMail = $formulaireFiltres.find('.valeurEcoleMail').val();
+	if(filtreEcoleMail != null && filtreEcoleMail !== '')
+		filtres.push({ name: 'fq', value: 'ecoleMail:' + filtreEcoleMail });
 
 	var filtreEcoleEmplacement = $formulaireFiltres.find('.valeurEcoleEmplacement').val();
 	if(filtreEcoleEmplacement != null && filtreEcoleEmplacement !== '')
@@ -597,6 +646,10 @@ function rechercheEcoleFiltres($formulaireFiltres) {
 	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
 	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
 		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
+
+	var filtreObjetTexte = $formulaireFiltres.find('.valeurObjetTexte').val();
+	if(filtreObjetTexte != null && filtreObjetTexte !== '')
+		filtres.push({ name: 'fq', value: 'objetTexte:' + filtreObjetTexte });
 
 	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
 	if(filtrePageUrlId != null && filtrePageUrlId !== '')
@@ -677,7 +730,7 @@ function suggereEcoleObjetSuggere($formulaireFiltres, $list) {
 	rechercherEcoleVals($formulaireFiltres, success, error);
 }
 
-function suggereEcoleAnneeCles(filtres, $list, pk = null) {
+function suggereEcoleAnneeCles(filtres, $list, pk = null, attribuer=true) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
@@ -687,7 +740,7 @@ function suggereEcoleAnneeCles(filtres, $list, pk = null) {
 			$a.append($i);
 			$a.append($span);
 			var val = o['ecoleCle'];
-			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
+			var checked = Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
 			var $input = $('<input>');
 			$input.attr('id', 'GET_anneeCles_' + pk + '_ecoleCle_' + o['pk']);
 			$input.attr('value', o['pk']);
@@ -700,7 +753,8 @@ function suggereEcoleAnneeCles(filtres, $list, pk = null) {
 			if(checked)
 				$input.attr('checked', 'checked');
 			var $li = $('<li>');
-			$li.append($input);
+			if(attribuer)
+				$li.append($input);
 			$li.append($a);
 			$list.append($li);
 		});
@@ -789,6 +843,10 @@ async function websocketEcoleInner(requeteApi) {
 				$('.inputEcole' + pk + 'EcoleAdministrateurNom').val(o['ecoleAdministrateurNom']);
 				$('.varEcole' + pk + 'EcoleAdministrateurNom').text(o['ecoleAdministrateurNom']);
 			}
+			if(vars.includes('ecoleMail')) {
+				$('.inputEcole' + pk + 'EcoleMail').val(o['ecoleMail']);
+				$('.varEcole' + pk + 'EcoleMail').text(o['ecoleMail']);
+			}
 			if(vars.includes('ecoleEmplacement')) {
 				$('.inputEcole' + pk + 'EcoleEmplacement').val(o['ecoleEmplacement']);
 				$('.varEcole' + pk + 'EcoleEmplacement').text(o['ecoleEmplacement']);
@@ -806,17 +864,5 @@ async function websocketEcoleInner(requeteApi) {
 				$('.varEcole' + pk + 'AnneeCles').text(o['anneeCles']);
 			}
 		});
-	}
-
-	if(!empty) {
-		if(pks) {
-			for(i=0; i < pks.length; i++) {
-				var pk2 = pks[i];
-				var c = classes[i];
-				await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
-			}
-		}
-		if(pk)
-			await patchEcoleVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 	}
 }

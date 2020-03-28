@@ -41,9 +41,9 @@ async function postPartHtml($formulaireValeurs, success, error) {
 	if(valeurSupprime != null && valeurSupprime !== '')
 		vals['supprime'] = valeurSupprime;
 
-	var valeurDesignInscriptionCle = $formulaireValeurs.find('input.valeurDesignInscriptionCle:checked').val();
-	if(valeurDesignInscriptionCle != null && valeurDesignInscriptionCle !== '')
-		vals['designInscriptionCle'] = valeurDesignInscriptionCle;
+	var valeurDesignPageCles = $formulaireValeurs.find('input.valeurDesignPageCles:checked').val();
+	if(valeurDesignPageCles != null && valeurDesignPageCles !== '')
+		vals['designPageCles'] = valeurDesignPageCles;
 
 	var valeurHtmlLien = $formulaireValeurs.find('.valeurHtmlLien').val();
 	if(valeurHtmlLien != null && valeurHtmlLien !== '')
@@ -104,6 +104,10 @@ async function postPartHtml($formulaireValeurs, success, error) {
 	var valeurPdfExclure = $formulaireValeurs.find('.valeurPdfExclure').prop('checked');
 	if(valeurPdfExclure != null && valeurPdfExclure !== '')
 		vals['pdfExclure'] = valeurPdfExclure;
+
+	var valeurConnecterDeconnecter = $formulaireValeurs.find('.valeurConnecterDeconnecter').prop('checked');
+	if(valeurConnecterDeconnecter != null && valeurConnecterDeconnecter !== '')
+		vals['connecterDeconnecter'] = valeurConnecterDeconnecter;
 
 	var valeurTri1 = $formulaireValeurs.find('.valeurTri1').val();
 	if(valeurTri1 != null && valeurTri1 !== '')
@@ -201,9 +205,9 @@ async function putPartHtml($formulaireValeurs, pk, success, error) {
 	if(valeurSupprime != null && valeurSupprime !== '')
 		vals['supprime'] = valeurSupprime;
 
-	var valeurDesignInscriptionCle = $formulaireValeurs.find('input.valeurDesignInscriptionCle:checked').val();
-	if(valeurDesignInscriptionCle != null && valeurDesignInscriptionCle !== '')
-		vals['designInscriptionCle'] = valeurDesignInscriptionCle;
+	var valeurDesignPageCles = $formulaireValeurs.find('input.valeurDesignPageCles:checked').val();
+	if(valeurDesignPageCles != null && valeurDesignPageCles !== '')
+		vals['designPageCles'] = [valeurDesignPageCles];
 
 	var valeurHtmlLien = $formulaireValeurs.find('.valeurHtmlLien').val();
 	if(valeurHtmlLien != null && valeurHtmlLien !== '')
@@ -264,6 +268,10 @@ async function putPartHtml($formulaireValeurs, pk, success, error) {
 	var valeurPdfExclure = $formulaireValeurs.find('.valeurPdfExclure').prop('checked');
 	if(valeurPdfExclure != null && valeurPdfExclure !== '')
 		vals['pdfExclure'] = valeurPdfExclure;
+
+	var valeurConnecterDeconnecter = $formulaireValeurs.find('.valeurConnecterDeconnecter').prop('checked');
+	if(valeurConnecterDeconnecter != null && valeurConnecterDeconnecter !== '')
+		vals['connecterDeconnecter'] = valeurConnecterDeconnecter;
 
 	var valeurTri1 = $formulaireValeurs.find('.valeurTri1').val();
 	if(valeurTri1 != null && valeurTri1 !== '')
@@ -331,6 +339,8 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 
 	var vals = {};
 
+	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
+	if(valeurPk != null && valeurPk !== '')
 	var removePk = $formulaireFiltres.find('.removePk').val() === 'true';
 	var setPk = removePk ? null : $formulaireValeurs.find('.setPk').val();
 	if(removePk || setPk != null && setPk !== '')
@@ -342,6 +352,8 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 	if(removePk != null && removePk !== '')
 		vals['removePk'] = removePk;
 
+	var valeurCree = $formulaireValeurs.find('.valeurCree').val();
+	if(valeurCree != null && valeurCree !== '')
 	var removeCree = $formulaireFiltres.find('.removeCree').val() === 'true';
 	var setCree = removeCree ? null : $formulaireValeurs.find('.setCree').val();
 	if(removeCree || setCree != null && setCree !== '')
@@ -353,6 +365,8 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 	if(removeCree != null && removeCree !== '')
 		vals['removeCree'] = removeCree;
 
+	var valeurModifie = $formulaireValeurs.find('.valeurModifie').val();
+	if(valeurModifie != null && valeurModifie !== '')
 	var removeModifie = $formulaireFiltres.find('.removeModifie').val() === 'true';
 	var setModifie = removeModifie ? null : $formulaireValeurs.find('.setModifie').val();
 	if(removeModifie || setModifie != null && setModifie !== '')
@@ -364,6 +378,8 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 	if(removeModifie != null && removeModifie !== '')
 		vals['removeModifie'] = removeModifie;
 
+	var valeurObjetId = $formulaireValeurs.find('.valeurObjetId').val();
+	if(valeurObjetId != null && valeurObjetId !== '')
 	var removeObjetId = $formulaireFiltres.find('.removeObjetId').val() === 'true';
 	var setObjetId = removeObjetId ? null : $formulaireValeurs.find('.setObjetId').val();
 	if(removeObjetId || setObjetId != null && setObjetId !== '')
@@ -375,8 +391,14 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 	if(removeObjetId != null && removeObjetId !== '')
 		vals['removeObjetId'] = removeObjetId;
 
+	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
+	if(valeurArchive != null && valeurArchive !== '')
 	var removeArchive = $formulaireFiltres.find('.removeArchive').val() === 'true';
-	var setArchive = removeArchive ? null : $formulaireValeurs.find('.setArchive').prop('checked');
+	var valeurArchiveSelectVal = $formulaireValeurs.find('select.setArchive').val();
+	var valeurArchive = null;
+	if(valeurArchiveSelectVal !== '')
+		valeurArchive = valeurArchiveSelectVal == 'true';
+	setArchive = removeArchive ? null : valeurArchive;
 	if(removeArchive || setArchive != null && setArchive !== '')
 		vals['setArchive'] = setArchive;
 	var addArchive = $formulaireValeurs.find('.addArchive').prop('checked');
@@ -386,8 +408,14 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 	if(removeArchive != null && removeArchive !== '')
 		vals['removeArchive'] = removeArchive;
 
+	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').prop('checked');
+	if(valeurSupprime != null && valeurSupprime !== '')
 	var removeSupprime = $formulaireFiltres.find('.removeSupprime').val() === 'true';
-	var setSupprime = removeSupprime ? null : $formulaireValeurs.find('.setSupprime').prop('checked');
+	var valeurSupprimeSelectVal = $formulaireValeurs.find('select.setSupprime').val();
+	var valeurSupprime = null;
+	if(valeurSupprimeSelectVal !== '')
+		valeurSupprime = valeurSupprimeSelectVal == 'true';
+	setSupprime = removeSupprime ? null : valeurSupprime;
 	if(removeSupprime || setSupprime != null && setSupprime !== '')
 		vals['setSupprime'] = setSupprime;
 	var addSupprime = $formulaireValeurs.find('.addSupprime').prop('checked');
@@ -397,17 +425,12 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 	if(removeSupprime != null && removeSupprime !== '')
 		vals['removeSupprime'] = removeSupprime;
 
-	var removeDesignInscriptionCle = $formulaireFiltres.find('.removeDesignInscriptionCle').val() === 'true';
-	var setDesignInscriptionCle = removeDesignInscriptionCle ? null : $formulaireValeurs.find('.setDesignInscriptionCle').val();
-	if(removeDesignInscriptionCle || setDesignInscriptionCle != null && setDesignInscriptionCle !== '')
-		vals['setDesignInscriptionCle'] = setDesignInscriptionCle;
-	var addDesignInscriptionCle = $formulaireValeurs.find('.addDesignInscriptionCle').val();
-	if(addDesignInscriptionCle != null && addDesignInscriptionCle !== '')
-		vals['addDesignInscriptionCle'] = addDesignInscriptionCle;
-	var removeDesignInscriptionCle = $formulaireValeurs.find('.removeDesignInscriptionCle').val();
-	if(removeDesignInscriptionCle != null && removeDesignInscriptionCle !== '')
-		vals['removeDesignInscriptionCle'] = removeDesignInscriptionCle;
+	var valeurDesignPageCles = $formulaireValeurs.find('input.valeurDesignPageCles:checked').val();
+	if(valeurDesignPageCles != null && valeurDesignPageCles !== '')
+		vals['addDesignPageCles'] = valeurDesignPageCles;
 
+	var valeurHtmlLien = $formulaireValeurs.find('.valeurHtmlLien').val();
+	if(valeurHtmlLien != null && valeurHtmlLien !== '')
 	var removeHtmlLien = $formulaireFiltres.find('.removeHtmlLien').val() === 'true';
 	var setHtmlLien = removeHtmlLien ? null : $formulaireValeurs.find('.setHtmlLien').val();
 	if(removeHtmlLien || setHtmlLien != null && setHtmlLien !== '')
@@ -419,6 +442,8 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 	if(removeHtmlLien != null && removeHtmlLien !== '')
 		vals['removeHtmlLien'] = removeHtmlLien;
 
+	var valeurHtmlElement = $formulaireValeurs.find('.valeurHtmlElement').val();
+	if(valeurHtmlElement != null && valeurHtmlElement !== '')
 	var removeHtmlElement = $formulaireFiltres.find('.removeHtmlElement').val() === 'true';
 	var setHtmlElement = removeHtmlElement ? null : $formulaireValeurs.find('.setHtmlElement').val();
 	if(removeHtmlElement || setHtmlElement != null && setHtmlElement !== '')
@@ -430,6 +455,8 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 	if(removeHtmlElement != null && removeHtmlElement !== '')
 		vals['removeHtmlElement'] = removeHtmlElement;
 
+	var valeurHtmlId = $formulaireValeurs.find('.valeurHtmlId').val();
+	if(valeurHtmlId != null && valeurHtmlId !== '')
 	var removeHtmlId = $formulaireFiltres.find('.removeHtmlId').val() === 'true';
 	var setHtmlId = removeHtmlId ? null : $formulaireValeurs.find('.setHtmlId').val();
 	if(removeHtmlId || setHtmlId != null && setHtmlId !== '')
@@ -441,6 +468,8 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 	if(removeHtmlId != null && removeHtmlId !== '')
 		vals['removeHtmlId'] = removeHtmlId;
 
+	var valeurHtmlClasses = $formulaireValeurs.find('.valeurHtmlClasses').val();
+	if(valeurHtmlClasses != null && valeurHtmlClasses !== '')
 	var removeHtmlClasses = $formulaireFiltres.find('.removeHtmlClasses').val() === 'true';
 	var setHtmlClasses = removeHtmlClasses ? null : $formulaireValeurs.find('.setHtmlClasses').val();
 	if(removeHtmlClasses || setHtmlClasses != null && setHtmlClasses !== '')
@@ -452,6 +481,8 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 	if(removeHtmlClasses != null && removeHtmlClasses !== '')
 		vals['removeHtmlClasses'] = removeHtmlClasses;
 
+	var valeurHtmlStyle = $formulaireValeurs.find('.valeurHtmlStyle').val();
+	if(valeurHtmlStyle != null && valeurHtmlStyle !== '')
 	var removeHtmlStyle = $formulaireFiltres.find('.removeHtmlStyle').val() === 'true';
 	var setHtmlStyle = removeHtmlStyle ? null : $formulaireValeurs.find('.setHtmlStyle').val();
 	if(removeHtmlStyle || setHtmlStyle != null && setHtmlStyle !== '')
@@ -463,6 +494,8 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 	if(removeHtmlStyle != null && removeHtmlStyle !== '')
 		vals['removeHtmlStyle'] = removeHtmlStyle;
 
+	var valeurHtmlAvant = $formulaireValeurs.find('.valeurHtmlAvant').val();
+	if(valeurHtmlAvant != null && valeurHtmlAvant !== '')
 	var removeHtmlAvant = $formulaireFiltres.find('.removeHtmlAvant').val() === 'true';
 	var setHtmlAvant = removeHtmlAvant ? null : $formulaireValeurs.find('.setHtmlAvant').val();
 	if(removeHtmlAvant || setHtmlAvant != null && setHtmlAvant !== '')
@@ -474,6 +507,8 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 	if(removeHtmlAvant != null && removeHtmlAvant !== '')
 		vals['removeHtmlAvant'] = removeHtmlAvant;
 
+	var valeurHtmlApres = $formulaireValeurs.find('.valeurHtmlApres').val();
+	if(valeurHtmlApres != null && valeurHtmlApres !== '')
 	var removeHtmlApres = $formulaireFiltres.find('.removeHtmlApres').val() === 'true';
 	var setHtmlApres = removeHtmlApres ? null : $formulaireValeurs.find('.setHtmlApres').val();
 	if(removeHtmlApres || setHtmlApres != null && setHtmlApres !== '')
@@ -485,6 +520,8 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 	if(removeHtmlApres != null && removeHtmlApres !== '')
 		vals['removeHtmlApres'] = removeHtmlApres;
 
+	var valeurHtmlTexte = $formulaireValeurs.find('.valeurHtmlTexte').val();
+	if(valeurHtmlTexte != null && valeurHtmlTexte !== '')
 	var removeHtmlTexte = $formulaireFiltres.find('.removeHtmlTexte').val() === 'true';
 	var setHtmlTexte = removeHtmlTexte ? null : $formulaireValeurs.find('.setHtmlTexte').val();
 	if(removeHtmlTexte || setHtmlTexte != null && setHtmlTexte !== '')
@@ -496,6 +533,8 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 	if(removeHtmlTexte != null && removeHtmlTexte !== '')
 		vals['removeHtmlTexte'] = removeHtmlTexte;
 
+	var valeurHtmlVar = $formulaireValeurs.find('.valeurHtmlVar').val();
+	if(valeurHtmlVar != null && valeurHtmlVar !== '')
 	var removeHtmlVar = $formulaireFiltres.find('.removeHtmlVar').val() === 'true';
 	var setHtmlVar = removeHtmlVar ? null : $formulaireValeurs.find('.setHtmlVar').val();
 	if(removeHtmlVar || setHtmlVar != null && setHtmlVar !== '')
@@ -507,6 +546,8 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 	if(removeHtmlVar != null && removeHtmlVar !== '')
 		vals['removeHtmlVar'] = removeHtmlVar;
 
+	var valeurHtmlVarSpan = $formulaireValeurs.find('.valeurHtmlVarSpan').val();
+	if(valeurHtmlVarSpan != null && valeurHtmlVarSpan !== '')
 	var removeHtmlVarSpan = $formulaireFiltres.find('.removeHtmlVarSpan').val() === 'true';
 	var setHtmlVarSpan = removeHtmlVarSpan ? null : $formulaireValeurs.find('.setHtmlVarSpan').val();
 	if(removeHtmlVarSpan || setHtmlVarSpan != null && setHtmlVarSpan !== '')
@@ -518,6 +559,8 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 	if(removeHtmlVarSpan != null && removeHtmlVarSpan !== '')
 		vals['removeHtmlVarSpan'] = removeHtmlVarSpan;
 
+	var valeurHtmlVarForm = $formulaireValeurs.find('.valeurHtmlVarForm').val();
+	if(valeurHtmlVarForm != null && valeurHtmlVarForm !== '')
 	var removeHtmlVarForm = $formulaireFiltres.find('.removeHtmlVarForm').val() === 'true';
 	var setHtmlVarForm = removeHtmlVarForm ? null : $formulaireValeurs.find('.setHtmlVarForm').val();
 	if(removeHtmlVarForm || setHtmlVarForm != null && setHtmlVarForm !== '')
@@ -529,6 +572,8 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 	if(removeHtmlVarForm != null && removeHtmlVarForm !== '')
 		vals['removeHtmlVarForm'] = removeHtmlVarForm;
 
+	var valeurHtmlVarInput = $formulaireValeurs.find('.valeurHtmlVarInput').val();
+	if(valeurHtmlVarInput != null && valeurHtmlVarInput !== '')
 	var removeHtmlVarInput = $formulaireFiltres.find('.removeHtmlVarInput').val() === 'true';
 	var setHtmlVarInput = removeHtmlVarInput ? null : $formulaireValeurs.find('.setHtmlVarInput').val();
 	if(removeHtmlVarInput || setHtmlVarInput != null && setHtmlVarInput !== '')
@@ -540,6 +585,8 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 	if(removeHtmlVarInput != null && removeHtmlVarInput !== '')
 		vals['removeHtmlVarInput'] = removeHtmlVarInput;
 
+	var valeurHtmlVarForEach = $formulaireValeurs.find('.valeurHtmlVarForEach').val();
+	if(valeurHtmlVarForEach != null && valeurHtmlVarForEach !== '')
 	var removeHtmlVarForEach = $formulaireFiltres.find('.removeHtmlVarForEach').val() === 'true';
 	var setHtmlVarForEach = removeHtmlVarForEach ? null : $formulaireValeurs.find('.setHtmlVarForEach').val();
 	if(removeHtmlVarForEach || setHtmlVarForEach != null && setHtmlVarForEach !== '')
@@ -551,8 +598,14 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 	if(removeHtmlVarForEach != null && removeHtmlVarForEach !== '')
 		vals['removeHtmlVarForEach'] = removeHtmlVarForEach;
 
+	var valeurHtmlExclure = $formulaireValeurs.find('.valeurHtmlExclure').prop('checked');
+	if(valeurHtmlExclure != null && valeurHtmlExclure !== '')
 	var removeHtmlExclure = $formulaireFiltres.find('.removeHtmlExclure').val() === 'true';
-	var setHtmlExclure = removeHtmlExclure ? null : $formulaireValeurs.find('.setHtmlExclure').prop('checked');
+	var valeurHtmlExclureSelectVal = $formulaireValeurs.find('select.setHtmlExclure').val();
+	var valeurHtmlExclure = null;
+	if(valeurHtmlExclureSelectVal !== '')
+		valeurHtmlExclure = valeurHtmlExclureSelectVal == 'true';
+	setHtmlExclure = removeHtmlExclure ? null : valeurHtmlExclure;
 	if(removeHtmlExclure || setHtmlExclure != null && setHtmlExclure !== '')
 		vals['setHtmlExclure'] = setHtmlExclure;
 	var addHtmlExclure = $formulaireValeurs.find('.addHtmlExclure').prop('checked');
@@ -562,8 +615,14 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 	if(removeHtmlExclure != null && removeHtmlExclure !== '')
 		vals['removeHtmlExclure'] = removeHtmlExclure;
 
+	var valeurPdfExclure = $formulaireValeurs.find('.valeurPdfExclure').prop('checked');
+	if(valeurPdfExclure != null && valeurPdfExclure !== '')
 	var removePdfExclure = $formulaireFiltres.find('.removePdfExclure').val() === 'true';
-	var setPdfExclure = removePdfExclure ? null : $formulaireValeurs.find('.setPdfExclure').prop('checked');
+	var valeurPdfExclureSelectVal = $formulaireValeurs.find('select.setPdfExclure').val();
+	var valeurPdfExclure = null;
+	if(valeurPdfExclureSelectVal !== '')
+		valeurPdfExclure = valeurPdfExclureSelectVal == 'true';
+	setPdfExclure = removePdfExclure ? null : valeurPdfExclure;
 	if(removePdfExclure || setPdfExclure != null && setPdfExclure !== '')
 		vals['setPdfExclure'] = setPdfExclure;
 	var addPdfExclure = $formulaireValeurs.find('.addPdfExclure').prop('checked');
@@ -573,6 +632,25 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 	if(removePdfExclure != null && removePdfExclure !== '')
 		vals['removePdfExclure'] = removePdfExclure;
 
+	var valeurConnecterDeconnecter = $formulaireValeurs.find('.valeurConnecterDeconnecter').prop('checked');
+	if(valeurConnecterDeconnecter != null && valeurConnecterDeconnecter !== '')
+	var removeConnecterDeconnecter = $formulaireFiltres.find('.removeConnecterDeconnecter').val() === 'true';
+	var valeurConnecterDeconnecterSelectVal = $formulaireValeurs.find('select.setConnecterDeconnecter').val();
+	var valeurConnecterDeconnecter = null;
+	if(valeurConnecterDeconnecterSelectVal !== '')
+		valeurConnecterDeconnecter = valeurConnecterDeconnecterSelectVal == 'true';
+	setConnecterDeconnecter = removeConnecterDeconnecter ? null : valeurConnecterDeconnecter;
+	if(removeConnecterDeconnecter || setConnecterDeconnecter != null && setConnecterDeconnecter !== '')
+		vals['setConnecterDeconnecter'] = setConnecterDeconnecter;
+	var addConnecterDeconnecter = $formulaireValeurs.find('.addConnecterDeconnecter').prop('checked');
+	if(addConnecterDeconnecter != null && addConnecterDeconnecter !== '')
+		vals['addConnecterDeconnecter'] = addConnecterDeconnecter;
+	var removeConnecterDeconnecter = $formulaireValeurs.find('.removeConnecterDeconnecter').prop('checked');
+	if(removeConnecterDeconnecter != null && removeConnecterDeconnecter !== '')
+		vals['removeConnecterDeconnecter'] = removeConnecterDeconnecter;
+
+	var valeurTri1 = $formulaireValeurs.find('.valeurTri1').val();
+	if(valeurTri1 != null && valeurTri1 !== '')
 	var removeTri1 = $formulaireFiltres.find('.removeTri1').val() === 'true';
 	var setTri1 = removeTri1 ? null : $formulaireValeurs.find('.setTri1').val();
 	if(removeTri1 || setTri1 != null && setTri1 !== '')
@@ -584,6 +662,8 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 	if(removeTri1 != null && removeTri1 !== '')
 		vals['removeTri1'] = removeTri1;
 
+	var valeurTri2 = $formulaireValeurs.find('.valeurTri2').val();
+	if(valeurTri2 != null && valeurTri2 !== '')
 	var removeTri2 = $formulaireFiltres.find('.removeTri2').val() === 'true';
 	var setTri2 = removeTri2 ? null : $formulaireValeurs.find('.setTri2').val();
 	if(removeTri2 || setTri2 != null && setTri2 !== '')
@@ -595,6 +675,8 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 	if(removeTri2 != null && removeTri2 !== '')
 		vals['removeTri2'] = removeTri2;
 
+	var valeurTri3 = $formulaireValeurs.find('.valeurTri3').val();
+	if(valeurTri3 != null && valeurTri3 !== '')
 	var removeTri3 = $formulaireFiltres.find('.removeTri3').val() === 'true';
 	var setTri3 = removeTri3 ? null : $formulaireValeurs.find('.setTri3').val();
 	if(removeTri3 || setTri3 != null && setTri3 !== '')
@@ -606,6 +688,8 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 	if(removeTri3 != null && removeTri3 !== '')
 		vals['removeTri3'] = removeTri3;
 
+	var valeurTri4 = $formulaireValeurs.find('.valeurTri4').val();
+	if(valeurTri4 != null && valeurTri4 !== '')
 	var removeTri4 = $formulaireFiltres.find('.removeTri4').val() === 'true';
 	var setTri4 = removeTri4 ? null : $formulaireValeurs.find('.setTri4').val();
 	if(removeTri4 || setTri4 != null && setTri4 !== '')
@@ -617,6 +701,8 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 	if(removeTri4 != null && removeTri4 !== '')
 		vals['removeTri4'] = removeTri4;
 
+	var valeurTri5 = $formulaireValeurs.find('.valeurTri5').val();
+	if(valeurTri5 != null && valeurTri5 !== '')
 	var removeTri5 = $formulaireFiltres.find('.removeTri5').val() === 'true';
 	var setTri5 = removeTri5 ? null : $formulaireValeurs.find('.setTri5').val();
 	if(removeTri5 || setTri5 != null && setTri5 !== '')
@@ -628,6 +714,8 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 	if(removeTri5 != null && removeTri5 !== '')
 		vals['removeTri5'] = removeTri5;
 
+	var valeurTri6 = $formulaireValeurs.find('.valeurTri6').val();
+	if(valeurTri6 != null && valeurTri6 !== '')
 	var removeTri6 = $formulaireFiltres.find('.removeTri6').val() === 'true';
 	var setTri6 = removeTri6 ? null : $formulaireValeurs.find('.setTri6').val();
 	if(removeTri6 || setTri6 != null && setTri6 !== '')
@@ -639,6 +727,8 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 	if(removeTri6 != null && removeTri6 !== '')
 		vals['removeTri6'] = removeTri6;
 
+	var valeurTri7 = $formulaireValeurs.find('.valeurTri7').val();
+	if(valeurTri7 != null && valeurTri7 !== '')
 	var removeTri7 = $formulaireFiltres.find('.removeTri7').val() === 'true';
 	var setTri7 = removeTri7 ? null : $formulaireValeurs.find('.setTri7').val();
 	if(removeTri7 || setTri7 != null && setTri7 !== '')
@@ -650,6 +740,8 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 	if(removeTri7 != null && removeTri7 !== '')
 		vals['removeTri7'] = removeTri7;
 
+	var valeurTri8 = $formulaireValeurs.find('.valeurTri8').val();
+	if(valeurTri8 != null && valeurTri8 !== '')
 	var removeTri8 = $formulaireFiltres.find('.removeTri8').val() === 'true';
 	var setTri8 = removeTri8 ? null : $formulaireValeurs.find('.setTri8').val();
 	if(removeTri8 || setTri8 != null && setTri8 !== '')
@@ -661,6 +753,8 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 	if(removeTri8 != null && removeTri8 !== '')
 		vals['removeTri8'] = removeTri8;
 
+	var valeurTri9 = $formulaireValeurs.find('.valeurTri9').val();
+	if(valeurTri9 != null && valeurTri9 !== '')
 	var removeTri9 = $formulaireFiltres.find('.removeTri9').val() === 'true';
 	var setTri9 = removeTri9 ? null : $formulaireValeurs.find('.setTri9').val();
 	if(removeTri9 || setTri9 != null && setTri9 !== '')
@@ -672,6 +766,8 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 	if(removeTri9 != null && removeTri9 !== '')
 		vals['removeTri9'] = removeTri9;
 
+	var valeurTri10 = $formulaireValeurs.find('.valeurTri10').val();
+	if(valeurTri10 != null && valeurTri10 !== '')
 	var removeTri10 = $formulaireFiltres.find('.removeTri10').val() === 'true';
 	var setTri10 = removeTri10 ? null : $formulaireValeurs.find('.setTri10').val();
 	if(removeTri10 || setTri10 != null && setTri10 !== '')
@@ -683,6 +779,8 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 	if(removeTri10 != null && removeTri10 !== '')
 		vals['removeTri10'] = removeTri10;
 
+	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
+	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 	var removeObjetTitre = $formulaireFiltres.find('.removeObjetTitre').val() === 'true';
 	var setObjetTitre = removeObjetTitre ? null : $formulaireValeurs.find('.setObjetTitre').val();
 	if(removeObjetTitre || setObjetTitre != null && setObjetTitre !== '')
@@ -699,182 +797,222 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 
 function patchPartHtmlFiltres($formulaireFiltres) {
 	var filtres = [];
+	if($formulaireFiltres) {
 
-	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
-	if(filtrePk != null && filtrePk !== '')
-		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
+		var filtrePk = $formulaireFiltres.find('.valeurPk').val();
+		if(filtrePk != null && filtrePk !== '')
+			filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
 
-	var filtreCree = $formulaireFiltres.find('.valeurCree').val();
-	if(filtreCree != null && filtreCree !== '')
-		filtres.push({ name: 'fq', value: 'cree:' + filtreCree });
+		var filtreCree = $formulaireFiltres.find('.valeurCree').val();
+		if(filtreCree != null && filtreCree !== '')
+			filtres.push({ name: 'fq', value: 'cree:' + filtreCree });
 
-	var filtreModifie = $formulaireFiltres.find('.valeurModifie').val();
-	if(filtreModifie != null && filtreModifie !== '')
-		filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
+		var filtreModifie = $formulaireFiltres.find('.valeurModifie').val();
+		if(filtreModifie != null && filtreModifie !== '')
+			filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
 
-	var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
-	if(filtreObjetId != null && filtreObjetId !== '')
-		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
+		var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
+		if(filtreObjetId != null && filtreObjetId !== '')
+			filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
 
-	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
-	if(filtreArchive != null && filtreArchive === true)
-		filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
+		var $filtreArchiveCheckbox = $formulaireFiltres.find('input.valeurArchive[type = "checkbox"]');
+		var $filtreArchiveSelect = $formulaireFiltres.find('select.valeurArchive');
+		var filtreArchive = $filtreArchiveSelect.length ? $filtreArchiveSelect.val() : $filtreArchiveCheckbox.prop('checked');
+		var filtreArchiveSelectVal = $formulaireFiltres.find('select.filtreArchive').val();
+		var filtreArchive = null;
+		if(filtreArchiveSelectVal !== '')
+			filtreArchive = filtreArchiveSelectVal == 'true';
+		if(filtreArchive != null && filtreArchive === true)
+			filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
 
-	var filtreSupprime = $formulaireFiltres.find('.valeurSupprime').prop('checked');
-	if(filtreSupprime != null && filtreSupprime === true)
-		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
+		var $filtreSupprimeCheckbox = $formulaireFiltres.find('input.valeurSupprime[type = "checkbox"]');
+		var $filtreSupprimeSelect = $formulaireFiltres.find('select.valeurSupprime');
+		var filtreSupprime = $filtreSupprimeSelect.length ? $filtreSupprimeSelect.val() : $filtreSupprimeCheckbox.prop('checked');
+		var filtreSupprimeSelectVal = $formulaireFiltres.find('select.filtreSupprime').val();
+		var filtreSupprime = null;
+		if(filtreSupprimeSelectVal !== '')
+			filtreSupprime = filtreSupprimeSelectVal == 'true';
+		if(filtreSupprime != null && filtreSupprime === true)
+			filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
-	var filtreDesignInscriptionCle = $formulaireFiltres.find('.valeurDesignInscriptionCle').val();
-	if(filtreDesignInscriptionCle != null && filtreDesignInscriptionCle !== '')
-		filtres.push({ name: 'fq', value: 'designInscriptionCle:' + filtreDesignInscriptionCle });
+		var filtreDesignPageCles = $formulaireFiltres.find('.valeurDesignPageCles').val();
+		if(filtreDesignPageCles != null && filtreDesignPageCles !== '')
+			filtres.push({ name: 'fq', value: 'designPageCles:' + filtreDesignPageCles });
 
-	var filtreHtmlLien = $formulaireFiltres.find('.valeurHtmlLien').val();
-	if(filtreHtmlLien != null && filtreHtmlLien !== '')
-		filtres.push({ name: 'fq', value: 'htmlLien:' + filtreHtmlLien });
+		var filtreHtmlLien = $formulaireFiltres.find('.valeurHtmlLien').val();
+		if(filtreHtmlLien != null && filtreHtmlLien !== '')
+			filtres.push({ name: 'fq', value: 'htmlLien:' + filtreHtmlLien });
 
-	var filtreHtmlElement = $formulaireFiltres.find('.valeurHtmlElement').val();
-	if(filtreHtmlElement != null && filtreHtmlElement !== '')
-		filtres.push({ name: 'fq', value: 'htmlElement:' + filtreHtmlElement });
+		var filtreHtmlElement = $formulaireFiltres.find('.valeurHtmlElement').val();
+		if(filtreHtmlElement != null && filtreHtmlElement !== '')
+			filtres.push({ name: 'fq', value: 'htmlElement:' + filtreHtmlElement });
 
-	var filtreHtmlId = $formulaireFiltres.find('.valeurHtmlId').val();
-	if(filtreHtmlId != null && filtreHtmlId !== '')
-		filtres.push({ name: 'fq', value: 'htmlId:' + filtreHtmlId });
+		var filtreHtmlId = $formulaireFiltres.find('.valeurHtmlId').val();
+		if(filtreHtmlId != null && filtreHtmlId !== '')
+			filtres.push({ name: 'fq', value: 'htmlId:' + filtreHtmlId });
 
-	var filtreHtmlClasses = $formulaireFiltres.find('.valeurHtmlClasses').val();
-	if(filtreHtmlClasses != null && filtreHtmlClasses !== '')
-		filtres.push({ name: 'fq', value: 'htmlClasses:' + filtreHtmlClasses });
+		var filtreHtmlClasses = $formulaireFiltres.find('.valeurHtmlClasses').val();
+		if(filtreHtmlClasses != null && filtreHtmlClasses !== '')
+			filtres.push({ name: 'fq', value: 'htmlClasses:' + filtreHtmlClasses });
 
-	var filtreHtmlStyle = $formulaireFiltres.find('.valeurHtmlStyle').val();
-	if(filtreHtmlStyle != null && filtreHtmlStyle !== '')
-		filtres.push({ name: 'fq', value: 'htmlStyle:' + filtreHtmlStyle });
+		var filtreHtmlStyle = $formulaireFiltres.find('.valeurHtmlStyle').val();
+		if(filtreHtmlStyle != null && filtreHtmlStyle !== '')
+			filtres.push({ name: 'fq', value: 'htmlStyle:' + filtreHtmlStyle });
 
-	var filtreHtmlAvant = $formulaireFiltres.find('.valeurHtmlAvant').val();
-	if(filtreHtmlAvant != null && filtreHtmlAvant !== '')
-		filtres.push({ name: 'fq', value: 'htmlAvant:' + filtreHtmlAvant });
+		var filtreHtmlAvant = $formulaireFiltres.find('.valeurHtmlAvant').val();
+		if(filtreHtmlAvant != null && filtreHtmlAvant !== '')
+			filtres.push({ name: 'fq', value: 'htmlAvant:' + filtreHtmlAvant });
 
-	var filtreHtmlApres = $formulaireFiltres.find('.valeurHtmlApres').val();
-	if(filtreHtmlApres != null && filtreHtmlApres !== '')
-		filtres.push({ name: 'fq', value: 'htmlApres:' + filtreHtmlApres });
+		var filtreHtmlApres = $formulaireFiltres.find('.valeurHtmlApres').val();
+		if(filtreHtmlApres != null && filtreHtmlApres !== '')
+			filtres.push({ name: 'fq', value: 'htmlApres:' + filtreHtmlApres });
 
-	var filtreHtmlTexte = $formulaireFiltres.find('.valeurHtmlTexte').val();
-	if(filtreHtmlTexte != null && filtreHtmlTexte !== '')
-		filtres.push({ name: 'fq', value: 'htmlTexte:' + filtreHtmlTexte });
+		var filtreHtmlTexte = $formulaireFiltres.find('.valeurHtmlTexte').val();
+		if(filtreHtmlTexte != null && filtreHtmlTexte !== '')
+			filtres.push({ name: 'fq', value: 'htmlTexte:' + filtreHtmlTexte });
 
-	var filtreHtmlVar = $formulaireFiltres.find('.valeurHtmlVar').val();
-	if(filtreHtmlVar != null && filtreHtmlVar !== '')
-		filtres.push({ name: 'fq', value: 'htmlVar:' + filtreHtmlVar });
+		var filtreHtmlVar = $formulaireFiltres.find('.valeurHtmlVar').val();
+		if(filtreHtmlVar != null && filtreHtmlVar !== '')
+			filtres.push({ name: 'fq', value: 'htmlVar:' + filtreHtmlVar });
 
-	var filtreHtmlVarSpan = $formulaireFiltres.find('.valeurHtmlVarSpan').val();
-	if(filtreHtmlVarSpan != null && filtreHtmlVarSpan !== '')
-		filtres.push({ name: 'fq', value: 'htmlVarSpan:' + filtreHtmlVarSpan });
+		var filtreHtmlVarSpan = $formulaireFiltres.find('.valeurHtmlVarSpan').val();
+		if(filtreHtmlVarSpan != null && filtreHtmlVarSpan !== '')
+			filtres.push({ name: 'fq', value: 'htmlVarSpan:' + filtreHtmlVarSpan });
 
-	var filtreHtmlVarForm = $formulaireFiltres.find('.valeurHtmlVarForm').val();
-	if(filtreHtmlVarForm != null && filtreHtmlVarForm !== '')
-		filtres.push({ name: 'fq', value: 'htmlVarForm:' + filtreHtmlVarForm });
+		var filtreHtmlVarForm = $formulaireFiltres.find('.valeurHtmlVarForm').val();
+		if(filtreHtmlVarForm != null && filtreHtmlVarForm !== '')
+			filtres.push({ name: 'fq', value: 'htmlVarForm:' + filtreHtmlVarForm });
 
-	var filtreHtmlVarInput = $formulaireFiltres.find('.valeurHtmlVarInput').val();
-	if(filtreHtmlVarInput != null && filtreHtmlVarInput !== '')
-		filtres.push({ name: 'fq', value: 'htmlVarInput:' + filtreHtmlVarInput });
+		var filtreHtmlVarInput = $formulaireFiltres.find('.valeurHtmlVarInput').val();
+		if(filtreHtmlVarInput != null && filtreHtmlVarInput !== '')
+			filtres.push({ name: 'fq', value: 'htmlVarInput:' + filtreHtmlVarInput });
 
-	var filtreHtmlVarForEach = $formulaireFiltres.find('.valeurHtmlVarForEach').val();
-	if(filtreHtmlVarForEach != null && filtreHtmlVarForEach !== '')
-		filtres.push({ name: 'fq', value: 'htmlVarForEach:' + filtreHtmlVarForEach });
+		var filtreHtmlVarForEach = $formulaireFiltres.find('.valeurHtmlVarForEach').val();
+		if(filtreHtmlVarForEach != null && filtreHtmlVarForEach !== '')
+			filtres.push({ name: 'fq', value: 'htmlVarForEach:' + filtreHtmlVarForEach });
 
-	var filtreHtmlExclure = $formulaireFiltres.find('.valeurHtmlExclure').prop('checked');
-	if(filtreHtmlExclure != null && filtreHtmlExclure === true)
-		filtres.push({ name: 'fq', value: 'htmlExclure:' + filtreHtmlExclure });
+		var $filtreHtmlExclureCheckbox = $formulaireFiltres.find('input.valeurHtmlExclure[type = "checkbox"]');
+		var $filtreHtmlExclureSelect = $formulaireFiltres.find('select.valeurHtmlExclure');
+		var filtreHtmlExclure = $filtreHtmlExclureSelect.length ? $filtreHtmlExclureSelect.val() : $filtreHtmlExclureCheckbox.prop('checked');
+		var filtreHtmlExclureSelectVal = $formulaireFiltres.find('select.filtreHtmlExclure').val();
+		var filtreHtmlExclure = null;
+		if(filtreHtmlExclureSelectVal !== '')
+			filtreHtmlExclure = filtreHtmlExclureSelectVal == 'true';
+		if(filtreHtmlExclure != null && filtreHtmlExclure === true)
+			filtres.push({ name: 'fq', value: 'htmlExclure:' + filtreHtmlExclure });
 
-	var filtrePdfExclure = $formulaireFiltres.find('.valeurPdfExclure').prop('checked');
-	if(filtrePdfExclure != null && filtrePdfExclure === true)
-		filtres.push({ name: 'fq', value: 'pdfExclure:' + filtrePdfExclure });
+		var $filtrePdfExclureCheckbox = $formulaireFiltres.find('input.valeurPdfExclure[type = "checkbox"]');
+		var $filtrePdfExclureSelect = $formulaireFiltres.find('select.valeurPdfExclure');
+		var filtrePdfExclure = $filtrePdfExclureSelect.length ? $filtrePdfExclureSelect.val() : $filtrePdfExclureCheckbox.prop('checked');
+		var filtrePdfExclureSelectVal = $formulaireFiltres.find('select.filtrePdfExclure').val();
+		var filtrePdfExclure = null;
+		if(filtrePdfExclureSelectVal !== '')
+			filtrePdfExclure = filtrePdfExclureSelectVal == 'true';
+		if(filtrePdfExclure != null && filtrePdfExclure === true)
+			filtres.push({ name: 'fq', value: 'pdfExclure:' + filtrePdfExclure });
 
-	var filtreTri1 = $formulaireFiltres.find('.valeurTri1').val();
-	if(filtreTri1 != null && filtreTri1 !== '')
-		filtres.push({ name: 'fq', value: 'tri1:' + filtreTri1 });
+		var $filtreConnecterDeconnecterCheckbox = $formulaireFiltres.find('input.valeurConnecterDeconnecter[type = "checkbox"]');
+		var $filtreConnecterDeconnecterSelect = $formulaireFiltres.find('select.valeurConnecterDeconnecter');
+		var filtreConnecterDeconnecter = $filtreConnecterDeconnecterSelect.length ? $filtreConnecterDeconnecterSelect.val() : $filtreConnecterDeconnecterCheckbox.prop('checked');
+		var filtreConnecterDeconnecterSelectVal = $formulaireFiltres.find('select.filtreConnecterDeconnecter').val();
+		var filtreConnecterDeconnecter = null;
+		if(filtreConnecterDeconnecterSelectVal !== '')
+			filtreConnecterDeconnecter = filtreConnecterDeconnecterSelectVal == 'true';
+		if(filtreConnecterDeconnecter != null && filtreConnecterDeconnecter === true)
+			filtres.push({ name: 'fq', value: 'connecterDeconnecter:' + filtreConnecterDeconnecter });
 
-	var filtreTri2 = $formulaireFiltres.find('.valeurTri2').val();
-	if(filtreTri2 != null && filtreTri2 !== '')
-		filtres.push({ name: 'fq', value: 'tri2:' + filtreTri2 });
+		var filtreTri1 = $formulaireFiltres.find('.valeurTri1').val();
+		if(filtreTri1 != null && filtreTri1 !== '')
+			filtres.push({ name: 'fq', value: 'tri1:' + filtreTri1 });
 
-	var filtreTri3 = $formulaireFiltres.find('.valeurTri3').val();
-	if(filtreTri3 != null && filtreTri3 !== '')
-		filtres.push({ name: 'fq', value: 'tri3:' + filtreTri3 });
+		var filtreTri2 = $formulaireFiltres.find('.valeurTri2').val();
+		if(filtreTri2 != null && filtreTri2 !== '')
+			filtres.push({ name: 'fq', value: 'tri2:' + filtreTri2 });
 
-	var filtreTri4 = $formulaireFiltres.find('.valeurTri4').val();
-	if(filtreTri4 != null && filtreTri4 !== '')
-		filtres.push({ name: 'fq', value: 'tri4:' + filtreTri4 });
+		var filtreTri3 = $formulaireFiltres.find('.valeurTri3').val();
+		if(filtreTri3 != null && filtreTri3 !== '')
+			filtres.push({ name: 'fq', value: 'tri3:' + filtreTri3 });
 
-	var filtreTri5 = $formulaireFiltres.find('.valeurTri5').val();
-	if(filtreTri5 != null && filtreTri5 !== '')
-		filtres.push({ name: 'fq', value: 'tri5:' + filtreTri5 });
+		var filtreTri4 = $formulaireFiltres.find('.valeurTri4').val();
+		if(filtreTri4 != null && filtreTri4 !== '')
+			filtres.push({ name: 'fq', value: 'tri4:' + filtreTri4 });
 
-	var filtreTri6 = $formulaireFiltres.find('.valeurTri6').val();
-	if(filtreTri6 != null && filtreTri6 !== '')
-		filtres.push({ name: 'fq', value: 'tri6:' + filtreTri6 });
+		var filtreTri5 = $formulaireFiltres.find('.valeurTri5').val();
+		if(filtreTri5 != null && filtreTri5 !== '')
+			filtres.push({ name: 'fq', value: 'tri5:' + filtreTri5 });
 
-	var filtreTri7 = $formulaireFiltres.find('.valeurTri7').val();
-	if(filtreTri7 != null && filtreTri7 !== '')
-		filtres.push({ name: 'fq', value: 'tri7:' + filtreTri7 });
+		var filtreTri6 = $formulaireFiltres.find('.valeurTri6').val();
+		if(filtreTri6 != null && filtreTri6 !== '')
+			filtres.push({ name: 'fq', value: 'tri6:' + filtreTri6 });
 
-	var filtreTri8 = $formulaireFiltres.find('.valeurTri8').val();
-	if(filtreTri8 != null && filtreTri8 !== '')
-		filtres.push({ name: 'fq', value: 'tri8:' + filtreTri8 });
+		var filtreTri7 = $formulaireFiltres.find('.valeurTri7').val();
+		if(filtreTri7 != null && filtreTri7 !== '')
+			filtres.push({ name: 'fq', value: 'tri7:' + filtreTri7 });
 
-	var filtreTri9 = $formulaireFiltres.find('.valeurTri9').val();
-	if(filtreTri9 != null && filtreTri9 !== '')
-		filtres.push({ name: 'fq', value: 'tri9:' + filtreTri9 });
+		var filtreTri8 = $formulaireFiltres.find('.valeurTri8').val();
+		if(filtreTri8 != null && filtreTri8 !== '')
+			filtres.push({ name: 'fq', value: 'tri8:' + filtreTri8 });
 
-	var filtreTri10 = $formulaireFiltres.find('.valeurTri10').val();
-	if(filtreTri10 != null && filtreTri10 !== '')
-		filtres.push({ name: 'fq', value: 'tri10:' + filtreTri10 });
+		var filtreTri9 = $formulaireFiltres.find('.valeurTri9').val();
+		if(filtreTri9 != null && filtreTri9 !== '')
+			filtres.push({ name: 'fq', value: 'tri9:' + filtreTri9 });
 
-	var filtreInheritPk = $formulaireFiltres.find('.valeurInheritPk').val();
-	if(filtreInheritPk != null && filtreInheritPk !== '')
-		filtres.push({ name: 'fq', value: 'inheritPk:' + filtreInheritPk });
+		var filtreTri10 = $formulaireFiltres.find('.valeurTri10').val();
+		if(filtreTri10 != null && filtreTri10 !== '')
+			filtres.push({ name: 'fq', value: 'tri10:' + filtreTri10 });
 
-	var filtreId = $formulaireFiltres.find('.valeurId').val();
-	if(filtreId != null && filtreId !== '')
-		filtres.push({ name: 'fq', value: 'id:' + filtreId });
+		var filtreInheritPk = $formulaireFiltres.find('.valeurInheritPk').val();
+		if(filtreInheritPk != null && filtreInheritPk !== '')
+			filtres.push({ name: 'fq', value: 'inheritPk:' + filtreInheritPk });
 
-	var filtreClasseNomCanonique = $formulaireFiltres.find('.valeurClasseNomCanonique').val();
-	if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
-		filtres.push({ name: 'fq', value: 'classeNomCanonique:' + filtreClasseNomCanonique });
+		var filtreId = $formulaireFiltres.find('.valeurId').val();
+		if(filtreId != null && filtreId !== '')
+			filtres.push({ name: 'fq', value: 'id:' + filtreId });
 
-	var filtreClasseNomSimple = $formulaireFiltres.find('.valeurClasseNomSimple').val();
-	if(filtreClasseNomSimple != null && filtreClasseNomSimple !== '')
-		filtres.push({ name: 'fq', value: 'classeNomSimple:' + filtreClasseNomSimple });
+		var filtreClasseNomCanonique = $formulaireFiltres.find('.valeurClasseNomCanonique').val();
+		if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
+			filtres.push({ name: 'fq', value: 'classeNomCanonique:' + filtreClasseNomCanonique });
 
-	var filtreClasseNomsCanoniques = $formulaireFiltres.find('.valeurClasseNomsCanoniques').val();
-	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
-		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
+		var filtreClasseNomSimple = $formulaireFiltres.find('.valeurClasseNomSimple').val();
+		if(filtreClasseNomSimple != null && filtreClasseNomSimple !== '')
+			filtres.push({ name: 'fq', value: 'classeNomSimple:' + filtreClasseNomSimple });
 
-	var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
-	if(filtreSessionId != null && filtreSessionId !== '')
-		filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
+		var filtreClasseNomsCanoniques = $formulaireFiltres.find('.valeurClasseNomsCanoniques').val();
+		if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
+			filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
 
-	var filtreSauvegardes = $formulaireFiltres.find('.valeurSauvegardes').val();
-	if(filtreSauvegardes != null && filtreSauvegardes !== '')
-		filtres.push({ name: 'fq', value: 'sauvegardes:' + filtreSauvegardes });
+		var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
+		if(filtreSessionId != null && filtreSessionId !== '')
+			filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
 
-	var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
-	if(filtreObjetTitre != null && filtreObjetTitre !== '')
-		filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
+		var filtreSauvegardes = $formulaireFiltres.find('.valeurSauvegardes').val();
+		if(filtreSauvegardes != null && filtreSauvegardes !== '')
+			filtres.push({ name: 'fq', value: 'sauvegardes:' + filtreSauvegardes });
 
-	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
-	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
-		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
+		var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
+		if(filtreObjetTitre != null && filtreObjetTitre !== '')
+			filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
 
-	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
-	if(filtrePageUrlId != null && filtrePageUrlId !== '')
-		filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
+		var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
+		if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
+			filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
 
-	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
-	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
-		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
+		var filtreObjetTexte = $formulaireFiltres.find('.valeurObjetTexte').val();
+		if(filtreObjetTexte != null && filtreObjetTexte !== '')
+			filtres.push({ name: 'fq', value: 'objetTexte:' + filtreObjetTexte });
 
-	var filtrePartHtmlCle = $formulaireFiltres.find('.valeurPartHtmlCle').val();
-	if(filtrePartHtmlCle != null && filtrePartHtmlCle !== '')
-		filtres.push({ name: 'fq', value: 'partHtmlCle:' + filtrePartHtmlCle });
+		var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
+		if(filtrePageUrlId != null && filtrePageUrlId !== '')
+			filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
+
+		var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
+		if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
+			filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
+
+		var filtrePartHtmlCle = $formulaireFiltres.find('.valeurPartHtmlCle').val();
+		if(filtrePartHtmlCle != null && filtrePartHtmlCle !== '')
+			filtres.push({ name: 'fq', value: 'partHtmlCle:' + filtrePartHtmlCle });
+	}
 	return filtres;
 }
 
@@ -909,20 +1047,6 @@ async function getPartHtml(pk) {
 	});
 }
 
-// DELETE //
-
-async function deletePartHtml(pk) {
-	$.ajax({
-		url: '/api/part-html/' + id
-		, dataType: 'json'
-		, type: 'DELETE'
-		, contentType: 'application/json; charset=utf-8'
-		, data: JSON.stringify(vals)
-		, success: success
-		, error: error
-	});
-}
-
 // Recherche //
 
 async function recherchePartHtml($formulaireFiltres, success, error) {
@@ -937,182 +1061,222 @@ async function recherchePartHtml($formulaireFiltres, success, error) {
 
 function recherchePartHtmlFiltres($formulaireFiltres) {
 	var filtres = [];
+	if($formulaireFiltres) {
 
-	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
-	if(filtrePk != null && filtrePk !== '')
-		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
+		var filtrePk = $formulaireFiltres.find('.valeurPk').val();
+		if(filtrePk != null && filtrePk !== '')
+			filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
 
-	var filtreCree = $formulaireFiltres.find('.valeurCree').val();
-	if(filtreCree != null && filtreCree !== '')
-		filtres.push({ name: 'fq', value: 'cree:' + filtreCree });
+		var filtreCree = $formulaireFiltres.find('.valeurCree').val();
+		if(filtreCree != null && filtreCree !== '')
+			filtres.push({ name: 'fq', value: 'cree:' + filtreCree });
 
-	var filtreModifie = $formulaireFiltres.find('.valeurModifie').val();
-	if(filtreModifie != null && filtreModifie !== '')
-		filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
+		var filtreModifie = $formulaireFiltres.find('.valeurModifie').val();
+		if(filtreModifie != null && filtreModifie !== '')
+			filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
 
-	var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
-	if(filtreObjetId != null && filtreObjetId !== '')
-		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
+		var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
+		if(filtreObjetId != null && filtreObjetId !== '')
+			filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
 
-	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
-	if(filtreArchive != null && filtreArchive === true)
-		filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
+		var $filtreArchiveCheckbox = $formulaireFiltres.find('input.valeurArchive[type = "checkbox"]');
+		var $filtreArchiveSelect = $formulaireFiltres.find('select.valeurArchive');
+		var filtreArchive = $filtreArchiveSelect.length ? $filtreArchiveSelect.val() : $filtreArchiveCheckbox.prop('checked');
+		var filtreArchiveSelectVal = $formulaireFiltres.find('select.filtreArchive').val();
+		var filtreArchive = null;
+		if(filtreArchiveSelectVal !== '')
+			filtreArchive = filtreArchiveSelectVal == 'true';
+		if(filtreArchive != null && filtreArchive === true)
+			filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
 
-	var filtreSupprime = $formulaireFiltres.find('.valeurSupprime').prop('checked');
-	if(filtreSupprime != null && filtreSupprime === true)
-		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
+		var $filtreSupprimeCheckbox = $formulaireFiltres.find('input.valeurSupprime[type = "checkbox"]');
+		var $filtreSupprimeSelect = $formulaireFiltres.find('select.valeurSupprime');
+		var filtreSupprime = $filtreSupprimeSelect.length ? $filtreSupprimeSelect.val() : $filtreSupprimeCheckbox.prop('checked');
+		var filtreSupprimeSelectVal = $formulaireFiltres.find('select.filtreSupprime').val();
+		var filtreSupprime = null;
+		if(filtreSupprimeSelectVal !== '')
+			filtreSupprime = filtreSupprimeSelectVal == 'true';
+		if(filtreSupprime != null && filtreSupprime === true)
+			filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
-	var filtreDesignInscriptionCle = $formulaireFiltres.find('.valeurDesignInscriptionCle').val();
-	if(filtreDesignInscriptionCle != null && filtreDesignInscriptionCle !== '')
-		filtres.push({ name: 'fq', value: 'designInscriptionCle:' + filtreDesignInscriptionCle });
+		var filtreDesignPageCles = $formulaireFiltres.find('.valeurDesignPageCles').val();
+		if(filtreDesignPageCles != null && filtreDesignPageCles !== '')
+			filtres.push({ name: 'fq', value: 'designPageCles:' + filtreDesignPageCles });
 
-	var filtreHtmlLien = $formulaireFiltres.find('.valeurHtmlLien').val();
-	if(filtreHtmlLien != null && filtreHtmlLien !== '')
-		filtres.push({ name: 'fq', value: 'htmlLien:' + filtreHtmlLien });
+		var filtreHtmlLien = $formulaireFiltres.find('.valeurHtmlLien').val();
+		if(filtreHtmlLien != null && filtreHtmlLien !== '')
+			filtres.push({ name: 'fq', value: 'htmlLien:' + filtreHtmlLien });
 
-	var filtreHtmlElement = $formulaireFiltres.find('.valeurHtmlElement').val();
-	if(filtreHtmlElement != null && filtreHtmlElement !== '')
-		filtres.push({ name: 'fq', value: 'htmlElement:' + filtreHtmlElement });
+		var filtreHtmlElement = $formulaireFiltres.find('.valeurHtmlElement').val();
+		if(filtreHtmlElement != null && filtreHtmlElement !== '')
+			filtres.push({ name: 'fq', value: 'htmlElement:' + filtreHtmlElement });
 
-	var filtreHtmlId = $formulaireFiltres.find('.valeurHtmlId').val();
-	if(filtreHtmlId != null && filtreHtmlId !== '')
-		filtres.push({ name: 'fq', value: 'htmlId:' + filtreHtmlId });
+		var filtreHtmlId = $formulaireFiltres.find('.valeurHtmlId').val();
+		if(filtreHtmlId != null && filtreHtmlId !== '')
+			filtres.push({ name: 'fq', value: 'htmlId:' + filtreHtmlId });
 
-	var filtreHtmlClasses = $formulaireFiltres.find('.valeurHtmlClasses').val();
-	if(filtreHtmlClasses != null && filtreHtmlClasses !== '')
-		filtres.push({ name: 'fq', value: 'htmlClasses:' + filtreHtmlClasses });
+		var filtreHtmlClasses = $formulaireFiltres.find('.valeurHtmlClasses').val();
+		if(filtreHtmlClasses != null && filtreHtmlClasses !== '')
+			filtres.push({ name: 'fq', value: 'htmlClasses:' + filtreHtmlClasses });
 
-	var filtreHtmlStyle = $formulaireFiltres.find('.valeurHtmlStyle').val();
-	if(filtreHtmlStyle != null && filtreHtmlStyle !== '')
-		filtres.push({ name: 'fq', value: 'htmlStyle:' + filtreHtmlStyle });
+		var filtreHtmlStyle = $formulaireFiltres.find('.valeurHtmlStyle').val();
+		if(filtreHtmlStyle != null && filtreHtmlStyle !== '')
+			filtres.push({ name: 'fq', value: 'htmlStyle:' + filtreHtmlStyle });
 
-	var filtreHtmlAvant = $formulaireFiltres.find('.valeurHtmlAvant').val();
-	if(filtreHtmlAvant != null && filtreHtmlAvant !== '')
-		filtres.push({ name: 'fq', value: 'htmlAvant:' + filtreHtmlAvant });
+		var filtreHtmlAvant = $formulaireFiltres.find('.valeurHtmlAvant').val();
+		if(filtreHtmlAvant != null && filtreHtmlAvant !== '')
+			filtres.push({ name: 'fq', value: 'htmlAvant:' + filtreHtmlAvant });
 
-	var filtreHtmlApres = $formulaireFiltres.find('.valeurHtmlApres').val();
-	if(filtreHtmlApres != null && filtreHtmlApres !== '')
-		filtres.push({ name: 'fq', value: 'htmlApres:' + filtreHtmlApres });
+		var filtreHtmlApres = $formulaireFiltres.find('.valeurHtmlApres').val();
+		if(filtreHtmlApres != null && filtreHtmlApres !== '')
+			filtres.push({ name: 'fq', value: 'htmlApres:' + filtreHtmlApres });
 
-	var filtreHtmlTexte = $formulaireFiltres.find('.valeurHtmlTexte').val();
-	if(filtreHtmlTexte != null && filtreHtmlTexte !== '')
-		filtres.push({ name: 'fq', value: 'htmlTexte:' + filtreHtmlTexte });
+		var filtreHtmlTexte = $formulaireFiltres.find('.valeurHtmlTexte').val();
+		if(filtreHtmlTexte != null && filtreHtmlTexte !== '')
+			filtres.push({ name: 'fq', value: 'htmlTexte:' + filtreHtmlTexte });
 
-	var filtreHtmlVar = $formulaireFiltres.find('.valeurHtmlVar').val();
-	if(filtreHtmlVar != null && filtreHtmlVar !== '')
-		filtres.push({ name: 'fq', value: 'htmlVar:' + filtreHtmlVar });
+		var filtreHtmlVar = $formulaireFiltres.find('.valeurHtmlVar').val();
+		if(filtreHtmlVar != null && filtreHtmlVar !== '')
+			filtres.push({ name: 'fq', value: 'htmlVar:' + filtreHtmlVar });
 
-	var filtreHtmlVarSpan = $formulaireFiltres.find('.valeurHtmlVarSpan').val();
-	if(filtreHtmlVarSpan != null && filtreHtmlVarSpan !== '')
-		filtres.push({ name: 'fq', value: 'htmlVarSpan:' + filtreHtmlVarSpan });
+		var filtreHtmlVarSpan = $formulaireFiltres.find('.valeurHtmlVarSpan').val();
+		if(filtreHtmlVarSpan != null && filtreHtmlVarSpan !== '')
+			filtres.push({ name: 'fq', value: 'htmlVarSpan:' + filtreHtmlVarSpan });
 
-	var filtreHtmlVarForm = $formulaireFiltres.find('.valeurHtmlVarForm').val();
-	if(filtreHtmlVarForm != null && filtreHtmlVarForm !== '')
-		filtres.push({ name: 'fq', value: 'htmlVarForm:' + filtreHtmlVarForm });
+		var filtreHtmlVarForm = $formulaireFiltres.find('.valeurHtmlVarForm').val();
+		if(filtreHtmlVarForm != null && filtreHtmlVarForm !== '')
+			filtres.push({ name: 'fq', value: 'htmlVarForm:' + filtreHtmlVarForm });
 
-	var filtreHtmlVarInput = $formulaireFiltres.find('.valeurHtmlVarInput').val();
-	if(filtreHtmlVarInput != null && filtreHtmlVarInput !== '')
-		filtres.push({ name: 'fq', value: 'htmlVarInput:' + filtreHtmlVarInput });
+		var filtreHtmlVarInput = $formulaireFiltres.find('.valeurHtmlVarInput').val();
+		if(filtreHtmlVarInput != null && filtreHtmlVarInput !== '')
+			filtres.push({ name: 'fq', value: 'htmlVarInput:' + filtreHtmlVarInput });
 
-	var filtreHtmlVarForEach = $formulaireFiltres.find('.valeurHtmlVarForEach').val();
-	if(filtreHtmlVarForEach != null && filtreHtmlVarForEach !== '')
-		filtres.push({ name: 'fq', value: 'htmlVarForEach:' + filtreHtmlVarForEach });
+		var filtreHtmlVarForEach = $formulaireFiltres.find('.valeurHtmlVarForEach').val();
+		if(filtreHtmlVarForEach != null && filtreHtmlVarForEach !== '')
+			filtres.push({ name: 'fq', value: 'htmlVarForEach:' + filtreHtmlVarForEach });
 
-	var filtreHtmlExclure = $formulaireFiltres.find('.valeurHtmlExclure').prop('checked');
-	if(filtreHtmlExclure != null && filtreHtmlExclure === true)
-		filtres.push({ name: 'fq', value: 'htmlExclure:' + filtreHtmlExclure });
+		var $filtreHtmlExclureCheckbox = $formulaireFiltres.find('input.valeurHtmlExclure[type = "checkbox"]');
+		var $filtreHtmlExclureSelect = $formulaireFiltres.find('select.valeurHtmlExclure');
+		var filtreHtmlExclure = $filtreHtmlExclureSelect.length ? $filtreHtmlExclureSelect.val() : $filtreHtmlExclureCheckbox.prop('checked');
+		var filtreHtmlExclureSelectVal = $formulaireFiltres.find('select.filtreHtmlExclure').val();
+		var filtreHtmlExclure = null;
+		if(filtreHtmlExclureSelectVal !== '')
+			filtreHtmlExclure = filtreHtmlExclureSelectVal == 'true';
+		if(filtreHtmlExclure != null && filtreHtmlExclure === true)
+			filtres.push({ name: 'fq', value: 'htmlExclure:' + filtreHtmlExclure });
 
-	var filtrePdfExclure = $formulaireFiltres.find('.valeurPdfExclure').prop('checked');
-	if(filtrePdfExclure != null && filtrePdfExclure === true)
-		filtres.push({ name: 'fq', value: 'pdfExclure:' + filtrePdfExclure });
+		var $filtrePdfExclureCheckbox = $formulaireFiltres.find('input.valeurPdfExclure[type = "checkbox"]');
+		var $filtrePdfExclureSelect = $formulaireFiltres.find('select.valeurPdfExclure');
+		var filtrePdfExclure = $filtrePdfExclureSelect.length ? $filtrePdfExclureSelect.val() : $filtrePdfExclureCheckbox.prop('checked');
+		var filtrePdfExclureSelectVal = $formulaireFiltres.find('select.filtrePdfExclure').val();
+		var filtrePdfExclure = null;
+		if(filtrePdfExclureSelectVal !== '')
+			filtrePdfExclure = filtrePdfExclureSelectVal == 'true';
+		if(filtrePdfExclure != null && filtrePdfExclure === true)
+			filtres.push({ name: 'fq', value: 'pdfExclure:' + filtrePdfExclure });
 
-	var filtreTri1 = $formulaireFiltres.find('.valeurTri1').val();
-	if(filtreTri1 != null && filtreTri1 !== '')
-		filtres.push({ name: 'fq', value: 'tri1:' + filtreTri1 });
+		var $filtreConnecterDeconnecterCheckbox = $formulaireFiltres.find('input.valeurConnecterDeconnecter[type = "checkbox"]');
+		var $filtreConnecterDeconnecterSelect = $formulaireFiltres.find('select.valeurConnecterDeconnecter');
+		var filtreConnecterDeconnecter = $filtreConnecterDeconnecterSelect.length ? $filtreConnecterDeconnecterSelect.val() : $filtreConnecterDeconnecterCheckbox.prop('checked');
+		var filtreConnecterDeconnecterSelectVal = $formulaireFiltres.find('select.filtreConnecterDeconnecter').val();
+		var filtreConnecterDeconnecter = null;
+		if(filtreConnecterDeconnecterSelectVal !== '')
+			filtreConnecterDeconnecter = filtreConnecterDeconnecterSelectVal == 'true';
+		if(filtreConnecterDeconnecter != null && filtreConnecterDeconnecter === true)
+			filtres.push({ name: 'fq', value: 'connecterDeconnecter:' + filtreConnecterDeconnecter });
 
-	var filtreTri2 = $formulaireFiltres.find('.valeurTri2').val();
-	if(filtreTri2 != null && filtreTri2 !== '')
-		filtres.push({ name: 'fq', value: 'tri2:' + filtreTri2 });
+		var filtreTri1 = $formulaireFiltres.find('.valeurTri1').val();
+		if(filtreTri1 != null && filtreTri1 !== '')
+			filtres.push({ name: 'fq', value: 'tri1:' + filtreTri1 });
 
-	var filtreTri3 = $formulaireFiltres.find('.valeurTri3').val();
-	if(filtreTri3 != null && filtreTri3 !== '')
-		filtres.push({ name: 'fq', value: 'tri3:' + filtreTri3 });
+		var filtreTri2 = $formulaireFiltres.find('.valeurTri2').val();
+		if(filtreTri2 != null && filtreTri2 !== '')
+			filtres.push({ name: 'fq', value: 'tri2:' + filtreTri2 });
 
-	var filtreTri4 = $formulaireFiltres.find('.valeurTri4').val();
-	if(filtreTri4 != null && filtreTri4 !== '')
-		filtres.push({ name: 'fq', value: 'tri4:' + filtreTri4 });
+		var filtreTri3 = $formulaireFiltres.find('.valeurTri3').val();
+		if(filtreTri3 != null && filtreTri3 !== '')
+			filtres.push({ name: 'fq', value: 'tri3:' + filtreTri3 });
 
-	var filtreTri5 = $formulaireFiltres.find('.valeurTri5').val();
-	if(filtreTri5 != null && filtreTri5 !== '')
-		filtres.push({ name: 'fq', value: 'tri5:' + filtreTri5 });
+		var filtreTri4 = $formulaireFiltres.find('.valeurTri4').val();
+		if(filtreTri4 != null && filtreTri4 !== '')
+			filtres.push({ name: 'fq', value: 'tri4:' + filtreTri4 });
 
-	var filtreTri6 = $formulaireFiltres.find('.valeurTri6').val();
-	if(filtreTri6 != null && filtreTri6 !== '')
-		filtres.push({ name: 'fq', value: 'tri6:' + filtreTri6 });
+		var filtreTri5 = $formulaireFiltres.find('.valeurTri5').val();
+		if(filtreTri5 != null && filtreTri5 !== '')
+			filtres.push({ name: 'fq', value: 'tri5:' + filtreTri5 });
 
-	var filtreTri7 = $formulaireFiltres.find('.valeurTri7').val();
-	if(filtreTri7 != null && filtreTri7 !== '')
-		filtres.push({ name: 'fq', value: 'tri7:' + filtreTri7 });
+		var filtreTri6 = $formulaireFiltres.find('.valeurTri6').val();
+		if(filtreTri6 != null && filtreTri6 !== '')
+			filtres.push({ name: 'fq', value: 'tri6:' + filtreTri6 });
 
-	var filtreTri8 = $formulaireFiltres.find('.valeurTri8').val();
-	if(filtreTri8 != null && filtreTri8 !== '')
-		filtres.push({ name: 'fq', value: 'tri8:' + filtreTri8 });
+		var filtreTri7 = $formulaireFiltres.find('.valeurTri7').val();
+		if(filtreTri7 != null && filtreTri7 !== '')
+			filtres.push({ name: 'fq', value: 'tri7:' + filtreTri7 });
 
-	var filtreTri9 = $formulaireFiltres.find('.valeurTri9').val();
-	if(filtreTri9 != null && filtreTri9 !== '')
-		filtres.push({ name: 'fq', value: 'tri9:' + filtreTri9 });
+		var filtreTri8 = $formulaireFiltres.find('.valeurTri8').val();
+		if(filtreTri8 != null && filtreTri8 !== '')
+			filtres.push({ name: 'fq', value: 'tri8:' + filtreTri8 });
 
-	var filtreTri10 = $formulaireFiltres.find('.valeurTri10').val();
-	if(filtreTri10 != null && filtreTri10 !== '')
-		filtres.push({ name: 'fq', value: 'tri10:' + filtreTri10 });
+		var filtreTri9 = $formulaireFiltres.find('.valeurTri9').val();
+		if(filtreTri9 != null && filtreTri9 !== '')
+			filtres.push({ name: 'fq', value: 'tri9:' + filtreTri9 });
 
-	var filtreInheritPk = $formulaireFiltres.find('.valeurInheritPk').val();
-	if(filtreInheritPk != null && filtreInheritPk !== '')
-		filtres.push({ name: 'fq', value: 'inheritPk:' + filtreInheritPk });
+		var filtreTri10 = $formulaireFiltres.find('.valeurTri10').val();
+		if(filtreTri10 != null && filtreTri10 !== '')
+			filtres.push({ name: 'fq', value: 'tri10:' + filtreTri10 });
 
-	var filtreId = $formulaireFiltres.find('.valeurId').val();
-	if(filtreId != null && filtreId !== '')
-		filtres.push({ name: 'fq', value: 'id:' + filtreId });
+		var filtreInheritPk = $formulaireFiltres.find('.valeurInheritPk').val();
+		if(filtreInheritPk != null && filtreInheritPk !== '')
+			filtres.push({ name: 'fq', value: 'inheritPk:' + filtreInheritPk });
 
-	var filtreClasseNomCanonique = $formulaireFiltres.find('.valeurClasseNomCanonique').val();
-	if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
-		filtres.push({ name: 'fq', value: 'classeNomCanonique:' + filtreClasseNomCanonique });
+		var filtreId = $formulaireFiltres.find('.valeurId').val();
+		if(filtreId != null && filtreId !== '')
+			filtres.push({ name: 'fq', value: 'id:' + filtreId });
 
-	var filtreClasseNomSimple = $formulaireFiltres.find('.valeurClasseNomSimple').val();
-	if(filtreClasseNomSimple != null && filtreClasseNomSimple !== '')
-		filtres.push({ name: 'fq', value: 'classeNomSimple:' + filtreClasseNomSimple });
+		var filtreClasseNomCanonique = $formulaireFiltres.find('.valeurClasseNomCanonique').val();
+		if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
+			filtres.push({ name: 'fq', value: 'classeNomCanonique:' + filtreClasseNomCanonique });
 
-	var filtreClasseNomsCanoniques = $formulaireFiltres.find('.valeurClasseNomsCanoniques').val();
-	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
-		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
+		var filtreClasseNomSimple = $formulaireFiltres.find('.valeurClasseNomSimple').val();
+		if(filtreClasseNomSimple != null && filtreClasseNomSimple !== '')
+			filtres.push({ name: 'fq', value: 'classeNomSimple:' + filtreClasseNomSimple });
 
-	var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
-	if(filtreSessionId != null && filtreSessionId !== '')
-		filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
+		var filtreClasseNomsCanoniques = $formulaireFiltres.find('.valeurClasseNomsCanoniques').val();
+		if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
+			filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
 
-	var filtreSauvegardes = $formulaireFiltres.find('.valeurSauvegardes').val();
-	if(filtreSauvegardes != null && filtreSauvegardes !== '')
-		filtres.push({ name: 'fq', value: 'sauvegardes:' + filtreSauvegardes });
+		var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
+		if(filtreSessionId != null && filtreSessionId !== '')
+			filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
 
-	var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
-	if(filtreObjetTitre != null && filtreObjetTitre !== '')
-		filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
+		var filtreSauvegardes = $formulaireFiltres.find('.valeurSauvegardes').val();
+		if(filtreSauvegardes != null && filtreSauvegardes !== '')
+			filtres.push({ name: 'fq', value: 'sauvegardes:' + filtreSauvegardes });
 
-	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
-	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
-		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
+		var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
+		if(filtreObjetTitre != null && filtreObjetTitre !== '')
+			filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
 
-	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
-	if(filtrePageUrlId != null && filtrePageUrlId !== '')
-		filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
+		var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
+		if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
+			filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
 
-	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
-	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
-		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
+		var filtreObjetTexte = $formulaireFiltres.find('.valeurObjetTexte').val();
+		if(filtreObjetTexte != null && filtreObjetTexte !== '')
+			filtres.push({ name: 'fq', value: 'objetTexte:' + filtreObjetTexte });
 
-	var filtrePartHtmlCle = $formulaireFiltres.find('.valeurPartHtmlCle').val();
-	if(filtrePartHtmlCle != null && filtrePartHtmlCle !== '')
-		filtres.push({ name: 'fq', value: 'partHtmlCle:' + filtrePartHtmlCle });
+		var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
+		if(filtrePageUrlId != null && filtrePageUrlId !== '')
+			filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
+
+		var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
+		if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
+			filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
+
+		var filtrePartHtmlCle = $formulaireFiltres.find('.valeurPartHtmlCle').val();
+		if(filtrePartHtmlCle != null && filtrePartHtmlCle !== '')
+			filtres.push({ name: 'fq', value: 'partHtmlCle:' + filtrePartHtmlCle });
+	}
 	return filtres;
 }
 
@@ -1158,30 +1322,31 @@ function suggerePartHtmlObjetSuggere($formulaireFiltres, $list) {
 	rechercherPartHtmlVals($formulaireFiltres, success, error);
 }
 
-function suggerePartHtmlDesignInscriptionCle(filtres, $list, pk = null) {
+function suggerePartHtmlDesignPageCles(filtres, $list, pk = null, attribuer=true) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-drafting-compass ');
-			var $span = $('<span>').attr('class', '').text(o['designInscriptionNomComplet']);
+			var $span = $('<span>').attr('class', '').text(o['designPageNomComplet']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);
 			$a.append($span);
 			var val = o['partHtmlCles'];
-			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
+			var checked = pk == null ? false : Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
 			var $input = $('<input>');
-			$input.attr('id', 'GET_designInscriptionCle_' + pk + '_partHtmlCles_' + o['pk']);
+			$input.attr('id', 'GET_designPageCles_' + pk + '_partHtmlCles_' + o['pk']);
 			$input.attr('value', o['pk']);
-			$input.attr('class', 'valeurDesignInscriptionCle w3-check ');
+			$input.attr('class', 'valeurDesignPageCles w3-check ');
 			if(pk != null) {
-				$input.attr('onchange', "var $input = $('#GET_designInscriptionCle_" + pk + "_partHtmlCles_" + o['pk'] + "'); patchPartHtmlVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'set' : 'remove') + 'DesignInscriptionCle']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onchange', "var $input = $('#GET_designPageCles_" + pk + "_partHtmlCles_" + o['pk'] + "'); patchPartHtmlVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'DesignPageCles']: \"" + o['pk'] + "\" } ); ");
 				$input.attr('onclick', 'enleverLueur($(this)); ');
 			}
 			$input.attr('type', 'checkbox');
 			if(checked)
 				$input.attr('checked', 'checked');
 			var $li = $('<li>');
-			$li.append($input);
+			if(attribuer)
+				$li.append($input);
 			$li.append($a);
 			$list.append($li);
 		});
@@ -1190,7 +1355,7 @@ function suggerePartHtmlDesignInscriptionCle(filtres, $list, pk = null) {
 			$('#' + focusId).parent().next().find('input').focus();
 	};
 	error = function( jqXhr, textStatus, errorThrown ) {};
-	rechercheDesignInscriptionVals(filtres, success, error);
+	rechercheDesignPageVals(filtres, success, error);
 }
 
 async function websocketPartHtml(success) {
@@ -1231,8 +1396,8 @@ async function websocketPartHtml(success) {
 					success(json);
 		});
 
-		window.eventBus.registerHandler('websocketDesignInscription', function (error, message) {
-			$('#Page_designInscriptionCle').trigger('oninput');
+		window.eventBus.registerHandler('websocketDesignPage', function (error, message) {
+			$('#Page_designPageCles').trigger('oninput');
 		});
 	}
 }
@@ -1262,9 +1427,9 @@ async function websocketPartHtmlInner(requeteApi) {
 				$('.inputPartHtml' + pk + 'Supprime').val(o['supprime']);
 				$('.varPartHtml' + pk + 'Supprime').text(o['supprime']);
 			}
-			if(vars.includes('designInscriptionCle')) {
-				$('.inputPartHtml' + pk + 'DesignInscriptionCle').val(o['designInscriptionCle']);
-				$('.varPartHtml' + pk + 'DesignInscriptionCle').text(o['designInscriptionCle']);
+			if(vars.includes('designPageCles')) {
+				$('.inputPartHtml' + pk + 'DesignPageCles').val(o['designPageCles']);
+				$('.varPartHtml' + pk + 'DesignPageCles').text(o['designPageCles']);
 			}
 			if(vars.includes('htmlLien')) {
 				$('.inputPartHtml' + pk + 'HtmlLien').val(o['htmlLien']);
@@ -1326,6 +1491,10 @@ async function websocketPartHtmlInner(requeteApi) {
 				$('.inputPartHtml' + pk + 'PdfExclure').val(o['pdfExclure']);
 				$('.varPartHtml' + pk + 'PdfExclure').text(o['pdfExclure']);
 			}
+			if(vars.includes('connecterDeconnecter')) {
+				$('.inputPartHtml' + pk + 'ConnecterDeconnecter').val(o['connecterDeconnecter']);
+				$('.varPartHtml' + pk + 'ConnecterDeconnecter').text(o['connecterDeconnecter']);
+			}
 			if(vars.includes('tri1')) {
 				$('.inputPartHtml' + pk + 'Tri1').val(o['tri1']);
 				$('.varPartHtml' + pk + 'Tri1').text(o['tri1']);
@@ -1367,17 +1536,5 @@ async function websocketPartHtmlInner(requeteApi) {
 				$('.varPartHtml' + pk + 'Tri10').text(o['tri10']);
 			}
 		});
-	}
-
-	if(!empty) {
-		if(pks) {
-			for(i=0; i < pks.length; i++) {
-				var pk2 = pks[i];
-				var c = classes[i];
-				await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
-			}
-		}
-		if(pk)
-			await patchPartHtmlVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 	}
 }

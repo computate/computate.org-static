@@ -94,7 +94,7 @@ function postSchoolSeasonVals(vals, success, error) {
 
 // PUT //
 
-async function putSchoolSeason($formValues, success, error) {
+async function putSchoolSeason($formValues, pk, success, error) {
 	var vals = {};
 
 	var valuePk = $formValues.find('.valuePk').val();
@@ -149,7 +149,7 @@ async function putSchoolSeason($formValues, success, error) {
 	if(valueSeasonWinter != null && valueSeasonWinter !== '')
 		vals['seasonWinter'] = valueSeasonWinter;
 
-	putSchoolSeasonVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+	putSchoolSeasonVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
 function putSchoolSeasonVals(filters, vals, success, error) {
@@ -158,7 +158,7 @@ function putSchoolSeasonVals(filters, vals, success, error) {
 		, dataType: 'json'
 		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
-		, data: JSON.stringify(vals)
+		, data: JSON.stringify({patch: vals})
 		, success: success
 		, error: error
 	});
@@ -166,7 +166,7 @@ function putSchoolSeasonVals(filters, vals, success, error) {
 
 // PATCH //
 
-async function patchSchoolSeason($formFilters, $formValues, success, error) {
+async function patchSchoolSeason($formFilters, $formValues, pk, success, error) {
 	var filters = patchSchoolSeasonFilters($formFilters);
 
 	var vals = {};
@@ -216,7 +216,11 @@ async function patchSchoolSeason($formFilters, $formValues, success, error) {
 		vals['removeObjectId'] = removeObjectId;
 
 	var removeArchived = $formFilters.find('.removeArchived').val() === 'true';
-	var setArchived = removeArchived ? null : $formValues.find('.setArchived').prop('checked');
+	var valueArchivedSelectVal = $formValues.find('select.setArchived').val();
+	var valueArchived = null;
+	if(valueArchivedSelectVal !== '')
+		valueArchived = valueArchivedSelectVal == 'true';
+	setArchived = removeArchived ? null : valueArchived;
 	if(removeArchived || setArchived != null && setArchived !== '')
 		vals['setArchived'] = setArchived;
 	var addArchived = $formValues.find('.addArchived').prop('checked');
@@ -227,7 +231,11 @@ async function patchSchoolSeason($formFilters, $formValues, success, error) {
 		vals['removeArchived'] = removeArchived;
 
 	var removeDeleted = $formFilters.find('.removeDeleted').val() === 'true';
-	var setDeleted = removeDeleted ? null : $formValues.find('.setDeleted').prop('checked');
+	var valueDeletedSelectVal = $formValues.find('select.setDeleted').val();
+	var valueDeleted = null;
+	if(valueDeletedSelectVal !== '')
+		valueDeleted = valueDeletedSelectVal == 'true';
+	setDeleted = removeDeleted ? null : valueDeleted;
 	if(removeDeleted || setDeleted != null && setDeleted !== '')
 		vals['setDeleted'] = setDeleted;
 	var addDeleted = $formValues.find('.addDeleted').prop('checked');
@@ -249,7 +257,11 @@ async function patchSchoolSeason($formFilters, $formValues, success, error) {
 		vals['removeSeasonStartDate'] = removeSeasonStartDate;
 
 	var removeSeasonFuture = $formFilters.find('.removeSeasonFuture').val() === 'true';
-	var setSeasonFuture = removeSeasonFuture ? null : $formValues.find('.setSeasonFuture').prop('checked');
+	var valueSeasonFutureSelectVal = $formValues.find('select.setSeasonFuture').val();
+	var valueSeasonFuture = null;
+	if(valueSeasonFutureSelectVal !== '')
+		valueSeasonFuture = valueSeasonFutureSelectVal == 'true';
+	setSeasonFuture = removeSeasonFuture ? null : valueSeasonFuture;
 	if(removeSeasonFuture || setSeasonFuture != null && setSeasonFuture !== '')
 		vals['setSeasonFuture'] = setSeasonFuture;
 	var addSeasonFuture = $formValues.find('.addSeasonFuture').prop('checked');
@@ -293,7 +305,11 @@ async function patchSchoolSeason($formFilters, $formValues, success, error) {
 		vals['removeObjectTitle'] = removeObjectTitle;
 
 	var removeSeasonSummer = $formFilters.find('.removeSeasonSummer').val() === 'true';
-	var setSeasonSummer = removeSeasonSummer ? null : $formValues.find('.setSeasonSummer').prop('checked');
+	var valueSeasonSummerSelectVal = $formValues.find('select.setSeasonSummer').val();
+	var valueSeasonSummer = null;
+	if(valueSeasonSummerSelectVal !== '')
+		valueSeasonSummer = valueSeasonSummerSelectVal == 'true';
+	setSeasonSummer = removeSeasonSummer ? null : valueSeasonSummer;
 	if(removeSeasonSummer || setSeasonSummer != null && setSeasonSummer !== '')
 		vals['setSeasonSummer'] = setSeasonSummer;
 	var addSeasonSummer = $formValues.find('.addSeasonSummer').prop('checked');
@@ -304,7 +320,11 @@ async function patchSchoolSeason($formFilters, $formValues, success, error) {
 		vals['removeSeasonSummer'] = removeSeasonSummer;
 
 	var removeSeasonWinter = $formFilters.find('.removeSeasonWinter').val() === 'true';
-	var setSeasonWinter = removeSeasonWinter ? null : $formValues.find('.setSeasonWinter').prop('checked');
+	var valueSeasonWinterSelectVal = $formValues.find('select.setSeasonWinter').val();
+	var valueSeasonWinter = null;
+	if(valueSeasonWinterSelectVal !== '')
+		valueSeasonWinter = valueSeasonWinterSelectVal == 'true';
+	setSeasonWinter = removeSeasonWinter ? null : valueSeasonWinter;
 	if(removeSeasonWinter || setSeasonWinter != null && setSeasonWinter !== '')
 		vals['setSeasonWinter'] = setSeasonWinter;
 	var addSeasonWinter = $formValues.find('.addSeasonWinter').prop('checked');
@@ -314,7 +334,7 @@ async function patchSchoolSeason($formFilters, $formValues, success, error) {
 	if(removeSeasonWinter != null && removeSeasonWinter !== '')
 		vals['removeSeasonWinter'] = removeSeasonWinter;
 
-	patchSchoolSeasonVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+	patchSchoolSeasonVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
 function patchSchoolSeasonFilters($formFilters) {
@@ -336,11 +356,23 @@ function patchSchoolSeasonFilters($formFilters) {
 	if(filterObjectId != null && filterObjectId !== '')
 		filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
 
-	var filterArchived = $formFilters.find('.valueArchived').prop('checked');
+	var $filterArchivedCheckbox = $formFilters.find('input.valueArchived[type = "checkbox"]');
+	var $filterArchivedSelect = $formFilters.find('select.valueArchived');
+	var filterArchived = $filterArchivedSelect.length ? $filterArchivedSelect.val() : $filterArchivedCheckbox.prop('checked');
+	var filterArchivedSelectVal = $formFilters.find('select.filterArchived').val();
+	var filterArchived = null;
+	if(filterArchivedSelectVal !== '')
+		filterArchived = filterArchivedSelectVal == 'true';
 	if(filterArchived != null && filterArchived === true)
 		filters.push({ name: 'fq', value: 'archived:' + filterArchived });
 
-	var filterDeleted = $formFilters.find('.valueDeleted').prop('checked');
+	var $filterDeletedCheckbox = $formFilters.find('input.valueDeleted[type = "checkbox"]');
+	var $filterDeletedSelect = $formFilters.find('select.valueDeleted');
+	var filterDeleted = $filterDeletedSelect.length ? $filterDeletedSelect.val() : $filterDeletedCheckbox.prop('checked');
+	var filterDeletedSelectVal = $formFilters.find('select.filterDeleted').val();
+	var filterDeleted = null;
+	if(filterDeletedSelectVal !== '')
+		filterDeleted = filterDeletedSelectVal == 'true';
 	if(filterDeleted != null && filterDeleted === true)
 		filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
@@ -348,7 +380,13 @@ function patchSchoolSeasonFilters($formFilters) {
 	if(filterSeasonStartDate != null && filterSeasonStartDate !== '')
 		filters.push({ name: 'fq', value: 'seasonStartDate:' + filterSeasonStartDate });
 
-	var filterSeasonFuture = $formFilters.find('.valueSeasonFuture').prop('checked');
+	var $filterSeasonFutureCheckbox = $formFilters.find('input.valueSeasonFuture[type = "checkbox"]');
+	var $filterSeasonFutureSelect = $formFilters.find('select.valueSeasonFuture');
+	var filterSeasonFuture = $filterSeasonFutureSelect.length ? $filterSeasonFutureSelect.val() : $filterSeasonFutureCheckbox.prop('checked');
+	var filterSeasonFutureSelectVal = $formFilters.find('select.filterSeasonFuture').val();
+	var filterSeasonFuture = null;
+	if(filterSeasonFutureSelectVal !== '')
+		filterSeasonFuture = filterSeasonFutureSelectVal == 'true';
 	if(filterSeasonFuture != null && filterSeasonFuture === true)
 		filters.push({ name: 'fq', value: 'seasonFuture:' + filterSeasonFuture });
 
@@ -395,6 +433,10 @@ function patchSchoolSeasonFilters($formFilters) {
 	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
 	if(filterObjectSuggest != null && filterObjectSuggest !== '')
 		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+
+	var filterObjectText = $formFilters.find('.valueObjectText').val();
+	if(filterObjectText != null && filterObjectText !== '')
+		filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
 
 	var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
 	if(filterPageUrlId != null && filterPageUrlId !== '')
@@ -468,11 +510,23 @@ function patchSchoolSeasonFilters($formFilters) {
 	if(filterYearEnrollmentFee != null && filterYearEnrollmentFee !== '')
 		filters.push({ name: 'fq', value: 'yearEnrollmentFee:' + filterYearEnrollmentFee });
 
-	var filterSeasonSummer = $formFilters.find('.valueSeasonSummer').prop('checked');
+	var $filterSeasonSummerCheckbox = $formFilters.find('input.valueSeasonSummer[type = "checkbox"]');
+	var $filterSeasonSummerSelect = $formFilters.find('select.valueSeasonSummer');
+	var filterSeasonSummer = $filterSeasonSummerSelect.length ? $filterSeasonSummerSelect.val() : $filterSeasonSummerCheckbox.prop('checked');
+	var filterSeasonSummerSelectVal = $formFilters.find('select.filterSeasonSummer').val();
+	var filterSeasonSummer = null;
+	if(filterSeasonSummerSelectVal !== '')
+		filterSeasonSummer = filterSeasonSummerSelectVal == 'true';
 	if(filterSeasonSummer != null && filterSeasonSummer === true)
 		filters.push({ name: 'fq', value: 'seasonSummer:' + filterSeasonSummer });
 
-	var filterSeasonWinter = $formFilters.find('.valueSeasonWinter').prop('checked');
+	var $filterSeasonWinterCheckbox = $formFilters.find('input.valueSeasonWinter[type = "checkbox"]');
+	var $filterSeasonWinterSelect = $formFilters.find('select.valueSeasonWinter');
+	var filterSeasonWinter = $filterSeasonWinterSelect.length ? $filterSeasonWinterSelect.val() : $filterSeasonWinterCheckbox.prop('checked');
+	var filterSeasonWinterSelectVal = $formFilters.find('select.filterSeasonWinter').val();
+	var filterSeasonWinter = null;
+	if(filterSeasonWinterSelectVal !== '')
+		filterSeasonWinter = filterSeasonWinterSelectVal == 'true';
 	if(filterSeasonWinter != null && filterSeasonWinter === true)
 		filters.push({ name: 'fq', value: 'seasonWinter:' + filterSeasonWinter });
 
@@ -517,20 +571,6 @@ async function getSchoolSeason(pk) {
 	});
 }
 
-// DELETE //
-
-async function deleteSchoolSeason(pk) {
-	$.ajax({
-		url: '/api/season/' + id
-		, dataType: 'json'
-		, type: 'DELETE'
-		, contentType: 'application/json; charset=utf-8'
-		, data: JSON.stringify(vals)
-		, success: success
-		, error: error
-	});
-}
-
 // Search //
 
 async function searchSchoolSeason($formFilters, success, error) {
@@ -562,11 +602,23 @@ function searchSchoolSeasonFilters($formFilters) {
 	if(filterObjectId != null && filterObjectId !== '')
 		filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
 
-	var filterArchived = $formFilters.find('.valueArchived').prop('checked');
+	var $filterArchivedCheckbox = $formFilters.find('input.valueArchived[type = "checkbox"]');
+	var $filterArchivedSelect = $formFilters.find('select.valueArchived');
+	var filterArchived = $filterArchivedSelect.length ? $filterArchivedSelect.val() : $filterArchivedCheckbox.prop('checked');
+	var filterArchivedSelectVal = $formFilters.find('select.filterArchived').val();
+	var filterArchived = null;
+	if(filterArchivedSelectVal !== '')
+		filterArchived = filterArchivedSelectVal == 'true';
 	if(filterArchived != null && filterArchived === true)
 		filters.push({ name: 'fq', value: 'archived:' + filterArchived });
 
-	var filterDeleted = $formFilters.find('.valueDeleted').prop('checked');
+	var $filterDeletedCheckbox = $formFilters.find('input.valueDeleted[type = "checkbox"]');
+	var $filterDeletedSelect = $formFilters.find('select.valueDeleted');
+	var filterDeleted = $filterDeletedSelect.length ? $filterDeletedSelect.val() : $filterDeletedCheckbox.prop('checked');
+	var filterDeletedSelectVal = $formFilters.find('select.filterDeleted').val();
+	var filterDeleted = null;
+	if(filterDeletedSelectVal !== '')
+		filterDeleted = filterDeletedSelectVal == 'true';
 	if(filterDeleted != null && filterDeleted === true)
 		filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
@@ -574,7 +626,13 @@ function searchSchoolSeasonFilters($formFilters) {
 	if(filterSeasonStartDate != null && filterSeasonStartDate !== '')
 		filters.push({ name: 'fq', value: 'seasonStartDate:' + filterSeasonStartDate });
 
-	var filterSeasonFuture = $formFilters.find('.valueSeasonFuture').prop('checked');
+	var $filterSeasonFutureCheckbox = $formFilters.find('input.valueSeasonFuture[type = "checkbox"]');
+	var $filterSeasonFutureSelect = $formFilters.find('select.valueSeasonFuture');
+	var filterSeasonFuture = $filterSeasonFutureSelect.length ? $filterSeasonFutureSelect.val() : $filterSeasonFutureCheckbox.prop('checked');
+	var filterSeasonFutureSelectVal = $formFilters.find('select.filterSeasonFuture').val();
+	var filterSeasonFuture = null;
+	if(filterSeasonFutureSelectVal !== '')
+		filterSeasonFuture = filterSeasonFutureSelectVal == 'true';
 	if(filterSeasonFuture != null && filterSeasonFuture === true)
 		filters.push({ name: 'fq', value: 'seasonFuture:' + filterSeasonFuture });
 
@@ -621,6 +679,10 @@ function searchSchoolSeasonFilters($formFilters) {
 	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
 	if(filterObjectSuggest != null && filterObjectSuggest !== '')
 		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+
+	var filterObjectText = $formFilters.find('.valueObjectText').val();
+	if(filterObjectText != null && filterObjectText !== '')
+		filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
 
 	var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
 	if(filterPageUrlId != null && filterPageUrlId !== '')
@@ -694,11 +756,23 @@ function searchSchoolSeasonFilters($formFilters) {
 	if(filterYearEnrollmentFee != null && filterYearEnrollmentFee !== '')
 		filters.push({ name: 'fq', value: 'yearEnrollmentFee:' + filterYearEnrollmentFee });
 
-	var filterSeasonSummer = $formFilters.find('.valueSeasonSummer').prop('checked');
+	var $filterSeasonSummerCheckbox = $formFilters.find('input.valueSeasonSummer[type = "checkbox"]');
+	var $filterSeasonSummerSelect = $formFilters.find('select.valueSeasonSummer');
+	var filterSeasonSummer = $filterSeasonSummerSelect.length ? $filterSeasonSummerSelect.val() : $filterSeasonSummerCheckbox.prop('checked');
+	var filterSeasonSummerSelectVal = $formFilters.find('select.filterSeasonSummer').val();
+	var filterSeasonSummer = null;
+	if(filterSeasonSummerSelectVal !== '')
+		filterSeasonSummer = filterSeasonSummerSelectVal == 'true';
 	if(filterSeasonSummer != null && filterSeasonSummer === true)
 		filters.push({ name: 'fq', value: 'seasonSummer:' + filterSeasonSummer });
 
-	var filterSeasonWinter = $formFilters.find('.valueSeasonWinter').prop('checked');
+	var $filterSeasonWinterCheckbox = $formFilters.find('input.valueSeasonWinter[type = "checkbox"]');
+	var $filterSeasonWinterSelect = $formFilters.find('select.valueSeasonWinter');
+	var filterSeasonWinter = $filterSeasonWinterSelect.length ? $filterSeasonWinterSelect.val() : $filterSeasonWinterCheckbox.prop('checked');
+	var filterSeasonWinterSelectVal = $formFilters.find('select.filterSeasonWinter').val();
+	var filterSeasonWinter = null;
+	if(filterSeasonWinterSelectVal !== '')
+		filterSeasonWinter = filterSeasonWinterSelectVal == 'true';
 	if(filterSeasonWinter != null && filterSeasonWinter === true)
 		filters.push({ name: 'fq', value: 'seasonWinter:' + filterSeasonWinter });
 
@@ -741,7 +815,7 @@ function suggestSchoolSeasonObjectSuggest($formFilters, $list) {
 	searchSchoolSeasonVals($formFilters, success, error);
 }
 
-function suggestSchoolSeasonYearKey(filters, $list, pk = null) {
+function suggestSchoolSeasonYearKey(filters, $list, pk = null, attribute=true) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
@@ -751,7 +825,7 @@ function suggestSchoolSeasonYearKey(filters, $list, pk = null) {
 			$a.append($i);
 			$a.append($span);
 			var val = o['seasonKeys'];
-			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
+			var checked = Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
 			var $input = $('<input>');
 			$input.attr('id', 'GET_yearKey_' + pk + '_seasonKeys_' + o['pk']);
 			$input.attr('value', o['pk']);
@@ -764,7 +838,8 @@ function suggestSchoolSeasonYearKey(filters, $list, pk = null) {
 			if(checked)
 				$input.attr('checked', 'checked');
 			var $li = $('<li>');
-			$li.append($input);
+			if(attribute)
+				$li.append($input);
 			$li.append($a);
 			$list.append($li);
 		});
@@ -776,7 +851,7 @@ function suggestSchoolSeasonYearKey(filters, $list, pk = null) {
 	searchSchoolYearVals(filters, success, error);
 }
 
-function suggestSchoolSeasonSessionKeys(filters, $list, pk = null) {
+function suggestSchoolSeasonSessionKeys(filters, $list, pk = null, attribute=true) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
@@ -786,7 +861,7 @@ function suggestSchoolSeasonSessionKeys(filters, $list, pk = null) {
 			$a.append($i);
 			$a.append($span);
 			var val = o['seasonKey'];
-			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
+			var checked = Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
 			var $input = $('<input>');
 			$input.attr('id', 'GET_sessionKeys_' + pk + '_seasonKey_' + o['pk']);
 			$input.attr('value', o['pk']);
@@ -799,7 +874,8 @@ function suggestSchoolSeasonSessionKeys(filters, $list, pk = null) {
 			if(checked)
 				$input.attr('checked', 'checked');
 			var $li = $('<li>');
-			$li.append($input);
+			if(attribute)
+				$li.append($input);
 			$li.append($a);
 			$list.append($li);
 		});
@@ -909,17 +985,5 @@ async function websocketSchoolSeasonInner(apiRequest) {
 				$('.varSchoolSeason' + pk + 'SeasonWinter').text(o['seasonWinter']);
 			}
 		});
-	}
-
-	if(!empty) {
-		if(pks) {
-			for(i=0; i < pks.length; i++) {
-				var pk2 = pks[i];
-				var c = classes[i];
-				await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
-			}
-		}
-		if(pk)
-			await patchSchoolSeasonVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 	}
 }

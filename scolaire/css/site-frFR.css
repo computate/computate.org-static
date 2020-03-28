@@ -66,7 +66,7 @@ input[type=text], input[type=radio], input[type=checkbox], textarea {
 	z-index: 0; position: fixed; right: 0; bottom: 0; left: 0; height: 1600px; padding-top: 1200px; text-align: center; 
 	background-image: linear-gradient(30deg, #000000, #000f3b 20%, #160029);
 }
-@media (max-width:992px){ .site-section-contact { padding-top: 1300px; }}
+@media (max-width:992px){ .site-section-contact { padding-top: 1200px; }}
 @media (max-width:600px){ .site-section-contact { padding-top: 1000px; }}
 
 .site-value-delete-button {
@@ -225,6 +225,15 @@ pre, .site-cmd-complet {
 }
 .text-decoration-underline {
 	text-decoration: underline;
+}
+.text-decoration-none {
+	text-decoration: none;
+}
+.site-menu-custom a {
+	text-decoration: none;
+}
+.site-menu-custom a:hover {
+	color: #e12219;
 }
 
 .recapituler2Table i {

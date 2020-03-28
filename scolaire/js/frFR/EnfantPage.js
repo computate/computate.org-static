@@ -94,7 +94,7 @@ function postEnfantScolaireVals(vals, success, error) {
 
 // PUT //
 
-async function putEnfantScolaire($formulaireValeurs, success, error) {
+async function putEnfantScolaire($formulaireValeurs, pk, success, error) {
 	var vals = {};
 
 	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
@@ -149,7 +149,7 @@ async function putEnfantScolaire($formulaireValeurs, success, error) {
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 		vals['objetTitre'] = valeurObjetTitre;
 
-	putEnfantScolaireVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+	putEnfantScolaireVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
 function putEnfantScolaireVals(filtres, vals, success, error) {
@@ -158,7 +158,7 @@ function putEnfantScolaireVals(filtres, vals, success, error) {
 		, dataType: 'json'
 		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
-		, data: JSON.stringify(vals)
+		, data: JSON.stringify({patch: vals})
 		, success: success
 		, error: error
 	});
@@ -166,7 +166,7 @@ function putEnfantScolaireVals(filtres, vals, success, error) {
 
 // PATCH //
 
-async function patchEnfantScolaire($formulaireFiltres, $formulaireValeurs, success, error) {
+async function patchEnfantScolaire($formulaireFiltres, $formulaireValeurs, pk, success, error) {
 	var filtres = patchEnfantScolaireFiltres($formulaireFiltres);
 
 	var vals = {};
@@ -216,7 +216,11 @@ async function patchEnfantScolaire($formulaireFiltres, $formulaireValeurs, succe
 		vals['removeObjetId'] = removeObjetId;
 
 	var removeArchive = $formulaireFiltres.find('.removeArchive').val() === 'true';
-	var setArchive = removeArchive ? null : $formulaireValeurs.find('.setArchive').prop('checked');
+	var valeurArchiveSelectVal = $formulaireValeurs.find('select.setArchive').val();
+	var valeurArchive = null;
+	if(valeurArchiveSelectVal !== '')
+		valeurArchive = valeurArchiveSelectVal == 'true';
+	setArchive = removeArchive ? null : valeurArchive;
 	if(removeArchive || setArchive != null && setArchive !== '')
 		vals['setArchive'] = setArchive;
 	var addArchive = $formulaireValeurs.find('.addArchive').prop('checked');
@@ -227,7 +231,11 @@ async function patchEnfantScolaire($formulaireFiltres, $formulaireValeurs, succe
 		vals['removeArchive'] = removeArchive;
 
 	var removeSupprime = $formulaireFiltres.find('.removeSupprime').val() === 'true';
-	var setSupprime = removeSupprime ? null : $formulaireValeurs.find('.setSupprime').prop('checked');
+	var valeurSupprimeSelectVal = $formulaireValeurs.find('select.setSupprime').val();
+	var valeurSupprime = null;
+	if(valeurSupprimeSelectVal !== '')
+		valeurSupprime = valeurSupprimeSelectVal == 'true';
+	setSupprime = removeSupprime ? null : valeurSupprime;
 	if(removeSupprime || setSupprime != null && setSupprime !== '')
 		vals['setSupprime'] = setSupprime;
 	var addSupprime = $formulaireValeurs.find('.addSupprime').prop('checked');
@@ -314,7 +322,7 @@ async function patchEnfantScolaire($formulaireFiltres, $formulaireValeurs, succe
 	if(removeObjetTitre != null && removeObjetTitre !== '')
 		vals['removeObjetTitre'] = removeObjetTitre;
 
-	patchEnfantScolaireVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+	patchEnfantScolaireVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
 function patchEnfantScolaireFiltres($formulaireFiltres) {
@@ -336,11 +344,23 @@ function patchEnfantScolaireFiltres($formulaireFiltres) {
 	if(filtreObjetId != null && filtreObjetId !== '')
 		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
 
-	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
+	var $filtreArchiveCheckbox = $formulaireFiltres.find('input.valeurArchive[type = "checkbox"]');
+	var $filtreArchiveSelect = $formulaireFiltres.find('select.valeurArchive');
+	var filtreArchive = $filtreArchiveSelect.length ? $filtreArchiveSelect.val() : $filtreArchiveCheckbox.prop('checked');
+	var filtreArchiveSelectVal = $formulaireFiltres.find('select.filtreArchive').val();
+	var filtreArchive = null;
+	if(filtreArchiveSelectVal !== '')
+		filtreArchive = filtreArchiveSelectVal == 'true';
 	if(filtreArchive != null && filtreArchive === true)
 		filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
 
-	var filtreSupprime = $formulaireFiltres.find('.valeurSupprime').prop('checked');
+	var $filtreSupprimeCheckbox = $formulaireFiltres.find('input.valeurSupprime[type = "checkbox"]');
+	var $filtreSupprimeSelect = $formulaireFiltres.find('select.valeurSupprime');
+	var filtreSupprime = $filtreSupprimeSelect.length ? $filtreSupprimeSelect.val() : $filtreSupprimeCheckbox.prop('checked');
+	var filtreSupprimeSelectVal = $formulaireFiltres.find('select.filtreSupprime').val();
+	var filtreSupprime = null;
+	if(filtreSupprimeSelectVal !== '')
+		filtreSupprime = filtreSupprimeSelectVal == 'true';
 	if(filtreSupprime != null && filtreSupprime === true)
 		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
@@ -404,6 +424,10 @@ function patchEnfantScolaireFiltres($formulaireFiltres) {
 	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
 		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
 
+	var filtreObjetTexte = $formulaireFiltres.find('.valeurObjetTexte').val();
+	if(filtreObjetTexte != null && filtreObjetTexte !== '')
+		filtres.push({ name: 'fq', value: 'objetTexte:' + filtreObjetTexte });
+
 	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
 	if(filtrePageUrlId != null && filtrePageUrlId !== '')
 		filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
@@ -423,6 +447,10 @@ function patchEnfantScolaireFiltres($formulaireFiltres) {
 	var filtreEnfantTri = $formulaireFiltres.find('.valeurEnfantTri').val();
 	if(filtreEnfantTri != null && filtreEnfantTri !== '')
 		filtres.push({ name: 'fq', value: 'enfantTri:' + filtreEnfantTri });
+
+	var filtreUtilisateurCles = $formulaireFiltres.find('.valeurUtilisateurCles').val();
+	if(filtreUtilisateurCles != null && filtreUtilisateurCles !== '')
+		filtres.push({ name: 'fq', value: 'utilisateurCles:' + filtreUtilisateurCles });
 
 	var filtreEcoleCles = $formulaireFiltres.find('.valeurEcoleCles').val();
 	if(filtreEcoleCles != null && filtreEcoleCles !== '')
@@ -493,20 +521,6 @@ async function getEnfantScolaire(pk) {
 	});
 }
 
-// DELETE //
-
-async function deleteEnfantScolaire(pk) {
-	$.ajax({
-		url: '/api/enfant/' + id
-		, dataType: 'json'
-		, type: 'DELETE'
-		, contentType: 'application/json; charset=utf-8'
-		, data: JSON.stringify(vals)
-		, success: success
-		, error: error
-	});
-}
-
 // Recherche //
 
 async function rechercheEnfantScolaire($formulaireFiltres, success, error) {
@@ -538,11 +552,23 @@ function rechercheEnfantScolaireFiltres($formulaireFiltres) {
 	if(filtreObjetId != null && filtreObjetId !== '')
 		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
 
-	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
+	var $filtreArchiveCheckbox = $formulaireFiltres.find('input.valeurArchive[type = "checkbox"]');
+	var $filtreArchiveSelect = $formulaireFiltres.find('select.valeurArchive');
+	var filtreArchive = $filtreArchiveSelect.length ? $filtreArchiveSelect.val() : $filtreArchiveCheckbox.prop('checked');
+	var filtreArchiveSelectVal = $formulaireFiltres.find('select.filtreArchive').val();
+	var filtreArchive = null;
+	if(filtreArchiveSelectVal !== '')
+		filtreArchive = filtreArchiveSelectVal == 'true';
 	if(filtreArchive != null && filtreArchive === true)
 		filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
 
-	var filtreSupprime = $formulaireFiltres.find('.valeurSupprime').prop('checked');
+	var $filtreSupprimeCheckbox = $formulaireFiltres.find('input.valeurSupprime[type = "checkbox"]');
+	var $filtreSupprimeSelect = $formulaireFiltres.find('select.valeurSupprime');
+	var filtreSupprime = $filtreSupprimeSelect.length ? $filtreSupprimeSelect.val() : $filtreSupprimeCheckbox.prop('checked');
+	var filtreSupprimeSelectVal = $formulaireFiltres.find('select.filtreSupprime').val();
+	var filtreSupprime = null;
+	if(filtreSupprimeSelectVal !== '')
+		filtreSupprime = filtreSupprimeSelectVal == 'true';
 	if(filtreSupprime != null && filtreSupprime === true)
 		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
@@ -606,6 +632,10 @@ function rechercheEnfantScolaireFiltres($formulaireFiltres) {
 	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
 		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
 
+	var filtreObjetTexte = $formulaireFiltres.find('.valeurObjetTexte').val();
+	if(filtreObjetTexte != null && filtreObjetTexte !== '')
+		filtres.push({ name: 'fq', value: 'objetTexte:' + filtreObjetTexte });
+
 	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
 	if(filtrePageUrlId != null && filtrePageUrlId !== '')
 		filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
@@ -625,6 +655,10 @@ function rechercheEnfantScolaireFiltres($formulaireFiltres) {
 	var filtreEnfantTri = $formulaireFiltres.find('.valeurEnfantTri').val();
 	if(filtreEnfantTri != null && filtreEnfantTri !== '')
 		filtres.push({ name: 'fq', value: 'enfantTri:' + filtreEnfantTri });
+
+	var filtreUtilisateurCles = $formulaireFiltres.find('.valeurUtilisateurCles').val();
+	if(filtreUtilisateurCles != null && filtreUtilisateurCles !== '')
+		filtres.push({ name: 'fq', value: 'utilisateurCles:' + filtreUtilisateurCles });
 
 	var filtreEcoleCles = $formulaireFiltres.find('.valeurEcoleCles').val();
 	if(filtreEcoleCles != null && filtreEcoleCles !== '')
@@ -693,7 +727,7 @@ function suggereEnfantScolaireObjetSuggere($formulaireFiltres, $list) {
 	rechercherEnfantScolaireVals($formulaireFiltres, success, error);
 }
 
-function suggereEnfantScolaireInscriptionCles(filtres, $list, pk = null) {
+function suggereEnfantScolaireInscriptionCles(filtres, $list, pk = null, attribuer=true) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
@@ -703,7 +737,7 @@ function suggereEnfantScolaireInscriptionCles(filtres, $list, pk = null) {
 			$a.append($i);
 			$a.append($span);
 			var val = o['enfantCle'];
-			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
+			var checked = Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
 			var $input = $('<input>');
 			$input.attr('id', 'GET_inscriptionCles_' + pk + '_enfantCle_' + o['pk']);
 			$input.attr('value', o['pk']);
@@ -716,7 +750,8 @@ function suggereEnfantScolaireInscriptionCles(filtres, $list, pk = null) {
 			if(checked)
 				$input.attr('checked', 'checked');
 			var $li = $('<li>');
-			$li.append($input);
+			if(attribuer)
+				$li.append($input);
 			$li.append($a);
 			$list.append($li);
 		});
@@ -743,13 +778,13 @@ async function websocketEnfantScolaire(success) {
 				var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
 				var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
 				var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
-				var $header = $('<div>').attr('class', 'w3-container fa-green ').attr('id', 'header-' + id);
+				var $header = $('<div>').attr('class', 'w3-container fa-orange ').attr('id', 'header-' + id);
 				var $i = $('<i>').attr('class', 'far fa-child w3-margin-right ').attr('id', 'icon-' + id);
 				var $headerSpan = $('<span>').attr('class', '').text('modifier enfants');
 				var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
 				var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
 				var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
-				var $progress = $('<div>').attr('class', 'w3-green ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
+				var $progress = $('<div>').attr('class', 'w3-orange ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
 				$card.append($header);
 				$header.append($i);
 				$header.append($headerSpan);
@@ -818,17 +853,5 @@ async function websocketEnfantScolaireInner(requeteApi) {
 				$('.varEnfantScolaire' + pk + 'InscriptionCles').text(o['inscriptionCles']);
 			}
 		});
-	}
-
-	if(!empty) {
-		if(pks) {
-			for(i=0; i < pks.length; i++) {
-				var pk2 = pks[i];
-				var c = classes[i];
-				await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
-			}
-		}
-		if(pk)
-			await patchEnfantScolaireVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 	}
 }

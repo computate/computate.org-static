@@ -114,7 +114,7 @@ function postPereScolaireVals(vals, success, error) {
 
 // PUT //
 
-async function putPereScolaire($formulaireValeurs, success, error) {
+async function putPereScolaire($formulaireValeurs, pk, success, error) {
 	var vals = {};
 
 	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
@@ -189,7 +189,7 @@ async function putPereScolaire($formulaireValeurs, success, error) {
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 		vals['objetTitre'] = valeurObjetTitre;
 
-	putPereScolaireVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+	putPereScolaireVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
 function putPereScolaireVals(filtres, vals, success, error) {
@@ -198,7 +198,7 @@ function putPereScolaireVals(filtres, vals, success, error) {
 		, dataType: 'json'
 		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
-		, data: JSON.stringify(vals)
+		, data: JSON.stringify({patch: vals})
 		, success: success
 		, error: error
 	});
@@ -206,7 +206,7 @@ function putPereScolaireVals(filtres, vals, success, error) {
 
 // PATCH //
 
-async function patchPereScolaire($formulaireFiltres, $formulaireValeurs, success, error) {
+async function patchPereScolaire($formulaireFiltres, $formulaireValeurs, pk, success, error) {
 	var filtres = patchPereScolaireFiltres($formulaireFiltres);
 
 	var vals = {};
@@ -256,7 +256,11 @@ async function patchPereScolaire($formulaireFiltres, $formulaireValeurs, success
 		vals['removeObjetId'] = removeObjetId;
 
 	var removeArchive = $formulaireFiltres.find('.removeArchive').val() === 'true';
-	var setArchive = removeArchive ? null : $formulaireValeurs.find('.setArchive').prop('checked');
+	var valeurArchiveSelectVal = $formulaireValeurs.find('select.setArchive').val();
+	var valeurArchive = null;
+	if(valeurArchiveSelectVal !== '')
+		valeurArchive = valeurArchiveSelectVal == 'true';
+	setArchive = removeArchive ? null : valeurArchive;
 	if(removeArchive || setArchive != null && setArchive !== '')
 		vals['setArchive'] = setArchive;
 	var addArchive = $formulaireValeurs.find('.addArchive').prop('checked');
@@ -267,7 +271,11 @@ async function patchPereScolaire($formulaireFiltres, $formulaireValeurs, success
 		vals['removeArchive'] = removeArchive;
 
 	var removeSupprime = $formulaireFiltres.find('.removeSupprime').val() === 'true';
-	var setSupprime = removeSupprime ? null : $formulaireValeurs.find('.setSupprime').prop('checked');
+	var valeurSupprimeSelectVal = $formulaireValeurs.find('select.setSupprime').val();
+	var valeurSupprime = null;
+	if(valeurSupprimeSelectVal !== '')
+		valeurSupprime = valeurSupprimeSelectVal == 'true';
+	setSupprime = removeSupprime ? null : valeurSupprime;
 	if(removeSupprime || setSupprime != null && setSupprime !== '')
 		vals['setSupprime'] = setSupprime;
 	var addSupprime = $formulaireValeurs.find('.addSupprime').prop('checked');
@@ -344,7 +352,11 @@ async function patchPereScolaire($formulaireFiltres, $formulaireValeurs, success
 		vals['removePersonneOccupation'] = removePersonneOccupation;
 
 	var removePersonneSms = $formulaireFiltres.find('.removePersonneSms').val() === 'true';
-	var setPersonneSms = removePersonneSms ? null : $formulaireValeurs.find('.setPersonneSms').prop('checked');
+	var valeurPersonneSmsSelectVal = $formulaireValeurs.find('select.setPersonneSms').val();
+	var valeurPersonneSms = null;
+	if(valeurPersonneSmsSelectVal !== '')
+		valeurPersonneSms = valeurPersonneSmsSelectVal == 'true';
+	setPersonneSms = removePersonneSms ? null : valeurPersonneSms;
 	if(removePersonneSms || setPersonneSms != null && setPersonneSms !== '')
 		vals['setPersonneSms'] = setPersonneSms;
 	var addPersonneSms = $formulaireValeurs.find('.addPersonneSms').prop('checked');
@@ -355,7 +367,11 @@ async function patchPereScolaire($formulaireFiltres, $formulaireValeurs, success
 		vals['removePersonneSms'] = removePersonneSms;
 
 	var removePersonneContactUrgence = $formulaireFiltres.find('.removePersonneContactUrgence').val() === 'true';
-	var setPersonneContactUrgence = removePersonneContactUrgence ? null : $formulaireValeurs.find('.setPersonneContactUrgence').prop('checked');
+	var valeurPersonneContactUrgenceSelectVal = $formulaireValeurs.find('select.setPersonneContactUrgence').val();
+	var valeurPersonneContactUrgence = null;
+	if(valeurPersonneContactUrgenceSelectVal !== '')
+		valeurPersonneContactUrgence = valeurPersonneContactUrgenceSelectVal == 'true';
+	setPersonneContactUrgence = removePersonneContactUrgence ? null : valeurPersonneContactUrgence;
 	if(removePersonneContactUrgence || setPersonneContactUrgence != null && setPersonneContactUrgence !== '')
 		vals['setPersonneContactUrgence'] = setPersonneContactUrgence;
 	var addPersonneContactUrgence = $formulaireValeurs.find('.addPersonneContactUrgence').prop('checked');
@@ -366,7 +382,11 @@ async function patchPereScolaire($formulaireFiltres, $formulaireValeurs, success
 		vals['removePersonneContactUrgence'] = removePersonneContactUrgence;
 
 	var removePersonneRecevoirMail = $formulaireFiltres.find('.removePersonneRecevoirMail').val() === 'true';
-	var setPersonneRecevoirMail = removePersonneRecevoirMail ? null : $formulaireValeurs.find('.setPersonneRecevoirMail').prop('checked');
+	var valeurPersonneRecevoirMailSelectVal = $formulaireValeurs.find('select.setPersonneRecevoirMail').val();
+	var valeurPersonneRecevoirMail = null;
+	if(valeurPersonneRecevoirMailSelectVal !== '')
+		valeurPersonneRecevoirMail = valeurPersonneRecevoirMailSelectVal == 'true';
+	setPersonneRecevoirMail = removePersonneRecevoirMail ? null : valeurPersonneRecevoirMail;
 	if(removePersonneRecevoirMail || setPersonneRecevoirMail != null && setPersonneRecevoirMail !== '')
 		vals['setPersonneRecevoirMail'] = setPersonneRecevoirMail;
 	var addPersonneRecevoirMail = $formulaireValeurs.find('.addPersonneRecevoirMail').prop('checked');
@@ -377,7 +397,11 @@ async function patchPereScolaire($formulaireFiltres, $formulaireValeurs, success
 		vals['removePersonneRecevoirMail'] = removePersonneRecevoirMail;
 
 	var removePersonneChercher = $formulaireFiltres.find('.removePersonneChercher').val() === 'true';
-	var setPersonneChercher = removePersonneChercher ? null : $formulaireValeurs.find('.setPersonneChercher').prop('checked');
+	var valeurPersonneChercherSelectVal = $formulaireValeurs.find('select.setPersonneChercher').val();
+	var valeurPersonneChercher = null;
+	if(valeurPersonneChercherSelectVal !== '')
+		valeurPersonneChercher = valeurPersonneChercherSelectVal == 'true';
+	setPersonneChercher = removePersonneChercher ? null : valeurPersonneChercher;
 	if(removePersonneChercher || setPersonneChercher != null && setPersonneChercher !== '')
 		vals['setPersonneChercher'] = setPersonneChercher;
 	var addPersonneChercher = $formulaireValeurs.find('.addPersonneChercher').prop('checked');
@@ -409,7 +433,7 @@ async function patchPereScolaire($formulaireFiltres, $formulaireValeurs, success
 	if(removeObjetTitre != null && removeObjetTitre !== '')
 		vals['removeObjetTitre'] = removeObjetTitre;
 
-	patchPereScolaireVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+	patchPereScolaireVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
 function patchPereScolaireFiltres($formulaireFiltres) {
@@ -431,11 +455,23 @@ function patchPereScolaireFiltres($formulaireFiltres) {
 	if(filtreObjetId != null && filtreObjetId !== '')
 		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
 
-	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
+	var $filtreArchiveCheckbox = $formulaireFiltres.find('input.valeurArchive[type = "checkbox"]');
+	var $filtreArchiveSelect = $formulaireFiltres.find('select.valeurArchive');
+	var filtreArchive = $filtreArchiveSelect.length ? $filtreArchiveSelect.val() : $filtreArchiveCheckbox.prop('checked');
+	var filtreArchiveSelectVal = $formulaireFiltres.find('select.filtreArchive').val();
+	var filtreArchive = null;
+	if(filtreArchiveSelectVal !== '')
+		filtreArchive = filtreArchiveSelectVal == 'true';
 	if(filtreArchive != null && filtreArchive === true)
 		filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
 
-	var filtreSupprime = $formulaireFiltres.find('.valeurSupprime').prop('checked');
+	var $filtreSupprimeCheckbox = $formulaireFiltres.find('input.valeurSupprime[type = "checkbox"]');
+	var $filtreSupprimeSelect = $formulaireFiltres.find('select.valeurSupprime');
+	var filtreSupprime = $filtreSupprimeSelect.length ? $filtreSupprimeSelect.val() : $filtreSupprimeCheckbox.prop('checked');
+	var filtreSupprimeSelectVal = $formulaireFiltres.find('select.filtreSupprime').val();
+	var filtreSupprime = null;
+	if(filtreSupprimeSelectVal !== '')
+		filtreSupprime = filtreSupprimeSelectVal == 'true';
 	if(filtreSupprime != null && filtreSupprime === true)
 		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
@@ -463,19 +499,43 @@ function patchPereScolaireFiltres($formulaireFiltres) {
 	if(filtrePersonneOccupation != null && filtrePersonneOccupation !== '')
 		filtres.push({ name: 'fq', value: 'personneOccupation:' + filtrePersonneOccupation });
 
-	var filtrePersonneSms = $formulaireFiltres.find('.valeurPersonneSms').prop('checked');
+	var $filtrePersonneSmsCheckbox = $formulaireFiltres.find('input.valeurPersonneSms[type = "checkbox"]');
+	var $filtrePersonneSmsSelect = $formulaireFiltres.find('select.valeurPersonneSms');
+	var filtrePersonneSms = $filtrePersonneSmsSelect.length ? $filtrePersonneSmsSelect.val() : $filtrePersonneSmsCheckbox.prop('checked');
+	var filtrePersonneSmsSelectVal = $formulaireFiltres.find('select.filtrePersonneSms').val();
+	var filtrePersonneSms = null;
+	if(filtrePersonneSmsSelectVal !== '')
+		filtrePersonneSms = filtrePersonneSmsSelectVal == 'true';
 	if(filtrePersonneSms != null && filtrePersonneSms === true)
 		filtres.push({ name: 'fq', value: 'personneSms:' + filtrePersonneSms });
 
-	var filtrePersonneContactUrgence = $formulaireFiltres.find('.valeurPersonneContactUrgence').prop('checked');
+	var $filtrePersonneContactUrgenceCheckbox = $formulaireFiltres.find('input.valeurPersonneContactUrgence[type = "checkbox"]');
+	var $filtrePersonneContactUrgenceSelect = $formulaireFiltres.find('select.valeurPersonneContactUrgence');
+	var filtrePersonneContactUrgence = $filtrePersonneContactUrgenceSelect.length ? $filtrePersonneContactUrgenceSelect.val() : $filtrePersonneContactUrgenceCheckbox.prop('checked');
+	var filtrePersonneContactUrgenceSelectVal = $formulaireFiltres.find('select.filtrePersonneContactUrgence').val();
+	var filtrePersonneContactUrgence = null;
+	if(filtrePersonneContactUrgenceSelectVal !== '')
+		filtrePersonneContactUrgence = filtrePersonneContactUrgenceSelectVal == 'true';
 	if(filtrePersonneContactUrgence != null && filtrePersonneContactUrgence === true)
 		filtres.push({ name: 'fq', value: 'personneContactUrgence:' + filtrePersonneContactUrgence });
 
-	var filtrePersonneRecevoirMail = $formulaireFiltres.find('.valeurPersonneRecevoirMail').prop('checked');
+	var $filtrePersonneRecevoirMailCheckbox = $formulaireFiltres.find('input.valeurPersonneRecevoirMail[type = "checkbox"]');
+	var $filtrePersonneRecevoirMailSelect = $formulaireFiltres.find('select.valeurPersonneRecevoirMail');
+	var filtrePersonneRecevoirMail = $filtrePersonneRecevoirMailSelect.length ? $filtrePersonneRecevoirMailSelect.val() : $filtrePersonneRecevoirMailCheckbox.prop('checked');
+	var filtrePersonneRecevoirMailSelectVal = $formulaireFiltres.find('select.filtrePersonneRecevoirMail').val();
+	var filtrePersonneRecevoirMail = null;
+	if(filtrePersonneRecevoirMailSelectVal !== '')
+		filtrePersonneRecevoirMail = filtrePersonneRecevoirMailSelectVal == 'true';
 	if(filtrePersonneRecevoirMail != null && filtrePersonneRecevoirMail === true)
 		filtres.push({ name: 'fq', value: 'personneRecevoirMail:' + filtrePersonneRecevoirMail });
 
-	var filtrePersonneChercher = $formulaireFiltres.find('.valeurPersonneChercher').prop('checked');
+	var $filtrePersonneChercherCheckbox = $formulaireFiltres.find('input.valeurPersonneChercher[type = "checkbox"]');
+	var $filtrePersonneChercherSelect = $formulaireFiltres.find('select.valeurPersonneChercher');
+	var filtrePersonneChercher = $filtrePersonneChercherSelect.length ? $filtrePersonneChercherSelect.val() : $filtrePersonneChercherCheckbox.prop('checked');
+	var filtrePersonneChercherSelectVal = $formulaireFiltres.find('select.filtrePersonneChercher').val();
+	var filtrePersonneChercher = null;
+	if(filtrePersonneChercherSelectVal !== '')
+		filtrePersonneChercher = filtrePersonneChercherSelectVal == 'true';
 	if(filtrePersonneChercher != null && filtrePersonneChercher === true)
 		filtres.push({ name: 'fq', value: 'personneChercher:' + filtrePersonneChercher });
 
@@ -519,6 +579,10 @@ function patchPereScolaireFiltres($formulaireFiltres) {
 	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
 		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
 
+	var filtreObjetTexte = $formulaireFiltres.find('.valeurObjetTexte').val();
+	if(filtreObjetTexte != null && filtreObjetTexte !== '')
+		filtres.push({ name: 'fq', value: 'objetTexte:' + filtreObjetTexte });
+
 	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
 	if(filtrePageUrlId != null && filtrePageUrlId !== '')
 		filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
@@ -538,6 +602,10 @@ function patchPereScolaireFiltres($formulaireFiltres) {
 	var filtrePereTri = $formulaireFiltres.find('.valeurPereTri').val();
 	if(filtrePereTri != null && filtrePereTri !== '')
 		filtres.push({ name: 'fq', value: 'pereTri:' + filtrePereTri });
+
+	var filtreUtilisateurCles = $formulaireFiltres.find('.valeurUtilisateurCles').val();
+	if(filtreUtilisateurCles != null && filtreUtilisateurCles !== '')
+		filtres.push({ name: 'fq', value: 'utilisateurCles:' + filtreUtilisateurCles });
 
 	var filtreEcoleCles = $formulaireFiltres.find('.valeurEcoleCles').val();
 	if(filtreEcoleCles != null && filtreEcoleCles !== '')
@@ -612,20 +680,6 @@ async function getPereScolaire(pk) {
 	});
 }
 
-// DELETE //
-
-async function deletePereScolaire(pk) {
-	$.ajax({
-		url: '/api/pere/' + id
-		, dataType: 'json'
-		, type: 'DELETE'
-		, contentType: 'application/json; charset=utf-8'
-		, data: JSON.stringify(vals)
-		, success: success
-		, error: error
-	});
-}
-
 // Recherche //
 
 async function recherchePereScolaire($formulaireFiltres, success, error) {
@@ -657,11 +711,23 @@ function recherchePereScolaireFiltres($formulaireFiltres) {
 	if(filtreObjetId != null && filtreObjetId !== '')
 		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
 
-	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
+	var $filtreArchiveCheckbox = $formulaireFiltres.find('input.valeurArchive[type = "checkbox"]');
+	var $filtreArchiveSelect = $formulaireFiltres.find('select.valeurArchive');
+	var filtreArchive = $filtreArchiveSelect.length ? $filtreArchiveSelect.val() : $filtreArchiveCheckbox.prop('checked');
+	var filtreArchiveSelectVal = $formulaireFiltres.find('select.filtreArchive').val();
+	var filtreArchive = null;
+	if(filtreArchiveSelectVal !== '')
+		filtreArchive = filtreArchiveSelectVal == 'true';
 	if(filtreArchive != null && filtreArchive === true)
 		filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
 
-	var filtreSupprime = $formulaireFiltres.find('.valeurSupprime').prop('checked');
+	var $filtreSupprimeCheckbox = $formulaireFiltres.find('input.valeurSupprime[type = "checkbox"]');
+	var $filtreSupprimeSelect = $formulaireFiltres.find('select.valeurSupprime');
+	var filtreSupprime = $filtreSupprimeSelect.length ? $filtreSupprimeSelect.val() : $filtreSupprimeCheckbox.prop('checked');
+	var filtreSupprimeSelectVal = $formulaireFiltres.find('select.filtreSupprime').val();
+	var filtreSupprime = null;
+	if(filtreSupprimeSelectVal !== '')
+		filtreSupprime = filtreSupprimeSelectVal == 'true';
 	if(filtreSupprime != null && filtreSupprime === true)
 		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
@@ -689,19 +755,43 @@ function recherchePereScolaireFiltres($formulaireFiltres) {
 	if(filtrePersonneOccupation != null && filtrePersonneOccupation !== '')
 		filtres.push({ name: 'fq', value: 'personneOccupation:' + filtrePersonneOccupation });
 
-	var filtrePersonneSms = $formulaireFiltres.find('.valeurPersonneSms').prop('checked');
+	var $filtrePersonneSmsCheckbox = $formulaireFiltres.find('input.valeurPersonneSms[type = "checkbox"]');
+	var $filtrePersonneSmsSelect = $formulaireFiltres.find('select.valeurPersonneSms');
+	var filtrePersonneSms = $filtrePersonneSmsSelect.length ? $filtrePersonneSmsSelect.val() : $filtrePersonneSmsCheckbox.prop('checked');
+	var filtrePersonneSmsSelectVal = $formulaireFiltres.find('select.filtrePersonneSms').val();
+	var filtrePersonneSms = null;
+	if(filtrePersonneSmsSelectVal !== '')
+		filtrePersonneSms = filtrePersonneSmsSelectVal == 'true';
 	if(filtrePersonneSms != null && filtrePersonneSms === true)
 		filtres.push({ name: 'fq', value: 'personneSms:' + filtrePersonneSms });
 
-	var filtrePersonneContactUrgence = $formulaireFiltres.find('.valeurPersonneContactUrgence').prop('checked');
+	var $filtrePersonneContactUrgenceCheckbox = $formulaireFiltres.find('input.valeurPersonneContactUrgence[type = "checkbox"]');
+	var $filtrePersonneContactUrgenceSelect = $formulaireFiltres.find('select.valeurPersonneContactUrgence');
+	var filtrePersonneContactUrgence = $filtrePersonneContactUrgenceSelect.length ? $filtrePersonneContactUrgenceSelect.val() : $filtrePersonneContactUrgenceCheckbox.prop('checked');
+	var filtrePersonneContactUrgenceSelectVal = $formulaireFiltres.find('select.filtrePersonneContactUrgence').val();
+	var filtrePersonneContactUrgence = null;
+	if(filtrePersonneContactUrgenceSelectVal !== '')
+		filtrePersonneContactUrgence = filtrePersonneContactUrgenceSelectVal == 'true';
 	if(filtrePersonneContactUrgence != null && filtrePersonneContactUrgence === true)
 		filtres.push({ name: 'fq', value: 'personneContactUrgence:' + filtrePersonneContactUrgence });
 
-	var filtrePersonneRecevoirMail = $formulaireFiltres.find('.valeurPersonneRecevoirMail').prop('checked');
+	var $filtrePersonneRecevoirMailCheckbox = $formulaireFiltres.find('input.valeurPersonneRecevoirMail[type = "checkbox"]');
+	var $filtrePersonneRecevoirMailSelect = $formulaireFiltres.find('select.valeurPersonneRecevoirMail');
+	var filtrePersonneRecevoirMail = $filtrePersonneRecevoirMailSelect.length ? $filtrePersonneRecevoirMailSelect.val() : $filtrePersonneRecevoirMailCheckbox.prop('checked');
+	var filtrePersonneRecevoirMailSelectVal = $formulaireFiltres.find('select.filtrePersonneRecevoirMail').val();
+	var filtrePersonneRecevoirMail = null;
+	if(filtrePersonneRecevoirMailSelectVal !== '')
+		filtrePersonneRecevoirMail = filtrePersonneRecevoirMailSelectVal == 'true';
 	if(filtrePersonneRecevoirMail != null && filtrePersonneRecevoirMail === true)
 		filtres.push({ name: 'fq', value: 'personneRecevoirMail:' + filtrePersonneRecevoirMail });
 
-	var filtrePersonneChercher = $formulaireFiltres.find('.valeurPersonneChercher').prop('checked');
+	var $filtrePersonneChercherCheckbox = $formulaireFiltres.find('input.valeurPersonneChercher[type = "checkbox"]');
+	var $filtrePersonneChercherSelect = $formulaireFiltres.find('select.valeurPersonneChercher');
+	var filtrePersonneChercher = $filtrePersonneChercherSelect.length ? $filtrePersonneChercherSelect.val() : $filtrePersonneChercherCheckbox.prop('checked');
+	var filtrePersonneChercherSelectVal = $formulaireFiltres.find('select.filtrePersonneChercher').val();
+	var filtrePersonneChercher = null;
+	if(filtrePersonneChercherSelectVal !== '')
+		filtrePersonneChercher = filtrePersonneChercherSelectVal == 'true';
 	if(filtrePersonneChercher != null && filtrePersonneChercher === true)
 		filtres.push({ name: 'fq', value: 'personneChercher:' + filtrePersonneChercher });
 
@@ -745,6 +835,10 @@ function recherchePereScolaireFiltres($formulaireFiltres) {
 	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
 		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
 
+	var filtreObjetTexte = $formulaireFiltres.find('.valeurObjetTexte').val();
+	if(filtreObjetTexte != null && filtreObjetTexte !== '')
+		filtres.push({ name: 'fq', value: 'objetTexte:' + filtreObjetTexte });
+
 	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
 	if(filtrePageUrlId != null && filtrePageUrlId !== '')
 		filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
@@ -764,6 +858,10 @@ function recherchePereScolaireFiltres($formulaireFiltres) {
 	var filtrePereTri = $formulaireFiltres.find('.valeurPereTri').val();
 	if(filtrePereTri != null && filtrePereTri !== '')
 		filtres.push({ name: 'fq', value: 'pereTri:' + filtrePereTri });
+
+	var filtreUtilisateurCles = $formulaireFiltres.find('.valeurUtilisateurCles').val();
+	if(filtreUtilisateurCles != null && filtreUtilisateurCles !== '')
+		filtres.push({ name: 'fq', value: 'utilisateurCles:' + filtreUtilisateurCles });
 
 	var filtreEcoleCles = $formulaireFiltres.find('.valeurEcoleCles').val();
 	if(filtreEcoleCles != null && filtreEcoleCles !== '')
@@ -836,7 +934,7 @@ function suggerePereScolaireObjetSuggere($formulaireFiltres, $list) {
 	rechercherPereScolaireVals($formulaireFiltres, success, error);
 }
 
-function suggerePereScolaireInscriptionCles(filtres, $list, pk = null) {
+function suggerePereScolaireInscriptionCles(filtres, $list, pk = null, attribuer=true) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
@@ -846,7 +944,7 @@ function suggerePereScolaireInscriptionCles(filtres, $list, pk = null) {
 			$a.append($i);
 			$a.append($span);
 			var val = o['pereCles'];
-			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
+			var checked = Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
 			var $input = $('<input>');
 			$input.attr('id', 'GET_inscriptionCles_' + pk + '_pereCles_' + o['pk']);
 			$input.attr('value', o['pk']);
@@ -859,7 +957,8 @@ function suggerePereScolaireInscriptionCles(filtres, $list, pk = null) {
 			if(checked)
 				$input.attr('checked', 'checked');
 			var $li = $('<li>');
-			$li.append($input);
+			if(attribuer)
+				$li.append($input);
 			$li.append($a);
 			$list.append($li);
 		});
@@ -985,17 +1084,5 @@ async function websocketPereScolaireInner(requeteApi) {
 				$('.varPereScolaire' + pk + 'InscriptionCles').text(o['inscriptionCles']);
 			}
 		});
-	}
-
-	if(!empty) {
-		if(pks) {
-			for(i=0; i < pks.length; i++) {
-				var pk2 = pks[i];
-				var c = classes[i];
-				await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
-			}
-		}
-		if(pk)
-			await patchPereScolaireVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 	}
 }

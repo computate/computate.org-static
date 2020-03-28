@@ -102,7 +102,7 @@ function postSchoolGuardianVals(vals, success, error) {
 
 // PUT //
 
-async function putSchoolGuardian($formValues, success, error) {
+async function putSchoolGuardian($formValues, pk, success, error) {
 	var vals = {};
 
 	var valuePk = $formValues.find('.valuePk').val();
@@ -165,7 +165,7 @@ async function putSchoolGuardian($formValues, success, error) {
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
 
-	putSchoolGuardianVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+	putSchoolGuardianVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
 function putSchoolGuardianVals(filters, vals, success, error) {
@@ -174,7 +174,7 @@ function putSchoolGuardianVals(filters, vals, success, error) {
 		, dataType: 'json'
 		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
-		, data: JSON.stringify(vals)
+		, data: JSON.stringify({patch: vals})
 		, success: success
 		, error: error
 	});
@@ -182,7 +182,7 @@ function putSchoolGuardianVals(filters, vals, success, error) {
 
 // PATCH //
 
-async function patchSchoolGuardian($formFilters, $formValues, success, error) {
+async function patchSchoolGuardian($formFilters, $formValues, pk, success, error) {
 	var filters = patchSchoolGuardianFilters($formFilters);
 
 	var vals = {};
@@ -232,7 +232,11 @@ async function patchSchoolGuardian($formFilters, $formValues, success, error) {
 		vals['removeObjectId'] = removeObjectId;
 
 	var removeArchived = $formFilters.find('.removeArchived').val() === 'true';
-	var setArchived = removeArchived ? null : $formValues.find('.setArchived').prop('checked');
+	var valueArchivedSelectVal = $formValues.find('select.setArchived').val();
+	var valueArchived = null;
+	if(valueArchivedSelectVal !== '')
+		valueArchived = valueArchivedSelectVal == 'true';
+	setArchived = removeArchived ? null : valueArchived;
 	if(removeArchived || setArchived != null && setArchived !== '')
 		vals['setArchived'] = setArchived;
 	var addArchived = $formValues.find('.addArchived').prop('checked');
@@ -243,7 +247,11 @@ async function patchSchoolGuardian($formFilters, $formValues, success, error) {
 		vals['removeArchived'] = removeArchived;
 
 	var removeDeleted = $formFilters.find('.removeDeleted').val() === 'true';
-	var setDeleted = removeDeleted ? null : $formValues.find('.setDeleted').prop('checked');
+	var valueDeletedSelectVal = $formValues.find('select.setDeleted').val();
+	var valueDeleted = null;
+	if(valueDeletedSelectVal !== '')
+		valueDeleted = valueDeletedSelectVal == 'true';
+	setDeleted = removeDeleted ? null : valueDeleted;
 	if(removeDeleted || setDeleted != null && setDeleted !== '')
 		vals['setDeleted'] = setDeleted;
 	var addDeleted = $formValues.find('.addDeleted').prop('checked');
@@ -309,7 +317,11 @@ async function patchSchoolGuardian($formFilters, $formValues, success, error) {
 		vals['removePersonRelation'] = removePersonRelation;
 
 	var removePersonEmergencyContact = $formFilters.find('.removePersonEmergencyContact').val() === 'true';
-	var setPersonEmergencyContact = removePersonEmergencyContact ? null : $formValues.find('.setPersonEmergencyContact').prop('checked');
+	var valuePersonEmergencyContactSelectVal = $formValues.find('select.setPersonEmergencyContact').val();
+	var valuePersonEmergencyContact = null;
+	if(valuePersonEmergencyContactSelectVal !== '')
+		valuePersonEmergencyContact = valuePersonEmergencyContactSelectVal == 'true';
+	setPersonEmergencyContact = removePersonEmergencyContact ? null : valuePersonEmergencyContact;
 	if(removePersonEmergencyContact || setPersonEmergencyContact != null && setPersonEmergencyContact !== '')
 		vals['setPersonEmergencyContact'] = setPersonEmergencyContact;
 	var addPersonEmergencyContact = $formValues.find('.addPersonEmergencyContact').prop('checked');
@@ -320,7 +332,11 @@ async function patchSchoolGuardian($formFilters, $formValues, success, error) {
 		vals['removePersonEmergencyContact'] = removePersonEmergencyContact;
 
 	var removePersonPickup = $formFilters.find('.removePersonPickup').val() === 'true';
-	var setPersonPickup = removePersonPickup ? null : $formValues.find('.setPersonPickup').prop('checked');
+	var valuePersonPickupSelectVal = $formValues.find('select.setPersonPickup').val();
+	var valuePersonPickup = null;
+	if(valuePersonPickupSelectVal !== '')
+		valuePersonPickup = valuePersonPickupSelectVal == 'true';
+	setPersonPickup = removePersonPickup ? null : valuePersonPickup;
 	if(removePersonPickup || setPersonPickup != null && setPersonPickup !== '')
 		vals['setPersonPickup'] = setPersonPickup;
 	var addPersonPickup = $formValues.find('.addPersonPickup').prop('checked');
@@ -352,7 +368,7 @@ async function patchSchoolGuardian($formFilters, $formValues, success, error) {
 	if(removeObjectTitle != null && removeObjectTitle !== '')
 		vals['removeObjectTitle'] = removeObjectTitle;
 
-	patchSchoolGuardianVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+	patchSchoolGuardianVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
 function patchSchoolGuardianFilters($formFilters) {
@@ -374,11 +390,23 @@ function patchSchoolGuardianFilters($formFilters) {
 	if(filterObjectId != null && filterObjectId !== '')
 		filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
 
-	var filterArchived = $formFilters.find('.valueArchived').prop('checked');
+	var $filterArchivedCheckbox = $formFilters.find('input.valueArchived[type = "checkbox"]');
+	var $filterArchivedSelect = $formFilters.find('select.valueArchived');
+	var filterArchived = $filterArchivedSelect.length ? $filterArchivedSelect.val() : $filterArchivedCheckbox.prop('checked');
+	var filterArchivedSelectVal = $formFilters.find('select.filterArchived').val();
+	var filterArchived = null;
+	if(filterArchivedSelectVal !== '')
+		filterArchived = filterArchivedSelectVal == 'true';
 	if(filterArchived != null && filterArchived === true)
 		filters.push({ name: 'fq', value: 'archived:' + filterArchived });
 
-	var filterDeleted = $formFilters.find('.valueDeleted').prop('checked');
+	var $filterDeletedCheckbox = $formFilters.find('input.valueDeleted[type = "checkbox"]');
+	var $filterDeletedSelect = $formFilters.find('select.valueDeleted');
+	var filterDeleted = $filterDeletedSelect.length ? $filterDeletedSelect.val() : $filterDeletedCheckbox.prop('checked');
+	var filterDeletedSelectVal = $formFilters.find('select.filterDeleted').val();
+	var filterDeleted = null;
+	if(filterDeletedSelectVal !== '')
+		filterDeleted = filterDeletedSelectVal == 'true';
 	if(filterDeleted != null && filterDeleted === true)
 		filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
@@ -402,11 +430,23 @@ function patchSchoolGuardianFilters($formFilters) {
 	if(filterPersonRelation != null && filterPersonRelation !== '')
 		filters.push({ name: 'fq', value: 'personRelation:' + filterPersonRelation });
 
-	var filterPersonEmergencyContact = $formFilters.find('.valuePersonEmergencyContact').prop('checked');
+	var $filterPersonEmergencyContactCheckbox = $formFilters.find('input.valuePersonEmergencyContact[type = "checkbox"]');
+	var $filterPersonEmergencyContactSelect = $formFilters.find('select.valuePersonEmergencyContact');
+	var filterPersonEmergencyContact = $filterPersonEmergencyContactSelect.length ? $filterPersonEmergencyContactSelect.val() : $filterPersonEmergencyContactCheckbox.prop('checked');
+	var filterPersonEmergencyContactSelectVal = $formFilters.find('select.filterPersonEmergencyContact').val();
+	var filterPersonEmergencyContact = null;
+	if(filterPersonEmergencyContactSelectVal !== '')
+		filterPersonEmergencyContact = filterPersonEmergencyContactSelectVal == 'true';
 	if(filterPersonEmergencyContact != null && filterPersonEmergencyContact === true)
 		filters.push({ name: 'fq', value: 'personEmergencyContact:' + filterPersonEmergencyContact });
 
-	var filterPersonPickup = $formFilters.find('.valuePersonPickup').prop('checked');
+	var $filterPersonPickupCheckbox = $formFilters.find('input.valuePersonPickup[type = "checkbox"]');
+	var $filterPersonPickupSelect = $formFilters.find('select.valuePersonPickup');
+	var filterPersonPickup = $filterPersonPickupSelect.length ? $filterPersonPickupSelect.val() : $filterPersonPickupCheckbox.prop('checked');
+	var filterPersonPickupSelectVal = $formFilters.find('select.filterPersonPickup').val();
+	var filterPersonPickup = null;
+	if(filterPersonPickupSelectVal !== '')
+		filterPersonPickup = filterPersonPickupSelectVal == 'true';
 	if(filterPersonPickup != null && filterPersonPickup === true)
 		filters.push({ name: 'fq', value: 'personPickup:' + filterPersonPickup });
 
@@ -450,6 +490,10 @@ function patchSchoolGuardianFilters($formFilters) {
 	if(filterObjectSuggest != null && filterObjectSuggest !== '')
 		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
 
+	var filterObjectText = $formFilters.find('.valueObjectText').val();
+	if(filterObjectText != null && filterObjectText !== '')
+		filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
+
 	var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
 	if(filterPageUrlId != null && filterPageUrlId !== '')
 		filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
@@ -469,6 +513,10 @@ function patchSchoolGuardianFilters($formFilters) {
 	var filterSchoolSort = $formFilters.find('.valueSchoolSort').val();
 	if(filterSchoolSort != null && filterSchoolSort !== '')
 		filters.push({ name: 'fq', value: 'schoolSort:' + filterSchoolSort });
+
+	var filterUserKeys = $formFilters.find('.valueUserKeys').val();
+	if(filterUserKeys != null && filterUserKeys !== '')
+		filters.push({ name: 'fq', value: 'userKeys:' + filterUserKeys });
 
 	var filterSchoolKeys = $formFilters.find('.valueSchoolKeys').val();
 	if(filterSchoolKeys != null && filterSchoolKeys !== '')
@@ -510,11 +558,23 @@ function patchSchoolGuardianFilters($formFilters) {
 	if(filterPersonEmail != null && filterPersonEmail !== '')
 		filters.push({ name: 'fq', value: 'personEmail:' + filterPersonEmail });
 
-	var filterPersonSms = $formFilters.find('.valuePersonSms').prop('checked');
+	var $filterPersonSmsCheckbox = $formFilters.find('input.valuePersonSms[type = "checkbox"]');
+	var $filterPersonSmsSelect = $formFilters.find('select.valuePersonSms');
+	var filterPersonSms = $filterPersonSmsSelect.length ? $filterPersonSmsSelect.val() : $filterPersonSmsCheckbox.prop('checked');
+	var filterPersonSmsSelectVal = $formFilters.find('select.filterPersonSms').val();
+	var filterPersonSms = null;
+	if(filterPersonSmsSelectVal !== '')
+		filterPersonSms = filterPersonSmsSelectVal == 'true';
 	if(filterPersonSms != null && filterPersonSms === true)
 		filters.push({ name: 'fq', value: 'personSms:' + filterPersonSms });
 
-	var filterPersonReceiveEmail = $formFilters.find('.valuePersonReceiveEmail').prop('checked');
+	var $filterPersonReceiveEmailCheckbox = $formFilters.find('input.valuePersonReceiveEmail[type = "checkbox"]');
+	var $filterPersonReceiveEmailSelect = $formFilters.find('select.valuePersonReceiveEmail');
+	var filterPersonReceiveEmail = $filterPersonReceiveEmailSelect.length ? $filterPersonReceiveEmailSelect.val() : $filterPersonReceiveEmailCheckbox.prop('checked');
+	var filterPersonReceiveEmailSelectVal = $formFilters.find('select.filterPersonReceiveEmail').val();
+	var filterPersonReceiveEmail = null;
+	if(filterPersonReceiveEmailSelectVal !== '')
+		filterPersonReceiveEmail = filterPersonReceiveEmailSelectVal == 'true';
 	if(filterPersonReceiveEmail != null && filterPersonReceiveEmail === true)
 		filters.push({ name: 'fq', value: 'personReceiveEmail:' + filterPersonReceiveEmail });
 
@@ -555,20 +615,6 @@ async function getSchoolGuardian(pk) {
 	});
 }
 
-// DELETE //
-
-async function deleteSchoolGuardian(pk) {
-	$.ajax({
-		url: '/api/guardian/' + id
-		, dataType: 'json'
-		, type: 'DELETE'
-		, contentType: 'application/json; charset=utf-8'
-		, data: JSON.stringify(vals)
-		, success: success
-		, error: error
-	});
-}
-
 // Search //
 
 async function searchSchoolGuardian($formFilters, success, error) {
@@ -600,11 +646,23 @@ function searchSchoolGuardianFilters($formFilters) {
 	if(filterObjectId != null && filterObjectId !== '')
 		filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
 
-	var filterArchived = $formFilters.find('.valueArchived').prop('checked');
+	var $filterArchivedCheckbox = $formFilters.find('input.valueArchived[type = "checkbox"]');
+	var $filterArchivedSelect = $formFilters.find('select.valueArchived');
+	var filterArchived = $filterArchivedSelect.length ? $filterArchivedSelect.val() : $filterArchivedCheckbox.prop('checked');
+	var filterArchivedSelectVal = $formFilters.find('select.filterArchived').val();
+	var filterArchived = null;
+	if(filterArchivedSelectVal !== '')
+		filterArchived = filterArchivedSelectVal == 'true';
 	if(filterArchived != null && filterArchived === true)
 		filters.push({ name: 'fq', value: 'archived:' + filterArchived });
 
-	var filterDeleted = $formFilters.find('.valueDeleted').prop('checked');
+	var $filterDeletedCheckbox = $formFilters.find('input.valueDeleted[type = "checkbox"]');
+	var $filterDeletedSelect = $formFilters.find('select.valueDeleted');
+	var filterDeleted = $filterDeletedSelect.length ? $filterDeletedSelect.val() : $filterDeletedCheckbox.prop('checked');
+	var filterDeletedSelectVal = $formFilters.find('select.filterDeleted').val();
+	var filterDeleted = null;
+	if(filterDeletedSelectVal !== '')
+		filterDeleted = filterDeletedSelectVal == 'true';
 	if(filterDeleted != null && filterDeleted === true)
 		filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
@@ -628,11 +686,23 @@ function searchSchoolGuardianFilters($formFilters) {
 	if(filterPersonRelation != null && filterPersonRelation !== '')
 		filters.push({ name: 'fq', value: 'personRelation:' + filterPersonRelation });
 
-	var filterPersonEmergencyContact = $formFilters.find('.valuePersonEmergencyContact').prop('checked');
+	var $filterPersonEmergencyContactCheckbox = $formFilters.find('input.valuePersonEmergencyContact[type = "checkbox"]');
+	var $filterPersonEmergencyContactSelect = $formFilters.find('select.valuePersonEmergencyContact');
+	var filterPersonEmergencyContact = $filterPersonEmergencyContactSelect.length ? $filterPersonEmergencyContactSelect.val() : $filterPersonEmergencyContactCheckbox.prop('checked');
+	var filterPersonEmergencyContactSelectVal = $formFilters.find('select.filterPersonEmergencyContact').val();
+	var filterPersonEmergencyContact = null;
+	if(filterPersonEmergencyContactSelectVal !== '')
+		filterPersonEmergencyContact = filterPersonEmergencyContactSelectVal == 'true';
 	if(filterPersonEmergencyContact != null && filterPersonEmergencyContact === true)
 		filters.push({ name: 'fq', value: 'personEmergencyContact:' + filterPersonEmergencyContact });
 
-	var filterPersonPickup = $formFilters.find('.valuePersonPickup').prop('checked');
+	var $filterPersonPickupCheckbox = $formFilters.find('input.valuePersonPickup[type = "checkbox"]');
+	var $filterPersonPickupSelect = $formFilters.find('select.valuePersonPickup');
+	var filterPersonPickup = $filterPersonPickupSelect.length ? $filterPersonPickupSelect.val() : $filterPersonPickupCheckbox.prop('checked');
+	var filterPersonPickupSelectVal = $formFilters.find('select.filterPersonPickup').val();
+	var filterPersonPickup = null;
+	if(filterPersonPickupSelectVal !== '')
+		filterPersonPickup = filterPersonPickupSelectVal == 'true';
 	if(filterPersonPickup != null && filterPersonPickup === true)
 		filters.push({ name: 'fq', value: 'personPickup:' + filterPersonPickup });
 
@@ -676,6 +746,10 @@ function searchSchoolGuardianFilters($formFilters) {
 	if(filterObjectSuggest != null && filterObjectSuggest !== '')
 		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
 
+	var filterObjectText = $formFilters.find('.valueObjectText').val();
+	if(filterObjectText != null && filterObjectText !== '')
+		filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
+
 	var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
 	if(filterPageUrlId != null && filterPageUrlId !== '')
 		filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
@@ -695,6 +769,10 @@ function searchSchoolGuardianFilters($formFilters) {
 	var filterSchoolSort = $formFilters.find('.valueSchoolSort').val();
 	if(filterSchoolSort != null && filterSchoolSort !== '')
 		filters.push({ name: 'fq', value: 'schoolSort:' + filterSchoolSort });
+
+	var filterUserKeys = $formFilters.find('.valueUserKeys').val();
+	if(filterUserKeys != null && filterUserKeys !== '')
+		filters.push({ name: 'fq', value: 'userKeys:' + filterUserKeys });
 
 	var filterSchoolKeys = $formFilters.find('.valueSchoolKeys').val();
 	if(filterSchoolKeys != null && filterSchoolKeys !== '')
@@ -736,11 +814,23 @@ function searchSchoolGuardianFilters($formFilters) {
 	if(filterPersonEmail != null && filterPersonEmail !== '')
 		filters.push({ name: 'fq', value: 'personEmail:' + filterPersonEmail });
 
-	var filterPersonSms = $formFilters.find('.valuePersonSms').prop('checked');
+	var $filterPersonSmsCheckbox = $formFilters.find('input.valuePersonSms[type = "checkbox"]');
+	var $filterPersonSmsSelect = $formFilters.find('select.valuePersonSms');
+	var filterPersonSms = $filterPersonSmsSelect.length ? $filterPersonSmsSelect.val() : $filterPersonSmsCheckbox.prop('checked');
+	var filterPersonSmsSelectVal = $formFilters.find('select.filterPersonSms').val();
+	var filterPersonSms = null;
+	if(filterPersonSmsSelectVal !== '')
+		filterPersonSms = filterPersonSmsSelectVal == 'true';
 	if(filterPersonSms != null && filterPersonSms === true)
 		filters.push({ name: 'fq', value: 'personSms:' + filterPersonSms });
 
-	var filterPersonReceiveEmail = $formFilters.find('.valuePersonReceiveEmail').prop('checked');
+	var $filterPersonReceiveEmailCheckbox = $formFilters.find('input.valuePersonReceiveEmail[type = "checkbox"]');
+	var $filterPersonReceiveEmailSelect = $formFilters.find('select.valuePersonReceiveEmail');
+	var filterPersonReceiveEmail = $filterPersonReceiveEmailSelect.length ? $filterPersonReceiveEmailSelect.val() : $filterPersonReceiveEmailCheckbox.prop('checked');
+	var filterPersonReceiveEmailSelectVal = $formFilters.find('select.filterPersonReceiveEmail').val();
+	var filterPersonReceiveEmail = null;
+	if(filterPersonReceiveEmailSelectVal !== '')
+		filterPersonReceiveEmail = filterPersonReceiveEmailSelectVal == 'true';
 	if(filterPersonReceiveEmail != null && filterPersonReceiveEmail === true)
 		filters.push({ name: 'fq', value: 'personReceiveEmail:' + filterPersonReceiveEmail });
 
@@ -779,7 +869,7 @@ function suggestSchoolGuardianObjectSuggest($formFilters, $list) {
 	searchSchoolGuardianVals($formFilters, success, error);
 }
 
-function suggestSchoolGuardianEnrollmentKeys(filters, $list, pk = null) {
+function suggestSchoolGuardianEnrollmentKeys(filters, $list, pk = null, attribute=true) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
@@ -789,7 +879,7 @@ function suggestSchoolGuardianEnrollmentKeys(filters, $list, pk = null) {
 			$a.append($i);
 			$a.append($span);
 			var val = o['guardianKeys'];
-			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
+			var checked = Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
 			var $input = $('<input>');
 			$input.attr('id', 'GET_enrollmentKeys_' + pk + '_guardianKeys_' + o['pk']);
 			$input.attr('value', o['pk']);
@@ -802,7 +892,8 @@ function suggestSchoolGuardianEnrollmentKeys(filters, $list, pk = null) {
 			if(checked)
 				$input.attr('checked', 'checked');
 			var $li = $('<li>');
-			$li.append($input);
+			if(attribute)
+				$li.append($input);
 			$li.append($a);
 			$list.append($li);
 		});
@@ -916,17 +1007,5 @@ async function websocketSchoolGuardianInner(apiRequest) {
 				$('.varSchoolGuardian' + pk + 'EnrollmentKeys').text(o['enrollmentKeys']);
 			}
 		});
-	}
-
-	if(!empty) {
-		if(pks) {
-			for(i=0; i < pks.length; i++) {
-				var pk2 = pks[i];
-				var c = classes[i];
-				await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
-			}
-		}
-		if(pk)
-			await patchSchoolGuardianVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 	}
 }

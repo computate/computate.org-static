@@ -45,6 +45,10 @@ async function postEnrollmentDesign($formValues, success, error) {
 	if(valueEnrollmentDesignCompleteName != null && valueEnrollmentDesignCompleteName !== '')
 		vals['enrollmentDesignCompleteName'] = valueEnrollmentDesignCompleteName;
 
+	var valueDesignHidden = $formValues.find('.valueDesignHidden').prop('checked');
+	if(valueDesignHidden != null && valueDesignHidden !== '')
+		vals['designHidden'] = valueDesignHidden;
+
 	var valueHtmlPartKeys = $formValues.find('input.valueHtmlPartKeys:checked').val();
 	if(valueHtmlPartKeys != null && valueHtmlPartKeys !== '')
 		vals['htmlPartKeys'] = valueHtmlPartKeys;
@@ -108,6 +112,10 @@ async function putEnrollmentDesign($formValues, pk, success, error) {
 	var valueEnrollmentDesignCompleteName = $formValues.find('.valueEnrollmentDesignCompleteName').val();
 	if(valueEnrollmentDesignCompleteName != null && valueEnrollmentDesignCompleteName !== '')
 		vals['enrollmentDesignCompleteName'] = valueEnrollmentDesignCompleteName;
+
+	var valueDesignHidden = $formValues.find('.valueDesignHidden').prop('checked');
+	if(valueDesignHidden != null && valueDesignHidden !== '')
+		vals['designHidden'] = valueDesignHidden;
 
 	var valueHtmlPartKeys = $formValues.find('input.valueHtmlPartKeys:checked').val();
 	if(valueHtmlPartKeys != null && valueHtmlPartKeys !== '')
@@ -184,7 +192,11 @@ async function patchEnrollmentDesign($formFilters, $formValues, pk, success, err
 		vals['removeObjectId'] = removeObjectId;
 
 	var removeArchived = $formFilters.find('.removeArchived').val() === 'true';
-	var setArchived = removeArchived ? null : $formValues.find('.setArchived').prop('checked');
+	var valueArchivedSelectVal = $formValues.find('select.setArchived').val();
+	var valueArchived = null;
+	if(valueArchivedSelectVal !== '')
+		valueArchived = valueArchivedSelectVal == 'true';
+	setArchived = removeArchived ? null : valueArchived;
 	if(removeArchived || setArchived != null && setArchived !== '')
 		vals['setArchived'] = setArchived;
 	var addArchived = $formValues.find('.addArchived').prop('checked');
@@ -195,7 +207,11 @@ async function patchEnrollmentDesign($formFilters, $formValues, pk, success, err
 		vals['removeArchived'] = removeArchived;
 
 	var removeDeleted = $formFilters.find('.removeDeleted').val() === 'true';
-	var setDeleted = removeDeleted ? null : $formValues.find('.setDeleted').prop('checked');
+	var valueDeletedSelectVal = $formValues.find('select.setDeleted').val();
+	var valueDeleted = null;
+	if(valueDeletedSelectVal !== '')
+		valueDeleted = valueDeletedSelectVal == 'true';
+	setDeleted = removeDeleted ? null : valueDeleted;
 	if(removeDeleted || setDeleted != null && setDeleted !== '')
 		vals['setDeleted'] = setDeleted;
 	var addDeleted = $formValues.find('.addDeleted').prop('checked');
@@ -215,6 +231,21 @@ async function patchEnrollmentDesign($formFilters, $formValues, pk, success, err
 	var removeEnrollmentDesignCompleteName = $formValues.find('.removeEnrollmentDesignCompleteName').val();
 	if(removeEnrollmentDesignCompleteName != null && removeEnrollmentDesignCompleteName !== '')
 		vals['removeEnrollmentDesignCompleteName'] = removeEnrollmentDesignCompleteName;
+
+	var removeDesignHidden = $formFilters.find('.removeDesignHidden').val() === 'true';
+	var valueDesignHiddenSelectVal = $formValues.find('select.setDesignHidden').val();
+	var valueDesignHidden = null;
+	if(valueDesignHiddenSelectVal !== '')
+		valueDesignHidden = valueDesignHiddenSelectVal == 'true';
+	setDesignHidden = removeDesignHidden ? null : valueDesignHidden;
+	if(removeDesignHidden || setDesignHidden != null && setDesignHidden !== '')
+		vals['setDesignHidden'] = setDesignHidden;
+	var addDesignHidden = $formValues.find('.addDesignHidden').prop('checked');
+	if(addDesignHidden != null && addDesignHidden !== '')
+		vals['addDesignHidden'] = addDesignHidden;
+	var removeDesignHidden = $formValues.find('.removeDesignHidden').prop('checked');
+	if(removeDesignHidden != null && removeDesignHidden !== '')
+		vals['removeDesignHidden'] = removeDesignHidden;
 
 	var removeHtmlPartKeys = $formFilters.find('.removeHtmlPartKeys').val() === 'true';
 	var setHtmlPartKeys = removeHtmlPartKeys ? null : $formValues.find('.setHtmlPartKeys').val();
@@ -260,17 +291,39 @@ function patchEnrollmentDesignFilters($formFilters) {
 	if(filterObjectId != null && filterObjectId !== '')
 		filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
 
-	var filterArchived = $formFilters.find('.valueArchived').prop('checked');
+	var $filterArchivedCheckbox = $formFilters.find('input.valueArchived[type = "checkbox"]');
+	var $filterArchivedSelect = $formFilters.find('select.valueArchived');
+	var filterArchived = $filterArchivedSelect.length ? $filterArchivedSelect.val() : $filterArchivedCheckbox.prop('checked');
+	var filterArchivedSelectVal = $formFilters.find('select.filterArchived').val();
+	var filterArchived = null;
+	if(filterArchivedSelectVal !== '')
+		filterArchived = filterArchivedSelectVal == 'true';
 	if(filterArchived != null && filterArchived === true)
 		filters.push({ name: 'fq', value: 'archived:' + filterArchived });
 
-	var filterDeleted = $formFilters.find('.valueDeleted').prop('checked');
+	var $filterDeletedCheckbox = $formFilters.find('input.valueDeleted[type = "checkbox"]');
+	var $filterDeletedSelect = $formFilters.find('select.valueDeleted');
+	var filterDeleted = $filterDeletedSelect.length ? $filterDeletedSelect.val() : $filterDeletedCheckbox.prop('checked');
+	var filterDeletedSelectVal = $formFilters.find('select.filterDeleted').val();
+	var filterDeleted = null;
+	if(filterDeletedSelectVal !== '')
+		filterDeleted = filterDeletedSelectVal == 'true';
 	if(filterDeleted != null && filterDeleted === true)
 		filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
 	var filterEnrollmentDesignCompleteName = $formFilters.find('.valueEnrollmentDesignCompleteName').val();
 	if(filterEnrollmentDesignCompleteName != null && filterEnrollmentDesignCompleteName !== '')
 		filters.push({ name: 'fq', value: 'enrollmentDesignCompleteName:' + filterEnrollmentDesignCompleteName });
+
+	var $filterDesignHiddenCheckbox = $formFilters.find('input.valueDesignHidden[type = "checkbox"]');
+	var $filterDesignHiddenSelect = $formFilters.find('select.valueDesignHidden');
+	var filterDesignHidden = $filterDesignHiddenSelect.length ? $filterDesignHiddenSelect.val() : $filterDesignHiddenCheckbox.prop('checked');
+	var filterDesignHiddenSelectVal = $formFilters.find('select.filterDesignHidden').val();
+	var filterDesignHidden = null;
+	if(filterDesignHiddenSelectVal !== '')
+		filterDesignHidden = filterDesignHiddenSelectVal == 'true';
+	if(filterDesignHidden != null && filterDesignHidden === true)
+		filters.push({ name: 'fq', value: 'designHidden:' + filterDesignHidden });
 
 	var filterHtmlPartKeys = $formFilters.find('.valueHtmlPartKeys').val();
 	if(filterHtmlPartKeys != null && filterHtmlPartKeys !== '')
@@ -311,6 +364,10 @@ function patchEnrollmentDesignFilters($formFilters) {
 	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
 	if(filterObjectSuggest != null && filterObjectSuggest !== '')
 		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+
+	var filterObjectText = $formFilters.find('.valueObjectText').val();
+	if(filterObjectText != null && filterObjectText !== '')
+		filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
 
 	var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
 	if(filterPageUrlId != null && filterPageUrlId !== '')
@@ -393,20 +450,6 @@ async function getEnrollmentDesign(pk) {
 	});
 }
 
-// DELETE //
-
-async function deleteEnrollmentDesign(pk) {
-	$.ajax({
-		url: '/api/enrollment-design/' + id
-		, dataType: 'json'
-		, type: 'DELETE'
-		, contentType: 'application/json; charset=utf-8'
-		, data: JSON.stringify(vals)
-		, success: success
-		, error: error
-	});
-}
-
 // Search //
 
 async function searchEnrollmentDesign($formFilters, success, error) {
@@ -438,17 +481,39 @@ function searchEnrollmentDesignFilters($formFilters) {
 	if(filterObjectId != null && filterObjectId !== '')
 		filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
 
-	var filterArchived = $formFilters.find('.valueArchived').prop('checked');
+	var $filterArchivedCheckbox = $formFilters.find('input.valueArchived[type = "checkbox"]');
+	var $filterArchivedSelect = $formFilters.find('select.valueArchived');
+	var filterArchived = $filterArchivedSelect.length ? $filterArchivedSelect.val() : $filterArchivedCheckbox.prop('checked');
+	var filterArchivedSelectVal = $formFilters.find('select.filterArchived').val();
+	var filterArchived = null;
+	if(filterArchivedSelectVal !== '')
+		filterArchived = filterArchivedSelectVal == 'true';
 	if(filterArchived != null && filterArchived === true)
 		filters.push({ name: 'fq', value: 'archived:' + filterArchived });
 
-	var filterDeleted = $formFilters.find('.valueDeleted').prop('checked');
+	var $filterDeletedCheckbox = $formFilters.find('input.valueDeleted[type = "checkbox"]');
+	var $filterDeletedSelect = $formFilters.find('select.valueDeleted');
+	var filterDeleted = $filterDeletedSelect.length ? $filterDeletedSelect.val() : $filterDeletedCheckbox.prop('checked');
+	var filterDeletedSelectVal = $formFilters.find('select.filterDeleted').val();
+	var filterDeleted = null;
+	if(filterDeletedSelectVal !== '')
+		filterDeleted = filterDeletedSelectVal == 'true';
 	if(filterDeleted != null && filterDeleted === true)
 		filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
 	var filterEnrollmentDesignCompleteName = $formFilters.find('.valueEnrollmentDesignCompleteName').val();
 	if(filterEnrollmentDesignCompleteName != null && filterEnrollmentDesignCompleteName !== '')
 		filters.push({ name: 'fq', value: 'enrollmentDesignCompleteName:' + filterEnrollmentDesignCompleteName });
+
+	var $filterDesignHiddenCheckbox = $formFilters.find('input.valueDesignHidden[type = "checkbox"]');
+	var $filterDesignHiddenSelect = $formFilters.find('select.valueDesignHidden');
+	var filterDesignHidden = $filterDesignHiddenSelect.length ? $filterDesignHiddenSelect.val() : $filterDesignHiddenCheckbox.prop('checked');
+	var filterDesignHiddenSelectVal = $formFilters.find('select.filterDesignHidden').val();
+	var filterDesignHidden = null;
+	if(filterDesignHiddenSelectVal !== '')
+		filterDesignHidden = filterDesignHiddenSelectVal == 'true';
+	if(filterDesignHidden != null && filterDesignHidden === true)
+		filters.push({ name: 'fq', value: 'designHidden:' + filterDesignHidden });
 
 	var filterHtmlPartKeys = $formFilters.find('.valueHtmlPartKeys').val();
 	if(filterHtmlPartKeys != null && filterHtmlPartKeys !== '')
@@ -489,6 +554,10 @@ function searchEnrollmentDesignFilters($formFilters) {
 	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
 	if(filterObjectSuggest != null && filterObjectSuggest !== '')
 		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+
+	var filterObjectText = $formFilters.find('.valueObjectText').val();
+	if(filterObjectText != null && filterObjectText !== '')
+		filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
 
 	var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
 	if(filterPageUrlId != null && filterPageUrlId !== '')
@@ -569,7 +638,7 @@ function suggestEnrollmentDesignObjectSuggest($formFilters, $list) {
 	searchEnrollmentDesignVals($formFilters, success, error);
 }
 
-function suggestEnrollmentDesignHtmlPartKeys(filters, $list, pk = null) {
+function suggestEnrollmentDesignHtmlPartKeys(filters, $list, pk = null, attribute=true) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
@@ -579,7 +648,7 @@ function suggestEnrollmentDesignHtmlPartKeys(filters, $list, pk = null) {
 			$a.append($i);
 			$a.append($span);
 			var val = o['enrollmentDesignKey'];
-			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
+			var checked = Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
 			var $input = $('<input>');
 			$input.attr('id', 'GET_htmlPartKeys_' + pk + '_enrollmentDesignKey_' + o['pk']);
 			$input.attr('value', o['pk']);
@@ -770,7 +839,8 @@ function suggestEnrollmentDesignHtmlPartKeys(filters, $list, pk = null) {
 				$sort.append($sortInput);
 				$li.append($sort);
 			}
-			$li.append($input);
+			if(attribute)
+				$li.append($input);
 			$li.append($a);
 			$list.append($li);
 		});
@@ -797,13 +867,13 @@ async function websocketEnrollmentDesign(success) {
 				var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
 				var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
 				var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
-				var $header = $('<div>').attr('class', 'w3-container fa-indigo ').attr('id', 'header-' + id);
+				var $header = $('<div>').attr('class', 'w3-container fa-khaki ').attr('id', 'header-' + id);
 				var $i = $('<i>').attr('class', 'far fa-drafting-compass w3-margin-right ').attr('id', 'icon-' + id);
 				var $headerSpan = $('<span>').attr('class', '').text('modify enrollment designs');
 				var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
 				var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
 				var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
-				var $progress = $('<div>').attr('class', 'w3-indigo ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
+				var $progress = $('<div>').attr('class', 'w3-khaki ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
 				$card.append($header);
 				$header.append($i);
 				$header.append($headerSpan);
@@ -855,22 +925,14 @@ async function websocketEnrollmentDesignInner(apiRequest) {
 				$('.inputEnrollmentDesign' + pk + 'EnrollmentDesignCompleteName').val(o['enrollmentDesignCompleteName']);
 				$('.varEnrollmentDesign' + pk + 'EnrollmentDesignCompleteName').text(o['enrollmentDesignCompleteName']);
 			}
+			if(vars.includes('designHidden')) {
+				$('.inputEnrollmentDesign' + pk + 'DesignHidden').val(o['designHidden']);
+				$('.varEnrollmentDesign' + pk + 'DesignHidden').text(o['designHidden']);
+			}
 			if(vars.includes('htmlPartKeys')) {
 				$('.inputEnrollmentDesign' + pk + 'HtmlPartKeys').val(o['htmlPartKeys']);
 				$('.varEnrollmentDesign' + pk + 'HtmlPartKeys').text(o['htmlPartKeys']);
 			}
 		});
-	}
-
-	if(!empty) {
-		if(pks) {
-			for(i=0; i < pks.length; i++) {
-				var pk2 = pks[i];
-				var c = classes[i];
-				await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
-			}
-		}
-		if(pk)
-			await patchEnrollmentDesignVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 	}
 }

@@ -41,9 +41,9 @@ async function postHtmlPart($formValues, success, error) {
 	if(valueDeleted != null && valueDeleted !== '')
 		vals['deleted'] = valueDeleted;
 
-	var valueEnrollmentDesignKey = $formValues.find('input.valueEnrollmentDesignKey:checked').val();
-	if(valueEnrollmentDesignKey != null && valueEnrollmentDesignKey !== '')
-		vals['enrollmentDesignKey'] = valueEnrollmentDesignKey;
+	var valuePageDesignKeys = $formValues.find('input.valuePageDesignKeys:checked').val();
+	if(valuePageDesignKeys != null && valuePageDesignKeys !== '')
+		vals['pageDesignKeys'] = valuePageDesignKeys;
 
 	var valueHtmlLink = $formValues.find('.valueHtmlLink').val();
 	if(valueHtmlLink != null && valueHtmlLink !== '')
@@ -104,6 +104,10 @@ async function postHtmlPart($formValues, success, error) {
 	var valuePdfExclude = $formValues.find('.valuePdfExclude').prop('checked');
 	if(valuePdfExclude != null && valuePdfExclude !== '')
 		vals['pdfExclude'] = valuePdfExclude;
+
+	var valueLoginLogout = $formValues.find('.valueLoginLogout').prop('checked');
+	if(valueLoginLogout != null && valueLoginLogout !== '')
+		vals['loginLogout'] = valueLoginLogout;
 
 	var valueSort1 = $formValues.find('.valueSort1').val();
 	if(valueSort1 != null && valueSort1 !== '')
@@ -201,9 +205,9 @@ async function putHtmlPart($formValues, pk, success, error) {
 	if(valueDeleted != null && valueDeleted !== '')
 		vals['deleted'] = valueDeleted;
 
-	var valueEnrollmentDesignKey = $formValues.find('input.valueEnrollmentDesignKey:checked').val();
-	if(valueEnrollmentDesignKey != null && valueEnrollmentDesignKey !== '')
-		vals['enrollmentDesignKey'] = valueEnrollmentDesignKey;
+	var valuePageDesignKeys = $formValues.find('input.valuePageDesignKeys:checked').val();
+	if(valuePageDesignKeys != null && valuePageDesignKeys !== '')
+		vals['pageDesignKeys'] = [valuePageDesignKeys];
 
 	var valueHtmlLink = $formValues.find('.valueHtmlLink').val();
 	if(valueHtmlLink != null && valueHtmlLink !== '')
@@ -264,6 +268,10 @@ async function putHtmlPart($formValues, pk, success, error) {
 	var valuePdfExclude = $formValues.find('.valuePdfExclude').prop('checked');
 	if(valuePdfExclude != null && valuePdfExclude !== '')
 		vals['pdfExclude'] = valuePdfExclude;
+
+	var valueLoginLogout = $formValues.find('.valueLoginLogout').prop('checked');
+	if(valueLoginLogout != null && valueLoginLogout !== '')
+		vals['loginLogout'] = valueLoginLogout;
 
 	var valueSort1 = $formValues.find('.valueSort1').val();
 	if(valueSort1 != null && valueSort1 !== '')
@@ -331,6 +339,8 @@ async function patchHtmlPart($formFilters, $formValues, pk, success, error) {
 
 	var vals = {};
 
+	var valuePk = $formValues.find('.valuePk').val();
+	if(valuePk != null && valuePk !== '')
 	var removePk = $formFilters.find('.removePk').val() === 'true';
 	var setPk = removePk ? null : $formValues.find('.setPk').val();
 	if(removePk || setPk != null && setPk !== '')
@@ -342,6 +352,8 @@ async function patchHtmlPart($formFilters, $formValues, pk, success, error) {
 	if(removePk != null && removePk !== '')
 		vals['removePk'] = removePk;
 
+	var valueCreated = $formValues.find('.valueCreated').val();
+	if(valueCreated != null && valueCreated !== '')
 	var removeCreated = $formFilters.find('.removeCreated').val() === 'true';
 	var setCreated = removeCreated ? null : $formValues.find('.setCreated').val();
 	if(removeCreated || setCreated != null && setCreated !== '')
@@ -353,6 +365,8 @@ async function patchHtmlPart($formFilters, $formValues, pk, success, error) {
 	if(removeCreated != null && removeCreated !== '')
 		vals['removeCreated'] = removeCreated;
 
+	var valueModified = $formValues.find('.valueModified').val();
+	if(valueModified != null && valueModified !== '')
 	var removeModified = $formFilters.find('.removeModified').val() === 'true';
 	var setModified = removeModified ? null : $formValues.find('.setModified').val();
 	if(removeModified || setModified != null && setModified !== '')
@@ -364,6 +378,8 @@ async function patchHtmlPart($formFilters, $formValues, pk, success, error) {
 	if(removeModified != null && removeModified !== '')
 		vals['removeModified'] = removeModified;
 
+	var valueObjectId = $formValues.find('.valueObjectId').val();
+	if(valueObjectId != null && valueObjectId !== '')
 	var removeObjectId = $formFilters.find('.removeObjectId').val() === 'true';
 	var setObjectId = removeObjectId ? null : $formValues.find('.setObjectId').val();
 	if(removeObjectId || setObjectId != null && setObjectId !== '')
@@ -375,8 +391,14 @@ async function patchHtmlPart($formFilters, $formValues, pk, success, error) {
 	if(removeObjectId != null && removeObjectId !== '')
 		vals['removeObjectId'] = removeObjectId;
 
+	var valueArchived = $formValues.find('.valueArchived').prop('checked');
+	if(valueArchived != null && valueArchived !== '')
 	var removeArchived = $formFilters.find('.removeArchived').val() === 'true';
-	var setArchived = removeArchived ? null : $formValues.find('.setArchived').prop('checked');
+	var valueArchivedSelectVal = $formValues.find('select.setArchived').val();
+	var valueArchived = null;
+	if(valueArchivedSelectVal !== '')
+		valueArchived = valueArchivedSelectVal == 'true';
+	setArchived = removeArchived ? null : valueArchived;
 	if(removeArchived || setArchived != null && setArchived !== '')
 		vals['setArchived'] = setArchived;
 	var addArchived = $formValues.find('.addArchived').prop('checked');
@@ -386,8 +408,14 @@ async function patchHtmlPart($formFilters, $formValues, pk, success, error) {
 	if(removeArchived != null && removeArchived !== '')
 		vals['removeArchived'] = removeArchived;
 
+	var valueDeleted = $formValues.find('.valueDeleted').prop('checked');
+	if(valueDeleted != null && valueDeleted !== '')
 	var removeDeleted = $formFilters.find('.removeDeleted').val() === 'true';
-	var setDeleted = removeDeleted ? null : $formValues.find('.setDeleted').prop('checked');
+	var valueDeletedSelectVal = $formValues.find('select.setDeleted').val();
+	var valueDeleted = null;
+	if(valueDeletedSelectVal !== '')
+		valueDeleted = valueDeletedSelectVal == 'true';
+	setDeleted = removeDeleted ? null : valueDeleted;
 	if(removeDeleted || setDeleted != null && setDeleted !== '')
 		vals['setDeleted'] = setDeleted;
 	var addDeleted = $formValues.find('.addDeleted').prop('checked');
@@ -397,17 +425,12 @@ async function patchHtmlPart($formFilters, $formValues, pk, success, error) {
 	if(removeDeleted != null && removeDeleted !== '')
 		vals['removeDeleted'] = removeDeleted;
 
-	var removeEnrollmentDesignKey = $formFilters.find('.removeEnrollmentDesignKey').val() === 'true';
-	var setEnrollmentDesignKey = removeEnrollmentDesignKey ? null : $formValues.find('.setEnrollmentDesignKey').val();
-	if(removeEnrollmentDesignKey || setEnrollmentDesignKey != null && setEnrollmentDesignKey !== '')
-		vals['setEnrollmentDesignKey'] = setEnrollmentDesignKey;
-	var addEnrollmentDesignKey = $formValues.find('.addEnrollmentDesignKey').val();
-	if(addEnrollmentDesignKey != null && addEnrollmentDesignKey !== '')
-		vals['addEnrollmentDesignKey'] = addEnrollmentDesignKey;
-	var removeEnrollmentDesignKey = $formValues.find('.removeEnrollmentDesignKey').val();
-	if(removeEnrollmentDesignKey != null && removeEnrollmentDesignKey !== '')
-		vals['removeEnrollmentDesignKey'] = removeEnrollmentDesignKey;
+	var valuePageDesignKeys = $formValues.find('input.valuePageDesignKeys:checked').val();
+	if(valuePageDesignKeys != null && valuePageDesignKeys !== '')
+		vals['addPageDesignKeys'] = valuePageDesignKeys;
 
+	var valueHtmlLink = $formValues.find('.valueHtmlLink').val();
+	if(valueHtmlLink != null && valueHtmlLink !== '')
 	var removeHtmlLink = $formFilters.find('.removeHtmlLink').val() === 'true';
 	var setHtmlLink = removeHtmlLink ? null : $formValues.find('.setHtmlLink').val();
 	if(removeHtmlLink || setHtmlLink != null && setHtmlLink !== '')
@@ -419,6 +442,8 @@ async function patchHtmlPart($formFilters, $formValues, pk, success, error) {
 	if(removeHtmlLink != null && removeHtmlLink !== '')
 		vals['removeHtmlLink'] = removeHtmlLink;
 
+	var valueHtmlElement = $formValues.find('.valueHtmlElement').val();
+	if(valueHtmlElement != null && valueHtmlElement !== '')
 	var removeHtmlElement = $formFilters.find('.removeHtmlElement').val() === 'true';
 	var setHtmlElement = removeHtmlElement ? null : $formValues.find('.setHtmlElement').val();
 	if(removeHtmlElement || setHtmlElement != null && setHtmlElement !== '')
@@ -430,6 +455,8 @@ async function patchHtmlPart($formFilters, $formValues, pk, success, error) {
 	if(removeHtmlElement != null && removeHtmlElement !== '')
 		vals['removeHtmlElement'] = removeHtmlElement;
 
+	var valueHtmlId = $formValues.find('.valueHtmlId').val();
+	if(valueHtmlId != null && valueHtmlId !== '')
 	var removeHtmlId = $formFilters.find('.removeHtmlId').val() === 'true';
 	var setHtmlId = removeHtmlId ? null : $formValues.find('.setHtmlId').val();
 	if(removeHtmlId || setHtmlId != null && setHtmlId !== '')
@@ -441,6 +468,8 @@ async function patchHtmlPart($formFilters, $formValues, pk, success, error) {
 	if(removeHtmlId != null && removeHtmlId !== '')
 		vals['removeHtmlId'] = removeHtmlId;
 
+	var valueHtmlClasses = $formValues.find('.valueHtmlClasses').val();
+	if(valueHtmlClasses != null && valueHtmlClasses !== '')
 	var removeHtmlClasses = $formFilters.find('.removeHtmlClasses').val() === 'true';
 	var setHtmlClasses = removeHtmlClasses ? null : $formValues.find('.setHtmlClasses').val();
 	if(removeHtmlClasses || setHtmlClasses != null && setHtmlClasses !== '')
@@ -452,6 +481,8 @@ async function patchHtmlPart($formFilters, $formValues, pk, success, error) {
 	if(removeHtmlClasses != null && removeHtmlClasses !== '')
 		vals['removeHtmlClasses'] = removeHtmlClasses;
 
+	var valueHtmlStyle = $formValues.find('.valueHtmlStyle').val();
+	if(valueHtmlStyle != null && valueHtmlStyle !== '')
 	var removeHtmlStyle = $formFilters.find('.removeHtmlStyle').val() === 'true';
 	var setHtmlStyle = removeHtmlStyle ? null : $formValues.find('.setHtmlStyle').val();
 	if(removeHtmlStyle || setHtmlStyle != null && setHtmlStyle !== '')
@@ -463,6 +494,8 @@ async function patchHtmlPart($formFilters, $formValues, pk, success, error) {
 	if(removeHtmlStyle != null && removeHtmlStyle !== '')
 		vals['removeHtmlStyle'] = removeHtmlStyle;
 
+	var valueHtmlBefore = $formValues.find('.valueHtmlBefore').val();
+	if(valueHtmlBefore != null && valueHtmlBefore !== '')
 	var removeHtmlBefore = $formFilters.find('.removeHtmlBefore').val() === 'true';
 	var setHtmlBefore = removeHtmlBefore ? null : $formValues.find('.setHtmlBefore').val();
 	if(removeHtmlBefore || setHtmlBefore != null && setHtmlBefore !== '')
@@ -474,6 +507,8 @@ async function patchHtmlPart($formFilters, $formValues, pk, success, error) {
 	if(removeHtmlBefore != null && removeHtmlBefore !== '')
 		vals['removeHtmlBefore'] = removeHtmlBefore;
 
+	var valueHtmlAfter = $formValues.find('.valueHtmlAfter').val();
+	if(valueHtmlAfter != null && valueHtmlAfter !== '')
 	var removeHtmlAfter = $formFilters.find('.removeHtmlAfter').val() === 'true';
 	var setHtmlAfter = removeHtmlAfter ? null : $formValues.find('.setHtmlAfter').val();
 	if(removeHtmlAfter || setHtmlAfter != null && setHtmlAfter !== '')
@@ -485,6 +520,8 @@ async function patchHtmlPart($formFilters, $formValues, pk, success, error) {
 	if(removeHtmlAfter != null && removeHtmlAfter !== '')
 		vals['removeHtmlAfter'] = removeHtmlAfter;
 
+	var valueHtmlText = $formValues.find('.valueHtmlText').val();
+	if(valueHtmlText != null && valueHtmlText !== '')
 	var removeHtmlText = $formFilters.find('.removeHtmlText').val() === 'true';
 	var setHtmlText = removeHtmlText ? null : $formValues.find('.setHtmlText').val();
 	if(removeHtmlText || setHtmlText != null && setHtmlText !== '')
@@ -496,6 +533,8 @@ async function patchHtmlPart($formFilters, $formValues, pk, success, error) {
 	if(removeHtmlText != null && removeHtmlText !== '')
 		vals['removeHtmlText'] = removeHtmlText;
 
+	var valueHtmlVar = $formValues.find('.valueHtmlVar').val();
+	if(valueHtmlVar != null && valueHtmlVar !== '')
 	var removeHtmlVar = $formFilters.find('.removeHtmlVar').val() === 'true';
 	var setHtmlVar = removeHtmlVar ? null : $formValues.find('.setHtmlVar').val();
 	if(removeHtmlVar || setHtmlVar != null && setHtmlVar !== '')
@@ -507,6 +546,8 @@ async function patchHtmlPart($formFilters, $formValues, pk, success, error) {
 	if(removeHtmlVar != null && removeHtmlVar !== '')
 		vals['removeHtmlVar'] = removeHtmlVar;
 
+	var valueHtmlVarSpan = $formValues.find('.valueHtmlVarSpan').val();
+	if(valueHtmlVarSpan != null && valueHtmlVarSpan !== '')
 	var removeHtmlVarSpan = $formFilters.find('.removeHtmlVarSpan').val() === 'true';
 	var setHtmlVarSpan = removeHtmlVarSpan ? null : $formValues.find('.setHtmlVarSpan').val();
 	if(removeHtmlVarSpan || setHtmlVarSpan != null && setHtmlVarSpan !== '')
@@ -518,6 +559,8 @@ async function patchHtmlPart($formFilters, $formValues, pk, success, error) {
 	if(removeHtmlVarSpan != null && removeHtmlVarSpan !== '')
 		vals['removeHtmlVarSpan'] = removeHtmlVarSpan;
 
+	var valueHtmlVarForm = $formValues.find('.valueHtmlVarForm').val();
+	if(valueHtmlVarForm != null && valueHtmlVarForm !== '')
 	var removeHtmlVarForm = $formFilters.find('.removeHtmlVarForm').val() === 'true';
 	var setHtmlVarForm = removeHtmlVarForm ? null : $formValues.find('.setHtmlVarForm').val();
 	if(removeHtmlVarForm || setHtmlVarForm != null && setHtmlVarForm !== '')
@@ -529,6 +572,8 @@ async function patchHtmlPart($formFilters, $formValues, pk, success, error) {
 	if(removeHtmlVarForm != null && removeHtmlVarForm !== '')
 		vals['removeHtmlVarForm'] = removeHtmlVarForm;
 
+	var valueHtmlVarInput = $formValues.find('.valueHtmlVarInput').val();
+	if(valueHtmlVarInput != null && valueHtmlVarInput !== '')
 	var removeHtmlVarInput = $formFilters.find('.removeHtmlVarInput').val() === 'true';
 	var setHtmlVarInput = removeHtmlVarInput ? null : $formValues.find('.setHtmlVarInput').val();
 	if(removeHtmlVarInput || setHtmlVarInput != null && setHtmlVarInput !== '')
@@ -540,6 +585,8 @@ async function patchHtmlPart($formFilters, $formValues, pk, success, error) {
 	if(removeHtmlVarInput != null && removeHtmlVarInput !== '')
 		vals['removeHtmlVarInput'] = removeHtmlVarInput;
 
+	var valueHtmlVarForEach = $formValues.find('.valueHtmlVarForEach').val();
+	if(valueHtmlVarForEach != null && valueHtmlVarForEach !== '')
 	var removeHtmlVarForEach = $formFilters.find('.removeHtmlVarForEach').val() === 'true';
 	var setHtmlVarForEach = removeHtmlVarForEach ? null : $formValues.find('.setHtmlVarForEach').val();
 	if(removeHtmlVarForEach || setHtmlVarForEach != null && setHtmlVarForEach !== '')
@@ -551,8 +598,14 @@ async function patchHtmlPart($formFilters, $formValues, pk, success, error) {
 	if(removeHtmlVarForEach != null && removeHtmlVarForEach !== '')
 		vals['removeHtmlVarForEach'] = removeHtmlVarForEach;
 
+	var valueHtmlExclude = $formValues.find('.valueHtmlExclude').prop('checked');
+	if(valueHtmlExclude != null && valueHtmlExclude !== '')
 	var removeHtmlExclude = $formFilters.find('.removeHtmlExclude').val() === 'true';
-	var setHtmlExclude = removeHtmlExclude ? null : $formValues.find('.setHtmlExclude').prop('checked');
+	var valueHtmlExcludeSelectVal = $formValues.find('select.setHtmlExclude').val();
+	var valueHtmlExclude = null;
+	if(valueHtmlExcludeSelectVal !== '')
+		valueHtmlExclude = valueHtmlExcludeSelectVal == 'true';
+	setHtmlExclude = removeHtmlExclude ? null : valueHtmlExclude;
 	if(removeHtmlExclude || setHtmlExclude != null && setHtmlExclude !== '')
 		vals['setHtmlExclude'] = setHtmlExclude;
 	var addHtmlExclude = $formValues.find('.addHtmlExclude').prop('checked');
@@ -562,8 +615,14 @@ async function patchHtmlPart($formFilters, $formValues, pk, success, error) {
 	if(removeHtmlExclude != null && removeHtmlExclude !== '')
 		vals['removeHtmlExclude'] = removeHtmlExclude;
 
+	var valuePdfExclude = $formValues.find('.valuePdfExclude').prop('checked');
+	if(valuePdfExclude != null && valuePdfExclude !== '')
 	var removePdfExclude = $formFilters.find('.removePdfExclude').val() === 'true';
-	var setPdfExclude = removePdfExclude ? null : $formValues.find('.setPdfExclude').prop('checked');
+	var valuePdfExcludeSelectVal = $formValues.find('select.setPdfExclude').val();
+	var valuePdfExclude = null;
+	if(valuePdfExcludeSelectVal !== '')
+		valuePdfExclude = valuePdfExcludeSelectVal == 'true';
+	setPdfExclude = removePdfExclude ? null : valuePdfExclude;
 	if(removePdfExclude || setPdfExclude != null && setPdfExclude !== '')
 		vals['setPdfExclude'] = setPdfExclude;
 	var addPdfExclude = $formValues.find('.addPdfExclude').prop('checked');
@@ -573,6 +632,25 @@ async function patchHtmlPart($formFilters, $formValues, pk, success, error) {
 	if(removePdfExclude != null && removePdfExclude !== '')
 		vals['removePdfExclude'] = removePdfExclude;
 
+	var valueLoginLogout = $formValues.find('.valueLoginLogout').prop('checked');
+	if(valueLoginLogout != null && valueLoginLogout !== '')
+	var removeLoginLogout = $formFilters.find('.removeLoginLogout').val() === 'true';
+	var valueLoginLogoutSelectVal = $formValues.find('select.setLoginLogout').val();
+	var valueLoginLogout = null;
+	if(valueLoginLogoutSelectVal !== '')
+		valueLoginLogout = valueLoginLogoutSelectVal == 'true';
+	setLoginLogout = removeLoginLogout ? null : valueLoginLogout;
+	if(removeLoginLogout || setLoginLogout != null && setLoginLogout !== '')
+		vals['setLoginLogout'] = setLoginLogout;
+	var addLoginLogout = $formValues.find('.addLoginLogout').prop('checked');
+	if(addLoginLogout != null && addLoginLogout !== '')
+		vals['addLoginLogout'] = addLoginLogout;
+	var removeLoginLogout = $formValues.find('.removeLoginLogout').prop('checked');
+	if(removeLoginLogout != null && removeLoginLogout !== '')
+		vals['removeLoginLogout'] = removeLoginLogout;
+
+	var valueSort1 = $formValues.find('.valueSort1').val();
+	if(valueSort1 != null && valueSort1 !== '')
 	var removeSort1 = $formFilters.find('.removeSort1').val() === 'true';
 	var setSort1 = removeSort1 ? null : $formValues.find('.setSort1').val();
 	if(removeSort1 || setSort1 != null && setSort1 !== '')
@@ -584,6 +662,8 @@ async function patchHtmlPart($formFilters, $formValues, pk, success, error) {
 	if(removeSort1 != null && removeSort1 !== '')
 		vals['removeSort1'] = removeSort1;
 
+	var valueSort2 = $formValues.find('.valueSort2').val();
+	if(valueSort2 != null && valueSort2 !== '')
 	var removeSort2 = $formFilters.find('.removeSort2').val() === 'true';
 	var setSort2 = removeSort2 ? null : $formValues.find('.setSort2').val();
 	if(removeSort2 || setSort2 != null && setSort2 !== '')
@@ -595,6 +675,8 @@ async function patchHtmlPart($formFilters, $formValues, pk, success, error) {
 	if(removeSort2 != null && removeSort2 !== '')
 		vals['removeSort2'] = removeSort2;
 
+	var valueSort3 = $formValues.find('.valueSort3').val();
+	if(valueSort3 != null && valueSort3 !== '')
 	var removeSort3 = $formFilters.find('.removeSort3').val() === 'true';
 	var setSort3 = removeSort3 ? null : $formValues.find('.setSort3').val();
 	if(removeSort3 || setSort3 != null && setSort3 !== '')
@@ -606,6 +688,8 @@ async function patchHtmlPart($formFilters, $formValues, pk, success, error) {
 	if(removeSort3 != null && removeSort3 !== '')
 		vals['removeSort3'] = removeSort3;
 
+	var valueSort4 = $formValues.find('.valueSort4').val();
+	if(valueSort4 != null && valueSort4 !== '')
 	var removeSort4 = $formFilters.find('.removeSort4').val() === 'true';
 	var setSort4 = removeSort4 ? null : $formValues.find('.setSort4').val();
 	if(removeSort4 || setSort4 != null && setSort4 !== '')
@@ -617,6 +701,8 @@ async function patchHtmlPart($formFilters, $formValues, pk, success, error) {
 	if(removeSort4 != null && removeSort4 !== '')
 		vals['removeSort4'] = removeSort4;
 
+	var valueSort5 = $formValues.find('.valueSort5').val();
+	if(valueSort5 != null && valueSort5 !== '')
 	var removeSort5 = $formFilters.find('.removeSort5').val() === 'true';
 	var setSort5 = removeSort5 ? null : $formValues.find('.setSort5').val();
 	if(removeSort5 || setSort5 != null && setSort5 !== '')
@@ -628,6 +714,8 @@ async function patchHtmlPart($formFilters, $formValues, pk, success, error) {
 	if(removeSort5 != null && removeSort5 !== '')
 		vals['removeSort5'] = removeSort5;
 
+	var valueSort6 = $formValues.find('.valueSort6').val();
+	if(valueSort6 != null && valueSort6 !== '')
 	var removeSort6 = $formFilters.find('.removeSort6').val() === 'true';
 	var setSort6 = removeSort6 ? null : $formValues.find('.setSort6').val();
 	if(removeSort6 || setSort6 != null && setSort6 !== '')
@@ -639,6 +727,8 @@ async function patchHtmlPart($formFilters, $formValues, pk, success, error) {
 	if(removeSort6 != null && removeSort6 !== '')
 		vals['removeSort6'] = removeSort6;
 
+	var valueSort7 = $formValues.find('.valueSort7').val();
+	if(valueSort7 != null && valueSort7 !== '')
 	var removeSort7 = $formFilters.find('.removeSort7').val() === 'true';
 	var setSort7 = removeSort7 ? null : $formValues.find('.setSort7').val();
 	if(removeSort7 || setSort7 != null && setSort7 !== '')
@@ -650,6 +740,8 @@ async function patchHtmlPart($formFilters, $formValues, pk, success, error) {
 	if(removeSort7 != null && removeSort7 !== '')
 		vals['removeSort7'] = removeSort7;
 
+	var valueSort8 = $formValues.find('.valueSort8').val();
+	if(valueSort8 != null && valueSort8 !== '')
 	var removeSort8 = $formFilters.find('.removeSort8').val() === 'true';
 	var setSort8 = removeSort8 ? null : $formValues.find('.setSort8').val();
 	if(removeSort8 || setSort8 != null && setSort8 !== '')
@@ -661,6 +753,8 @@ async function patchHtmlPart($formFilters, $formValues, pk, success, error) {
 	if(removeSort8 != null && removeSort8 !== '')
 		vals['removeSort8'] = removeSort8;
 
+	var valueSort9 = $formValues.find('.valueSort9').val();
+	if(valueSort9 != null && valueSort9 !== '')
 	var removeSort9 = $formFilters.find('.removeSort9').val() === 'true';
 	var setSort9 = removeSort9 ? null : $formValues.find('.setSort9').val();
 	if(removeSort9 || setSort9 != null && setSort9 !== '')
@@ -672,6 +766,8 @@ async function patchHtmlPart($formFilters, $formValues, pk, success, error) {
 	if(removeSort9 != null && removeSort9 !== '')
 		vals['removeSort9'] = removeSort9;
 
+	var valueSort10 = $formValues.find('.valueSort10').val();
+	if(valueSort10 != null && valueSort10 !== '')
 	var removeSort10 = $formFilters.find('.removeSort10').val() === 'true';
 	var setSort10 = removeSort10 ? null : $formValues.find('.setSort10').val();
 	if(removeSort10 || setSort10 != null && setSort10 !== '')
@@ -683,6 +779,8 @@ async function patchHtmlPart($formFilters, $formValues, pk, success, error) {
 	if(removeSort10 != null && removeSort10 !== '')
 		vals['removeSort10'] = removeSort10;
 
+	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
+	if(valueObjectTitle != null && valueObjectTitle !== '')
 	var removeObjectTitle = $formFilters.find('.removeObjectTitle').val() === 'true';
 	var setObjectTitle = removeObjectTitle ? null : $formValues.find('.setObjectTitle').val();
 	if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
@@ -699,182 +797,222 @@ async function patchHtmlPart($formFilters, $formValues, pk, success, error) {
 
 function patchHtmlPartFilters($formFilters) {
 	var filters = [];
+	if($formFilters) {
 
-	var filterPk = $formFilters.find('.valuePk').val();
-	if(filterPk != null && filterPk !== '')
-		filters.push({ name: 'fq', value: 'pk:' + filterPk });
+		var filterPk = $formFilters.find('.valuePk').val();
+		if(filterPk != null && filterPk !== '')
+			filters.push({ name: 'fq', value: 'pk:' + filterPk });
 
-	var filterCreated = $formFilters.find('.valueCreated').val();
-	if(filterCreated != null && filterCreated !== '')
-		filters.push({ name: 'fq', value: 'created:' + filterCreated });
+		var filterCreated = $formFilters.find('.valueCreated').val();
+		if(filterCreated != null && filterCreated !== '')
+			filters.push({ name: 'fq', value: 'created:' + filterCreated });
 
-	var filterModified = $formFilters.find('.valueModified').val();
-	if(filterModified != null && filterModified !== '')
-		filters.push({ name: 'fq', value: 'modified:' + filterModified });
+		var filterModified = $formFilters.find('.valueModified').val();
+		if(filterModified != null && filterModified !== '')
+			filters.push({ name: 'fq', value: 'modified:' + filterModified });
 
-	var filterObjectId = $formFilters.find('.valueObjectId').val();
-	if(filterObjectId != null && filterObjectId !== '')
-		filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
+		var filterObjectId = $formFilters.find('.valueObjectId').val();
+		if(filterObjectId != null && filterObjectId !== '')
+			filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
 
-	var filterArchived = $formFilters.find('.valueArchived').prop('checked');
-	if(filterArchived != null && filterArchived === true)
-		filters.push({ name: 'fq', value: 'archived:' + filterArchived });
+		var $filterArchivedCheckbox = $formFilters.find('input.valueArchived[type = "checkbox"]');
+		var $filterArchivedSelect = $formFilters.find('select.valueArchived');
+		var filterArchived = $filterArchivedSelect.length ? $filterArchivedSelect.val() : $filterArchivedCheckbox.prop('checked');
+		var filterArchivedSelectVal = $formFilters.find('select.filterArchived').val();
+		var filterArchived = null;
+		if(filterArchivedSelectVal !== '')
+			filterArchived = filterArchivedSelectVal == 'true';
+		if(filterArchived != null && filterArchived === true)
+			filters.push({ name: 'fq', value: 'archived:' + filterArchived });
 
-	var filterDeleted = $formFilters.find('.valueDeleted').prop('checked');
-	if(filterDeleted != null && filterDeleted === true)
-		filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
+		var $filterDeletedCheckbox = $formFilters.find('input.valueDeleted[type = "checkbox"]');
+		var $filterDeletedSelect = $formFilters.find('select.valueDeleted');
+		var filterDeleted = $filterDeletedSelect.length ? $filterDeletedSelect.val() : $filterDeletedCheckbox.prop('checked');
+		var filterDeletedSelectVal = $formFilters.find('select.filterDeleted').val();
+		var filterDeleted = null;
+		if(filterDeletedSelectVal !== '')
+			filterDeleted = filterDeletedSelectVal == 'true';
+		if(filterDeleted != null && filterDeleted === true)
+			filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
-	var filterEnrollmentDesignKey = $formFilters.find('.valueEnrollmentDesignKey').val();
-	if(filterEnrollmentDesignKey != null && filterEnrollmentDesignKey !== '')
-		filters.push({ name: 'fq', value: 'enrollmentDesignKey:' + filterEnrollmentDesignKey });
+		var filterPageDesignKeys = $formFilters.find('.valuePageDesignKeys').val();
+		if(filterPageDesignKeys != null && filterPageDesignKeys !== '')
+			filters.push({ name: 'fq', value: 'pageDesignKeys:' + filterPageDesignKeys });
 
-	var filterHtmlLink = $formFilters.find('.valueHtmlLink').val();
-	if(filterHtmlLink != null && filterHtmlLink !== '')
-		filters.push({ name: 'fq', value: 'htmlLink:' + filterHtmlLink });
+		var filterHtmlLink = $formFilters.find('.valueHtmlLink').val();
+		if(filterHtmlLink != null && filterHtmlLink !== '')
+			filters.push({ name: 'fq', value: 'htmlLink:' + filterHtmlLink });
 
-	var filterHtmlElement = $formFilters.find('.valueHtmlElement').val();
-	if(filterHtmlElement != null && filterHtmlElement !== '')
-		filters.push({ name: 'fq', value: 'htmlElement:' + filterHtmlElement });
+		var filterHtmlElement = $formFilters.find('.valueHtmlElement').val();
+		if(filterHtmlElement != null && filterHtmlElement !== '')
+			filters.push({ name: 'fq', value: 'htmlElement:' + filterHtmlElement });
 
-	var filterHtmlId = $formFilters.find('.valueHtmlId').val();
-	if(filterHtmlId != null && filterHtmlId !== '')
-		filters.push({ name: 'fq', value: 'htmlId:' + filterHtmlId });
+		var filterHtmlId = $formFilters.find('.valueHtmlId').val();
+		if(filterHtmlId != null && filterHtmlId !== '')
+			filters.push({ name: 'fq', value: 'htmlId:' + filterHtmlId });
 
-	var filterHtmlClasses = $formFilters.find('.valueHtmlClasses').val();
-	if(filterHtmlClasses != null && filterHtmlClasses !== '')
-		filters.push({ name: 'fq', value: 'htmlClasses:' + filterHtmlClasses });
+		var filterHtmlClasses = $formFilters.find('.valueHtmlClasses').val();
+		if(filterHtmlClasses != null && filterHtmlClasses !== '')
+			filters.push({ name: 'fq', value: 'htmlClasses:' + filterHtmlClasses });
 
-	var filterHtmlStyle = $formFilters.find('.valueHtmlStyle').val();
-	if(filterHtmlStyle != null && filterHtmlStyle !== '')
-		filters.push({ name: 'fq', value: 'htmlStyle:' + filterHtmlStyle });
+		var filterHtmlStyle = $formFilters.find('.valueHtmlStyle').val();
+		if(filterHtmlStyle != null && filterHtmlStyle !== '')
+			filters.push({ name: 'fq', value: 'htmlStyle:' + filterHtmlStyle });
 
-	var filterHtmlBefore = $formFilters.find('.valueHtmlBefore').val();
-	if(filterHtmlBefore != null && filterHtmlBefore !== '')
-		filters.push({ name: 'fq', value: 'htmlBefore:' + filterHtmlBefore });
+		var filterHtmlBefore = $formFilters.find('.valueHtmlBefore').val();
+		if(filterHtmlBefore != null && filterHtmlBefore !== '')
+			filters.push({ name: 'fq', value: 'htmlBefore:' + filterHtmlBefore });
 
-	var filterHtmlAfter = $formFilters.find('.valueHtmlAfter').val();
-	if(filterHtmlAfter != null && filterHtmlAfter !== '')
-		filters.push({ name: 'fq', value: 'htmlAfter:' + filterHtmlAfter });
+		var filterHtmlAfter = $formFilters.find('.valueHtmlAfter').val();
+		if(filterHtmlAfter != null && filterHtmlAfter !== '')
+			filters.push({ name: 'fq', value: 'htmlAfter:' + filterHtmlAfter });
 
-	var filterHtmlText = $formFilters.find('.valueHtmlText').val();
-	if(filterHtmlText != null && filterHtmlText !== '')
-		filters.push({ name: 'fq', value: 'htmlText:' + filterHtmlText });
+		var filterHtmlText = $formFilters.find('.valueHtmlText').val();
+		if(filterHtmlText != null && filterHtmlText !== '')
+			filters.push({ name: 'fq', value: 'htmlText:' + filterHtmlText });
 
-	var filterHtmlVar = $formFilters.find('.valueHtmlVar').val();
-	if(filterHtmlVar != null && filterHtmlVar !== '')
-		filters.push({ name: 'fq', value: 'htmlVar:' + filterHtmlVar });
+		var filterHtmlVar = $formFilters.find('.valueHtmlVar').val();
+		if(filterHtmlVar != null && filterHtmlVar !== '')
+			filters.push({ name: 'fq', value: 'htmlVar:' + filterHtmlVar });
 
-	var filterHtmlVarSpan = $formFilters.find('.valueHtmlVarSpan').val();
-	if(filterHtmlVarSpan != null && filterHtmlVarSpan !== '')
-		filters.push({ name: 'fq', value: 'htmlVarSpan:' + filterHtmlVarSpan });
+		var filterHtmlVarSpan = $formFilters.find('.valueHtmlVarSpan').val();
+		if(filterHtmlVarSpan != null && filterHtmlVarSpan !== '')
+			filters.push({ name: 'fq', value: 'htmlVarSpan:' + filterHtmlVarSpan });
 
-	var filterHtmlVarForm = $formFilters.find('.valueHtmlVarForm').val();
-	if(filterHtmlVarForm != null && filterHtmlVarForm !== '')
-		filters.push({ name: 'fq', value: 'htmlVarForm:' + filterHtmlVarForm });
+		var filterHtmlVarForm = $formFilters.find('.valueHtmlVarForm').val();
+		if(filterHtmlVarForm != null && filterHtmlVarForm !== '')
+			filters.push({ name: 'fq', value: 'htmlVarForm:' + filterHtmlVarForm });
 
-	var filterHtmlVarInput = $formFilters.find('.valueHtmlVarInput').val();
-	if(filterHtmlVarInput != null && filterHtmlVarInput !== '')
-		filters.push({ name: 'fq', value: 'htmlVarInput:' + filterHtmlVarInput });
+		var filterHtmlVarInput = $formFilters.find('.valueHtmlVarInput').val();
+		if(filterHtmlVarInput != null && filterHtmlVarInput !== '')
+			filters.push({ name: 'fq', value: 'htmlVarInput:' + filterHtmlVarInput });
 
-	var filterHtmlVarForEach = $formFilters.find('.valueHtmlVarForEach').val();
-	if(filterHtmlVarForEach != null && filterHtmlVarForEach !== '')
-		filters.push({ name: 'fq', value: 'htmlVarForEach:' + filterHtmlVarForEach });
+		var filterHtmlVarForEach = $formFilters.find('.valueHtmlVarForEach').val();
+		if(filterHtmlVarForEach != null && filterHtmlVarForEach !== '')
+			filters.push({ name: 'fq', value: 'htmlVarForEach:' + filterHtmlVarForEach });
 
-	var filterHtmlExclude = $formFilters.find('.valueHtmlExclude').prop('checked');
-	if(filterHtmlExclude != null && filterHtmlExclude === true)
-		filters.push({ name: 'fq', value: 'htmlExclude:' + filterHtmlExclude });
+		var $filterHtmlExcludeCheckbox = $formFilters.find('input.valueHtmlExclude[type = "checkbox"]');
+		var $filterHtmlExcludeSelect = $formFilters.find('select.valueHtmlExclude');
+		var filterHtmlExclude = $filterHtmlExcludeSelect.length ? $filterHtmlExcludeSelect.val() : $filterHtmlExcludeCheckbox.prop('checked');
+		var filterHtmlExcludeSelectVal = $formFilters.find('select.filterHtmlExclude').val();
+		var filterHtmlExclude = null;
+		if(filterHtmlExcludeSelectVal !== '')
+			filterHtmlExclude = filterHtmlExcludeSelectVal == 'true';
+		if(filterHtmlExclude != null && filterHtmlExclude === true)
+			filters.push({ name: 'fq', value: 'htmlExclude:' + filterHtmlExclude });
 
-	var filterPdfExclude = $formFilters.find('.valuePdfExclude').prop('checked');
-	if(filterPdfExclude != null && filterPdfExclude === true)
-		filters.push({ name: 'fq', value: 'pdfExclude:' + filterPdfExclude });
+		var $filterPdfExcludeCheckbox = $formFilters.find('input.valuePdfExclude[type = "checkbox"]');
+		var $filterPdfExcludeSelect = $formFilters.find('select.valuePdfExclude');
+		var filterPdfExclude = $filterPdfExcludeSelect.length ? $filterPdfExcludeSelect.val() : $filterPdfExcludeCheckbox.prop('checked');
+		var filterPdfExcludeSelectVal = $formFilters.find('select.filterPdfExclude').val();
+		var filterPdfExclude = null;
+		if(filterPdfExcludeSelectVal !== '')
+			filterPdfExclude = filterPdfExcludeSelectVal == 'true';
+		if(filterPdfExclude != null && filterPdfExclude === true)
+			filters.push({ name: 'fq', value: 'pdfExclude:' + filterPdfExclude });
 
-	var filterSort1 = $formFilters.find('.valueSort1').val();
-	if(filterSort1 != null && filterSort1 !== '')
-		filters.push({ name: 'fq', value: 'sort1:' + filterSort1 });
+		var $filterLoginLogoutCheckbox = $formFilters.find('input.valueLoginLogout[type = "checkbox"]');
+		var $filterLoginLogoutSelect = $formFilters.find('select.valueLoginLogout');
+		var filterLoginLogout = $filterLoginLogoutSelect.length ? $filterLoginLogoutSelect.val() : $filterLoginLogoutCheckbox.prop('checked');
+		var filterLoginLogoutSelectVal = $formFilters.find('select.filterLoginLogout').val();
+		var filterLoginLogout = null;
+		if(filterLoginLogoutSelectVal !== '')
+			filterLoginLogout = filterLoginLogoutSelectVal == 'true';
+		if(filterLoginLogout != null && filterLoginLogout === true)
+			filters.push({ name: 'fq', value: 'loginLogout:' + filterLoginLogout });
 
-	var filterSort2 = $formFilters.find('.valueSort2').val();
-	if(filterSort2 != null && filterSort2 !== '')
-		filters.push({ name: 'fq', value: 'sort2:' + filterSort2 });
+		var filterSort1 = $formFilters.find('.valueSort1').val();
+		if(filterSort1 != null && filterSort1 !== '')
+			filters.push({ name: 'fq', value: 'sort1:' + filterSort1 });
 
-	var filterSort3 = $formFilters.find('.valueSort3').val();
-	if(filterSort3 != null && filterSort3 !== '')
-		filters.push({ name: 'fq', value: 'sort3:' + filterSort3 });
+		var filterSort2 = $formFilters.find('.valueSort2').val();
+		if(filterSort2 != null && filterSort2 !== '')
+			filters.push({ name: 'fq', value: 'sort2:' + filterSort2 });
 
-	var filterSort4 = $formFilters.find('.valueSort4').val();
-	if(filterSort4 != null && filterSort4 !== '')
-		filters.push({ name: 'fq', value: 'sort4:' + filterSort4 });
+		var filterSort3 = $formFilters.find('.valueSort3').val();
+		if(filterSort3 != null && filterSort3 !== '')
+			filters.push({ name: 'fq', value: 'sort3:' + filterSort3 });
 
-	var filterSort5 = $formFilters.find('.valueSort5').val();
-	if(filterSort5 != null && filterSort5 !== '')
-		filters.push({ name: 'fq', value: 'sort5:' + filterSort5 });
+		var filterSort4 = $formFilters.find('.valueSort4').val();
+		if(filterSort4 != null && filterSort4 !== '')
+			filters.push({ name: 'fq', value: 'sort4:' + filterSort4 });
 
-	var filterSort6 = $formFilters.find('.valueSort6').val();
-	if(filterSort6 != null && filterSort6 !== '')
-		filters.push({ name: 'fq', value: 'sort6:' + filterSort6 });
+		var filterSort5 = $formFilters.find('.valueSort5').val();
+		if(filterSort5 != null && filterSort5 !== '')
+			filters.push({ name: 'fq', value: 'sort5:' + filterSort5 });
 
-	var filterSort7 = $formFilters.find('.valueSort7').val();
-	if(filterSort7 != null && filterSort7 !== '')
-		filters.push({ name: 'fq', value: 'sort7:' + filterSort7 });
+		var filterSort6 = $formFilters.find('.valueSort6').val();
+		if(filterSort6 != null && filterSort6 !== '')
+			filters.push({ name: 'fq', value: 'sort6:' + filterSort6 });
 
-	var filterSort8 = $formFilters.find('.valueSort8').val();
-	if(filterSort8 != null && filterSort8 !== '')
-		filters.push({ name: 'fq', value: 'sort8:' + filterSort8 });
+		var filterSort7 = $formFilters.find('.valueSort7').val();
+		if(filterSort7 != null && filterSort7 !== '')
+			filters.push({ name: 'fq', value: 'sort7:' + filterSort7 });
 
-	var filterSort9 = $formFilters.find('.valueSort9').val();
-	if(filterSort9 != null && filterSort9 !== '')
-		filters.push({ name: 'fq', value: 'sort9:' + filterSort9 });
+		var filterSort8 = $formFilters.find('.valueSort8').val();
+		if(filterSort8 != null && filterSort8 !== '')
+			filters.push({ name: 'fq', value: 'sort8:' + filterSort8 });
 
-	var filterSort10 = $formFilters.find('.valueSort10').val();
-	if(filterSort10 != null && filterSort10 !== '')
-		filters.push({ name: 'fq', value: 'sort10:' + filterSort10 });
+		var filterSort9 = $formFilters.find('.valueSort9').val();
+		if(filterSort9 != null && filterSort9 !== '')
+			filters.push({ name: 'fq', value: 'sort9:' + filterSort9 });
 
-	var filterInheritPk = $formFilters.find('.valueInheritPk').val();
-	if(filterInheritPk != null && filterInheritPk !== '')
-		filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+		var filterSort10 = $formFilters.find('.valueSort10').val();
+		if(filterSort10 != null && filterSort10 !== '')
+			filters.push({ name: 'fq', value: 'sort10:' + filterSort10 });
 
-	var filterId = $formFilters.find('.valueId').val();
-	if(filterId != null && filterId !== '')
-		filters.push({ name: 'fq', value: 'id:' + filterId });
+		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+		if(filterInheritPk != null && filterInheritPk !== '')
+			filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
 
-	var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
-	if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
-		filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+		var filterId = $formFilters.find('.valueId').val();
+		if(filterId != null && filterId !== '')
+			filters.push({ name: 'fq', value: 'id:' + filterId });
 
-	var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
-	if(filterClassSimpleName != null && filterClassSimpleName !== '')
-		filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+		var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
+		if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
+			filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
 
-	var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
-	if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-		filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+		var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
+		if(filterClassSimpleName != null && filterClassSimpleName !== '')
+			filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
 
-	var filterSessionId = $formFilters.find('.valueSessionId').val();
-	if(filterSessionId != null && filterSessionId !== '')
-		filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+		var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
+		if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+			filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
-	var filterSaves = $formFilters.find('.valueSaves').val();
-	if(filterSaves != null && filterSaves !== '')
-		filters.push({ name: 'fq', value: 'saves:' + filterSaves });
+		var filterSessionId = $formFilters.find('.valueSessionId').val();
+		if(filterSessionId != null && filterSessionId !== '')
+			filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
 
-	var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
-	if(filterObjectTitle != null && filterObjectTitle !== '')
-		filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
+		var filterSaves = $formFilters.find('.valueSaves').val();
+		if(filterSaves != null && filterSaves !== '')
+			filters.push({ name: 'fq', value: 'saves:' + filterSaves });
 
-	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
-	if(filterObjectSuggest != null && filterObjectSuggest !== '')
-		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+		var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
+		if(filterObjectTitle != null && filterObjectTitle !== '')
+			filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
-	var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
-	if(filterPageUrlId != null && filterPageUrlId !== '')
-		filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
+		var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
+		if(filterObjectSuggest != null && filterObjectSuggest !== '')
+			filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
 
-	var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-	if(filterPageUrlPk != null && filterPageUrlPk !== '')
-		filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
+		var filterObjectText = $formFilters.find('.valueObjectText').val();
+		if(filterObjectText != null && filterObjectText !== '')
+			filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
 
-	var filterHtmlPartKey = $formFilters.find('.valueHtmlPartKey').val();
-	if(filterHtmlPartKey != null && filterHtmlPartKey !== '')
-		filters.push({ name: 'fq', value: 'htmlPartKey:' + filterHtmlPartKey });
+		var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
+		if(filterPageUrlId != null && filterPageUrlId !== '')
+			filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
+
+		var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+		if(filterPageUrlPk != null && filterPageUrlPk !== '')
+			filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
+
+		var filterHtmlPartKey = $formFilters.find('.valueHtmlPartKey').val();
+		if(filterHtmlPartKey != null && filterHtmlPartKey !== '')
+			filters.push({ name: 'fq', value: 'htmlPartKey:' + filterHtmlPartKey });
+	}
 	return filters;
 }
 
@@ -909,20 +1047,6 @@ async function getHtmlPart(pk) {
 	});
 }
 
-// DELETE //
-
-async function deleteHtmlPart(pk) {
-	$.ajax({
-		url: '/api/html-part/' + id
-		, dataType: 'json'
-		, type: 'DELETE'
-		, contentType: 'application/json; charset=utf-8'
-		, data: JSON.stringify(vals)
-		, success: success
-		, error: error
-	});
-}
-
 // Search //
 
 async function searchHtmlPart($formFilters, success, error) {
@@ -937,182 +1061,222 @@ async function searchHtmlPart($formFilters, success, error) {
 
 function searchHtmlPartFilters($formFilters) {
 	var filters = [];
+	if($formFilters) {
 
-	var filterPk = $formFilters.find('.valuePk').val();
-	if(filterPk != null && filterPk !== '')
-		filters.push({ name: 'fq', value: 'pk:' + filterPk });
+		var filterPk = $formFilters.find('.valuePk').val();
+		if(filterPk != null && filterPk !== '')
+			filters.push({ name: 'fq', value: 'pk:' + filterPk });
 
-	var filterCreated = $formFilters.find('.valueCreated').val();
-	if(filterCreated != null && filterCreated !== '')
-		filters.push({ name: 'fq', value: 'created:' + filterCreated });
+		var filterCreated = $formFilters.find('.valueCreated').val();
+		if(filterCreated != null && filterCreated !== '')
+			filters.push({ name: 'fq', value: 'created:' + filterCreated });
 
-	var filterModified = $formFilters.find('.valueModified').val();
-	if(filterModified != null && filterModified !== '')
-		filters.push({ name: 'fq', value: 'modified:' + filterModified });
+		var filterModified = $formFilters.find('.valueModified').val();
+		if(filterModified != null && filterModified !== '')
+			filters.push({ name: 'fq', value: 'modified:' + filterModified });
 
-	var filterObjectId = $formFilters.find('.valueObjectId').val();
-	if(filterObjectId != null && filterObjectId !== '')
-		filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
+		var filterObjectId = $formFilters.find('.valueObjectId').val();
+		if(filterObjectId != null && filterObjectId !== '')
+			filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
 
-	var filterArchived = $formFilters.find('.valueArchived').prop('checked');
-	if(filterArchived != null && filterArchived === true)
-		filters.push({ name: 'fq', value: 'archived:' + filterArchived });
+		var $filterArchivedCheckbox = $formFilters.find('input.valueArchived[type = "checkbox"]');
+		var $filterArchivedSelect = $formFilters.find('select.valueArchived');
+		var filterArchived = $filterArchivedSelect.length ? $filterArchivedSelect.val() : $filterArchivedCheckbox.prop('checked');
+		var filterArchivedSelectVal = $formFilters.find('select.filterArchived').val();
+		var filterArchived = null;
+		if(filterArchivedSelectVal !== '')
+			filterArchived = filterArchivedSelectVal == 'true';
+		if(filterArchived != null && filterArchived === true)
+			filters.push({ name: 'fq', value: 'archived:' + filterArchived });
 
-	var filterDeleted = $formFilters.find('.valueDeleted').prop('checked');
-	if(filterDeleted != null && filterDeleted === true)
-		filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
+		var $filterDeletedCheckbox = $formFilters.find('input.valueDeleted[type = "checkbox"]');
+		var $filterDeletedSelect = $formFilters.find('select.valueDeleted');
+		var filterDeleted = $filterDeletedSelect.length ? $filterDeletedSelect.val() : $filterDeletedCheckbox.prop('checked');
+		var filterDeletedSelectVal = $formFilters.find('select.filterDeleted').val();
+		var filterDeleted = null;
+		if(filterDeletedSelectVal !== '')
+			filterDeleted = filterDeletedSelectVal == 'true';
+		if(filterDeleted != null && filterDeleted === true)
+			filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
-	var filterEnrollmentDesignKey = $formFilters.find('.valueEnrollmentDesignKey').val();
-	if(filterEnrollmentDesignKey != null && filterEnrollmentDesignKey !== '')
-		filters.push({ name: 'fq', value: 'enrollmentDesignKey:' + filterEnrollmentDesignKey });
+		var filterPageDesignKeys = $formFilters.find('.valuePageDesignKeys').val();
+		if(filterPageDesignKeys != null && filterPageDesignKeys !== '')
+			filters.push({ name: 'fq', value: 'pageDesignKeys:' + filterPageDesignKeys });
 
-	var filterHtmlLink = $formFilters.find('.valueHtmlLink').val();
-	if(filterHtmlLink != null && filterHtmlLink !== '')
-		filters.push({ name: 'fq', value: 'htmlLink:' + filterHtmlLink });
+		var filterHtmlLink = $formFilters.find('.valueHtmlLink').val();
+		if(filterHtmlLink != null && filterHtmlLink !== '')
+			filters.push({ name: 'fq', value: 'htmlLink:' + filterHtmlLink });
 
-	var filterHtmlElement = $formFilters.find('.valueHtmlElement').val();
-	if(filterHtmlElement != null && filterHtmlElement !== '')
-		filters.push({ name: 'fq', value: 'htmlElement:' + filterHtmlElement });
+		var filterHtmlElement = $formFilters.find('.valueHtmlElement').val();
+		if(filterHtmlElement != null && filterHtmlElement !== '')
+			filters.push({ name: 'fq', value: 'htmlElement:' + filterHtmlElement });
 
-	var filterHtmlId = $formFilters.find('.valueHtmlId').val();
-	if(filterHtmlId != null && filterHtmlId !== '')
-		filters.push({ name: 'fq', value: 'htmlId:' + filterHtmlId });
+		var filterHtmlId = $formFilters.find('.valueHtmlId').val();
+		if(filterHtmlId != null && filterHtmlId !== '')
+			filters.push({ name: 'fq', value: 'htmlId:' + filterHtmlId });
 
-	var filterHtmlClasses = $formFilters.find('.valueHtmlClasses').val();
-	if(filterHtmlClasses != null && filterHtmlClasses !== '')
-		filters.push({ name: 'fq', value: 'htmlClasses:' + filterHtmlClasses });
+		var filterHtmlClasses = $formFilters.find('.valueHtmlClasses').val();
+		if(filterHtmlClasses != null && filterHtmlClasses !== '')
+			filters.push({ name: 'fq', value: 'htmlClasses:' + filterHtmlClasses });
 
-	var filterHtmlStyle = $formFilters.find('.valueHtmlStyle').val();
-	if(filterHtmlStyle != null && filterHtmlStyle !== '')
-		filters.push({ name: 'fq', value: 'htmlStyle:' + filterHtmlStyle });
+		var filterHtmlStyle = $formFilters.find('.valueHtmlStyle').val();
+		if(filterHtmlStyle != null && filterHtmlStyle !== '')
+			filters.push({ name: 'fq', value: 'htmlStyle:' + filterHtmlStyle });
 
-	var filterHtmlBefore = $formFilters.find('.valueHtmlBefore').val();
-	if(filterHtmlBefore != null && filterHtmlBefore !== '')
-		filters.push({ name: 'fq', value: 'htmlBefore:' + filterHtmlBefore });
+		var filterHtmlBefore = $formFilters.find('.valueHtmlBefore').val();
+		if(filterHtmlBefore != null && filterHtmlBefore !== '')
+			filters.push({ name: 'fq', value: 'htmlBefore:' + filterHtmlBefore });
 
-	var filterHtmlAfter = $formFilters.find('.valueHtmlAfter').val();
-	if(filterHtmlAfter != null && filterHtmlAfter !== '')
-		filters.push({ name: 'fq', value: 'htmlAfter:' + filterHtmlAfter });
+		var filterHtmlAfter = $formFilters.find('.valueHtmlAfter').val();
+		if(filterHtmlAfter != null && filterHtmlAfter !== '')
+			filters.push({ name: 'fq', value: 'htmlAfter:' + filterHtmlAfter });
 
-	var filterHtmlText = $formFilters.find('.valueHtmlText').val();
-	if(filterHtmlText != null && filterHtmlText !== '')
-		filters.push({ name: 'fq', value: 'htmlText:' + filterHtmlText });
+		var filterHtmlText = $formFilters.find('.valueHtmlText').val();
+		if(filterHtmlText != null && filterHtmlText !== '')
+			filters.push({ name: 'fq', value: 'htmlText:' + filterHtmlText });
 
-	var filterHtmlVar = $formFilters.find('.valueHtmlVar').val();
-	if(filterHtmlVar != null && filterHtmlVar !== '')
-		filters.push({ name: 'fq', value: 'htmlVar:' + filterHtmlVar });
+		var filterHtmlVar = $formFilters.find('.valueHtmlVar').val();
+		if(filterHtmlVar != null && filterHtmlVar !== '')
+			filters.push({ name: 'fq', value: 'htmlVar:' + filterHtmlVar });
 
-	var filterHtmlVarSpan = $formFilters.find('.valueHtmlVarSpan').val();
-	if(filterHtmlVarSpan != null && filterHtmlVarSpan !== '')
-		filters.push({ name: 'fq', value: 'htmlVarSpan:' + filterHtmlVarSpan });
+		var filterHtmlVarSpan = $formFilters.find('.valueHtmlVarSpan').val();
+		if(filterHtmlVarSpan != null && filterHtmlVarSpan !== '')
+			filters.push({ name: 'fq', value: 'htmlVarSpan:' + filterHtmlVarSpan });
 
-	var filterHtmlVarForm = $formFilters.find('.valueHtmlVarForm').val();
-	if(filterHtmlVarForm != null && filterHtmlVarForm !== '')
-		filters.push({ name: 'fq', value: 'htmlVarForm:' + filterHtmlVarForm });
+		var filterHtmlVarForm = $formFilters.find('.valueHtmlVarForm').val();
+		if(filterHtmlVarForm != null && filterHtmlVarForm !== '')
+			filters.push({ name: 'fq', value: 'htmlVarForm:' + filterHtmlVarForm });
 
-	var filterHtmlVarInput = $formFilters.find('.valueHtmlVarInput').val();
-	if(filterHtmlVarInput != null && filterHtmlVarInput !== '')
-		filters.push({ name: 'fq', value: 'htmlVarInput:' + filterHtmlVarInput });
+		var filterHtmlVarInput = $formFilters.find('.valueHtmlVarInput').val();
+		if(filterHtmlVarInput != null && filterHtmlVarInput !== '')
+			filters.push({ name: 'fq', value: 'htmlVarInput:' + filterHtmlVarInput });
 
-	var filterHtmlVarForEach = $formFilters.find('.valueHtmlVarForEach').val();
-	if(filterHtmlVarForEach != null && filterHtmlVarForEach !== '')
-		filters.push({ name: 'fq', value: 'htmlVarForEach:' + filterHtmlVarForEach });
+		var filterHtmlVarForEach = $formFilters.find('.valueHtmlVarForEach').val();
+		if(filterHtmlVarForEach != null && filterHtmlVarForEach !== '')
+			filters.push({ name: 'fq', value: 'htmlVarForEach:' + filterHtmlVarForEach });
 
-	var filterHtmlExclude = $formFilters.find('.valueHtmlExclude').prop('checked');
-	if(filterHtmlExclude != null && filterHtmlExclude === true)
-		filters.push({ name: 'fq', value: 'htmlExclude:' + filterHtmlExclude });
+		var $filterHtmlExcludeCheckbox = $formFilters.find('input.valueHtmlExclude[type = "checkbox"]');
+		var $filterHtmlExcludeSelect = $formFilters.find('select.valueHtmlExclude');
+		var filterHtmlExclude = $filterHtmlExcludeSelect.length ? $filterHtmlExcludeSelect.val() : $filterHtmlExcludeCheckbox.prop('checked');
+		var filterHtmlExcludeSelectVal = $formFilters.find('select.filterHtmlExclude').val();
+		var filterHtmlExclude = null;
+		if(filterHtmlExcludeSelectVal !== '')
+			filterHtmlExclude = filterHtmlExcludeSelectVal == 'true';
+		if(filterHtmlExclude != null && filterHtmlExclude === true)
+			filters.push({ name: 'fq', value: 'htmlExclude:' + filterHtmlExclude });
 
-	var filterPdfExclude = $formFilters.find('.valuePdfExclude').prop('checked');
-	if(filterPdfExclude != null && filterPdfExclude === true)
-		filters.push({ name: 'fq', value: 'pdfExclude:' + filterPdfExclude });
+		var $filterPdfExcludeCheckbox = $formFilters.find('input.valuePdfExclude[type = "checkbox"]');
+		var $filterPdfExcludeSelect = $formFilters.find('select.valuePdfExclude');
+		var filterPdfExclude = $filterPdfExcludeSelect.length ? $filterPdfExcludeSelect.val() : $filterPdfExcludeCheckbox.prop('checked');
+		var filterPdfExcludeSelectVal = $formFilters.find('select.filterPdfExclude').val();
+		var filterPdfExclude = null;
+		if(filterPdfExcludeSelectVal !== '')
+			filterPdfExclude = filterPdfExcludeSelectVal == 'true';
+		if(filterPdfExclude != null && filterPdfExclude === true)
+			filters.push({ name: 'fq', value: 'pdfExclude:' + filterPdfExclude });
 
-	var filterSort1 = $formFilters.find('.valueSort1').val();
-	if(filterSort1 != null && filterSort1 !== '')
-		filters.push({ name: 'fq', value: 'sort1:' + filterSort1 });
+		var $filterLoginLogoutCheckbox = $formFilters.find('input.valueLoginLogout[type = "checkbox"]');
+		var $filterLoginLogoutSelect = $formFilters.find('select.valueLoginLogout');
+		var filterLoginLogout = $filterLoginLogoutSelect.length ? $filterLoginLogoutSelect.val() : $filterLoginLogoutCheckbox.prop('checked');
+		var filterLoginLogoutSelectVal = $formFilters.find('select.filterLoginLogout').val();
+		var filterLoginLogout = null;
+		if(filterLoginLogoutSelectVal !== '')
+			filterLoginLogout = filterLoginLogoutSelectVal == 'true';
+		if(filterLoginLogout != null && filterLoginLogout === true)
+			filters.push({ name: 'fq', value: 'loginLogout:' + filterLoginLogout });
 
-	var filterSort2 = $formFilters.find('.valueSort2').val();
-	if(filterSort2 != null && filterSort2 !== '')
-		filters.push({ name: 'fq', value: 'sort2:' + filterSort2 });
+		var filterSort1 = $formFilters.find('.valueSort1').val();
+		if(filterSort1 != null && filterSort1 !== '')
+			filters.push({ name: 'fq', value: 'sort1:' + filterSort1 });
 
-	var filterSort3 = $formFilters.find('.valueSort3').val();
-	if(filterSort3 != null && filterSort3 !== '')
-		filters.push({ name: 'fq', value: 'sort3:' + filterSort3 });
+		var filterSort2 = $formFilters.find('.valueSort2').val();
+		if(filterSort2 != null && filterSort2 !== '')
+			filters.push({ name: 'fq', value: 'sort2:' + filterSort2 });
 
-	var filterSort4 = $formFilters.find('.valueSort4').val();
-	if(filterSort4 != null && filterSort4 !== '')
-		filters.push({ name: 'fq', value: 'sort4:' + filterSort4 });
+		var filterSort3 = $formFilters.find('.valueSort3').val();
+		if(filterSort3 != null && filterSort3 !== '')
+			filters.push({ name: 'fq', value: 'sort3:' + filterSort3 });
 
-	var filterSort5 = $formFilters.find('.valueSort5').val();
-	if(filterSort5 != null && filterSort5 !== '')
-		filters.push({ name: 'fq', value: 'sort5:' + filterSort5 });
+		var filterSort4 = $formFilters.find('.valueSort4').val();
+		if(filterSort4 != null && filterSort4 !== '')
+			filters.push({ name: 'fq', value: 'sort4:' + filterSort4 });
 
-	var filterSort6 = $formFilters.find('.valueSort6').val();
-	if(filterSort6 != null && filterSort6 !== '')
-		filters.push({ name: 'fq', value: 'sort6:' + filterSort6 });
+		var filterSort5 = $formFilters.find('.valueSort5').val();
+		if(filterSort5 != null && filterSort5 !== '')
+			filters.push({ name: 'fq', value: 'sort5:' + filterSort5 });
 
-	var filterSort7 = $formFilters.find('.valueSort7').val();
-	if(filterSort7 != null && filterSort7 !== '')
-		filters.push({ name: 'fq', value: 'sort7:' + filterSort7 });
+		var filterSort6 = $formFilters.find('.valueSort6').val();
+		if(filterSort6 != null && filterSort6 !== '')
+			filters.push({ name: 'fq', value: 'sort6:' + filterSort6 });
 
-	var filterSort8 = $formFilters.find('.valueSort8').val();
-	if(filterSort8 != null && filterSort8 !== '')
-		filters.push({ name: 'fq', value: 'sort8:' + filterSort8 });
+		var filterSort7 = $formFilters.find('.valueSort7').val();
+		if(filterSort7 != null && filterSort7 !== '')
+			filters.push({ name: 'fq', value: 'sort7:' + filterSort7 });
 
-	var filterSort9 = $formFilters.find('.valueSort9').val();
-	if(filterSort9 != null && filterSort9 !== '')
-		filters.push({ name: 'fq', value: 'sort9:' + filterSort9 });
+		var filterSort8 = $formFilters.find('.valueSort8').val();
+		if(filterSort8 != null && filterSort8 !== '')
+			filters.push({ name: 'fq', value: 'sort8:' + filterSort8 });
 
-	var filterSort10 = $formFilters.find('.valueSort10').val();
-	if(filterSort10 != null && filterSort10 !== '')
-		filters.push({ name: 'fq', value: 'sort10:' + filterSort10 });
+		var filterSort9 = $formFilters.find('.valueSort9').val();
+		if(filterSort9 != null && filterSort9 !== '')
+			filters.push({ name: 'fq', value: 'sort9:' + filterSort9 });
 
-	var filterInheritPk = $formFilters.find('.valueInheritPk').val();
-	if(filterInheritPk != null && filterInheritPk !== '')
-		filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+		var filterSort10 = $formFilters.find('.valueSort10').val();
+		if(filterSort10 != null && filterSort10 !== '')
+			filters.push({ name: 'fq', value: 'sort10:' + filterSort10 });
 
-	var filterId = $formFilters.find('.valueId').val();
-	if(filterId != null && filterId !== '')
-		filters.push({ name: 'fq', value: 'id:' + filterId });
+		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+		if(filterInheritPk != null && filterInheritPk !== '')
+			filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
 
-	var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
-	if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
-		filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+		var filterId = $formFilters.find('.valueId').val();
+		if(filterId != null && filterId !== '')
+			filters.push({ name: 'fq', value: 'id:' + filterId });
 
-	var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
-	if(filterClassSimpleName != null && filterClassSimpleName !== '')
-		filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+		var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
+		if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
+			filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
 
-	var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
-	if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-		filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+		var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
+		if(filterClassSimpleName != null && filterClassSimpleName !== '')
+			filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
 
-	var filterSessionId = $formFilters.find('.valueSessionId').val();
-	if(filterSessionId != null && filterSessionId !== '')
-		filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+		var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
+		if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+			filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
-	var filterSaves = $formFilters.find('.valueSaves').val();
-	if(filterSaves != null && filterSaves !== '')
-		filters.push({ name: 'fq', value: 'saves:' + filterSaves });
+		var filterSessionId = $formFilters.find('.valueSessionId').val();
+		if(filterSessionId != null && filterSessionId !== '')
+			filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
 
-	var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
-	if(filterObjectTitle != null && filterObjectTitle !== '')
-		filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
+		var filterSaves = $formFilters.find('.valueSaves').val();
+		if(filterSaves != null && filterSaves !== '')
+			filters.push({ name: 'fq', value: 'saves:' + filterSaves });
 
-	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
-	if(filterObjectSuggest != null && filterObjectSuggest !== '')
-		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+		var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
+		if(filterObjectTitle != null && filterObjectTitle !== '')
+			filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
-	var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
-	if(filterPageUrlId != null && filterPageUrlId !== '')
-		filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
+		var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
+		if(filterObjectSuggest != null && filterObjectSuggest !== '')
+			filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
 
-	var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-	if(filterPageUrlPk != null && filterPageUrlPk !== '')
-		filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
+		var filterObjectText = $formFilters.find('.valueObjectText').val();
+		if(filterObjectText != null && filterObjectText !== '')
+			filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
 
-	var filterHtmlPartKey = $formFilters.find('.valueHtmlPartKey').val();
-	if(filterHtmlPartKey != null && filterHtmlPartKey !== '')
-		filters.push({ name: 'fq', value: 'htmlPartKey:' + filterHtmlPartKey });
+		var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
+		if(filterPageUrlId != null && filterPageUrlId !== '')
+			filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
+
+		var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+		if(filterPageUrlPk != null && filterPageUrlPk !== '')
+			filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
+
+		var filterHtmlPartKey = $formFilters.find('.valueHtmlPartKey').val();
+		if(filterHtmlPartKey != null && filterHtmlPartKey !== '')
+			filters.push({ name: 'fq', value: 'htmlPartKey:' + filterHtmlPartKey });
+	}
 	return filters;
 }
 
@@ -1158,30 +1322,31 @@ function suggestHtmlPartObjectSuggest($formFilters, $list) {
 	searchHtmlPartVals($formFilters, success, error);
 }
 
-function suggestHtmlPartEnrollmentDesignKey(filters, $list, pk = null) {
+function suggestHtmlPartPageDesignKeys(filters, $list, pk = null, attribute=true) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
 			var $i = $('<i>').attr('class', 'fa fa-drafting-compass ');
-			var $span = $('<span>').attr('class', '').text(o['enrollmentDesignCompleteName']);
+			var $span = $('<span>').attr('class', '').text(o['pageDesignCompleteName']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);
 			$a.append($span);
 			var val = o['htmlPartKeys'];
-			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
+			var checked = pk == null ? false : Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
 			var $input = $('<input>');
-			$input.attr('id', 'GET_enrollmentDesignKey_' + pk + '_htmlPartKeys_' + o['pk']);
+			$input.attr('id', 'GET_pageDesignKeys_' + pk + '_htmlPartKeys_' + o['pk']);
 			$input.attr('value', o['pk']);
-			$input.attr('class', 'valueEnrollmentDesignKey w3-check ');
+			$input.attr('class', 'valuePageDesignKeys w3-check ');
 			if(pk != null) {
-				$input.attr('onchange', "var $input = $('#GET_enrollmentDesignKey_" + pk + "_htmlPartKeys_" + o['pk'] + "'); patchHtmlPartVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'set' : 'remove') + 'EnrollmentDesignKey']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onchange', "var $input = $('#GET_pageDesignKeys_" + pk + "_htmlPartKeys_" + o['pk'] + "'); patchHtmlPartVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'PageDesignKeys']: \"" + o['pk'] + "\" } ); ");
 				$input.attr('onclick', 'removeGlow($(this)); ');
 			}
 			$input.attr('type', 'checkbox');
 			if(checked)
 				$input.attr('checked', 'checked');
 			var $li = $('<li>');
-			$li.append($input);
+			if(attribute)
+				$li.append($input);
 			$li.append($a);
 			$list.append($li);
 		});
@@ -1190,7 +1355,7 @@ function suggestHtmlPartEnrollmentDesignKey(filters, $list, pk = null) {
 			$('#' + focusId).parent().next().find('input').focus();
 	};
 	error = function( jqXhr, textStatus, errorThrown ) {};
-	searchEnrollmentDesignVals(filters, success, error);
+	searchPageDesignVals(filters, success, error);
 }
 
 async function websocketHtmlPart(success) {
@@ -1231,8 +1396,8 @@ async function websocketHtmlPart(success) {
 					success(json);
 		});
 
-		window.eventBus.registerHandler('websocketEnrollmentDesign', function (error, message) {
-			$('#Page_enrollmentDesignKey').trigger('oninput');
+		window.eventBus.registerHandler('websocketPageDesign', function (error, message) {
+			$('#Page_pageDesignKeys').trigger('oninput');
 		});
 	}
 }
@@ -1262,9 +1427,9 @@ async function websocketHtmlPartInner(apiRequest) {
 				$('.inputHtmlPart' + pk + 'Deleted').val(o['deleted']);
 				$('.varHtmlPart' + pk + 'Deleted').text(o['deleted']);
 			}
-			if(vars.includes('enrollmentDesignKey')) {
-				$('.inputHtmlPart' + pk + 'EnrollmentDesignKey').val(o['enrollmentDesignKey']);
-				$('.varHtmlPart' + pk + 'EnrollmentDesignKey').text(o['enrollmentDesignKey']);
+			if(vars.includes('pageDesignKeys')) {
+				$('.inputHtmlPart' + pk + 'PageDesignKeys').val(o['pageDesignKeys']);
+				$('.varHtmlPart' + pk + 'PageDesignKeys').text(o['pageDesignKeys']);
 			}
 			if(vars.includes('htmlLink')) {
 				$('.inputHtmlPart' + pk + 'HtmlLink').val(o['htmlLink']);
@@ -1326,6 +1491,10 @@ async function websocketHtmlPartInner(apiRequest) {
 				$('.inputHtmlPart' + pk + 'PdfExclude').val(o['pdfExclude']);
 				$('.varHtmlPart' + pk + 'PdfExclude').text(o['pdfExclude']);
 			}
+			if(vars.includes('loginLogout')) {
+				$('.inputHtmlPart' + pk + 'LoginLogout').val(o['loginLogout']);
+				$('.varHtmlPart' + pk + 'LoginLogout').text(o['loginLogout']);
+			}
 			if(vars.includes('sort1')) {
 				$('.inputHtmlPart' + pk + 'Sort1').val(o['sort1']);
 				$('.varHtmlPart' + pk + 'Sort1').text(o['sort1']);
@@ -1367,17 +1536,5 @@ async function websocketHtmlPartInner(apiRequest) {
 				$('.varHtmlPart' + pk + 'Sort10').text(o['sort10']);
 			}
 		});
-	}
-
-	if(!empty) {
-		if(pks) {
-			for(i=0; i < pks.length; i++) {
-				var pk2 = pks[i];
-				var c = classes[i];
-				await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
-			}
-		}
-		if(pk)
-			await patchHtmlPartVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 	}
 }

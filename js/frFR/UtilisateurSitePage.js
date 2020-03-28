@@ -1,8 +1,150 @@
 
 // PATCH //
 
-function patchUtilisateurSite($formulaireFiltres, $formulaireValeurs) {
+async function patchUtilisateurSite($formulaireFiltres, $formulaireValeurs, pk, success, error) {
+	var filtres = patchUtilisateurSiteFiltres($formulaireFiltres);
+
+	var vals = {};
+
+	var removePk = $formulaireFiltres.find('.removePk').val() === 'true';
+	var setPk = removePk ? null : $formulaireValeurs.find('.setPk').val();
+	if(removePk || setPk != null && setPk !== '')
+		vals['setPk'] = setPk;
+	var addPk = $formulaireValeurs.find('.addPk').val();
+	if(addPk != null && addPk !== '')
+		vals['addPk'] = addPk;
+	var removePk = $formulaireValeurs.find('.removePk').val();
+	if(removePk != null && removePk !== '')
+		vals['removePk'] = removePk;
+
+	var removeCree = $formulaireFiltres.find('.removeCree').val() === 'true';
+	var setCree = removeCree ? null : $formulaireValeurs.find('.setCree').val();
+	if(removeCree || setCree != null && setCree !== '')
+		vals['setCree'] = setCree;
+	var addCree = $formulaireValeurs.find('.addCree').val();
+	if(addCree != null && addCree !== '')
+		vals['addCree'] = addCree;
+	var removeCree = $formulaireValeurs.find('.removeCree').val();
+	if(removeCree != null && removeCree !== '')
+		vals['removeCree'] = removeCree;
+
+	var removeModifie = $formulaireFiltres.find('.removeModifie').val() === 'true';
+	var setModifie = removeModifie ? null : $formulaireValeurs.find('.setModifie').val();
+	if(removeModifie || setModifie != null && setModifie !== '')
+		vals['setModifie'] = setModifie;
+	var addModifie = $formulaireValeurs.find('.addModifie').val();
+	if(addModifie != null && addModifie !== '')
+		vals['addModifie'] = addModifie;
+	var removeModifie = $formulaireValeurs.find('.removeModifie').val();
+	if(removeModifie != null && removeModifie !== '')
+		vals['removeModifie'] = removeModifie;
+
+	var removeObjetId = $formulaireFiltres.find('.removeObjetId').val() === 'true';
+	var setObjetId = removeObjetId ? null : $formulaireValeurs.find('.setObjetId').val();
+	if(removeObjetId || setObjetId != null && setObjetId !== '')
+		vals['setObjetId'] = setObjetId;
+	var addObjetId = $formulaireValeurs.find('.addObjetId').val();
+	if(addObjetId != null && addObjetId !== '')
+		vals['addObjetId'] = addObjetId;
+	var removeObjetId = $formulaireValeurs.find('.removeObjetId').val();
+	if(removeObjetId != null && removeObjetId !== '')
+		vals['removeObjetId'] = removeObjetId;
+
+	var removeArchive = $formulaireFiltres.find('.removeArchive').val() === 'true';
+	var valeurArchiveSelectVal = $formulaireValeurs.find('select.setArchive').val();
+	var valeurArchive = null;
+	if(valeurArchiveSelectVal !== '')
+		valeurArchive = valeurArchiveSelectVal == 'true';
+	setArchive = removeArchive ? null : valeurArchive;
+	if(removeArchive || setArchive != null && setArchive !== '')
+		vals['setArchive'] = setArchive;
+	var addArchive = $formulaireValeurs.find('.addArchive').prop('checked');
+	if(addArchive != null && addArchive !== '')
+		vals['addArchive'] = addArchive;
+	var removeArchive = $formulaireValeurs.find('.removeArchive').prop('checked');
+	if(removeArchive != null && removeArchive !== '')
+		vals['removeArchive'] = removeArchive;
+
+	var removeSupprime = $formulaireFiltres.find('.removeSupprime').val() === 'true';
+	var valeurSupprimeSelectVal = $formulaireValeurs.find('select.setSupprime').val();
+	var valeurSupprime = null;
+	if(valeurSupprimeSelectVal !== '')
+		valeurSupprime = valeurSupprimeSelectVal == 'true';
+	setSupprime = removeSupprime ? null : valeurSupprime;
+	if(removeSupprime || setSupprime != null && setSupprime !== '')
+		vals['setSupprime'] = setSupprime;
+	var addSupprime = $formulaireValeurs.find('.addSupprime').prop('checked');
+	if(addSupprime != null && addSupprime !== '')
+		vals['addSupprime'] = addSupprime;
+	var removeSupprime = $formulaireValeurs.find('.removeSupprime').prop('checked');
+	if(removeSupprime != null && removeSupprime !== '')
+		vals['removeSupprime'] = removeSupprime;
+
+	var removeUtilisateurRecevoirCourriels = $formulaireFiltres.find('.removeUtilisateurRecevoirCourriels').val() === 'true';
+	var valeurUtilisateurRecevoirCourrielsSelectVal = $formulaireValeurs.find('select.setUtilisateurRecevoirCourriels').val();
+	var valeurUtilisateurRecevoirCourriels = null;
+	if(valeurUtilisateurRecevoirCourrielsSelectVal !== '')
+		valeurUtilisateurRecevoirCourriels = valeurUtilisateurRecevoirCourrielsSelectVal == 'true';
+	setUtilisateurRecevoirCourriels = removeUtilisateurRecevoirCourriels ? null : valeurUtilisateurRecevoirCourriels;
+	if(removeUtilisateurRecevoirCourriels || setUtilisateurRecevoirCourriels != null && setUtilisateurRecevoirCourriels !== '')
+		vals['setUtilisateurRecevoirCourriels'] = setUtilisateurRecevoirCourriels;
+	var addUtilisateurRecevoirCourriels = $formulaireValeurs.find('.addUtilisateurRecevoirCourriels').prop('checked');
+	if(addUtilisateurRecevoirCourriels != null && addUtilisateurRecevoirCourriels !== '')
+		vals['addUtilisateurRecevoirCourriels'] = addUtilisateurRecevoirCourriels;
+	var removeUtilisateurRecevoirCourriels = $formulaireValeurs.find('.removeUtilisateurRecevoirCourriels').prop('checked');
+	if(removeUtilisateurRecevoirCourriels != null && removeUtilisateurRecevoirCourriels !== '')
+		vals['removeUtilisateurRecevoirCourriels'] = removeUtilisateurRecevoirCourriels;
+
+	var removeVoirArchive = $formulaireFiltres.find('.removeVoirArchive').val() === 'true';
+	var valeurVoirArchiveSelectVal = $formulaireValeurs.find('select.setVoirArchive').val();
+	var valeurVoirArchive = null;
+	if(valeurVoirArchiveSelectVal !== '')
+		valeurVoirArchive = valeurVoirArchiveSelectVal == 'true';
+	setVoirArchive = removeVoirArchive ? null : valeurVoirArchive;
+	if(removeVoirArchive || setVoirArchive != null && setVoirArchive !== '')
+		vals['setVoirArchive'] = setVoirArchive;
+	var addVoirArchive = $formulaireValeurs.find('.addVoirArchive').prop('checked');
+	if(addVoirArchive != null && addVoirArchive !== '')
+		vals['addVoirArchive'] = addVoirArchive;
+	var removeVoirArchive = $formulaireValeurs.find('.removeVoirArchive').prop('checked');
+	if(removeVoirArchive != null && removeVoirArchive !== '')
+		vals['removeVoirArchive'] = removeVoirArchive;
+
+	var removeVoirSupprime = $formulaireFiltres.find('.removeVoirSupprime').val() === 'true';
+	var valeurVoirSupprimeSelectVal = $formulaireValeurs.find('select.setVoirSupprime').val();
+	var valeurVoirSupprime = null;
+	if(valeurVoirSupprimeSelectVal !== '')
+		valeurVoirSupprime = valeurVoirSupprimeSelectVal == 'true';
+	setVoirSupprime = removeVoirSupprime ? null : valeurVoirSupprime;
+	if(removeVoirSupprime || setVoirSupprime != null && setVoirSupprime !== '')
+		vals['setVoirSupprime'] = setVoirSupprime;
+	var addVoirSupprime = $formulaireValeurs.find('.addVoirSupprime').prop('checked');
+	if(addVoirSupprime != null && addVoirSupprime !== '')
+		vals['addVoirSupprime'] = addVoirSupprime;
+	var removeVoirSupprime = $formulaireValeurs.find('.removeVoirSupprime').prop('checked');
+	if(removeVoirSupprime != null && removeVoirSupprime !== '')
+		vals['removeVoirSupprime'] = removeVoirSupprime;
+
+	var removeObjetTitre = $formulaireFiltres.find('.removeObjetTitre').val() === 'true';
+	var setObjetTitre = removeObjetTitre ? null : $formulaireValeurs.find('.setObjetTitre').val();
+	if(removeObjetTitre || setObjetTitre != null && setObjetTitre !== '')
+		vals['setObjetTitre'] = setObjetTitre;
+	var addObjetTitre = $formulaireValeurs.find('.addObjetTitre').val();
+	if(addObjetTitre != null && addObjetTitre !== '')
+		vals['addObjetTitre'] = addObjetTitre;
+	var removeObjetTitre = $formulaireValeurs.find('.removeObjetTitre').val();
+	if(removeObjetTitre != null && removeObjetTitre !== '')
+		vals['removeObjetTitre'] = removeObjetTitre;
+
+	patchUtilisateurSiteVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
+}
+
+function patchUtilisateurSiteFiltres($formulaireFiltres) {
 	var filtres = [];
+
+	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
+	if(filtrePk != null && filtrePk !== '')
+		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
 
 	var filtreCree = $formulaireFiltres.find('.valeurCree').val();
 	if(filtreCree != null && filtreCree !== '')
@@ -12,61 +154,67 @@ function patchUtilisateurSite($formulaireFiltres, $formulaireValeurs) {
 	if(filtreModifie != null && filtreModifie !== '')
 		filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
 
-	var filtreUtilisateurNom = $formulaireFiltres.find('.valeurUtilisateurNom').val();
-	if(filtreUtilisateurNom != null && filtreUtilisateurNom !== '')
-		filtres.push({ name: 'fq', value: 'utilisateurNom:' + filtreUtilisateurNom });
+	var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
+	if(filtreObjetId != null && filtreObjetId !== '')
+		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
 
-	var filtreUtilisateurNomComplet = $formulaireFiltres.find('.valeurUtilisateurNomComplet').val();
-	if(filtreUtilisateurNomComplet != null && filtreUtilisateurNomComplet !== '')
-		filtres.push({ name: 'fq', value: 'utilisateurNomComplet:' + filtreUtilisateurNomComplet });
+	var $filtreArchiveCheckbox = $formulaireFiltres.find('input.valeurArchive[type = "checkbox"]');
+	var $filtreArchiveSelect = $formulaireFiltres.find('select.valeurArchive');
+	var filtreArchive = $filtreArchiveSelect.length ? $filtreArchiveSelect.val() : $filtreArchiveCheckbox.prop('checked');
+	var filtreArchiveSelectVal = $formulaireFiltres.find('select.filtreArchive').val();
+	var filtreArchive = null;
+	if(filtreArchiveSelectVal !== '')
+		filtreArchive = filtreArchiveSelectVal == 'true';
+	if(filtreArchive != null && filtreArchive === true)
+		filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
 
-	var filtreSiteNomDomaine = $formulaireFiltres.find('.valeurSiteNomDomaine').val();
-	if(filtreSiteNomDomaine != null && filtreSiteNomDomaine !== '')
-		filtres.push({ name: 'fq', value: 'siteNomDomaine:' + filtreSiteNomDomaine });
+	var $filtreSupprimeCheckbox = $formulaireFiltres.find('input.valeurSupprime[type = "checkbox"]');
+	var $filtreSupprimeSelect = $formulaireFiltres.find('select.valeurSupprime');
+	var filtreSupprime = $filtreSupprimeSelect.length ? $filtreSupprimeSelect.val() : $filtreSupprimeCheckbox.prop('checked');
+	var filtreSupprimeSelectVal = $formulaireFiltres.find('select.filtreSupprime').val();
+	var filtreSupprime = null;
+	if(filtreSupprimeSelectVal !== '')
+		filtreSupprime = filtreSupprimeSelectVal == 'true';
+	if(filtreSupprime != null && filtreSupprime === true)
+		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
-	var filtreZookeeperVersion = $formulaireFiltres.find('.valeurZookeeperVersion').val();
-	if(filtreZookeeperVersion != null && filtreZookeeperVersion !== '')
-		filtres.push({ name: 'fq', value: 'zookeeperVersion:' + filtreZookeeperVersion });
+	var $filtreUtilisateurRecevoirCourrielsCheckbox = $formulaireFiltres.find('input.valeurUtilisateurRecevoirCourriels[type = "checkbox"]');
+	var $filtreUtilisateurRecevoirCourrielsSelect = $formulaireFiltres.find('select.valeurUtilisateurRecevoirCourriels');
+	var filtreUtilisateurRecevoirCourriels = $filtreUtilisateurRecevoirCourrielsSelect.length ? $filtreUtilisateurRecevoirCourrielsSelect.val() : $filtreUtilisateurRecevoirCourrielsCheckbox.prop('checked');
+	var filtreUtilisateurRecevoirCourrielsSelectVal = $formulaireFiltres.find('select.filtreUtilisateurRecevoirCourriels').val();
+	var filtreUtilisateurRecevoirCourriels = null;
+	if(filtreUtilisateurRecevoirCourrielsSelectVal !== '')
+		filtreUtilisateurRecevoirCourriels = filtreUtilisateurRecevoirCourrielsSelectVal == 'true';
+	if(filtreUtilisateurRecevoirCourriels != null && filtreUtilisateurRecevoirCourriels === true)
+		filtres.push({ name: 'fq', value: 'utilisateurRecevoirCourriels:' + filtreUtilisateurRecevoirCourriels });
 
-	var filtreZookeeperPortAdmin = $formulaireFiltres.find('.valeurZookeeperPortAdmin').val();
-	if(filtreZookeeperPortAdmin != null && filtreZookeeperPortAdmin !== '')
-		filtres.push({ name: 'fq', value: 'zookeeperPortAdmin:' + filtreZookeeperPortAdmin });
+	var $filtreVoirArchiveCheckbox = $formulaireFiltres.find('input.valeurVoirArchive[type = "checkbox"]');
+	var $filtreVoirArchiveSelect = $formulaireFiltres.find('select.valeurVoirArchive');
+	var filtreVoirArchive = $filtreVoirArchiveSelect.length ? $filtreVoirArchiveSelect.val() : $filtreVoirArchiveCheckbox.prop('checked');
+	var filtreVoirArchiveSelectVal = $formulaireFiltres.find('select.filtreVoirArchive').val();
+	var filtreVoirArchive = null;
+	if(filtreVoirArchiveSelectVal !== '')
+		filtreVoirArchive = filtreVoirArchiveSelectVal == 'true';
+	if(filtreVoirArchive != null && filtreVoirArchive === true)
+		filtres.push({ name: 'fq', value: 'voirArchive:' + filtreVoirArchive });
 
-	var filtreZookeeperPortClient = $formulaireFiltres.find('.valeurZookeeperPortClient').val();
-	if(filtreZookeeperPortClient != null && filtreZookeeperPortClient !== '')
-		filtres.push({ name: 'fq', value: 'zookeeperPortClient:' + filtreZookeeperPortClient });
+	var $filtreVoirSupprimeCheckbox = $formulaireFiltres.find('input.valeurVoirSupprime[type = "checkbox"]');
+	var $filtreVoirSupprimeSelect = $formulaireFiltres.find('select.valeurVoirSupprime');
+	var filtreVoirSupprime = $filtreVoirSupprimeSelect.length ? $filtreVoirSupprimeSelect.val() : $filtreVoirSupprimeCheckbox.prop('checked');
+	var filtreVoirSupprimeSelectVal = $formulaireFiltres.find('select.filtreVoirSupprime').val();
+	var filtreVoirSupprime = null;
+	if(filtreVoirSupprimeSelectVal !== '')
+		filtreVoirSupprime = filtreVoirSupprimeSelectVal == 'true';
+	if(filtreVoirSupprime != null && filtreVoirSupprime === true)
+		filtres.push({ name: 'fq', value: 'voirSupprime:' + filtreVoirSupprime });
 
-	var filtreSolrVersion = $formulaireFiltres.find('.valeurSolrVersion').val();
-	if(filtreSolrVersion != null && filtreSolrVersion !== '')
-		filtres.push({ name: 'fq', value: 'solrVersion:' + filtreSolrVersion });
-
-	var filtreSolrPortClient = $formulaireFiltres.find('.valeurSolrPortClient').val();
-	if(filtreSolrPortClient != null && filtreSolrPortClient !== '')
-		filtres.push({ name: 'fq', value: 'solrPortClient:' + filtreSolrPortClient });
-
-	var filtreSolrConfigset = $formulaireFiltres.find('.valeurSolrConfigset').val();
-	if(filtreSolrConfigset != null && filtreSolrConfigset !== '')
-		filtres.push({ name: 'fq', value: 'solrConfigset:' + filtreSolrConfigset });
-
-	var filtreSolrCollection = $formulaireFiltres.find('.valeurSolrCollection').val();
-	if(filtreSolrCollection != null && filtreSolrCollection !== '')
-		filtres.push({ name: 'fq', value: 'solrCollection:' + filtreSolrCollection });
-
-	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
-	if(filtrePk != null && filtrePk !== '')
-		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
+	var filtreInheritPk = $formulaireFiltres.find('.valeurInheritPk').val();
+	if(filtreInheritPk != null && filtreInheritPk !== '')
+		filtres.push({ name: 'fq', value: 'inheritPk:' + filtreInheritPk });
 
 	var filtreId = $formulaireFiltres.find('.valeurId').val();
 	if(filtreId != null && filtreId !== '')
 		filtres.push({ name: 'fq', value: 'id:' + filtreId });
-
-	var filtreArchive = $formulaireFiltres.find('.valeurArchive').prop('checked');
-	if(filtreArchive != null && filtreArchive === true)
-		filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
-
-	var filtreSupprime = $formulaireFiltres.find('.valeurSupprime').prop('checked');
-	if(filtreSupprime != null && filtreSupprime === true)
-		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
 	var filtreClasseNomCanonique = $formulaireFiltres.find('.valeurClasseNomCanonique').val();
 	if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
@@ -80,13 +228,33 @@ function patchUtilisateurSite($formulaireFiltres, $formulaireValeurs) {
 	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
 		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
 
-	var filtreUtilisateurId = $formulaireFiltres.find('.valeurUtilisateurId').val();
-	if(filtreUtilisateurId != null && filtreUtilisateurId !== '')
-		filtres.push({ name: 'fq', value: 'utilisateurId:' + filtreUtilisateurId });
+	var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
+	if(filtreSessionId != null && filtreSessionId !== '')
+		filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
 
-	var filtreCalculInrPks = $formulaireFiltres.find('.valeurCalculInrPks').val();
-	if(filtreCalculInrPks != null && filtreCalculInrPks !== '')
-		filtres.push({ name: 'fq', value: 'calculInrPks:' + filtreCalculInrPks });
+	var filtreSauvegardes = $formulaireFiltres.find('.valeurSauvegardes').val();
+	if(filtreSauvegardes != null && filtreSauvegardes !== '')
+		filtres.push({ name: 'fq', value: 'sauvegardes:' + filtreSauvegardes });
+
+	var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
+	if(filtreObjetTitre != null && filtreObjetTitre !== '')
+		filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
+
+	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
+	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
+		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
+
+	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
+	if(filtrePageUrlId != null && filtrePageUrlId !== '')
+		filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
+
+	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
+	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
+		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
+
+	var filtreUtilisateurNom = $formulaireFiltres.find('.valeurUtilisateurNom').val();
+	if(filtreUtilisateurNom != null && filtreUtilisateurNom !== '')
+		filtres.push({ name: 'fq', value: 'utilisateurNom:' + filtreUtilisateurNom });
 
 	var filtreUtilisateurMail = $formulaireFiltres.find('.valeurUtilisateurMail').val();
 	if(filtreUtilisateurMail != null && filtreUtilisateurMail !== '')
@@ -100,161 +268,111 @@ function patchUtilisateurSite($formulaireFiltres, $formulaireValeurs) {
 	if(filtreUtilisateurNomFamille != null && filtreUtilisateurNomFamille !== '')
 		filtres.push({ name: 'fq', value: 'utilisateurNomFamille:' + filtreUtilisateurNomFamille });
 
+	var filtreUtilisateurNomComplet = $formulaireFiltres.find('.valeurUtilisateurNomComplet').val();
+	if(filtreUtilisateurNomComplet != null && filtreUtilisateurNomComplet !== '')
+		filtres.push({ name: 'fq', value: 'utilisateurNomComplet:' + filtreUtilisateurNomComplet });
+
 	var filtreUtilisateurSite = $formulaireFiltres.find('.valeurUtilisateurSite').val();
 	if(filtreUtilisateurSite != null && filtreUtilisateurSite !== '')
 		filtres.push({ name: 'fq', value: 'utilisateurSite:' + filtreUtilisateurSite });
+	return filtres;
+}
 
-	var filtreUtilisateurRecevoirCourriels = $formulaireFiltres.find('.valeurUtilisateurRecevoirCourriels').prop('checked');
-	if(filtreUtilisateurRecevoirCourriels != null && filtreUtilisateurRecevoirCourriels === true)
-		filtres.push({ name: 'fq', value: 'utilisateurRecevoirCourriels:' + filtreUtilisateurRecevoirCourriels });
+function patchUtilisateurSiteVal(filtres, v, val, success, error) {
+	var vals = {};
+	vals[v] = val;
+	patchUtilisateurSiteVals(filtres, vals, success, error);
+}
 
-	var filtreVoirArchive = $formulaireFiltres.find('.valeurVoirArchive').prop('checked');
-	if(filtreVoirArchive != null && filtreVoirArchive === true)
-		filtres.push({ name: 'fq', value: 'voirArchive:' + filtreVoirArchive });
-
-	var filtreVoirSupprime = $formulaireFiltres.find('.valeurVoirSupprime').prop('checked');
-	if(filtreVoirSupprime != null && filtreVoirSupprime === true)
-		filtres.push({ name: 'fq', value: 'voirSupprime:' + filtreVoirSupprime });
-
-	var valeurs = {};
-
-	var setCree = $formulaireValeurs.find('.setCree').val();
-	if(setCree != null && setCree !== '')
-		valeurs['setCree'] = setCree;
-	var addCree = $formulaireValeurs.find('.addCree').val();
-	if(addCree != null && addCree !== '')
-		valeurs['addCree'] = addCree;
-	var removeCree = $formulaireValeurs.find('.removeCree').val();
-	if(removeCree != null && removeCree !== '')
-		valeurs['removeCree'] = removeCree;
-
-	var setModifie = $formulaireValeurs.find('.setModifie').val();
-	if(setModifie != null && setModifie !== '')
-		valeurs['setModifie'] = setModifie;
-	var addModifie = $formulaireValeurs.find('.addModifie').val();
-	if(addModifie != null && addModifie !== '')
-		valeurs['addModifie'] = addModifie;
-	var removeModifie = $formulaireValeurs.find('.removeModifie').val();
-	if(removeModifie != null && removeModifie !== '')
-		valeurs['removeModifie'] = removeModifie;
-
-	var setUtilisateurNom = $formulaireValeurs.find('.setUtilisateurNom').val();
-	if(setUtilisateurNom != null && setUtilisateurNom !== '')
-		valeurs['setUtilisateurNom'] = setUtilisateurNom;
-	var addUtilisateurNom = $formulaireValeurs.find('.addUtilisateurNom').val();
-	if(addUtilisateurNom != null && addUtilisateurNom !== '')
-		valeurs['addUtilisateurNom'] = addUtilisateurNom;
-	var removeUtilisateurNom = $formulaireValeurs.find('.removeUtilisateurNom').val();
-	if(removeUtilisateurNom != null && removeUtilisateurNom !== '')
-		valeurs['removeUtilisateurNom'] = removeUtilisateurNom;
-
-	var setUtilisateurNomComplet = $formulaireValeurs.find('.setUtilisateurNomComplet').val();
-	if(setUtilisateurNomComplet != null && setUtilisateurNomComplet !== '')
-		valeurs['setUtilisateurNomComplet'] = setUtilisateurNomComplet;
-	var addUtilisateurNomComplet = $formulaireValeurs.find('.addUtilisateurNomComplet').val();
-	if(addUtilisateurNomComplet != null && addUtilisateurNomComplet !== '')
-		valeurs['addUtilisateurNomComplet'] = addUtilisateurNomComplet;
-	var removeUtilisateurNomComplet = $formulaireValeurs.find('.removeUtilisateurNomComplet').val();
-	if(removeUtilisateurNomComplet != null && removeUtilisateurNomComplet !== '')
-		valeurs['removeUtilisateurNomComplet'] = removeUtilisateurNomComplet;
-
-	var setSiteNomDomaine = $formulaireValeurs.find('.setSiteNomDomaine').val();
-	if(setSiteNomDomaine != null && setSiteNomDomaine !== '')
-		valeurs['setSiteNomDomaine'] = setSiteNomDomaine;
-	var addSiteNomDomaine = $formulaireValeurs.find('.addSiteNomDomaine').val();
-	if(addSiteNomDomaine != null && addSiteNomDomaine !== '')
-		valeurs['addSiteNomDomaine'] = addSiteNomDomaine;
-	var removeSiteNomDomaine = $formulaireValeurs.find('.removeSiteNomDomaine').val();
-	if(removeSiteNomDomaine != null && removeSiteNomDomaine !== '')
-		valeurs['removeSiteNomDomaine'] = removeSiteNomDomaine;
-
-	var setZookeeperVersion = $formulaireValeurs.find('.setZookeeperVersion').val();
-	if(setZookeeperVersion != null && setZookeeperVersion !== '')
-		valeurs['setZookeeperVersion'] = setZookeeperVersion;
-	var addZookeeperVersion = $formulaireValeurs.find('.addZookeeperVersion').val();
-	if(addZookeeperVersion != null && addZookeeperVersion !== '')
-		valeurs['addZookeeperVersion'] = addZookeeperVersion;
-	var removeZookeeperVersion = $formulaireValeurs.find('.removeZookeeperVersion').val();
-	if(removeZookeeperVersion != null && removeZookeeperVersion !== '')
-		valeurs['removeZookeeperVersion'] = removeZookeeperVersion;
-
-	var setZookeeperPortAdmin = $formulaireValeurs.find('.setZookeeperPortAdmin').val();
-	if(setZookeeperPortAdmin != null && setZookeeperPortAdmin !== '')
-		valeurs['setZookeeperPortAdmin'] = parseInt(setZookeeperPortAdmin);
-	var addZookeeperPortAdmin = $formulaireValeurs.find('.addZookeeperPortAdmin').val();
-	if(addZookeeperPortAdmin != null && addZookeeperPortAdmin !== '')
-		valeurs['addZookeeperPortAdmin'] = parseInt(addZookeeperPortAdmin);
-	var removeZookeeperPortAdmin = $formulaireValeurs.find('.removeZookeeperPortAdmin').val();
-	if(removeZookeeperPortAdmin != null && removeZookeeperPortAdmin !== '')
-		valeurs['removeZookeeperPortAdmin'] = parseInt(removeZookeeperPortAdmin);
-
-	var setZookeeperPortClient = $formulaireValeurs.find('.setZookeeperPortClient').val();
-	if(setZookeeperPortClient != null && setZookeeperPortClient !== '')
-		valeurs['setZookeeperPortClient'] = parseInt(setZookeeperPortClient);
-	var addZookeeperPortClient = $formulaireValeurs.find('.addZookeeperPortClient').val();
-	if(addZookeeperPortClient != null && addZookeeperPortClient !== '')
-		valeurs['addZookeeperPortClient'] = parseInt(addZookeeperPortClient);
-	var removeZookeeperPortClient = $formulaireValeurs.find('.removeZookeeperPortClient').val();
-	if(removeZookeeperPortClient != null && removeZookeeperPortClient !== '')
-		valeurs['removeZookeeperPortClient'] = parseInt(removeZookeeperPortClient);
-
-	var setSolrVersion = $formulaireValeurs.find('.setSolrVersion').val();
-	if(setSolrVersion != null && setSolrVersion !== '')
-		valeurs['setSolrVersion'] = setSolrVersion;
-	var addSolrVersion = $formulaireValeurs.find('.addSolrVersion').val();
-	if(addSolrVersion != null && addSolrVersion !== '')
-		valeurs['addSolrVersion'] = addSolrVersion;
-	var removeSolrVersion = $formulaireValeurs.find('.removeSolrVersion').val();
-	if(removeSolrVersion != null && removeSolrVersion !== '')
-		valeurs['removeSolrVersion'] = removeSolrVersion;
-
-	var setSolrPortClient = $formulaireValeurs.find('.setSolrPortClient').val();
-	if(setSolrPortClient != null && setSolrPortClient !== '')
-		valeurs['setSolrPortClient'] = parseInt(setSolrPortClient);
-	var addSolrPortClient = $formulaireValeurs.find('.addSolrPortClient').val();
-	if(addSolrPortClient != null && addSolrPortClient !== '')
-		valeurs['addSolrPortClient'] = parseInt(addSolrPortClient);
-	var removeSolrPortClient = $formulaireValeurs.find('.removeSolrPortClient').val();
-	if(removeSolrPortClient != null && removeSolrPortClient !== '')
-		valeurs['removeSolrPortClient'] = parseInt(removeSolrPortClient);
-
-	var setSolrConfigset = $formulaireValeurs.find('.setSolrConfigset').val();
-	if(setSolrConfigset != null && setSolrConfigset !== '')
-		valeurs['setSolrConfigset'] = setSolrConfigset;
-	var addSolrConfigset = $formulaireValeurs.find('.addSolrConfigset').val();
-	if(addSolrConfigset != null && addSolrConfigset !== '')
-		valeurs['addSolrConfigset'] = addSolrConfigset;
-	var removeSolrConfigset = $formulaireValeurs.find('.removeSolrConfigset').val();
-	if(removeSolrConfigset != null && removeSolrConfigset !== '')
-		valeurs['removeSolrConfigset'] = removeSolrConfigset;
-
-	var setSolrCollection = $formulaireValeurs.find('.setSolrCollection').val();
-	if(setSolrCollection != null && setSolrCollection !== '')
-		valeurs['setSolrCollection'] = setSolrCollection;
-	var addSolrCollection = $formulaireValeurs.find('.addSolrCollection').val();
-	if(addSolrCollection != null && addSolrCollection !== '')
-		valeurs['addSolrCollection'] = addSolrCollection;
-	var removeSolrCollection = $formulaireValeurs.find('.removeSolrCollection').val();
-	if(removeSolrCollection != null && removeSolrCollection !== '')
-		valeurs['removeSolrCollection'] = removeSolrCollection;
-
+function patchUtilisateurSiteVals(filtres, vals, success, error) {
 	$.ajax({
-		url: '/frFR/api/utilisateur?' + $.param(filtres)
+		url: '/api/utilisateur?' + $.param(filtres)
 		, dataType: 'json'
 		, type: 'PATCH'
 		, contentType: 'application/json; charset=utf-8'
-		, data: JSON.stringify(valeurs)
-		, success: function( data, textStatus, jQxhr ) {
-			$.each( valeurs, function( key, value ) {
-				$formulaireValeurs.find('.' + key).removeClass('lueurErreur');
-				$formulaireValeurs.find('.' + key).addClass('lueurSucces');
-			});
-		}
-		, error: function( jqXhr, textStatus, errorThrown ) {
-			$.each( valeurs, function( key, value ) {
-				$formulaireValeurs.find('.' + key).removeClass('lueurSucces');
-				$formulaireValeurs.find('.' + key).addClass('lueurErreur');
-			});
-		}
+		, data: JSON.stringify(vals)
+		, success: success
+		, error: error
 	});
+}
+
+async function websocketUtilisateurSite(success) {
+	window.eventBus.onopen = function () {
+
+		window.eventBus.registerHandler('websocketUtilisateurSite', function (error, message) {
+			var json = JSON.parse(message['body']);
+			var id = json['id'];
+			var pk = json['pk'];
+			var pks = json['pks'];
+			var empty = json['empty'];
+				var numFound = json['numFound'];
+				var numPATCH = json['numPATCH'];
+				var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
+				var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
+				var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
+				var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
+				var $header = $('<div>').attr('class', 'w3-container fa-gray ').attr('id', 'header-' + id);
+				var $i = $('<i>').attr('class', 'far fa-user-cog w3-margin-right ').attr('id', 'icon-' + id);
+				var $headerSpan = $('<span>').attr('class', '').text('modifier utilisateurs du site');
+				var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
+				var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
+				var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
+				var $progress = $('<div>').attr('class', 'w3-gray ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
+				$card.append($header);
+				$header.append($i);
+				$header.append($headerSpan);
+				$header.append($x);
+				$body.append($bar);
+				$bar.append($progress);
+				$card.append($body);
+				$box.append($margin);
+				$margin.append($card);
+				$('.box-' + id).remove();
+				if(numPATCH < numFound)
+				$('.w3-content').append($box);
+				if(success)
+					success(json);
+		});
+	}
+}
+async function websocketUtilisateurSiteInner(requeteApi) {
+	var pk = requeteApi['pk'];
+	var pks = requeteApi['pks'];
+	var classes = requeteApi['classes'];
+	var vars = requeteApi['vars'];
+	var empty = requeteApi['empty'];
+
+	if(pk != null) {
+		rechercherUtilisateurSiteVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
+			var o = data['list'][0];
+			if(vars.includes('cree')) {
+				$('.inputUtilisateurSite' + pk + 'Cree').val(o['cree']);
+				$('.varUtilisateurSite' + pk + 'Cree').text(o['cree']);
+			}
+			if(vars.includes('modifie')) {
+				$('.inputUtilisateurSite' + pk + 'Modifie').val(o['modifie']);
+				$('.varUtilisateurSite' + pk + 'Modifie').text(o['modifie']);
+			}
+			if(vars.includes('archive')) {
+				$('.inputUtilisateurSite' + pk + 'Archive').val(o['archive']);
+				$('.varUtilisateurSite' + pk + 'Archive').text(o['archive']);
+			}
+			if(vars.includes('supprime')) {
+				$('.inputUtilisateurSite' + pk + 'Supprime').val(o['supprime']);
+				$('.varUtilisateurSite' + pk + 'Supprime').text(o['supprime']);
+			}
+			if(vars.includes('utilisateurRecevoirCourriels')) {
+				$('.inputUtilisateurSite' + pk + 'UtilisateurRecevoirCourriels').val(o['utilisateurRecevoirCourriels']);
+				$('.varUtilisateurSite' + pk + 'UtilisateurRecevoirCourriels').text(o['utilisateurRecevoirCourriels']);
+			}
+			if(vars.includes('voirArchive')) {
+				$('.inputUtilisateurSite' + pk + 'VoirArchive').val(o['voirArchive']);
+				$('.varUtilisateurSite' + pk + 'VoirArchive').text(o['voirArchive']);
+			}
+			if(vars.includes('voirSupprime')) {
+				$('.inputUtilisateurSite' + pk + 'VoirSupprime').val(o['voirSupprime']);
+				$('.varUtilisateurSite' + pk + 'VoirSupprime').text(o['voirSupprime']);
+			}
+		});
+	}
 }

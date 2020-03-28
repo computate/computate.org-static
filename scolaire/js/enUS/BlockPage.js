@@ -114,7 +114,7 @@ function postSchoolBlockVals(vals, success, error) {
 
 // PUT //
 
-async function putSchoolBlock($formValues, success, error) {
+async function putSchoolBlock($formValues, pk, success, error) {
 	var vals = {};
 
 	var valuePk = $formValues.find('.valuePk').val();
@@ -189,7 +189,7 @@ async function putSchoolBlock($formValues, success, error) {
 	if(valueSchoolAddress != null && valueSchoolAddress !== '')
 		vals['schoolAddress'] = valueSchoolAddress;
 
-	putSchoolBlockVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+	putSchoolBlockVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
 function putSchoolBlockVals(filters, vals, success, error) {
@@ -198,7 +198,7 @@ function putSchoolBlockVals(filters, vals, success, error) {
 		, dataType: 'json'
 		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
-		, data: JSON.stringify(vals)
+		, data: JSON.stringify({patch: vals})
 		, success: success
 		, error: error
 	});
@@ -206,7 +206,7 @@ function putSchoolBlockVals(filters, vals, success, error) {
 
 // PATCH //
 
-async function patchSchoolBlock($formFilters, $formValues, success, error) {
+async function patchSchoolBlock($formFilters, $formValues, pk, success, error) {
 	var filters = patchSchoolBlockFilters($formFilters);
 
 	var vals = {};
@@ -256,7 +256,11 @@ async function patchSchoolBlock($formFilters, $formValues, success, error) {
 		vals['removeObjectId'] = removeObjectId;
 
 	var removeArchived = $formFilters.find('.removeArchived').val() === 'true';
-	var setArchived = removeArchived ? null : $formValues.find('.setArchived').prop('checked');
+	var valueArchivedSelectVal = $formValues.find('select.setArchived').val();
+	var valueArchived = null;
+	if(valueArchivedSelectVal !== '')
+		valueArchived = valueArchivedSelectVal == 'true';
+	setArchived = removeArchived ? null : valueArchived;
 	if(removeArchived || setArchived != null && setArchived !== '')
 		vals['setArchived'] = setArchived;
 	var addArchived = $formValues.find('.addArchived').prop('checked');
@@ -267,7 +271,11 @@ async function patchSchoolBlock($formFilters, $formValues, success, error) {
 		vals['removeArchived'] = removeArchived;
 
 	var removeDeleted = $formFilters.find('.removeDeleted').val() === 'true';
-	var setDeleted = removeDeleted ? null : $formValues.find('.setDeleted').prop('checked');
+	var valueDeletedSelectVal = $formValues.find('select.setDeleted').val();
+	var valueDeleted = null;
+	if(valueDeletedSelectVal !== '')
+		valueDeleted = valueDeletedSelectVal == 'true';
+	setDeleted = removeDeleted ? null : valueDeleted;
 	if(removeDeleted || setDeleted != null && setDeleted !== '')
 		vals['setDeleted'] = setDeleted;
 	var addDeleted = $formValues.find('.addDeleted').prop('checked');
@@ -311,7 +319,11 @@ async function patchSchoolBlock($formFilters, $formValues, success, error) {
 		vals['removeBlockPricePerMonth'] = removeBlockPricePerMonth;
 
 	var removeBlockMonday = $formFilters.find('.removeBlockMonday').val() === 'true';
-	var setBlockMonday = removeBlockMonday ? null : $formValues.find('.setBlockMonday').prop('checked');
+	var valueBlockMondaySelectVal = $formValues.find('select.setBlockMonday').val();
+	var valueBlockMonday = null;
+	if(valueBlockMondaySelectVal !== '')
+		valueBlockMonday = valueBlockMondaySelectVal == 'true';
+	setBlockMonday = removeBlockMonday ? null : valueBlockMonday;
 	if(removeBlockMonday || setBlockMonday != null && setBlockMonday !== '')
 		vals['setBlockMonday'] = setBlockMonday;
 	var addBlockMonday = $formValues.find('.addBlockMonday').prop('checked');
@@ -322,7 +334,11 @@ async function patchSchoolBlock($formFilters, $formValues, success, error) {
 		vals['removeBlockMonday'] = removeBlockMonday;
 
 	var removeBlockTuesday = $formFilters.find('.removeBlockTuesday').val() === 'true';
-	var setBlockTuesday = removeBlockTuesday ? null : $formValues.find('.setBlockTuesday').prop('checked');
+	var valueBlockTuesdaySelectVal = $formValues.find('select.setBlockTuesday').val();
+	var valueBlockTuesday = null;
+	if(valueBlockTuesdaySelectVal !== '')
+		valueBlockTuesday = valueBlockTuesdaySelectVal == 'true';
+	setBlockTuesday = removeBlockTuesday ? null : valueBlockTuesday;
 	if(removeBlockTuesday || setBlockTuesday != null && setBlockTuesday !== '')
 		vals['setBlockTuesday'] = setBlockTuesday;
 	var addBlockTuesday = $formValues.find('.addBlockTuesday').prop('checked');
@@ -333,7 +349,11 @@ async function patchSchoolBlock($formFilters, $formValues, success, error) {
 		vals['removeBlockTuesday'] = removeBlockTuesday;
 
 	var removeBlockWednesday = $formFilters.find('.removeBlockWednesday').val() === 'true';
-	var setBlockWednesday = removeBlockWednesday ? null : $formValues.find('.setBlockWednesday').prop('checked');
+	var valueBlockWednesdaySelectVal = $formValues.find('select.setBlockWednesday').val();
+	var valueBlockWednesday = null;
+	if(valueBlockWednesdaySelectVal !== '')
+		valueBlockWednesday = valueBlockWednesdaySelectVal == 'true';
+	setBlockWednesday = removeBlockWednesday ? null : valueBlockWednesday;
 	if(removeBlockWednesday || setBlockWednesday != null && setBlockWednesday !== '')
 		vals['setBlockWednesday'] = setBlockWednesday;
 	var addBlockWednesday = $formValues.find('.addBlockWednesday').prop('checked');
@@ -344,7 +364,11 @@ async function patchSchoolBlock($formFilters, $formValues, success, error) {
 		vals['removeBlockWednesday'] = removeBlockWednesday;
 
 	var removeBlockThursday = $formFilters.find('.removeBlockThursday').val() === 'true';
-	var setBlockThursday = removeBlockThursday ? null : $formValues.find('.setBlockThursday').prop('checked');
+	var valueBlockThursdaySelectVal = $formValues.find('select.setBlockThursday').val();
+	var valueBlockThursday = null;
+	if(valueBlockThursdaySelectVal !== '')
+		valueBlockThursday = valueBlockThursdaySelectVal == 'true';
+	setBlockThursday = removeBlockThursday ? null : valueBlockThursday;
 	if(removeBlockThursday || setBlockThursday != null && setBlockThursday !== '')
 		vals['setBlockThursday'] = setBlockThursday;
 	var addBlockThursday = $formValues.find('.addBlockThursday').prop('checked');
@@ -355,7 +379,11 @@ async function patchSchoolBlock($formFilters, $formValues, success, error) {
 		vals['removeBlockThursday'] = removeBlockThursday;
 
 	var removeBlockFriday = $formFilters.find('.removeBlockFriday').val() === 'true';
-	var setBlockFriday = removeBlockFriday ? null : $formValues.find('.setBlockFriday').prop('checked');
+	var valueBlockFridaySelectVal = $formValues.find('select.setBlockFriday').val();
+	var valueBlockFriday = null;
+	if(valueBlockFridaySelectVal !== '')
+		valueBlockFriday = valueBlockFridaySelectVal == 'true';
+	setBlockFriday = removeBlockFriday ? null : valueBlockFriday;
 	if(removeBlockFriday || setBlockFriday != null && setBlockFriday !== '')
 		vals['setBlockFriday'] = setBlockFriday;
 	var addBlockFriday = $formValues.find('.addBlockFriday').prop('checked');
@@ -409,7 +437,7 @@ async function patchSchoolBlock($formFilters, $formValues, success, error) {
 	if(removeSchoolAddress != null && removeSchoolAddress !== '')
 		vals['removeSchoolAddress'] = removeSchoolAddress;
 
-	patchSchoolBlockVals($.deparam(window.location.search ? window.location.search.substring(1) : window.location.search), vals, success, error);
+	patchSchoolBlockVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
 function patchSchoolBlockFilters($formFilters) {
@@ -431,11 +459,23 @@ function patchSchoolBlockFilters($formFilters) {
 	if(filterObjectId != null && filterObjectId !== '')
 		filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
 
-	var filterArchived = $formFilters.find('.valueArchived').prop('checked');
+	var $filterArchivedCheckbox = $formFilters.find('input.valueArchived[type = "checkbox"]');
+	var $filterArchivedSelect = $formFilters.find('select.valueArchived');
+	var filterArchived = $filterArchivedSelect.length ? $filterArchivedSelect.val() : $filterArchivedCheckbox.prop('checked');
+	var filterArchivedSelectVal = $formFilters.find('select.filterArchived').val();
+	var filterArchived = null;
+	if(filterArchivedSelectVal !== '')
+		filterArchived = filterArchivedSelectVal == 'true';
 	if(filterArchived != null && filterArchived === true)
 		filters.push({ name: 'fq', value: 'archived:' + filterArchived });
 
-	var filterDeleted = $formFilters.find('.valueDeleted').prop('checked');
+	var $filterDeletedCheckbox = $formFilters.find('input.valueDeleted[type = "checkbox"]');
+	var $filterDeletedSelect = $formFilters.find('select.valueDeleted');
+	var filterDeleted = $filterDeletedSelect.length ? $filterDeletedSelect.val() : $filterDeletedCheckbox.prop('checked');
+	var filterDeletedSelectVal = $formFilters.find('select.filterDeleted').val();
+	var filterDeleted = null;
+	if(filterDeletedSelectVal !== '')
+		filterDeleted = filterDeletedSelectVal == 'true';
 	if(filterDeleted != null && filterDeleted === true)
 		filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
@@ -451,23 +491,53 @@ function patchSchoolBlockFilters($formFilters) {
 	if(filterBlockPricePerMonth != null && filterBlockPricePerMonth !== '')
 		filters.push({ name: 'fq', value: 'blockPricePerMonth:' + filterBlockPricePerMonth });
 
-	var filterBlockMonday = $formFilters.find('.valueBlockMonday').prop('checked');
+	var $filterBlockMondayCheckbox = $formFilters.find('input.valueBlockMonday[type = "checkbox"]');
+	var $filterBlockMondaySelect = $formFilters.find('select.valueBlockMonday');
+	var filterBlockMonday = $filterBlockMondaySelect.length ? $filterBlockMondaySelect.val() : $filterBlockMondayCheckbox.prop('checked');
+	var filterBlockMondaySelectVal = $formFilters.find('select.filterBlockMonday').val();
+	var filterBlockMonday = null;
+	if(filterBlockMondaySelectVal !== '')
+		filterBlockMonday = filterBlockMondaySelectVal == 'true';
 	if(filterBlockMonday != null && filterBlockMonday === true)
 		filters.push({ name: 'fq', value: 'blockMonday:' + filterBlockMonday });
 
-	var filterBlockTuesday = $formFilters.find('.valueBlockTuesday').prop('checked');
+	var $filterBlockTuesdayCheckbox = $formFilters.find('input.valueBlockTuesday[type = "checkbox"]');
+	var $filterBlockTuesdaySelect = $formFilters.find('select.valueBlockTuesday');
+	var filterBlockTuesday = $filterBlockTuesdaySelect.length ? $filterBlockTuesdaySelect.val() : $filterBlockTuesdayCheckbox.prop('checked');
+	var filterBlockTuesdaySelectVal = $formFilters.find('select.filterBlockTuesday').val();
+	var filterBlockTuesday = null;
+	if(filterBlockTuesdaySelectVal !== '')
+		filterBlockTuesday = filterBlockTuesdaySelectVal == 'true';
 	if(filterBlockTuesday != null && filterBlockTuesday === true)
 		filters.push({ name: 'fq', value: 'blockTuesday:' + filterBlockTuesday });
 
-	var filterBlockWednesday = $formFilters.find('.valueBlockWednesday').prop('checked');
+	var $filterBlockWednesdayCheckbox = $formFilters.find('input.valueBlockWednesday[type = "checkbox"]');
+	var $filterBlockWednesdaySelect = $formFilters.find('select.valueBlockWednesday');
+	var filterBlockWednesday = $filterBlockWednesdaySelect.length ? $filterBlockWednesdaySelect.val() : $filterBlockWednesdayCheckbox.prop('checked');
+	var filterBlockWednesdaySelectVal = $formFilters.find('select.filterBlockWednesday').val();
+	var filterBlockWednesday = null;
+	if(filterBlockWednesdaySelectVal !== '')
+		filterBlockWednesday = filterBlockWednesdaySelectVal == 'true';
 	if(filterBlockWednesday != null && filterBlockWednesday === true)
 		filters.push({ name: 'fq', value: 'blockWednesday:' + filterBlockWednesday });
 
-	var filterBlockThursday = $formFilters.find('.valueBlockThursday').prop('checked');
+	var $filterBlockThursdayCheckbox = $formFilters.find('input.valueBlockThursday[type = "checkbox"]');
+	var $filterBlockThursdaySelect = $formFilters.find('select.valueBlockThursday');
+	var filterBlockThursday = $filterBlockThursdaySelect.length ? $filterBlockThursdaySelect.val() : $filterBlockThursdayCheckbox.prop('checked');
+	var filterBlockThursdaySelectVal = $formFilters.find('select.filterBlockThursday').val();
+	var filterBlockThursday = null;
+	if(filterBlockThursdaySelectVal !== '')
+		filterBlockThursday = filterBlockThursdaySelectVal == 'true';
 	if(filterBlockThursday != null && filterBlockThursday === true)
 		filters.push({ name: 'fq', value: 'blockThursday:' + filterBlockThursday });
 
-	var filterBlockFriday = $formFilters.find('.valueBlockFriday').prop('checked');
+	var $filterBlockFridayCheckbox = $formFilters.find('input.valueBlockFriday[type = "checkbox"]');
+	var $filterBlockFridaySelect = $formFilters.find('select.valueBlockFriday');
+	var filterBlockFriday = $filterBlockFridaySelect.length ? $filterBlockFridaySelect.val() : $filterBlockFridayCheckbox.prop('checked');
+	var filterBlockFridaySelectVal = $formFilters.find('select.filterBlockFriday').val();
+	var filterBlockFriday = null;
+	if(filterBlockFridaySelectVal !== '')
+		filterBlockFriday = filterBlockFridaySelectVal == 'true';
 	if(filterBlockFriday != null && filterBlockFriday === true)
 		filters.push({ name: 'fq', value: 'blockFriday:' + filterBlockFriday });
 
@@ -514,6 +584,10 @@ function patchSchoolBlockFilters($formFilters) {
 	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
 	if(filterObjectSuggest != null && filterObjectSuggest !== '')
 		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+
+	var filterObjectText = $formFilters.find('.valueObjectText').val();
+	if(filterObjectText != null && filterObjectText !== '')
+		filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
 
 	var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
 	if(filterPageUrlId != null && filterPageUrlId !== '')
@@ -607,11 +681,23 @@ function patchSchoolBlockFilters($formFilters) {
 	if(filterSeasonStartDate != null && filterSeasonStartDate !== '')
 		filters.push({ name: 'fq', value: 'seasonStartDate:' + filterSeasonStartDate });
 
-	var filterSeasonSummer = $formFilters.find('.valueSeasonSummer').prop('checked');
+	var $filterSeasonSummerCheckbox = $formFilters.find('input.valueSeasonSummer[type = "checkbox"]');
+	var $filterSeasonSummerSelect = $formFilters.find('select.valueSeasonSummer');
+	var filterSeasonSummer = $filterSeasonSummerSelect.length ? $filterSeasonSummerSelect.val() : $filterSeasonSummerCheckbox.prop('checked');
+	var filterSeasonSummerSelectVal = $formFilters.find('select.filterSeasonSummer').val();
+	var filterSeasonSummer = null;
+	if(filterSeasonSummerSelectVal !== '')
+		filterSeasonSummer = filterSeasonSummerSelectVal == 'true';
 	if(filterSeasonSummer != null && filterSeasonSummer === true)
 		filters.push({ name: 'fq', value: 'seasonSummer:' + filterSeasonSummer });
 
-	var filterSeasonWinter = $formFilters.find('.valueSeasonWinter').prop('checked');
+	var $filterSeasonWinterCheckbox = $formFilters.find('input.valueSeasonWinter[type = "checkbox"]');
+	var $filterSeasonWinterSelect = $formFilters.find('select.valueSeasonWinter');
+	var filterSeasonWinter = $filterSeasonWinterSelect.length ? $filterSeasonWinterSelect.val() : $filterSeasonWinterCheckbox.prop('checked');
+	var filterSeasonWinterSelectVal = $formFilters.find('select.filterSeasonWinter').val();
+	var filterSeasonWinter = null;
+	if(filterSeasonWinterSelectVal !== '')
+		filterSeasonWinter = filterSeasonWinterSelectVal == 'true';
 	if(filterSeasonWinter != null && filterSeasonWinter === true)
 		filters.push({ name: 'fq', value: 'seasonWinter:' + filterSeasonWinter });
 
@@ -651,11 +737,23 @@ function patchSchoolBlockFilters($formFilters) {
 	if(filterAgeEnd != null && filterAgeEnd !== '')
 		filters.push({ name: 'fq', value: 'ageEnd:' + filterAgeEnd });
 
-	var filterBlockSunday = $formFilters.find('.valueBlockSunday').prop('checked');
+	var $filterBlockSundayCheckbox = $formFilters.find('input.valueBlockSunday[type = "checkbox"]');
+	var $filterBlockSundaySelect = $formFilters.find('select.valueBlockSunday');
+	var filterBlockSunday = $filterBlockSundaySelect.length ? $filterBlockSundaySelect.val() : $filterBlockSundayCheckbox.prop('checked');
+	var filterBlockSundaySelectVal = $formFilters.find('select.filterBlockSunday').val();
+	var filterBlockSunday = null;
+	if(filterBlockSundaySelectVal !== '')
+		filterBlockSunday = filterBlockSundaySelectVal == 'true';
 	if(filterBlockSunday != null && filterBlockSunday === true)
 		filters.push({ name: 'fq', value: 'blockSunday:' + filterBlockSunday });
 
-	var filterBlockSaturday = $formFilters.find('.valueBlockSaturday').prop('checked');
+	var $filterBlockSaturdayCheckbox = $formFilters.find('input.valueBlockSaturday[type = "checkbox"]');
+	var $filterBlockSaturdaySelect = $formFilters.find('select.valueBlockSaturday');
+	var filterBlockSaturday = $filterBlockSaturdaySelect.length ? $filterBlockSaturdaySelect.val() : $filterBlockSaturdayCheckbox.prop('checked');
+	var filterBlockSaturdaySelectVal = $formFilters.find('select.filterBlockSaturday').val();
+	var filterBlockSaturday = null;
+	if(filterBlockSaturdaySelectVal !== '')
+		filterBlockSaturday = filterBlockSaturdaySelectVal == 'true';
 	if(filterBlockSaturday != null && filterBlockSaturday === true)
 		filters.push({ name: 'fq', value: 'blockSaturday:' + filterBlockSaturday });
 
@@ -708,20 +806,6 @@ async function getSchoolBlock(pk) {
 	});
 }
 
-// DELETE //
-
-async function deleteSchoolBlock(pk) {
-	$.ajax({
-		url: '/api/block/' + id
-		, dataType: 'json'
-		, type: 'DELETE'
-		, contentType: 'application/json; charset=utf-8'
-		, data: JSON.stringify(vals)
-		, success: success
-		, error: error
-	});
-}
-
 // Search //
 
 async function searchSchoolBlock($formFilters, success, error) {
@@ -753,11 +837,23 @@ function searchSchoolBlockFilters($formFilters) {
 	if(filterObjectId != null && filterObjectId !== '')
 		filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
 
-	var filterArchived = $formFilters.find('.valueArchived').prop('checked');
+	var $filterArchivedCheckbox = $formFilters.find('input.valueArchived[type = "checkbox"]');
+	var $filterArchivedSelect = $formFilters.find('select.valueArchived');
+	var filterArchived = $filterArchivedSelect.length ? $filterArchivedSelect.val() : $filterArchivedCheckbox.prop('checked');
+	var filterArchivedSelectVal = $formFilters.find('select.filterArchived').val();
+	var filterArchived = null;
+	if(filterArchivedSelectVal !== '')
+		filterArchived = filterArchivedSelectVal == 'true';
 	if(filterArchived != null && filterArchived === true)
 		filters.push({ name: 'fq', value: 'archived:' + filterArchived });
 
-	var filterDeleted = $formFilters.find('.valueDeleted').prop('checked');
+	var $filterDeletedCheckbox = $formFilters.find('input.valueDeleted[type = "checkbox"]');
+	var $filterDeletedSelect = $formFilters.find('select.valueDeleted');
+	var filterDeleted = $filterDeletedSelect.length ? $filterDeletedSelect.val() : $filterDeletedCheckbox.prop('checked');
+	var filterDeletedSelectVal = $formFilters.find('select.filterDeleted').val();
+	var filterDeleted = null;
+	if(filterDeletedSelectVal !== '')
+		filterDeleted = filterDeletedSelectVal == 'true';
 	if(filterDeleted != null && filterDeleted === true)
 		filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
@@ -773,23 +869,53 @@ function searchSchoolBlockFilters($formFilters) {
 	if(filterBlockPricePerMonth != null && filterBlockPricePerMonth !== '')
 		filters.push({ name: 'fq', value: 'blockPricePerMonth:' + filterBlockPricePerMonth });
 
-	var filterBlockMonday = $formFilters.find('.valueBlockMonday').prop('checked');
+	var $filterBlockMondayCheckbox = $formFilters.find('input.valueBlockMonday[type = "checkbox"]');
+	var $filterBlockMondaySelect = $formFilters.find('select.valueBlockMonday');
+	var filterBlockMonday = $filterBlockMondaySelect.length ? $filterBlockMondaySelect.val() : $filterBlockMondayCheckbox.prop('checked');
+	var filterBlockMondaySelectVal = $formFilters.find('select.filterBlockMonday').val();
+	var filterBlockMonday = null;
+	if(filterBlockMondaySelectVal !== '')
+		filterBlockMonday = filterBlockMondaySelectVal == 'true';
 	if(filterBlockMonday != null && filterBlockMonday === true)
 		filters.push({ name: 'fq', value: 'blockMonday:' + filterBlockMonday });
 
-	var filterBlockTuesday = $formFilters.find('.valueBlockTuesday').prop('checked');
+	var $filterBlockTuesdayCheckbox = $formFilters.find('input.valueBlockTuesday[type = "checkbox"]');
+	var $filterBlockTuesdaySelect = $formFilters.find('select.valueBlockTuesday');
+	var filterBlockTuesday = $filterBlockTuesdaySelect.length ? $filterBlockTuesdaySelect.val() : $filterBlockTuesdayCheckbox.prop('checked');
+	var filterBlockTuesdaySelectVal = $formFilters.find('select.filterBlockTuesday').val();
+	var filterBlockTuesday = null;
+	if(filterBlockTuesdaySelectVal !== '')
+		filterBlockTuesday = filterBlockTuesdaySelectVal == 'true';
 	if(filterBlockTuesday != null && filterBlockTuesday === true)
 		filters.push({ name: 'fq', value: 'blockTuesday:' + filterBlockTuesday });
 
-	var filterBlockWednesday = $formFilters.find('.valueBlockWednesday').prop('checked');
+	var $filterBlockWednesdayCheckbox = $formFilters.find('input.valueBlockWednesday[type = "checkbox"]');
+	var $filterBlockWednesdaySelect = $formFilters.find('select.valueBlockWednesday');
+	var filterBlockWednesday = $filterBlockWednesdaySelect.length ? $filterBlockWednesdaySelect.val() : $filterBlockWednesdayCheckbox.prop('checked');
+	var filterBlockWednesdaySelectVal = $formFilters.find('select.filterBlockWednesday').val();
+	var filterBlockWednesday = null;
+	if(filterBlockWednesdaySelectVal !== '')
+		filterBlockWednesday = filterBlockWednesdaySelectVal == 'true';
 	if(filterBlockWednesday != null && filterBlockWednesday === true)
 		filters.push({ name: 'fq', value: 'blockWednesday:' + filterBlockWednesday });
 
-	var filterBlockThursday = $formFilters.find('.valueBlockThursday').prop('checked');
+	var $filterBlockThursdayCheckbox = $formFilters.find('input.valueBlockThursday[type = "checkbox"]');
+	var $filterBlockThursdaySelect = $formFilters.find('select.valueBlockThursday');
+	var filterBlockThursday = $filterBlockThursdaySelect.length ? $filterBlockThursdaySelect.val() : $filterBlockThursdayCheckbox.prop('checked');
+	var filterBlockThursdaySelectVal = $formFilters.find('select.filterBlockThursday').val();
+	var filterBlockThursday = null;
+	if(filterBlockThursdaySelectVal !== '')
+		filterBlockThursday = filterBlockThursdaySelectVal == 'true';
 	if(filterBlockThursday != null && filterBlockThursday === true)
 		filters.push({ name: 'fq', value: 'blockThursday:' + filterBlockThursday });
 
-	var filterBlockFriday = $formFilters.find('.valueBlockFriday').prop('checked');
+	var $filterBlockFridayCheckbox = $formFilters.find('input.valueBlockFriday[type = "checkbox"]');
+	var $filterBlockFridaySelect = $formFilters.find('select.valueBlockFriday');
+	var filterBlockFriday = $filterBlockFridaySelect.length ? $filterBlockFridaySelect.val() : $filterBlockFridayCheckbox.prop('checked');
+	var filterBlockFridaySelectVal = $formFilters.find('select.filterBlockFriday').val();
+	var filterBlockFriday = null;
+	if(filterBlockFridaySelectVal !== '')
+		filterBlockFriday = filterBlockFridaySelectVal == 'true';
 	if(filterBlockFriday != null && filterBlockFriday === true)
 		filters.push({ name: 'fq', value: 'blockFriday:' + filterBlockFriday });
 
@@ -836,6 +962,10 @@ function searchSchoolBlockFilters($formFilters) {
 	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
 	if(filterObjectSuggest != null && filterObjectSuggest !== '')
 		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+
+	var filterObjectText = $formFilters.find('.valueObjectText').val();
+	if(filterObjectText != null && filterObjectText !== '')
+		filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
 
 	var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
 	if(filterPageUrlId != null && filterPageUrlId !== '')
@@ -929,11 +1059,23 @@ function searchSchoolBlockFilters($formFilters) {
 	if(filterSeasonStartDate != null && filterSeasonStartDate !== '')
 		filters.push({ name: 'fq', value: 'seasonStartDate:' + filterSeasonStartDate });
 
-	var filterSeasonSummer = $formFilters.find('.valueSeasonSummer').prop('checked');
+	var $filterSeasonSummerCheckbox = $formFilters.find('input.valueSeasonSummer[type = "checkbox"]');
+	var $filterSeasonSummerSelect = $formFilters.find('select.valueSeasonSummer');
+	var filterSeasonSummer = $filterSeasonSummerSelect.length ? $filterSeasonSummerSelect.val() : $filterSeasonSummerCheckbox.prop('checked');
+	var filterSeasonSummerSelectVal = $formFilters.find('select.filterSeasonSummer').val();
+	var filterSeasonSummer = null;
+	if(filterSeasonSummerSelectVal !== '')
+		filterSeasonSummer = filterSeasonSummerSelectVal == 'true';
 	if(filterSeasonSummer != null && filterSeasonSummer === true)
 		filters.push({ name: 'fq', value: 'seasonSummer:' + filterSeasonSummer });
 
-	var filterSeasonWinter = $formFilters.find('.valueSeasonWinter').prop('checked');
+	var $filterSeasonWinterCheckbox = $formFilters.find('input.valueSeasonWinter[type = "checkbox"]');
+	var $filterSeasonWinterSelect = $formFilters.find('select.valueSeasonWinter');
+	var filterSeasonWinter = $filterSeasonWinterSelect.length ? $filterSeasonWinterSelect.val() : $filterSeasonWinterCheckbox.prop('checked');
+	var filterSeasonWinterSelectVal = $formFilters.find('select.filterSeasonWinter').val();
+	var filterSeasonWinter = null;
+	if(filterSeasonWinterSelectVal !== '')
+		filterSeasonWinter = filterSeasonWinterSelectVal == 'true';
 	if(filterSeasonWinter != null && filterSeasonWinter === true)
 		filters.push({ name: 'fq', value: 'seasonWinter:' + filterSeasonWinter });
 
@@ -973,11 +1115,23 @@ function searchSchoolBlockFilters($formFilters) {
 	if(filterAgeEnd != null && filterAgeEnd !== '')
 		filters.push({ name: 'fq', value: 'ageEnd:' + filterAgeEnd });
 
-	var filterBlockSunday = $formFilters.find('.valueBlockSunday').prop('checked');
+	var $filterBlockSundayCheckbox = $formFilters.find('input.valueBlockSunday[type = "checkbox"]');
+	var $filterBlockSundaySelect = $formFilters.find('select.valueBlockSunday');
+	var filterBlockSunday = $filterBlockSundaySelect.length ? $filterBlockSundaySelect.val() : $filterBlockSundayCheckbox.prop('checked');
+	var filterBlockSundaySelectVal = $formFilters.find('select.filterBlockSunday').val();
+	var filterBlockSunday = null;
+	if(filterBlockSundaySelectVal !== '')
+		filterBlockSunday = filterBlockSundaySelectVal == 'true';
 	if(filterBlockSunday != null && filterBlockSunday === true)
 		filters.push({ name: 'fq', value: 'blockSunday:' + filterBlockSunday });
 
-	var filterBlockSaturday = $formFilters.find('.valueBlockSaturday').prop('checked');
+	var $filterBlockSaturdayCheckbox = $formFilters.find('input.valueBlockSaturday[type = "checkbox"]');
+	var $filterBlockSaturdaySelect = $formFilters.find('select.valueBlockSaturday');
+	var filterBlockSaturday = $filterBlockSaturdaySelect.length ? $filterBlockSaturdaySelect.val() : $filterBlockSaturdayCheckbox.prop('checked');
+	var filterBlockSaturdaySelectVal = $formFilters.find('select.filterBlockSaturday').val();
+	var filterBlockSaturday = null;
+	if(filterBlockSaturdaySelectVal !== '')
+		filterBlockSaturday = filterBlockSaturdaySelectVal == 'true';
 	if(filterBlockSaturday != null && filterBlockSaturday === true)
 		filters.push({ name: 'fq', value: 'blockSaturday:' + filterBlockSaturday });
 
@@ -1028,7 +1182,7 @@ function suggestSchoolBlockObjectSuggest($formFilters, $list) {
 	searchSchoolBlockVals($formFilters, success, error);
 }
 
-function suggestSchoolBlockEnrollmentKeys(filters, $list, pk = null) {
+function suggestSchoolBlockEnrollmentKeys(filters, $list, pk = null, attribute=true) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
@@ -1038,7 +1192,7 @@ function suggestSchoolBlockEnrollmentKeys(filters, $list, pk = null) {
 			$a.append($i);
 			$a.append($span);
 			var val = o['blockKeys'];
-			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
+			var checked = Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
 			var $input = $('<input>');
 			$input.attr('id', 'GET_enrollmentKeys_' + pk + '_blockKeys_' + o['pk']);
 			$input.attr('value', o['pk']);
@@ -1051,7 +1205,8 @@ function suggestSchoolBlockEnrollmentKeys(filters, $list, pk = null) {
 			if(checked)
 				$input.attr('checked', 'checked');
 			var $li = $('<li>');
-			$li.append($input);
+			if(attribute)
+				$li.append($input);
 			$li.append($a);
 			$list.append($li);
 		});
@@ -1063,7 +1218,7 @@ function suggestSchoolBlockEnrollmentKeys(filters, $list, pk = null) {
 	searchSchoolEnrollmentVals(filters, success, error);
 }
 
-function suggestSchoolBlockAgeKey(filters, $list, pk = null) {
+function suggestSchoolBlockAgeKey(filters, $list, pk = null, attribute=true) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
@@ -1073,7 +1228,7 @@ function suggestSchoolBlockAgeKey(filters, $list, pk = null) {
 			$a.append($i);
 			$a.append($span);
 			var val = o['blockKeys'];
-			var checked = Array.isArray(val) ? val.includes(pk) : val == pk;
+			var checked = Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
 			var $input = $('<input>');
 			$input.attr('id', 'GET_ageKey_' + pk + '_blockKeys_' + o['pk']);
 			$input.attr('value', o['pk']);
@@ -1086,7 +1241,8 @@ function suggestSchoolBlockAgeKey(filters, $list, pk = null) {
 			if(checked)
 				$input.attr('checked', 'checked');
 			var $li = $('<li>');
-			$li.append($input);
+			if(attribute)
+				$li.append($input);
 			$li.append($a);
 			$list.append($li);
 		});
@@ -1216,17 +1372,5 @@ async function websocketSchoolBlockInner(apiRequest) {
 				$('.varSchoolBlock' + pk + 'SchoolAddress').text(o['schoolAddress']);
 			}
 		});
-	}
-
-	if(!empty) {
-		if(pks) {
-			for(i=0; i < pks.length; i++) {
-				var pk2 = pks[i];
-				var c = classes[i];
-				await window['patch' + c + 'Vals']( [ {name: 'fq', value: 'pk:' + pk2} ], {});
-			}
-		}
-		if(pk)
-			await patchSchoolBlockVals( [ {name: 'fq', value: 'pk:' + pk} ], {});
 	}
 }
