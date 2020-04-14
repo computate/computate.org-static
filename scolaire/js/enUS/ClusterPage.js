@@ -68,9 +68,49 @@ function postClusterVals(vals, success, error) {
 	});
 }
 
-// PUT //
+// PUTImport //
 
-async function putCluster($formValues, pk, success, error) {
+async function putimportCluster($formValues, pk, success, error) {
+	var json = $formValues.find('.PUTImport_list').val();
+	if(json != null && json !== '')
+		putimportClusterVals(JSON.parse(json), success, error);
+}
+
+function putimportClusterVals(json, success, error) {
+	$.ajax({
+		url: '/api/cluster/import'
+		, dataType: 'json'
+		, type: 'PUT'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(json)
+		, success: success
+		, error: error
+	});
+}
+
+// PUTMerge //
+
+async function putmergeCluster($formValues, pk, success, error) {
+	var json = $formValues.find('.PUTMerge_list').val();
+	if(json != null && json !== '')
+		putmergeClusterVals(JSON.parse(json), success, error);
+}
+
+function putmergeClusterVals(json, success, error) {
+	$.ajax({
+		url: '/api/cluster/merge'
+		, dataType: 'json'
+		, type: 'PUT'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(json)
+		, success: success
+		, error: error
+	});
+}
+
+// PUTCopy //
+
+async function putcopyCluster($formValues, pk, success, error) {
 	var vals = {};
 
 	var valuePk = $formValues.find('.valuePk').val();
@@ -101,12 +141,12 @@ async function putCluster($formValues, pk, success, error) {
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
 
-	putClusterVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
+	putcopyClusterVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
-function putClusterVals(filters, vals, success, error) {
+function putcopyClusterVals(filters, vals, success, error) {
 	$.ajax({
-		url: '/api/cluster?' + $.param(filters)
+		url: '/api/cluster/copy?' + $.param(filters)
 		, dataType: 'json'
 		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'

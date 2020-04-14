@@ -112,9 +112,49 @@ function postSchoolMomVals(vals, success, error) {
 	});
 }
 
-// PUT //
+// PUTImport //
 
-async function putSchoolMom($formValues, pk, success, error) {
+async function putimportSchoolMom($formValues, pk, success, error) {
+	var json = $formValues.find('.PUTImport_list').val();
+	if(json != null && json !== '')
+		putimportSchoolMomVals(JSON.parse(json), success, error);
+}
+
+function putimportSchoolMomVals(json, success, error) {
+	$.ajax({
+		url: '/api/mom/import'
+		, dataType: 'json'
+		, type: 'PUT'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(json)
+		, success: success
+		, error: error
+	});
+}
+
+// PUTMerge //
+
+async function putmergeSchoolMom($formValues, pk, success, error) {
+	var json = $formValues.find('.PUTMerge_list').val();
+	if(json != null && json !== '')
+		putmergeSchoolMomVals(JSON.parse(json), success, error);
+}
+
+function putmergeSchoolMomVals(json, success, error) {
+	$.ajax({
+		url: '/api/mom/merge'
+		, dataType: 'json'
+		, type: 'PUT'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(json)
+		, success: success
+		, error: error
+	});
+}
+
+// PUTCopy //
+
+async function putcopySchoolMom($formValues, pk, success, error) {
 	var vals = {};
 
 	var valuePk = $formValues.find('.valuePk').val();
@@ -189,12 +229,12 @@ async function putSchoolMom($formValues, pk, success, error) {
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
 
-	putSchoolMomVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
+	putcopySchoolMomVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
-function putSchoolMomVals(filters, vals, success, error) {
+function putcopySchoolMomVals(filters, vals, success, error) {
 	$.ajax({
-		url: '/api/mom?' + $.param(filters)
+		url: '/api/mom/copy?' + $.param(filters)
 		, dataType: 'json'
 		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'

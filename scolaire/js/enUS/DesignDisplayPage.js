@@ -53,6 +53,10 @@ async function postPageDesign($formValues, success, error) {
 	if(valueHtmlPartKeys != null && valueHtmlPartKeys !== '')
 		vals['htmlPartKeys'] = valueHtmlPartKeys;
 
+	var valueParentDesignKeys = $formValues.find('input.valueParentDesignKeys:checked').val();
+	if(valueParentDesignKeys != null && valueParentDesignKeys !== '')
+		vals['parentDesignKeys'] = valueParentDesignKeys;
+
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
@@ -80,9 +84,49 @@ function postPageDesignVals(vals, success, error) {
 	});
 }
 
-// PUT //
+// PUTImport //
 
-async function putPageDesign($formValues, pk, success, error) {
+async function putimportPageDesign($formValues, pk, success, error) {
+	var json = $formValues.find('.PUTImport_list').val();
+	if(json != null && json !== '')
+		putimportPageDesignVals(JSON.parse(json), success, error);
+}
+
+function putimportPageDesignVals(json, success, error) {
+	$.ajax({
+		url: '/api/page-design/import'
+		, dataType: 'json'
+		, type: 'PUT'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(json)
+		, success: success
+		, error: error
+	});
+}
+
+// PUTMerge //
+
+async function putmergePageDesign($formValues, pk, success, error) {
+	var json = $formValues.find('.PUTMerge_list').val();
+	if(json != null && json !== '')
+		putmergePageDesignVals(JSON.parse(json), success, error);
+}
+
+function putmergePageDesignVals(json, success, error) {
+	$.ajax({
+		url: '/api/page-design/merge'
+		, dataType: 'json'
+		, type: 'PUT'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(json)
+		, success: success
+		, error: error
+	});
+}
+
+// PUTCopy //
+
+async function putcopyPageDesign($formValues, pk, success, error) {
 	var vals = {};
 
 	var valuePk = $formValues.find('.valuePk').val();
@@ -121,16 +165,20 @@ async function putPageDesign($formValues, pk, success, error) {
 	if(valueHtmlPartKeys != null && valueHtmlPartKeys !== '')
 		vals['htmlPartKeys'] = [valueHtmlPartKeys];
 
+	var valueParentDesignKeys = $formValues.find('input.valueParentDesignKeys:checked').val();
+	if(valueParentDesignKeys != null && valueParentDesignKeys !== '')
+		vals['parentDesignKeys'] = [valueParentDesignKeys];
+
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
 
-	putPageDesignVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
+	putcopyPageDesignVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
-function putPageDesignVals(filters, vals, success, error) {
+function putcopyPageDesignVals(filters, vals, success, error) {
 	$.ajax({
-		url: '/api/page-design?' + $.param(filters)
+		url: '/api/page-design/copy?' + $.param(filters)
 		, dataType: 'json'
 		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
@@ -267,6 +315,10 @@ async function patchPageDesign($formFilters, $formValues, pk, success, error) {
 	if(valueHtmlPartKeys != null && valueHtmlPartKeys !== '')
 		vals['addHtmlPartKeys'] = valueHtmlPartKeys;
 
+	var valueParentDesignKeys = $formValues.find('input.valueParentDesignKeys:checked').val();
+	if(valueParentDesignKeys != null && valueParentDesignKeys !== '')
+		vals['addParentDesignKeys'] = valueParentDesignKeys;
+
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 	var removeObjectTitle = $formFilters.find('.removeObjectTitle').val() === 'true';
@@ -341,6 +393,10 @@ function patchPageDesignFilters($formFilters) {
 		if(filterHtmlPartKeys != null && filterHtmlPartKeys !== '')
 			filters.push({ name: 'fq', value: 'htmlPartKeys:' + filterHtmlPartKeys });
 
+		var filterParentDesignKeys = $formFilters.find('.valueParentDesignKeys').val();
+		if(filterParentDesignKeys != null && filterParentDesignKeys !== '')
+			filters.push({ name: 'fq', value: 'parentDesignKeys:' + filterParentDesignKeys });
+
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
 			filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
@@ -392,6 +448,10 @@ function patchPageDesignFilters($formFilters) {
 		var filterPageDesignKey = $formFilters.find('.valuePageDesignKey').val();
 		if(filterPageDesignKey != null && filterPageDesignKey !== '')
 			filters.push({ name: 'fq', value: 'pageDesignKey:' + filterPageDesignKey });
+
+		var filterChildDesignKeys = $formFilters.find('.valueChildDesignKeys').val();
+		if(filterChildDesignKeys != null && filterChildDesignKeys !== '')
+			filters.push({ name: 'fq', value: 'childDesignKeys:' + filterChildDesignKeys });
 	}
 	return filters;
 }
@@ -497,6 +557,10 @@ function searchPageDesignFilters($formFilters) {
 		if(filterHtmlPartKeys != null && filterHtmlPartKeys !== '')
 			filters.push({ name: 'fq', value: 'htmlPartKeys:' + filterHtmlPartKeys });
 
+		var filterParentDesignKeys = $formFilters.find('.valueParentDesignKeys').val();
+		if(filterParentDesignKeys != null && filterParentDesignKeys !== '')
+			filters.push({ name: 'fq', value: 'parentDesignKeys:' + filterParentDesignKeys });
+
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
 			filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
@@ -548,6 +612,10 @@ function searchPageDesignFilters($formFilters) {
 		var filterPageDesignKey = $formFilters.find('.valuePageDesignKey').val();
 		if(filterPageDesignKey != null && filterPageDesignKey !== '')
 			filters.push({ name: 'fq', value: 'pageDesignKey:' + filterPageDesignKey });
+
+		var filterChildDesignKeys = $formFilters.find('.valueChildDesignKeys').val();
+		if(filterChildDesignKeys != null && filterChildDesignKeys !== '')
+			filters.push({ name: 'fq', value: 'childDesignKeys:' + filterChildDesignKeys });
 	}
 	return filters;
 }
@@ -579,6 +647,78 @@ function suggestPageDesignObjectSuggest($formFilters, $list) {
 	};
 	error = function( jqXhr, textStatus, errorThrown ) {};
 	searchPageDesignVals($formFilters, success, error);
+}
+
+function suggestPageDesignChildDesignKeys(filters, $list, pk = null, attribute=true) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'fa fa-drafting-compass ');
+			var $span = $('<span>').attr('class', '').text(o['pageDesignCompleteName']);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
+			$a.append($i);
+			$a.append($span);
+			var val = o['parentDesignKeys'];
+			var checked = pk == null ? false : Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
+			var $input = $('<input>');
+			$input.attr('id', 'GET_childDesignKeys_' + pk + '_parentDesignKeys_' + o['pk']);
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valueChildDesignKeys w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_childDesignKeys_" + pk + "_parentDesignKeys_" + o['pk'] + "'); patchPageDesignVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'ChildDesignKeys']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'removeGlow($(this)); ');
+			}
+			$input.attr('type', 'checkbox');
+			if(checked)
+				$input.attr('checked', 'checked');
+			var $li = $('<li>');
+			if(attribute)
+				$li.append($input);
+			$li.append($a);
+			$list.append($li);
+		});
+		var focusId = $('#PageDesignForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	searchPageDesignVals(filters, success, error);
+}
+
+function suggestPageDesignParentDesignKeys(filters, $list, pk = null, attribute=true) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'fa fa-drafting-compass ');
+			var $span = $('<span>').attr('class', '').text(o['pageDesignCompleteName']);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
+			$a.append($i);
+			$a.append($span);
+			var val = o['childDesignKeys'];
+			var checked = pk == null ? false : Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
+			var $input = $('<input>');
+			$input.attr('id', 'GET_parentDesignKeys_' + pk + '_childDesignKeys_' + o['pk']);
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valueParentDesignKeys w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_parentDesignKeys_" + pk + "_childDesignKeys_" + o['pk'] + "'); patchPageDesignVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'ParentDesignKeys']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'removeGlow($(this)); ');
+			}
+			$input.attr('type', 'checkbox');
+			if(checked)
+				$input.attr('checked', 'checked');
+			var $li = $('<li>');
+			if(attribute)
+				$li.append($input);
+			$li.append($a);
+			$list.append($li);
+		});
+		var focusId = $('#PageDesignForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	searchPageDesignVals(filters, success, error);
 }
 
 function suggestPageDesignHtmlPartKeys(filters, $list, pk = null, attribute=true) {
@@ -833,6 +973,14 @@ async function websocketPageDesign(success) {
 					success(json);
 		});
 
+		window.eventBus.registerHandler('websocketPageDesign', function (error, message) {
+			$('#Page_childDesignKeys').trigger('oninput');
+		});
+
+		window.eventBus.registerHandler('websocketPageDesign', function (error, message) {
+			$('#Page_parentDesignKeys').trigger('oninput');
+		});
+
 		window.eventBus.registerHandler('websocketHtmlPart', function (error, message) {
 			$('#Page_htmlPartKeys').trigger('oninput');
 		});
@@ -875,6 +1023,14 @@ async function websocketPageDesignInner(apiRequest) {
 			if(vars.includes('htmlPartKeys')) {
 				$('.inputPageDesign' + pk + 'HtmlPartKeys').val(o['htmlPartKeys']);
 				$('.varPageDesign' + pk + 'HtmlPartKeys').text(o['htmlPartKeys']);
+			}
+			if(vars.includes('parentDesignKeys')) {
+				$('.inputPageDesign' + pk + 'ParentDesignKeys').val(o['parentDesignKeys']);
+				$('.varPageDesign' + pk + 'ParentDesignKeys').text(o['parentDesignKeys']);
+			}
+			if(vars.includes('childDesignKeys')) {
+				$('.inputPageDesign' + pk + 'ChildDesignKeys').val(o['childDesignKeys']);
+				$('.varPageDesign' + pk + 'ChildDesignKeys').text(o['childDesignKeys']);
 			}
 		});
 	}

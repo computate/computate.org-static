@@ -53,6 +53,10 @@ async function postDesignPage($formulaireValeurs, success, error) {
 	if(valeurPartHtmlCles != null && valeurPartHtmlCles !== '')
 		vals['partHtmlCles'] = valeurPartHtmlCles;
 
+	var valeurDesignParentCles = $formulaireValeurs.find('input.valeurDesignParentCles:checked').val();
+	if(valeurDesignParentCles != null && valeurDesignParentCles !== '')
+		vals['designParentCles'] = valeurDesignParentCles;
+
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 		vals['objetTitre'] = valeurObjetTitre;
@@ -80,9 +84,49 @@ function postDesignPageVals(vals, success, error) {
 	});
 }
 
-// PUT //
+// PUTImport //
 
-async function putDesignPage($formulaireValeurs, pk, success, error) {
+async function putimportDesignPage($formulaireValeurs, pk, success, error) {
+	var json = $formulaireValeurs.find('.PUTImport_liste').val();
+	if(json != null && json !== '')
+		putimportDesignPageVals(JSON.parse(json), success, error);
+}
+
+function putimportDesignPageVals(json, success, error) {
+	$.ajax({
+		url: '/api/design-page/import'
+		, dataType: 'json'
+		, type: 'PUT'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(json)
+		, success: success
+		, error: error
+	});
+}
+
+// PUTFusion //
+
+async function putfusionDesignPage($formulaireValeurs, pk, success, error) {
+	var json = $formulaireValeurs.find('.PUTFusion_liste').val();
+	if(json != null && json !== '')
+		putfusionDesignPageVals(JSON.parse(json), success, error);
+}
+
+function putfusionDesignPageVals(json, success, error) {
+	$.ajax({
+		url: '/api/design-page/fusion'
+		, dataType: 'json'
+		, type: 'PUT'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(json)
+		, success: success
+		, error: error
+	});
+}
+
+// PUTCopie //
+
+async function putcopieDesignPage($formulaireValeurs, pk, success, error) {
 	var vals = {};
 
 	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
@@ -121,16 +165,20 @@ async function putDesignPage($formulaireValeurs, pk, success, error) {
 	if(valeurPartHtmlCles != null && valeurPartHtmlCles !== '')
 		vals['partHtmlCles'] = [valeurPartHtmlCles];
 
+	var valeurDesignParentCles = $formulaireValeurs.find('input.valeurDesignParentCles:checked').val();
+	if(valeurDesignParentCles != null && valeurDesignParentCles !== '')
+		vals['designParentCles'] = [valeurDesignParentCles];
+
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 		vals['objetTitre'] = valeurObjetTitre;
 
-	putDesignPageVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
+	putcopieDesignPageVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
-function putDesignPageVals(filtres, vals, success, error) {
+function putcopieDesignPageVals(filtres, vals, success, error) {
 	$.ajax({
-		url: '/api/design-page?' + $.param(filtres)
+		url: '/api/design-page/copie?' + $.param(filtres)
 		, dataType: 'json'
 		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
@@ -267,6 +315,10 @@ async function patchDesignPage($formulaireFiltres, $formulaireValeurs, pk, succe
 	if(valeurPartHtmlCles != null && valeurPartHtmlCles !== '')
 		vals['addPartHtmlCles'] = valeurPartHtmlCles;
 
+	var valeurDesignParentCles = $formulaireValeurs.find('input.valeurDesignParentCles:checked').val();
+	if(valeurDesignParentCles != null && valeurDesignParentCles !== '')
+		vals['addDesignParentCles'] = valeurDesignParentCles;
+
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 	var removeObjetTitre = $formulaireFiltres.find('.removeObjetTitre').val() === 'true';
@@ -341,6 +393,10 @@ function patchDesignPageFiltres($formulaireFiltres) {
 		if(filtrePartHtmlCles != null && filtrePartHtmlCles !== '')
 			filtres.push({ name: 'fq', value: 'partHtmlCles:' + filtrePartHtmlCles });
 
+		var filtreDesignParentCles = $formulaireFiltres.find('.valeurDesignParentCles').val();
+		if(filtreDesignParentCles != null && filtreDesignParentCles !== '')
+			filtres.push({ name: 'fq', value: 'designParentCles:' + filtreDesignParentCles });
+
 		var filtreInheritPk = $formulaireFiltres.find('.valeurInheritPk').val();
 		if(filtreInheritPk != null && filtreInheritPk !== '')
 			filtres.push({ name: 'fq', value: 'inheritPk:' + filtreInheritPk });
@@ -392,6 +448,10 @@ function patchDesignPageFiltres($formulaireFiltres) {
 		var filtreDesignPageCle = $formulaireFiltres.find('.valeurDesignPageCle').val();
 		if(filtreDesignPageCle != null && filtreDesignPageCle !== '')
 			filtres.push({ name: 'fq', value: 'designPageCle:' + filtreDesignPageCle });
+
+		var filtreDesignEnfantCles = $formulaireFiltres.find('.valeurDesignEnfantCles').val();
+		if(filtreDesignEnfantCles != null && filtreDesignEnfantCles !== '')
+			filtres.push({ name: 'fq', value: 'designEnfantCles:' + filtreDesignEnfantCles });
 	}
 	return filtres;
 }
@@ -497,6 +557,10 @@ function rechercheDesignPageFiltres($formulaireFiltres) {
 		if(filtrePartHtmlCles != null && filtrePartHtmlCles !== '')
 			filtres.push({ name: 'fq', value: 'partHtmlCles:' + filtrePartHtmlCles });
 
+		var filtreDesignParentCles = $formulaireFiltres.find('.valeurDesignParentCles').val();
+		if(filtreDesignParentCles != null && filtreDesignParentCles !== '')
+			filtres.push({ name: 'fq', value: 'designParentCles:' + filtreDesignParentCles });
+
 		var filtreInheritPk = $formulaireFiltres.find('.valeurInheritPk').val();
 		if(filtreInheritPk != null && filtreInheritPk !== '')
 			filtres.push({ name: 'fq', value: 'inheritPk:' + filtreInheritPk });
@@ -548,6 +612,10 @@ function rechercheDesignPageFiltres($formulaireFiltres) {
 		var filtreDesignPageCle = $formulaireFiltres.find('.valeurDesignPageCle').val();
 		if(filtreDesignPageCle != null && filtreDesignPageCle !== '')
 			filtres.push({ name: 'fq', value: 'designPageCle:' + filtreDesignPageCle });
+
+		var filtreDesignEnfantCles = $formulaireFiltres.find('.valeurDesignEnfantCles').val();
+		if(filtreDesignEnfantCles != null && filtreDesignEnfantCles !== '')
+			filtres.push({ name: 'fq', value: 'designEnfantCles:' + filtreDesignEnfantCles });
 	}
 	return filtres;
 }
@@ -579,6 +647,78 @@ function suggereDesignPageObjetSuggere($formulaireFiltres, $list) {
 	};
 	error = function( jqXhr, textStatus, errorThrown ) {};
 	rechercherDesignPageVals($formulaireFiltres, success, error);
+}
+
+function suggereDesignPageDesignEnfantCles(filtres, $list, pk = null, attribuer=true) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'fa fa-drafting-compass ');
+			var $span = $('<span>').attr('class', '').text(o['designPageNomComplet']);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
+			$a.append($i);
+			$a.append($span);
+			var val = o['designParentCles'];
+			var checked = pk == null ? false : Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
+			var $input = $('<input>');
+			$input.attr('id', 'GET_designEnfantCles_' + pk + '_designParentCles_' + o['pk']);
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valeurDesignEnfantCles w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_designEnfantCles_" + pk + "_designParentCles_" + o['pk'] + "'); patchDesignPageVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'DesignEnfantCles']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'enleverLueur($(this)); ');
+			}
+			$input.attr('type', 'checkbox');
+			if(checked)
+				$input.attr('checked', 'checked');
+			var $li = $('<li>');
+			if(attribuer)
+				$li.append($input);
+			$li.append($a);
+			$list.append($li);
+		});
+		var focusId = $('#DesignPageForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	rechercheDesignPageVals(filtres, success, error);
+}
+
+function suggereDesignPageDesignParentCles(filtres, $list, pk = null, attribuer=true) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'fa fa-drafting-compass ');
+			var $span = $('<span>').attr('class', '').text(o['designPageNomComplet']);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
+			$a.append($i);
+			$a.append($span);
+			var val = o['designEnfantCles'];
+			var checked = pk == null ? false : Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
+			var $input = $('<input>');
+			$input.attr('id', 'GET_designParentCles_' + pk + '_designEnfantCles_' + o['pk']);
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valeurDesignParentCles w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_designParentCles_" + pk + "_designEnfantCles_" + o['pk'] + "'); patchDesignPageVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'DesignParentCles']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'enleverLueur($(this)); ');
+			}
+			$input.attr('type', 'checkbox');
+			if(checked)
+				$input.attr('checked', 'checked');
+			var $li = $('<li>');
+			if(attribuer)
+				$li.append($input);
+			$li.append($a);
+			$list.append($li);
+		});
+		var focusId = $('#DesignPageForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	rechercheDesignPageVals(filtres, success, error);
 }
 
 function suggereDesignPagePartHtmlCles(filtres, $list, pk = null, attribuer=true) {
@@ -833,6 +973,14 @@ async function websocketDesignPage(success) {
 					success(json);
 		});
 
+		window.eventBus.registerHandler('websocketDesignPage', function (error, message) {
+			$('#Page_designEnfantCles').trigger('oninput');
+		});
+
+		window.eventBus.registerHandler('websocketDesignPage', function (error, message) {
+			$('#Page_designParentCles').trigger('oninput');
+		});
+
 		window.eventBus.registerHandler('websocketPartHtml', function (error, message) {
 			$('#Page_partHtmlCles').trigger('oninput');
 		});
@@ -875,6 +1023,14 @@ async function websocketDesignPageInner(requeteApi) {
 			if(vars.includes('partHtmlCles')) {
 				$('.inputDesignPage' + pk + 'PartHtmlCles').val(o['partHtmlCles']);
 				$('.varDesignPage' + pk + 'PartHtmlCles').text(o['partHtmlCles']);
+			}
+			if(vars.includes('designParentCles')) {
+				$('.inputDesignPage' + pk + 'DesignParentCles').val(o['designParentCles']);
+				$('.varDesignPage' + pk + 'DesignParentCles').text(o['designParentCles']);
+			}
+			if(vars.includes('designEnfantCles')) {
+				$('.inputDesignPage' + pk + 'DesignEnfantCles').val(o['designEnfantCles']);
+				$('.varDesignPage' + pk + 'DesignEnfantCles').text(o['designEnfantCles']);
 			}
 		});
 	}

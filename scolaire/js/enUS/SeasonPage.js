@@ -92,9 +92,49 @@ function postSchoolSeasonVals(vals, success, error) {
 	});
 }
 
-// PUT //
+// PUTImport //
 
-async function putSchoolSeason($formValues, pk, success, error) {
+async function putimportSchoolSeason($formValues, pk, success, error) {
+	var json = $formValues.find('.PUTImport_list').val();
+	if(json != null && json !== '')
+		putimportSchoolSeasonVals(JSON.parse(json), success, error);
+}
+
+function putimportSchoolSeasonVals(json, success, error) {
+	$.ajax({
+		url: '/api/season/import'
+		, dataType: 'json'
+		, type: 'PUT'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(json)
+		, success: success
+		, error: error
+	});
+}
+
+// PUTMerge //
+
+async function putmergeSchoolSeason($formValues, pk, success, error) {
+	var json = $formValues.find('.PUTMerge_list').val();
+	if(json != null && json !== '')
+		putmergeSchoolSeasonVals(JSON.parse(json), success, error);
+}
+
+function putmergeSchoolSeasonVals(json, success, error) {
+	$.ajax({
+		url: '/api/season/merge'
+		, dataType: 'json'
+		, type: 'PUT'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(json)
+		, success: success
+		, error: error
+	});
+}
+
+// PUTCopy //
+
+async function putcopySchoolSeason($formValues, pk, success, error) {
 	var vals = {};
 
 	var valuePk = $formValues.find('.valuePk').val();
@@ -135,7 +175,7 @@ async function putSchoolSeason($formValues, pk, success, error) {
 
 	var valueSessionKeys = $formValues.find('input.valueSessionKeys:checked').val();
 	if(valueSessionKeys != null && valueSessionKeys !== '')
-		vals['sessionKeys'] = valueSessionKeys;
+		vals['sessionKeys'] = [valueSessionKeys];
 
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
@@ -149,12 +189,12 @@ async function putSchoolSeason($formValues, pk, success, error) {
 	if(valueSeasonWinter != null && valueSeasonWinter !== '')
 		vals['seasonWinter'] = valueSeasonWinter;
 
-	putSchoolSeasonVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
+	putcopySchoolSeasonVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
-function putSchoolSeasonVals(filters, vals, success, error) {
+function putcopySchoolSeasonVals(filters, vals, success, error) {
 	$.ajax({
-		url: '/api/season?' + $.param(filters)
+		url: '/api/season/copy?' + $.param(filters)
 		, dataType: 'json'
 		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
@@ -171,6 +211,8 @@ async function patchSchoolSeason($formFilters, $formValues, pk, success, error) 
 
 	var vals = {};
 
+	var valuePk = $formValues.find('.valuePk').val();
+	if(valuePk != null && valuePk !== '')
 	var removePk = $formFilters.find('.removePk').val() === 'true';
 	var setPk = removePk ? null : $formValues.find('.setPk').val();
 	if(removePk || setPk != null && setPk !== '')
@@ -182,6 +224,8 @@ async function patchSchoolSeason($formFilters, $formValues, pk, success, error) 
 	if(removePk != null && removePk !== '')
 		vals['removePk'] = removePk;
 
+	var valueCreated = $formValues.find('.valueCreated').val();
+	if(valueCreated != null && valueCreated !== '')
 	var removeCreated = $formFilters.find('.removeCreated').val() === 'true';
 	var setCreated = removeCreated ? null : $formValues.find('.setCreated').val();
 	if(removeCreated || setCreated != null && setCreated !== '')
@@ -193,6 +237,8 @@ async function patchSchoolSeason($formFilters, $formValues, pk, success, error) 
 	if(removeCreated != null && removeCreated !== '')
 		vals['removeCreated'] = removeCreated;
 
+	var valueModified = $formValues.find('.valueModified').val();
+	if(valueModified != null && valueModified !== '')
 	var removeModified = $formFilters.find('.removeModified').val() === 'true';
 	var setModified = removeModified ? null : $formValues.find('.setModified').val();
 	if(removeModified || setModified != null && setModified !== '')
@@ -204,6 +250,8 @@ async function patchSchoolSeason($formFilters, $formValues, pk, success, error) 
 	if(removeModified != null && removeModified !== '')
 		vals['removeModified'] = removeModified;
 
+	var valueObjectId = $formValues.find('.valueObjectId').val();
+	if(valueObjectId != null && valueObjectId !== '')
 	var removeObjectId = $formFilters.find('.removeObjectId').val() === 'true';
 	var setObjectId = removeObjectId ? null : $formValues.find('.setObjectId').val();
 	if(removeObjectId || setObjectId != null && setObjectId !== '')
@@ -215,6 +263,8 @@ async function patchSchoolSeason($formFilters, $formValues, pk, success, error) 
 	if(removeObjectId != null && removeObjectId !== '')
 		vals['removeObjectId'] = removeObjectId;
 
+	var valueArchived = $formValues.find('.valueArchived').prop('checked');
+	if(valueArchived != null && valueArchived !== '')
 	var removeArchived = $formFilters.find('.removeArchived').val() === 'true';
 	var valueArchivedSelectVal = $formValues.find('select.setArchived').val();
 	var valueArchived = null;
@@ -230,6 +280,8 @@ async function patchSchoolSeason($formFilters, $formValues, pk, success, error) 
 	if(removeArchived != null && removeArchived !== '')
 		vals['removeArchived'] = removeArchived;
 
+	var valueDeleted = $formValues.find('.valueDeleted').prop('checked');
+	if(valueDeleted != null && valueDeleted !== '')
 	var removeDeleted = $formFilters.find('.removeDeleted').val() === 'true';
 	var valueDeletedSelectVal = $formValues.find('select.setDeleted').val();
 	var valueDeleted = null;
@@ -245,6 +297,8 @@ async function patchSchoolSeason($formFilters, $formValues, pk, success, error) 
 	if(removeDeleted != null && removeDeleted !== '')
 		vals['removeDeleted'] = removeDeleted;
 
+	var valueSeasonStartDate = $formValues.find('.valueSeasonStartDate').val();
+	if(valueSeasonStartDate != null && valueSeasonStartDate !== '')
 	var removeSeasonStartDate = $formFilters.find('.removeSeasonStartDate').val() === 'true';
 	var setSeasonStartDate = removeSeasonStartDate ? null : $formValues.find('.setSeasonStartDate').val();
 	if(removeSeasonStartDate || setSeasonStartDate != null && setSeasonStartDate !== '')
@@ -256,6 +310,8 @@ async function patchSchoolSeason($formFilters, $formValues, pk, success, error) 
 	if(removeSeasonStartDate != null && removeSeasonStartDate !== '')
 		vals['removeSeasonStartDate'] = removeSeasonStartDate;
 
+	var valueSeasonFuture = $formValues.find('.valueSeasonFuture').prop('checked');
+	if(valueSeasonFuture != null && valueSeasonFuture !== '')
 	var removeSeasonFuture = $formFilters.find('.removeSeasonFuture').val() === 'true';
 	var valueSeasonFutureSelectVal = $formValues.find('select.setSeasonFuture').val();
 	var valueSeasonFuture = null;
@@ -271,28 +327,16 @@ async function patchSchoolSeason($formFilters, $formValues, pk, success, error) 
 	if(removeSeasonFuture != null && removeSeasonFuture !== '')
 		vals['removeSeasonFuture'] = removeSeasonFuture;
 
-	var removeYearKey = $formFilters.find('.removeYearKey').val() === 'true';
-	var setYearKey = removeYearKey ? null : $formValues.find('.setYearKey').val();
-	if(removeYearKey || setYearKey != null && setYearKey !== '')
-		vals['setYearKey'] = setYearKey;
-	var addYearKey = $formValues.find('.addYearKey').val();
-	if(addYearKey != null && addYearKey !== '')
-		vals['addYearKey'] = addYearKey;
-	var removeYearKey = $formValues.find('.removeYearKey').val();
-	if(removeYearKey != null && removeYearKey !== '')
-		vals['removeYearKey'] = removeYearKey;
+	var valueYearKey = $formValues.find('input.valueYearKey:checked').val();
+	if(valueYearKey != null && valueYearKey !== '')
+		vals['setYearKey'] = valueYearKey;
 
-	var removeSessionKeys = $formFilters.find('.removeSessionKeys').val() === 'true';
-	var setSessionKeys = removeSessionKeys ? null : $formValues.find('.setSessionKeys').val();
-	if(removeSessionKeys || setSessionKeys != null && setSessionKeys !== '')
-		vals['setSessionKeys'] = setSessionKeys;
-	var addSessionKeys = $formValues.find('.addSessionKeys').val();
-	if(addSessionKeys != null && addSessionKeys !== '')
-		vals['addSessionKeys'] = addSessionKeys;
-	var removeSessionKeys = $formValues.find('.removeSessionKeys').val();
-	if(removeSessionKeys != null && removeSessionKeys !== '')
-		vals['removeSessionKeys'] = removeSessionKeys;
+	var valueSessionKeys = $formValues.find('input.valueSessionKeys:checked').val();
+	if(valueSessionKeys != null && valueSessionKeys !== '')
+		vals['addSessionKeys'] = valueSessionKeys;
 
+	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
+	if(valueObjectTitle != null && valueObjectTitle !== '')
 	var removeObjectTitle = $formFilters.find('.removeObjectTitle').val() === 'true';
 	var setObjectTitle = removeObjectTitle ? null : $formValues.find('.setObjectTitle').val();
 	if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
@@ -304,6 +348,8 @@ async function patchSchoolSeason($formFilters, $formValues, pk, success, error) 
 	if(removeObjectTitle != null && removeObjectTitle !== '')
 		vals['removeObjectTitle'] = removeObjectTitle;
 
+	var valueSeasonSummer = $formValues.find('.valueSeasonSummer').prop('checked');
+	if(valueSeasonSummer != null && valueSeasonSummer !== '')
 	var removeSeasonSummer = $formFilters.find('.removeSeasonSummer').val() === 'true';
 	var valueSeasonSummerSelectVal = $formValues.find('select.setSeasonSummer').val();
 	var valueSeasonSummer = null;
@@ -319,6 +365,8 @@ async function patchSchoolSeason($formFilters, $formValues, pk, success, error) 
 	if(removeSeasonSummer != null && removeSeasonSummer !== '')
 		vals['removeSeasonSummer'] = removeSeasonSummer;
 
+	var valueSeasonWinter = $formValues.find('.valueSeasonWinter').prop('checked');
+	if(valueSeasonWinter != null && valueSeasonWinter !== '')
 	var removeSeasonWinter = $formFilters.find('.removeSeasonWinter').val() === 'true';
 	var valueSeasonWinterSelectVal = $formValues.find('select.setSeasonWinter').val();
 	var valueSeasonWinter = null;
@@ -339,204 +387,206 @@ async function patchSchoolSeason($formFilters, $formValues, pk, success, error) 
 
 function patchSchoolSeasonFilters($formFilters) {
 	var filters = [];
+	if($formFilters) {
 
-	var filterPk = $formFilters.find('.valuePk').val();
-	if(filterPk != null && filterPk !== '')
-		filters.push({ name: 'fq', value: 'pk:' + filterPk });
+		var filterPk = $formFilters.find('.valuePk').val();
+		if(filterPk != null && filterPk !== '')
+			filters.push({ name: 'fq', value: 'pk:' + filterPk });
 
-	var filterCreated = $formFilters.find('.valueCreated').val();
-	if(filterCreated != null && filterCreated !== '')
-		filters.push({ name: 'fq', value: 'created:' + filterCreated });
+		var filterCreated = $formFilters.find('.valueCreated').val();
+		if(filterCreated != null && filterCreated !== '')
+			filters.push({ name: 'fq', value: 'created:' + filterCreated });
 
-	var filterModified = $formFilters.find('.valueModified').val();
-	if(filterModified != null && filterModified !== '')
-		filters.push({ name: 'fq', value: 'modified:' + filterModified });
+		var filterModified = $formFilters.find('.valueModified').val();
+		if(filterModified != null && filterModified !== '')
+			filters.push({ name: 'fq', value: 'modified:' + filterModified });
 
-	var filterObjectId = $formFilters.find('.valueObjectId').val();
-	if(filterObjectId != null && filterObjectId !== '')
-		filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
+		var filterObjectId = $formFilters.find('.valueObjectId').val();
+		if(filterObjectId != null && filterObjectId !== '')
+			filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
 
-	var $filterArchivedCheckbox = $formFilters.find('input.valueArchived[type = "checkbox"]');
-	var $filterArchivedSelect = $formFilters.find('select.valueArchived');
-	var filterArchived = $filterArchivedSelect.length ? $filterArchivedSelect.val() : $filterArchivedCheckbox.prop('checked');
-	var filterArchivedSelectVal = $formFilters.find('select.filterArchived').val();
-	var filterArchived = null;
-	if(filterArchivedSelectVal !== '')
-		filterArchived = filterArchivedSelectVal == 'true';
-	if(filterArchived != null && filterArchived === true)
-		filters.push({ name: 'fq', value: 'archived:' + filterArchived });
+		var $filterArchivedCheckbox = $formFilters.find('input.valueArchived[type = "checkbox"]');
+		var $filterArchivedSelect = $formFilters.find('select.valueArchived');
+		var filterArchived = $filterArchivedSelect.length ? $filterArchivedSelect.val() : $filterArchivedCheckbox.prop('checked');
+		var filterArchivedSelectVal = $formFilters.find('select.filterArchived').val();
+		var filterArchived = null;
+		if(filterArchivedSelectVal !== '')
+			filterArchived = filterArchivedSelectVal == 'true';
+		if(filterArchived != null && filterArchived === true)
+			filters.push({ name: 'fq', value: 'archived:' + filterArchived });
 
-	var $filterDeletedCheckbox = $formFilters.find('input.valueDeleted[type = "checkbox"]');
-	var $filterDeletedSelect = $formFilters.find('select.valueDeleted');
-	var filterDeleted = $filterDeletedSelect.length ? $filterDeletedSelect.val() : $filterDeletedCheckbox.prop('checked');
-	var filterDeletedSelectVal = $formFilters.find('select.filterDeleted').val();
-	var filterDeleted = null;
-	if(filterDeletedSelectVal !== '')
-		filterDeleted = filterDeletedSelectVal == 'true';
-	if(filterDeleted != null && filterDeleted === true)
-		filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
+		var $filterDeletedCheckbox = $formFilters.find('input.valueDeleted[type = "checkbox"]');
+		var $filterDeletedSelect = $formFilters.find('select.valueDeleted');
+		var filterDeleted = $filterDeletedSelect.length ? $filterDeletedSelect.val() : $filterDeletedCheckbox.prop('checked');
+		var filterDeletedSelectVal = $formFilters.find('select.filterDeleted').val();
+		var filterDeleted = null;
+		if(filterDeletedSelectVal !== '')
+			filterDeleted = filterDeletedSelectVal == 'true';
+		if(filterDeleted != null && filterDeleted === true)
+			filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
-	var filterSeasonStartDate = $formFilters.find('.valueSeasonStartDate').val();
-	if(filterSeasonStartDate != null && filterSeasonStartDate !== '')
-		filters.push({ name: 'fq', value: 'seasonStartDate:' + filterSeasonStartDate });
+		var filterSeasonStartDate = $formFilters.find('.valueSeasonStartDate').val();
+		if(filterSeasonStartDate != null && filterSeasonStartDate !== '')
+			filters.push({ name: 'fq', value: 'seasonStartDate:' + filterSeasonStartDate });
 
-	var $filterSeasonFutureCheckbox = $formFilters.find('input.valueSeasonFuture[type = "checkbox"]');
-	var $filterSeasonFutureSelect = $formFilters.find('select.valueSeasonFuture');
-	var filterSeasonFuture = $filterSeasonFutureSelect.length ? $filterSeasonFutureSelect.val() : $filterSeasonFutureCheckbox.prop('checked');
-	var filterSeasonFutureSelectVal = $formFilters.find('select.filterSeasonFuture').val();
-	var filterSeasonFuture = null;
-	if(filterSeasonFutureSelectVal !== '')
-		filterSeasonFuture = filterSeasonFutureSelectVal == 'true';
-	if(filterSeasonFuture != null && filterSeasonFuture === true)
-		filters.push({ name: 'fq', value: 'seasonFuture:' + filterSeasonFuture });
+		var $filterSeasonFutureCheckbox = $formFilters.find('input.valueSeasonFuture[type = "checkbox"]');
+		var $filterSeasonFutureSelect = $formFilters.find('select.valueSeasonFuture');
+		var filterSeasonFuture = $filterSeasonFutureSelect.length ? $filterSeasonFutureSelect.val() : $filterSeasonFutureCheckbox.prop('checked');
+		var filterSeasonFutureSelectVal = $formFilters.find('select.filterSeasonFuture').val();
+		var filterSeasonFuture = null;
+		if(filterSeasonFutureSelectVal !== '')
+			filterSeasonFuture = filterSeasonFutureSelectVal == 'true';
+		if(filterSeasonFuture != null && filterSeasonFuture === true)
+			filters.push({ name: 'fq', value: 'seasonFuture:' + filterSeasonFuture });
 
-	var filterYearKey = $formFilters.find('.valueYearKey').val();
-	if(filterYearKey != null && filterYearKey !== '')
-		filters.push({ name: 'fq', value: 'yearKey:' + filterYearKey });
+		var filterYearKey = $formFilters.find('.valueYearKey').val();
+		if(filterYearKey != null && filterYearKey !== '')
+			filters.push({ name: 'fq', value: 'yearKey:' + filterYearKey });
 
-	var filterSessionKeys = $formFilters.find('.valueSessionKeys').val();
-	if(filterSessionKeys != null && filterSessionKeys !== '')
-		filters.push({ name: 'fq', value: 'sessionKeys:' + filterSessionKeys });
+		var filterSessionKeys = $formFilters.find('.valueSessionKeys').val();
+		if(filterSessionKeys != null && filterSessionKeys !== '')
+			filters.push({ name: 'fq', value: 'sessionKeys:' + filterSessionKeys });
 
-	var filterInheritPk = $formFilters.find('.valueInheritPk').val();
-	if(filterInheritPk != null && filterInheritPk !== '')
-		filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+		if(filterInheritPk != null && filterInheritPk !== '')
+			filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
 
-	var filterId = $formFilters.find('.valueId').val();
-	if(filterId != null && filterId !== '')
-		filters.push({ name: 'fq', value: 'id:' + filterId });
+		var filterId = $formFilters.find('.valueId').val();
+		if(filterId != null && filterId !== '')
+			filters.push({ name: 'fq', value: 'id:' + filterId });
 
-	var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
-	if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
-		filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+		var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
+		if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
+			filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
 
-	var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
-	if(filterClassSimpleName != null && filterClassSimpleName !== '')
-		filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+		var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
+		if(filterClassSimpleName != null && filterClassSimpleName !== '')
+			filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
 
-	var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
-	if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-		filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+		var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
+		if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+			filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
-	var filterSessionId = $formFilters.find('.valueSessionId').val();
-	if(filterSessionId != null && filterSessionId !== '')
-		filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+		var filterSessionId = $formFilters.find('.valueSessionId').val();
+		if(filterSessionId != null && filterSessionId !== '')
+			filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
 
-	var filterSaves = $formFilters.find('.valueSaves').val();
-	if(filterSaves != null && filterSaves !== '')
-		filters.push({ name: 'fq', value: 'saves:' + filterSaves });
+		var filterSaves = $formFilters.find('.valueSaves').val();
+		if(filterSaves != null && filterSaves !== '')
+			filters.push({ name: 'fq', value: 'saves:' + filterSaves });
 
-	var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
-	if(filterObjectTitle != null && filterObjectTitle !== '')
-		filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
+		var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
+		if(filterObjectTitle != null && filterObjectTitle !== '')
+			filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
-	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
-	if(filterObjectSuggest != null && filterObjectSuggest !== '')
-		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+		var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
+		if(filterObjectSuggest != null && filterObjectSuggest !== '')
+			filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
 
-	var filterObjectText = $formFilters.find('.valueObjectText').val();
-	if(filterObjectText != null && filterObjectText !== '')
-		filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
+		var filterObjectText = $formFilters.find('.valueObjectText').val();
+		if(filterObjectText != null && filterObjectText !== '')
+			filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
 
-	var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
-	if(filterPageUrlId != null && filterPageUrlId !== '')
-		filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
+		var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
+		if(filterPageUrlId != null && filterPageUrlId !== '')
+			filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
 
-	var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-	if(filterPageUrlPk != null && filterPageUrlPk !== '')
-		filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
+		var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+		if(filterPageUrlPk != null && filterPageUrlPk !== '')
+			filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
-	var filterSeasonKey = $formFilters.find('.valueSeasonKey').val();
-	if(filterSeasonKey != null && filterSeasonKey !== '')
-		filters.push({ name: 'fq', value: 'seasonKey:' + filterSeasonKey });
+		var filterSeasonKey = $formFilters.find('.valueSeasonKey').val();
+		if(filterSeasonKey != null && filterSeasonKey !== '')
+			filters.push({ name: 'fq', value: 'seasonKey:' + filterSeasonKey });
 
-	var filterEnrollmentKeys = $formFilters.find('.valueEnrollmentKeys').val();
-	if(filterEnrollmentKeys != null && filterEnrollmentKeys !== '')
-		filters.push({ name: 'fq', value: 'enrollmentKeys:' + filterEnrollmentKeys });
+		var filterEnrollmentKeys = $formFilters.find('.valueEnrollmentKeys').val();
+		if(filterEnrollmentKeys != null && filterEnrollmentKeys !== '')
+			filters.push({ name: 'fq', value: 'enrollmentKeys:' + filterEnrollmentKeys });
 
-	var filterEducationSort = $formFilters.find('.valueEducationSort').val();
-	if(filterEducationSort != null && filterEducationSort !== '')
-		filters.push({ name: 'fq', value: 'educationSort:' + filterEducationSort });
+		var filterEducationSort = $formFilters.find('.valueEducationSort').val();
+		if(filterEducationSort != null && filterEducationSort !== '')
+			filters.push({ name: 'fq', value: 'educationSort:' + filterEducationSort });
 
-	var filterSchoolSort = $formFilters.find('.valueSchoolSort').val();
-	if(filterSchoolSort != null && filterSchoolSort !== '')
-		filters.push({ name: 'fq', value: 'schoolSort:' + filterSchoolSort });
+		var filterSchoolSort = $formFilters.find('.valueSchoolSort').val();
+		if(filterSchoolSort != null && filterSchoolSort !== '')
+			filters.push({ name: 'fq', value: 'schoolSort:' + filterSchoolSort });
 
-	var filterYearSort = $formFilters.find('.valueYearSort').val();
-	if(filterYearSort != null && filterYearSort !== '')
-		filters.push({ name: 'fq', value: 'yearSort:' + filterYearSort });
+		var filterYearSort = $formFilters.find('.valueYearSort').val();
+		if(filterYearSort != null && filterYearSort !== '')
+			filters.push({ name: 'fq', value: 'yearSort:' + filterYearSort });
 
-	var filterSeasonSort = $formFilters.find('.valueSeasonSort').val();
-	if(filterSeasonSort != null && filterSeasonSort !== '')
-		filters.push({ name: 'fq', value: 'seasonSort:' + filterSeasonSort });
+		var filterSeasonSort = $formFilters.find('.valueSeasonSort').val();
+		if(filterSeasonSort != null && filterSeasonSort !== '')
+			filters.push({ name: 'fq', value: 'seasonSort:' + filterSeasonSort });
 
-	var filterSchoolKey = $formFilters.find('.valueSchoolKey').val();
-	if(filterSchoolKey != null && filterSchoolKey !== '')
-		filters.push({ name: 'fq', value: 'schoolKey:' + filterSchoolKey });
+		var filterSchoolKey = $formFilters.find('.valueSchoolKey').val();
+		if(filterSchoolKey != null && filterSchoolKey !== '')
+			filters.push({ name: 'fq', value: 'schoolKey:' + filterSchoolKey });
 
-	var filterSchoolName = $formFilters.find('.valueSchoolName').val();
-	if(filterSchoolName != null && filterSchoolName !== '')
-		filters.push({ name: 'fq', value: 'schoolName:' + filterSchoolName });
+		var filterSchoolName = $formFilters.find('.valueSchoolName').val();
+		if(filterSchoolName != null && filterSchoolName !== '')
+			filters.push({ name: 'fq', value: 'schoolName:' + filterSchoolName });
 
-	var filterSchoolCompleteName = $formFilters.find('.valueSchoolCompleteName').val();
-	if(filterSchoolCompleteName != null && filterSchoolCompleteName !== '')
-		filters.push({ name: 'fq', value: 'schoolCompleteName:' + filterSchoolCompleteName });
+		var filterSchoolCompleteName = $formFilters.find('.valueSchoolCompleteName').val();
+		if(filterSchoolCompleteName != null && filterSchoolCompleteName !== '')
+			filters.push({ name: 'fq', value: 'schoolCompleteName:' + filterSchoolCompleteName });
 
-	var filterSchoolLocation = $formFilters.find('.valueSchoolLocation').val();
-	if(filterSchoolLocation != null && filterSchoolLocation !== '')
-		filters.push({ name: 'fq', value: 'schoolLocation:' + filterSchoolLocation });
+		var filterSchoolLocation = $formFilters.find('.valueSchoolLocation').val();
+		if(filterSchoolLocation != null && filterSchoolLocation !== '')
+			filters.push({ name: 'fq', value: 'schoolLocation:' + filterSchoolLocation });
 
-	var filterSchoolAddress = $formFilters.find('.valueSchoolAddress').val();
-	if(filterSchoolAddress != null && filterSchoolAddress !== '')
-		filters.push({ name: 'fq', value: 'schoolAddress:' + filterSchoolAddress });
+		var filterSchoolAddress = $formFilters.find('.valueSchoolAddress').val();
+		if(filterSchoolAddress != null && filterSchoolAddress !== '')
+			filters.push({ name: 'fq', value: 'schoolAddress:' + filterSchoolAddress });
 
-	var filterSchoolPhoneNumber = $formFilters.find('.valueSchoolPhoneNumber').val();
-	if(filterSchoolPhoneNumber != null && filterSchoolPhoneNumber !== '')
-		filters.push({ name: 'fq', value: 'schoolPhoneNumber:' + filterSchoolPhoneNumber });
+		var filterSchoolPhoneNumber = $formFilters.find('.valueSchoolPhoneNumber').val();
+		if(filterSchoolPhoneNumber != null && filterSchoolPhoneNumber !== '')
+			filters.push({ name: 'fq', value: 'schoolPhoneNumber:' + filterSchoolPhoneNumber });
 
-	var filterSchoolAdministratorName = $formFilters.find('.valueSchoolAdministratorName').val();
-	if(filterSchoolAdministratorName != null && filterSchoolAdministratorName !== '')
-		filters.push({ name: 'fq', value: 'schoolAdministratorName:' + filterSchoolAdministratorName });
+		var filterSchoolAdministratorName = $formFilters.find('.valueSchoolAdministratorName').val();
+		if(filterSchoolAdministratorName != null && filterSchoolAdministratorName !== '')
+			filters.push({ name: 'fq', value: 'schoolAdministratorName:' + filterSchoolAdministratorName });
 
-	var filterYearStart = $formFilters.find('.valueYearStart').val();
-	if(filterYearStart != null && filterYearStart !== '')
-		filters.push({ name: 'fq', value: 'yearStart:' + filterYearStart });
+		var filterYearStart = $formFilters.find('.valueYearStart').val();
+		if(filterYearStart != null && filterYearStart !== '')
+			filters.push({ name: 'fq', value: 'yearStart:' + filterYearStart });
 
-	var filterYearEnd = $formFilters.find('.valueYearEnd').val();
-	if(filterYearEnd != null && filterYearEnd !== '')
-		filters.push({ name: 'fq', value: 'yearEnd:' + filterYearEnd });
+		var filterYearEnd = $formFilters.find('.valueYearEnd').val();
+		if(filterYearEnd != null && filterYearEnd !== '')
+			filters.push({ name: 'fq', value: 'yearEnd:' + filterYearEnd });
 
-	var filterYearEnrollmentFee = $formFilters.find('.valueYearEnrollmentFee').val();
-	if(filterYearEnrollmentFee != null && filterYearEnrollmentFee !== '')
-		filters.push({ name: 'fq', value: 'yearEnrollmentFee:' + filterYearEnrollmentFee });
+		var filterYearEnrollmentFee = $formFilters.find('.valueYearEnrollmentFee').val();
+		if(filterYearEnrollmentFee != null && filterYearEnrollmentFee !== '')
+			filters.push({ name: 'fq', value: 'yearEnrollmentFee:' + filterYearEnrollmentFee });
 
-	var $filterSeasonSummerCheckbox = $formFilters.find('input.valueSeasonSummer[type = "checkbox"]');
-	var $filterSeasonSummerSelect = $formFilters.find('select.valueSeasonSummer');
-	var filterSeasonSummer = $filterSeasonSummerSelect.length ? $filterSeasonSummerSelect.val() : $filterSeasonSummerCheckbox.prop('checked');
-	var filterSeasonSummerSelectVal = $formFilters.find('select.filterSeasonSummer').val();
-	var filterSeasonSummer = null;
-	if(filterSeasonSummerSelectVal !== '')
-		filterSeasonSummer = filterSeasonSummerSelectVal == 'true';
-	if(filterSeasonSummer != null && filterSeasonSummer === true)
-		filters.push({ name: 'fq', value: 'seasonSummer:' + filterSeasonSummer });
+		var $filterSeasonSummerCheckbox = $formFilters.find('input.valueSeasonSummer[type = "checkbox"]');
+		var $filterSeasonSummerSelect = $formFilters.find('select.valueSeasonSummer');
+		var filterSeasonSummer = $filterSeasonSummerSelect.length ? $filterSeasonSummerSelect.val() : $filterSeasonSummerCheckbox.prop('checked');
+		var filterSeasonSummerSelectVal = $formFilters.find('select.filterSeasonSummer').val();
+		var filterSeasonSummer = null;
+		if(filterSeasonSummerSelectVal !== '')
+			filterSeasonSummer = filterSeasonSummerSelectVal == 'true';
+		if(filterSeasonSummer != null && filterSeasonSummer === true)
+			filters.push({ name: 'fq', value: 'seasonSummer:' + filterSeasonSummer });
 
-	var $filterSeasonWinterCheckbox = $formFilters.find('input.valueSeasonWinter[type = "checkbox"]');
-	var $filterSeasonWinterSelect = $formFilters.find('select.valueSeasonWinter');
-	var filterSeasonWinter = $filterSeasonWinterSelect.length ? $filterSeasonWinterSelect.val() : $filterSeasonWinterCheckbox.prop('checked');
-	var filterSeasonWinterSelectVal = $formFilters.find('select.filterSeasonWinter').val();
-	var filterSeasonWinter = null;
-	if(filterSeasonWinterSelectVal !== '')
-		filterSeasonWinter = filterSeasonWinterSelectVal == 'true';
-	if(filterSeasonWinter != null && filterSeasonWinter === true)
-		filters.push({ name: 'fq', value: 'seasonWinter:' + filterSeasonWinter });
+		var $filterSeasonWinterCheckbox = $formFilters.find('input.valueSeasonWinter[type = "checkbox"]');
+		var $filterSeasonWinterSelect = $formFilters.find('select.valueSeasonWinter');
+		var filterSeasonWinter = $filterSeasonWinterSelect.length ? $filterSeasonWinterSelect.val() : $filterSeasonWinterCheckbox.prop('checked');
+		var filterSeasonWinterSelectVal = $formFilters.find('select.filterSeasonWinter').val();
+		var filterSeasonWinter = null;
+		if(filterSeasonWinterSelectVal !== '')
+			filterSeasonWinter = filterSeasonWinterSelectVal == 'true';
+		if(filterSeasonWinter != null && filterSeasonWinter === true)
+			filters.push({ name: 'fq', value: 'seasonWinter:' + filterSeasonWinter });
 
-	var filterSeasonShortName = $formFilters.find('.valueSeasonShortName').val();
-	if(filterSeasonShortName != null && filterSeasonShortName !== '')
-		filters.push({ name: 'fq', value: 'seasonShortName:' + filterSeasonShortName });
+		var filterSeasonShortName = $formFilters.find('.valueSeasonShortName').val();
+		if(filterSeasonShortName != null && filterSeasonShortName !== '')
+			filters.push({ name: 'fq', value: 'seasonShortName:' + filterSeasonShortName });
 
-	var filterSeasonCompleteName = $formFilters.find('.valueSeasonCompleteName').val();
-	if(filterSeasonCompleteName != null && filterSeasonCompleteName !== '')
-		filters.push({ name: 'fq', value: 'seasonCompleteName:' + filterSeasonCompleteName });
+		var filterSeasonCompleteName = $formFilters.find('.valueSeasonCompleteName').val();
+		if(filterSeasonCompleteName != null && filterSeasonCompleteName !== '')
+			filters.push({ name: 'fq', value: 'seasonCompleteName:' + filterSeasonCompleteName });
+	}
 	return filters;
 }
 
@@ -585,204 +635,206 @@ async function searchSchoolSeason($formFilters, success, error) {
 
 function searchSchoolSeasonFilters($formFilters) {
 	var filters = [];
+	if($formFilters) {
 
-	var filterPk = $formFilters.find('.valuePk').val();
-	if(filterPk != null && filterPk !== '')
-		filters.push({ name: 'fq', value: 'pk:' + filterPk });
+		var filterPk = $formFilters.find('.valuePk').val();
+		if(filterPk != null && filterPk !== '')
+			filters.push({ name: 'fq', value: 'pk:' + filterPk });
 
-	var filterCreated = $formFilters.find('.valueCreated').val();
-	if(filterCreated != null && filterCreated !== '')
-		filters.push({ name: 'fq', value: 'created:' + filterCreated });
+		var filterCreated = $formFilters.find('.valueCreated').val();
+		if(filterCreated != null && filterCreated !== '')
+			filters.push({ name: 'fq', value: 'created:' + filterCreated });
 
-	var filterModified = $formFilters.find('.valueModified').val();
-	if(filterModified != null && filterModified !== '')
-		filters.push({ name: 'fq', value: 'modified:' + filterModified });
+		var filterModified = $formFilters.find('.valueModified').val();
+		if(filterModified != null && filterModified !== '')
+			filters.push({ name: 'fq', value: 'modified:' + filterModified });
 
-	var filterObjectId = $formFilters.find('.valueObjectId').val();
-	if(filterObjectId != null && filterObjectId !== '')
-		filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
+		var filterObjectId = $formFilters.find('.valueObjectId').val();
+		if(filterObjectId != null && filterObjectId !== '')
+			filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
 
-	var $filterArchivedCheckbox = $formFilters.find('input.valueArchived[type = "checkbox"]');
-	var $filterArchivedSelect = $formFilters.find('select.valueArchived');
-	var filterArchived = $filterArchivedSelect.length ? $filterArchivedSelect.val() : $filterArchivedCheckbox.prop('checked');
-	var filterArchivedSelectVal = $formFilters.find('select.filterArchived').val();
-	var filterArchived = null;
-	if(filterArchivedSelectVal !== '')
-		filterArchived = filterArchivedSelectVal == 'true';
-	if(filterArchived != null && filterArchived === true)
-		filters.push({ name: 'fq', value: 'archived:' + filterArchived });
+		var $filterArchivedCheckbox = $formFilters.find('input.valueArchived[type = "checkbox"]');
+		var $filterArchivedSelect = $formFilters.find('select.valueArchived');
+		var filterArchived = $filterArchivedSelect.length ? $filterArchivedSelect.val() : $filterArchivedCheckbox.prop('checked');
+		var filterArchivedSelectVal = $formFilters.find('select.filterArchived').val();
+		var filterArchived = null;
+		if(filterArchivedSelectVal !== '')
+			filterArchived = filterArchivedSelectVal == 'true';
+		if(filterArchived != null && filterArchived === true)
+			filters.push({ name: 'fq', value: 'archived:' + filterArchived });
 
-	var $filterDeletedCheckbox = $formFilters.find('input.valueDeleted[type = "checkbox"]');
-	var $filterDeletedSelect = $formFilters.find('select.valueDeleted');
-	var filterDeleted = $filterDeletedSelect.length ? $filterDeletedSelect.val() : $filterDeletedCheckbox.prop('checked');
-	var filterDeletedSelectVal = $formFilters.find('select.filterDeleted').val();
-	var filterDeleted = null;
-	if(filterDeletedSelectVal !== '')
-		filterDeleted = filterDeletedSelectVal == 'true';
-	if(filterDeleted != null && filterDeleted === true)
-		filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
+		var $filterDeletedCheckbox = $formFilters.find('input.valueDeleted[type = "checkbox"]');
+		var $filterDeletedSelect = $formFilters.find('select.valueDeleted');
+		var filterDeleted = $filterDeletedSelect.length ? $filterDeletedSelect.val() : $filterDeletedCheckbox.prop('checked');
+		var filterDeletedSelectVal = $formFilters.find('select.filterDeleted').val();
+		var filterDeleted = null;
+		if(filterDeletedSelectVal !== '')
+			filterDeleted = filterDeletedSelectVal == 'true';
+		if(filterDeleted != null && filterDeleted === true)
+			filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
-	var filterSeasonStartDate = $formFilters.find('.valueSeasonStartDate').val();
-	if(filterSeasonStartDate != null && filterSeasonStartDate !== '')
-		filters.push({ name: 'fq', value: 'seasonStartDate:' + filterSeasonStartDate });
+		var filterSeasonStartDate = $formFilters.find('.valueSeasonStartDate').val();
+		if(filterSeasonStartDate != null && filterSeasonStartDate !== '')
+			filters.push({ name: 'fq', value: 'seasonStartDate:' + filterSeasonStartDate });
 
-	var $filterSeasonFutureCheckbox = $formFilters.find('input.valueSeasonFuture[type = "checkbox"]');
-	var $filterSeasonFutureSelect = $formFilters.find('select.valueSeasonFuture');
-	var filterSeasonFuture = $filterSeasonFutureSelect.length ? $filterSeasonFutureSelect.val() : $filterSeasonFutureCheckbox.prop('checked');
-	var filterSeasonFutureSelectVal = $formFilters.find('select.filterSeasonFuture').val();
-	var filterSeasonFuture = null;
-	if(filterSeasonFutureSelectVal !== '')
-		filterSeasonFuture = filterSeasonFutureSelectVal == 'true';
-	if(filterSeasonFuture != null && filterSeasonFuture === true)
-		filters.push({ name: 'fq', value: 'seasonFuture:' + filterSeasonFuture });
+		var $filterSeasonFutureCheckbox = $formFilters.find('input.valueSeasonFuture[type = "checkbox"]');
+		var $filterSeasonFutureSelect = $formFilters.find('select.valueSeasonFuture');
+		var filterSeasonFuture = $filterSeasonFutureSelect.length ? $filterSeasonFutureSelect.val() : $filterSeasonFutureCheckbox.prop('checked');
+		var filterSeasonFutureSelectVal = $formFilters.find('select.filterSeasonFuture').val();
+		var filterSeasonFuture = null;
+		if(filterSeasonFutureSelectVal !== '')
+			filterSeasonFuture = filterSeasonFutureSelectVal == 'true';
+		if(filterSeasonFuture != null && filterSeasonFuture === true)
+			filters.push({ name: 'fq', value: 'seasonFuture:' + filterSeasonFuture });
 
-	var filterYearKey = $formFilters.find('.valueYearKey').val();
-	if(filterYearKey != null && filterYearKey !== '')
-		filters.push({ name: 'fq', value: 'yearKey:' + filterYearKey });
+		var filterYearKey = $formFilters.find('.valueYearKey').val();
+		if(filterYearKey != null && filterYearKey !== '')
+			filters.push({ name: 'fq', value: 'yearKey:' + filterYearKey });
 
-	var filterSessionKeys = $formFilters.find('.valueSessionKeys').val();
-	if(filterSessionKeys != null && filterSessionKeys !== '')
-		filters.push({ name: 'fq', value: 'sessionKeys:' + filterSessionKeys });
+		var filterSessionKeys = $formFilters.find('.valueSessionKeys').val();
+		if(filterSessionKeys != null && filterSessionKeys !== '')
+			filters.push({ name: 'fq', value: 'sessionKeys:' + filterSessionKeys });
 
-	var filterInheritPk = $formFilters.find('.valueInheritPk').val();
-	if(filterInheritPk != null && filterInheritPk !== '')
-		filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+		if(filterInheritPk != null && filterInheritPk !== '')
+			filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
 
-	var filterId = $formFilters.find('.valueId').val();
-	if(filterId != null && filterId !== '')
-		filters.push({ name: 'fq', value: 'id:' + filterId });
+		var filterId = $formFilters.find('.valueId').val();
+		if(filterId != null && filterId !== '')
+			filters.push({ name: 'fq', value: 'id:' + filterId });
 
-	var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
-	if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
-		filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+		var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
+		if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
+			filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
 
-	var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
-	if(filterClassSimpleName != null && filterClassSimpleName !== '')
-		filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+		var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
+		if(filterClassSimpleName != null && filterClassSimpleName !== '')
+			filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
 
-	var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
-	if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-		filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+		var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
+		if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+			filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
-	var filterSessionId = $formFilters.find('.valueSessionId').val();
-	if(filterSessionId != null && filterSessionId !== '')
-		filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+		var filterSessionId = $formFilters.find('.valueSessionId').val();
+		if(filterSessionId != null && filterSessionId !== '')
+			filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
 
-	var filterSaves = $formFilters.find('.valueSaves').val();
-	if(filterSaves != null && filterSaves !== '')
-		filters.push({ name: 'fq', value: 'saves:' + filterSaves });
+		var filterSaves = $formFilters.find('.valueSaves').val();
+		if(filterSaves != null && filterSaves !== '')
+			filters.push({ name: 'fq', value: 'saves:' + filterSaves });
 
-	var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
-	if(filterObjectTitle != null && filterObjectTitle !== '')
-		filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
+		var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
+		if(filterObjectTitle != null && filterObjectTitle !== '')
+			filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
-	var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
-	if(filterObjectSuggest != null && filterObjectSuggest !== '')
-		filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+		var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
+		if(filterObjectSuggest != null && filterObjectSuggest !== '')
+			filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
 
-	var filterObjectText = $formFilters.find('.valueObjectText').val();
-	if(filterObjectText != null && filterObjectText !== '')
-		filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
+		var filterObjectText = $formFilters.find('.valueObjectText').val();
+		if(filterObjectText != null && filterObjectText !== '')
+			filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
 
-	var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
-	if(filterPageUrlId != null && filterPageUrlId !== '')
-		filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
+		var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
+		if(filterPageUrlId != null && filterPageUrlId !== '')
+			filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
 
-	var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
-	if(filterPageUrlPk != null && filterPageUrlPk !== '')
-		filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
+		var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+		if(filterPageUrlPk != null && filterPageUrlPk !== '')
+			filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
-	var filterSeasonKey = $formFilters.find('.valueSeasonKey').val();
-	if(filterSeasonKey != null && filterSeasonKey !== '')
-		filters.push({ name: 'fq', value: 'seasonKey:' + filterSeasonKey });
+		var filterSeasonKey = $formFilters.find('.valueSeasonKey').val();
+		if(filterSeasonKey != null && filterSeasonKey !== '')
+			filters.push({ name: 'fq', value: 'seasonKey:' + filterSeasonKey });
 
-	var filterEnrollmentKeys = $formFilters.find('.valueEnrollmentKeys').val();
-	if(filterEnrollmentKeys != null && filterEnrollmentKeys !== '')
-		filters.push({ name: 'fq', value: 'enrollmentKeys:' + filterEnrollmentKeys });
+		var filterEnrollmentKeys = $formFilters.find('.valueEnrollmentKeys').val();
+		if(filterEnrollmentKeys != null && filterEnrollmentKeys !== '')
+			filters.push({ name: 'fq', value: 'enrollmentKeys:' + filterEnrollmentKeys });
 
-	var filterEducationSort = $formFilters.find('.valueEducationSort').val();
-	if(filterEducationSort != null && filterEducationSort !== '')
-		filters.push({ name: 'fq', value: 'educationSort:' + filterEducationSort });
+		var filterEducationSort = $formFilters.find('.valueEducationSort').val();
+		if(filterEducationSort != null && filterEducationSort !== '')
+			filters.push({ name: 'fq', value: 'educationSort:' + filterEducationSort });
 
-	var filterSchoolSort = $formFilters.find('.valueSchoolSort').val();
-	if(filterSchoolSort != null && filterSchoolSort !== '')
-		filters.push({ name: 'fq', value: 'schoolSort:' + filterSchoolSort });
+		var filterSchoolSort = $formFilters.find('.valueSchoolSort').val();
+		if(filterSchoolSort != null && filterSchoolSort !== '')
+			filters.push({ name: 'fq', value: 'schoolSort:' + filterSchoolSort });
 
-	var filterYearSort = $formFilters.find('.valueYearSort').val();
-	if(filterYearSort != null && filterYearSort !== '')
-		filters.push({ name: 'fq', value: 'yearSort:' + filterYearSort });
+		var filterYearSort = $formFilters.find('.valueYearSort').val();
+		if(filterYearSort != null && filterYearSort !== '')
+			filters.push({ name: 'fq', value: 'yearSort:' + filterYearSort });
 
-	var filterSeasonSort = $formFilters.find('.valueSeasonSort').val();
-	if(filterSeasonSort != null && filterSeasonSort !== '')
-		filters.push({ name: 'fq', value: 'seasonSort:' + filterSeasonSort });
+		var filterSeasonSort = $formFilters.find('.valueSeasonSort').val();
+		if(filterSeasonSort != null && filterSeasonSort !== '')
+			filters.push({ name: 'fq', value: 'seasonSort:' + filterSeasonSort });
 
-	var filterSchoolKey = $formFilters.find('.valueSchoolKey').val();
-	if(filterSchoolKey != null && filterSchoolKey !== '')
-		filters.push({ name: 'fq', value: 'schoolKey:' + filterSchoolKey });
+		var filterSchoolKey = $formFilters.find('.valueSchoolKey').val();
+		if(filterSchoolKey != null && filterSchoolKey !== '')
+			filters.push({ name: 'fq', value: 'schoolKey:' + filterSchoolKey });
 
-	var filterSchoolName = $formFilters.find('.valueSchoolName').val();
-	if(filterSchoolName != null && filterSchoolName !== '')
-		filters.push({ name: 'fq', value: 'schoolName:' + filterSchoolName });
+		var filterSchoolName = $formFilters.find('.valueSchoolName').val();
+		if(filterSchoolName != null && filterSchoolName !== '')
+			filters.push({ name: 'fq', value: 'schoolName:' + filterSchoolName });
 
-	var filterSchoolCompleteName = $formFilters.find('.valueSchoolCompleteName').val();
-	if(filterSchoolCompleteName != null && filterSchoolCompleteName !== '')
-		filters.push({ name: 'fq', value: 'schoolCompleteName:' + filterSchoolCompleteName });
+		var filterSchoolCompleteName = $formFilters.find('.valueSchoolCompleteName').val();
+		if(filterSchoolCompleteName != null && filterSchoolCompleteName !== '')
+			filters.push({ name: 'fq', value: 'schoolCompleteName:' + filterSchoolCompleteName });
 
-	var filterSchoolLocation = $formFilters.find('.valueSchoolLocation').val();
-	if(filterSchoolLocation != null && filterSchoolLocation !== '')
-		filters.push({ name: 'fq', value: 'schoolLocation:' + filterSchoolLocation });
+		var filterSchoolLocation = $formFilters.find('.valueSchoolLocation').val();
+		if(filterSchoolLocation != null && filterSchoolLocation !== '')
+			filters.push({ name: 'fq', value: 'schoolLocation:' + filterSchoolLocation });
 
-	var filterSchoolAddress = $formFilters.find('.valueSchoolAddress').val();
-	if(filterSchoolAddress != null && filterSchoolAddress !== '')
-		filters.push({ name: 'fq', value: 'schoolAddress:' + filterSchoolAddress });
+		var filterSchoolAddress = $formFilters.find('.valueSchoolAddress').val();
+		if(filterSchoolAddress != null && filterSchoolAddress !== '')
+			filters.push({ name: 'fq', value: 'schoolAddress:' + filterSchoolAddress });
 
-	var filterSchoolPhoneNumber = $formFilters.find('.valueSchoolPhoneNumber').val();
-	if(filterSchoolPhoneNumber != null && filterSchoolPhoneNumber !== '')
-		filters.push({ name: 'fq', value: 'schoolPhoneNumber:' + filterSchoolPhoneNumber });
+		var filterSchoolPhoneNumber = $formFilters.find('.valueSchoolPhoneNumber').val();
+		if(filterSchoolPhoneNumber != null && filterSchoolPhoneNumber !== '')
+			filters.push({ name: 'fq', value: 'schoolPhoneNumber:' + filterSchoolPhoneNumber });
 
-	var filterSchoolAdministratorName = $formFilters.find('.valueSchoolAdministratorName').val();
-	if(filterSchoolAdministratorName != null && filterSchoolAdministratorName !== '')
-		filters.push({ name: 'fq', value: 'schoolAdministratorName:' + filterSchoolAdministratorName });
+		var filterSchoolAdministratorName = $formFilters.find('.valueSchoolAdministratorName').val();
+		if(filterSchoolAdministratorName != null && filterSchoolAdministratorName !== '')
+			filters.push({ name: 'fq', value: 'schoolAdministratorName:' + filterSchoolAdministratorName });
 
-	var filterYearStart = $formFilters.find('.valueYearStart').val();
-	if(filterYearStart != null && filterYearStart !== '')
-		filters.push({ name: 'fq', value: 'yearStart:' + filterYearStart });
+		var filterYearStart = $formFilters.find('.valueYearStart').val();
+		if(filterYearStart != null && filterYearStart !== '')
+			filters.push({ name: 'fq', value: 'yearStart:' + filterYearStart });
 
-	var filterYearEnd = $formFilters.find('.valueYearEnd').val();
-	if(filterYearEnd != null && filterYearEnd !== '')
-		filters.push({ name: 'fq', value: 'yearEnd:' + filterYearEnd });
+		var filterYearEnd = $formFilters.find('.valueYearEnd').val();
+		if(filterYearEnd != null && filterYearEnd !== '')
+			filters.push({ name: 'fq', value: 'yearEnd:' + filterYearEnd });
 
-	var filterYearEnrollmentFee = $formFilters.find('.valueYearEnrollmentFee').val();
-	if(filterYearEnrollmentFee != null && filterYearEnrollmentFee !== '')
-		filters.push({ name: 'fq', value: 'yearEnrollmentFee:' + filterYearEnrollmentFee });
+		var filterYearEnrollmentFee = $formFilters.find('.valueYearEnrollmentFee').val();
+		if(filterYearEnrollmentFee != null && filterYearEnrollmentFee !== '')
+			filters.push({ name: 'fq', value: 'yearEnrollmentFee:' + filterYearEnrollmentFee });
 
-	var $filterSeasonSummerCheckbox = $formFilters.find('input.valueSeasonSummer[type = "checkbox"]');
-	var $filterSeasonSummerSelect = $formFilters.find('select.valueSeasonSummer');
-	var filterSeasonSummer = $filterSeasonSummerSelect.length ? $filterSeasonSummerSelect.val() : $filterSeasonSummerCheckbox.prop('checked');
-	var filterSeasonSummerSelectVal = $formFilters.find('select.filterSeasonSummer').val();
-	var filterSeasonSummer = null;
-	if(filterSeasonSummerSelectVal !== '')
-		filterSeasonSummer = filterSeasonSummerSelectVal == 'true';
-	if(filterSeasonSummer != null && filterSeasonSummer === true)
-		filters.push({ name: 'fq', value: 'seasonSummer:' + filterSeasonSummer });
+		var $filterSeasonSummerCheckbox = $formFilters.find('input.valueSeasonSummer[type = "checkbox"]');
+		var $filterSeasonSummerSelect = $formFilters.find('select.valueSeasonSummer');
+		var filterSeasonSummer = $filterSeasonSummerSelect.length ? $filterSeasonSummerSelect.val() : $filterSeasonSummerCheckbox.prop('checked');
+		var filterSeasonSummerSelectVal = $formFilters.find('select.filterSeasonSummer').val();
+		var filterSeasonSummer = null;
+		if(filterSeasonSummerSelectVal !== '')
+			filterSeasonSummer = filterSeasonSummerSelectVal == 'true';
+		if(filterSeasonSummer != null && filterSeasonSummer === true)
+			filters.push({ name: 'fq', value: 'seasonSummer:' + filterSeasonSummer });
 
-	var $filterSeasonWinterCheckbox = $formFilters.find('input.valueSeasonWinter[type = "checkbox"]');
-	var $filterSeasonWinterSelect = $formFilters.find('select.valueSeasonWinter');
-	var filterSeasonWinter = $filterSeasonWinterSelect.length ? $filterSeasonWinterSelect.val() : $filterSeasonWinterCheckbox.prop('checked');
-	var filterSeasonWinterSelectVal = $formFilters.find('select.filterSeasonWinter').val();
-	var filterSeasonWinter = null;
-	if(filterSeasonWinterSelectVal !== '')
-		filterSeasonWinter = filterSeasonWinterSelectVal == 'true';
-	if(filterSeasonWinter != null && filterSeasonWinter === true)
-		filters.push({ name: 'fq', value: 'seasonWinter:' + filterSeasonWinter });
+		var $filterSeasonWinterCheckbox = $formFilters.find('input.valueSeasonWinter[type = "checkbox"]');
+		var $filterSeasonWinterSelect = $formFilters.find('select.valueSeasonWinter');
+		var filterSeasonWinter = $filterSeasonWinterSelect.length ? $filterSeasonWinterSelect.val() : $filterSeasonWinterCheckbox.prop('checked');
+		var filterSeasonWinterSelectVal = $formFilters.find('select.filterSeasonWinter').val();
+		var filterSeasonWinter = null;
+		if(filterSeasonWinterSelectVal !== '')
+			filterSeasonWinter = filterSeasonWinterSelectVal == 'true';
+		if(filterSeasonWinter != null && filterSeasonWinter === true)
+			filters.push({ name: 'fq', value: 'seasonWinter:' + filterSeasonWinter });
 
-	var filterSeasonShortName = $formFilters.find('.valueSeasonShortName').val();
-	if(filterSeasonShortName != null && filterSeasonShortName !== '')
-		filters.push({ name: 'fq', value: 'seasonShortName:' + filterSeasonShortName });
+		var filterSeasonShortName = $formFilters.find('.valueSeasonShortName').val();
+		if(filterSeasonShortName != null && filterSeasonShortName !== '')
+			filters.push({ name: 'fq', value: 'seasonShortName:' + filterSeasonShortName });
 
-	var filterSeasonCompleteName = $formFilters.find('.valueSeasonCompleteName').val();
-	if(filterSeasonCompleteName != null && filterSeasonCompleteName !== '')
-		filters.push({ name: 'fq', value: 'seasonCompleteName:' + filterSeasonCompleteName });
+		var filterSeasonCompleteName = $formFilters.find('.valueSeasonCompleteName').val();
+		if(filterSeasonCompleteName != null && filterSeasonCompleteName !== '')
+			filters.push({ name: 'fq', value: 'seasonCompleteName:' + filterSeasonCompleteName });
+	}
 	return filters;
 }
 
@@ -825,7 +877,7 @@ function suggestSchoolSeasonYearKey(filters, $list, pk = null, attribute=true) {
 			$a.append($i);
 			$a.append($span);
 			var val = o['seasonKeys'];
-			var checked = Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
+			var checked = pk == null ? false : Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
 			var $input = $('<input>');
 			$input.attr('id', 'GET_yearKey_' + pk + '_seasonKeys_' + o['pk']);
 			$input.attr('value', o['pk']);
@@ -861,7 +913,7 @@ function suggestSchoolSeasonSessionKeys(filters, $list, pk = null, attribute=tru
 			$a.append($i);
 			$a.append($span);
 			var val = o['seasonKey'];
-			var checked = Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
+			var checked = pk == null ? false : Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
 			var $input = $('<input>');
 			$input.attr('id', 'GET_sessionKeys_' + pk + '_seasonKey_' + o['pk']);
 			$input.attr('value', o['pk']);

@@ -49,7 +49,7 @@ async function postDesignInscription($formulaireValeurs, success, error) {
 	if(valeurDesignCache != null && valeurDesignCache !== '')
 		vals['designCache'] = valeurDesignCache;
 
-	var valeurPartHtmlCles = $formulaireValeurs.find('input.valeurPartHtmlCles:checked').val();
+	var valeurPartHtmlCles = $formulaireValeurs.find('.valeurPartHtmlCles').val();
 	if(valeurPartHtmlCles != null && valeurPartHtmlCles !== '')
 		vals['partHtmlCles'] = valeurPartHtmlCles;
 
@@ -80,9 +80,49 @@ function postDesignInscriptionVals(vals, success, error) {
 	});
 }
 
-// PUT //
+// PUTImport //
 
-async function putDesignInscription($formulaireValeurs, pk, success, error) {
+async function putimportDesignInscription($formulaireValeurs, pk, success, error) {
+	var json = $formulaireValeurs.find('.PUTImport_liste').val();
+	if(json != null && json !== '')
+		putimportDesignInscriptionVals(JSON.parse(json), success, error);
+}
+
+function putimportDesignInscriptionVals(json, success, error) {
+	$.ajax({
+		url: '/api/design-inscription/import'
+		, dataType: 'json'
+		, type: 'PUT'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(json)
+		, success: success
+		, error: error
+	});
+}
+
+// PUTFusion //
+
+async function putfusionDesignInscription($formulaireValeurs, pk, success, error) {
+	var json = $formulaireValeurs.find('.PUTFusion_liste').val();
+	if(json != null && json !== '')
+		putfusionDesignInscriptionVals(JSON.parse(json), success, error);
+}
+
+function putfusionDesignInscriptionVals(json, success, error) {
+	$.ajax({
+		url: '/api/design-inscription/fusion'
+		, dataType: 'json'
+		, type: 'PUT'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(json)
+		, success: success
+		, error: error
+	});
+}
+
+// PUTCopie //
+
+async function putcopieDesignInscription($formulaireValeurs, pk, success, error) {
 	var vals = {};
 
 	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
@@ -117,7 +157,7 @@ async function putDesignInscription($formulaireValeurs, pk, success, error) {
 	if(valeurDesignCache != null && valeurDesignCache !== '')
 		vals['designCache'] = valeurDesignCache;
 
-	var valeurPartHtmlCles = $formulaireValeurs.find('input.valeurPartHtmlCles:checked').val();
+	var valeurPartHtmlCles = $formulaireValeurs.find('.valeurPartHtmlCles').val();
 	if(valeurPartHtmlCles != null && valeurPartHtmlCles !== '')
 		vals['partHtmlCles'] = valeurPartHtmlCles;
 
@@ -125,12 +165,12 @@ async function putDesignInscription($formulaireValeurs, pk, success, error) {
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 		vals['objetTitre'] = valeurObjetTitre;
 
-	putDesignInscriptionVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
+	putcopieDesignInscriptionVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
-function putDesignInscriptionVals(filtres, vals, success, error) {
+function putcopieDesignInscriptionVals(filtres, vals, success, error) {
 	$.ajax({
-		url: '/api/design-inscription?' + $.param(filtres)
+		url: '/api/design-inscription/copie?' + $.param(filtres)
 		, dataType: 'json'
 		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
@@ -147,6 +187,8 @@ async function patchDesignInscription($formulaireFiltres, $formulaireValeurs, pk
 
 	var vals = {};
 
+	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
+	if(valeurPk != null && valeurPk !== '')
 	var removePk = $formulaireFiltres.find('.removePk').val() === 'true';
 	var setPk = removePk ? null : $formulaireValeurs.find('.setPk').val();
 	if(removePk || setPk != null && setPk !== '')
@@ -158,6 +200,8 @@ async function patchDesignInscription($formulaireFiltres, $formulaireValeurs, pk
 	if(removePk != null && removePk !== '')
 		vals['removePk'] = removePk;
 
+	var valeurCree = $formulaireValeurs.find('.valeurCree').val();
+	if(valeurCree != null && valeurCree !== '')
 	var removeCree = $formulaireFiltres.find('.removeCree').val() === 'true';
 	var setCree = removeCree ? null : $formulaireValeurs.find('.setCree').val();
 	if(removeCree || setCree != null && setCree !== '')
@@ -169,6 +213,8 @@ async function patchDesignInscription($formulaireFiltres, $formulaireValeurs, pk
 	if(removeCree != null && removeCree !== '')
 		vals['removeCree'] = removeCree;
 
+	var valeurModifie = $formulaireValeurs.find('.valeurModifie').val();
+	if(valeurModifie != null && valeurModifie !== '')
 	var removeModifie = $formulaireFiltres.find('.removeModifie').val() === 'true';
 	var setModifie = removeModifie ? null : $formulaireValeurs.find('.setModifie').val();
 	if(removeModifie || setModifie != null && setModifie !== '')
@@ -180,6 +226,8 @@ async function patchDesignInscription($formulaireFiltres, $formulaireValeurs, pk
 	if(removeModifie != null && removeModifie !== '')
 		vals['removeModifie'] = removeModifie;
 
+	var valeurObjetId = $formulaireValeurs.find('.valeurObjetId').val();
+	if(valeurObjetId != null && valeurObjetId !== '')
 	var removeObjetId = $formulaireFiltres.find('.removeObjetId').val() === 'true';
 	var setObjetId = removeObjetId ? null : $formulaireValeurs.find('.setObjetId').val();
 	if(removeObjetId || setObjetId != null && setObjetId !== '')
@@ -191,6 +239,8 @@ async function patchDesignInscription($formulaireFiltres, $formulaireValeurs, pk
 	if(removeObjetId != null && removeObjetId !== '')
 		vals['removeObjetId'] = removeObjetId;
 
+	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
+	if(valeurArchive != null && valeurArchive !== '')
 	var removeArchive = $formulaireFiltres.find('.removeArchive').val() === 'true';
 	var valeurArchiveSelectVal = $formulaireValeurs.find('select.setArchive').val();
 	var valeurArchive = null;
@@ -206,6 +256,8 @@ async function patchDesignInscription($formulaireFiltres, $formulaireValeurs, pk
 	if(removeArchive != null && removeArchive !== '')
 		vals['removeArchive'] = removeArchive;
 
+	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').prop('checked');
+	if(valeurSupprime != null && valeurSupprime !== '')
 	var removeSupprime = $formulaireFiltres.find('.removeSupprime').val() === 'true';
 	var valeurSupprimeSelectVal = $formulaireValeurs.find('select.setSupprime').val();
 	var valeurSupprime = null;
@@ -221,6 +273,8 @@ async function patchDesignInscription($formulaireFiltres, $formulaireValeurs, pk
 	if(removeSupprime != null && removeSupprime !== '')
 		vals['removeSupprime'] = removeSupprime;
 
+	var valeurDesignInscriptionNomComplet = $formulaireValeurs.find('.valeurDesignInscriptionNomComplet').val();
+	if(valeurDesignInscriptionNomComplet != null && valeurDesignInscriptionNomComplet !== '')
 	var removeDesignInscriptionNomComplet = $formulaireFiltres.find('.removeDesignInscriptionNomComplet').val() === 'true';
 	var setDesignInscriptionNomComplet = removeDesignInscriptionNomComplet ? null : $formulaireValeurs.find('.setDesignInscriptionNomComplet').val();
 	if(removeDesignInscriptionNomComplet || setDesignInscriptionNomComplet != null && setDesignInscriptionNomComplet !== '')
@@ -232,6 +286,8 @@ async function patchDesignInscription($formulaireFiltres, $formulaireValeurs, pk
 	if(removeDesignInscriptionNomComplet != null && removeDesignInscriptionNomComplet !== '')
 		vals['removeDesignInscriptionNomComplet'] = removeDesignInscriptionNomComplet;
 
+	var valeurDesignCache = $formulaireValeurs.find('.valeurDesignCache').prop('checked');
+	if(valeurDesignCache != null && valeurDesignCache !== '')
 	var removeDesignCache = $formulaireFiltres.find('.removeDesignCache').val() === 'true';
 	var valeurDesignCacheSelectVal = $formulaireValeurs.find('select.setDesignCache').val();
 	var valeurDesignCache = null;
@@ -247,6 +303,8 @@ async function patchDesignInscription($formulaireFiltres, $formulaireValeurs, pk
 	if(removeDesignCache != null && removeDesignCache !== '')
 		vals['removeDesignCache'] = removeDesignCache;
 
+	var valeurPartHtmlCles = $formulaireValeurs.find('.valeurPartHtmlCles').val();
+	if(valeurPartHtmlCles != null && valeurPartHtmlCles !== '')
 	var removePartHtmlCles = $formulaireFiltres.find('.removePartHtmlCles').val() === 'true';
 	var setPartHtmlCles = removePartHtmlCles ? null : $formulaireValeurs.find('.setPartHtmlCles').val();
 	if(removePartHtmlCles || setPartHtmlCles != null && setPartHtmlCles !== '')
@@ -258,6 +316,8 @@ async function patchDesignInscription($formulaireFiltres, $formulaireValeurs, pk
 	if(removePartHtmlCles != null && removePartHtmlCles !== '')
 		vals['removePartHtmlCles'] = removePartHtmlCles;
 
+	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
+	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 	var removeObjetTitre = $formulaireFiltres.find('.removeObjetTitre').val() === 'true';
 	var setObjetTitre = removeObjetTitre ? null : $formulaireValeurs.find('.setObjetTitre').val();
 	if(removeObjetTitre || setObjetTitre != null && setObjetTitre !== '')
@@ -274,148 +334,150 @@ async function patchDesignInscription($formulaireFiltres, $formulaireValeurs, pk
 
 function patchDesignInscriptionFiltres($formulaireFiltres) {
 	var filtres = [];
+	if($formulaireFiltres) {
 
-	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
-	if(filtrePk != null && filtrePk !== '')
-		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
+		var filtrePk = $formulaireFiltres.find('.valeurPk').val();
+		if(filtrePk != null && filtrePk !== '')
+			filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
 
-	var filtreCree = $formulaireFiltres.find('.valeurCree').val();
-	if(filtreCree != null && filtreCree !== '')
-		filtres.push({ name: 'fq', value: 'cree:' + filtreCree });
+		var filtreCree = $formulaireFiltres.find('.valeurCree').val();
+		if(filtreCree != null && filtreCree !== '')
+			filtres.push({ name: 'fq', value: 'cree:' + filtreCree });
 
-	var filtreModifie = $formulaireFiltres.find('.valeurModifie').val();
-	if(filtreModifie != null && filtreModifie !== '')
-		filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
+		var filtreModifie = $formulaireFiltres.find('.valeurModifie').val();
+		if(filtreModifie != null && filtreModifie !== '')
+			filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
 
-	var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
-	if(filtreObjetId != null && filtreObjetId !== '')
-		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
+		var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
+		if(filtreObjetId != null && filtreObjetId !== '')
+			filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
 
-	var $filtreArchiveCheckbox = $formulaireFiltres.find('input.valeurArchive[type = "checkbox"]');
-	var $filtreArchiveSelect = $formulaireFiltres.find('select.valeurArchive');
-	var filtreArchive = $filtreArchiveSelect.length ? $filtreArchiveSelect.val() : $filtreArchiveCheckbox.prop('checked');
-	var filtreArchiveSelectVal = $formulaireFiltres.find('select.filtreArchive').val();
-	var filtreArchive = null;
-	if(filtreArchiveSelectVal !== '')
-		filtreArchive = filtreArchiveSelectVal == 'true';
-	if(filtreArchive != null && filtreArchive === true)
-		filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
+		var $filtreArchiveCheckbox = $formulaireFiltres.find('input.valeurArchive[type = "checkbox"]');
+		var $filtreArchiveSelect = $formulaireFiltres.find('select.valeurArchive');
+		var filtreArchive = $filtreArchiveSelect.length ? $filtreArchiveSelect.val() : $filtreArchiveCheckbox.prop('checked');
+		var filtreArchiveSelectVal = $formulaireFiltres.find('select.filtreArchive').val();
+		var filtreArchive = null;
+		if(filtreArchiveSelectVal !== '')
+			filtreArchive = filtreArchiveSelectVal == 'true';
+		if(filtreArchive != null && filtreArchive === true)
+			filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
 
-	var $filtreSupprimeCheckbox = $formulaireFiltres.find('input.valeurSupprime[type = "checkbox"]');
-	var $filtreSupprimeSelect = $formulaireFiltres.find('select.valeurSupprime');
-	var filtreSupprime = $filtreSupprimeSelect.length ? $filtreSupprimeSelect.val() : $filtreSupprimeCheckbox.prop('checked');
-	var filtreSupprimeSelectVal = $formulaireFiltres.find('select.filtreSupprime').val();
-	var filtreSupprime = null;
-	if(filtreSupprimeSelectVal !== '')
-		filtreSupprime = filtreSupprimeSelectVal == 'true';
-	if(filtreSupprime != null && filtreSupprime === true)
-		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
+		var $filtreSupprimeCheckbox = $formulaireFiltres.find('input.valeurSupprime[type = "checkbox"]');
+		var $filtreSupprimeSelect = $formulaireFiltres.find('select.valeurSupprime');
+		var filtreSupprime = $filtreSupprimeSelect.length ? $filtreSupprimeSelect.val() : $filtreSupprimeCheckbox.prop('checked');
+		var filtreSupprimeSelectVal = $formulaireFiltres.find('select.filtreSupprime').val();
+		var filtreSupprime = null;
+		if(filtreSupprimeSelectVal !== '')
+			filtreSupprime = filtreSupprimeSelectVal == 'true';
+		if(filtreSupprime != null && filtreSupprime === true)
+			filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
-	var filtreDesignInscriptionNomComplet = $formulaireFiltres.find('.valeurDesignInscriptionNomComplet').val();
-	if(filtreDesignInscriptionNomComplet != null && filtreDesignInscriptionNomComplet !== '')
-		filtres.push({ name: 'fq', value: 'designInscriptionNomComplet:' + filtreDesignInscriptionNomComplet });
+		var filtreDesignInscriptionNomComplet = $formulaireFiltres.find('.valeurDesignInscriptionNomComplet').val();
+		if(filtreDesignInscriptionNomComplet != null && filtreDesignInscriptionNomComplet !== '')
+			filtres.push({ name: 'fq', value: 'designInscriptionNomComplet:' + filtreDesignInscriptionNomComplet });
 
-	var $filtreDesignCacheCheckbox = $formulaireFiltres.find('input.valeurDesignCache[type = "checkbox"]');
-	var $filtreDesignCacheSelect = $formulaireFiltres.find('select.valeurDesignCache');
-	var filtreDesignCache = $filtreDesignCacheSelect.length ? $filtreDesignCacheSelect.val() : $filtreDesignCacheCheckbox.prop('checked');
-	var filtreDesignCacheSelectVal = $formulaireFiltres.find('select.filtreDesignCache').val();
-	var filtreDesignCache = null;
-	if(filtreDesignCacheSelectVal !== '')
-		filtreDesignCache = filtreDesignCacheSelectVal == 'true';
-	if(filtreDesignCache != null && filtreDesignCache === true)
-		filtres.push({ name: 'fq', value: 'designCache:' + filtreDesignCache });
+		var $filtreDesignCacheCheckbox = $formulaireFiltres.find('input.valeurDesignCache[type = "checkbox"]');
+		var $filtreDesignCacheSelect = $formulaireFiltres.find('select.valeurDesignCache');
+		var filtreDesignCache = $filtreDesignCacheSelect.length ? $filtreDesignCacheSelect.val() : $filtreDesignCacheCheckbox.prop('checked');
+		var filtreDesignCacheSelectVal = $formulaireFiltres.find('select.filtreDesignCache').val();
+		var filtreDesignCache = null;
+		if(filtreDesignCacheSelectVal !== '')
+			filtreDesignCache = filtreDesignCacheSelectVal == 'true';
+		if(filtreDesignCache != null && filtreDesignCache === true)
+			filtres.push({ name: 'fq', value: 'designCache:' + filtreDesignCache });
 
-	var filtrePartHtmlCles = $formulaireFiltres.find('.valeurPartHtmlCles').val();
-	if(filtrePartHtmlCles != null && filtrePartHtmlCles !== '')
-		filtres.push({ name: 'fq', value: 'partHtmlCles:' + filtrePartHtmlCles });
+		var filtrePartHtmlCles = $formulaireFiltres.find('.valeurPartHtmlCles').val();
+		if(filtrePartHtmlCles != null && filtrePartHtmlCles !== '')
+			filtres.push({ name: 'fq', value: 'partHtmlCles:' + filtrePartHtmlCles });
 
-	var filtreInheritPk = $formulaireFiltres.find('.valeurInheritPk').val();
-	if(filtreInheritPk != null && filtreInheritPk !== '')
-		filtres.push({ name: 'fq', value: 'inheritPk:' + filtreInheritPk });
+		var filtreInheritPk = $formulaireFiltres.find('.valeurInheritPk').val();
+		if(filtreInheritPk != null && filtreInheritPk !== '')
+			filtres.push({ name: 'fq', value: 'inheritPk:' + filtreInheritPk });
 
-	var filtreId = $formulaireFiltres.find('.valeurId').val();
-	if(filtreId != null && filtreId !== '')
-		filtres.push({ name: 'fq', value: 'id:' + filtreId });
+		var filtreId = $formulaireFiltres.find('.valeurId').val();
+		if(filtreId != null && filtreId !== '')
+			filtres.push({ name: 'fq', value: 'id:' + filtreId });
 
-	var filtreClasseNomCanonique = $formulaireFiltres.find('.valeurClasseNomCanonique').val();
-	if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
-		filtres.push({ name: 'fq', value: 'classeNomCanonique:' + filtreClasseNomCanonique });
+		var filtreClasseNomCanonique = $formulaireFiltres.find('.valeurClasseNomCanonique').val();
+		if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
+			filtres.push({ name: 'fq', value: 'classeNomCanonique:' + filtreClasseNomCanonique });
 
-	var filtreClasseNomSimple = $formulaireFiltres.find('.valeurClasseNomSimple').val();
-	if(filtreClasseNomSimple != null && filtreClasseNomSimple !== '')
-		filtres.push({ name: 'fq', value: 'classeNomSimple:' + filtreClasseNomSimple });
+		var filtreClasseNomSimple = $formulaireFiltres.find('.valeurClasseNomSimple').val();
+		if(filtreClasseNomSimple != null && filtreClasseNomSimple !== '')
+			filtres.push({ name: 'fq', value: 'classeNomSimple:' + filtreClasseNomSimple });
 
-	var filtreClasseNomsCanoniques = $formulaireFiltres.find('.valeurClasseNomsCanoniques').val();
-	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
-		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
+		var filtreClasseNomsCanoniques = $formulaireFiltres.find('.valeurClasseNomsCanoniques').val();
+		if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
+			filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
 
-	var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
-	if(filtreSessionId != null && filtreSessionId !== '')
-		filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
+		var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
+		if(filtreSessionId != null && filtreSessionId !== '')
+			filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
 
-	var filtreSauvegardes = $formulaireFiltres.find('.valeurSauvegardes').val();
-	if(filtreSauvegardes != null && filtreSauvegardes !== '')
-		filtres.push({ name: 'fq', value: 'sauvegardes:' + filtreSauvegardes });
+		var filtreSauvegardes = $formulaireFiltres.find('.valeurSauvegardes').val();
+		if(filtreSauvegardes != null && filtreSauvegardes !== '')
+			filtres.push({ name: 'fq', value: 'sauvegardes:' + filtreSauvegardes });
 
-	var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
-	if(filtreObjetTitre != null && filtreObjetTitre !== '')
-		filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
+		var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
+		if(filtreObjetTitre != null && filtreObjetTitre !== '')
+			filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
 
-	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
-	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
-		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
+		var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
+		if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
+			filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
 
-	var filtreObjetTexte = $formulaireFiltres.find('.valeurObjetTexte').val();
-	if(filtreObjetTexte != null && filtreObjetTexte !== '')
-		filtres.push({ name: 'fq', value: 'objetTexte:' + filtreObjetTexte });
+		var filtreObjetTexte = $formulaireFiltres.find('.valeurObjetTexte').val();
+		if(filtreObjetTexte != null && filtreObjetTexte !== '')
+			filtres.push({ name: 'fq', value: 'objetTexte:' + filtreObjetTexte });
 
-	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
-	if(filtrePageUrlId != null && filtrePageUrlId !== '')
-		filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
+		var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
+		if(filtrePageUrlId != null && filtrePageUrlId !== '')
+			filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
 
-	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
-	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
-		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
+		var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
+		if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
+			filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
 
-	var filtreDesignInscriptionCle = $formulaireFiltres.find('.valeurDesignInscriptionCle').val();
-	if(filtreDesignInscriptionCle != null && filtreDesignInscriptionCle !== '')
-		filtres.push({ name: 'fq', value: 'designInscriptionCle:' + filtreDesignInscriptionCle });
+		var filtreDesignInscriptionCle = $formulaireFiltres.find('.valeurDesignInscriptionCle').val();
+		if(filtreDesignInscriptionCle != null && filtreDesignInscriptionCle !== '')
+			filtres.push({ name: 'fq', value: 'designInscriptionCle:' + filtreDesignInscriptionCle });
 
-	var filtreAnneeCle = $formulaireFiltres.find('.valeurAnneeCle').val();
-	if(filtreAnneeCle != null && filtreAnneeCle !== '')
-		filtres.push({ name: 'fq', value: 'anneeCle:' + filtreAnneeCle });
+		var filtreAnneeCle = $formulaireFiltres.find('.valeurAnneeCle').val();
+		if(filtreAnneeCle != null && filtreAnneeCle !== '')
+			filtres.push({ name: 'fq', value: 'anneeCle:' + filtreAnneeCle });
 
-	var filtreInscriptionCles = $formulaireFiltres.find('.valeurInscriptionCles').val();
-	if(filtreInscriptionCles != null && filtreInscriptionCles !== '')
-		filtres.push({ name: 'fq', value: 'inscriptionCles:' + filtreInscriptionCles });
+		var filtreInscriptionCles = $formulaireFiltres.find('.valeurInscriptionCles').val();
+		if(filtreInscriptionCles != null && filtreInscriptionCles !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionCles:' + filtreInscriptionCles });
 
-	var filtreEcoleCle = $formulaireFiltres.find('.valeurEcoleCle').val();
-	if(filtreEcoleCle != null && filtreEcoleCle !== '')
-		filtres.push({ name: 'fq', value: 'ecoleCle:' + filtreEcoleCle });
+		var filtreEcoleCle = $formulaireFiltres.find('.valeurEcoleCle').val();
+		if(filtreEcoleCle != null && filtreEcoleCle !== '')
+			filtres.push({ name: 'fq', value: 'ecoleCle:' + filtreEcoleCle });
 
-	var filtreEcoleNomComplet = $formulaireFiltres.find('.valeurEcoleNomComplet').val();
-	if(filtreEcoleNomComplet != null && filtreEcoleNomComplet !== '')
-		filtres.push({ name: 'fq', value: 'ecoleNomComplet:' + filtreEcoleNomComplet });
+		var filtreEcoleNomComplet = $formulaireFiltres.find('.valeurEcoleNomComplet').val();
+		if(filtreEcoleNomComplet != null && filtreEcoleNomComplet !== '')
+			filtres.push({ name: 'fq', value: 'ecoleNomComplet:' + filtreEcoleNomComplet });
 
-	var filtreEcoleEmplacement = $formulaireFiltres.find('.valeurEcoleEmplacement').val();
-	if(filtreEcoleEmplacement != null && filtreEcoleEmplacement !== '')
-		filtres.push({ name: 'fq', value: 'ecoleEmplacement:' + filtreEcoleEmplacement });
+		var filtreEcoleEmplacement = $formulaireFiltres.find('.valeurEcoleEmplacement').val();
+		if(filtreEcoleEmplacement != null && filtreEcoleEmplacement !== '')
+			filtres.push({ name: 'fq', value: 'ecoleEmplacement:' + filtreEcoleEmplacement });
 
-	var filtreAnneeDebut = $formulaireFiltres.find('.valeurAnneeDebut').val();
-	if(filtreAnneeDebut != null && filtreAnneeDebut !== '')
-		filtres.push({ name: 'fq', value: 'anneeDebut:' + filtreAnneeDebut });
+		var filtreAnneeDebut = $formulaireFiltres.find('.valeurAnneeDebut').val();
+		if(filtreAnneeDebut != null && filtreAnneeDebut !== '')
+			filtres.push({ name: 'fq', value: 'anneeDebut:' + filtreAnneeDebut });
 
-	var filtreAnneeFin = $formulaireFiltres.find('.valeurAnneeFin').val();
-	if(filtreAnneeFin != null && filtreAnneeFin !== '')
-		filtres.push({ name: 'fq', value: 'anneeFin:' + filtreAnneeFin });
+		var filtreAnneeFin = $formulaireFiltres.find('.valeurAnneeFin').val();
+		if(filtreAnneeFin != null && filtreAnneeFin !== '')
+			filtres.push({ name: 'fq', value: 'anneeFin:' + filtreAnneeFin });
 
-	var filtreAnneeNomCourt = $formulaireFiltres.find('.valeurAnneeNomCourt').val();
-	if(filtreAnneeNomCourt != null && filtreAnneeNomCourt !== '')
-		filtres.push({ name: 'fq', value: 'anneeNomCourt:' + filtreAnneeNomCourt });
+		var filtreAnneeNomCourt = $formulaireFiltres.find('.valeurAnneeNomCourt').val();
+		if(filtreAnneeNomCourt != null && filtreAnneeNomCourt !== '')
+			filtres.push({ name: 'fq', value: 'anneeNomCourt:' + filtreAnneeNomCourt });
 
-	var filtreAnneeNomComplet = $formulaireFiltres.find('.valeurAnneeNomComplet').val();
-	if(filtreAnneeNomComplet != null && filtreAnneeNomComplet !== '')
-		filtres.push({ name: 'fq', value: 'anneeNomComplet:' + filtreAnneeNomComplet });
+		var filtreAnneeNomComplet = $formulaireFiltres.find('.valeurAnneeNomComplet').val();
+		if(filtreAnneeNomComplet != null && filtreAnneeNomComplet !== '')
+			filtres.push({ name: 'fq', value: 'anneeNomComplet:' + filtreAnneeNomComplet });
+	}
 	return filtres;
 }
 
@@ -464,148 +526,150 @@ async function rechercheDesignInscription($formulaireFiltres, success, error) {
 
 function rechercheDesignInscriptionFiltres($formulaireFiltres) {
 	var filtres = [];
+	if($formulaireFiltres) {
 
-	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
-	if(filtrePk != null && filtrePk !== '')
-		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
+		var filtrePk = $formulaireFiltres.find('.valeurPk').val();
+		if(filtrePk != null && filtrePk !== '')
+			filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
 
-	var filtreCree = $formulaireFiltres.find('.valeurCree').val();
-	if(filtreCree != null && filtreCree !== '')
-		filtres.push({ name: 'fq', value: 'cree:' + filtreCree });
+		var filtreCree = $formulaireFiltres.find('.valeurCree').val();
+		if(filtreCree != null && filtreCree !== '')
+			filtres.push({ name: 'fq', value: 'cree:' + filtreCree });
 
-	var filtreModifie = $formulaireFiltres.find('.valeurModifie').val();
-	if(filtreModifie != null && filtreModifie !== '')
-		filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
+		var filtreModifie = $formulaireFiltres.find('.valeurModifie').val();
+		if(filtreModifie != null && filtreModifie !== '')
+			filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
 
-	var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
-	if(filtreObjetId != null && filtreObjetId !== '')
-		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
+		var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
+		if(filtreObjetId != null && filtreObjetId !== '')
+			filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
 
-	var $filtreArchiveCheckbox = $formulaireFiltres.find('input.valeurArchive[type = "checkbox"]');
-	var $filtreArchiveSelect = $formulaireFiltres.find('select.valeurArchive');
-	var filtreArchive = $filtreArchiveSelect.length ? $filtreArchiveSelect.val() : $filtreArchiveCheckbox.prop('checked');
-	var filtreArchiveSelectVal = $formulaireFiltres.find('select.filtreArchive').val();
-	var filtreArchive = null;
-	if(filtreArchiveSelectVal !== '')
-		filtreArchive = filtreArchiveSelectVal == 'true';
-	if(filtreArchive != null && filtreArchive === true)
-		filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
+		var $filtreArchiveCheckbox = $formulaireFiltres.find('input.valeurArchive[type = "checkbox"]');
+		var $filtreArchiveSelect = $formulaireFiltres.find('select.valeurArchive');
+		var filtreArchive = $filtreArchiveSelect.length ? $filtreArchiveSelect.val() : $filtreArchiveCheckbox.prop('checked');
+		var filtreArchiveSelectVal = $formulaireFiltres.find('select.filtreArchive').val();
+		var filtreArchive = null;
+		if(filtreArchiveSelectVal !== '')
+			filtreArchive = filtreArchiveSelectVal == 'true';
+		if(filtreArchive != null && filtreArchive === true)
+			filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
 
-	var $filtreSupprimeCheckbox = $formulaireFiltres.find('input.valeurSupprime[type = "checkbox"]');
-	var $filtreSupprimeSelect = $formulaireFiltres.find('select.valeurSupprime');
-	var filtreSupprime = $filtreSupprimeSelect.length ? $filtreSupprimeSelect.val() : $filtreSupprimeCheckbox.prop('checked');
-	var filtreSupprimeSelectVal = $formulaireFiltres.find('select.filtreSupprime').val();
-	var filtreSupprime = null;
-	if(filtreSupprimeSelectVal !== '')
-		filtreSupprime = filtreSupprimeSelectVal == 'true';
-	if(filtreSupprime != null && filtreSupprime === true)
-		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
+		var $filtreSupprimeCheckbox = $formulaireFiltres.find('input.valeurSupprime[type = "checkbox"]');
+		var $filtreSupprimeSelect = $formulaireFiltres.find('select.valeurSupprime');
+		var filtreSupprime = $filtreSupprimeSelect.length ? $filtreSupprimeSelect.val() : $filtreSupprimeCheckbox.prop('checked');
+		var filtreSupprimeSelectVal = $formulaireFiltres.find('select.filtreSupprime').val();
+		var filtreSupprime = null;
+		if(filtreSupprimeSelectVal !== '')
+			filtreSupprime = filtreSupprimeSelectVal == 'true';
+		if(filtreSupprime != null && filtreSupprime === true)
+			filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
-	var filtreDesignInscriptionNomComplet = $formulaireFiltres.find('.valeurDesignInscriptionNomComplet').val();
-	if(filtreDesignInscriptionNomComplet != null && filtreDesignInscriptionNomComplet !== '')
-		filtres.push({ name: 'fq', value: 'designInscriptionNomComplet:' + filtreDesignInscriptionNomComplet });
+		var filtreDesignInscriptionNomComplet = $formulaireFiltres.find('.valeurDesignInscriptionNomComplet').val();
+		if(filtreDesignInscriptionNomComplet != null && filtreDesignInscriptionNomComplet !== '')
+			filtres.push({ name: 'fq', value: 'designInscriptionNomComplet:' + filtreDesignInscriptionNomComplet });
 
-	var $filtreDesignCacheCheckbox = $formulaireFiltres.find('input.valeurDesignCache[type = "checkbox"]');
-	var $filtreDesignCacheSelect = $formulaireFiltres.find('select.valeurDesignCache');
-	var filtreDesignCache = $filtreDesignCacheSelect.length ? $filtreDesignCacheSelect.val() : $filtreDesignCacheCheckbox.prop('checked');
-	var filtreDesignCacheSelectVal = $formulaireFiltres.find('select.filtreDesignCache').val();
-	var filtreDesignCache = null;
-	if(filtreDesignCacheSelectVal !== '')
-		filtreDesignCache = filtreDesignCacheSelectVal == 'true';
-	if(filtreDesignCache != null && filtreDesignCache === true)
-		filtres.push({ name: 'fq', value: 'designCache:' + filtreDesignCache });
+		var $filtreDesignCacheCheckbox = $formulaireFiltres.find('input.valeurDesignCache[type = "checkbox"]');
+		var $filtreDesignCacheSelect = $formulaireFiltres.find('select.valeurDesignCache');
+		var filtreDesignCache = $filtreDesignCacheSelect.length ? $filtreDesignCacheSelect.val() : $filtreDesignCacheCheckbox.prop('checked');
+		var filtreDesignCacheSelectVal = $formulaireFiltres.find('select.filtreDesignCache').val();
+		var filtreDesignCache = null;
+		if(filtreDesignCacheSelectVal !== '')
+			filtreDesignCache = filtreDesignCacheSelectVal == 'true';
+		if(filtreDesignCache != null && filtreDesignCache === true)
+			filtres.push({ name: 'fq', value: 'designCache:' + filtreDesignCache });
 
-	var filtrePartHtmlCles = $formulaireFiltres.find('.valeurPartHtmlCles').val();
-	if(filtrePartHtmlCles != null && filtrePartHtmlCles !== '')
-		filtres.push({ name: 'fq', value: 'partHtmlCles:' + filtrePartHtmlCles });
+		var filtrePartHtmlCles = $formulaireFiltres.find('.valeurPartHtmlCles').val();
+		if(filtrePartHtmlCles != null && filtrePartHtmlCles !== '')
+			filtres.push({ name: 'fq', value: 'partHtmlCles:' + filtrePartHtmlCles });
 
-	var filtreInheritPk = $formulaireFiltres.find('.valeurInheritPk').val();
-	if(filtreInheritPk != null && filtreInheritPk !== '')
-		filtres.push({ name: 'fq', value: 'inheritPk:' + filtreInheritPk });
+		var filtreInheritPk = $formulaireFiltres.find('.valeurInheritPk').val();
+		if(filtreInheritPk != null && filtreInheritPk !== '')
+			filtres.push({ name: 'fq', value: 'inheritPk:' + filtreInheritPk });
 
-	var filtreId = $formulaireFiltres.find('.valeurId').val();
-	if(filtreId != null && filtreId !== '')
-		filtres.push({ name: 'fq', value: 'id:' + filtreId });
+		var filtreId = $formulaireFiltres.find('.valeurId').val();
+		if(filtreId != null && filtreId !== '')
+			filtres.push({ name: 'fq', value: 'id:' + filtreId });
 
-	var filtreClasseNomCanonique = $formulaireFiltres.find('.valeurClasseNomCanonique').val();
-	if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
-		filtres.push({ name: 'fq', value: 'classeNomCanonique:' + filtreClasseNomCanonique });
+		var filtreClasseNomCanonique = $formulaireFiltres.find('.valeurClasseNomCanonique').val();
+		if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
+			filtres.push({ name: 'fq', value: 'classeNomCanonique:' + filtreClasseNomCanonique });
 
-	var filtreClasseNomSimple = $formulaireFiltres.find('.valeurClasseNomSimple').val();
-	if(filtreClasseNomSimple != null && filtreClasseNomSimple !== '')
-		filtres.push({ name: 'fq', value: 'classeNomSimple:' + filtreClasseNomSimple });
+		var filtreClasseNomSimple = $formulaireFiltres.find('.valeurClasseNomSimple').val();
+		if(filtreClasseNomSimple != null && filtreClasseNomSimple !== '')
+			filtres.push({ name: 'fq', value: 'classeNomSimple:' + filtreClasseNomSimple });
 
-	var filtreClasseNomsCanoniques = $formulaireFiltres.find('.valeurClasseNomsCanoniques').val();
-	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
-		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
+		var filtreClasseNomsCanoniques = $formulaireFiltres.find('.valeurClasseNomsCanoniques').val();
+		if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
+			filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
 
-	var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
-	if(filtreSessionId != null && filtreSessionId !== '')
-		filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
+		var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
+		if(filtreSessionId != null && filtreSessionId !== '')
+			filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
 
-	var filtreSauvegardes = $formulaireFiltres.find('.valeurSauvegardes').val();
-	if(filtreSauvegardes != null && filtreSauvegardes !== '')
-		filtres.push({ name: 'fq', value: 'sauvegardes:' + filtreSauvegardes });
+		var filtreSauvegardes = $formulaireFiltres.find('.valeurSauvegardes').val();
+		if(filtreSauvegardes != null && filtreSauvegardes !== '')
+			filtres.push({ name: 'fq', value: 'sauvegardes:' + filtreSauvegardes });
 
-	var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
-	if(filtreObjetTitre != null && filtreObjetTitre !== '')
-		filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
+		var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
+		if(filtreObjetTitre != null && filtreObjetTitre !== '')
+			filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
 
-	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
-	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
-		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
+		var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
+		if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
+			filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
 
-	var filtreObjetTexte = $formulaireFiltres.find('.valeurObjetTexte').val();
-	if(filtreObjetTexte != null && filtreObjetTexte !== '')
-		filtres.push({ name: 'fq', value: 'objetTexte:' + filtreObjetTexte });
+		var filtreObjetTexte = $formulaireFiltres.find('.valeurObjetTexte').val();
+		if(filtreObjetTexte != null && filtreObjetTexte !== '')
+			filtres.push({ name: 'fq', value: 'objetTexte:' + filtreObjetTexte });
 
-	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
-	if(filtrePageUrlId != null && filtrePageUrlId !== '')
-		filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
+		var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
+		if(filtrePageUrlId != null && filtrePageUrlId !== '')
+			filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
 
-	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
-	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
-		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
+		var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
+		if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
+			filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
 
-	var filtreDesignInscriptionCle = $formulaireFiltres.find('.valeurDesignInscriptionCle').val();
-	if(filtreDesignInscriptionCle != null && filtreDesignInscriptionCle !== '')
-		filtres.push({ name: 'fq', value: 'designInscriptionCle:' + filtreDesignInscriptionCle });
+		var filtreDesignInscriptionCle = $formulaireFiltres.find('.valeurDesignInscriptionCle').val();
+		if(filtreDesignInscriptionCle != null && filtreDesignInscriptionCle !== '')
+			filtres.push({ name: 'fq', value: 'designInscriptionCle:' + filtreDesignInscriptionCle });
 
-	var filtreAnneeCle = $formulaireFiltres.find('.valeurAnneeCle').val();
-	if(filtreAnneeCle != null && filtreAnneeCle !== '')
-		filtres.push({ name: 'fq', value: 'anneeCle:' + filtreAnneeCle });
+		var filtreAnneeCle = $formulaireFiltres.find('.valeurAnneeCle').val();
+		if(filtreAnneeCle != null && filtreAnneeCle !== '')
+			filtres.push({ name: 'fq', value: 'anneeCle:' + filtreAnneeCle });
 
-	var filtreInscriptionCles = $formulaireFiltres.find('.valeurInscriptionCles').val();
-	if(filtreInscriptionCles != null && filtreInscriptionCles !== '')
-		filtres.push({ name: 'fq', value: 'inscriptionCles:' + filtreInscriptionCles });
+		var filtreInscriptionCles = $formulaireFiltres.find('.valeurInscriptionCles').val();
+		if(filtreInscriptionCles != null && filtreInscriptionCles !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionCles:' + filtreInscriptionCles });
 
-	var filtreEcoleCle = $formulaireFiltres.find('.valeurEcoleCle').val();
-	if(filtreEcoleCle != null && filtreEcoleCle !== '')
-		filtres.push({ name: 'fq', value: 'ecoleCle:' + filtreEcoleCle });
+		var filtreEcoleCle = $formulaireFiltres.find('.valeurEcoleCle').val();
+		if(filtreEcoleCle != null && filtreEcoleCle !== '')
+			filtres.push({ name: 'fq', value: 'ecoleCle:' + filtreEcoleCle });
 
-	var filtreEcoleNomComplet = $formulaireFiltres.find('.valeurEcoleNomComplet').val();
-	if(filtreEcoleNomComplet != null && filtreEcoleNomComplet !== '')
-		filtres.push({ name: 'fq', value: 'ecoleNomComplet:' + filtreEcoleNomComplet });
+		var filtreEcoleNomComplet = $formulaireFiltres.find('.valeurEcoleNomComplet').val();
+		if(filtreEcoleNomComplet != null && filtreEcoleNomComplet !== '')
+			filtres.push({ name: 'fq', value: 'ecoleNomComplet:' + filtreEcoleNomComplet });
 
-	var filtreEcoleEmplacement = $formulaireFiltres.find('.valeurEcoleEmplacement').val();
-	if(filtreEcoleEmplacement != null && filtreEcoleEmplacement !== '')
-		filtres.push({ name: 'fq', value: 'ecoleEmplacement:' + filtreEcoleEmplacement });
+		var filtreEcoleEmplacement = $formulaireFiltres.find('.valeurEcoleEmplacement').val();
+		if(filtreEcoleEmplacement != null && filtreEcoleEmplacement !== '')
+			filtres.push({ name: 'fq', value: 'ecoleEmplacement:' + filtreEcoleEmplacement });
 
-	var filtreAnneeDebut = $formulaireFiltres.find('.valeurAnneeDebut').val();
-	if(filtreAnneeDebut != null && filtreAnneeDebut !== '')
-		filtres.push({ name: 'fq', value: 'anneeDebut:' + filtreAnneeDebut });
+		var filtreAnneeDebut = $formulaireFiltres.find('.valeurAnneeDebut').val();
+		if(filtreAnneeDebut != null && filtreAnneeDebut !== '')
+			filtres.push({ name: 'fq', value: 'anneeDebut:' + filtreAnneeDebut });
 
-	var filtreAnneeFin = $formulaireFiltres.find('.valeurAnneeFin').val();
-	if(filtreAnneeFin != null && filtreAnneeFin !== '')
-		filtres.push({ name: 'fq', value: 'anneeFin:' + filtreAnneeFin });
+		var filtreAnneeFin = $formulaireFiltres.find('.valeurAnneeFin').val();
+		if(filtreAnneeFin != null && filtreAnneeFin !== '')
+			filtres.push({ name: 'fq', value: 'anneeFin:' + filtreAnneeFin });
 
-	var filtreAnneeNomCourt = $formulaireFiltres.find('.valeurAnneeNomCourt').val();
-	if(filtreAnneeNomCourt != null && filtreAnneeNomCourt !== '')
-		filtres.push({ name: 'fq', value: 'anneeNomCourt:' + filtreAnneeNomCourt });
+		var filtreAnneeNomCourt = $formulaireFiltres.find('.valeurAnneeNomCourt').val();
+		if(filtreAnneeNomCourt != null && filtreAnneeNomCourt !== '')
+			filtres.push({ name: 'fq', value: 'anneeNomCourt:' + filtreAnneeNomCourt });
 
-	var filtreAnneeNomComplet = $formulaireFiltres.find('.valeurAnneeNomComplet').val();
-	if(filtreAnneeNomComplet != null && filtreAnneeNomComplet !== '')
-		filtres.push({ name: 'fq', value: 'anneeNomComplet:' + filtreAnneeNomComplet });
+		var filtreAnneeNomComplet = $formulaireFiltres.find('.valeurAnneeNomComplet').val();
+		if(filtreAnneeNomComplet != null && filtreAnneeNomComplet !== '')
+			filtres.push({ name: 'fq', value: 'anneeNomComplet:' + filtreAnneeNomComplet });
+	}
 	return filtres;
 }
 
@@ -636,220 +700,6 @@ function suggereDesignInscriptionObjetSuggere($formulaireFiltres, $list) {
 	};
 	error = function( jqXhr, textStatus, errorThrown ) {};
 	rechercherDesignInscriptionVals($formulaireFiltres, success, error);
-}
-
-function suggereDesignInscriptionPartHtmlCles(filtres, $list, pk = null, attribuer=true) {
-	success = function( data, textStatus, jQxhr ) {
-		$list.empty();
-		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-sun ');
-			var $span = $('<span>').attr('class', '').text(o['objetTitre']);
-			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
-			$a.append($i);
-			$a.append($span);
-			var val = o['designInscriptionCle'];
-			var checked = Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
-			var $input = $('<input>');
-			$input.attr('id', 'GET_partHtmlCles_' + pk + '_designInscriptionCle_' + o['pk']);
-			$input.attr('value', o['pk']);
-			$input.attr('class', 'valeurPartHtmlCles w3-check ');
-			if(pk != null) {
-				$input.attr('onchange', "var $input = $('#GET_partHtmlCles_" + pk + "_designInscriptionCle_" + o['pk'] + "'); patchDesignInscriptionVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'PartHtmlCles']: \"" + o['pk'] + "\" } ); ");
-				$input.attr('onclick', 'enleverLueur($(this)); ');
-			}
-			$input.attr('type', 'checkbox');
-			if(checked)
-				$input.attr('checked', 'checked');
-			var $li = $('<li>');
-			var tri1 = o['tri1'];
-			var tri2 = o['tri2'];
-			var tri3 = o['tri3'];
-			var tri4 = o['tri4'];
-			var tri5 = o['tri5'];
-			var tri6 = o['tri6'];
-			var tri7 = o['tri7'];
-			var tri8 = o['tri8'];
-			var tri9 = o['tri9'];
-			var tri10 = o['tri10'];
-
-			$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
-			var $sortInput = $('<input>')
-			$sortInput.attr('class', 'w3-tiny ');
-			$sortInput.attr('style', 'width: 4em; ');
-			$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri1");
-			$sortInput.attr('value', tri1).attr('onchange', 
-				"$('#DesignInscriptionForm :input[name=\"focusId\"]').val($(this).attr('id')); "
-				+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri1']: $(this).val() ? $(this).val() : null }"
-					+ ", function() { "
-					+ "}"
-					+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri1')); }"
-					+ " ); "); 
-			$sort.append($sortInput);
-			$li.append($sort);
-
-			if(tri1 != null) {
-				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
-				var $sortInput = $('<input>')
-				$sortInput.attr('class', 'w3-tiny ');
-				$sortInput.attr('style', 'width: 4em; ');
-				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri2");
-				$sortInput.attr('value', tri2).attr('onchange', 
-					"$('#DesignInscriptionForm :input[name=\"focusId\"]').val($(this).attr('id')); "
-					+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri2']: $(this).val() ? $(this).val() : null }"
-						+ ", function() { "
-						+ "}"
-						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri2')); }"
-						+ " ); "); 
-				$sort.append($sortInput);
-				$li.append($sort);
-			}
-
-			if(tri2 != null) {
-				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
-				var $sortInput = $('<input>')
-				$sortInput.attr('class', 'w3-tiny ');
-				$sortInput.attr('style', 'width: 4em; ');
-				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri3");
-				$sortInput.attr('value', tri3).attr('onchange', 
-					"$('#DesignInscriptionForm :input[name=\"focusId\"]').val($(this).attr('id')); "
-					+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri3']: $(this).val() ? $(this).val() : null }"
-						+ ", function() { "
-						+ "}"
-						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri3')); }"
-						+ " ); "); 
-				$sort.append($sortInput);
-				$li.append($sort);
-			}
-
-			if(tri3 != null) {
-				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
-				var $sortInput = $('<input>')
-				$sortInput.attr('class', 'w3-tiny ');
-				$sortInput.attr('style', 'width: 4em; ');
-				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri4");
-				$sortInput.attr('value', tri4).attr('onchange', 
-					"$('#DesignInscriptionForm :input[name=\"focusId\"]').val($(this).attr('id')); "
-					+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri4']: $(this).val() ? $(this).val() : null }"
-						+ ", function() { "
-						+ "}"
-						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri4')); }"
-						+ " ); "); 
-				$sort.append($sortInput);
-				$li.append($sort);
-			}
-
-			if(tri4 != null) {
-				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
-				var $sortInput = $('<input>')
-				$sortInput.attr('class', 'w3-tiny ');
-				$sortInput.attr('style', 'width: 4em; ');
-				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri5");
-				$sortInput.attr('value', tri5).attr('onchange', 
-					"$('#DesignInscriptionForm :input[name=\"focusId\"]').val($(this).attr('id')); "
-					+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri5']: $(this).val() ? $(this).val() : null }"
-						+ ", function() { "
-						+ "}"
-						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri5')); }"
-						+ " ); "); 
-				$sort.append($sortInput);
-				$li.append($sort);
-			}
-
-			if(tri5 != null) {
-				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
-				var $sortInput = $('<input>')
-				$sortInput.attr('class', 'w3-tiny ');
-				$sortInput.attr('style', 'width: 4em; ');
-				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri6");
-				$sortInput.attr('value', tri6).attr('onchange', 
-					"$('#DesignInscriptionForm :input[name=\"focusId\"]').val($(this).attr('id')); "
-					+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri6']: $(this).val() ? $(this).val() : null }"
-						+ ", function() { "
-						+ "}"
-						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri6')); }"
-						+ " ); "); 
-				$sort.append($sortInput);
-				$li.append($sort);
-			}
-
-			if(tri6 != null) {
-				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
-				var $sortInput = $('<input>')
-				$sortInput.attr('class', 'w3-tiny ');
-				$sortInput.attr('style', 'width: 4em; ');
-				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri7");
-				$sortInput.attr('value', tri7).attr('onchange', 
-					"$('#DesignInscriptionForm :input[name=\"focusId\"]').val($(this).attr('id')); "
-					+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri7']: $(this).val() ? $(this).val() : null }"
-						+ ", function() { "
-						+ "}"
-						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri7')); }"
-						+ " ); "); 
-				$sort.append($sortInput);
-				$li.append($sort);
-			}
-
-			if(tri7 != null) {
-				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
-				var $sortInput = $('<input>')
-				$sortInput.attr('class', 'w3-tiny ');
-				$sortInput.attr('style', 'width: 4em; ');
-				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri8");
-				$sortInput.attr('value', tri8).attr('onchange', 
-					"$('#DesignInscriptionForm :input[name=\"focusId\"]').val($(this).attr('id')); "
-					+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri8']: $(this).val() ? $(this).val() : null }"
-						+ ", function() { "
-						+ "}"
-						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri8')); }"
-						+ " ); "); 
-				$sort.append($sortInput);
-				$li.append($sort);
-			}
-
-			if(tri8 != null) {
-				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
-				var $sortInput = $('<input>')
-				$sortInput.attr('class', 'w3-tiny ');
-				$sortInput.attr('style', 'width: 4em; ');
-				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri9");
-				$sortInput.attr('value', tri9).attr('onchange', 
-					"$('#DesignInscriptionForm :input[name=\"focusId\"]').val($(this).attr('id')); "
-					+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri9']: $(this).val() ? $(this).val() : null }"
-						+ ", function() { "
-						+ "}"
-						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri9')); }"
-						+ " ); "); 
-				$sort.append($sortInput);
-				$li.append($sort);
-			}
-
-			if(tri9 != null) {
-				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
-				var $sortInput = $('<input>')
-				$sortInput.attr('class', 'w3-tiny ');
-				$sortInput.attr('style', 'width: 4em; ');
-				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri10");
-				$sortInput.attr('value', tri10).attr('onchange', 
-					"$('#DesignInscriptionForm :input[name=\"focusId\"]').val($(this).attr('id')); "
-					+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri10']: $(this).val() ? $(this).val() : null }"
-						+ ", function() { "
-						+ "}"
-						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri10')); }"
-						+ " ); "); 
-				$sort.append($sortInput);
-				$li.append($sort);
-			}
-			if(attribuer)
-				$li.append($input);
-			$li.append($a);
-			$list.append($li);
-		});
-		var focusId = $('#DesignInscriptionForm :input[name="focusId"]').val();
-		if(focusId)
-			$('#' + focusId).parent().next().find('input').focus();
-	};
-	error = function( jqXhr, textStatus, errorThrown ) {};
-	recherchePartHtmlVals(filtres, success, error);
 }
 
 async function websocketDesignInscription(success) {
@@ -889,10 +739,6 @@ async function websocketDesignInscription(success) {
 				if(success)
 					success(json);
 		});
-
-		window.eventBus.registerHandler('websocketPartHtml', function (error, message) {
-			$('#Page_partHtmlCles').trigger('oninput');
-		});
 	}
 }
 async function websocketDesignInscriptionInner(requeteApi) {
@@ -928,10 +774,6 @@ async function websocketDesignInscriptionInner(requeteApi) {
 			if(vars.includes('designCache')) {
 				$('.inputDesignInscription' + pk + 'DesignCache').val(o['designCache']);
 				$('.varDesignInscription' + pk + 'DesignCache').text(o['designCache']);
-			}
-			if(vars.includes('partHtmlCles')) {
-				$('.inputDesignInscription' + pk + 'PartHtmlCles').val(o['partHtmlCles']);
-				$('.varDesignInscription' + pk + 'PartHtmlCles').text(o['partHtmlCles']);
 			}
 		});
 	}

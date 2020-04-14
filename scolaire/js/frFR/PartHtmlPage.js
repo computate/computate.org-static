@@ -176,9 +176,49 @@ function postPartHtmlVals(vals, success, error) {
 	});
 }
 
-// PUT //
+// PUTImport //
 
-async function putPartHtml($formulaireValeurs, pk, success, error) {
+async function putimportPartHtml($formulaireValeurs, pk, success, error) {
+	var json = $formulaireValeurs.find('.PUTImport_liste').val();
+	if(json != null && json !== '')
+		putimportPartHtmlVals(JSON.parse(json), success, error);
+}
+
+function putimportPartHtmlVals(json, success, error) {
+	$.ajax({
+		url: '/api/part-html/import'
+		, dataType: 'json'
+		, type: 'PUT'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(json)
+		, success: success
+		, error: error
+	});
+}
+
+// PUTFusion //
+
+async function putfusionPartHtml($formulaireValeurs, pk, success, error) {
+	var json = $formulaireValeurs.find('.PUTFusion_liste').val();
+	if(json != null && json !== '')
+		putfusionPartHtmlVals(JSON.parse(json), success, error);
+}
+
+function putfusionPartHtmlVals(json, success, error) {
+	$.ajax({
+		url: '/api/part-html/fusion'
+		, dataType: 'json'
+		, type: 'PUT'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(json)
+		, success: success
+		, error: error
+	});
+}
+
+// PUTCopie //
+
+async function putcopiePartHtml($formulaireValeurs, pk, success, error) {
 	var vals = {};
 
 	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
@@ -317,12 +357,12 @@ async function putPartHtml($formulaireValeurs, pk, success, error) {
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 		vals['objetTitre'] = valeurObjetTitre;
 
-	putPartHtmlVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
+	putcopiePartHtmlVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
-function putPartHtmlVals(filtres, vals, success, error) {
+function putcopiePartHtmlVals(filtres, vals, success, error) {
 	$.ajax({
-		url: '/api/part-html?' + $.param(filtres)
+		url: '/api/part-html/copie?' + $.param(filtres)
 		, dataType: 'json'
 		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
@@ -1282,7 +1322,7 @@ function recherchePartHtmlFiltres($formulaireFiltres) {
 
 function recherchePartHtmlVals(filtres, success, error) {
 
-	filtres.push({ name: 'rows', value: 1000000 });
+	filtres.push({ name: 'rows', value: 1000 });
 
 	filtres.push({ name: 'sort', value: 'tri1 asc' });
 	filtres.push({ name: 'sort', value: 'tri2 asc' });

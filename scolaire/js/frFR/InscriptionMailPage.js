@@ -268,9 +268,49 @@ function postInscriptionScolaireVals(vals, success, error) {
 	});
 }
 
-// PUT //
+// PUTImport //
 
-async function putInscriptionScolaire($formulaireValeurs, pk, success, error) {
+async function putimportInscriptionScolaire($formulaireValeurs, pk, success, error) {
+	var json = $formulaireValeurs.find('.PUTImport_liste').val();
+	if(json != null && json !== '')
+		putimportInscriptionScolaireVals(JSON.parse(json), success, error);
+}
+
+function putimportInscriptionScolaireVals(json, success, error) {
+	$.ajax({
+		url: '/api/inscription/import'
+		, dataType: 'json'
+		, type: 'PUT'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(json)
+		, success: success
+		, error: error
+	});
+}
+
+// PUTFusion //
+
+async function putfusionInscriptionScolaire($formulaireValeurs, pk, success, error) {
+	var json = $formulaireValeurs.find('.PUTFusion_liste').val();
+	if(json != null && json !== '')
+		putfusionInscriptionScolaireVals(JSON.parse(json), success, error);
+}
+
+function putfusionInscriptionScolaireVals(json, success, error) {
+	$.ajax({
+		url: '/api/inscription/fusion'
+		, dataType: 'json'
+		, type: 'PUT'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(json)
+		, success: success
+		, error: error
+	});
+}
+
+// PUTCopie //
+
+async function putcopieInscriptionScolaire($formulaireValeurs, pk, success, error) {
 	var vals = {};
 
 	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
@@ -367,7 +407,7 @@ async function putInscriptionScolaire($formulaireValeurs, pk, success, error) {
 
 	var valeurBlocCles = $formulaireValeurs.find('input.valeurBlocCles:checked').val();
 	if(valeurBlocCles != null && valeurBlocCles !== '')
-		vals['blocCles'] = valeurBlocCles;
+		vals['blocCles'] = [valeurBlocCles];
 
 	var valeurEnfantCle = $formulaireValeurs.find('input.valeurEnfantCle:checked').val();
 	if(valeurEnfantCle != null && valeurEnfantCle !== '')
@@ -375,23 +415,23 @@ async function putInscriptionScolaire($formulaireValeurs, pk, success, error) {
 
 	var valeurMereCles = $formulaireValeurs.find('input.valeurMereCles:checked').val();
 	if(valeurMereCles != null && valeurMereCles !== '')
-		vals['mereCles'] = valeurMereCles;
+		vals['mereCles'] = [valeurMereCles];
 
 	var valeurPereCles = $formulaireValeurs.find('input.valeurPereCles:checked').val();
 	if(valeurPereCles != null && valeurPereCles !== '')
-		vals['pereCles'] = valeurPereCles;
+		vals['pereCles'] = [valeurPereCles];
 
 	var valeurGardienCles = $formulaireValeurs.find('input.valeurGardienCles:checked').val();
 	if(valeurGardienCles != null && valeurGardienCles !== '')
-		vals['gardienCles'] = valeurGardienCles;
+		vals['gardienCles'] = [valeurGardienCles];
 
 	var valeurPaiementCles = $formulaireValeurs.find('input.valeurPaiementCles:checked').val();
 	if(valeurPaiementCles != null && valeurPaiementCles !== '')
-		vals['paiementCles'] = valeurPaiementCles;
+		vals['paiementCles'] = [valeurPaiementCles];
 
 	var valeurUtilisateurCles = $formulaireValeurs.find('input.valeurUtilisateurCles:checked').val();
 	if(valeurUtilisateurCles != null && valeurUtilisateurCles !== '')
-		vals['utilisateurCles'] = valeurUtilisateurCles;
+		vals['utilisateurCles'] = [valeurUtilisateurCles];
 
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
@@ -501,12 +541,12 @@ async function putInscriptionScolaire($formulaireValeurs, pk, success, error) {
 	if(valeurInscriptionDate10 != null && valeurInscriptionDate10 !== '')
 		vals['inscriptionDate10'] = valeurInscriptionDate10;
 
-	putInscriptionScolaireVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
+	putcopieInscriptionScolaireVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
-function putInscriptionScolaireVals(filtres, vals, success, error) {
+function putcopieInscriptionScolaireVals(filtres, vals, success, error) {
 	$.ajax({
-		url: '/api/inscription?' + $.param(filtres)
+		url: '/api/inscription/copie?' + $.param(filtres)
 		, dataType: 'json'
 		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'

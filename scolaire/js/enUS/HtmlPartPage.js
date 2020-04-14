@@ -176,9 +176,49 @@ function postHtmlPartVals(vals, success, error) {
 	});
 }
 
-// PUT //
+// PUTImport //
 
-async function putHtmlPart($formValues, pk, success, error) {
+async function putimportHtmlPart($formValues, pk, success, error) {
+	var json = $formValues.find('.PUTImport_list').val();
+	if(json != null && json !== '')
+		putimportHtmlPartVals(JSON.parse(json), success, error);
+}
+
+function putimportHtmlPartVals(json, success, error) {
+	$.ajax({
+		url: '/api/html-part/import'
+		, dataType: 'json'
+		, type: 'PUT'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(json)
+		, success: success
+		, error: error
+	});
+}
+
+// PUTMerge //
+
+async function putmergeHtmlPart($formValues, pk, success, error) {
+	var json = $formValues.find('.PUTMerge_list').val();
+	if(json != null && json !== '')
+		putmergeHtmlPartVals(JSON.parse(json), success, error);
+}
+
+function putmergeHtmlPartVals(json, success, error) {
+	$.ajax({
+		url: '/api/html-part/merge'
+		, dataType: 'json'
+		, type: 'PUT'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(json)
+		, success: success
+		, error: error
+	});
+}
+
+// PUTCopy //
+
+async function putcopyHtmlPart($formValues, pk, success, error) {
 	var vals = {};
 
 	var valuePk = $formValues.find('.valuePk').val();
@@ -317,12 +357,12 @@ async function putHtmlPart($formValues, pk, success, error) {
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
 
-	putHtmlPartVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
+	putcopyHtmlPartVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
-function putHtmlPartVals(filters, vals, success, error) {
+function putcopyHtmlPartVals(filters, vals, success, error) {
 	$.ajax({
-		url: '/api/html-part?' + $.param(filters)
+		url: '/api/html-part/copy?' + $.param(filters)
 		, dataType: 'json'
 		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
@@ -1282,7 +1322,7 @@ function searchHtmlPartFilters($formFilters) {
 
 function searchHtmlPartVals(filters, success, error) {
 
-	filters.push({ name: 'rows', value: 1000000 });
+	filters.push({ name: 'rows', value: 1000 });
 
 	filters.push({ name: 'sort', value: 'sort1 asc' });
 	filters.push({ name: 'sort', value: 'sort2 asc' });

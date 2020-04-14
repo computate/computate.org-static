@@ -100,9 +100,49 @@ function postGardienScolaireVals(vals, success, error) {
 	});
 }
 
-// PUT //
+// PUTImport //
 
-async function putGardienScolaire($formulaireValeurs, pk, success, error) {
+async function putimportGardienScolaire($formulaireValeurs, pk, success, error) {
+	var json = $formulaireValeurs.find('.PUTImport_liste').val();
+	if(json != null && json !== '')
+		putimportGardienScolaireVals(JSON.parse(json), success, error);
+}
+
+function putimportGardienScolaireVals(json, success, error) {
+	$.ajax({
+		url: '/api/gardien/import'
+		, dataType: 'json'
+		, type: 'PUT'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(json)
+		, success: success
+		, error: error
+	});
+}
+
+// PUTFusion //
+
+async function putfusionGardienScolaire($formulaireValeurs, pk, success, error) {
+	var json = $formulaireValeurs.find('.PUTFusion_liste').val();
+	if(json != null && json !== '')
+		putfusionGardienScolaireVals(JSON.parse(json), success, error);
+}
+
+function putfusionGardienScolaireVals(json, success, error) {
+	$.ajax({
+		url: '/api/gardien/fusion'
+		, dataType: 'json'
+		, type: 'PUT'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(json)
+		, success: success
+		, error: error
+	});
+}
+
+// PUTCopie //
+
+async function putcopieGardienScolaire($formulaireValeurs, pk, success, error) {
 	var vals = {};
 
 	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
@@ -159,18 +199,18 @@ async function putGardienScolaire($formulaireValeurs, pk, success, error) {
 
 	var valeurInscriptionCles = $formulaireValeurs.find('input.valeurInscriptionCles:checked').val();
 	if(valeurInscriptionCles != null && valeurInscriptionCles !== '')
-		vals['inscriptionCles'] = valeurInscriptionCles;
+		vals['inscriptionCles'] = [valeurInscriptionCles];
 
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 		vals['objetTitre'] = valeurObjetTitre;
 
-	putGardienScolaireVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
+	putcopieGardienScolaireVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
-function putGardienScolaireVals(filtres, vals, success, error) {
+function putcopieGardienScolaireVals(filtres, vals, success, error) {
 	$.ajax({
-		url: '/api/gardien?' + $.param(filtres)
+		url: '/api/gardien/copie?' + $.param(filtres)
 		, dataType: 'json'
 		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
@@ -187,6 +227,8 @@ async function patchGardienScolaire($formulaireFiltres, $formulaireValeurs, pk, 
 
 	var vals = {};
 
+	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
+	if(valeurPk != null && valeurPk !== '')
 	var removePk = $formulaireFiltres.find('.removePk').val() === 'true';
 	var setPk = removePk ? null : $formulaireValeurs.find('.setPk').val();
 	if(removePk || setPk != null && setPk !== '')
@@ -198,6 +240,8 @@ async function patchGardienScolaire($formulaireFiltres, $formulaireValeurs, pk, 
 	if(removePk != null && removePk !== '')
 		vals['removePk'] = removePk;
 
+	var valeurCree = $formulaireValeurs.find('.valeurCree').val();
+	if(valeurCree != null && valeurCree !== '')
 	var removeCree = $formulaireFiltres.find('.removeCree').val() === 'true';
 	var setCree = removeCree ? null : $formulaireValeurs.find('.setCree').val();
 	if(removeCree || setCree != null && setCree !== '')
@@ -209,6 +253,8 @@ async function patchGardienScolaire($formulaireFiltres, $formulaireValeurs, pk, 
 	if(removeCree != null && removeCree !== '')
 		vals['removeCree'] = removeCree;
 
+	var valeurModifie = $formulaireValeurs.find('.valeurModifie').val();
+	if(valeurModifie != null && valeurModifie !== '')
 	var removeModifie = $formulaireFiltres.find('.removeModifie').val() === 'true';
 	var setModifie = removeModifie ? null : $formulaireValeurs.find('.setModifie').val();
 	if(removeModifie || setModifie != null && setModifie !== '')
@@ -220,6 +266,8 @@ async function patchGardienScolaire($formulaireFiltres, $formulaireValeurs, pk, 
 	if(removeModifie != null && removeModifie !== '')
 		vals['removeModifie'] = removeModifie;
 
+	var valeurObjetId = $formulaireValeurs.find('.valeurObjetId').val();
+	if(valeurObjetId != null && valeurObjetId !== '')
 	var removeObjetId = $formulaireFiltres.find('.removeObjetId').val() === 'true';
 	var setObjetId = removeObjetId ? null : $formulaireValeurs.find('.setObjetId').val();
 	if(removeObjetId || setObjetId != null && setObjetId !== '')
@@ -231,6 +279,8 @@ async function patchGardienScolaire($formulaireFiltres, $formulaireValeurs, pk, 
 	if(removeObjetId != null && removeObjetId !== '')
 		vals['removeObjetId'] = removeObjetId;
 
+	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
+	if(valeurArchive != null && valeurArchive !== '')
 	var removeArchive = $formulaireFiltres.find('.removeArchive').val() === 'true';
 	var valeurArchiveSelectVal = $formulaireValeurs.find('select.setArchive').val();
 	var valeurArchive = null;
@@ -246,6 +296,8 @@ async function patchGardienScolaire($formulaireFiltres, $formulaireValeurs, pk, 
 	if(removeArchive != null && removeArchive !== '')
 		vals['removeArchive'] = removeArchive;
 
+	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').prop('checked');
+	if(valeurSupprime != null && valeurSupprime !== '')
 	var removeSupprime = $formulaireFiltres.find('.removeSupprime').val() === 'true';
 	var valeurSupprimeSelectVal = $formulaireValeurs.find('select.setSupprime').val();
 	var valeurSupprime = null;
@@ -261,6 +313,8 @@ async function patchGardienScolaire($formulaireFiltres, $formulaireValeurs, pk, 
 	if(removeSupprime != null && removeSupprime !== '')
 		vals['removeSupprime'] = removeSupprime;
 
+	var valeurPersonnePrenom = $formulaireValeurs.find('.valeurPersonnePrenom').val();
+	if(valeurPersonnePrenom != null && valeurPersonnePrenom !== '')
 	var removePersonnePrenom = $formulaireFiltres.find('.removePersonnePrenom').val() === 'true';
 	var setPersonnePrenom = removePersonnePrenom ? null : $formulaireValeurs.find('.setPersonnePrenom').val();
 	if(removePersonnePrenom || setPersonnePrenom != null && setPersonnePrenom !== '')
@@ -272,6 +326,8 @@ async function patchGardienScolaire($formulaireFiltres, $formulaireValeurs, pk, 
 	if(removePersonnePrenom != null && removePersonnePrenom !== '')
 		vals['removePersonnePrenom'] = removePersonnePrenom;
 
+	var valeurFamilleNom = $formulaireValeurs.find('.valeurFamilleNom').val();
+	if(valeurFamilleNom != null && valeurFamilleNom !== '')
 	var removeFamilleNom = $formulaireFiltres.find('.removeFamilleNom').val() === 'true';
 	var setFamilleNom = removeFamilleNom ? null : $formulaireValeurs.find('.setFamilleNom').val();
 	if(removeFamilleNom || setFamilleNom != null && setFamilleNom !== '')
@@ -283,6 +339,8 @@ async function patchGardienScolaire($formulaireFiltres, $formulaireValeurs, pk, 
 	if(removeFamilleNom != null && removeFamilleNom !== '')
 		vals['removeFamilleNom'] = removeFamilleNom;
 
+	var valeurPersonnePrenomPrefere = $formulaireValeurs.find('.valeurPersonnePrenomPrefere').val();
+	if(valeurPersonnePrenomPrefere != null && valeurPersonnePrenomPrefere !== '')
 	var removePersonnePrenomPrefere = $formulaireFiltres.find('.removePersonnePrenomPrefere').val() === 'true';
 	var setPersonnePrenomPrefere = removePersonnePrenomPrefere ? null : $formulaireValeurs.find('.setPersonnePrenomPrefere').val();
 	if(removePersonnePrenomPrefere || setPersonnePrenomPrefere != null && setPersonnePrenomPrefere !== '')
@@ -294,6 +352,8 @@ async function patchGardienScolaire($formulaireFiltres, $formulaireValeurs, pk, 
 	if(removePersonnePrenomPrefere != null && removePersonnePrenomPrefere !== '')
 		vals['removePersonnePrenomPrefere'] = removePersonnePrenomPrefere;
 
+	var valeurPersonneNumeroTelephone = $formulaireValeurs.find('.valeurPersonneNumeroTelephone').val();
+	if(valeurPersonneNumeroTelephone != null && valeurPersonneNumeroTelephone !== '')
 	var removePersonneNumeroTelephone = $formulaireFiltres.find('.removePersonneNumeroTelephone').val() === 'true';
 	var setPersonneNumeroTelephone = removePersonneNumeroTelephone ? null : $formulaireValeurs.find('.setPersonneNumeroTelephone').val();
 	if(removePersonneNumeroTelephone || setPersonneNumeroTelephone != null && setPersonneNumeroTelephone !== '')
@@ -305,6 +365,8 @@ async function patchGardienScolaire($formulaireFiltres, $formulaireValeurs, pk, 
 	if(removePersonneNumeroTelephone != null && removePersonneNumeroTelephone !== '')
 		vals['removePersonneNumeroTelephone'] = removePersonneNumeroTelephone;
 
+	var valeurPersonneRelation = $formulaireValeurs.find('.valeurPersonneRelation').val();
+	if(valeurPersonneRelation != null && valeurPersonneRelation !== '')
 	var removePersonneRelation = $formulaireFiltres.find('.removePersonneRelation').val() === 'true';
 	var setPersonneRelation = removePersonneRelation ? null : $formulaireValeurs.find('.setPersonneRelation').val();
 	if(removePersonneRelation || setPersonneRelation != null && setPersonneRelation !== '')
@@ -316,6 +378,8 @@ async function patchGardienScolaire($formulaireFiltres, $formulaireValeurs, pk, 
 	if(removePersonneRelation != null && removePersonneRelation !== '')
 		vals['removePersonneRelation'] = removePersonneRelation;
 
+	var valeurPersonneContactUrgence = $formulaireValeurs.find('.valeurPersonneContactUrgence').prop('checked');
+	if(valeurPersonneContactUrgence != null && valeurPersonneContactUrgence !== '')
 	var removePersonneContactUrgence = $formulaireFiltres.find('.removePersonneContactUrgence').val() === 'true';
 	var valeurPersonneContactUrgenceSelectVal = $formulaireValeurs.find('select.setPersonneContactUrgence').val();
 	var valeurPersonneContactUrgence = null;
@@ -331,6 +395,8 @@ async function patchGardienScolaire($formulaireFiltres, $formulaireValeurs, pk, 
 	if(removePersonneContactUrgence != null && removePersonneContactUrgence !== '')
 		vals['removePersonneContactUrgence'] = removePersonneContactUrgence;
 
+	var valeurPersonneChercher = $formulaireValeurs.find('.valeurPersonneChercher').prop('checked');
+	if(valeurPersonneChercher != null && valeurPersonneChercher !== '')
 	var removePersonneChercher = $formulaireFiltres.find('.removePersonneChercher').val() === 'true';
 	var valeurPersonneChercherSelectVal = $formulaireValeurs.find('select.setPersonneChercher').val();
 	var valeurPersonneChercher = null;
@@ -346,17 +412,12 @@ async function patchGardienScolaire($formulaireFiltres, $formulaireValeurs, pk, 
 	if(removePersonneChercher != null && removePersonneChercher !== '')
 		vals['removePersonneChercher'] = removePersonneChercher;
 
-	var removeInscriptionCles = $formulaireFiltres.find('.removeInscriptionCles').val() === 'true';
-	var setInscriptionCles = removeInscriptionCles ? null : $formulaireValeurs.find('.setInscriptionCles').val();
-	if(removeInscriptionCles || setInscriptionCles != null && setInscriptionCles !== '')
-		vals['setInscriptionCles'] = setInscriptionCles;
-	var addInscriptionCles = $formulaireValeurs.find('.addInscriptionCles').val();
-	if(addInscriptionCles != null && addInscriptionCles !== '')
-		vals['addInscriptionCles'] = addInscriptionCles;
-	var removeInscriptionCles = $formulaireValeurs.find('.removeInscriptionCles').val();
-	if(removeInscriptionCles != null && removeInscriptionCles !== '')
-		vals['removeInscriptionCles'] = removeInscriptionCles;
+	var valeurInscriptionCles = $formulaireValeurs.find('input.valeurInscriptionCles:checked').val();
+	if(valeurInscriptionCles != null && valeurInscriptionCles !== '')
+		vals['addInscriptionCles'] = valeurInscriptionCles;
 
+	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
+	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 	var removeObjetTitre = $formulaireFiltres.find('.removeObjetTitre').val() === 'true';
 	var setObjetTitre = removeObjetTitre ? null : $formulaireValeurs.find('.setObjetTitre').val();
 	if(removeObjetTitre || setObjetTitre != null && setObjetTitre !== '')
@@ -373,214 +434,216 @@ async function patchGardienScolaire($formulaireFiltres, $formulaireValeurs, pk, 
 
 function patchGardienScolaireFiltres($formulaireFiltres) {
 	var filtres = [];
+	if($formulaireFiltres) {
 
-	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
-	if(filtrePk != null && filtrePk !== '')
-		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
+		var filtrePk = $formulaireFiltres.find('.valeurPk').val();
+		if(filtrePk != null && filtrePk !== '')
+			filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
 
-	var filtreCree = $formulaireFiltres.find('.valeurCree').val();
-	if(filtreCree != null && filtreCree !== '')
-		filtres.push({ name: 'fq', value: 'cree:' + filtreCree });
+		var filtreCree = $formulaireFiltres.find('.valeurCree').val();
+		if(filtreCree != null && filtreCree !== '')
+			filtres.push({ name: 'fq', value: 'cree:' + filtreCree });
 
-	var filtreModifie = $formulaireFiltres.find('.valeurModifie').val();
-	if(filtreModifie != null && filtreModifie !== '')
-		filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
+		var filtreModifie = $formulaireFiltres.find('.valeurModifie').val();
+		if(filtreModifie != null && filtreModifie !== '')
+			filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
 
-	var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
-	if(filtreObjetId != null && filtreObjetId !== '')
-		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
+		var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
+		if(filtreObjetId != null && filtreObjetId !== '')
+			filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
 
-	var $filtreArchiveCheckbox = $formulaireFiltres.find('input.valeurArchive[type = "checkbox"]');
-	var $filtreArchiveSelect = $formulaireFiltres.find('select.valeurArchive');
-	var filtreArchive = $filtreArchiveSelect.length ? $filtreArchiveSelect.val() : $filtreArchiveCheckbox.prop('checked');
-	var filtreArchiveSelectVal = $formulaireFiltres.find('select.filtreArchive').val();
-	var filtreArchive = null;
-	if(filtreArchiveSelectVal !== '')
-		filtreArchive = filtreArchiveSelectVal == 'true';
-	if(filtreArchive != null && filtreArchive === true)
-		filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
+		var $filtreArchiveCheckbox = $formulaireFiltres.find('input.valeurArchive[type = "checkbox"]');
+		var $filtreArchiveSelect = $formulaireFiltres.find('select.valeurArchive');
+		var filtreArchive = $filtreArchiveSelect.length ? $filtreArchiveSelect.val() : $filtreArchiveCheckbox.prop('checked');
+		var filtreArchiveSelectVal = $formulaireFiltres.find('select.filtreArchive').val();
+		var filtreArchive = null;
+		if(filtreArchiveSelectVal !== '')
+			filtreArchive = filtreArchiveSelectVal == 'true';
+		if(filtreArchive != null && filtreArchive === true)
+			filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
 
-	var $filtreSupprimeCheckbox = $formulaireFiltres.find('input.valeurSupprime[type = "checkbox"]');
-	var $filtreSupprimeSelect = $formulaireFiltres.find('select.valeurSupprime');
-	var filtreSupprime = $filtreSupprimeSelect.length ? $filtreSupprimeSelect.val() : $filtreSupprimeCheckbox.prop('checked');
-	var filtreSupprimeSelectVal = $formulaireFiltres.find('select.filtreSupprime').val();
-	var filtreSupprime = null;
-	if(filtreSupprimeSelectVal !== '')
-		filtreSupprime = filtreSupprimeSelectVal == 'true';
-	if(filtreSupprime != null && filtreSupprime === true)
-		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
+		var $filtreSupprimeCheckbox = $formulaireFiltres.find('input.valeurSupprime[type = "checkbox"]');
+		var $filtreSupprimeSelect = $formulaireFiltres.find('select.valeurSupprime');
+		var filtreSupprime = $filtreSupprimeSelect.length ? $filtreSupprimeSelect.val() : $filtreSupprimeCheckbox.prop('checked');
+		var filtreSupprimeSelectVal = $formulaireFiltres.find('select.filtreSupprime').val();
+		var filtreSupprime = null;
+		if(filtreSupprimeSelectVal !== '')
+			filtreSupprime = filtreSupprimeSelectVal == 'true';
+		if(filtreSupprime != null && filtreSupprime === true)
+			filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
-	var filtrePersonnePrenom = $formulaireFiltres.find('.valeurPersonnePrenom').val();
-	if(filtrePersonnePrenom != null && filtrePersonnePrenom !== '')
-		filtres.push({ name: 'fq', value: 'personnePrenom:' + filtrePersonnePrenom });
+		var filtrePersonnePrenom = $formulaireFiltres.find('.valeurPersonnePrenom').val();
+		if(filtrePersonnePrenom != null && filtrePersonnePrenom !== '')
+			filtres.push({ name: 'fq', value: 'personnePrenom:' + filtrePersonnePrenom });
 
-	var filtreFamilleNom = $formulaireFiltres.find('.valeurFamilleNom').val();
-	if(filtreFamilleNom != null && filtreFamilleNom !== '')
-		filtres.push({ name: 'fq', value: 'familleNom:' + filtreFamilleNom });
+		var filtreFamilleNom = $formulaireFiltres.find('.valeurFamilleNom').val();
+		if(filtreFamilleNom != null && filtreFamilleNom !== '')
+			filtres.push({ name: 'fq', value: 'familleNom:' + filtreFamilleNom });
 
-	var filtrePersonnePrenomPrefere = $formulaireFiltres.find('.valeurPersonnePrenomPrefere').val();
-	if(filtrePersonnePrenomPrefere != null && filtrePersonnePrenomPrefere !== '')
-		filtres.push({ name: 'fq', value: 'personnePrenomPrefere:' + filtrePersonnePrenomPrefere });
+		var filtrePersonnePrenomPrefere = $formulaireFiltres.find('.valeurPersonnePrenomPrefere').val();
+		if(filtrePersonnePrenomPrefere != null && filtrePersonnePrenomPrefere !== '')
+			filtres.push({ name: 'fq', value: 'personnePrenomPrefere:' + filtrePersonnePrenomPrefere });
 
-	var filtrePersonneNumeroTelephone = $formulaireFiltres.find('.valeurPersonneNumeroTelephone').val();
-	if(filtrePersonneNumeroTelephone != null && filtrePersonneNumeroTelephone !== '')
-		filtres.push({ name: 'fq', value: 'personneNumeroTelephone:' + filtrePersonneNumeroTelephone });
+		var filtrePersonneNumeroTelephone = $formulaireFiltres.find('.valeurPersonneNumeroTelephone').val();
+		if(filtrePersonneNumeroTelephone != null && filtrePersonneNumeroTelephone !== '')
+			filtres.push({ name: 'fq', value: 'personneNumeroTelephone:' + filtrePersonneNumeroTelephone });
 
-	var filtrePersonneRelation = $formulaireFiltres.find('.valeurPersonneRelation').val();
-	if(filtrePersonneRelation != null && filtrePersonneRelation !== '')
-		filtres.push({ name: 'fq', value: 'personneRelation:' + filtrePersonneRelation });
+		var filtrePersonneRelation = $formulaireFiltres.find('.valeurPersonneRelation').val();
+		if(filtrePersonneRelation != null && filtrePersonneRelation !== '')
+			filtres.push({ name: 'fq', value: 'personneRelation:' + filtrePersonneRelation });
 
-	var $filtrePersonneContactUrgenceCheckbox = $formulaireFiltres.find('input.valeurPersonneContactUrgence[type = "checkbox"]');
-	var $filtrePersonneContactUrgenceSelect = $formulaireFiltres.find('select.valeurPersonneContactUrgence');
-	var filtrePersonneContactUrgence = $filtrePersonneContactUrgenceSelect.length ? $filtrePersonneContactUrgenceSelect.val() : $filtrePersonneContactUrgenceCheckbox.prop('checked');
-	var filtrePersonneContactUrgenceSelectVal = $formulaireFiltres.find('select.filtrePersonneContactUrgence').val();
-	var filtrePersonneContactUrgence = null;
-	if(filtrePersonneContactUrgenceSelectVal !== '')
-		filtrePersonneContactUrgence = filtrePersonneContactUrgenceSelectVal == 'true';
-	if(filtrePersonneContactUrgence != null && filtrePersonneContactUrgence === true)
-		filtres.push({ name: 'fq', value: 'personneContactUrgence:' + filtrePersonneContactUrgence });
+		var $filtrePersonneContactUrgenceCheckbox = $formulaireFiltres.find('input.valeurPersonneContactUrgence[type = "checkbox"]');
+		var $filtrePersonneContactUrgenceSelect = $formulaireFiltres.find('select.valeurPersonneContactUrgence');
+		var filtrePersonneContactUrgence = $filtrePersonneContactUrgenceSelect.length ? $filtrePersonneContactUrgenceSelect.val() : $filtrePersonneContactUrgenceCheckbox.prop('checked');
+		var filtrePersonneContactUrgenceSelectVal = $formulaireFiltres.find('select.filtrePersonneContactUrgence').val();
+		var filtrePersonneContactUrgence = null;
+		if(filtrePersonneContactUrgenceSelectVal !== '')
+			filtrePersonneContactUrgence = filtrePersonneContactUrgenceSelectVal == 'true';
+		if(filtrePersonneContactUrgence != null && filtrePersonneContactUrgence === true)
+			filtres.push({ name: 'fq', value: 'personneContactUrgence:' + filtrePersonneContactUrgence });
 
-	var $filtrePersonneChercherCheckbox = $formulaireFiltres.find('input.valeurPersonneChercher[type = "checkbox"]');
-	var $filtrePersonneChercherSelect = $formulaireFiltres.find('select.valeurPersonneChercher');
-	var filtrePersonneChercher = $filtrePersonneChercherSelect.length ? $filtrePersonneChercherSelect.val() : $filtrePersonneChercherCheckbox.prop('checked');
-	var filtrePersonneChercherSelectVal = $formulaireFiltres.find('select.filtrePersonneChercher').val();
-	var filtrePersonneChercher = null;
-	if(filtrePersonneChercherSelectVal !== '')
-		filtrePersonneChercher = filtrePersonneChercherSelectVal == 'true';
-	if(filtrePersonneChercher != null && filtrePersonneChercher === true)
-		filtres.push({ name: 'fq', value: 'personneChercher:' + filtrePersonneChercher });
+		var $filtrePersonneChercherCheckbox = $formulaireFiltres.find('input.valeurPersonneChercher[type = "checkbox"]');
+		var $filtrePersonneChercherSelect = $formulaireFiltres.find('select.valeurPersonneChercher');
+		var filtrePersonneChercher = $filtrePersonneChercherSelect.length ? $filtrePersonneChercherSelect.val() : $filtrePersonneChercherCheckbox.prop('checked');
+		var filtrePersonneChercherSelectVal = $formulaireFiltres.find('select.filtrePersonneChercher').val();
+		var filtrePersonneChercher = null;
+		if(filtrePersonneChercherSelectVal !== '')
+			filtrePersonneChercher = filtrePersonneChercherSelectVal == 'true';
+		if(filtrePersonneChercher != null && filtrePersonneChercher === true)
+			filtres.push({ name: 'fq', value: 'personneChercher:' + filtrePersonneChercher });
 
-	var filtreInscriptionCles = $formulaireFiltres.find('.valeurInscriptionCles').val();
-	if(filtreInscriptionCles != null && filtreInscriptionCles !== '')
-		filtres.push({ name: 'fq', value: 'inscriptionCles:' + filtreInscriptionCles });
+		var filtreInscriptionCles = $formulaireFiltres.find('.valeurInscriptionCles').val();
+		if(filtreInscriptionCles != null && filtreInscriptionCles !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionCles:' + filtreInscriptionCles });
 
-	var filtreInheritPk = $formulaireFiltres.find('.valeurInheritPk').val();
-	if(filtreInheritPk != null && filtreInheritPk !== '')
-		filtres.push({ name: 'fq', value: 'inheritPk:' + filtreInheritPk });
+		var filtreInheritPk = $formulaireFiltres.find('.valeurInheritPk').val();
+		if(filtreInheritPk != null && filtreInheritPk !== '')
+			filtres.push({ name: 'fq', value: 'inheritPk:' + filtreInheritPk });
 
-	var filtreId = $formulaireFiltres.find('.valeurId').val();
-	if(filtreId != null && filtreId !== '')
-		filtres.push({ name: 'fq', value: 'id:' + filtreId });
+		var filtreId = $formulaireFiltres.find('.valeurId').val();
+		if(filtreId != null && filtreId !== '')
+			filtres.push({ name: 'fq', value: 'id:' + filtreId });
 
-	var filtreClasseNomCanonique = $formulaireFiltres.find('.valeurClasseNomCanonique').val();
-	if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
-		filtres.push({ name: 'fq', value: 'classeNomCanonique:' + filtreClasseNomCanonique });
+		var filtreClasseNomCanonique = $formulaireFiltres.find('.valeurClasseNomCanonique').val();
+		if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
+			filtres.push({ name: 'fq', value: 'classeNomCanonique:' + filtreClasseNomCanonique });
 
-	var filtreClasseNomSimple = $formulaireFiltres.find('.valeurClasseNomSimple').val();
-	if(filtreClasseNomSimple != null && filtreClasseNomSimple !== '')
-		filtres.push({ name: 'fq', value: 'classeNomSimple:' + filtreClasseNomSimple });
+		var filtreClasseNomSimple = $formulaireFiltres.find('.valeurClasseNomSimple').val();
+		if(filtreClasseNomSimple != null && filtreClasseNomSimple !== '')
+			filtres.push({ name: 'fq', value: 'classeNomSimple:' + filtreClasseNomSimple });
 
-	var filtreClasseNomsCanoniques = $formulaireFiltres.find('.valeurClasseNomsCanoniques').val();
-	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
-		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
+		var filtreClasseNomsCanoniques = $formulaireFiltres.find('.valeurClasseNomsCanoniques').val();
+		if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
+			filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
 
-	var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
-	if(filtreSessionId != null && filtreSessionId !== '')
-		filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
+		var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
+		if(filtreSessionId != null && filtreSessionId !== '')
+			filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
 
-	var filtreSauvegardes = $formulaireFiltres.find('.valeurSauvegardes').val();
-	if(filtreSauvegardes != null && filtreSauvegardes !== '')
-		filtres.push({ name: 'fq', value: 'sauvegardes:' + filtreSauvegardes });
+		var filtreSauvegardes = $formulaireFiltres.find('.valeurSauvegardes').val();
+		if(filtreSauvegardes != null && filtreSauvegardes !== '')
+			filtres.push({ name: 'fq', value: 'sauvegardes:' + filtreSauvegardes });
 
-	var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
-	if(filtreObjetTitre != null && filtreObjetTitre !== '')
-		filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
+		var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
+		if(filtreObjetTitre != null && filtreObjetTitre !== '')
+			filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
 
-	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
-	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
-		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
+		var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
+		if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
+			filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
 
-	var filtreObjetTexte = $formulaireFiltres.find('.valeurObjetTexte').val();
-	if(filtreObjetTexte != null && filtreObjetTexte !== '')
-		filtres.push({ name: 'fq', value: 'objetTexte:' + filtreObjetTexte });
+		var filtreObjetTexte = $formulaireFiltres.find('.valeurObjetTexte').val();
+		if(filtreObjetTexte != null && filtreObjetTexte !== '')
+			filtres.push({ name: 'fq', value: 'objetTexte:' + filtreObjetTexte });
 
-	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
-	if(filtrePageUrlId != null && filtrePageUrlId !== '')
-		filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
+		var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
+		if(filtrePageUrlId != null && filtrePageUrlId !== '')
+			filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
 
-	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
-	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
-		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
+		var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
+		if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
+			filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
 
-	var filtreGardienCle = $formulaireFiltres.find('.valeurGardienCle').val();
-	if(filtreGardienCle != null && filtreGardienCle !== '')
-		filtres.push({ name: 'fq', value: 'gardienCle:' + filtreGardienCle });
+		var filtreGardienCle = $formulaireFiltres.find('.valeurGardienCle').val();
+		if(filtreGardienCle != null && filtreGardienCle !== '')
+			filtres.push({ name: 'fq', value: 'gardienCle:' + filtreGardienCle });
 
-	var filtreFamilleTri = $formulaireFiltres.find('.valeurFamilleTri').val();
-	if(filtreFamilleTri != null && filtreFamilleTri !== '')
-		filtres.push({ name: 'fq', value: 'familleTri:' + filtreFamilleTri });
+		var filtreFamilleTri = $formulaireFiltres.find('.valeurFamilleTri').val();
+		if(filtreFamilleTri != null && filtreFamilleTri !== '')
+			filtres.push({ name: 'fq', value: 'familleTri:' + filtreFamilleTri });
 
-	var filtreGardienTri = $formulaireFiltres.find('.valeurGardienTri').val();
-	if(filtreGardienTri != null && filtreGardienTri !== '')
-		filtres.push({ name: 'fq', value: 'gardienTri:' + filtreGardienTri });
+		var filtreGardienTri = $formulaireFiltres.find('.valeurGardienTri').val();
+		if(filtreGardienTri != null && filtreGardienTri !== '')
+			filtres.push({ name: 'fq', value: 'gardienTri:' + filtreGardienTri });
 
-	var filtreUtilisateurCles = $formulaireFiltres.find('.valeurUtilisateurCles').val();
-	if(filtreUtilisateurCles != null && filtreUtilisateurCles !== '')
-		filtres.push({ name: 'fq', value: 'utilisateurCles:' + filtreUtilisateurCles });
+		var filtreUtilisateurCles = $formulaireFiltres.find('.valeurUtilisateurCles').val();
+		if(filtreUtilisateurCles != null && filtreUtilisateurCles !== '')
+			filtres.push({ name: 'fq', value: 'utilisateurCles:' + filtreUtilisateurCles });
 
-	var filtreEcoleCles = $formulaireFiltres.find('.valeurEcoleCles').val();
-	if(filtreEcoleCles != null && filtreEcoleCles !== '')
-		filtres.push({ name: 'fq', value: 'ecoleCles:' + filtreEcoleCles });
+		var filtreEcoleCles = $formulaireFiltres.find('.valeurEcoleCles').val();
+		if(filtreEcoleCles != null && filtreEcoleCles !== '')
+			filtres.push({ name: 'fq', value: 'ecoleCles:' + filtreEcoleCles });
 
-	var filtreAnneeCles = $formulaireFiltres.find('.valeurAnneeCles').val();
-	if(filtreAnneeCles != null && filtreAnneeCles !== '')
-		filtres.push({ name: 'fq', value: 'anneeCles:' + filtreAnneeCles });
+		var filtreAnneeCles = $formulaireFiltres.find('.valeurAnneeCles').val();
+		if(filtreAnneeCles != null && filtreAnneeCles !== '')
+			filtres.push({ name: 'fq', value: 'anneeCles:' + filtreAnneeCles });
 
-	var filtreSaisonCles = $formulaireFiltres.find('.valeurSaisonCles').val();
-	if(filtreSaisonCles != null && filtreSaisonCles !== '')
-		filtres.push({ name: 'fq', value: 'saisonCles:' + filtreSaisonCles });
+		var filtreSaisonCles = $formulaireFiltres.find('.valeurSaisonCles').val();
+		if(filtreSaisonCles != null && filtreSaisonCles !== '')
+			filtres.push({ name: 'fq', value: 'saisonCles:' + filtreSaisonCles });
 
-	var filtreSessionCles = $formulaireFiltres.find('.valeurSessionCles').val();
-	if(filtreSessionCles != null && filtreSessionCles !== '')
-		filtres.push({ name: 'fq', value: 'sessionCles:' + filtreSessionCles });
+		var filtreSessionCles = $formulaireFiltres.find('.valeurSessionCles').val();
+		if(filtreSessionCles != null && filtreSessionCles !== '')
+			filtres.push({ name: 'fq', value: 'sessionCles:' + filtreSessionCles });
 
-	var filtreAgeCles = $formulaireFiltres.find('.valeurAgeCles').val();
-	if(filtreAgeCles != null && filtreAgeCles !== '')
-		filtres.push({ name: 'fq', value: 'ageCles:' + filtreAgeCles });
+		var filtreAgeCles = $formulaireFiltres.find('.valeurAgeCles').val();
+		if(filtreAgeCles != null && filtreAgeCles !== '')
+			filtres.push({ name: 'fq', value: 'ageCles:' + filtreAgeCles });
 
-	var filtrePersonneNomComplet = $formulaireFiltres.find('.valeurPersonneNomComplet').val();
-	if(filtrePersonneNomComplet != null && filtrePersonneNomComplet !== '')
-		filtres.push({ name: 'fq', value: 'personneNomComplet:' + filtrePersonneNomComplet });
+		var filtrePersonneNomComplet = $formulaireFiltres.find('.valeurPersonneNomComplet').val();
+		if(filtrePersonneNomComplet != null && filtrePersonneNomComplet !== '')
+			filtres.push({ name: 'fq', value: 'personneNomComplet:' + filtrePersonneNomComplet });
 
-	var filtrePersonneNomCompletPrefere = $formulaireFiltres.find('.valeurPersonneNomCompletPrefere').val();
-	if(filtrePersonneNomCompletPrefere != null && filtrePersonneNomCompletPrefere !== '')
-		filtres.push({ name: 'fq', value: 'personneNomCompletPrefere:' + filtrePersonneNomCompletPrefere });
+		var filtrePersonneNomCompletPrefere = $formulaireFiltres.find('.valeurPersonneNomCompletPrefere').val();
+		if(filtrePersonneNomCompletPrefere != null && filtrePersonneNomCompletPrefere !== '')
+			filtres.push({ name: 'fq', value: 'personneNomCompletPrefere:' + filtrePersonneNomCompletPrefere });
 
-	var filtrePersonneNomFormel = $formulaireFiltres.find('.valeurPersonneNomFormel').val();
-	if(filtrePersonneNomFormel != null && filtrePersonneNomFormel !== '')
-		filtres.push({ name: 'fq', value: 'personneNomFormel:' + filtrePersonneNomFormel });
+		var filtrePersonneNomFormel = $formulaireFiltres.find('.valeurPersonneNomFormel').val();
+		if(filtrePersonneNomFormel != null && filtrePersonneNomFormel !== '')
+			filtres.push({ name: 'fq', value: 'personneNomFormel:' + filtrePersonneNomFormel });
 
-	var filtrePersonneOccupation = $formulaireFiltres.find('.valeurPersonneOccupation').val();
-	if(filtrePersonneOccupation != null && filtrePersonneOccupation !== '')
-		filtres.push({ name: 'fq', value: 'personneOccupation:' + filtrePersonneOccupation });
+		var filtrePersonneOccupation = $formulaireFiltres.find('.valeurPersonneOccupation').val();
+		if(filtrePersonneOccupation != null && filtrePersonneOccupation !== '')
+			filtres.push({ name: 'fq', value: 'personneOccupation:' + filtrePersonneOccupation });
 
-	var filtrePersonneMail = $formulaireFiltres.find('.valeurPersonneMail').val();
-	if(filtrePersonneMail != null && filtrePersonneMail !== '')
-		filtres.push({ name: 'fq', value: 'personneMail:' + filtrePersonneMail });
+		var filtrePersonneMail = $formulaireFiltres.find('.valeurPersonneMail').val();
+		if(filtrePersonneMail != null && filtrePersonneMail !== '')
+			filtres.push({ name: 'fq', value: 'personneMail:' + filtrePersonneMail });
 
-	var $filtrePersonneSmsCheckbox = $formulaireFiltres.find('input.valeurPersonneSms[type = "checkbox"]');
-	var $filtrePersonneSmsSelect = $formulaireFiltres.find('select.valeurPersonneSms');
-	var filtrePersonneSms = $filtrePersonneSmsSelect.length ? $filtrePersonneSmsSelect.val() : $filtrePersonneSmsCheckbox.prop('checked');
-	var filtrePersonneSmsSelectVal = $formulaireFiltres.find('select.filtrePersonneSms').val();
-	var filtrePersonneSms = null;
-	if(filtrePersonneSmsSelectVal !== '')
-		filtrePersonneSms = filtrePersonneSmsSelectVal == 'true';
-	if(filtrePersonneSms != null && filtrePersonneSms === true)
-		filtres.push({ name: 'fq', value: 'personneSms:' + filtrePersonneSms });
+		var $filtrePersonneSmsCheckbox = $formulaireFiltres.find('input.valeurPersonneSms[type = "checkbox"]');
+		var $filtrePersonneSmsSelect = $formulaireFiltres.find('select.valeurPersonneSms');
+		var filtrePersonneSms = $filtrePersonneSmsSelect.length ? $filtrePersonneSmsSelect.val() : $filtrePersonneSmsCheckbox.prop('checked');
+		var filtrePersonneSmsSelectVal = $formulaireFiltres.find('select.filtrePersonneSms').val();
+		var filtrePersonneSms = null;
+		if(filtrePersonneSmsSelectVal !== '')
+			filtrePersonneSms = filtrePersonneSmsSelectVal == 'true';
+		if(filtrePersonneSms != null && filtrePersonneSms === true)
+			filtres.push({ name: 'fq', value: 'personneSms:' + filtrePersonneSms });
 
-	var $filtrePersonneRecevoirMailCheckbox = $formulaireFiltres.find('input.valeurPersonneRecevoirMail[type = "checkbox"]');
-	var $filtrePersonneRecevoirMailSelect = $formulaireFiltres.find('select.valeurPersonneRecevoirMail');
-	var filtrePersonneRecevoirMail = $filtrePersonneRecevoirMailSelect.length ? $filtrePersonneRecevoirMailSelect.val() : $filtrePersonneRecevoirMailCheckbox.prop('checked');
-	var filtrePersonneRecevoirMailSelectVal = $formulaireFiltres.find('select.filtrePersonneRecevoirMail').val();
-	var filtrePersonneRecevoirMail = null;
-	if(filtrePersonneRecevoirMailSelectVal !== '')
-		filtrePersonneRecevoirMail = filtrePersonneRecevoirMailSelectVal == 'true';
-	if(filtrePersonneRecevoirMail != null && filtrePersonneRecevoirMail === true)
-		filtres.push({ name: 'fq', value: 'personneRecevoirMail:' + filtrePersonneRecevoirMail });
+		var $filtrePersonneRecevoirMailCheckbox = $formulaireFiltres.find('input.valeurPersonneRecevoirMail[type = "checkbox"]');
+		var $filtrePersonneRecevoirMailSelect = $formulaireFiltres.find('select.valeurPersonneRecevoirMail');
+		var filtrePersonneRecevoirMail = $filtrePersonneRecevoirMailSelect.length ? $filtrePersonneRecevoirMailSelect.val() : $filtrePersonneRecevoirMailCheckbox.prop('checked');
+		var filtrePersonneRecevoirMailSelectVal = $formulaireFiltres.find('select.filtrePersonneRecevoirMail').val();
+		var filtrePersonneRecevoirMail = null;
+		if(filtrePersonneRecevoirMailSelectVal !== '')
+			filtrePersonneRecevoirMail = filtrePersonneRecevoirMailSelectVal == 'true';
+		if(filtrePersonneRecevoirMail != null && filtrePersonneRecevoirMail === true)
+			filtres.push({ name: 'fq', value: 'personneRecevoirMail:' + filtrePersonneRecevoirMail });
 
-	var filtreGardienNomComplet = $formulaireFiltres.find('.valeurGardienNomComplet').val();
-	if(filtreGardienNomComplet != null && filtreGardienNomComplet !== '')
-		filtres.push({ name: 'fq', value: 'gardienNomComplet:' + filtreGardienNomComplet });
+		var filtreGardienNomComplet = $formulaireFiltres.find('.valeurGardienNomComplet').val();
+		if(filtreGardienNomComplet != null && filtreGardienNomComplet !== '')
+			filtres.push({ name: 'fq', value: 'gardienNomComplet:' + filtreGardienNomComplet });
+	}
 	return filtres;
 }
 
@@ -629,214 +692,216 @@ async function rechercheGardienScolaire($formulaireFiltres, success, error) {
 
 function rechercheGardienScolaireFiltres($formulaireFiltres) {
 	var filtres = [];
+	if($formulaireFiltres) {
 
-	var filtrePk = $formulaireFiltres.find('.valeurPk').val();
-	if(filtrePk != null && filtrePk !== '')
-		filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
+		var filtrePk = $formulaireFiltres.find('.valeurPk').val();
+		if(filtrePk != null && filtrePk !== '')
+			filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
 
-	var filtreCree = $formulaireFiltres.find('.valeurCree').val();
-	if(filtreCree != null && filtreCree !== '')
-		filtres.push({ name: 'fq', value: 'cree:' + filtreCree });
+		var filtreCree = $formulaireFiltres.find('.valeurCree').val();
+		if(filtreCree != null && filtreCree !== '')
+			filtres.push({ name: 'fq', value: 'cree:' + filtreCree });
 
-	var filtreModifie = $formulaireFiltres.find('.valeurModifie').val();
-	if(filtreModifie != null && filtreModifie !== '')
-		filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
+		var filtreModifie = $formulaireFiltres.find('.valeurModifie').val();
+		if(filtreModifie != null && filtreModifie !== '')
+			filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
 
-	var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
-	if(filtreObjetId != null && filtreObjetId !== '')
-		filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
+		var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
+		if(filtreObjetId != null && filtreObjetId !== '')
+			filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
 
-	var $filtreArchiveCheckbox = $formulaireFiltres.find('input.valeurArchive[type = "checkbox"]');
-	var $filtreArchiveSelect = $formulaireFiltres.find('select.valeurArchive');
-	var filtreArchive = $filtreArchiveSelect.length ? $filtreArchiveSelect.val() : $filtreArchiveCheckbox.prop('checked');
-	var filtreArchiveSelectVal = $formulaireFiltres.find('select.filtreArchive').val();
-	var filtreArchive = null;
-	if(filtreArchiveSelectVal !== '')
-		filtreArchive = filtreArchiveSelectVal == 'true';
-	if(filtreArchive != null && filtreArchive === true)
-		filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
+		var $filtreArchiveCheckbox = $formulaireFiltres.find('input.valeurArchive[type = "checkbox"]');
+		var $filtreArchiveSelect = $formulaireFiltres.find('select.valeurArchive');
+		var filtreArchive = $filtreArchiveSelect.length ? $filtreArchiveSelect.val() : $filtreArchiveCheckbox.prop('checked');
+		var filtreArchiveSelectVal = $formulaireFiltres.find('select.filtreArchive').val();
+		var filtreArchive = null;
+		if(filtreArchiveSelectVal !== '')
+			filtreArchive = filtreArchiveSelectVal == 'true';
+		if(filtreArchive != null && filtreArchive === true)
+			filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
 
-	var $filtreSupprimeCheckbox = $formulaireFiltres.find('input.valeurSupprime[type = "checkbox"]');
-	var $filtreSupprimeSelect = $formulaireFiltres.find('select.valeurSupprime');
-	var filtreSupprime = $filtreSupprimeSelect.length ? $filtreSupprimeSelect.val() : $filtreSupprimeCheckbox.prop('checked');
-	var filtreSupprimeSelectVal = $formulaireFiltres.find('select.filtreSupprime').val();
-	var filtreSupprime = null;
-	if(filtreSupprimeSelectVal !== '')
-		filtreSupprime = filtreSupprimeSelectVal == 'true';
-	if(filtreSupprime != null && filtreSupprime === true)
-		filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
+		var $filtreSupprimeCheckbox = $formulaireFiltres.find('input.valeurSupprime[type = "checkbox"]');
+		var $filtreSupprimeSelect = $formulaireFiltres.find('select.valeurSupprime');
+		var filtreSupprime = $filtreSupprimeSelect.length ? $filtreSupprimeSelect.val() : $filtreSupprimeCheckbox.prop('checked');
+		var filtreSupprimeSelectVal = $formulaireFiltres.find('select.filtreSupprime').val();
+		var filtreSupprime = null;
+		if(filtreSupprimeSelectVal !== '')
+			filtreSupprime = filtreSupprimeSelectVal == 'true';
+		if(filtreSupprime != null && filtreSupprime === true)
+			filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
-	var filtrePersonnePrenom = $formulaireFiltres.find('.valeurPersonnePrenom').val();
-	if(filtrePersonnePrenom != null && filtrePersonnePrenom !== '')
-		filtres.push({ name: 'fq', value: 'personnePrenom:' + filtrePersonnePrenom });
+		var filtrePersonnePrenom = $formulaireFiltres.find('.valeurPersonnePrenom').val();
+		if(filtrePersonnePrenom != null && filtrePersonnePrenom !== '')
+			filtres.push({ name: 'fq', value: 'personnePrenom:' + filtrePersonnePrenom });
 
-	var filtreFamilleNom = $formulaireFiltres.find('.valeurFamilleNom').val();
-	if(filtreFamilleNom != null && filtreFamilleNom !== '')
-		filtres.push({ name: 'fq', value: 'familleNom:' + filtreFamilleNom });
+		var filtreFamilleNom = $formulaireFiltres.find('.valeurFamilleNom').val();
+		if(filtreFamilleNom != null && filtreFamilleNom !== '')
+			filtres.push({ name: 'fq', value: 'familleNom:' + filtreFamilleNom });
 
-	var filtrePersonnePrenomPrefere = $formulaireFiltres.find('.valeurPersonnePrenomPrefere').val();
-	if(filtrePersonnePrenomPrefere != null && filtrePersonnePrenomPrefere !== '')
-		filtres.push({ name: 'fq', value: 'personnePrenomPrefere:' + filtrePersonnePrenomPrefere });
+		var filtrePersonnePrenomPrefere = $formulaireFiltres.find('.valeurPersonnePrenomPrefere').val();
+		if(filtrePersonnePrenomPrefere != null && filtrePersonnePrenomPrefere !== '')
+			filtres.push({ name: 'fq', value: 'personnePrenomPrefere:' + filtrePersonnePrenomPrefere });
 
-	var filtrePersonneNumeroTelephone = $formulaireFiltres.find('.valeurPersonneNumeroTelephone').val();
-	if(filtrePersonneNumeroTelephone != null && filtrePersonneNumeroTelephone !== '')
-		filtres.push({ name: 'fq', value: 'personneNumeroTelephone:' + filtrePersonneNumeroTelephone });
+		var filtrePersonneNumeroTelephone = $formulaireFiltres.find('.valeurPersonneNumeroTelephone').val();
+		if(filtrePersonneNumeroTelephone != null && filtrePersonneNumeroTelephone !== '')
+			filtres.push({ name: 'fq', value: 'personneNumeroTelephone:' + filtrePersonneNumeroTelephone });
 
-	var filtrePersonneRelation = $formulaireFiltres.find('.valeurPersonneRelation').val();
-	if(filtrePersonneRelation != null && filtrePersonneRelation !== '')
-		filtres.push({ name: 'fq', value: 'personneRelation:' + filtrePersonneRelation });
+		var filtrePersonneRelation = $formulaireFiltres.find('.valeurPersonneRelation').val();
+		if(filtrePersonneRelation != null && filtrePersonneRelation !== '')
+			filtres.push({ name: 'fq', value: 'personneRelation:' + filtrePersonneRelation });
 
-	var $filtrePersonneContactUrgenceCheckbox = $formulaireFiltres.find('input.valeurPersonneContactUrgence[type = "checkbox"]');
-	var $filtrePersonneContactUrgenceSelect = $formulaireFiltres.find('select.valeurPersonneContactUrgence');
-	var filtrePersonneContactUrgence = $filtrePersonneContactUrgenceSelect.length ? $filtrePersonneContactUrgenceSelect.val() : $filtrePersonneContactUrgenceCheckbox.prop('checked');
-	var filtrePersonneContactUrgenceSelectVal = $formulaireFiltres.find('select.filtrePersonneContactUrgence').val();
-	var filtrePersonneContactUrgence = null;
-	if(filtrePersonneContactUrgenceSelectVal !== '')
-		filtrePersonneContactUrgence = filtrePersonneContactUrgenceSelectVal == 'true';
-	if(filtrePersonneContactUrgence != null && filtrePersonneContactUrgence === true)
-		filtres.push({ name: 'fq', value: 'personneContactUrgence:' + filtrePersonneContactUrgence });
+		var $filtrePersonneContactUrgenceCheckbox = $formulaireFiltres.find('input.valeurPersonneContactUrgence[type = "checkbox"]');
+		var $filtrePersonneContactUrgenceSelect = $formulaireFiltres.find('select.valeurPersonneContactUrgence');
+		var filtrePersonneContactUrgence = $filtrePersonneContactUrgenceSelect.length ? $filtrePersonneContactUrgenceSelect.val() : $filtrePersonneContactUrgenceCheckbox.prop('checked');
+		var filtrePersonneContactUrgenceSelectVal = $formulaireFiltres.find('select.filtrePersonneContactUrgence').val();
+		var filtrePersonneContactUrgence = null;
+		if(filtrePersonneContactUrgenceSelectVal !== '')
+			filtrePersonneContactUrgence = filtrePersonneContactUrgenceSelectVal == 'true';
+		if(filtrePersonneContactUrgence != null && filtrePersonneContactUrgence === true)
+			filtres.push({ name: 'fq', value: 'personneContactUrgence:' + filtrePersonneContactUrgence });
 
-	var $filtrePersonneChercherCheckbox = $formulaireFiltres.find('input.valeurPersonneChercher[type = "checkbox"]');
-	var $filtrePersonneChercherSelect = $formulaireFiltres.find('select.valeurPersonneChercher');
-	var filtrePersonneChercher = $filtrePersonneChercherSelect.length ? $filtrePersonneChercherSelect.val() : $filtrePersonneChercherCheckbox.prop('checked');
-	var filtrePersonneChercherSelectVal = $formulaireFiltres.find('select.filtrePersonneChercher').val();
-	var filtrePersonneChercher = null;
-	if(filtrePersonneChercherSelectVal !== '')
-		filtrePersonneChercher = filtrePersonneChercherSelectVal == 'true';
-	if(filtrePersonneChercher != null && filtrePersonneChercher === true)
-		filtres.push({ name: 'fq', value: 'personneChercher:' + filtrePersonneChercher });
+		var $filtrePersonneChercherCheckbox = $formulaireFiltres.find('input.valeurPersonneChercher[type = "checkbox"]');
+		var $filtrePersonneChercherSelect = $formulaireFiltres.find('select.valeurPersonneChercher');
+		var filtrePersonneChercher = $filtrePersonneChercherSelect.length ? $filtrePersonneChercherSelect.val() : $filtrePersonneChercherCheckbox.prop('checked');
+		var filtrePersonneChercherSelectVal = $formulaireFiltres.find('select.filtrePersonneChercher').val();
+		var filtrePersonneChercher = null;
+		if(filtrePersonneChercherSelectVal !== '')
+			filtrePersonneChercher = filtrePersonneChercherSelectVal == 'true';
+		if(filtrePersonneChercher != null && filtrePersonneChercher === true)
+			filtres.push({ name: 'fq', value: 'personneChercher:' + filtrePersonneChercher });
 
-	var filtreInscriptionCles = $formulaireFiltres.find('.valeurInscriptionCles').val();
-	if(filtreInscriptionCles != null && filtreInscriptionCles !== '')
-		filtres.push({ name: 'fq', value: 'inscriptionCles:' + filtreInscriptionCles });
+		var filtreInscriptionCles = $formulaireFiltres.find('.valeurInscriptionCles').val();
+		if(filtreInscriptionCles != null && filtreInscriptionCles !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionCles:' + filtreInscriptionCles });
 
-	var filtreInheritPk = $formulaireFiltres.find('.valeurInheritPk').val();
-	if(filtreInheritPk != null && filtreInheritPk !== '')
-		filtres.push({ name: 'fq', value: 'inheritPk:' + filtreInheritPk });
+		var filtreInheritPk = $formulaireFiltres.find('.valeurInheritPk').val();
+		if(filtreInheritPk != null && filtreInheritPk !== '')
+			filtres.push({ name: 'fq', value: 'inheritPk:' + filtreInheritPk });
 
-	var filtreId = $formulaireFiltres.find('.valeurId').val();
-	if(filtreId != null && filtreId !== '')
-		filtres.push({ name: 'fq', value: 'id:' + filtreId });
+		var filtreId = $formulaireFiltres.find('.valeurId').val();
+		if(filtreId != null && filtreId !== '')
+			filtres.push({ name: 'fq', value: 'id:' + filtreId });
 
-	var filtreClasseNomCanonique = $formulaireFiltres.find('.valeurClasseNomCanonique').val();
-	if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
-		filtres.push({ name: 'fq', value: 'classeNomCanonique:' + filtreClasseNomCanonique });
+		var filtreClasseNomCanonique = $formulaireFiltres.find('.valeurClasseNomCanonique').val();
+		if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
+			filtres.push({ name: 'fq', value: 'classeNomCanonique:' + filtreClasseNomCanonique });
 
-	var filtreClasseNomSimple = $formulaireFiltres.find('.valeurClasseNomSimple').val();
-	if(filtreClasseNomSimple != null && filtreClasseNomSimple !== '')
-		filtres.push({ name: 'fq', value: 'classeNomSimple:' + filtreClasseNomSimple });
+		var filtreClasseNomSimple = $formulaireFiltres.find('.valeurClasseNomSimple').val();
+		if(filtreClasseNomSimple != null && filtreClasseNomSimple !== '')
+			filtres.push({ name: 'fq', value: 'classeNomSimple:' + filtreClasseNomSimple });
 
-	var filtreClasseNomsCanoniques = $formulaireFiltres.find('.valeurClasseNomsCanoniques').val();
-	if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
-		filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
+		var filtreClasseNomsCanoniques = $formulaireFiltres.find('.valeurClasseNomsCanoniques').val();
+		if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
+			filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
 
-	var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
-	if(filtreSessionId != null && filtreSessionId !== '')
-		filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
+		var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
+		if(filtreSessionId != null && filtreSessionId !== '')
+			filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
 
-	var filtreSauvegardes = $formulaireFiltres.find('.valeurSauvegardes').val();
-	if(filtreSauvegardes != null && filtreSauvegardes !== '')
-		filtres.push({ name: 'fq', value: 'sauvegardes:' + filtreSauvegardes });
+		var filtreSauvegardes = $formulaireFiltres.find('.valeurSauvegardes').val();
+		if(filtreSauvegardes != null && filtreSauvegardes !== '')
+			filtres.push({ name: 'fq', value: 'sauvegardes:' + filtreSauvegardes });
 
-	var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
-	if(filtreObjetTitre != null && filtreObjetTitre !== '')
-		filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
+		var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
+		if(filtreObjetTitre != null && filtreObjetTitre !== '')
+			filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
 
-	var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
-	if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
-		filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
+		var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
+		if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
+			filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
 
-	var filtreObjetTexte = $formulaireFiltres.find('.valeurObjetTexte').val();
-	if(filtreObjetTexte != null && filtreObjetTexte !== '')
-		filtres.push({ name: 'fq', value: 'objetTexte:' + filtreObjetTexte });
+		var filtreObjetTexte = $formulaireFiltres.find('.valeurObjetTexte').val();
+		if(filtreObjetTexte != null && filtreObjetTexte !== '')
+			filtres.push({ name: 'fq', value: 'objetTexte:' + filtreObjetTexte });
 
-	var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
-	if(filtrePageUrlId != null && filtrePageUrlId !== '')
-		filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
+		var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
+		if(filtrePageUrlId != null && filtrePageUrlId !== '')
+			filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
 
-	var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
-	if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
-		filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
+		var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
+		if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
+			filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
 
-	var filtreGardienCle = $formulaireFiltres.find('.valeurGardienCle').val();
-	if(filtreGardienCle != null && filtreGardienCle !== '')
-		filtres.push({ name: 'fq', value: 'gardienCle:' + filtreGardienCle });
+		var filtreGardienCle = $formulaireFiltres.find('.valeurGardienCle').val();
+		if(filtreGardienCle != null && filtreGardienCle !== '')
+			filtres.push({ name: 'fq', value: 'gardienCle:' + filtreGardienCle });
 
-	var filtreFamilleTri = $formulaireFiltres.find('.valeurFamilleTri').val();
-	if(filtreFamilleTri != null && filtreFamilleTri !== '')
-		filtres.push({ name: 'fq', value: 'familleTri:' + filtreFamilleTri });
+		var filtreFamilleTri = $formulaireFiltres.find('.valeurFamilleTri').val();
+		if(filtreFamilleTri != null && filtreFamilleTri !== '')
+			filtres.push({ name: 'fq', value: 'familleTri:' + filtreFamilleTri });
 
-	var filtreGardienTri = $formulaireFiltres.find('.valeurGardienTri').val();
-	if(filtreGardienTri != null && filtreGardienTri !== '')
-		filtres.push({ name: 'fq', value: 'gardienTri:' + filtreGardienTri });
+		var filtreGardienTri = $formulaireFiltres.find('.valeurGardienTri').val();
+		if(filtreGardienTri != null && filtreGardienTri !== '')
+			filtres.push({ name: 'fq', value: 'gardienTri:' + filtreGardienTri });
 
-	var filtreUtilisateurCles = $formulaireFiltres.find('.valeurUtilisateurCles').val();
-	if(filtreUtilisateurCles != null && filtreUtilisateurCles !== '')
-		filtres.push({ name: 'fq', value: 'utilisateurCles:' + filtreUtilisateurCles });
+		var filtreUtilisateurCles = $formulaireFiltres.find('.valeurUtilisateurCles').val();
+		if(filtreUtilisateurCles != null && filtreUtilisateurCles !== '')
+			filtres.push({ name: 'fq', value: 'utilisateurCles:' + filtreUtilisateurCles });
 
-	var filtreEcoleCles = $formulaireFiltres.find('.valeurEcoleCles').val();
-	if(filtreEcoleCles != null && filtreEcoleCles !== '')
-		filtres.push({ name: 'fq', value: 'ecoleCles:' + filtreEcoleCles });
+		var filtreEcoleCles = $formulaireFiltres.find('.valeurEcoleCles').val();
+		if(filtreEcoleCles != null && filtreEcoleCles !== '')
+			filtres.push({ name: 'fq', value: 'ecoleCles:' + filtreEcoleCles });
 
-	var filtreAnneeCles = $formulaireFiltres.find('.valeurAnneeCles').val();
-	if(filtreAnneeCles != null && filtreAnneeCles !== '')
-		filtres.push({ name: 'fq', value: 'anneeCles:' + filtreAnneeCles });
+		var filtreAnneeCles = $formulaireFiltres.find('.valeurAnneeCles').val();
+		if(filtreAnneeCles != null && filtreAnneeCles !== '')
+			filtres.push({ name: 'fq', value: 'anneeCles:' + filtreAnneeCles });
 
-	var filtreSaisonCles = $formulaireFiltres.find('.valeurSaisonCles').val();
-	if(filtreSaisonCles != null && filtreSaisonCles !== '')
-		filtres.push({ name: 'fq', value: 'saisonCles:' + filtreSaisonCles });
+		var filtreSaisonCles = $formulaireFiltres.find('.valeurSaisonCles').val();
+		if(filtreSaisonCles != null && filtreSaisonCles !== '')
+			filtres.push({ name: 'fq', value: 'saisonCles:' + filtreSaisonCles });
 
-	var filtreSessionCles = $formulaireFiltres.find('.valeurSessionCles').val();
-	if(filtreSessionCles != null && filtreSessionCles !== '')
-		filtres.push({ name: 'fq', value: 'sessionCles:' + filtreSessionCles });
+		var filtreSessionCles = $formulaireFiltres.find('.valeurSessionCles').val();
+		if(filtreSessionCles != null && filtreSessionCles !== '')
+			filtres.push({ name: 'fq', value: 'sessionCles:' + filtreSessionCles });
 
-	var filtreAgeCles = $formulaireFiltres.find('.valeurAgeCles').val();
-	if(filtreAgeCles != null && filtreAgeCles !== '')
-		filtres.push({ name: 'fq', value: 'ageCles:' + filtreAgeCles });
+		var filtreAgeCles = $formulaireFiltres.find('.valeurAgeCles').val();
+		if(filtreAgeCles != null && filtreAgeCles !== '')
+			filtres.push({ name: 'fq', value: 'ageCles:' + filtreAgeCles });
 
-	var filtrePersonneNomComplet = $formulaireFiltres.find('.valeurPersonneNomComplet').val();
-	if(filtrePersonneNomComplet != null && filtrePersonneNomComplet !== '')
-		filtres.push({ name: 'fq', value: 'personneNomComplet:' + filtrePersonneNomComplet });
+		var filtrePersonneNomComplet = $formulaireFiltres.find('.valeurPersonneNomComplet').val();
+		if(filtrePersonneNomComplet != null && filtrePersonneNomComplet !== '')
+			filtres.push({ name: 'fq', value: 'personneNomComplet:' + filtrePersonneNomComplet });
 
-	var filtrePersonneNomCompletPrefere = $formulaireFiltres.find('.valeurPersonneNomCompletPrefere').val();
-	if(filtrePersonneNomCompletPrefere != null && filtrePersonneNomCompletPrefere !== '')
-		filtres.push({ name: 'fq', value: 'personneNomCompletPrefere:' + filtrePersonneNomCompletPrefere });
+		var filtrePersonneNomCompletPrefere = $formulaireFiltres.find('.valeurPersonneNomCompletPrefere').val();
+		if(filtrePersonneNomCompletPrefere != null && filtrePersonneNomCompletPrefere !== '')
+			filtres.push({ name: 'fq', value: 'personneNomCompletPrefere:' + filtrePersonneNomCompletPrefere });
 
-	var filtrePersonneNomFormel = $formulaireFiltres.find('.valeurPersonneNomFormel').val();
-	if(filtrePersonneNomFormel != null && filtrePersonneNomFormel !== '')
-		filtres.push({ name: 'fq', value: 'personneNomFormel:' + filtrePersonneNomFormel });
+		var filtrePersonneNomFormel = $formulaireFiltres.find('.valeurPersonneNomFormel').val();
+		if(filtrePersonneNomFormel != null && filtrePersonneNomFormel !== '')
+			filtres.push({ name: 'fq', value: 'personneNomFormel:' + filtrePersonneNomFormel });
 
-	var filtrePersonneOccupation = $formulaireFiltres.find('.valeurPersonneOccupation').val();
-	if(filtrePersonneOccupation != null && filtrePersonneOccupation !== '')
-		filtres.push({ name: 'fq', value: 'personneOccupation:' + filtrePersonneOccupation });
+		var filtrePersonneOccupation = $formulaireFiltres.find('.valeurPersonneOccupation').val();
+		if(filtrePersonneOccupation != null && filtrePersonneOccupation !== '')
+			filtres.push({ name: 'fq', value: 'personneOccupation:' + filtrePersonneOccupation });
 
-	var filtrePersonneMail = $formulaireFiltres.find('.valeurPersonneMail').val();
-	if(filtrePersonneMail != null && filtrePersonneMail !== '')
-		filtres.push({ name: 'fq', value: 'personneMail:' + filtrePersonneMail });
+		var filtrePersonneMail = $formulaireFiltres.find('.valeurPersonneMail').val();
+		if(filtrePersonneMail != null && filtrePersonneMail !== '')
+			filtres.push({ name: 'fq', value: 'personneMail:' + filtrePersonneMail });
 
-	var $filtrePersonneSmsCheckbox = $formulaireFiltres.find('input.valeurPersonneSms[type = "checkbox"]');
-	var $filtrePersonneSmsSelect = $formulaireFiltres.find('select.valeurPersonneSms');
-	var filtrePersonneSms = $filtrePersonneSmsSelect.length ? $filtrePersonneSmsSelect.val() : $filtrePersonneSmsCheckbox.prop('checked');
-	var filtrePersonneSmsSelectVal = $formulaireFiltres.find('select.filtrePersonneSms').val();
-	var filtrePersonneSms = null;
-	if(filtrePersonneSmsSelectVal !== '')
-		filtrePersonneSms = filtrePersonneSmsSelectVal == 'true';
-	if(filtrePersonneSms != null && filtrePersonneSms === true)
-		filtres.push({ name: 'fq', value: 'personneSms:' + filtrePersonneSms });
+		var $filtrePersonneSmsCheckbox = $formulaireFiltres.find('input.valeurPersonneSms[type = "checkbox"]');
+		var $filtrePersonneSmsSelect = $formulaireFiltres.find('select.valeurPersonneSms');
+		var filtrePersonneSms = $filtrePersonneSmsSelect.length ? $filtrePersonneSmsSelect.val() : $filtrePersonneSmsCheckbox.prop('checked');
+		var filtrePersonneSmsSelectVal = $formulaireFiltres.find('select.filtrePersonneSms').val();
+		var filtrePersonneSms = null;
+		if(filtrePersonneSmsSelectVal !== '')
+			filtrePersonneSms = filtrePersonneSmsSelectVal == 'true';
+		if(filtrePersonneSms != null && filtrePersonneSms === true)
+			filtres.push({ name: 'fq', value: 'personneSms:' + filtrePersonneSms });
 
-	var $filtrePersonneRecevoirMailCheckbox = $formulaireFiltres.find('input.valeurPersonneRecevoirMail[type = "checkbox"]');
-	var $filtrePersonneRecevoirMailSelect = $formulaireFiltres.find('select.valeurPersonneRecevoirMail');
-	var filtrePersonneRecevoirMail = $filtrePersonneRecevoirMailSelect.length ? $filtrePersonneRecevoirMailSelect.val() : $filtrePersonneRecevoirMailCheckbox.prop('checked');
-	var filtrePersonneRecevoirMailSelectVal = $formulaireFiltres.find('select.filtrePersonneRecevoirMail').val();
-	var filtrePersonneRecevoirMail = null;
-	if(filtrePersonneRecevoirMailSelectVal !== '')
-		filtrePersonneRecevoirMail = filtrePersonneRecevoirMailSelectVal == 'true';
-	if(filtrePersonneRecevoirMail != null && filtrePersonneRecevoirMail === true)
-		filtres.push({ name: 'fq', value: 'personneRecevoirMail:' + filtrePersonneRecevoirMail });
+		var $filtrePersonneRecevoirMailCheckbox = $formulaireFiltres.find('input.valeurPersonneRecevoirMail[type = "checkbox"]');
+		var $filtrePersonneRecevoirMailSelect = $formulaireFiltres.find('select.valeurPersonneRecevoirMail');
+		var filtrePersonneRecevoirMail = $filtrePersonneRecevoirMailSelect.length ? $filtrePersonneRecevoirMailSelect.val() : $filtrePersonneRecevoirMailCheckbox.prop('checked');
+		var filtrePersonneRecevoirMailSelectVal = $formulaireFiltres.find('select.filtrePersonneRecevoirMail').val();
+		var filtrePersonneRecevoirMail = null;
+		if(filtrePersonneRecevoirMailSelectVal !== '')
+			filtrePersonneRecevoirMail = filtrePersonneRecevoirMailSelectVal == 'true';
+		if(filtrePersonneRecevoirMail != null && filtrePersonneRecevoirMail === true)
+			filtres.push({ name: 'fq', value: 'personneRecevoirMail:' + filtrePersonneRecevoirMail });
 
-	var filtreGardienNomComplet = $formulaireFiltres.find('.valeurGardienNomComplet').val();
-	if(filtreGardienNomComplet != null && filtreGardienNomComplet !== '')
-		filtres.push({ name: 'fq', value: 'gardienNomComplet:' + filtreGardienNomComplet });
+		var filtreGardienNomComplet = $formulaireFiltres.find('.valeurGardienNomComplet').val();
+		if(filtreGardienNomComplet != null && filtreGardienNomComplet !== '')
+			filtres.push({ name: 'fq', value: 'gardienNomComplet:' + filtreGardienNomComplet });
+	}
 	return filtres;
 }
 
@@ -879,7 +944,7 @@ function suggereGardienScolaireInscriptionCles(filtres, $list, pk = null, attrib
 			$a.append($i);
 			$a.append($span);
 			var val = o['gardienCles'];
-			var checked = Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
+			var checked = pk == null ? false : Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
 			var $input = $('<input>');
 			$input.attr('id', 'GET_inscriptionCles_' + pk + '_gardienCles_' + o['pk']);
 			$input.attr('value', o['pk']);

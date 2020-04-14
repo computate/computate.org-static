@@ -268,9 +268,49 @@ function postSchoolEnrollmentVals(vals, success, error) {
 	});
 }
 
-// PUT //
+// PUTImport //
 
-async function putSchoolEnrollment($formValues, pk, success, error) {
+async function putimportSchoolEnrollment($formValues, pk, success, error) {
+	var json = $formValues.find('.PUTImport_list').val();
+	if(json != null && json !== '')
+		putimportSchoolEnrollmentVals(JSON.parse(json), success, error);
+}
+
+function putimportSchoolEnrollmentVals(json, success, error) {
+	$.ajax({
+		url: '/api/enrollment/import'
+		, dataType: 'json'
+		, type: 'PUT'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(json)
+		, success: success
+		, error: error
+	});
+}
+
+// PUTMerge //
+
+async function putmergeSchoolEnrollment($formValues, pk, success, error) {
+	var json = $formValues.find('.PUTMerge_list').val();
+	if(json != null && json !== '')
+		putmergeSchoolEnrollmentVals(JSON.parse(json), success, error);
+}
+
+function putmergeSchoolEnrollmentVals(json, success, error) {
+	$.ajax({
+		url: '/api/enrollment/merge'
+		, dataType: 'json'
+		, type: 'PUT'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(json)
+		, success: success
+		, error: error
+	});
+}
+
+// PUTCopy //
+
+async function putcopySchoolEnrollment($formValues, pk, success, error) {
 	var vals = {};
 
 	var valuePk = $formValues.find('.valuePk').val();
@@ -367,7 +407,7 @@ async function putSchoolEnrollment($formValues, pk, success, error) {
 
 	var valueBlockKeys = $formValues.find('input.valueBlockKeys:checked').val();
 	if(valueBlockKeys != null && valueBlockKeys !== '')
-		vals['blockKeys'] = valueBlockKeys;
+		vals['blockKeys'] = [valueBlockKeys];
 
 	var valueChildKey = $formValues.find('input.valueChildKey:checked').val();
 	if(valueChildKey != null && valueChildKey !== '')
@@ -375,23 +415,23 @@ async function putSchoolEnrollment($formValues, pk, success, error) {
 
 	var valueMomKeys = $formValues.find('input.valueMomKeys:checked').val();
 	if(valueMomKeys != null && valueMomKeys !== '')
-		vals['momKeys'] = valueMomKeys;
+		vals['momKeys'] = [valueMomKeys];
 
 	var valueDadKeys = $formValues.find('input.valueDadKeys:checked').val();
 	if(valueDadKeys != null && valueDadKeys !== '')
-		vals['dadKeys'] = valueDadKeys;
+		vals['dadKeys'] = [valueDadKeys];
 
 	var valueGuardianKeys = $formValues.find('input.valueGuardianKeys:checked').val();
 	if(valueGuardianKeys != null && valueGuardianKeys !== '')
-		vals['guardianKeys'] = valueGuardianKeys;
+		vals['guardianKeys'] = [valueGuardianKeys];
 
 	var valuePaymentKeys = $formValues.find('input.valuePaymentKeys:checked').val();
 	if(valuePaymentKeys != null && valuePaymentKeys !== '')
-		vals['paymentKeys'] = valuePaymentKeys;
+		vals['paymentKeys'] = [valuePaymentKeys];
 
 	var valueUserKeys = $formValues.find('input.valueUserKeys:checked').val();
 	if(valueUserKeys != null && valueUserKeys !== '')
-		vals['userKeys'] = valueUserKeys;
+		vals['userKeys'] = [valueUserKeys];
 
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
@@ -501,12 +541,12 @@ async function putSchoolEnrollment($formValues, pk, success, error) {
 	if(valueEnrollmentDate10 != null && valueEnrollmentDate10 !== '')
 		vals['enrollmentDate10'] = valueEnrollmentDate10;
 
-	putSchoolEnrollmentVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
+	putcopySchoolEnrollmentVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
-function putSchoolEnrollmentVals(filters, vals, success, error) {
+function putcopySchoolEnrollmentVals(filters, vals, success, error) {
 	$.ajax({
-		url: '/api/enrollment?' + $.param(filters)
+		url: '/api/enrollment/copy?' + $.param(filters)
 		, dataType: 'json'
 		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'

@@ -68,9 +68,49 @@ function postClusterVals(vals, success, error) {
 	});
 }
 
-// PUT //
+// PUTImport //
 
-async function putCluster($formulaireValeurs, pk, success, error) {
+async function putimportCluster($formulaireValeurs, pk, success, error) {
+	var json = $formulaireValeurs.find('.PUTImport_liste').val();
+	if(json != null && json !== '')
+		putimportClusterVals(JSON.parse(json), success, error);
+}
+
+function putimportClusterVals(json, success, error) {
+	$.ajax({
+		url: '/api/cluster/import'
+		, dataType: 'json'
+		, type: 'PUT'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(json)
+		, success: success
+		, error: error
+	});
+}
+
+// PUTFusion //
+
+async function putfusionCluster($formulaireValeurs, pk, success, error) {
+	var json = $formulaireValeurs.find('.PUTFusion_liste').val();
+	if(json != null && json !== '')
+		putfusionClusterVals(JSON.parse(json), success, error);
+}
+
+function putfusionClusterVals(json, success, error) {
+	$.ajax({
+		url: '/api/cluster/fusion'
+		, dataType: 'json'
+		, type: 'PUT'
+		, contentType: 'application/json; charset=utf-8'
+		, data: JSON.stringify(json)
+		, success: success
+		, error: error
+	});
+}
+
+// PUTCopie //
+
+async function putcopieCluster($formulaireValeurs, pk, success, error) {
 	var vals = {};
 
 	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
@@ -101,12 +141,12 @@ async function putCluster($formulaireValeurs, pk, success, error) {
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 		vals['objetTitre'] = valeurObjetTitre;
 
-	putClusterVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
+	putcopieClusterVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
-function putClusterVals(filtres, vals, success, error) {
+function putcopieClusterVals(filtres, vals, success, error) {
 	$.ajax({
-		url: '/api/cluster?' + $.param(filtres)
+		url: '/api/cluster/copie?' + $.param(filtres)
 		, dataType: 'json'
 		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
