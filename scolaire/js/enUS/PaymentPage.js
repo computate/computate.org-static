@@ -1733,7 +1733,7 @@ async function websocketSchoolPayment(success) {
 				$margin.append($card);
 				$('.box-' + id).remove();
 				if(numPATCH < numFound)
-				$('.w3-content').append($box);
+				$('.top-box').append($box);
 				if(success)
 					success(json);
 		});

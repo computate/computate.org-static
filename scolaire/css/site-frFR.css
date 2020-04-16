@@ -1,5 +1,6 @@
 body, html { font-size: 1.0em; }
 body {font-family: "Bellefair", sans-serif; }
+.top-box { z-index: 2 }
 h1,h2,h3,h4,h5,h6 { margin: 0; }
 h1,h3,h5 {font-family: "Stint Ultra Condensed", sans-serif; line-height: 1.2; }
 h2,h4,h6 {font-family: "Jomhuria", sans-serif; line-height: 0.9; }
