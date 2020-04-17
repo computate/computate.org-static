@@ -149,6 +149,10 @@ async function postHtmlPart($formValues, success, error) {
 	if(valueSort10 != null && valueSort10 !== '')
 		vals['sort10'] = valueSort10;
 
+	var valueInheritPk = $formValues.find('.valueInheritPk').val();
+	if(valueInheritPk != null && valueInheritPk !== '')
+		vals['inheritPk'] = valueInheritPk;
+
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
@@ -352,6 +356,10 @@ async function putcopyHtmlPart($formValues, pk, success, error) {
 	var valueSort10 = $formValues.find('.valueSort10').val();
 	if(valueSort10 != null && valueSort10 !== '')
 		vals['sort10'] = valueSort10;
+
+	var valueInheritPk = $formValues.find('.valueInheritPk').val();
+	if(valueInheritPk != null && valueInheritPk !== '')
+		vals['inheritPk'] = valueInheritPk;
 
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
@@ -818,6 +826,19 @@ async function patchHtmlPart($formFilters, $formValues, pk, success, error) {
 	var removeSort10 = $formValues.find('.removeSort10').val();
 	if(removeSort10 != null && removeSort10 !== '')
 		vals['removeSort10'] = removeSort10;
+
+	var valueInheritPk = $formValues.find('.valueInheritPk').val();
+	if(valueInheritPk != null && valueInheritPk !== '')
+	var removeInheritPk = $formFilters.find('.removeInheritPk').val() === 'true';
+	var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
+	if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
+		vals['setInheritPk'] = setInheritPk;
+	var addInheritPk = $formValues.find('.addInheritPk').val();
+	if(addInheritPk != null && addInheritPk !== '')
+		vals['addInheritPk'] = addInheritPk;
+	var removeInheritPk = $formValues.find('.removeInheritPk').val();
+	if(removeInheritPk != null && removeInheritPk !== '')
+		vals['removeInheritPk'] = removeInheritPk;
 
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
@@ -1574,6 +1595,10 @@ async function websocketHtmlPartInner(apiRequest) {
 			if(vars.includes('sort10')) {
 				$('.inputHtmlPart' + pk + 'Sort10').val(o['sort10']);
 				$('.varHtmlPart' + pk + 'Sort10').text(o['sort10']);
+			}
+			if(vars.includes('inheritPk')) {
+				$('.inputHtmlPart' + pk + 'InheritPk').val(o['inheritPk']);
+				$('.varHtmlPart' + pk + 'InheritPk').text(o['inheritPk']);
 			}
 		});
 	}

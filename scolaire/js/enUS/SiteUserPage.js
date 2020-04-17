@@ -446,6 +446,19 @@ async function patchSiteUser($formFilters, $formValues, pk, success, error) {
 	if(valuePaymentKeys != null && valuePaymentKeys !== '')
 		vals['addPaymentKeys'] = valuePaymentKeys;
 
+	var valueInheritPk = $formValues.find('.valueInheritPk').val();
+	if(valueInheritPk != null && valueInheritPk !== '')
+	var removeInheritPk = $formFilters.find('.removeInheritPk').val() === 'true';
+	var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
+	if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
+		vals['setInheritPk'] = setInheritPk;
+	var addInheritPk = $formValues.find('.addInheritPk').val();
+	if(addInheritPk != null && addInheritPk !== '')
+		vals['addInheritPk'] = addInheritPk;
+	var removeInheritPk = $formValues.find('.removeInheritPk').val();
+	if(removeInheritPk != null && removeInheritPk !== '')
+		vals['removeInheritPk'] = removeInheritPk;
+
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 	var removeObjectTitle = $formFilters.find('.removeObjectTitle').val() === 'true';
@@ -767,6 +780,10 @@ async function postSiteUser($formValues, success, error) {
 	if(valuePaymentKeys != null && valuePaymentKeys !== '')
 		vals['paymentKeys'] = valuePaymentKeys;
 
+	var valueInheritPk = $formValues.find('.valueInheritPk').val();
+	if(valueInheritPk != null && valueInheritPk !== '')
+		vals['inheritPk'] = valueInheritPk;
+
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
@@ -906,6 +923,10 @@ async function websocketSiteUserInner(apiRequest) {
 			if(vars.includes('paymentKeys')) {
 				$('.inputSiteUser' + pk + 'PaymentKeys').val(o['paymentKeys']);
 				$('.varSiteUser' + pk + 'PaymentKeys').text(o['paymentKeys']);
+			}
+			if(vars.includes('inheritPk')) {
+				$('.inputSiteUser' + pk + 'InheritPk').val(o['inheritPk']);
+				$('.varSiteUser' + pk + 'InheritPk').text(o['inheritPk']);
 			}
 			if(vars.includes('userId')) {
 				$('.inputSiteUser' + pk + 'UserId').val(o['userId']);

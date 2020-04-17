@@ -57,6 +57,10 @@ async function postSchoolSeason($formValues, success, error) {
 	if(valueSessionKeys != null && valueSessionKeys !== '')
 		vals['sessionKeys'] = valueSessionKeys;
 
+	var valueInheritPk = $formValues.find('.valueInheritPk').val();
+	if(valueInheritPk != null && valueInheritPk !== '')
+		vals['inheritPk'] = valueInheritPk;
+
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
@@ -176,6 +180,10 @@ async function putcopySchoolSeason($formValues, pk, success, error) {
 	var valueSessionKeys = $formValues.find('input.valueSessionKeys:checked').val();
 	if(valueSessionKeys != null && valueSessionKeys !== '')
 		vals['sessionKeys'] = [valueSessionKeys];
+
+	var valueInheritPk = $formValues.find('.valueInheritPk').val();
+	if(valueInheritPk != null && valueInheritPk !== '')
+		vals['inheritPk'] = valueInheritPk;
 
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
@@ -334,6 +342,19 @@ async function patchSchoolSeason($formFilters, $formValues, pk, success, error) 
 	var valueSessionKeys = $formValues.find('input.valueSessionKeys:checked').val();
 	if(valueSessionKeys != null && valueSessionKeys !== '')
 		vals['addSessionKeys'] = valueSessionKeys;
+
+	var valueInheritPk = $formValues.find('.valueInheritPk').val();
+	if(valueInheritPk != null && valueInheritPk !== '')
+	var removeInheritPk = $formFilters.find('.removeInheritPk').val() === 'true';
+	var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
+	if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
+		vals['setInheritPk'] = setInheritPk;
+	var addInheritPk = $formValues.find('.addInheritPk').val();
+	if(addInheritPk != null && addInheritPk !== '')
+		vals['addInheritPk'] = addInheritPk;
+	var removeInheritPk = $formValues.find('.removeInheritPk').val();
+	if(removeInheritPk != null && removeInheritPk !== '')
+		vals['removeInheritPk'] = removeInheritPk;
 
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
@@ -1027,6 +1048,10 @@ async function websocketSchoolSeasonInner(apiRequest) {
 			if(vars.includes('sessionKeys')) {
 				$('.inputSchoolSeason' + pk + 'SessionKeys').val(o['sessionKeys']);
 				$('.varSchoolSeason' + pk + 'SessionKeys').text(o['sessionKeys']);
+			}
+			if(vars.includes('inheritPk')) {
+				$('.inputSchoolSeason' + pk + 'InheritPk').val(o['inheritPk']);
+				$('.varSchoolSeason' + pk + 'InheritPk').text(o['inheritPk']);
 			}
 			if(vars.includes('seasonSummer')) {
 				$('.inputSchoolSeason' + pk + 'SeasonSummer').val(o['seasonSummer']);

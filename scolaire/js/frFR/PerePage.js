@@ -85,6 +85,10 @@ async function postPereScolaire($formulaireValeurs, success, error) {
 	if(valeurInscriptionCles != null && valeurInscriptionCles !== '')
 		vals['inscriptionCles'] = valeurInscriptionCles;
 
+	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
+	if(valeurInheritPk != null && valeurInheritPk !== '')
+		vals['inheritPk'] = valeurInheritPk;
+
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 		vals['objetTitre'] = valeurObjetTitre;
@@ -224,6 +228,10 @@ async function putcopiePereScolaire($formulaireValeurs, pk, success, error) {
 	var valeurInscriptionCles = $formulaireValeurs.find('input.valeurInscriptionCles:checked').val();
 	if(valeurInscriptionCles != null && valeurInscriptionCles !== '')
 		vals['inscriptionCles'] = [valeurInscriptionCles];
+
+	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
+	if(valeurInheritPk != null && valeurInheritPk !== '')
+		vals['inheritPk'] = valeurInheritPk;
 
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
@@ -486,6 +494,19 @@ async function patchPereScolaire($formulaireFiltres, $formulaireValeurs, pk, suc
 	var valeurInscriptionCles = $formulaireValeurs.find('input.valeurInscriptionCles:checked').val();
 	if(valeurInscriptionCles != null && valeurInscriptionCles !== '')
 		vals['addInscriptionCles'] = valeurInscriptionCles;
+
+	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
+	if(valeurInheritPk != null && valeurInheritPk !== '')
+	var removeInheritPk = $formulaireFiltres.find('.removeInheritPk').val() === 'true';
+	var setInheritPk = removeInheritPk ? null : $formulaireValeurs.find('.setInheritPk').val();
+	if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
+		vals['setInheritPk'] = setInheritPk;
+	var addInheritPk = $formulaireValeurs.find('.addInheritPk').val();
+	if(addInheritPk != null && addInheritPk !== '')
+		vals['addInheritPk'] = addInheritPk;
+	var removeInheritPk = $formulaireValeurs.find('.removeInheritPk').val();
+	if(removeInheritPk != null && removeInheritPk !== '')
+		vals['removeInheritPk'] = removeInheritPk;
 
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
@@ -1153,6 +1174,10 @@ async function websocketPereScolaireInner(requeteApi) {
 			if(vars.includes('inscriptionCles')) {
 				$('.inputPereScolaire' + pk + 'InscriptionCles').val(o['inscriptionCles']);
 				$('.varPereScolaire' + pk + 'InscriptionCles').text(o['inscriptionCles']);
+			}
+			if(vars.includes('inheritPk')) {
+				$('.inputPereScolaire' + pk + 'InheritPk').val(o['inheritPk']);
+				$('.varPereScolaire' + pk + 'InheritPk').text(o['inheritPk']);
 			}
 		});
 	}

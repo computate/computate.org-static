@@ -446,6 +446,19 @@ async function patchUtilisateurSite($formulaireFiltres, $formulaireValeurs, pk, 
 	if(valeurPaiementCles != null && valeurPaiementCles !== '')
 		vals['addPaiementCles'] = valeurPaiementCles;
 
+	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
+	if(valeurInheritPk != null && valeurInheritPk !== '')
+	var removeInheritPk = $formulaireFiltres.find('.removeInheritPk').val() === 'true';
+	var setInheritPk = removeInheritPk ? null : $formulaireValeurs.find('.setInheritPk').val();
+	if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
+		vals['setInheritPk'] = setInheritPk;
+	var addInheritPk = $formulaireValeurs.find('.addInheritPk').val();
+	if(addInheritPk != null && addInheritPk !== '')
+		vals['addInheritPk'] = addInheritPk;
+	var removeInheritPk = $formulaireValeurs.find('.removeInheritPk').val();
+	if(removeInheritPk != null && removeInheritPk !== '')
+		vals['removeInheritPk'] = removeInheritPk;
+
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 	var removeObjetTitre = $formulaireFiltres.find('.removeObjetTitre').val() === 'true';
@@ -767,6 +780,10 @@ async function postUtilisateurSite($formulaireValeurs, success, error) {
 	if(valeurPaiementCles != null && valeurPaiementCles !== '')
 		vals['paiementCles'] = valeurPaiementCles;
 
+	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
+	if(valeurInheritPk != null && valeurInheritPk !== '')
+		vals['inheritPk'] = valeurInheritPk;
+
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 		vals['objetTitre'] = valeurObjetTitre;
@@ -906,6 +923,10 @@ async function websocketUtilisateurSiteInner(requeteApi) {
 			if(vars.includes('paiementCles')) {
 				$('.inputUtilisateurSite' + pk + 'PaiementCles').val(o['paiementCles']);
 				$('.varUtilisateurSite' + pk + 'PaiementCles').text(o['paiementCles']);
+			}
+			if(vars.includes('inheritPk')) {
+				$('.inputUtilisateurSite' + pk + 'InheritPk').val(o['inheritPk']);
+				$('.varUtilisateurSite' + pk + 'InheritPk').text(o['inheritPk']);
 			}
 			if(vars.includes('utilisateurId')) {
 				$('.inputUtilisateurSite' + pk + 'UtilisateurId').val(o['utilisateurId']);

@@ -53,6 +53,10 @@ async function postEnrollmentDesign($formValues, success, error) {
 	if(valueHtmlPartKeys != null && valueHtmlPartKeys !== '')
 		vals['htmlPartKeys'] = valueHtmlPartKeys;
 
+	var valueInheritPk = $formValues.find('.valueInheritPk').val();
+	if(valueInheritPk != null && valueInheritPk !== '')
+		vals['inheritPk'] = valueInheritPk;
+
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
@@ -160,6 +164,10 @@ async function putcopyEnrollmentDesign($formValues, pk, success, error) {
 	var valueHtmlPartKeys = $formValues.find('.valueHtmlPartKeys').val();
 	if(valueHtmlPartKeys != null && valueHtmlPartKeys !== '')
 		vals['htmlPartKeys'] = valueHtmlPartKeys;
+
+	var valueInheritPk = $formValues.find('.valueInheritPk').val();
+	if(valueInheritPk != null && valueInheritPk !== '')
+		vals['inheritPk'] = valueInheritPk;
 
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
@@ -315,6 +323,19 @@ async function patchEnrollmentDesign($formFilters, $formValues, pk, success, err
 	var removeHtmlPartKeys = $formValues.find('.removeHtmlPartKeys').val();
 	if(removeHtmlPartKeys != null && removeHtmlPartKeys !== '')
 		vals['removeHtmlPartKeys'] = removeHtmlPartKeys;
+
+	var valueInheritPk = $formValues.find('.valueInheritPk').val();
+	if(valueInheritPk != null && valueInheritPk !== '')
+	var removeInheritPk = $formFilters.find('.removeInheritPk').val() === 'true';
+	var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
+	if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
+		vals['setInheritPk'] = setInheritPk;
+	var addInheritPk = $formValues.find('.addInheritPk').val();
+	if(addInheritPk != null && addInheritPk !== '')
+		vals['addInheritPk'] = addInheritPk;
+	var removeInheritPk = $formValues.find('.removeInheritPk').val();
+	if(removeInheritPk != null && removeInheritPk !== '')
+		vals['removeInheritPk'] = removeInheritPk;
 
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
@@ -774,6 +795,10 @@ async function websocketEnrollmentDesignInner(apiRequest) {
 			if(vars.includes('designHidden')) {
 				$('.inputEnrollmentDesign' + pk + 'DesignHidden').val(o['designHidden']);
 				$('.varEnrollmentDesign' + pk + 'DesignHidden').text(o['designHidden']);
+			}
+			if(vars.includes('inheritPk')) {
+				$('.inputEnrollmentDesign' + pk + 'InheritPk').val(o['inheritPk']);
+				$('.varEnrollmentDesign' + pk + 'InheritPk').text(o['inheritPk']);
 			}
 		});
 	}

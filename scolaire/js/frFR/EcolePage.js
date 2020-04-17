@@ -69,6 +69,10 @@ async function postEcole($formulaireValeurs, success, error) {
 	if(valeurAnneeCles != null && valeurAnneeCles !== '')
 		vals['anneeCles'] = valeurAnneeCles;
 
+	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
+	if(valeurInheritPk != null && valeurInheritPk !== '')
+		vals['inheritPk'] = valeurInheritPk;
+
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 		vals['objetTitre'] = valeurObjetTitre;
@@ -270,6 +274,19 @@ async function patchEcole($formulaireFiltres, $formulaireValeurs, pk, success, e
 	var valeurAnneeCles = $formulaireValeurs.find('input.valeurAnneeCles:checked').val();
 	if(valeurAnneeCles != null && valeurAnneeCles !== '')
 		vals['addAnneeCles'] = valeurAnneeCles;
+
+	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
+	if(valeurInheritPk != null && valeurInheritPk !== '')
+	var removeInheritPk = $formulaireFiltres.find('.removeInheritPk').val() === 'true';
+	var setInheritPk = removeInheritPk ? null : $formulaireValeurs.find('.setInheritPk').val();
+	if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
+		vals['setInheritPk'] = setInheritPk;
+	var addInheritPk = $formulaireValeurs.find('.addInheritPk').val();
+	if(addInheritPk != null && addInheritPk !== '')
+		vals['addInheritPk'] = addInheritPk;
+	var removeInheritPk = $formulaireValeurs.find('.removeInheritPk').val();
+	if(removeInheritPk != null && removeInheritPk !== '')
+		vals['removeInheritPk'] = removeInheritPk;
 
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
@@ -810,6 +827,10 @@ async function putcopieEcole($formulaireValeurs, pk, success, error) {
 	if(valeurAnneeCles != null && valeurAnneeCles !== '')
 		vals['anneeCles'] = [valeurAnneeCles];
 
+	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
+	if(valeurInheritPk != null && valeurInheritPk !== '')
+		vals['inheritPk'] = valeurInheritPk;
+
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 		vals['objetTitre'] = valeurObjetTitre;
@@ -925,6 +946,10 @@ async function websocketEcoleInner(requeteApi) {
 			if(vars.includes('anneeCles')) {
 				$('.inputEcole' + pk + 'AnneeCles').val(o['anneeCles']);
 				$('.varEcole' + pk + 'AnneeCles').text(o['anneeCles']);
+			}
+			if(vars.includes('inheritPk')) {
+				$('.inputEcole' + pk + 'InheritPk').val(o['inheritPk']);
+				$('.varEcole' + pk + 'InheritPk').text(o['inheritPk']);
 			}
 		});
 	}

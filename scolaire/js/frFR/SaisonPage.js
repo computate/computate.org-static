@@ -57,6 +57,10 @@ async function postSaisonScolaire($formulaireValeurs, success, error) {
 	if(valeurSessionCles != null && valeurSessionCles !== '')
 		vals['sessionCles'] = valeurSessionCles;
 
+	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
+	if(valeurInheritPk != null && valeurInheritPk !== '')
+		vals['inheritPk'] = valeurInheritPk;
+
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 		vals['objetTitre'] = valeurObjetTitre;
@@ -176,6 +180,10 @@ async function putcopieSaisonScolaire($formulaireValeurs, pk, success, error) {
 	var valeurSessionCles = $formulaireValeurs.find('input.valeurSessionCles:checked').val();
 	if(valeurSessionCles != null && valeurSessionCles !== '')
 		vals['sessionCles'] = [valeurSessionCles];
+
+	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
+	if(valeurInheritPk != null && valeurInheritPk !== '')
+		vals['inheritPk'] = valeurInheritPk;
 
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
@@ -334,6 +342,19 @@ async function patchSaisonScolaire($formulaireFiltres, $formulaireValeurs, pk, s
 	var valeurSessionCles = $formulaireValeurs.find('input.valeurSessionCles:checked').val();
 	if(valeurSessionCles != null && valeurSessionCles !== '')
 		vals['addSessionCles'] = valeurSessionCles;
+
+	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
+	if(valeurInheritPk != null && valeurInheritPk !== '')
+	var removeInheritPk = $formulaireFiltres.find('.removeInheritPk').val() === 'true';
+	var setInheritPk = removeInheritPk ? null : $formulaireValeurs.find('.setInheritPk').val();
+	if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
+		vals['setInheritPk'] = setInheritPk;
+	var addInheritPk = $formulaireValeurs.find('.addInheritPk').val();
+	if(addInheritPk != null && addInheritPk !== '')
+		vals['addInheritPk'] = addInheritPk;
+	var removeInheritPk = $formulaireValeurs.find('.removeInheritPk').val();
+	if(removeInheritPk != null && removeInheritPk !== '')
+		vals['removeInheritPk'] = removeInheritPk;
 
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
@@ -1027,6 +1048,10 @@ async function websocketSaisonScolaireInner(requeteApi) {
 			if(vars.includes('sessionCles')) {
 				$('.inputSaisonScolaire' + pk + 'SessionCles').val(o['sessionCles']);
 				$('.varSaisonScolaire' + pk + 'SessionCles').text(o['sessionCles']);
+			}
+			if(vars.includes('inheritPk')) {
+				$('.inputSaisonScolaire' + pk + 'InheritPk').val(o['inheritPk']);
+				$('.varSaisonScolaire' + pk + 'InheritPk').text(o['inheritPk']);
 			}
 			if(vars.includes('saisonEte')) {
 				$('.inputSaisonScolaire' + pk + 'SaisonEte').val(o['saisonEte']);

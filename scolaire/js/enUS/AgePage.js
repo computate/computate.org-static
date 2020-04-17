@@ -57,6 +57,10 @@ async function postSchoolAge($formValues, success, error) {
 	if(valueBlockKeys != null && valueBlockKeys !== '')
 		vals['blockKeys'] = valueBlockKeys;
 
+	var valueInheritPk = $formValues.find('.valueInheritPk').val();
+	if(valueInheritPk != null && valueInheritPk !== '')
+		vals['inheritPk'] = valueInheritPk;
+
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
@@ -172,6 +176,10 @@ async function putcopySchoolAge($formValues, pk, success, error) {
 	var valueBlockKeys = $formValues.find('input.valueBlockKeys:checked').val();
 	if(valueBlockKeys != null && valueBlockKeys !== '')
 		vals['blockKeys'] = [valueBlockKeys];
+
+	var valueInheritPk = $formValues.find('.valueInheritPk').val();
+	if(valueInheritPk != null && valueInheritPk !== '')
+		vals['inheritPk'] = valueInheritPk;
 
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
@@ -322,6 +330,19 @@ async function patchSchoolAge($formFilters, $formValues, pk, success, error) {
 	var valueBlockKeys = $formValues.find('input.valueBlockKeys:checked').val();
 	if(valueBlockKeys != null && valueBlockKeys !== '')
 		vals['addBlockKeys'] = valueBlockKeys;
+
+	var valueInheritPk = $formValues.find('.valueInheritPk').val();
+	if(valueInheritPk != null && valueInheritPk !== '')
+	var removeInheritPk = $formFilters.find('.removeInheritPk').val() === 'true';
+	var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
+	if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
+		vals['setInheritPk'] = setInheritPk;
+	var addInheritPk = $formValues.find('.addInheritPk').val();
+	if(addInheritPk != null && addInheritPk !== '')
+		vals['addInheritPk'] = addInheritPk;
+	var removeInheritPk = $formValues.find('.removeInheritPk').val();
+	if(removeInheritPk != null && removeInheritPk !== '')
+		vals['removeInheritPk'] = removeInheritPk;
 
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
@@ -1054,6 +1075,10 @@ async function websocketSchoolAgeInner(apiRequest) {
 			if(vars.includes('blockKeys')) {
 				$('.inputSchoolAge' + pk + 'BlockKeys').val(o['blockKeys']);
 				$('.varSchoolAge' + pk + 'BlockKeys').text(o['blockKeys']);
+			}
+			if(vars.includes('inheritPk')) {
+				$('.inputSchoolAge' + pk + 'InheritPk').val(o['inheritPk']);
+				$('.varSchoolAge' + pk + 'InheritPk').text(o['inheritPk']);
 			}
 			if(vars.includes('schoolAddress')) {
 				$('.inputSchoolAge' + pk + 'SchoolAddress').val(o['schoolAddress']);

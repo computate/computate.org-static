@@ -53,6 +53,10 @@ async function postDesignInscription($formulaireValeurs, success, error) {
 	if(valeurPartHtmlCles != null && valeurPartHtmlCles !== '')
 		vals['partHtmlCles'] = valeurPartHtmlCles;
 
+	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
+	if(valeurInheritPk != null && valeurInheritPk !== '')
+		vals['inheritPk'] = valeurInheritPk;
+
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 		vals['objetTitre'] = valeurObjetTitre;
@@ -160,6 +164,10 @@ async function putcopieDesignInscription($formulaireValeurs, pk, success, error)
 	var valeurPartHtmlCles = $formulaireValeurs.find('.valeurPartHtmlCles').val();
 	if(valeurPartHtmlCles != null && valeurPartHtmlCles !== '')
 		vals['partHtmlCles'] = valeurPartHtmlCles;
+
+	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
+	if(valeurInheritPk != null && valeurInheritPk !== '')
+		vals['inheritPk'] = valeurInheritPk;
 
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
@@ -315,6 +323,19 @@ async function patchDesignInscription($formulaireFiltres, $formulaireValeurs, pk
 	var removePartHtmlCles = $formulaireValeurs.find('.removePartHtmlCles').val();
 	if(removePartHtmlCles != null && removePartHtmlCles !== '')
 		vals['removePartHtmlCles'] = removePartHtmlCles;
+
+	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
+	if(valeurInheritPk != null && valeurInheritPk !== '')
+	var removeInheritPk = $formulaireFiltres.find('.removeInheritPk').val() === 'true';
+	var setInheritPk = removeInheritPk ? null : $formulaireValeurs.find('.setInheritPk').val();
+	if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
+		vals['setInheritPk'] = setInheritPk;
+	var addInheritPk = $formulaireValeurs.find('.addInheritPk').val();
+	if(addInheritPk != null && addInheritPk !== '')
+		vals['addInheritPk'] = addInheritPk;
+	var removeInheritPk = $formulaireValeurs.find('.removeInheritPk').val();
+	if(removeInheritPk != null && removeInheritPk !== '')
+		vals['removeInheritPk'] = removeInheritPk;
 
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
@@ -774,6 +795,10 @@ async function websocketDesignInscriptionInner(requeteApi) {
 			if(vars.includes('designCache')) {
 				$('.inputDesignInscription' + pk + 'DesignCache').val(o['designCache']);
 				$('.varDesignInscription' + pk + 'DesignCache').text(o['designCache']);
+			}
+			if(vars.includes('inheritPk')) {
+				$('.inputDesignInscription' + pk + 'InheritPk').val(o['inheritPk']);
+				$('.varDesignInscription' + pk + 'InheritPk').text(o['inheritPk']);
 			}
 		});
 	}

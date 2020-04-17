@@ -73,6 +73,10 @@ async function postGardienScolaire($formulaireValeurs, success, error) {
 	if(valeurInscriptionCles != null && valeurInscriptionCles !== '')
 		vals['inscriptionCles'] = valeurInscriptionCles;
 
+	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
+	if(valeurInheritPk != null && valeurInheritPk !== '')
+		vals['inheritPk'] = valeurInheritPk;
+
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 		vals['objetTitre'] = valeurObjetTitre;
@@ -200,6 +204,10 @@ async function putcopieGardienScolaire($formulaireValeurs, pk, success, error) {
 	var valeurInscriptionCles = $formulaireValeurs.find('input.valeurInscriptionCles:checked').val();
 	if(valeurInscriptionCles != null && valeurInscriptionCles !== '')
 		vals['inscriptionCles'] = [valeurInscriptionCles];
+
+	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
+	if(valeurInheritPk != null && valeurInheritPk !== '')
+		vals['inheritPk'] = valeurInheritPk;
 
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
@@ -415,6 +423,19 @@ async function patchGardienScolaire($formulaireFiltres, $formulaireValeurs, pk, 
 	var valeurInscriptionCles = $formulaireValeurs.find('input.valeurInscriptionCles:checked').val();
 	if(valeurInscriptionCles != null && valeurInscriptionCles !== '')
 		vals['addInscriptionCles'] = valeurInscriptionCles;
+
+	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
+	if(valeurInheritPk != null && valeurInheritPk !== '')
+	var removeInheritPk = $formulaireFiltres.find('.removeInheritPk').val() === 'true';
+	var setInheritPk = removeInheritPk ? null : $formulaireValeurs.find('.setInheritPk').val();
+	if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
+		vals['setInheritPk'] = setInheritPk;
+	var addInheritPk = $formulaireValeurs.find('.addInheritPk').val();
+	if(addInheritPk != null && addInheritPk !== '')
+		vals['addInheritPk'] = addInheritPk;
+	var removeInheritPk = $formulaireValeurs.find('.removeInheritPk').val();
+	if(removeInheritPk != null && removeInheritPk !== '')
+		vals['removeInheritPk'] = removeInheritPk;
 
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
@@ -1070,6 +1091,10 @@ async function websocketGardienScolaireInner(requeteApi) {
 			if(vars.includes('inscriptionCles')) {
 				$('.inputGardienScolaire' + pk + 'InscriptionCles').val(o['inscriptionCles']);
 				$('.varGardienScolaire' + pk + 'InscriptionCles').text(o['inscriptionCles']);
+			}
+			if(vars.includes('inheritPk')) {
+				$('.inputGardienScolaire' + pk + 'InheritPk').val(o['inheritPk']);
+				$('.varGardienScolaire' + pk + 'InheritPk').text(o['inheritPk']);
 			}
 		});
 	}

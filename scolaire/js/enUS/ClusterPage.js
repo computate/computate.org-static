@@ -41,6 +41,10 @@ async function postCluster($formValues, success, error) {
 	if(valueDeleted != null && valueDeleted !== '')
 		vals['deleted'] = valueDeleted;
 
+	var valueInheritPk = $formValues.find('.valueInheritPk').val();
+	if(valueInheritPk != null && valueInheritPk !== '')
+		vals['inheritPk'] = valueInheritPk;
+
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
@@ -136,6 +140,10 @@ async function putcopyCluster($formValues, pk, success, error) {
 	var valueDeleted = $formValues.find('.valueDeleted').prop('checked');
 	if(valueDeleted != null && valueDeleted !== '')
 		vals['deleted'] = valueDeleted;
+
+	var valueInheritPk = $formValues.find('.valueInheritPk').val();
+	if(valueInheritPk != null && valueInheritPk !== '')
+		vals['inheritPk'] = valueInheritPk;
 
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
@@ -248,6 +256,19 @@ async function patchCluster($formFilters, $formValues, pk, success, error) {
 	var removeDeleted = $formValues.find('.removeDeleted').prop('checked');
 	if(removeDeleted != null && removeDeleted !== '')
 		vals['removeDeleted'] = removeDeleted;
+
+	var valueInheritPk = $formValues.find('.valueInheritPk').val();
+	if(valueInheritPk != null && valueInheritPk !== '')
+	var removeInheritPk = $formFilters.find('.removeInheritPk').val() === 'true';
+	var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
+	if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
+		vals['setInheritPk'] = setInheritPk;
+	var addInheritPk = $formValues.find('.addInheritPk').val();
+	if(addInheritPk != null && addInheritPk !== '')
+		vals['addInheritPk'] = addInheritPk;
+	var removeInheritPk = $formValues.find('.removeInheritPk').val();
+	if(removeInheritPk != null && removeInheritPk !== '')
+		vals['removeInheritPk'] = removeInheritPk;
 
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
@@ -583,6 +604,10 @@ async function websocketClusterInner(apiRequest) {
 			if(vars.includes('deleted')) {
 				$('.inputCluster' + pk + 'Deleted').val(o['deleted']);
 				$('.varCluster' + pk + 'Deleted').text(o['deleted']);
+			}
+			if(vars.includes('inheritPk')) {
+				$('.inputCluster' + pk + 'InheritPk').val(o['inheritPk']);
+				$('.varCluster' + pk + 'InheritPk').text(o['inheritPk']);
 			}
 		});
 	}

@@ -97,6 +97,10 @@ async function postSchoolPayment($formValues, success, error) {
 	if(valuePaymentRecieved != null && valuePaymentRecieved !== '')
 		vals['paymentRecieved'] = valuePaymentRecieved;
 
+	var valueInheritPk = $formValues.find('.valueInheritPk').val();
+	if(valueInheritPk != null && valueInheritPk !== '')
+		vals['inheritPk'] = valueInheritPk;
+
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
@@ -292,6 +296,10 @@ async function putcopySchoolPayment($formValues, pk, success, error) {
 	var valuePaymentRecieved = $formValues.find('.valuePaymentRecieved').prop('checked');
 	if(valuePaymentRecieved != null && valuePaymentRecieved !== '')
 		vals['paymentRecieved'] = valuePaymentRecieved;
+
+	var valueInheritPk = $formValues.find('.valueInheritPk').val();
+	if(valueInheritPk != null && valueInheritPk !== '')
+		vals['inheritPk'] = valueInheritPk;
 
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
@@ -645,6 +653,19 @@ async function patchSchoolPayment($formFilters, $formValues, pk, success, error)
 	var removePaymentRecieved = $formValues.find('.removePaymentRecieved').prop('checked');
 	if(removePaymentRecieved != null && removePaymentRecieved !== '')
 		vals['removePaymentRecieved'] = removePaymentRecieved;
+
+	var valueInheritPk = $formValues.find('.valueInheritPk').val();
+	if(valueInheritPk != null && valueInheritPk !== '')
+	var removeInheritPk = $formFilters.find('.removeInheritPk').val() === 'true';
+	var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
+	if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
+		vals['setInheritPk'] = setInheritPk;
+	var addInheritPk = $formValues.find('.addInheritPk').val();
+	if(addInheritPk != null && addInheritPk !== '')
+		vals['addInheritPk'] = addInheritPk;
+	var removeInheritPk = $formValues.find('.removeInheritPk').val();
+	if(removeInheritPk != null && removeInheritPk !== '')
+		vals['removeInheritPk'] = removeInheritPk;
 
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
@@ -1824,6 +1845,10 @@ async function websocketSchoolPaymentInner(apiRequest) {
 			if(vars.includes('paymentRecieved')) {
 				$('.inputSchoolPayment' + pk + 'PaymentRecieved').val(o['paymentRecieved']);
 				$('.varSchoolPayment' + pk + 'PaymentRecieved').text(o['paymentRecieved']);
+			}
+			if(vars.includes('inheritPk')) {
+				$('.inputSchoolPayment' + pk + 'InheritPk').val(o['inheritPk']);
+				$('.varSchoolPayment' + pk + 'InheritPk').text(o['inheritPk']);
 			}
 			if(vars.includes('childCompleteNamePreferred')) {
 				$('.inputSchoolPayment' + pk + 'ChildCompleteNamePreferred').val(o['childCompleteNamePreferred']);

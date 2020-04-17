@@ -57,6 +57,10 @@ async function postPageDesign($formValues, success, error) {
 	if(valueParentDesignKeys != null && valueParentDesignKeys !== '')
 		vals['parentDesignKeys'] = valueParentDesignKeys;
 
+	var valueInheritPk = $formValues.find('.valueInheritPk').val();
+	if(valueInheritPk != null && valueInheritPk !== '')
+		vals['inheritPk'] = valueInheritPk;
+
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
@@ -168,6 +172,10 @@ async function putcopyPageDesign($formValues, pk, success, error) {
 	var valueParentDesignKeys = $formValues.find('input.valueParentDesignKeys:checked').val();
 	if(valueParentDesignKeys != null && valueParentDesignKeys !== '')
 		vals['parentDesignKeys'] = [valueParentDesignKeys];
+
+	var valueInheritPk = $formValues.find('.valueInheritPk').val();
+	if(valueInheritPk != null && valueInheritPk !== '')
+		vals['inheritPk'] = valueInheritPk;
 
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
@@ -318,6 +326,19 @@ async function patchPageDesign($formFilters, $formValues, pk, success, error) {
 	var valueParentDesignKeys = $formValues.find('input.valueParentDesignKeys:checked').val();
 	if(valueParentDesignKeys != null && valueParentDesignKeys !== '')
 		vals['addParentDesignKeys'] = valueParentDesignKeys;
+
+	var valueInheritPk = $formValues.find('.valueInheritPk').val();
+	if(valueInheritPk != null && valueInheritPk !== '')
+	var removeInheritPk = $formFilters.find('.removeInheritPk').val() === 'true';
+	var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
+	if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
+		vals['setInheritPk'] = setInheritPk;
+	var addInheritPk = $formValues.find('.addInheritPk').val();
+	if(addInheritPk != null && addInheritPk !== '')
+		vals['addInheritPk'] = addInheritPk;
+	var removeInheritPk = $formValues.find('.removeInheritPk').val();
+	if(removeInheritPk != null && removeInheritPk !== '')
+		vals['removeInheritPk'] = removeInheritPk;
 
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
@@ -1027,6 +1048,10 @@ async function websocketPageDesignInner(apiRequest) {
 			if(vars.includes('parentDesignKeys')) {
 				$('.inputPageDesign' + pk + 'ParentDesignKeys').val(o['parentDesignKeys']);
 				$('.varPageDesign' + pk + 'ParentDesignKeys').text(o['parentDesignKeys']);
+			}
+			if(vars.includes('inheritPk')) {
+				$('.inputPageDesign' + pk + 'InheritPk').val(o['inheritPk']);
+				$('.varPageDesign' + pk + 'InheritPk').text(o['inheritPk']);
 			}
 			if(vars.includes('childDesignKeys')) {
 				$('.inputPageDesign' + pk + 'ChildDesignKeys').val(o['childDesignKeys']);

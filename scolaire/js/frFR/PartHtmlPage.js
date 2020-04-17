@@ -149,6 +149,10 @@ async function postPartHtml($formulaireValeurs, success, error) {
 	if(valeurTri10 != null && valeurTri10 !== '')
 		vals['tri10'] = valeurTri10;
 
+	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
+	if(valeurInheritPk != null && valeurInheritPk !== '')
+		vals['inheritPk'] = valeurInheritPk;
+
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 		vals['objetTitre'] = valeurObjetTitre;
@@ -352,6 +356,10 @@ async function putcopiePartHtml($formulaireValeurs, pk, success, error) {
 	var valeurTri10 = $formulaireValeurs.find('.valeurTri10').val();
 	if(valeurTri10 != null && valeurTri10 !== '')
 		vals['tri10'] = valeurTri10;
+
+	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
+	if(valeurInheritPk != null && valeurInheritPk !== '')
+		vals['inheritPk'] = valeurInheritPk;
 
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
@@ -818,6 +826,19 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 	var removeTri10 = $formulaireValeurs.find('.removeTri10').val();
 	if(removeTri10 != null && removeTri10 !== '')
 		vals['removeTri10'] = removeTri10;
+
+	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
+	if(valeurInheritPk != null && valeurInheritPk !== '')
+	var removeInheritPk = $formulaireFiltres.find('.removeInheritPk').val() === 'true';
+	var setInheritPk = removeInheritPk ? null : $formulaireValeurs.find('.setInheritPk').val();
+	if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
+		vals['setInheritPk'] = setInheritPk;
+	var addInheritPk = $formulaireValeurs.find('.addInheritPk').val();
+	if(addInheritPk != null && addInheritPk !== '')
+		vals['addInheritPk'] = addInheritPk;
+	var removeInheritPk = $formulaireValeurs.find('.removeInheritPk').val();
+	if(removeInheritPk != null && removeInheritPk !== '')
+		vals['removeInheritPk'] = removeInheritPk;
 
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
@@ -1574,6 +1595,10 @@ async function websocketPartHtmlInner(requeteApi) {
 			if(vars.includes('tri10')) {
 				$('.inputPartHtml' + pk + 'Tri10').val(o['tri10']);
 				$('.varPartHtml' + pk + 'Tri10').text(o['tri10']);
+			}
+			if(vars.includes('inheritPk')) {
+				$('.inputPartHtml' + pk + 'InheritPk').val(o['inheritPk']);
+				$('.varPartHtml' + pk + 'InheritPk').text(o['inheritPk']);
 			}
 		});
 	}

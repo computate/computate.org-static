@@ -97,6 +97,10 @@ async function postPaiementScolaire($formulaireValeurs, success, error) {
 	if(valeurPaiementRecu != null && valeurPaiementRecu !== '')
 		vals['paiementRecu'] = valeurPaiementRecu;
 
+	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
+	if(valeurInheritPk != null && valeurInheritPk !== '')
+		vals['inheritPk'] = valeurInheritPk;
+
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 		vals['objetTitre'] = valeurObjetTitre;
@@ -292,6 +296,10 @@ async function putcopiePaiementScolaire($formulaireValeurs, pk, success, error) 
 	var valeurPaiementRecu = $formulaireValeurs.find('.valeurPaiementRecu').prop('checked');
 	if(valeurPaiementRecu != null && valeurPaiementRecu !== '')
 		vals['paiementRecu'] = valeurPaiementRecu;
+
+	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
+	if(valeurInheritPk != null && valeurInheritPk !== '')
+		vals['inheritPk'] = valeurInheritPk;
 
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
@@ -645,6 +653,19 @@ async function patchPaiementScolaire($formulaireFiltres, $formulaireValeurs, pk,
 	var removePaiementRecu = $formulaireValeurs.find('.removePaiementRecu').prop('checked');
 	if(removePaiementRecu != null && removePaiementRecu !== '')
 		vals['removePaiementRecu'] = removePaiementRecu;
+
+	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
+	if(valeurInheritPk != null && valeurInheritPk !== '')
+	var removeInheritPk = $formulaireFiltres.find('.removeInheritPk').val() === 'true';
+	var setInheritPk = removeInheritPk ? null : $formulaireValeurs.find('.setInheritPk').val();
+	if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
+		vals['setInheritPk'] = setInheritPk;
+	var addInheritPk = $formulaireValeurs.find('.addInheritPk').val();
+	if(addInheritPk != null && addInheritPk !== '')
+		vals['addInheritPk'] = addInheritPk;
+	var removeInheritPk = $formulaireValeurs.find('.removeInheritPk').val();
+	if(removeInheritPk != null && removeInheritPk !== '')
+		vals['removeInheritPk'] = removeInheritPk;
 
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
@@ -1824,6 +1845,10 @@ async function websocketPaiementScolaireInner(requeteApi) {
 			if(vars.includes('paiementRecu')) {
 				$('.inputPaiementScolaire' + pk + 'PaiementRecu').val(o['paiementRecu']);
 				$('.varPaiementScolaire' + pk + 'PaiementRecu').text(o['paiementRecu']);
+			}
+			if(vars.includes('inheritPk')) {
+				$('.inputPaiementScolaire' + pk + 'InheritPk').val(o['inheritPk']);
+				$('.varPaiementScolaire' + pk + 'InheritPk').text(o['inheritPk']);
 			}
 			if(vars.includes('enfantNomCompletPrefere')) {
 				$('.inputPaiementScolaire' + pk + 'EnfantNomCompletPrefere').val(o['enfantNomCompletPrefere']);

@@ -61,6 +61,10 @@ async function postAnneeScolaire($formulaireValeurs, success, error) {
 	if(valeurSaisonCles != null && valeurSaisonCles !== '')
 		vals['saisonCles'] = valeurSaisonCles;
 
+	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
+	if(valeurInheritPk != null && valeurInheritPk !== '')
+		vals['inheritPk'] = valeurInheritPk;
+
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 		vals['objetTitre'] = valeurObjetTitre;
@@ -176,6 +180,10 @@ async function putcopieAnneeScolaire($formulaireValeurs, pk, success, error) {
 	var valeurSaisonCles = $formulaireValeurs.find('input.valeurSaisonCles:checked').val();
 	if(valeurSaisonCles != null && valeurSaisonCles !== '')
 		vals['saisonCles'] = [valeurSaisonCles];
+
+	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
+	if(valeurInheritPk != null && valeurInheritPk !== '')
+		vals['inheritPk'] = valeurInheritPk;
 
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
@@ -335,6 +343,19 @@ async function patchAnneeScolaire($formulaireFiltres, $formulaireValeurs, pk, su
 	var valeurSaisonCles = $formulaireValeurs.find('input.valeurSaisonCles:checked').val();
 	if(valeurSaisonCles != null && valeurSaisonCles !== '')
 		vals['addSaisonCles'] = valeurSaisonCles;
+
+	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
+	if(valeurInheritPk != null && valeurInheritPk !== '')
+	var removeInheritPk = $formulaireFiltres.find('.removeInheritPk').val() === 'true';
+	var setInheritPk = removeInheritPk ? null : $formulaireValeurs.find('.setInheritPk').val();
+	if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
+		vals['setInheritPk'] = setInheritPk;
+	var addInheritPk = $formulaireValeurs.find('.addInheritPk').val();
+	if(addInheritPk != null && addInheritPk !== '')
+		vals['addInheritPk'] = addInheritPk;
+	var removeInheritPk = $formulaireValeurs.find('.removeInheritPk').val();
+	if(removeInheritPk != null && removeInheritPk !== '')
+		vals['removeInheritPk'] = removeInheritPk;
 
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
@@ -922,6 +943,10 @@ async function websocketAnneeScolaireInner(requeteApi) {
 			if(vars.includes('saisonCles')) {
 				$('.inputAnneeScolaire' + pk + 'SaisonCles').val(o['saisonCles']);
 				$('.varAnneeScolaire' + pk + 'SaisonCles').text(o['saisonCles']);
+			}
+			if(vars.includes('inheritPk')) {
+				$('.inputAnneeScolaire' + pk + 'InheritPk').val(o['inheritPk']);
+				$('.varAnneeScolaire' + pk + 'InheritPk').text(o['inheritPk']);
 			}
 		});
 	}
