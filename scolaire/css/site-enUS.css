@@ -25,6 +25,7 @@ body {  }
     background-size: cover;
     min-height: 90%;
 }
+.font-style-italic { font-style: italic; }
 
 .grow-5, .grow-10, .grow-20, .grow-30, .grow-40, .grow-50, .grow-100, .grow-200 > svg {
 	-webkit-transition: 0.2s ease-in-out; -moz-transition: 0.2s ease-in-out; -o-transition: 0.2s ease-in-out; -ms-transition: 0.2s ease-in-out; transition: 0.2s ease-in-out; 
