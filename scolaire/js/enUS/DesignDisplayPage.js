@@ -642,6 +642,8 @@ function searchPageDesignFilters($formFilters) {
 }
 
 function searchPageDesignVals(filters, success, error) {
+
+	filters.push({ name: 'rows', value: 100 });
 	$.ajax({
 		url: '/api/page-design?' + $.param(filters)
 		, dataType: 'json'
