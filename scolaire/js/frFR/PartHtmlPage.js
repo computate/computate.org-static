@@ -1070,6 +1070,10 @@ function patchPartHtmlFiltres($formulaireFiltres) {
 		if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
 			filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
 
+		var filtrePageUrlApi = $formulaireFiltres.find('.valeurPageUrlApi').val();
+		if(filtrePageUrlApi != null && filtrePageUrlApi !== '')
+			filtres.push({ name: 'fq', value: 'pageUrlApi:' + filtrePageUrlApi });
+
 		var filtrePartHtmlCle = $formulaireFiltres.find('.valeurPartHtmlCle').val();
 		if(filtrePartHtmlCle != null && filtrePartHtmlCle !== '')
 			filtres.push({ name: 'fq', value: 'partHtmlCle:' + filtrePartHtmlCle });
@@ -1333,6 +1337,10 @@ function recherchePartHtmlFiltres($formulaireFiltres) {
 		var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
 		if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
 			filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
+
+		var filtrePageUrlApi = $formulaireFiltres.find('.valeurPageUrlApi').val();
+		if(filtrePageUrlApi != null && filtrePageUrlApi !== '')
+			filtres.push({ name: 'fq', value: 'pageUrlApi:' + filtrePageUrlApi });
 
 		var filtrePartHtmlCle = $formulaireFiltres.find('.valeurPartHtmlCle').val();
 		if(filtrePartHtmlCle != null && filtrePartHtmlCle !== '')

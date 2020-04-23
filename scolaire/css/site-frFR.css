@@ -1,15 +1,18 @@
+
+@import '//fonts.googleapis.com/css?family=Chewy\3aregular';@import '//fonts.googleapis.com/css?family=Overlock\3aregular,italic,700,700italic,900,900italic';body.styles{font-family:Bookman, Palatino, Georgia, serif}.styles a:hover{color:#e12219}.styles .button,.styles input[type="submit"]{background-color:#c09ee2;color:#000}.styles h1,.styles h2,.styles h3,.styles h4,.styles h5,.styles h6{font-family:Chewy}.styles h1{font-family:Chewy}.styles .site-header{background-color:#b7f698}.styles .nav-header .genesis-nav-menu a{color:#d33}.styles .nav-header .genesis-nav-menu .sub-menu a{background-color:#fff}.styles .nav-header .genesis-nav-menu .sub-menu a:hover{background-color:#fff}.styles .nav-primary .genesis-nav-menu a{font-family:Overlock}.styles .nav-primary .genesis-nav-menu .sub-menu a{background-color:#fff;color:#000}.styles .nav-primary .genesis-nav-menu .sub-menu a:hover{color:#d33}.styles .breadcrumb{font-family:Arial, Helvetica, sans-serif}.styles .footer-widgets{background-color:#3565ad}.styles .footer-widgets .widget-title{color:#fff}.styles .footer-widgets{color:#fff}.styles .site-footer{background-color:#3565ad}.styles .site-footer,.styles .site-footer p{color:#fff}
+
 body, html { font-size: 1.0em; }
 body {font-family: "Bellefair", sans-serif; }
 .top-box { z-index: 2 }
 h1,h2,h3,h4,h5,h6 { margin: 0; }
 h1,h3,h5 {font-family: "Stint Ultra Condensed", sans-serif; line-height: 1.2; }
 h2,h4,h6 {font-family: "Jomhuria", sans-serif; line-height: 0.9; }
-h1,.h1 { font-size: 2.4em; }
-h2,.h2 { font-size: 2.0em; }
-h3,.h3 { font-size: 1.7em; }
-h4,.h4 { font-size: 1.7em; }
-h5,.h5 { font-size: 1.3em; }
-h6,.h6 { font-size: 1.3em; }
+h1,.h1 { font-size: 2.4em; font-family: Overlock; font-weight: 600; }
+h2,.h2 { font-size: 2.0em; font-family: Overlock; font-weight: 600; }
+h3,.h3 { font-size: 1.7em; font-family: Overlock; font-weight: 600; }
+h4,.h4 { font-size: 1.7em; font-family: Overlock; font-weight: 600; }
+h5,.h5 { font-size: 1.3em; font-family: Overlock; font-weight: 600; }
+h6,.h6 { font-size: 1.3em; font-family: Overlock; font-weight: 600; }
 dt { display: inline; margin: 0; padding: 0; font-family: "PT Serif", sans-serif; font-size: 0.9em; }
 label { font-family: "PT Serif", sans-serif; font-size: 0.9em; }
 dd { display: inline; margin: 0; padding: 0; }

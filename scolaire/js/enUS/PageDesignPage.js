@@ -466,6 +466,10 @@ function patchPageDesignFilters($formFilters) {
 		if(filterPageUrlPk != null && filterPageUrlPk !== '')
 			filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
+		var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
+		if(filterPageUrlApi != null && filterPageUrlApi !== '')
+			filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
+
 		var filterPageDesignKey = $formFilters.find('.valuePageDesignKey').val();
 		if(filterPageDesignKey != null && filterPageDesignKey !== '')
 			filters.push({ name: 'fq', value: 'pageDesignKey:' + filterPageDesignKey });
@@ -629,6 +633,10 @@ function searchPageDesignFilters($formFilters) {
 		var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
 		if(filterPageUrlPk != null && filterPageUrlPk !== '')
 			filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
+
+		var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
+		if(filterPageUrlApi != null && filterPageUrlApi !== '')
+			filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
 
 		var filterPageDesignKey = $formFilters.find('.valuePageDesignKey').val();
 		if(filterPageDesignKey != null && filterPageDesignKey !== '')

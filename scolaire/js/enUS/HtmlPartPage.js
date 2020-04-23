@@ -1070,6 +1070,10 @@ function patchHtmlPartFilters($formFilters) {
 		if(filterPageUrlPk != null && filterPageUrlPk !== '')
 			filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
+		var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
+		if(filterPageUrlApi != null && filterPageUrlApi !== '')
+			filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
+
 		var filterHtmlPartKey = $formFilters.find('.valueHtmlPartKey').val();
 		if(filterHtmlPartKey != null && filterHtmlPartKey !== '')
 			filters.push({ name: 'fq', value: 'htmlPartKey:' + filterHtmlPartKey });
@@ -1333,6 +1337,10 @@ function searchHtmlPartFilters($formFilters) {
 		var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
 		if(filterPageUrlPk != null && filterPageUrlPk !== '')
 			filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
+
+		var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
+		if(filterPageUrlApi != null && filterPageUrlApi !== '')
+			filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
 
 		var filterHtmlPartKey = $formFilters.find('.valueHtmlPartKey').val();
 		if(filterHtmlPartKey != null && filterHtmlPartKey !== '')
