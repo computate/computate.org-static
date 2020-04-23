@@ -481,6 +481,10 @@ function patchSchoolYearFilters($formFilters) {
 		if(filterPageUrlPk != null && filterPageUrlPk !== '')
 			filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
+		var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
+		if(filterPageUrlApi != null && filterPageUrlApi !== '')
+			filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
+
 		var filterYearKey = $formFilters.find('.valueYearKey').val();
 		if(filterYearKey != null && filterYearKey !== '')
 			filters.push({ name: 'fq', value: 'yearKey:' + filterYearKey });
@@ -690,6 +694,10 @@ function searchSchoolYearFilters($formFilters) {
 		var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
 		if(filterPageUrlPk != null && filterPageUrlPk !== '')
 			filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
+
+		var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
+		if(filterPageUrlApi != null && filterPageUrlApi !== '')
+			filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
 
 		var filterYearKey = $formFilters.find('.valueYearKey').val();
 		if(filterYearKey != null && filterYearKey !== '')

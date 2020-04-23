@@ -1537,6 +1537,10 @@ function patchInscriptionScolaireFiltres($formulaireFiltres) {
 		if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
 			filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
 
+		var filtrePageUrlApi = $formulaireFiltres.find('.valeurPageUrlApi').val();
+		if(filtrePageUrlApi != null && filtrePageUrlApi !== '')
+			filtres.push({ name: 'fq', value: 'pageUrlApi:' + filtrePageUrlApi });
+
 		var filtreInscriptionCle = $formulaireFiltres.find('.valeurInscriptionCle').val();
 		if(filtreInscriptionCle != null && filtreInscriptionCle !== '')
 			filtres.push({ name: 'fq', value: 'inscriptionCle:' + filtreInscriptionCle });
@@ -2188,6 +2192,10 @@ function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 		var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
 		if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
 			filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
+
+		var filtrePageUrlApi = $formulaireFiltres.find('.valeurPageUrlApi').val();
+		if(filtrePageUrlApi != null && filtrePageUrlApi !== '')
+			filtres.push({ name: 'fq', value: 'pageUrlApi:' + filtrePageUrlApi });
 
 		var filtreInscriptionCle = $formulaireFiltres.find('.valeurInscriptionCle').val();
 		if(filtreInscriptionCle != null && filtreInscriptionCle !== '')
@@ -3855,6 +3863,10 @@ function patchpaiementsInscriptionScolaireFiltres($formulaireFiltres) {
 		var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
 		if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
 			filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
+
+		var filtrePageUrlApi = $formulaireFiltres.find('.valeurPageUrlApi').val();
+		if(filtrePageUrlApi != null && filtrePageUrlApi !== '')
+			filtres.push({ name: 'fq', value: 'pageUrlApi:' + filtrePageUrlApi });
 
 		var filtreInscriptionCle = $formulaireFiltres.find('.valeurInscriptionCle').val();
 		if(filtreInscriptionCle != null && filtreInscriptionCle !== '')

@@ -516,6 +516,10 @@ function patchSchoolSeasonFilters($formFilters) {
 		if(filterPageUrlPk != null && filterPageUrlPk !== '')
 			filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
+		var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
+		if(filterPageUrlApi != null && filterPageUrlApi !== '')
+			filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
+
 		var filterSeasonKey = $formFilters.find('.valueSeasonKey').val();
 		if(filterSeasonKey != null && filterSeasonKey !== '')
 			filters.push({ name: 'fq', value: 'seasonKey:' + filterSeasonKey });
@@ -763,6 +767,10 @@ function searchSchoolSeasonFilters($formFilters) {
 		var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
 		if(filterPageUrlPk != null && filterPageUrlPk !== '')
 			filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
+
+		var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
+		if(filterPageUrlApi != null && filterPageUrlApi !== '')
+			filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
 
 		var filterSeasonKey = $formFilters.find('.valueSeasonKey').val();
 		if(filterSeasonKey != null && filterSeasonKey !== '')

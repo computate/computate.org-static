@@ -459,6 +459,10 @@ function patchEnrollmentDesignFilters($formFilters) {
 		if(filterPageUrlPk != null && filterPageUrlPk !== '')
 			filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
+		var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
+		if(filterPageUrlApi != null && filterPageUrlApi !== '')
+			filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
+
 		var filterEnrollmentDesignKey = $formFilters.find('.valueEnrollmentDesignKey').val();
 		if(filterEnrollmentDesignKey != null && filterEnrollmentDesignKey !== '')
 			filters.push({ name: 'fq', value: 'enrollmentDesignKey:' + filterEnrollmentDesignKey });
@@ -650,6 +654,10 @@ function searchEnrollmentDesignFilters($formFilters) {
 		var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
 		if(filterPageUrlPk != null && filterPageUrlPk !== '')
 			filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
+
+		var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
+		if(filterPageUrlApi != null && filterPageUrlApi !== '')
+			filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
 
 		var filterEnrollmentDesignKey = $formFilters.find('.valueEnrollmentDesignKey').val();
 		if(filterEnrollmentDesignKey != null && filterEnrollmentDesignKey !== '')

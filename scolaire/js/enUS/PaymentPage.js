@@ -1022,6 +1022,10 @@ function patchSchoolPaymentFilters($formFilters) {
 		if(filterPageUrlPk != null && filterPageUrlPk !== '')
 			filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
+		var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
+		if(filterPageUrlApi != null && filterPageUrlApi !== '')
+			filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
+
 		var filterPaymentKey = $formFilters.find('.valuePaymentKey').val();
 		if(filterPaymentKey != null && filterPaymentKey !== '')
 			filters.push({ name: 'fq', value: 'paymentKey:' + filterPaymentKey });
@@ -1447,6 +1451,10 @@ function searchSchoolPaymentFilters($formFilters) {
 		var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
 		if(filterPageUrlPk != null && filterPageUrlPk !== '')
 			filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
+
+		var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
+		if(filterPageUrlApi != null && filterPageUrlApi !== '')
+			filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
 
 		var filterPaymentKey = $formFilters.find('.valuePaymentKey').val();
 		if(filterPaymentKey != null && filterPaymentKey !== '')

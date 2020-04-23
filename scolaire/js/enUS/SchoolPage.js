@@ -420,6 +420,10 @@ function patchSchoolFilters($formFilters) {
 		if(filterPageUrlPk != null && filterPageUrlPk !== '')
 			filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
+		var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
+		if(filterPageUrlApi != null && filterPageUrlApi !== '')
+			filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
+
 		var filterSchoolKey = $formFilters.find('.valueSchoolKey').val();
 		if(filterSchoolKey != null && filterSchoolKey !== '')
 			filters.push({ name: 'fq', value: 'schoolKey:' + filterSchoolKey });
@@ -621,6 +625,10 @@ function searchSchoolFilters($formFilters) {
 		var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
 		if(filterPageUrlPk != null && filterPageUrlPk !== '')
 			filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
+
+		var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
+		if(filterPageUrlApi != null && filterPageUrlApi !== '')
+			filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
 
 		var filterSchoolKey = $formFilters.find('.valueSchoolKey').val();
 		if(filterSchoolKey != null && filterSchoolKey !== '')

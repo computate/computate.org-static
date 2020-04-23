@@ -141,6 +141,10 @@ function rechercheUtilisateurSiteFiltres($formulaireFiltres) {
 		if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
 			filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
 
+		var filtrePageUrlApi = $formulaireFiltres.find('.valeurPageUrlApi').val();
+		if(filtrePageUrlApi != null && filtrePageUrlApi !== '')
+			filtres.push({ name: 'fq', value: 'pageUrlApi:' + filtrePageUrlApi });
+
 		var filtreUtilisateurCles = $formulaireFiltres.find('.valeurUtilisateurCles').val();
 		if(filtreUtilisateurCles != null && filtreUtilisateurCles !== '')
 			filtres.push({ name: 'fq', value: 'utilisateurCles:' + filtreUtilisateurCles });
@@ -656,6 +660,10 @@ function patchUtilisateurSiteFiltres($formulaireFiltres) {
 		var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
 		if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
 			filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
+
+		var filtrePageUrlApi = $formulaireFiltres.find('.valeurPageUrlApi').val();
+		if(filtrePageUrlApi != null && filtrePageUrlApi !== '')
+			filtres.push({ name: 'fq', value: 'pageUrlApi:' + filtrePageUrlApi });
 
 		var filtreUtilisateurCles = $formulaireFiltres.find('.valeurUtilisateurCles').val();
 		if(filtreUtilisateurCles != null && filtreUtilisateurCles !== '')

@@ -477,6 +477,10 @@ function patchSchoolAgeFilters($formFilters) {
 		if(filterPageUrlPk != null && filterPageUrlPk !== '')
 			filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
+		var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
+		if(filterPageUrlApi != null && filterPageUrlApi !== '')
+			filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
+
 		var filterAgeKey = $formFilters.find('.valueAgeKey').val();
 		if(filterAgeKey != null && filterAgeKey !== '')
 			filters.push({ name: 'fq', value: 'ageKey:' + filterAgeKey });
@@ -754,6 +758,10 @@ function searchSchoolAgeFilters($formFilters) {
 		var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
 		if(filterPageUrlPk != null && filterPageUrlPk !== '')
 			filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
+
+		var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
+		if(filterPageUrlApi != null && filterPageUrlApi !== '')
+			filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
 
 		var filterAgeKey = $formFilters.find('.valueAgeKey').val();
 		if(filterAgeKey != null && filterAgeKey !== '')

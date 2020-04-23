@@ -680,6 +680,10 @@ function patchPereScolaireFiltres($formulaireFiltres) {
 		if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
 			filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
 
+		var filtrePageUrlApi = $formulaireFiltres.find('.valeurPageUrlApi').val();
+		if(filtrePageUrlApi != null && filtrePageUrlApi !== '')
+			filtres.push({ name: 'fq', value: 'pageUrlApi:' + filtrePageUrlApi });
+
 		var filtrePereCle = $formulaireFiltres.find('.valeurPereCle').val();
 		if(filtrePereCle != null && filtrePereCle !== '')
 			filtres.push({ name: 'fq', value: 'pereCle:' + filtrePereCle });
@@ -937,6 +941,10 @@ function recherchePereScolaireFiltres($formulaireFiltres) {
 		var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
 		if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
 			filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
+
+		var filtrePageUrlApi = $formulaireFiltres.find('.valeurPageUrlApi').val();
+		if(filtrePageUrlApi != null && filtrePageUrlApi !== '')
+			filtres.push({ name: 'fq', value: 'pageUrlApi:' + filtrePageUrlApi });
 
 		var filtrePereCle = $formulaireFiltres.find('.valeurPereCle').val();
 		if(filtrePereCle != null && filtrePereCle !== '')

@@ -420,6 +420,10 @@ function patchEcoleFiltres($formulaireFiltres) {
 		if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
 			filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
 
+		var filtrePageUrlApi = $formulaireFiltres.find('.valeurPageUrlApi').val();
+		if(filtrePageUrlApi != null && filtrePageUrlApi !== '')
+			filtres.push({ name: 'fq', value: 'pageUrlApi:' + filtrePageUrlApi });
+
 		var filtreEcoleCle = $formulaireFiltres.find('.valeurEcoleCle').val();
 		if(filtreEcoleCle != null && filtreEcoleCle !== '')
 			filtres.push({ name: 'fq', value: 'ecoleCle:' + filtreEcoleCle });
@@ -621,6 +625,10 @@ function rechercheEcoleFiltres($formulaireFiltres) {
 		var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
 		if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
 			filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
+
+		var filtrePageUrlApi = $formulaireFiltres.find('.valeurPageUrlApi').val();
+		if(filtrePageUrlApi != null && filtrePageUrlApi !== '')
+			filtres.push({ name: 'fq', value: 'pageUrlApi:' + filtrePageUrlApi });
 
 		var filtreEcoleCle = $formulaireFiltres.find('.valeurEcoleCle').val();
 		if(filtreEcoleCle != null && filtreEcoleCle !== '')

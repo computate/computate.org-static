@@ -477,6 +477,10 @@ function patchSessionScolaireFiltres($formulaireFiltres) {
 		if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
 			filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
 
+		var filtrePageUrlApi = $formulaireFiltres.find('.valeurPageUrlApi').val();
+		if(filtrePageUrlApi != null && filtrePageUrlApi !== '')
+			filtres.push({ name: 'fq', value: 'pageUrlApi:' + filtrePageUrlApi });
+
 		var filtreSessionCle = $formulaireFiltres.find('.valeurSessionCle').val();
 		if(filtreSessionCle != null && filtreSessionCle !== '')
 			filtres.push({ name: 'fq', value: 'sessionCle:' + filtreSessionCle });
@@ -738,6 +742,10 @@ function rechercheSessionScolaireFiltres($formulaireFiltres) {
 		var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
 		if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
 			filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
+
+		var filtrePageUrlApi = $formulaireFiltres.find('.valeurPageUrlApi').val();
+		if(filtrePageUrlApi != null && filtrePageUrlApi !== '')
+			filtres.push({ name: 'fq', value: 'pageUrlApi:' + filtrePageUrlApi });
 
 		var filtreSessionCle = $formulaireFiltres.find('.valeurSessionCle').val();
 		if(filtreSessionCle != null && filtreSessionCle !== '')

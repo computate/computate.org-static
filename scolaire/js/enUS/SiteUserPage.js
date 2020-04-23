@@ -141,6 +141,10 @@ function searchSiteUserFilters($formFilters) {
 		if(filterPageUrlPk != null && filterPageUrlPk !== '')
 			filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
 
+		var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
+		if(filterPageUrlApi != null && filterPageUrlApi !== '')
+			filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
+
 		var filterUserKeys = $formFilters.find('.valueUserKeys').val();
 		if(filterUserKeys != null && filterUserKeys !== '')
 			filters.push({ name: 'fq', value: 'userKeys:' + filterUserKeys });
@@ -656,6 +660,10 @@ function patchSiteUserFilters($formFilters) {
 		var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
 		if(filterPageUrlPk != null && filterPageUrlPk !== '')
 			filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
+
+		var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
+		if(filterPageUrlApi != null && filterPageUrlApi !== '')
+			filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
 
 		var filterUserKeys = $formFilters.find('.valueUserKeys').val();
 		if(filterUserKeys != null && filterUserKeys !== '')
