@@ -101,6 +101,18 @@ async function postPaiementScolaire($formulaireValeurs, success, error) {
 	if(valeurInheritPk != null && valeurInheritPk !== '')
 		vals['inheritPk'] = valeurInheritPk;
 
+	var valeurSessionId = $formulaireValeurs.find('.valeurSessionId').val();
+	if(valeurSessionId != null && valeurSessionId !== '')
+		vals['sessionId'] = valeurSessionId;
+
+	var valeurUtilisateurId = $formulaireValeurs.find('.valeurUtilisateurId').val();
+	if(valeurUtilisateurId != null && valeurUtilisateurId !== '')
+		vals['utilisateurId'] = valeurUtilisateurId;
+
+	var valeurUtilisateurCle = $formulaireValeurs.find('.valeurUtilisateurCle').val();
+	if(valeurUtilisateurCle != null && valeurUtilisateurCle !== '')
+		vals['utilisateurCle'] = valeurUtilisateurCle;
+
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 		vals['objetTitre'] = valeurObjetTitre;
@@ -300,6 +312,18 @@ async function putcopiePaiementScolaire($formulaireValeurs, pk, success, error) 
 	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
 	if(valeurInheritPk != null && valeurInheritPk !== '')
 		vals['inheritPk'] = valeurInheritPk;
+
+	var valeurSessionId = $formulaireValeurs.find('.valeurSessionId').val();
+	if(valeurSessionId != null && valeurSessionId !== '')
+		vals['sessionId'] = valeurSessionId;
+
+	var valeurUtilisateurId = $formulaireValeurs.find('.valeurUtilisateurId').val();
+	if(valeurUtilisateurId != null && valeurUtilisateurId !== '')
+		vals['utilisateurId'] = valeurUtilisateurId;
+
+	var valeurUtilisateurCle = $formulaireValeurs.find('.valeurUtilisateurCle').val();
+	if(valeurUtilisateurCle != null && valeurUtilisateurCle !== '')
+		vals['utilisateurCle'] = valeurUtilisateurCle;
 
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
@@ -667,6 +691,45 @@ async function patchPaiementScolaire($formulaireFiltres, $formulaireValeurs, pk,
 	if(removeInheritPk != null && removeInheritPk !== '')
 		vals['removeInheritPk'] = removeInheritPk;
 
+	var valeurSessionId = $formulaireValeurs.find('.valeurSessionId').val();
+	if(valeurSessionId != null && valeurSessionId !== '')
+	var removeSessionId = $formulaireFiltres.find('.removeSessionId').val() === 'true';
+	var setSessionId = removeSessionId ? null : $formulaireValeurs.find('.setSessionId').val();
+	if(removeSessionId || setSessionId != null && setSessionId !== '')
+		vals['setSessionId'] = setSessionId;
+	var addSessionId = $formulaireValeurs.find('.addSessionId').val();
+	if(addSessionId != null && addSessionId !== '')
+		vals['addSessionId'] = addSessionId;
+	var removeSessionId = $formulaireValeurs.find('.removeSessionId').val();
+	if(removeSessionId != null && removeSessionId !== '')
+		vals['removeSessionId'] = removeSessionId;
+
+	var valeurUtilisateurId = $formulaireValeurs.find('.valeurUtilisateurId').val();
+	if(valeurUtilisateurId != null && valeurUtilisateurId !== '')
+	var removeUtilisateurId = $formulaireFiltres.find('.removeUtilisateurId').val() === 'true';
+	var setUtilisateurId = removeUtilisateurId ? null : $formulaireValeurs.find('.setUtilisateurId').val();
+	if(removeUtilisateurId || setUtilisateurId != null && setUtilisateurId !== '')
+		vals['setUtilisateurId'] = setUtilisateurId;
+	var addUtilisateurId = $formulaireValeurs.find('.addUtilisateurId').val();
+	if(addUtilisateurId != null && addUtilisateurId !== '')
+		vals['addUtilisateurId'] = addUtilisateurId;
+	var removeUtilisateurId = $formulaireValeurs.find('.removeUtilisateurId').val();
+	if(removeUtilisateurId != null && removeUtilisateurId !== '')
+		vals['removeUtilisateurId'] = removeUtilisateurId;
+
+	var valeurUtilisateurCle = $formulaireValeurs.find('.valeurUtilisateurCle').val();
+	if(valeurUtilisateurCle != null && valeurUtilisateurCle !== '')
+	var removeUtilisateurCle = $formulaireFiltres.find('.removeUtilisateurCle').val() === 'true';
+	var setUtilisateurCle = removeUtilisateurCle ? null : $formulaireValeurs.find('.setUtilisateurCle').val();
+	if(removeUtilisateurCle || setUtilisateurCle != null && setUtilisateurCle !== '')
+		vals['setUtilisateurCle'] = setUtilisateurCle;
+	var addUtilisateurCle = $formulaireValeurs.find('.addUtilisateurCle').val();
+	if(addUtilisateurCle != null && addUtilisateurCle !== '')
+		vals['addUtilisateurCle'] = addUtilisateurCle;
+	var removeUtilisateurCle = $formulaireValeurs.find('.removeUtilisateurCle').val();
+	if(removeUtilisateurCle != null && removeUtilisateurCle !== '')
+		vals['removeUtilisateurCle'] = removeUtilisateurCle;
+
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 	var removeObjetTitre = $formulaireFiltres.find('.removeObjetTitre').val() === 'true';
@@ -997,6 +1060,14 @@ function patchPaiementScolaireFiltres($formulaireFiltres) {
 		var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
 		if(filtreSessionId != null && filtreSessionId !== '')
 			filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
+
+		var filtreUtilisateurId = $formulaireFiltres.find('.valeurUtilisateurId').val();
+		if(filtreUtilisateurId != null && filtreUtilisateurId !== '')
+			filtres.push({ name: 'fq', value: 'utilisateurId:' + filtreUtilisateurId });
+
+		var filtreUtilisateurCle = $formulaireFiltres.find('.valeurUtilisateurCle').val();
+		if(filtreUtilisateurCle != null && filtreUtilisateurCle !== '')
+			filtres.push({ name: 'fq', value: 'utilisateurCle:' + filtreUtilisateurCle });
 
 		var filtreSauvegardes = $formulaireFiltres.find('.valeurSauvegardes').val();
 		if(filtreSauvegardes != null && filtreSauvegardes !== '')
@@ -1428,6 +1499,14 @@ function recherchePaiementScolaireFiltres($formulaireFiltres) {
 		if(filtreSessionId != null && filtreSessionId !== '')
 			filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
 
+		var filtreUtilisateurId = $formulaireFiltres.find('.valeurUtilisateurId').val();
+		if(filtreUtilisateurId != null && filtreUtilisateurId !== '')
+			filtres.push({ name: 'fq', value: 'utilisateurId:' + filtreUtilisateurId });
+
+		var filtreUtilisateurCle = $formulaireFiltres.find('.valeurUtilisateurCle').val();
+		if(filtreUtilisateurCle != null && filtreUtilisateurCle !== '')
+			filtres.push({ name: 'fq', value: 'utilisateurCle:' + filtreUtilisateurCle });
+
 		var filtreSauvegardes = $formulaireFiltres.find('.valeurSauvegardes').val();
 		if(filtreSauvegardes != null && filtreSauvegardes !== '')
 			filtres.push({ name: 'fq', value: 'sauvegardes:' + filtreSauvegardes });
@@ -1785,122 +1864,167 @@ async function websocketPaiementScolaireInner(requeteApi) {
 			if(vars.includes('cree')) {
 				$('.inputPaiementScolaire' + pk + 'Cree').val(o['cree']);
 				$('.varPaiementScolaire' + pk + 'Cree').text(o['cree']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'Cree'));
 			}
 			if(vars.includes('modifie')) {
 				$('.inputPaiementScolaire' + pk + 'Modifie').val(o['modifie']);
 				$('.varPaiementScolaire' + pk + 'Modifie').text(o['modifie']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'Modifie'));
 			}
 			if(vars.includes('archive')) {
 				$('.inputPaiementScolaire' + pk + 'Archive').val(o['archive']);
 				$('.varPaiementScolaire' + pk + 'Archive').text(o['archive']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'Archive'));
 			}
 			if(vars.includes('supprime')) {
 				$('.inputPaiementScolaire' + pk + 'Supprime').val(o['supprime']);
 				$('.varPaiementScolaire' + pk + 'Supprime').text(o['supprime']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'Supprime'));
 			}
 			if(vars.includes('paiementDate')) {
 				$('.inputPaiementScolaire' + pk + 'PaiementDate').val(o['paiementDate']);
 				$('.varPaiementScolaire' + pk + 'PaiementDate').text(o['paiementDate']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'PaiementDate'));
 			}
 			if(vars.includes('paiementMontant')) {
 				$('.inputPaiementScolaire' + pk + 'PaiementMontant').val(o['paiementMontant']);
 				$('.varPaiementScolaire' + pk + 'PaiementMontant').text(o['paiementMontant']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'PaiementMontant'));
 			}
 			if(vars.includes('paiementEspeces')) {
 				$('.inputPaiementScolaire' + pk + 'PaiementEspeces').val(o['paiementEspeces']);
 				$('.varPaiementScolaire' + pk + 'PaiementEspeces').text(o['paiementEspeces']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'PaiementEspeces'));
 			}
 			if(vars.includes('paiementCheque')) {
 				$('.inputPaiementScolaire' + pk + 'PaiementCheque').val(o['paiementCheque']);
 				$('.varPaiementScolaire' + pk + 'PaiementCheque').text(o['paiementCheque']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'PaiementCheque'));
 			}
 			if(vars.includes('paiementSysteme')) {
 				$('.inputPaiementScolaire' + pk + 'PaiementSysteme').val(o['paiementSysteme']);
 				$('.varPaiementScolaire' + pk + 'PaiementSysteme').text(o['paiementSysteme']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'PaiementSysteme'));
 			}
 			if(vars.includes('paiementDescription')) {
 				$('.inputPaiementScolaire' + pk + 'PaiementDescription').val(o['paiementDescription']);
 				$('.varPaiementScolaire' + pk + 'PaiementDescription').text(o['paiementDescription']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'PaiementDescription'));
 			}
 			if(vars.includes('inscriptionPaimentComplet')) {
 				$('.inputPaiementScolaire' + pk + 'InscriptionPaimentComplet').val(o['inscriptionPaimentComplet']);
 				$('.varPaiementScolaire' + pk + 'InscriptionPaimentComplet').text(o['inscriptionPaimentComplet']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'InscriptionPaimentComplet'));
 			}
 			if(vars.includes('paiementPar')) {
 				$('.inputPaiementScolaire' + pk + 'PaiementPar').val(o['paiementPar']);
 				$('.varPaiementScolaire' + pk + 'PaiementPar').text(o['paiementPar']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'PaiementPar'));
 			}
 			if(vars.includes('inscriptionPaimentChaqueMois')) {
 				$('.inputPaiementScolaire' + pk + 'InscriptionPaimentChaqueMois').val(o['inscriptionPaimentChaqueMois']);
 				$('.varPaiementScolaire' + pk + 'InscriptionPaimentChaqueMois').text(o['inscriptionPaimentChaqueMois']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'InscriptionPaimentChaqueMois'));
 			}
 			if(vars.includes('transactionId')) {
 				$('.inputPaiementScolaire' + pk + 'TransactionId').val(o['transactionId']);
 				$('.varPaiementScolaire' + pk + 'TransactionId').text(o['transactionId']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'TransactionId'));
 			}
 			if(vars.includes('customerProfileId')) {
 				$('.inputPaiementScolaire' + pk + 'CustomerProfileId').val(o['customerProfileId']);
 				$('.varPaiementScolaire' + pk + 'CustomerProfileId').text(o['customerProfileId']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'CustomerProfileId'));
 			}
 			if(vars.includes('transactionStatus')) {
 				$('.inputPaiementScolaire' + pk + 'TransactionStatus').val(o['transactionStatus']);
 				$('.varPaiementScolaire' + pk + 'TransactionStatus').text(o['transactionStatus']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'TransactionStatus'));
 			}
 			if(vars.includes('inscriptionCle')) {
 				$('.inputPaiementScolaire' + pk + 'InscriptionCle').val(o['inscriptionCle']);
 				$('.varPaiementScolaire' + pk + 'InscriptionCle').text(o['inscriptionCle']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'InscriptionCle'));
 			}
 			if(vars.includes('paiementRecu')) {
 				$('.inputPaiementScolaire' + pk + 'PaiementRecu').val(o['paiementRecu']);
 				$('.varPaiementScolaire' + pk + 'PaiementRecu').text(o['paiementRecu']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'PaiementRecu'));
 			}
 			if(vars.includes('inheritPk')) {
 				$('.inputPaiementScolaire' + pk + 'InheritPk').val(o['inheritPk']);
 				$('.varPaiementScolaire' + pk + 'InheritPk').text(o['inheritPk']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'InheritPk'));
+			}
+			if(vars.includes('sessionId')) {
+				$('.inputPaiementScolaire' + pk + 'SessionId').val(o['sessionId']);
+				$('.varPaiementScolaire' + pk + 'SessionId').text(o['sessionId']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'SessionId'));
+			}
+			if(vars.includes('utilisateurId')) {
+				$('.inputPaiementScolaire' + pk + 'UtilisateurId').val(o['utilisateurId']);
+				$('.varPaiementScolaire' + pk + 'UtilisateurId').text(o['utilisateurId']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'UtilisateurId'));
+			}
+			if(vars.includes('utilisateurCle')) {
+				$('.inputPaiementScolaire' + pk + 'UtilisateurCle').val(o['utilisateurCle']);
+				$('.varPaiementScolaire' + pk + 'UtilisateurCle').text(o['utilisateurCle']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'UtilisateurCle'));
 			}
 			if(vars.includes('enfantNomCompletPrefere')) {
 				$('.inputPaiementScolaire' + pk + 'EnfantNomCompletPrefere').val(o['enfantNomCompletPrefere']);
 				$('.varPaiementScolaire' + pk + 'EnfantNomCompletPrefere').text(o['enfantNomCompletPrefere']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'EnfantNomCompletPrefere'));
 			}
 			if(vars.includes('enfantDateNaissance')) {
 				$('.inputPaiementScolaire' + pk + 'EnfantDateNaissance').val(o['enfantDateNaissance']);
 				$('.varPaiementScolaire' + pk + 'EnfantDateNaissance').text(o['enfantDateNaissance']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'EnfantDateNaissance'));
 			}
 			if(vars.includes('mereNomCompletPrefere')) {
 				$('.inputPaiementScolaire' + pk + 'MereNomCompletPrefere').val(o['mereNomCompletPrefere']);
 				$('.varPaiementScolaire' + pk + 'MereNomCompletPrefere').text(o['mereNomCompletPrefere']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'MereNomCompletPrefere'));
 			}
 			if(vars.includes('pereNomCompletPrefere')) {
 				$('.inputPaiementScolaire' + pk + 'PereNomCompletPrefere').val(o['pereNomCompletPrefere']);
 				$('.varPaiementScolaire' + pk + 'PereNomCompletPrefere').text(o['pereNomCompletPrefere']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'PereNomCompletPrefere'));
 			}
 			if(vars.includes('fraisMontant')) {
 				$('.inputPaiementScolaire' + pk + 'FraisMontant').val(o['fraisMontant']);
 				$('.varPaiementScolaire' + pk + 'FraisMontant').text(o['fraisMontant']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'FraisMontant'));
 			}
 			if(vars.includes('fraisMontantFuture')) {
 				$('.inputPaiementScolaire' + pk + 'FraisMontantFuture').val(o['fraisMontantFuture']);
 				$('.varPaiementScolaire' + pk + 'FraisMontantFuture').text(o['fraisMontantFuture']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'FraisMontantFuture'));
 			}
 			if(vars.includes('fraisInscription')) {
 				$('.inputPaiementScolaire' + pk + 'FraisInscription').val(o['fraisInscription']);
 				$('.varPaiementScolaire' + pk + 'FraisInscription').text(o['fraisInscription']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'FraisInscription'));
 			}
 			if(vars.includes('fraisPremierDernier')) {
 				$('.inputPaiementScolaire' + pk + 'FraisPremierDernier').val(o['fraisPremierDernier']);
 				$('.varPaiementScolaire' + pk + 'FraisPremierDernier').text(o['fraisPremierDernier']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'FraisPremierDernier'));
 			}
 			if(vars.includes('fraisMois')) {
 				$('.inputPaiementScolaire' + pk + 'FraisMois').val(o['fraisMois']);
 				$('.varPaiementScolaire' + pk + 'FraisMois').text(o['fraisMois']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'FraisMois'));
 			}
 			if(vars.includes('fraisRetard')) {
 				$('.inputPaiementScolaire' + pk + 'FraisRetard').val(o['fraisRetard']);
 				$('.varPaiementScolaire' + pk + 'FraisRetard').text(o['fraisRetard']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'FraisRetard'));
 			}
 			if(vars.includes('paiementNomCourt')) {
 				$('.inputPaiementScolaire' + pk + 'PaiementNomCourt').val(o['paiementNomCourt']);
 				$('.varPaiementScolaire' + pk + 'PaiementNomCourt').text(o['paiementNomCourt']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'PaiementNomCourt'));
 			}
 		});
 	}

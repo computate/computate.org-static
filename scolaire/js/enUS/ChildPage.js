@@ -69,6 +69,18 @@ async function postSchoolChild($formValues, success, error) {
 	if(valueInheritPk != null && valueInheritPk !== '')
 		vals['inheritPk'] = valueInheritPk;
 
+	var valueSessionId = $formValues.find('.valueSessionId').val();
+	if(valueSessionId != null && valueSessionId !== '')
+		vals['sessionId'] = valueSessionId;
+
+	var valueUserId = $formValues.find('.valueUserId').val();
+	if(valueUserId != null && valueUserId !== '')
+		vals['userId'] = valueUserId;
+
+	var valueUserKey = $formValues.find('.valueUserKey').val();
+	if(valueUserKey != null && valueUserKey !== '')
+		vals['userKey'] = valueUserKey;
+
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
@@ -192,6 +204,18 @@ async function putcopySchoolChild($formValues, pk, success, error) {
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
 	if(valueInheritPk != null && valueInheritPk !== '')
 		vals['inheritPk'] = valueInheritPk;
+
+	var valueSessionId = $formValues.find('.valueSessionId').val();
+	if(valueSessionId != null && valueSessionId !== '')
+		vals['sessionId'] = valueSessionId;
+
+	var valueUserId = $formValues.find('.valueUserId').val();
+	if(valueUserId != null && valueUserId !== '')
+		vals['userId'] = valueUserId;
+
+	var valueUserKey = $formValues.find('.valueUserKey').val();
+	if(valueUserKey != null && valueUserKey !== '')
+		vals['userKey'] = valueUserKey;
 
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
@@ -387,6 +411,45 @@ async function patchSchoolChild($formFilters, $formValues, pk, success, error) {
 	if(removeInheritPk != null && removeInheritPk !== '')
 		vals['removeInheritPk'] = removeInheritPk;
 
+	var valueSessionId = $formValues.find('.valueSessionId').val();
+	if(valueSessionId != null && valueSessionId !== '')
+	var removeSessionId = $formFilters.find('.removeSessionId').val() === 'true';
+	var setSessionId = removeSessionId ? null : $formValues.find('.setSessionId').val();
+	if(removeSessionId || setSessionId != null && setSessionId !== '')
+		vals['setSessionId'] = setSessionId;
+	var addSessionId = $formValues.find('.addSessionId').val();
+	if(addSessionId != null && addSessionId !== '')
+		vals['addSessionId'] = addSessionId;
+	var removeSessionId = $formValues.find('.removeSessionId').val();
+	if(removeSessionId != null && removeSessionId !== '')
+		vals['removeSessionId'] = removeSessionId;
+
+	var valueUserId = $formValues.find('.valueUserId').val();
+	if(valueUserId != null && valueUserId !== '')
+	var removeUserId = $formFilters.find('.removeUserId').val() === 'true';
+	var setUserId = removeUserId ? null : $formValues.find('.setUserId').val();
+	if(removeUserId || setUserId != null && setUserId !== '')
+		vals['setUserId'] = setUserId;
+	var addUserId = $formValues.find('.addUserId').val();
+	if(addUserId != null && addUserId !== '')
+		vals['addUserId'] = addUserId;
+	var removeUserId = $formValues.find('.removeUserId').val();
+	if(removeUserId != null && removeUserId !== '')
+		vals['removeUserId'] = removeUserId;
+
+	var valueUserKey = $formValues.find('.valueUserKey').val();
+	if(valueUserKey != null && valueUserKey !== '')
+	var removeUserKey = $formFilters.find('.removeUserKey').val() === 'true';
+	var setUserKey = removeUserKey ? null : $formValues.find('.setUserKey').val();
+	if(removeUserKey || setUserKey != null && setUserKey !== '')
+		vals['setUserKey'] = setUserKey;
+	var addUserKey = $formValues.find('.addUserKey').val();
+	if(addUserKey != null && addUserKey !== '')
+		vals['addUserKey'] = addUserKey;
+	var removeUserKey = $formValues.find('.removeUserKey').val();
+	if(removeUserKey != null && removeUserKey !== '')
+		vals['removeUserKey'] = removeUserKey;
+
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 	var removeObjectTitle = $formFilters.find('.removeObjectTitle').val() === 'true';
@@ -490,6 +553,14 @@ function patchSchoolChildFilters($formFilters) {
 		var filterSessionId = $formFilters.find('.valueSessionId').val();
 		if(filterSessionId != null && filterSessionId !== '')
 			filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+		var filterUserId = $formFilters.find('.valueUserId').val();
+		if(filterUserId != null && filterUserId !== '')
+			filters.push({ name: 'fq', value: 'userId:' + filterUserId });
+
+		var filterUserKey = $formFilters.find('.valueUserKey').val();
+		if(filterUserKey != null && filterUserKey !== '')
+			filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
 
 		var filterSaves = $formFilters.find('.valueSaves').val();
 		if(filterSaves != null && filterSaves !== '')
@@ -705,6 +776,14 @@ function searchSchoolChildFilters($formFilters) {
 		if(filterSessionId != null && filterSessionId !== '')
 			filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
 
+		var filterUserId = $formFilters.find('.valueUserId').val();
+		if(filterUserId != null && filterUserId !== '')
+			filters.push({ name: 'fq', value: 'userId:' + filterUserId });
+
+		var filterUserKey = $formFilters.find('.valueUserKey').val();
+		if(filterUserKey != null && filterUserKey !== '')
+			filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+
 		var filterSaves = $formFilters.find('.valueSaves').val();
 		if(filterSaves != null && filterSaves !== '')
 			filters.push({ name: 'fq', value: 'saves:' + filterSaves });
@@ -909,42 +988,67 @@ async function websocketSchoolChildInner(apiRequest) {
 			if(vars.includes('created')) {
 				$('.inputSchoolChild' + pk + 'Created').val(o['created']);
 				$('.varSchoolChild' + pk + 'Created').text(o['created']);
+				addGlow($('.inputSchoolChild' + pk + 'Created'));
 			}
 			if(vars.includes('modified')) {
 				$('.inputSchoolChild' + pk + 'Modified').val(o['modified']);
 				$('.varSchoolChild' + pk + 'Modified').text(o['modified']);
+				addGlow($('.inputSchoolChild' + pk + 'Modified'));
 			}
 			if(vars.includes('archived')) {
 				$('.inputSchoolChild' + pk + 'Archived').val(o['archived']);
 				$('.varSchoolChild' + pk + 'Archived').text(o['archived']);
+				addGlow($('.inputSchoolChild' + pk + 'Archived'));
 			}
 			if(vars.includes('deleted')) {
 				$('.inputSchoolChild' + pk + 'Deleted').val(o['deleted']);
 				$('.varSchoolChild' + pk + 'Deleted').text(o['deleted']);
+				addGlow($('.inputSchoolChild' + pk + 'Deleted'));
 			}
 			if(vars.includes('personFirstName')) {
 				$('.inputSchoolChild' + pk + 'PersonFirstName').val(o['personFirstName']);
 				$('.varSchoolChild' + pk + 'PersonFirstName').text(o['personFirstName']);
+				addGlow($('.inputSchoolChild' + pk + 'PersonFirstName'));
 			}
 			if(vars.includes('familyName')) {
 				$('.inputSchoolChild' + pk + 'FamilyName').val(o['familyName']);
 				$('.varSchoolChild' + pk + 'FamilyName').text(o['familyName']);
+				addGlow($('.inputSchoolChild' + pk + 'FamilyName'));
 			}
 			if(vars.includes('personFirstNamePreferred')) {
 				$('.inputSchoolChild' + pk + 'PersonFirstNamePreferred').val(o['personFirstNamePreferred']);
 				$('.varSchoolChild' + pk + 'PersonFirstNamePreferred').text(o['personFirstNamePreferred']);
+				addGlow($('.inputSchoolChild' + pk + 'PersonFirstNamePreferred'));
 			}
 			if(vars.includes('personBirthDate')) {
 				$('.inputSchoolChild' + pk + 'PersonBirthDate').val(o['personBirthDate']);
 				$('.varSchoolChild' + pk + 'PersonBirthDate').text(o['personBirthDate']);
+				addGlow($('.inputSchoolChild' + pk + 'PersonBirthDate'));
 			}
 			if(vars.includes('enrollmentKeys')) {
 				$('.inputSchoolChild' + pk + 'EnrollmentKeys').val(o['enrollmentKeys']);
 				$('.varSchoolChild' + pk + 'EnrollmentKeys').text(o['enrollmentKeys']);
+				addGlow($('.inputSchoolChild' + pk + 'EnrollmentKeys'));
 			}
 			if(vars.includes('inheritPk')) {
 				$('.inputSchoolChild' + pk + 'InheritPk').val(o['inheritPk']);
 				$('.varSchoolChild' + pk + 'InheritPk').text(o['inheritPk']);
+				addGlow($('.inputSchoolChild' + pk + 'InheritPk'));
+			}
+			if(vars.includes('sessionId')) {
+				$('.inputSchoolChild' + pk + 'SessionId').val(o['sessionId']);
+				$('.varSchoolChild' + pk + 'SessionId').text(o['sessionId']);
+				addGlow($('.inputSchoolChild' + pk + 'SessionId'));
+			}
+			if(vars.includes('userId')) {
+				$('.inputSchoolChild' + pk + 'UserId').val(o['userId']);
+				$('.varSchoolChild' + pk + 'UserId').text(o['userId']);
+				addGlow($('.inputSchoolChild' + pk + 'UserId'));
+			}
+			if(vars.includes('userKey')) {
+				$('.inputSchoolChild' + pk + 'UserKey').val(o['userKey']);
+				$('.varSchoolChild' + pk + 'UserKey').text(o['userKey']);
+				addGlow($('.inputSchoolChild' + pk + 'UserKey'));
 			}
 		});
 	}

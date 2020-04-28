@@ -73,6 +73,18 @@ async function postSchool($formValues, success, error) {
 	if(valueInheritPk != null && valueInheritPk !== '')
 		vals['inheritPk'] = valueInheritPk;
 
+	var valueSessionId = $formValues.find('.valueSessionId').val();
+	if(valueSessionId != null && valueSessionId !== '')
+		vals['sessionId'] = valueSessionId;
+
+	var valueUserId = $formValues.find('.valueUserId').val();
+	if(valueUserId != null && valueUserId !== '')
+		vals['userId'] = valueUserId;
+
+	var valueUserKey = $formValues.find('.valueUserKey').val();
+	if(valueUserKey != null && valueUserKey !== '')
+		vals['userKey'] = valueUserKey;
+
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
@@ -288,6 +300,45 @@ async function patchSchool($formFilters, $formValues, pk, success, error) {
 	if(removeInheritPk != null && removeInheritPk !== '')
 		vals['removeInheritPk'] = removeInheritPk;
 
+	var valueSessionId = $formValues.find('.valueSessionId').val();
+	if(valueSessionId != null && valueSessionId !== '')
+	var removeSessionId = $formFilters.find('.removeSessionId').val() === 'true';
+	var setSessionId = removeSessionId ? null : $formValues.find('.setSessionId').val();
+	if(removeSessionId || setSessionId != null && setSessionId !== '')
+		vals['setSessionId'] = setSessionId;
+	var addSessionId = $formValues.find('.addSessionId').val();
+	if(addSessionId != null && addSessionId !== '')
+		vals['addSessionId'] = addSessionId;
+	var removeSessionId = $formValues.find('.removeSessionId').val();
+	if(removeSessionId != null && removeSessionId !== '')
+		vals['removeSessionId'] = removeSessionId;
+
+	var valueUserId = $formValues.find('.valueUserId').val();
+	if(valueUserId != null && valueUserId !== '')
+	var removeUserId = $formFilters.find('.removeUserId').val() === 'true';
+	var setUserId = removeUserId ? null : $formValues.find('.setUserId').val();
+	if(removeUserId || setUserId != null && setUserId !== '')
+		vals['setUserId'] = setUserId;
+	var addUserId = $formValues.find('.addUserId').val();
+	if(addUserId != null && addUserId !== '')
+		vals['addUserId'] = addUserId;
+	var removeUserId = $formValues.find('.removeUserId').val();
+	if(removeUserId != null && removeUserId !== '')
+		vals['removeUserId'] = removeUserId;
+
+	var valueUserKey = $formValues.find('.valueUserKey').val();
+	if(valueUserKey != null && valueUserKey !== '')
+	var removeUserKey = $formFilters.find('.removeUserKey').val() === 'true';
+	var setUserKey = removeUserKey ? null : $formValues.find('.setUserKey').val();
+	if(removeUserKey || setUserKey != null && setUserKey !== '')
+		vals['setUserKey'] = setUserKey;
+	var addUserKey = $formValues.find('.addUserKey').val();
+	if(addUserKey != null && addUserKey !== '')
+		vals['addUserKey'] = addUserKey;
+	var removeUserKey = $formValues.find('.removeUserKey').val();
+	if(removeUserKey != null && removeUserKey !== '')
+		vals['removeUserKey'] = removeUserKey;
+
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 	var removeObjectTitle = $formFilters.find('.removeObjectTitle').val() === 'true';
@@ -395,6 +446,14 @@ function patchSchoolFilters($formFilters) {
 		var filterSessionId = $formFilters.find('.valueSessionId').val();
 		if(filterSessionId != null && filterSessionId !== '')
 			filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+		var filterUserId = $formFilters.find('.valueUserId').val();
+		if(filterUserId != null && filterUserId !== '')
+			filters.push({ name: 'fq', value: 'userId:' + filterUserId });
+
+		var filterUserKey = $formFilters.find('.valueUserKey').val();
+		if(filterUserKey != null && filterUserKey !== '')
+			filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
 
 		var filterSaves = $formFilters.find('.valueSaves').val();
 		if(filterSaves != null && filterSaves !== '')
@@ -601,6 +660,14 @@ function searchSchoolFilters($formFilters) {
 		var filterSessionId = $formFilters.find('.valueSessionId').val();
 		if(filterSessionId != null && filterSessionId !== '')
 			filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+		var filterUserId = $formFilters.find('.valueUserId').val();
+		if(filterUserId != null && filterUserId !== '')
+			filters.push({ name: 'fq', value: 'userId:' + filterUserId });
+
+		var filterUserKey = $formFilters.find('.valueUserKey').val();
+		if(filterUserKey != null && filterUserKey !== '')
+			filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
 
 		var filterSaves = $formFilters.find('.valueSaves').val();
 		if(filterSaves != null && filterSaves !== '')
@@ -839,6 +906,18 @@ async function putcopySchool($formValues, pk, success, error) {
 	if(valueInheritPk != null && valueInheritPk !== '')
 		vals['inheritPk'] = valueInheritPk;
 
+	var valueSessionId = $formValues.find('.valueSessionId').val();
+	if(valueSessionId != null && valueSessionId !== '')
+		vals['sessionId'] = valueSessionId;
+
+	var valueUserId = $formValues.find('.valueUserId').val();
+	if(valueUserId != null && valueUserId !== '')
+		vals['userId'] = valueUserId;
+
+	var valueUserKey = $formValues.find('.valueUserKey').val();
+	if(valueUserKey != null && valueUserKey !== '')
+		vals['userKey'] = valueUserKey;
+
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
@@ -914,50 +993,77 @@ async function websocketSchoolInner(apiRequest) {
 			if(vars.includes('created')) {
 				$('.inputSchool' + pk + 'Created').val(o['created']);
 				$('.varSchool' + pk + 'Created').text(o['created']);
+				addGlow($('.inputSchool' + pk + 'Created'));
 			}
 			if(vars.includes('modified')) {
 				$('.inputSchool' + pk + 'Modified').val(o['modified']);
 				$('.varSchool' + pk + 'Modified').text(o['modified']);
+				addGlow($('.inputSchool' + pk + 'Modified'));
 			}
 			if(vars.includes('archived')) {
 				$('.inputSchool' + pk + 'Archived').val(o['archived']);
 				$('.varSchool' + pk + 'Archived').text(o['archived']);
+				addGlow($('.inputSchool' + pk + 'Archived'));
 			}
 			if(vars.includes('deleted')) {
 				$('.inputSchool' + pk + 'Deleted').val(o['deleted']);
 				$('.varSchool' + pk + 'Deleted').text(o['deleted']);
+				addGlow($('.inputSchool' + pk + 'Deleted'));
 			}
 			if(vars.includes('schoolName')) {
 				$('.inputSchool' + pk + 'SchoolName').val(o['schoolName']);
 				$('.varSchool' + pk + 'SchoolName').text(o['schoolName']);
+				addGlow($('.inputSchool' + pk + 'SchoolName'));
 			}
 			if(vars.includes('schoolAdministratorName')) {
 				$('.inputSchool' + pk + 'SchoolAdministratorName').val(o['schoolAdministratorName']);
 				$('.varSchool' + pk + 'SchoolAdministratorName').text(o['schoolAdministratorName']);
+				addGlow($('.inputSchool' + pk + 'SchoolAdministratorName'));
 			}
 			if(vars.includes('schoolEmail')) {
 				$('.inputSchool' + pk + 'SchoolEmail').val(o['schoolEmail']);
 				$('.varSchool' + pk + 'SchoolEmail').text(o['schoolEmail']);
+				addGlow($('.inputSchool' + pk + 'SchoolEmail'));
 			}
 			if(vars.includes('schoolLocation')) {
 				$('.inputSchool' + pk + 'SchoolLocation').val(o['schoolLocation']);
 				$('.varSchool' + pk + 'SchoolLocation').text(o['schoolLocation']);
+				addGlow($('.inputSchool' + pk + 'SchoolLocation'));
 			}
 			if(vars.includes('schoolPhoneNumber')) {
 				$('.inputSchool' + pk + 'SchoolPhoneNumber').val(o['schoolPhoneNumber']);
 				$('.varSchool' + pk + 'SchoolPhoneNumber').text(o['schoolPhoneNumber']);
+				addGlow($('.inputSchool' + pk + 'SchoolPhoneNumber'));
 			}
 			if(vars.includes('schoolAddress')) {
 				$('.inputSchool' + pk + 'SchoolAddress').val(o['schoolAddress']);
 				$('.varSchool' + pk + 'SchoolAddress').text(o['schoolAddress']);
+				addGlow($('.inputSchool' + pk + 'SchoolAddress'));
 			}
 			if(vars.includes('yearKeys')) {
 				$('.inputSchool' + pk + 'YearKeys').val(o['yearKeys']);
 				$('.varSchool' + pk + 'YearKeys').text(o['yearKeys']);
+				addGlow($('.inputSchool' + pk + 'YearKeys'));
 			}
 			if(vars.includes('inheritPk')) {
 				$('.inputSchool' + pk + 'InheritPk').val(o['inheritPk']);
 				$('.varSchool' + pk + 'InheritPk').text(o['inheritPk']);
+				addGlow($('.inputSchool' + pk + 'InheritPk'));
+			}
+			if(vars.includes('sessionId')) {
+				$('.inputSchool' + pk + 'SessionId').val(o['sessionId']);
+				$('.varSchool' + pk + 'SessionId').text(o['sessionId']);
+				addGlow($('.inputSchool' + pk + 'SessionId'));
+			}
+			if(vars.includes('userId')) {
+				$('.inputSchool' + pk + 'UserId').val(o['userId']);
+				$('.varSchool' + pk + 'UserId').text(o['userId']);
+				addGlow($('.inputSchool' + pk + 'UserId'));
+			}
+			if(vars.includes('userKey')) {
+				$('.inputSchool' + pk + 'UserKey').val(o['userKey']);
+				$('.varSchool' + pk + 'UserKey').text(o['userKey']);
+				addGlow($('.inputSchool' + pk + 'UserKey'));
 			}
 		});
 	}

@@ -117,6 +117,14 @@ function searchSiteUserFilters($formFilters) {
 		if(filterSessionId != null && filterSessionId !== '')
 			filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
 
+		var filterUserId = $formFilters.find('.valueUserId').val();
+		if(filterUserId != null && filterUserId !== '')
+			filters.push({ name: 'fq', value: 'userId:' + filterUserId });
+
+		var filterUserKey = $formFilters.find('.valueUserKey').val();
+		if(filterUserKey != null && filterUserKey !== '')
+			filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+
 		var filterSaves = $formFilters.find('.valueSaves').val();
 		if(filterSaves != null && filterSaves !== '')
 			filters.push({ name: 'fq', value: 'saves:' + filterSaves });
@@ -148,14 +156,6 @@ function searchSiteUserFilters($formFilters) {
 		var filterUserKeys = $formFilters.find('.valueUserKeys').val();
 		if(filterUserKeys != null && filterUserKeys !== '')
 			filters.push({ name: 'fq', value: 'userKeys:' + filterUserKeys });
-
-		var filterUserId = $formFilters.find('.valueUserId').val();
-		if(filterUserId != null && filterUserId !== '')
-			filters.push({ name: 'fq', value: 'userId:' + filterUserId });
-
-		var filterUserKey = $formFilters.find('.valueUserKey').val();
-		if(filterUserKey != null && filterUserKey !== '')
-			filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
 
 		var filterUserName = $formFilters.find('.valueUserName').val();
 		if(filterUserName != null && filterUserName !== '')
@@ -463,18 +463,18 @@ async function patchSiteUser($formFilters, $formValues, pk, success, error) {
 	if(removeInheritPk != null && removeInheritPk !== '')
 		vals['removeInheritPk'] = removeInheritPk;
 
-	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
-	if(valueObjectTitle != null && valueObjectTitle !== '')
-	var removeObjectTitle = $formFilters.find('.removeObjectTitle').val() === 'true';
-	var setObjectTitle = removeObjectTitle ? null : $formValues.find('.setObjectTitle').val();
-	if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
-		vals['setObjectTitle'] = setObjectTitle;
-	var addObjectTitle = $formValues.find('.addObjectTitle').val();
-	if(addObjectTitle != null && addObjectTitle !== '')
-		vals['addObjectTitle'] = addObjectTitle;
-	var removeObjectTitle = $formValues.find('.removeObjectTitle').val();
-	if(removeObjectTitle != null && removeObjectTitle !== '')
-		vals['removeObjectTitle'] = removeObjectTitle;
+	var valueSessionId = $formValues.find('.valueSessionId').val();
+	if(valueSessionId != null && valueSessionId !== '')
+	var removeSessionId = $formFilters.find('.removeSessionId').val() === 'true';
+	var setSessionId = removeSessionId ? null : $formValues.find('.setSessionId').val();
+	if(removeSessionId || setSessionId != null && setSessionId !== '')
+		vals['setSessionId'] = setSessionId;
+	var addSessionId = $formValues.find('.addSessionId').val();
+	if(addSessionId != null && addSessionId !== '')
+		vals['addSessionId'] = addSessionId;
+	var removeSessionId = $formValues.find('.removeSessionId').val();
+	if(removeSessionId != null && removeSessionId !== '')
+		vals['removeSessionId'] = removeSessionId;
 
 	var valueUserId = $formValues.find('.valueUserId').val();
 	if(valueUserId != null && valueUserId !== '')
@@ -501,6 +501,19 @@ async function patchSiteUser($formFilters, $formValues, pk, success, error) {
 	var removeUserKey = $formValues.find('.removeUserKey').val();
 	if(removeUserKey != null && removeUserKey !== '')
 		vals['removeUserKey'] = removeUserKey;
+
+	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
+	if(valueObjectTitle != null && valueObjectTitle !== '')
+	var removeObjectTitle = $formFilters.find('.removeObjectTitle').val() === 'true';
+	var setObjectTitle = removeObjectTitle ? null : $formValues.find('.setObjectTitle').val();
+	if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
+		vals['setObjectTitle'] = setObjectTitle;
+	var addObjectTitle = $formValues.find('.addObjectTitle').val();
+	if(addObjectTitle != null && addObjectTitle !== '')
+		vals['addObjectTitle'] = addObjectTitle;
+	var removeObjectTitle = $formValues.find('.removeObjectTitle').val();
+	if(removeObjectTitle != null && removeObjectTitle !== '')
+		vals['removeObjectTitle'] = removeObjectTitle;
 
 	var valueUserName = $formValues.find('.valueUserName').val();
 	if(valueUserName != null && valueUserName !== '')
@@ -637,6 +650,14 @@ function patchSiteUserFilters($formFilters) {
 		if(filterSessionId != null && filterSessionId !== '')
 			filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
 
+		var filterUserId = $formFilters.find('.valueUserId').val();
+		if(filterUserId != null && filterUserId !== '')
+			filters.push({ name: 'fq', value: 'userId:' + filterUserId });
+
+		var filterUserKey = $formFilters.find('.valueUserKey').val();
+		if(filterUserKey != null && filterUserKey !== '')
+			filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+
 		var filterSaves = $formFilters.find('.valueSaves').val();
 		if(filterSaves != null && filterSaves !== '')
 			filters.push({ name: 'fq', value: 'saves:' + filterSaves });
@@ -668,14 +689,6 @@ function patchSiteUserFilters($formFilters) {
 		var filterUserKeys = $formFilters.find('.valueUserKeys').val();
 		if(filterUserKeys != null && filterUserKeys !== '')
 			filters.push({ name: 'fq', value: 'userKeys:' + filterUserKeys });
-
-		var filterUserId = $formFilters.find('.valueUserId').val();
-		if(filterUserId != null && filterUserId !== '')
-			filters.push({ name: 'fq', value: 'userId:' + filterUserId });
-
-		var filterUserKey = $formFilters.find('.valueUserKey').val();
-		if(filterUserKey != null && filterUserKey !== '')
-			filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
 
 		var filterUserName = $formFilters.find('.valueUserName').val();
 		if(filterUserName != null && filterUserName !== '')
@@ -792,9 +805,9 @@ async function postSiteUser($formValues, success, error) {
 	if(valueInheritPk != null && valueInheritPk !== '')
 		vals['inheritPk'] = valueInheritPk;
 
-	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
-	if(valueObjectTitle != null && valueObjectTitle !== '')
-		vals['objectTitle'] = valueObjectTitle;
+	var valueSessionId = $formValues.find('.valueSessionId').val();
+	if(valueSessionId != null && valueSessionId !== '')
+		vals['sessionId'] = valueSessionId;
 
 	var valueUserId = $formValues.find('.valueUserId').val();
 	if(valueUserId != null && valueUserId !== '')
@@ -803,6 +816,10 @@ async function postSiteUser($formValues, success, error) {
 	var valueUserKey = $formValues.find('.valueUserKey').val();
 	if(valueUserKey != null && valueUserKey !== '')
 		vals['userKey'] = valueUserKey;
+
+	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
+	if(valueObjectTitle != null && valueObjectTitle !== '')
+		vals['objectTitle'] = valueObjectTitle;
 
 	var valueUserName = $formValues.find('.valueUserName').val();
 	if(valueUserName != null && valueUserName !== '')
@@ -895,62 +912,82 @@ async function websocketSiteUserInner(apiRequest) {
 			if(vars.includes('created')) {
 				$('.inputSiteUser' + pk + 'Created').val(o['created']);
 				$('.varSiteUser' + pk + 'Created').text(o['created']);
+				addGlow($('.inputSiteUser' + pk + 'Created'));
 			}
 			if(vars.includes('modified')) {
 				$('.inputSiteUser' + pk + 'Modified').val(o['modified']);
 				$('.varSiteUser' + pk + 'Modified').text(o['modified']);
+				addGlow($('.inputSiteUser' + pk + 'Modified'));
 			}
 			if(vars.includes('archived')) {
 				$('.inputSiteUser' + pk + 'Archived').val(o['archived']);
 				$('.varSiteUser' + pk + 'Archived').text(o['archived']);
+				addGlow($('.inputSiteUser' + pk + 'Archived'));
 			}
 			if(vars.includes('deleted')) {
 				$('.inputSiteUser' + pk + 'Deleted').val(o['deleted']);
 				$('.varSiteUser' + pk + 'Deleted').text(o['deleted']);
+				addGlow($('.inputSiteUser' + pk + 'Deleted'));
 			}
 			if(vars.includes('userReceiveEmails')) {
 				$('.inputSiteUser' + pk + 'UserReceiveEmails').val(o['userReceiveEmails']);
 				$('.varSiteUser' + pk + 'UserReceiveEmails').text(o['userReceiveEmails']);
+				addGlow($('.inputSiteUser' + pk + 'UserReceiveEmails'));
 			}
 			if(vars.includes('seeArchived')) {
 				$('.inputSiteUser' + pk + 'SeeArchived').val(o['seeArchived']);
 				$('.varSiteUser' + pk + 'SeeArchived').text(o['seeArchived']);
+				addGlow($('.inputSiteUser' + pk + 'SeeArchived'));
 			}
 			if(vars.includes('seeDeleted')) {
 				$('.inputSiteUser' + pk + 'SeeDeleted').val(o['seeDeleted']);
 				$('.varSiteUser' + pk + 'SeeDeleted').text(o['seeDeleted']);
+				addGlow($('.inputSiteUser' + pk + 'SeeDeleted'));
 			}
 			if(vars.includes('customerProfileId')) {
 				$('.inputSiteUser' + pk + 'CustomerProfileId').val(o['customerProfileId']);
 				$('.varSiteUser' + pk + 'CustomerProfileId').text(o['customerProfileId']);
+				addGlow($('.inputSiteUser' + pk + 'CustomerProfileId'));
 			}
 			if(vars.includes('enrollmentKeys')) {
 				$('.inputSiteUser' + pk + 'EnrollmentKeys').val(o['enrollmentKeys']);
 				$('.varSiteUser' + pk + 'EnrollmentKeys').text(o['enrollmentKeys']);
+				addGlow($('.inputSiteUser' + pk + 'EnrollmentKeys'));
 			}
 			if(vars.includes('paymentKeys')) {
 				$('.inputSiteUser' + pk + 'PaymentKeys').val(o['paymentKeys']);
 				$('.varSiteUser' + pk + 'PaymentKeys').text(o['paymentKeys']);
+				addGlow($('.inputSiteUser' + pk + 'PaymentKeys'));
 			}
 			if(vars.includes('inheritPk')) {
 				$('.inputSiteUser' + pk + 'InheritPk').val(o['inheritPk']);
 				$('.varSiteUser' + pk + 'InheritPk').text(o['inheritPk']);
+				addGlow($('.inputSiteUser' + pk + 'InheritPk'));
+			}
+			if(vars.includes('sessionId')) {
+				$('.inputSiteUser' + pk + 'SessionId').val(o['sessionId']);
+				$('.varSiteUser' + pk + 'SessionId').text(o['sessionId']);
+				addGlow($('.inputSiteUser' + pk + 'SessionId'));
 			}
 			if(vars.includes('userId')) {
 				$('.inputSiteUser' + pk + 'UserId').val(o['userId']);
 				$('.varSiteUser' + pk + 'UserId').text(o['userId']);
+				addGlow($('.inputSiteUser' + pk + 'UserId'));
 			}
 			if(vars.includes('userKey')) {
 				$('.inputSiteUser' + pk + 'UserKey').val(o['userKey']);
 				$('.varSiteUser' + pk + 'UserKey').text(o['userKey']);
+				addGlow($('.inputSiteUser' + pk + 'UserKey'));
 			}
 			if(vars.includes('userName')) {
 				$('.inputSiteUser' + pk + 'UserName').val(o['userName']);
 				$('.varSiteUser' + pk + 'UserName').text(o['userName']);
+				addGlow($('.inputSiteUser' + pk + 'UserName'));
 			}
 			if(vars.includes('userEmail')) {
 				$('.inputSiteUser' + pk + 'UserEmail').val(o['userEmail']);
 				$('.varSiteUser' + pk + 'UserEmail').text(o['userEmail']);
+				addGlow($('.inputSiteUser' + pk + 'UserEmail'));
 			}
 		});
 	}

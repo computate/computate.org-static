@@ -141,6 +141,18 @@ async function postInscriptionScolaire($formulaireValeurs, success, error) {
 	if(valeurInheritPk != null && valeurInheritPk !== '')
 		vals['inheritPk'] = valeurInheritPk;
 
+	var valeurSessionId = $formulaireValeurs.find('.valeurSessionId').val();
+	if(valeurSessionId != null && valeurSessionId !== '')
+		vals['sessionId'] = valeurSessionId;
+
+	var valeurUtilisateurId = $formulaireValeurs.find('.valeurUtilisateurId').val();
+	if(valeurUtilisateurId != null && valeurUtilisateurId !== '')
+		vals['utilisateurId'] = valeurUtilisateurId;
+
+	var valeurUtilisateurCle = $formulaireValeurs.find('.valeurUtilisateurCle').val();
+	if(valeurUtilisateurCle != null && valeurUtilisateurCle !== '')
+		vals['utilisateurCle'] = valeurUtilisateurCle;
+
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 		vals['objetTitre'] = valeurObjetTitre;
@@ -440,6 +452,18 @@ async function putcopieInscriptionScolaire($formulaireValeurs, pk, success, erro
 	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
 	if(valeurInheritPk != null && valeurInheritPk !== '')
 		vals['inheritPk'] = valeurInheritPk;
+
+	var valeurSessionId = $formulaireValeurs.find('.valeurSessionId').val();
+	if(valeurSessionId != null && valeurSessionId !== '')
+		vals['sessionId'] = valeurSessionId;
+
+	var valeurUtilisateurId = $formulaireValeurs.find('.valeurUtilisateurId').val();
+	if(valeurUtilisateurId != null && valeurUtilisateurId !== '')
+		vals['utilisateurId'] = valeurUtilisateurId;
+
+	var valeurUtilisateurCle = $formulaireValeurs.find('.valeurUtilisateurCle').val();
+	if(valeurUtilisateurCle != null && valeurUtilisateurCle !== '')
+		vals['utilisateurCle'] = valeurUtilisateurCle;
 
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
@@ -950,6 +974,45 @@ async function patchInscriptionScolaire($formulaireFiltres, $formulaireValeurs, 
 	var removeInheritPk = $formulaireValeurs.find('.removeInheritPk').val();
 	if(removeInheritPk != null && removeInheritPk !== '')
 		vals['removeInheritPk'] = removeInheritPk;
+
+	var valeurSessionId = $formulaireValeurs.find('.valeurSessionId').val();
+	if(valeurSessionId != null && valeurSessionId !== '')
+	var removeSessionId = $formulaireFiltres.find('.removeSessionId').val() === 'true';
+	var setSessionId = removeSessionId ? null : $formulaireValeurs.find('.setSessionId').val();
+	if(removeSessionId || setSessionId != null && setSessionId !== '')
+		vals['setSessionId'] = setSessionId;
+	var addSessionId = $formulaireValeurs.find('.addSessionId').val();
+	if(addSessionId != null && addSessionId !== '')
+		vals['addSessionId'] = addSessionId;
+	var removeSessionId = $formulaireValeurs.find('.removeSessionId').val();
+	if(removeSessionId != null && removeSessionId !== '')
+		vals['removeSessionId'] = removeSessionId;
+
+	var valeurUtilisateurId = $formulaireValeurs.find('.valeurUtilisateurId').val();
+	if(valeurUtilisateurId != null && valeurUtilisateurId !== '')
+	var removeUtilisateurId = $formulaireFiltres.find('.removeUtilisateurId').val() === 'true';
+	var setUtilisateurId = removeUtilisateurId ? null : $formulaireValeurs.find('.setUtilisateurId').val();
+	if(removeUtilisateurId || setUtilisateurId != null && setUtilisateurId !== '')
+		vals['setUtilisateurId'] = setUtilisateurId;
+	var addUtilisateurId = $formulaireValeurs.find('.addUtilisateurId').val();
+	if(addUtilisateurId != null && addUtilisateurId !== '')
+		vals['addUtilisateurId'] = addUtilisateurId;
+	var removeUtilisateurId = $formulaireValeurs.find('.removeUtilisateurId').val();
+	if(removeUtilisateurId != null && removeUtilisateurId !== '')
+		vals['removeUtilisateurId'] = removeUtilisateurId;
+
+	var valeurUtilisateurCle = $formulaireValeurs.find('.valeurUtilisateurCle').val();
+	if(valeurUtilisateurCle != null && valeurUtilisateurCle !== '')
+	var removeUtilisateurCle = $formulaireFiltres.find('.removeUtilisateurCle').val() === 'true';
+	var setUtilisateurCle = removeUtilisateurCle ? null : $formulaireValeurs.find('.setUtilisateurCle').val();
+	if(removeUtilisateurCle || setUtilisateurCle != null && setUtilisateurCle !== '')
+		vals['setUtilisateurCle'] = setUtilisateurCle;
+	var addUtilisateurCle = $formulaireValeurs.find('.addUtilisateurCle').val();
+	if(addUtilisateurCle != null && addUtilisateurCle !== '')
+		vals['addUtilisateurCle'] = addUtilisateurCle;
+	var removeUtilisateurCle = $formulaireValeurs.find('.removeUtilisateurCle').val();
+	if(removeUtilisateurCle != null && removeUtilisateurCle !== '')
+		vals['removeUtilisateurCle'] = removeUtilisateurCle;
 
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
@@ -1512,6 +1575,14 @@ function patchInscriptionScolaireFiltres($formulaireFiltres) {
 		var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
 		if(filtreSessionId != null && filtreSessionId !== '')
 			filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
+
+		var filtreUtilisateurId = $formulaireFiltres.find('.valeurUtilisateurId').val();
+		if(filtreUtilisateurId != null && filtreUtilisateurId !== '')
+			filtres.push({ name: 'fq', value: 'utilisateurId:' + filtreUtilisateurId });
+
+		var filtreUtilisateurCle = $formulaireFiltres.find('.valeurUtilisateurCle').val();
+		if(filtreUtilisateurCle != null && filtreUtilisateurCle !== '')
+			filtres.push({ name: 'fq', value: 'utilisateurCle:' + filtreUtilisateurCle });
 
 		var filtreSauvegardes = $formulaireFiltres.find('.valeurSauvegardes').val();
 		if(filtreSauvegardes != null && filtreSauvegardes !== '')
@@ -2168,6 +2239,14 @@ function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 		var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
 		if(filtreSessionId != null && filtreSessionId !== '')
 			filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
+
+		var filtreUtilisateurId = $formulaireFiltres.find('.valeurUtilisateurId').val();
+		if(filtreUtilisateurId != null && filtreUtilisateurId !== '')
+			filtres.push({ name: 'fq', value: 'utilisateurId:' + filtreUtilisateurId });
+
+		var filtreUtilisateurCle = $formulaireFiltres.find('.valeurUtilisateurCle').val();
+		if(filtreUtilisateurCle != null && filtreUtilisateurCle !== '')
+			filtres.push({ name: 'fq', value: 'utilisateurCle:' + filtreUtilisateurCle });
 
 		var filtreSauvegardes = $formulaireFiltres.find('.valeurSauvegardes').val();
 		if(filtreSauvegardes != null && filtreSauvegardes !== '')
@@ -3278,6 +3357,45 @@ async function patchpaiementsInscriptionScolaire($formulaireFiltres, $formulaire
 	if(removeInheritPk != null && removeInheritPk !== '')
 		vals['removeInheritPk'] = removeInheritPk;
 
+	var valeurSessionId = $formulaireValeurs.find('.valeurSessionId').val();
+	if(valeurSessionId != null && valeurSessionId !== '')
+	var removeSessionId = $formulaireFiltres.find('.removeSessionId').val() === 'true';
+	var setSessionId = removeSessionId ? null : $formulaireValeurs.find('.setSessionId').val();
+	if(removeSessionId || setSessionId != null && setSessionId !== '')
+		vals['setSessionId'] = setSessionId;
+	var addSessionId = $formulaireValeurs.find('.addSessionId').val();
+	if(addSessionId != null && addSessionId !== '')
+		vals['addSessionId'] = addSessionId;
+	var removeSessionId = $formulaireValeurs.find('.removeSessionId').val();
+	if(removeSessionId != null && removeSessionId !== '')
+		vals['removeSessionId'] = removeSessionId;
+
+	var valeurUtilisateurId = $formulaireValeurs.find('.valeurUtilisateurId').val();
+	if(valeurUtilisateurId != null && valeurUtilisateurId !== '')
+	var removeUtilisateurId = $formulaireFiltres.find('.removeUtilisateurId').val() === 'true';
+	var setUtilisateurId = removeUtilisateurId ? null : $formulaireValeurs.find('.setUtilisateurId').val();
+	if(removeUtilisateurId || setUtilisateurId != null && setUtilisateurId !== '')
+		vals['setUtilisateurId'] = setUtilisateurId;
+	var addUtilisateurId = $formulaireValeurs.find('.addUtilisateurId').val();
+	if(addUtilisateurId != null && addUtilisateurId !== '')
+		vals['addUtilisateurId'] = addUtilisateurId;
+	var removeUtilisateurId = $formulaireValeurs.find('.removeUtilisateurId').val();
+	if(removeUtilisateurId != null && removeUtilisateurId !== '')
+		vals['removeUtilisateurId'] = removeUtilisateurId;
+
+	var valeurUtilisateurCle = $formulaireValeurs.find('.valeurUtilisateurCle').val();
+	if(valeurUtilisateurCle != null && valeurUtilisateurCle !== '')
+	var removeUtilisateurCle = $formulaireFiltres.find('.removeUtilisateurCle').val() === 'true';
+	var setUtilisateurCle = removeUtilisateurCle ? null : $formulaireValeurs.find('.setUtilisateurCle').val();
+	if(removeUtilisateurCle || setUtilisateurCle != null && setUtilisateurCle !== '')
+		vals['setUtilisateurCle'] = setUtilisateurCle;
+	var addUtilisateurCle = $formulaireValeurs.find('.addUtilisateurCle').val();
+	if(addUtilisateurCle != null && addUtilisateurCle !== '')
+		vals['addUtilisateurCle'] = addUtilisateurCle;
+	var removeUtilisateurCle = $formulaireValeurs.find('.removeUtilisateurCle').val();
+	if(removeUtilisateurCle != null && removeUtilisateurCle !== '')
+		vals['removeUtilisateurCle'] = removeUtilisateurCle;
+
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 	var removeObjetTitre = $formulaireFiltres.find('.removeObjetTitre').val() === 'true';
@@ -3840,6 +3958,14 @@ function patchpaiementsInscriptionScolaireFiltres($formulaireFiltres) {
 		if(filtreSessionId != null && filtreSessionId !== '')
 			filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
 
+		var filtreUtilisateurId = $formulaireFiltres.find('.valeurUtilisateurId').val();
+		if(filtreUtilisateurId != null && filtreUtilisateurId !== '')
+			filtres.push({ name: 'fq', value: 'utilisateurId:' + filtreUtilisateurId });
+
+		var filtreUtilisateurCle = $formulaireFiltres.find('.valeurUtilisateurCle').val();
+		if(filtreUtilisateurCle != null && filtreUtilisateurCle !== '')
+			filtres.push({ name: 'fq', value: 'utilisateurCle:' + filtreUtilisateurCle });
+
 		var filtreSauvegardes = $formulaireFiltres.find('.valeurSauvegardes').val();
 		if(filtreSauvegardes != null && filtreSauvegardes !== '')
 			filtres.push({ name: 'fq', value: 'sauvegardes:' + filtreSauvegardes });
@@ -4347,226 +4473,297 @@ async function websocketInscriptionScolaireInner(requeteApi) {
 			if(vars.includes('cree')) {
 				$('.inputInscriptionScolaire' + pk + 'Cree').val(o['cree']);
 				$('.varInscriptionScolaire' + pk + 'Cree').text(o['cree']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'Cree'));
 			}
 			if(vars.includes('modifie')) {
 				$('.inputInscriptionScolaire' + pk + 'Modifie').val(o['modifie']);
 				$('.varInscriptionScolaire' + pk + 'Modifie').text(o['modifie']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'Modifie'));
 			}
 			if(vars.includes('archive')) {
 				$('.inputInscriptionScolaire' + pk + 'Archive').val(o['archive']);
 				$('.varInscriptionScolaire' + pk + 'Archive').text(o['archive']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'Archive'));
 			}
 			if(vars.includes('supprime')) {
 				$('.inputInscriptionScolaire' + pk + 'Supprime').val(o['supprime']);
 				$('.varInscriptionScolaire' + pk + 'Supprime').text(o['supprime']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'Supprime'));
 			}
 			if(vars.includes('inscriptionApprouve')) {
 				$('.inputInscriptionScolaire' + pk + 'InscriptionApprouve').val(o['inscriptionApprouve']);
 				$('.varInscriptionScolaire' + pk + 'InscriptionApprouve').text(o['inscriptionApprouve']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionApprouve'));
 			}
 			if(vars.includes('inscriptionImmunisations')) {
 				$('.inputInscriptionScolaire' + pk + 'InscriptionImmunisations').val(o['inscriptionImmunisations']);
 				$('.varInscriptionScolaire' + pk + 'InscriptionImmunisations').text(o['inscriptionImmunisations']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionImmunisations'));
 			}
 			if(vars.includes('inscriptionNomGroupe')) {
 				$('.inputInscriptionScolaire' + pk + 'InscriptionNomGroupe').val(o['inscriptionNomGroupe']);
 				$('.varInscriptionScolaire' + pk + 'InscriptionNomGroupe').text(o['inscriptionNomGroupe']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionNomGroupe'));
 			}
 			if(vars.includes('customerProfileId')) {
 				$('.inputInscriptionScolaire' + pk + 'CustomerProfileId').val(o['customerProfileId']);
 				$('.varInscriptionScolaire' + pk + 'CustomerProfileId').text(o['customerProfileId']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'CustomerProfileId'));
 			}
 			if(vars.includes('inscriptionPaimentComplet')) {
 				$('.inputInscriptionScolaire' + pk + 'InscriptionPaimentComplet').val(o['inscriptionPaimentComplet']);
 				$('.varInscriptionScolaire' + pk + 'InscriptionPaimentComplet').text(o['inscriptionPaimentComplet']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionPaimentComplet'));
 			}
 			if(vars.includes('enfantPropre')) {
 				$('.inputInscriptionScolaire' + pk + 'EnfantPropre').val(o['enfantPropre']);
 				$('.varInscriptionScolaire' + pk + 'EnfantPropre').text(o['enfantPropre']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EnfantPropre'));
 			}
 			if(vars.includes('inscriptionPaimentChaqueMois')) {
 				$('.inputInscriptionScolaire' + pk + 'InscriptionPaimentChaqueMois').val(o['inscriptionPaimentChaqueMois']);
 				$('.varInscriptionScolaire' + pk + 'InscriptionPaimentChaqueMois').text(o['inscriptionPaimentChaqueMois']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionPaimentChaqueMois'));
 			}
 			if(vars.includes('familleMarie')) {
 				$('.inputInscriptionScolaire' + pk + 'FamilleMarie').val(o['familleMarie']);
 				$('.varInscriptionScolaire' + pk + 'FamilleMarie').text(o['familleMarie']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'FamilleMarie'));
 			}
 			if(vars.includes('familleSepare')) {
 				$('.inputInscriptionScolaire' + pk + 'FamilleSepare').val(o['familleSepare']);
 				$('.varInscriptionScolaire' + pk + 'FamilleSepare').text(o['familleSepare']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'FamilleSepare'));
 			}
 			if(vars.includes('familleDivorce')) {
 				$('.inputInscriptionScolaire' + pk + 'FamilleDivorce').val(o['familleDivorce']);
 				$('.varInscriptionScolaire' + pk + 'FamilleDivorce').text(o['familleDivorce']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'FamilleDivorce'));
 			}
 			if(vars.includes('familleAddresse')) {
 				$('.inputInscriptionScolaire' + pk + 'FamilleAddresse').val(o['familleAddresse']);
 				$('.varInscriptionScolaire' + pk + 'FamilleAddresse').text(o['familleAddresse']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'FamilleAddresse'));
 			}
 			if(vars.includes('inscriptionConsiderationsSpeciales')) {
 				$('.inputInscriptionScolaire' + pk + 'InscriptionConsiderationsSpeciales').val(o['inscriptionConsiderationsSpeciales']);
 				$('.varInscriptionScolaire' + pk + 'InscriptionConsiderationsSpeciales').text(o['inscriptionConsiderationsSpeciales']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionConsiderationsSpeciales'));
 			}
 			if(vars.includes('enfantConditionsMedicales')) {
 				$('.inputInscriptionScolaire' + pk + 'EnfantConditionsMedicales').val(o['enfantConditionsMedicales']);
 				$('.varInscriptionScolaire' + pk + 'EnfantConditionsMedicales').text(o['enfantConditionsMedicales']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EnfantConditionsMedicales'));
 			}
 			if(vars.includes('enfantEcolesPrecedemmentFrequentees')) {
 				$('.inputInscriptionScolaire' + pk + 'EnfantEcolesPrecedemmentFrequentees').val(o['enfantEcolesPrecedemmentFrequentees']);
 				$('.varInscriptionScolaire' + pk + 'EnfantEcolesPrecedemmentFrequentees').text(o['enfantEcolesPrecedemmentFrequentees']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EnfantEcolesPrecedemmentFrequentees'));
 			}
 			if(vars.includes('familleCommentVousConnaissezEcole')) {
 				$('.inputInscriptionScolaire' + pk + 'FamilleCommentVousConnaissezEcole').val(o['familleCommentVousConnaissezEcole']);
 				$('.varInscriptionScolaire' + pk + 'FamilleCommentVousConnaissezEcole').text(o['familleCommentVousConnaissezEcole']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'FamilleCommentVousConnaissezEcole'));
 			}
 			if(vars.includes('enfantDescription')) {
 				$('.inputInscriptionScolaire' + pk + 'EnfantDescription').val(o['enfantDescription']);
 				$('.varInscriptionScolaire' + pk + 'EnfantDescription').text(o['enfantDescription']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EnfantDescription'));
 			}
 			if(vars.includes('enfantObjectifs')) {
 				$('.inputInscriptionScolaire' + pk + 'EnfantObjectifs').val(o['enfantObjectifs']);
 				$('.varInscriptionScolaire' + pk + 'EnfantObjectifs').text(o['enfantObjectifs']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EnfantObjectifs'));
 			}
 			if(vars.includes('blocCles')) {
 				$('.inputInscriptionScolaire' + pk + 'BlocCles').val(o['blocCles']);
 				$('.varInscriptionScolaire' + pk + 'BlocCles').text(o['blocCles']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'BlocCles'));
 			}
 			if(vars.includes('enfantCle')) {
 				$('.inputInscriptionScolaire' + pk + 'EnfantCle').val(o['enfantCle']);
 				$('.varInscriptionScolaire' + pk + 'EnfantCle').text(o['enfantCle']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EnfantCle'));
 			}
 			if(vars.includes('mereCles')) {
 				$('.inputInscriptionScolaire' + pk + 'MereCles').val(o['mereCles']);
 				$('.varInscriptionScolaire' + pk + 'MereCles').text(o['mereCles']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'MereCles'));
 			}
 			if(vars.includes('pereCles')) {
 				$('.inputInscriptionScolaire' + pk + 'PereCles').val(o['pereCles']);
 				$('.varInscriptionScolaire' + pk + 'PereCles').text(o['pereCles']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'PereCles'));
 			}
 			if(vars.includes('gardienCles')) {
 				$('.inputInscriptionScolaire' + pk + 'GardienCles').val(o['gardienCles']);
 				$('.varInscriptionScolaire' + pk + 'GardienCles').text(o['gardienCles']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'GardienCles'));
 			}
 			if(vars.includes('paiementCles')) {
 				$('.inputInscriptionScolaire' + pk + 'PaiementCles').val(o['paiementCles']);
 				$('.varInscriptionScolaire' + pk + 'PaiementCles').text(o['paiementCles']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'PaiementCles'));
 			}
 			if(vars.includes('utilisateurCles')) {
 				$('.inputInscriptionScolaire' + pk + 'UtilisateurCles').val(o['utilisateurCles']);
 				$('.varInscriptionScolaire' + pk + 'UtilisateurCles').text(o['utilisateurCles']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'UtilisateurCles'));
 			}
 			if(vars.includes('inheritPk')) {
 				$('.inputInscriptionScolaire' + pk + 'InheritPk').val(o['inheritPk']);
 				$('.varInscriptionScolaire' + pk + 'InheritPk').text(o['inheritPk']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InheritPk'));
+			}
+			if(vars.includes('sessionId')) {
+				$('.inputInscriptionScolaire' + pk + 'SessionId').val(o['sessionId']);
+				$('.varInscriptionScolaire' + pk + 'SessionId').text(o['sessionId']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'SessionId'));
+			}
+			if(vars.includes('utilisateurId')) {
+				$('.inputInscriptionScolaire' + pk + 'UtilisateurId').val(o['utilisateurId']);
+				$('.varInscriptionScolaire' + pk + 'UtilisateurId').text(o['utilisateurId']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'UtilisateurId'));
+			}
+			if(vars.includes('utilisateurCle')) {
+				$('.inputInscriptionScolaire' + pk + 'UtilisateurCle').val(o['utilisateurCle']);
+				$('.varInscriptionScolaire' + pk + 'UtilisateurCle').text(o['utilisateurCle']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'UtilisateurCle'));
 			}
 			if(vars.includes('anneeCle')) {
 				$('.inputInscriptionScolaire' + pk + 'AnneeCle').val(o['anneeCle']);
 				$('.varInscriptionScolaire' + pk + 'AnneeCle').text(o['anneeCle']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'AnneeCle'));
 			}
 			if(vars.includes('enfantNomComplet')) {
 				$('.inputInscriptionScolaire' + pk + 'EnfantNomComplet').val(o['enfantNomComplet']);
 				$('.varInscriptionScolaire' + pk + 'EnfantNomComplet').text(o['enfantNomComplet']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EnfantNomComplet'));
 			}
 			if(vars.includes('enfantNomCompletPrefere')) {
 				$('.inputInscriptionScolaire' + pk + 'EnfantNomCompletPrefere').val(o['enfantNomCompletPrefere']);
 				$('.varInscriptionScolaire' + pk + 'EnfantNomCompletPrefere').text(o['enfantNomCompletPrefere']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EnfantNomCompletPrefere'));
 			}
 			if(vars.includes('enfantDateNaissance')) {
 				$('.inputInscriptionScolaire' + pk + 'EnfantDateNaissance').val(o['enfantDateNaissance']);
 				$('.varInscriptionScolaire' + pk + 'EnfantDateNaissance').text(o['enfantDateNaissance']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EnfantDateNaissance'));
 			}
 			if(vars.includes('ecoleAddresse')) {
 				$('.inputInscriptionScolaire' + pk + 'EcoleAddresse').val(o['ecoleAddresse']);
 				$('.varInscriptionScolaire' + pk + 'EcoleAddresse').text(o['ecoleAddresse']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EcoleAddresse'));
 			}
 			if(vars.includes('inscriptionDateFrais')) {
 				$('.inputInscriptionScolaire' + pk + 'InscriptionDateFrais').val(o['inscriptionDateFrais']);
 				$('.varInscriptionScolaire' + pk + 'InscriptionDateFrais').text(o['inscriptionDateFrais']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionDateFrais'));
 			}
 			if(vars.includes('inscriptionNomsParents')) {
 				$('.inputInscriptionScolaire' + pk + 'InscriptionNomsParents').val(o['inscriptionNomsParents']);
 				$('.varInscriptionScolaire' + pk + 'InscriptionNomsParents').text(o['inscriptionNomsParents']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionNomsParents'));
 			}
 			if(vars.includes('inscriptionSignature1')) {
 				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature1').val(o['inscriptionSignature1']);
 				$('.varInscriptionScolaire' + pk + 'InscriptionSignature1').text(o['inscriptionSignature1']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionSignature1'));
 			}
 			if(vars.includes('inscriptionSignature2')) {
 				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature2').val(o['inscriptionSignature2']);
 				$('.varInscriptionScolaire' + pk + 'InscriptionSignature2').text(o['inscriptionSignature2']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionSignature2'));
 			}
 			if(vars.includes('inscriptionSignature3')) {
 				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature3').val(o['inscriptionSignature3']);
 				$('.varInscriptionScolaire' + pk + 'InscriptionSignature3').text(o['inscriptionSignature3']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionSignature3'));
 			}
 			if(vars.includes('inscriptionSignature4')) {
 				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature4').val(o['inscriptionSignature4']);
 				$('.varInscriptionScolaire' + pk + 'InscriptionSignature4').text(o['inscriptionSignature4']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionSignature4'));
 			}
 			if(vars.includes('inscriptionSignature5')) {
 				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature5').val(o['inscriptionSignature5']);
 				$('.varInscriptionScolaire' + pk + 'InscriptionSignature5').text(o['inscriptionSignature5']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionSignature5'));
 			}
 			if(vars.includes('inscriptionSignature6')) {
 				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature6').val(o['inscriptionSignature6']);
 				$('.varInscriptionScolaire' + pk + 'InscriptionSignature6').text(o['inscriptionSignature6']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionSignature6'));
 			}
 			if(vars.includes('inscriptionSignature7')) {
 				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature7').val(o['inscriptionSignature7']);
 				$('.varInscriptionScolaire' + pk + 'InscriptionSignature7').text(o['inscriptionSignature7']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionSignature7'));
 			}
 			if(vars.includes('inscriptionSignature8')) {
 				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature8').val(o['inscriptionSignature8']);
 				$('.varInscriptionScolaire' + pk + 'InscriptionSignature8').text(o['inscriptionSignature8']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionSignature8'));
 			}
 			if(vars.includes('inscriptionSignature9')) {
 				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature9').val(o['inscriptionSignature9']);
 				$('.varInscriptionScolaire' + pk + 'InscriptionSignature9').text(o['inscriptionSignature9']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionSignature9'));
 			}
 			if(vars.includes('inscriptionSignature10')) {
 				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature10').val(o['inscriptionSignature10']);
 				$('.varInscriptionScolaire' + pk + 'InscriptionSignature10').text(o['inscriptionSignature10']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionSignature10'));
 			}
 			if(vars.includes('inscriptionDate1')) {
 				$('.inputInscriptionScolaire' + pk + 'InscriptionDate1').val(o['inscriptionDate1']);
 				$('.varInscriptionScolaire' + pk + 'InscriptionDate1').text(o['inscriptionDate1']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionDate1'));
 			}
 			if(vars.includes('inscriptionDate2')) {
 				$('.inputInscriptionScolaire' + pk + 'InscriptionDate2').val(o['inscriptionDate2']);
 				$('.varInscriptionScolaire' + pk + 'InscriptionDate2').text(o['inscriptionDate2']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionDate2'));
 			}
 			if(vars.includes('inscriptionDate3')) {
 				$('.inputInscriptionScolaire' + pk + 'InscriptionDate3').val(o['inscriptionDate3']);
 				$('.varInscriptionScolaire' + pk + 'InscriptionDate3').text(o['inscriptionDate3']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionDate3'));
 			}
 			if(vars.includes('inscriptionDate4')) {
 				$('.inputInscriptionScolaire' + pk + 'InscriptionDate4').val(o['inscriptionDate4']);
 				$('.varInscriptionScolaire' + pk + 'InscriptionDate4').text(o['inscriptionDate4']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionDate4'));
 			}
 			if(vars.includes('inscriptionDate5')) {
 				$('.inputInscriptionScolaire' + pk + 'InscriptionDate5').val(o['inscriptionDate5']);
 				$('.varInscriptionScolaire' + pk + 'InscriptionDate5').text(o['inscriptionDate5']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionDate5'));
 			}
 			if(vars.includes('inscriptionDate6')) {
 				$('.inputInscriptionScolaire' + pk + 'InscriptionDate6').val(o['inscriptionDate6']);
 				$('.varInscriptionScolaire' + pk + 'InscriptionDate6').text(o['inscriptionDate6']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionDate6'));
 			}
 			if(vars.includes('inscriptionDate7')) {
 				$('.inputInscriptionScolaire' + pk + 'InscriptionDate7').val(o['inscriptionDate7']);
 				$('.varInscriptionScolaire' + pk + 'InscriptionDate7').text(o['inscriptionDate7']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionDate7'));
 			}
 			if(vars.includes('inscriptionDate8')) {
 				$('.inputInscriptionScolaire' + pk + 'InscriptionDate8').val(o['inscriptionDate8']);
 				$('.varInscriptionScolaire' + pk + 'InscriptionDate8').text(o['inscriptionDate8']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionDate8'));
 			}
 			if(vars.includes('inscriptionDate9')) {
 				$('.inputInscriptionScolaire' + pk + 'InscriptionDate9').val(o['inscriptionDate9']);
 				$('.varInscriptionScolaire' + pk + 'InscriptionDate9').text(o['inscriptionDate9']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionDate9'));
 			}
 			if(vars.includes('inscriptionDate10')) {
 				$('.inputInscriptionScolaire' + pk + 'InscriptionDate10').val(o['inscriptionDate10']);
 				$('.varInscriptionScolaire' + pk + 'InscriptionDate10').text(o['inscriptionDate10']);
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionDate10'));
 			}
 		});
 	}

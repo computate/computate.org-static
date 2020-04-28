@@ -73,6 +73,18 @@ async function postEcole($formulaireValeurs, success, error) {
 	if(valeurInheritPk != null && valeurInheritPk !== '')
 		vals['inheritPk'] = valeurInheritPk;
 
+	var valeurSessionId = $formulaireValeurs.find('.valeurSessionId').val();
+	if(valeurSessionId != null && valeurSessionId !== '')
+		vals['sessionId'] = valeurSessionId;
+
+	var valeurUtilisateurId = $formulaireValeurs.find('.valeurUtilisateurId').val();
+	if(valeurUtilisateurId != null && valeurUtilisateurId !== '')
+		vals['utilisateurId'] = valeurUtilisateurId;
+
+	var valeurUtilisateurCle = $formulaireValeurs.find('.valeurUtilisateurCle').val();
+	if(valeurUtilisateurCle != null && valeurUtilisateurCle !== '')
+		vals['utilisateurCle'] = valeurUtilisateurCle;
+
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 		vals['objetTitre'] = valeurObjetTitre;
@@ -288,6 +300,45 @@ async function patchEcole($formulaireFiltres, $formulaireValeurs, pk, success, e
 	if(removeInheritPk != null && removeInheritPk !== '')
 		vals['removeInheritPk'] = removeInheritPk;
 
+	var valeurSessionId = $formulaireValeurs.find('.valeurSessionId').val();
+	if(valeurSessionId != null && valeurSessionId !== '')
+	var removeSessionId = $formulaireFiltres.find('.removeSessionId').val() === 'true';
+	var setSessionId = removeSessionId ? null : $formulaireValeurs.find('.setSessionId').val();
+	if(removeSessionId || setSessionId != null && setSessionId !== '')
+		vals['setSessionId'] = setSessionId;
+	var addSessionId = $formulaireValeurs.find('.addSessionId').val();
+	if(addSessionId != null && addSessionId !== '')
+		vals['addSessionId'] = addSessionId;
+	var removeSessionId = $formulaireValeurs.find('.removeSessionId').val();
+	if(removeSessionId != null && removeSessionId !== '')
+		vals['removeSessionId'] = removeSessionId;
+
+	var valeurUtilisateurId = $formulaireValeurs.find('.valeurUtilisateurId').val();
+	if(valeurUtilisateurId != null && valeurUtilisateurId !== '')
+	var removeUtilisateurId = $formulaireFiltres.find('.removeUtilisateurId').val() === 'true';
+	var setUtilisateurId = removeUtilisateurId ? null : $formulaireValeurs.find('.setUtilisateurId').val();
+	if(removeUtilisateurId || setUtilisateurId != null && setUtilisateurId !== '')
+		vals['setUtilisateurId'] = setUtilisateurId;
+	var addUtilisateurId = $formulaireValeurs.find('.addUtilisateurId').val();
+	if(addUtilisateurId != null && addUtilisateurId !== '')
+		vals['addUtilisateurId'] = addUtilisateurId;
+	var removeUtilisateurId = $formulaireValeurs.find('.removeUtilisateurId').val();
+	if(removeUtilisateurId != null && removeUtilisateurId !== '')
+		vals['removeUtilisateurId'] = removeUtilisateurId;
+
+	var valeurUtilisateurCle = $formulaireValeurs.find('.valeurUtilisateurCle').val();
+	if(valeurUtilisateurCle != null && valeurUtilisateurCle !== '')
+	var removeUtilisateurCle = $formulaireFiltres.find('.removeUtilisateurCle').val() === 'true';
+	var setUtilisateurCle = removeUtilisateurCle ? null : $formulaireValeurs.find('.setUtilisateurCle').val();
+	if(removeUtilisateurCle || setUtilisateurCle != null && setUtilisateurCle !== '')
+		vals['setUtilisateurCle'] = setUtilisateurCle;
+	var addUtilisateurCle = $formulaireValeurs.find('.addUtilisateurCle').val();
+	if(addUtilisateurCle != null && addUtilisateurCle !== '')
+		vals['addUtilisateurCle'] = addUtilisateurCle;
+	var removeUtilisateurCle = $formulaireValeurs.find('.removeUtilisateurCle').val();
+	if(removeUtilisateurCle != null && removeUtilisateurCle !== '')
+		vals['removeUtilisateurCle'] = removeUtilisateurCle;
+
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 	var removeObjetTitre = $formulaireFiltres.find('.removeObjetTitre').val() === 'true';
@@ -395,6 +446,14 @@ function patchEcoleFiltres($formulaireFiltres) {
 		var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
 		if(filtreSessionId != null && filtreSessionId !== '')
 			filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
+
+		var filtreUtilisateurId = $formulaireFiltres.find('.valeurUtilisateurId').val();
+		if(filtreUtilisateurId != null && filtreUtilisateurId !== '')
+			filtres.push({ name: 'fq', value: 'utilisateurId:' + filtreUtilisateurId });
+
+		var filtreUtilisateurCle = $formulaireFiltres.find('.valeurUtilisateurCle').val();
+		if(filtreUtilisateurCle != null && filtreUtilisateurCle !== '')
+			filtres.push({ name: 'fq', value: 'utilisateurCle:' + filtreUtilisateurCle });
 
 		var filtreSauvegardes = $formulaireFiltres.find('.valeurSauvegardes').val();
 		if(filtreSauvegardes != null && filtreSauvegardes !== '')
@@ -601,6 +660,14 @@ function rechercheEcoleFiltres($formulaireFiltres) {
 		var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
 		if(filtreSessionId != null && filtreSessionId !== '')
 			filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
+
+		var filtreUtilisateurId = $formulaireFiltres.find('.valeurUtilisateurId').val();
+		if(filtreUtilisateurId != null && filtreUtilisateurId !== '')
+			filtres.push({ name: 'fq', value: 'utilisateurId:' + filtreUtilisateurId });
+
+		var filtreUtilisateurCle = $formulaireFiltres.find('.valeurUtilisateurCle').val();
+		if(filtreUtilisateurCle != null && filtreUtilisateurCle !== '')
+			filtres.push({ name: 'fq', value: 'utilisateurCle:' + filtreUtilisateurCle });
 
 		var filtreSauvegardes = $formulaireFiltres.find('.valeurSauvegardes').val();
 		if(filtreSauvegardes != null && filtreSauvegardes !== '')
@@ -839,6 +906,18 @@ async function putcopieEcole($formulaireValeurs, pk, success, error) {
 	if(valeurInheritPk != null && valeurInheritPk !== '')
 		vals['inheritPk'] = valeurInheritPk;
 
+	var valeurSessionId = $formulaireValeurs.find('.valeurSessionId').val();
+	if(valeurSessionId != null && valeurSessionId !== '')
+		vals['sessionId'] = valeurSessionId;
+
+	var valeurUtilisateurId = $formulaireValeurs.find('.valeurUtilisateurId').val();
+	if(valeurUtilisateurId != null && valeurUtilisateurId !== '')
+		vals['utilisateurId'] = valeurUtilisateurId;
+
+	var valeurUtilisateurCle = $formulaireValeurs.find('.valeurUtilisateurCle').val();
+	if(valeurUtilisateurCle != null && valeurUtilisateurCle !== '')
+		vals['utilisateurCle'] = valeurUtilisateurCle;
+
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 		vals['objetTitre'] = valeurObjetTitre;
@@ -914,50 +993,77 @@ async function websocketEcoleInner(requeteApi) {
 			if(vars.includes('cree')) {
 				$('.inputEcole' + pk + 'Cree').val(o['cree']);
 				$('.varEcole' + pk + 'Cree').text(o['cree']);
+				ajouterLueur($('.inputEcole' + pk + 'Cree'));
 			}
 			if(vars.includes('modifie')) {
 				$('.inputEcole' + pk + 'Modifie').val(o['modifie']);
 				$('.varEcole' + pk + 'Modifie').text(o['modifie']);
+				ajouterLueur($('.inputEcole' + pk + 'Modifie'));
 			}
 			if(vars.includes('archive')) {
 				$('.inputEcole' + pk + 'Archive').val(o['archive']);
 				$('.varEcole' + pk + 'Archive').text(o['archive']);
+				ajouterLueur($('.inputEcole' + pk + 'Archive'));
 			}
 			if(vars.includes('supprime')) {
 				$('.inputEcole' + pk + 'Supprime').val(o['supprime']);
 				$('.varEcole' + pk + 'Supprime').text(o['supprime']);
+				ajouterLueur($('.inputEcole' + pk + 'Supprime'));
 			}
 			if(vars.includes('ecoleNom')) {
 				$('.inputEcole' + pk + 'EcoleNom').val(o['ecoleNom']);
 				$('.varEcole' + pk + 'EcoleNom').text(o['ecoleNom']);
+				ajouterLueur($('.inputEcole' + pk + 'EcoleNom'));
 			}
 			if(vars.includes('ecoleAdministrateurNom')) {
 				$('.inputEcole' + pk + 'EcoleAdministrateurNom').val(o['ecoleAdministrateurNom']);
 				$('.varEcole' + pk + 'EcoleAdministrateurNom').text(o['ecoleAdministrateurNom']);
+				ajouterLueur($('.inputEcole' + pk + 'EcoleAdministrateurNom'));
 			}
 			if(vars.includes('ecoleMail')) {
 				$('.inputEcole' + pk + 'EcoleMail').val(o['ecoleMail']);
 				$('.varEcole' + pk + 'EcoleMail').text(o['ecoleMail']);
+				ajouterLueur($('.inputEcole' + pk + 'EcoleMail'));
 			}
 			if(vars.includes('ecoleEmplacement')) {
 				$('.inputEcole' + pk + 'EcoleEmplacement').val(o['ecoleEmplacement']);
 				$('.varEcole' + pk + 'EcoleEmplacement').text(o['ecoleEmplacement']);
+				ajouterLueur($('.inputEcole' + pk + 'EcoleEmplacement'));
 			}
 			if(vars.includes('ecoleNumeroTelephone')) {
 				$('.inputEcole' + pk + 'EcoleNumeroTelephone').val(o['ecoleNumeroTelephone']);
 				$('.varEcole' + pk + 'EcoleNumeroTelephone').text(o['ecoleNumeroTelephone']);
+				ajouterLueur($('.inputEcole' + pk + 'EcoleNumeroTelephone'));
 			}
 			if(vars.includes('ecoleAddresse')) {
 				$('.inputEcole' + pk + 'EcoleAddresse').val(o['ecoleAddresse']);
 				$('.varEcole' + pk + 'EcoleAddresse').text(o['ecoleAddresse']);
+				ajouterLueur($('.inputEcole' + pk + 'EcoleAddresse'));
 			}
 			if(vars.includes('anneeCles')) {
 				$('.inputEcole' + pk + 'AnneeCles').val(o['anneeCles']);
 				$('.varEcole' + pk + 'AnneeCles').text(o['anneeCles']);
+				ajouterLueur($('.inputEcole' + pk + 'AnneeCles'));
 			}
 			if(vars.includes('inheritPk')) {
 				$('.inputEcole' + pk + 'InheritPk').val(o['inheritPk']);
 				$('.varEcole' + pk + 'InheritPk').text(o['inheritPk']);
+				ajouterLueur($('.inputEcole' + pk + 'InheritPk'));
+			}
+			if(vars.includes('sessionId')) {
+				$('.inputEcole' + pk + 'SessionId').val(o['sessionId']);
+				$('.varEcole' + pk + 'SessionId').text(o['sessionId']);
+				ajouterLueur($('.inputEcole' + pk + 'SessionId'));
+			}
+			if(vars.includes('utilisateurId')) {
+				$('.inputEcole' + pk + 'UtilisateurId').val(o['utilisateurId']);
+				$('.varEcole' + pk + 'UtilisateurId').text(o['utilisateurId']);
+				ajouterLueur($('.inputEcole' + pk + 'UtilisateurId'));
+			}
+			if(vars.includes('utilisateurCle')) {
+				$('.inputEcole' + pk + 'UtilisateurCle').val(o['utilisateurCle']);
+				$('.varEcole' + pk + 'UtilisateurCle').text(o['utilisateurCle']);
+				ajouterLueur($('.inputEcole' + pk + 'UtilisateurCle'));
 			}
 		});
 	}

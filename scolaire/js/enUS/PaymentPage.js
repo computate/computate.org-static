@@ -101,6 +101,18 @@ async function postSchoolPayment($formValues, success, error) {
 	if(valueInheritPk != null && valueInheritPk !== '')
 		vals['inheritPk'] = valueInheritPk;
 
+	var valueSessionId = $formValues.find('.valueSessionId').val();
+	if(valueSessionId != null && valueSessionId !== '')
+		vals['sessionId'] = valueSessionId;
+
+	var valueUserId = $formValues.find('.valueUserId').val();
+	if(valueUserId != null && valueUserId !== '')
+		vals['userId'] = valueUserId;
+
+	var valueUserKey = $formValues.find('.valueUserKey').val();
+	if(valueUserKey != null && valueUserKey !== '')
+		vals['userKey'] = valueUserKey;
+
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
@@ -300,6 +312,18 @@ async function putcopySchoolPayment($formValues, pk, success, error) {
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
 	if(valueInheritPk != null && valueInheritPk !== '')
 		vals['inheritPk'] = valueInheritPk;
+
+	var valueSessionId = $formValues.find('.valueSessionId').val();
+	if(valueSessionId != null && valueSessionId !== '')
+		vals['sessionId'] = valueSessionId;
+
+	var valueUserId = $formValues.find('.valueUserId').val();
+	if(valueUserId != null && valueUserId !== '')
+		vals['userId'] = valueUserId;
+
+	var valueUserKey = $formValues.find('.valueUserKey').val();
+	if(valueUserKey != null && valueUserKey !== '')
+		vals['userKey'] = valueUserKey;
 
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
@@ -667,6 +691,45 @@ async function patchSchoolPayment($formFilters, $formValues, pk, success, error)
 	if(removeInheritPk != null && removeInheritPk !== '')
 		vals['removeInheritPk'] = removeInheritPk;
 
+	var valueSessionId = $formValues.find('.valueSessionId').val();
+	if(valueSessionId != null && valueSessionId !== '')
+	var removeSessionId = $formFilters.find('.removeSessionId').val() === 'true';
+	var setSessionId = removeSessionId ? null : $formValues.find('.setSessionId').val();
+	if(removeSessionId || setSessionId != null && setSessionId !== '')
+		vals['setSessionId'] = setSessionId;
+	var addSessionId = $formValues.find('.addSessionId').val();
+	if(addSessionId != null && addSessionId !== '')
+		vals['addSessionId'] = addSessionId;
+	var removeSessionId = $formValues.find('.removeSessionId').val();
+	if(removeSessionId != null && removeSessionId !== '')
+		vals['removeSessionId'] = removeSessionId;
+
+	var valueUserId = $formValues.find('.valueUserId').val();
+	if(valueUserId != null && valueUserId !== '')
+	var removeUserId = $formFilters.find('.removeUserId').val() === 'true';
+	var setUserId = removeUserId ? null : $formValues.find('.setUserId').val();
+	if(removeUserId || setUserId != null && setUserId !== '')
+		vals['setUserId'] = setUserId;
+	var addUserId = $formValues.find('.addUserId').val();
+	if(addUserId != null && addUserId !== '')
+		vals['addUserId'] = addUserId;
+	var removeUserId = $formValues.find('.removeUserId').val();
+	if(removeUserId != null && removeUserId !== '')
+		vals['removeUserId'] = removeUserId;
+
+	var valueUserKey = $formValues.find('.valueUserKey').val();
+	if(valueUserKey != null && valueUserKey !== '')
+	var removeUserKey = $formFilters.find('.removeUserKey').val() === 'true';
+	var setUserKey = removeUserKey ? null : $formValues.find('.setUserKey').val();
+	if(removeUserKey || setUserKey != null && setUserKey !== '')
+		vals['setUserKey'] = setUserKey;
+	var addUserKey = $formValues.find('.addUserKey').val();
+	if(addUserKey != null && addUserKey !== '')
+		vals['addUserKey'] = addUserKey;
+	var removeUserKey = $formValues.find('.removeUserKey').val();
+	if(removeUserKey != null && removeUserKey !== '')
+		vals['removeUserKey'] = removeUserKey;
+
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 	var removeObjectTitle = $formFilters.find('.removeObjectTitle').val() === 'true';
@@ -997,6 +1060,14 @@ function patchSchoolPaymentFilters($formFilters) {
 		var filterSessionId = $formFilters.find('.valueSessionId').val();
 		if(filterSessionId != null && filterSessionId !== '')
 			filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+		var filterUserId = $formFilters.find('.valueUserId').val();
+		if(filterUserId != null && filterUserId !== '')
+			filters.push({ name: 'fq', value: 'userId:' + filterUserId });
+
+		var filterUserKey = $formFilters.find('.valueUserKey').val();
+		if(filterUserKey != null && filterUserKey !== '')
+			filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
 
 		var filterSaves = $formFilters.find('.valueSaves').val();
 		if(filterSaves != null && filterSaves !== '')
@@ -1428,6 +1499,14 @@ function searchSchoolPaymentFilters($formFilters) {
 		if(filterSessionId != null && filterSessionId !== '')
 			filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
 
+		var filterUserId = $formFilters.find('.valueUserId').val();
+		if(filterUserId != null && filterUserId !== '')
+			filters.push({ name: 'fq', value: 'userId:' + filterUserId });
+
+		var filterUserKey = $formFilters.find('.valueUserKey').val();
+		if(filterUserKey != null && filterUserKey !== '')
+			filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+
 		var filterSaves = $formFilters.find('.valueSaves').val();
 		if(filterSaves != null && filterSaves !== '')
 			filters.push({ name: 'fq', value: 'saves:' + filterSaves });
@@ -1785,122 +1864,167 @@ async function websocketSchoolPaymentInner(apiRequest) {
 			if(vars.includes('created')) {
 				$('.inputSchoolPayment' + pk + 'Created').val(o['created']);
 				$('.varSchoolPayment' + pk + 'Created').text(o['created']);
+				addGlow($('.inputSchoolPayment' + pk + 'Created'));
 			}
 			if(vars.includes('modified')) {
 				$('.inputSchoolPayment' + pk + 'Modified').val(o['modified']);
 				$('.varSchoolPayment' + pk + 'Modified').text(o['modified']);
+				addGlow($('.inputSchoolPayment' + pk + 'Modified'));
 			}
 			if(vars.includes('archived')) {
 				$('.inputSchoolPayment' + pk + 'Archived').val(o['archived']);
 				$('.varSchoolPayment' + pk + 'Archived').text(o['archived']);
+				addGlow($('.inputSchoolPayment' + pk + 'Archived'));
 			}
 			if(vars.includes('deleted')) {
 				$('.inputSchoolPayment' + pk + 'Deleted').val(o['deleted']);
 				$('.varSchoolPayment' + pk + 'Deleted').text(o['deleted']);
+				addGlow($('.inputSchoolPayment' + pk + 'Deleted'));
 			}
 			if(vars.includes('paymentDate')) {
 				$('.inputSchoolPayment' + pk + 'PaymentDate').val(o['paymentDate']);
 				$('.varSchoolPayment' + pk + 'PaymentDate').text(o['paymentDate']);
+				addGlow($('.inputSchoolPayment' + pk + 'PaymentDate'));
 			}
 			if(vars.includes('paymentAmount')) {
 				$('.inputSchoolPayment' + pk + 'PaymentAmount').val(o['paymentAmount']);
 				$('.varSchoolPayment' + pk + 'PaymentAmount').text(o['paymentAmount']);
+				addGlow($('.inputSchoolPayment' + pk + 'PaymentAmount'));
 			}
 			if(vars.includes('paymentCash')) {
 				$('.inputSchoolPayment' + pk + 'PaymentCash').val(o['paymentCash']);
 				$('.varSchoolPayment' + pk + 'PaymentCash').text(o['paymentCash']);
+				addGlow($('.inputSchoolPayment' + pk + 'PaymentCash'));
 			}
 			if(vars.includes('paymentCheck')) {
 				$('.inputSchoolPayment' + pk + 'PaymentCheck').val(o['paymentCheck']);
 				$('.varSchoolPayment' + pk + 'PaymentCheck').text(o['paymentCheck']);
+				addGlow($('.inputSchoolPayment' + pk + 'PaymentCheck'));
 			}
 			if(vars.includes('paymentSystem')) {
 				$('.inputSchoolPayment' + pk + 'PaymentSystem').val(o['paymentSystem']);
 				$('.varSchoolPayment' + pk + 'PaymentSystem').text(o['paymentSystem']);
+				addGlow($('.inputSchoolPayment' + pk + 'PaymentSystem'));
 			}
 			if(vars.includes('paymentDescription')) {
 				$('.inputSchoolPayment' + pk + 'PaymentDescription').val(o['paymentDescription']);
 				$('.varSchoolPayment' + pk + 'PaymentDescription').text(o['paymentDescription']);
+				addGlow($('.inputSchoolPayment' + pk + 'PaymentDescription'));
 			}
 			if(vars.includes('enrollmentPaymentComplete')) {
 				$('.inputSchoolPayment' + pk + 'EnrollmentPaymentComplete').val(o['enrollmentPaymentComplete']);
 				$('.varSchoolPayment' + pk + 'EnrollmentPaymentComplete').text(o['enrollmentPaymentComplete']);
+				addGlow($('.inputSchoolPayment' + pk + 'EnrollmentPaymentComplete'));
 			}
 			if(vars.includes('paymentBy')) {
 				$('.inputSchoolPayment' + pk + 'PaymentBy').val(o['paymentBy']);
 				$('.varSchoolPayment' + pk + 'PaymentBy').text(o['paymentBy']);
+				addGlow($('.inputSchoolPayment' + pk + 'PaymentBy'));
 			}
 			if(vars.includes('enrollmentPaymentEachMonth')) {
 				$('.inputSchoolPayment' + pk + 'EnrollmentPaymentEachMonth').val(o['enrollmentPaymentEachMonth']);
 				$('.varSchoolPayment' + pk + 'EnrollmentPaymentEachMonth').text(o['enrollmentPaymentEachMonth']);
+				addGlow($('.inputSchoolPayment' + pk + 'EnrollmentPaymentEachMonth'));
 			}
 			if(vars.includes('transactionId')) {
 				$('.inputSchoolPayment' + pk + 'TransactionId').val(o['transactionId']);
 				$('.varSchoolPayment' + pk + 'TransactionId').text(o['transactionId']);
+				addGlow($('.inputSchoolPayment' + pk + 'TransactionId'));
 			}
 			if(vars.includes('customerProfileId')) {
 				$('.inputSchoolPayment' + pk + 'CustomerProfileId').val(o['customerProfileId']);
 				$('.varSchoolPayment' + pk + 'CustomerProfileId').text(o['customerProfileId']);
+				addGlow($('.inputSchoolPayment' + pk + 'CustomerProfileId'));
 			}
 			if(vars.includes('transactionStatus')) {
 				$('.inputSchoolPayment' + pk + 'TransactionStatus').val(o['transactionStatus']);
 				$('.varSchoolPayment' + pk + 'TransactionStatus').text(o['transactionStatus']);
+				addGlow($('.inputSchoolPayment' + pk + 'TransactionStatus'));
 			}
 			if(vars.includes('enrollmentKey')) {
 				$('.inputSchoolPayment' + pk + 'EnrollmentKey').val(o['enrollmentKey']);
 				$('.varSchoolPayment' + pk + 'EnrollmentKey').text(o['enrollmentKey']);
+				addGlow($('.inputSchoolPayment' + pk + 'EnrollmentKey'));
 			}
 			if(vars.includes('paymentRecieved')) {
 				$('.inputSchoolPayment' + pk + 'PaymentRecieved').val(o['paymentRecieved']);
 				$('.varSchoolPayment' + pk + 'PaymentRecieved').text(o['paymentRecieved']);
+				addGlow($('.inputSchoolPayment' + pk + 'PaymentRecieved'));
 			}
 			if(vars.includes('inheritPk')) {
 				$('.inputSchoolPayment' + pk + 'InheritPk').val(o['inheritPk']);
 				$('.varSchoolPayment' + pk + 'InheritPk').text(o['inheritPk']);
+				addGlow($('.inputSchoolPayment' + pk + 'InheritPk'));
+			}
+			if(vars.includes('sessionId')) {
+				$('.inputSchoolPayment' + pk + 'SessionId').val(o['sessionId']);
+				$('.varSchoolPayment' + pk + 'SessionId').text(o['sessionId']);
+				addGlow($('.inputSchoolPayment' + pk + 'SessionId'));
+			}
+			if(vars.includes('userId')) {
+				$('.inputSchoolPayment' + pk + 'UserId').val(o['userId']);
+				$('.varSchoolPayment' + pk + 'UserId').text(o['userId']);
+				addGlow($('.inputSchoolPayment' + pk + 'UserId'));
+			}
+			if(vars.includes('userKey')) {
+				$('.inputSchoolPayment' + pk + 'UserKey').val(o['userKey']);
+				$('.varSchoolPayment' + pk + 'UserKey').text(o['userKey']);
+				addGlow($('.inputSchoolPayment' + pk + 'UserKey'));
 			}
 			if(vars.includes('childCompleteNamePreferred')) {
 				$('.inputSchoolPayment' + pk + 'ChildCompleteNamePreferred').val(o['childCompleteNamePreferred']);
 				$('.varSchoolPayment' + pk + 'ChildCompleteNamePreferred').text(o['childCompleteNamePreferred']);
+				addGlow($('.inputSchoolPayment' + pk + 'ChildCompleteNamePreferred'));
 			}
 			if(vars.includes('childBirthDate')) {
 				$('.inputSchoolPayment' + pk + 'ChildBirthDate').val(o['childBirthDate']);
 				$('.varSchoolPayment' + pk + 'ChildBirthDate').text(o['childBirthDate']);
+				addGlow($('.inputSchoolPayment' + pk + 'ChildBirthDate'));
 			}
 			if(vars.includes('momCompleteNamePreferred')) {
 				$('.inputSchoolPayment' + pk + 'MomCompleteNamePreferred').val(o['momCompleteNamePreferred']);
 				$('.varSchoolPayment' + pk + 'MomCompleteNamePreferred').text(o['momCompleteNamePreferred']);
+				addGlow($('.inputSchoolPayment' + pk + 'MomCompleteNamePreferred'));
 			}
 			if(vars.includes('dadCompleteNamePreferred')) {
 				$('.inputSchoolPayment' + pk + 'DadCompleteNamePreferred').val(o['dadCompleteNamePreferred']);
 				$('.varSchoolPayment' + pk + 'DadCompleteNamePreferred').text(o['dadCompleteNamePreferred']);
+				addGlow($('.inputSchoolPayment' + pk + 'DadCompleteNamePreferred'));
 			}
 			if(vars.includes('chargeAmount')) {
 				$('.inputSchoolPayment' + pk + 'ChargeAmount').val(o['chargeAmount']);
 				$('.varSchoolPayment' + pk + 'ChargeAmount').text(o['chargeAmount']);
+				addGlow($('.inputSchoolPayment' + pk + 'ChargeAmount'));
 			}
 			if(vars.includes('chargeAmountFuture')) {
 				$('.inputSchoolPayment' + pk + 'ChargeAmountFuture').val(o['chargeAmountFuture']);
 				$('.varSchoolPayment' + pk + 'ChargeAmountFuture').text(o['chargeAmountFuture']);
+				addGlow($('.inputSchoolPayment' + pk + 'ChargeAmountFuture'));
 			}
 			if(vars.includes('chargeEnrollment')) {
 				$('.inputSchoolPayment' + pk + 'ChargeEnrollment').val(o['chargeEnrollment']);
 				$('.varSchoolPayment' + pk + 'ChargeEnrollment').text(o['chargeEnrollment']);
+				addGlow($('.inputSchoolPayment' + pk + 'ChargeEnrollment'));
 			}
 			if(vars.includes('chargeFirstLast')) {
 				$('.inputSchoolPayment' + pk + 'ChargeFirstLast').val(o['chargeFirstLast']);
 				$('.varSchoolPayment' + pk + 'ChargeFirstLast').text(o['chargeFirstLast']);
+				addGlow($('.inputSchoolPayment' + pk + 'ChargeFirstLast'));
 			}
 			if(vars.includes('chargeMonth')) {
 				$('.inputSchoolPayment' + pk + 'ChargeMonth').val(o['chargeMonth']);
 				$('.varSchoolPayment' + pk + 'ChargeMonth').text(o['chargeMonth']);
+				addGlow($('.inputSchoolPayment' + pk + 'ChargeMonth'));
 			}
 			if(vars.includes('chargeLateFee')) {
 				$('.inputSchoolPayment' + pk + 'ChargeLateFee').val(o['chargeLateFee']);
 				$('.varSchoolPayment' + pk + 'ChargeLateFee').text(o['chargeLateFee']);
+				addGlow($('.inputSchoolPayment' + pk + 'ChargeLateFee'));
 			}
 			if(vars.includes('paymentShortName')) {
 				$('.inputSchoolPayment' + pk + 'PaymentShortName').val(o['paymentShortName']);
 				$('.varSchoolPayment' + pk + 'PaymentShortName').text(o['paymentShortName']);
+				addGlow($('.inputSchoolPayment' + pk + 'PaymentShortName'));
 			}
 		});
 	}

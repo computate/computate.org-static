@@ -61,6 +61,18 @@ async function postSchoolSeason($formValues, success, error) {
 	if(valueInheritPk != null && valueInheritPk !== '')
 		vals['inheritPk'] = valueInheritPk;
 
+	var valueSessionId = $formValues.find('.valueSessionId').val();
+	if(valueSessionId != null && valueSessionId !== '')
+		vals['sessionId'] = valueSessionId;
+
+	var valueUserId = $formValues.find('.valueUserId').val();
+	if(valueUserId != null && valueUserId !== '')
+		vals['userId'] = valueUserId;
+
+	var valueUserKey = $formValues.find('.valueUserKey').val();
+	if(valueUserKey != null && valueUserKey !== '')
+		vals['userKey'] = valueUserKey;
+
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
@@ -184,6 +196,18 @@ async function putcopySchoolSeason($formValues, pk, success, error) {
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
 	if(valueInheritPk != null && valueInheritPk !== '')
 		vals['inheritPk'] = valueInheritPk;
+
+	var valueSessionId = $formValues.find('.valueSessionId').val();
+	if(valueSessionId != null && valueSessionId !== '')
+		vals['sessionId'] = valueSessionId;
+
+	var valueUserId = $formValues.find('.valueUserId').val();
+	if(valueUserId != null && valueUserId !== '')
+		vals['userId'] = valueUserId;
+
+	var valueUserKey = $formValues.find('.valueUserKey').val();
+	if(valueUserKey != null && valueUserKey !== '')
+		vals['userKey'] = valueUserKey;
 
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
@@ -356,6 +380,45 @@ async function patchSchoolSeason($formFilters, $formValues, pk, success, error) 
 	if(removeInheritPk != null && removeInheritPk !== '')
 		vals['removeInheritPk'] = removeInheritPk;
 
+	var valueSessionId = $formValues.find('.valueSessionId').val();
+	if(valueSessionId != null && valueSessionId !== '')
+	var removeSessionId = $formFilters.find('.removeSessionId').val() === 'true';
+	var setSessionId = removeSessionId ? null : $formValues.find('.setSessionId').val();
+	if(removeSessionId || setSessionId != null && setSessionId !== '')
+		vals['setSessionId'] = setSessionId;
+	var addSessionId = $formValues.find('.addSessionId').val();
+	if(addSessionId != null && addSessionId !== '')
+		vals['addSessionId'] = addSessionId;
+	var removeSessionId = $formValues.find('.removeSessionId').val();
+	if(removeSessionId != null && removeSessionId !== '')
+		vals['removeSessionId'] = removeSessionId;
+
+	var valueUserId = $formValues.find('.valueUserId').val();
+	if(valueUserId != null && valueUserId !== '')
+	var removeUserId = $formFilters.find('.removeUserId').val() === 'true';
+	var setUserId = removeUserId ? null : $formValues.find('.setUserId').val();
+	if(removeUserId || setUserId != null && setUserId !== '')
+		vals['setUserId'] = setUserId;
+	var addUserId = $formValues.find('.addUserId').val();
+	if(addUserId != null && addUserId !== '')
+		vals['addUserId'] = addUserId;
+	var removeUserId = $formValues.find('.removeUserId').val();
+	if(removeUserId != null && removeUserId !== '')
+		vals['removeUserId'] = removeUserId;
+
+	var valueUserKey = $formValues.find('.valueUserKey').val();
+	if(valueUserKey != null && valueUserKey !== '')
+	var removeUserKey = $formFilters.find('.removeUserKey').val() === 'true';
+	var setUserKey = removeUserKey ? null : $formValues.find('.setUserKey').val();
+	if(removeUserKey || setUserKey != null && setUserKey !== '')
+		vals['setUserKey'] = setUserKey;
+	var addUserKey = $formValues.find('.addUserKey').val();
+	if(addUserKey != null && addUserKey !== '')
+		vals['addUserKey'] = addUserKey;
+	var removeUserKey = $formValues.find('.removeUserKey').val();
+	if(removeUserKey != null && removeUserKey !== '')
+		vals['removeUserKey'] = removeUserKey;
+
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 	var removeObjectTitle = $formFilters.find('.removeObjectTitle').val() === 'true';
@@ -491,6 +554,14 @@ function patchSchoolSeasonFilters($formFilters) {
 		var filterSessionId = $formFilters.find('.valueSessionId').val();
 		if(filterSessionId != null && filterSessionId !== '')
 			filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+		var filterUserId = $formFilters.find('.valueUserId').val();
+		if(filterUserId != null && filterUserId !== '')
+			filters.push({ name: 'fq', value: 'userId:' + filterUserId });
+
+		var filterUserKey = $formFilters.find('.valueUserKey').val();
+		if(filterUserKey != null && filterUserKey !== '')
+			filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
 
 		var filterSaves = $formFilters.find('.valueSaves').val();
 		if(filterSaves != null && filterSaves !== '')
@@ -743,6 +814,14 @@ function searchSchoolSeasonFilters($formFilters) {
 		var filterSessionId = $formFilters.find('.valueSessionId').val();
 		if(filterSessionId != null && filterSessionId !== '')
 			filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+		var filterUserId = $formFilters.find('.valueUserId').val();
+		if(filterUserId != null && filterUserId !== '')
+			filters.push({ name: 'fq', value: 'userId:' + filterUserId });
+
+		var filterUserKey = $formFilters.find('.valueUserKey').val();
+		if(filterUserKey != null && filterUserKey !== '')
+			filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
 
 		var filterSaves = $formFilters.find('.valueSaves').val();
 		if(filterSaves != null && filterSaves !== '')
@@ -1028,46 +1107,72 @@ async function websocketSchoolSeasonInner(apiRequest) {
 			if(vars.includes('created')) {
 				$('.inputSchoolSeason' + pk + 'Created').val(o['created']);
 				$('.varSchoolSeason' + pk + 'Created').text(o['created']);
+				addGlow($('.inputSchoolSeason' + pk + 'Created'));
 			}
 			if(vars.includes('modified')) {
 				$('.inputSchoolSeason' + pk + 'Modified').val(o['modified']);
 				$('.varSchoolSeason' + pk + 'Modified').text(o['modified']);
+				addGlow($('.inputSchoolSeason' + pk + 'Modified'));
 			}
 			if(vars.includes('archived')) {
 				$('.inputSchoolSeason' + pk + 'Archived').val(o['archived']);
 				$('.varSchoolSeason' + pk + 'Archived').text(o['archived']);
+				addGlow($('.inputSchoolSeason' + pk + 'Archived'));
 			}
 			if(vars.includes('deleted')) {
 				$('.inputSchoolSeason' + pk + 'Deleted').val(o['deleted']);
 				$('.varSchoolSeason' + pk + 'Deleted').text(o['deleted']);
+				addGlow($('.inputSchoolSeason' + pk + 'Deleted'));
 			}
 			if(vars.includes('seasonStartDate')) {
 				$('.inputSchoolSeason' + pk + 'SeasonStartDate').val(o['seasonStartDate']);
 				$('.varSchoolSeason' + pk + 'SeasonStartDate').text(o['seasonStartDate']);
+				addGlow($('.inputSchoolSeason' + pk + 'SeasonStartDate'));
 			}
 			if(vars.includes('seasonFuture')) {
 				$('.inputSchoolSeason' + pk + 'SeasonFuture').val(o['seasonFuture']);
 				$('.varSchoolSeason' + pk + 'SeasonFuture').text(o['seasonFuture']);
+				addGlow($('.inputSchoolSeason' + pk + 'SeasonFuture'));
 			}
 			if(vars.includes('yearKey')) {
 				$('.inputSchoolSeason' + pk + 'YearKey').val(o['yearKey']);
 				$('.varSchoolSeason' + pk + 'YearKey').text(o['yearKey']);
+				addGlow($('.inputSchoolSeason' + pk + 'YearKey'));
 			}
 			if(vars.includes('sessionKeys')) {
 				$('.inputSchoolSeason' + pk + 'SessionKeys').val(o['sessionKeys']);
 				$('.varSchoolSeason' + pk + 'SessionKeys').text(o['sessionKeys']);
+				addGlow($('.inputSchoolSeason' + pk + 'SessionKeys'));
 			}
 			if(vars.includes('inheritPk')) {
 				$('.inputSchoolSeason' + pk + 'InheritPk').val(o['inheritPk']);
 				$('.varSchoolSeason' + pk + 'InheritPk').text(o['inheritPk']);
+				addGlow($('.inputSchoolSeason' + pk + 'InheritPk'));
+			}
+			if(vars.includes('sessionId')) {
+				$('.inputSchoolSeason' + pk + 'SessionId').val(o['sessionId']);
+				$('.varSchoolSeason' + pk + 'SessionId').text(o['sessionId']);
+				addGlow($('.inputSchoolSeason' + pk + 'SessionId'));
+			}
+			if(vars.includes('userId')) {
+				$('.inputSchoolSeason' + pk + 'UserId').val(o['userId']);
+				$('.varSchoolSeason' + pk + 'UserId').text(o['userId']);
+				addGlow($('.inputSchoolSeason' + pk + 'UserId'));
+			}
+			if(vars.includes('userKey')) {
+				$('.inputSchoolSeason' + pk + 'UserKey').val(o['userKey']);
+				$('.varSchoolSeason' + pk + 'UserKey').text(o['userKey']);
+				addGlow($('.inputSchoolSeason' + pk + 'UserKey'));
 			}
 			if(vars.includes('seasonSummer')) {
 				$('.inputSchoolSeason' + pk + 'SeasonSummer').val(o['seasonSummer']);
 				$('.varSchoolSeason' + pk + 'SeasonSummer').text(o['seasonSummer']);
+				addGlow($('.inputSchoolSeason' + pk + 'SeasonSummer'));
 			}
 			if(vars.includes('seasonWinter')) {
 				$('.inputSchoolSeason' + pk + 'SeasonWinter').val(o['seasonWinter']);
 				$('.varSchoolSeason' + pk + 'SeasonWinter').text(o['seasonWinter']);
+				addGlow($('.inputSchoolSeason' + pk + 'SeasonWinter'));
 			}
 		});
 	}
