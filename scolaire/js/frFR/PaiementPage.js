@@ -65,13 +65,13 @@ async function postPaiementScolaire($formulaireValeurs, success, error) {
 	if(valeurPaiementDescription != null && valeurPaiementDescription !== '')
 		vals['paiementDescription'] = valeurPaiementDescription;
 
-	var valeurInscriptionPaimentComplet = $formulaireValeurs.find('.valeurInscriptionPaimentComplet').prop('checked');
-	if(valeurInscriptionPaimentComplet != null && valeurInscriptionPaimentComplet !== '')
-		vals['inscriptionPaimentComplet'] = valeurInscriptionPaimentComplet;
-
 	var valeurPaiementPar = $formulaireValeurs.find('.valeurPaiementPar').val();
 	if(valeurPaiementPar != null && valeurPaiementPar !== '')
 		vals['paiementPar'] = valeurPaiementPar;
+
+	var valeurInscriptionPaimentComplet = $formulaireValeurs.find('.valeurInscriptionPaimentComplet').prop('checked');
+	if(valeurInscriptionPaimentComplet != null && valeurInscriptionPaimentComplet !== '')
+		vals['inscriptionPaimentComplet'] = valeurInscriptionPaimentComplet;
 
 	var valeurInscriptionPaimentChaqueMois = $formulaireValeurs.find('.valeurInscriptionPaimentChaqueMois').prop('checked');
 	if(valeurInscriptionPaimentChaqueMois != null && valeurInscriptionPaimentChaqueMois !== '')
@@ -89,13 +89,33 @@ async function postPaiementScolaire($formulaireValeurs, success, error) {
 	if(valeurTransactionStatus != null && valeurTransactionStatus !== '')
 		vals['transactionStatus'] = valeurTransactionStatus;
 
-	var valeurInscriptionCle = $formulaireValeurs.find('input.valeurInscriptionCle:checked').val();
-	if(valeurInscriptionCle != null && valeurInscriptionCle !== '')
-		vals['inscriptionCle'] = valeurInscriptionCle;
-
 	var valeurPaiementRecu = $formulaireValeurs.find('.valeurPaiementRecu').prop('checked');
 	if(valeurPaiementRecu != null && valeurPaiementRecu !== '')
 		vals['paiementRecu'] = valeurPaiementRecu;
+
+	var valeurFraisMontant = $formulaireValeurs.find('.valeurFraisMontant').val();
+	if(valeurFraisMontant != null && valeurFraisMontant !== '')
+		vals['fraisMontant'] = valeurFraisMontant;
+
+	var valeurFraisPremierDernier = $formulaireValeurs.find('.valeurFraisPremierDernier').prop('checked');
+	if(valeurFraisPremierDernier != null && valeurFraisPremierDernier !== '')
+		vals['fraisPremierDernier'] = valeurFraisPremierDernier;
+
+	var valeurFraisInscription = $formulaireValeurs.find('.valeurFraisInscription').prop('checked');
+	if(valeurFraisInscription != null && valeurFraisInscription !== '')
+		vals['fraisInscription'] = valeurFraisInscription;
+
+	var valeurFraisMois = $formulaireValeurs.find('.valeurFraisMois').prop('checked');
+	if(valeurFraisMois != null && valeurFraisMois !== '')
+		vals['fraisMois'] = valeurFraisMois;
+
+	var valeurFraisRetard = $formulaireValeurs.find('.valeurFraisRetard').prop('checked');
+	if(valeurFraisRetard != null && valeurFraisRetard !== '')
+		vals['fraisRetard'] = valeurFraisRetard;
+
+	var valeurInscriptionCle = $formulaireValeurs.find('input.valeurInscriptionCle:checked').val();
+	if(valeurInscriptionCle != null && valeurInscriptionCle !== '')
+		vals['inscriptionCle'] = valeurInscriptionCle;
 
 	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
 	if(valeurInheritPk != null && valeurInheritPk !== '')
@@ -133,29 +153,13 @@ async function postPaiementScolaire($formulaireValeurs, success, error) {
 	if(valeurPereNomCompletPrefere != null && valeurPereNomCompletPrefere !== '')
 		vals['pereNomCompletPrefere'] = valeurPereNomCompletPrefere;
 
-	var valeurFraisMontant = $formulaireValeurs.find('.valeurFraisMontant').val();
-	if(valeurFraisMontant != null && valeurFraisMontant !== '')
-		vals['fraisMontant'] = valeurFraisMontant;
+	var valeurFraisMontantDu = $formulaireValeurs.find('.valeurFraisMontantDu').val();
+	if(valeurFraisMontantDu != null && valeurFraisMontantDu !== '')
+		vals['fraisMontantDu'] = valeurFraisMontantDu;
 
 	var valeurFraisMontantFuture = $formulaireValeurs.find('.valeurFraisMontantFuture').val();
 	if(valeurFraisMontantFuture != null && valeurFraisMontantFuture !== '')
 		vals['fraisMontantFuture'] = valeurFraisMontantFuture;
-
-	var valeurFraisInscription = $formulaireValeurs.find('.valeurFraisInscription').prop('checked');
-	if(valeurFraisInscription != null && valeurFraisInscription !== '')
-		vals['fraisInscription'] = valeurFraisInscription;
-
-	var valeurFraisPremierDernier = $formulaireValeurs.find('.valeurFraisPremierDernier').prop('checked');
-	if(valeurFraisPremierDernier != null && valeurFraisPremierDernier !== '')
-		vals['fraisPremierDernier'] = valeurFraisPremierDernier;
-
-	var valeurFraisMois = $formulaireValeurs.find('.valeurFraisMois').prop('checked');
-	if(valeurFraisMois != null && valeurFraisMois !== '')
-		vals['fraisMois'] = valeurFraisMois;
-
-	var valeurFraisRetard = $formulaireValeurs.find('.valeurFraisRetard').prop('checked');
-	if(valeurFraisRetard != null && valeurFraisRetard !== '')
-		vals['fraisRetard'] = valeurFraisRetard;
 
 	var valeurPaiementNomCourt = $formulaireValeurs.find('.valeurPaiementNomCourt').val();
 	if(valeurPaiementNomCourt != null && valeurPaiementNomCourt !== '')
@@ -277,13 +281,13 @@ async function putcopiePaiementScolaire($formulaireValeurs, pk, success, error) 
 	if(valeurPaiementDescription != null && valeurPaiementDescription !== '')
 		vals['paiementDescription'] = valeurPaiementDescription;
 
-	var valeurInscriptionPaimentComplet = $formulaireValeurs.find('.valeurInscriptionPaimentComplet').prop('checked');
-	if(valeurInscriptionPaimentComplet != null && valeurInscriptionPaimentComplet !== '')
-		vals['inscriptionPaimentComplet'] = valeurInscriptionPaimentComplet;
-
 	var valeurPaiementPar = $formulaireValeurs.find('.valeurPaiementPar').val();
 	if(valeurPaiementPar != null && valeurPaiementPar !== '')
 		vals['paiementPar'] = valeurPaiementPar;
+
+	var valeurInscriptionPaimentComplet = $formulaireValeurs.find('.valeurInscriptionPaimentComplet').prop('checked');
+	if(valeurInscriptionPaimentComplet != null && valeurInscriptionPaimentComplet !== '')
+		vals['inscriptionPaimentComplet'] = valeurInscriptionPaimentComplet;
 
 	var valeurInscriptionPaimentChaqueMois = $formulaireValeurs.find('.valeurInscriptionPaimentChaqueMois').prop('checked');
 	if(valeurInscriptionPaimentChaqueMois != null && valeurInscriptionPaimentChaqueMois !== '')
@@ -301,13 +305,33 @@ async function putcopiePaiementScolaire($formulaireValeurs, pk, success, error) 
 	if(valeurTransactionStatus != null && valeurTransactionStatus !== '')
 		vals['transactionStatus'] = valeurTransactionStatus;
 
-	var valeurInscriptionCle = $formulaireValeurs.find('input.valeurInscriptionCle:checked').val();
-	if(valeurInscriptionCle != null && valeurInscriptionCle !== '')
-		vals['inscriptionCle'] = valeurInscriptionCle;
-
 	var valeurPaiementRecu = $formulaireValeurs.find('.valeurPaiementRecu').prop('checked');
 	if(valeurPaiementRecu != null && valeurPaiementRecu !== '')
 		vals['paiementRecu'] = valeurPaiementRecu;
+
+	var valeurFraisMontant = $formulaireValeurs.find('.valeurFraisMontant').val();
+	if(valeurFraisMontant != null && valeurFraisMontant !== '')
+		vals['fraisMontant'] = valeurFraisMontant;
+
+	var valeurFraisPremierDernier = $formulaireValeurs.find('.valeurFraisPremierDernier').prop('checked');
+	if(valeurFraisPremierDernier != null && valeurFraisPremierDernier !== '')
+		vals['fraisPremierDernier'] = valeurFraisPremierDernier;
+
+	var valeurFraisInscription = $formulaireValeurs.find('.valeurFraisInscription').prop('checked');
+	if(valeurFraisInscription != null && valeurFraisInscription !== '')
+		vals['fraisInscription'] = valeurFraisInscription;
+
+	var valeurFraisMois = $formulaireValeurs.find('.valeurFraisMois').prop('checked');
+	if(valeurFraisMois != null && valeurFraisMois !== '')
+		vals['fraisMois'] = valeurFraisMois;
+
+	var valeurFraisRetard = $formulaireValeurs.find('.valeurFraisRetard').prop('checked');
+	if(valeurFraisRetard != null && valeurFraisRetard !== '')
+		vals['fraisRetard'] = valeurFraisRetard;
+
+	var valeurInscriptionCle = $formulaireValeurs.find('input.valeurInscriptionCle:checked').val();
+	if(valeurInscriptionCle != null && valeurInscriptionCle !== '')
+		vals['inscriptionCle'] = valeurInscriptionCle;
 
 	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
 	if(valeurInheritPk != null && valeurInheritPk !== '')
@@ -345,29 +369,13 @@ async function putcopiePaiementScolaire($formulaireValeurs, pk, success, error) 
 	if(valeurPereNomCompletPrefere != null && valeurPereNomCompletPrefere !== '')
 		vals['pereNomCompletPrefere'] = valeurPereNomCompletPrefere;
 
-	var valeurFraisMontant = $formulaireValeurs.find('.valeurFraisMontant').val();
-	if(valeurFraisMontant != null && valeurFraisMontant !== '')
-		vals['fraisMontant'] = valeurFraisMontant;
+	var valeurFraisMontantDu = $formulaireValeurs.find('.valeurFraisMontantDu').val();
+	if(valeurFraisMontantDu != null && valeurFraisMontantDu !== '')
+		vals['fraisMontantDu'] = valeurFraisMontantDu;
 
 	var valeurFraisMontantFuture = $formulaireValeurs.find('.valeurFraisMontantFuture').val();
 	if(valeurFraisMontantFuture != null && valeurFraisMontantFuture !== '')
 		vals['fraisMontantFuture'] = valeurFraisMontantFuture;
-
-	var valeurFraisInscription = $formulaireValeurs.find('.valeurFraisInscription').prop('checked');
-	if(valeurFraisInscription != null && valeurFraisInscription !== '')
-		vals['fraisInscription'] = valeurFraisInscription;
-
-	var valeurFraisPremierDernier = $formulaireValeurs.find('.valeurFraisPremierDernier').prop('checked');
-	if(valeurFraisPremierDernier != null && valeurFraisPremierDernier !== '')
-		vals['fraisPremierDernier'] = valeurFraisPremierDernier;
-
-	var valeurFraisMois = $formulaireValeurs.find('.valeurFraisMois').prop('checked');
-	if(valeurFraisMois != null && valeurFraisMois !== '')
-		vals['fraisMois'] = valeurFraisMois;
-
-	var valeurFraisRetard = $formulaireValeurs.find('.valeurFraisRetard').prop('checked');
-	if(valeurFraisRetard != null && valeurFraisRetard !== '')
-		vals['fraisRetard'] = valeurFraisRetard;
 
 	var valeurPaiementNomCourt = $formulaireValeurs.find('.valeurPaiementNomCourt').val();
 	if(valeurPaiementNomCourt != null && valeurPaiementNomCourt !== '')
@@ -571,6 +579,19 @@ async function patchPaiementScolaire($formulaireFiltres, $formulaireValeurs, pk,
 	if(removePaiementDescription != null && removePaiementDescription !== '')
 		vals['removePaiementDescription'] = removePaiementDescription;
 
+	var valeurPaiementPar = $formulaireValeurs.find('.valeurPaiementPar').val();
+	if(valeurPaiementPar != null && valeurPaiementPar !== '')
+	var removePaiementPar = $formulaireFiltres.find('.removePaiementPar').val() === 'true';
+	var setPaiementPar = removePaiementPar ? null : $formulaireValeurs.find('.setPaiementPar').val();
+	if(removePaiementPar || setPaiementPar != null && setPaiementPar !== '')
+		vals['setPaiementPar'] = setPaiementPar;
+	var addPaiementPar = $formulaireValeurs.find('.addPaiementPar').val();
+	if(addPaiementPar != null && addPaiementPar !== '')
+		vals['addPaiementPar'] = addPaiementPar;
+	var removePaiementPar = $formulaireValeurs.find('.removePaiementPar').val();
+	if(removePaiementPar != null && removePaiementPar !== '')
+		vals['removePaiementPar'] = removePaiementPar;
+
 	var valeurInscriptionPaimentComplet = $formulaireValeurs.find('.valeurInscriptionPaimentComplet').prop('checked');
 	if(valeurInscriptionPaimentComplet != null && valeurInscriptionPaimentComplet !== '')
 	var removeInscriptionPaimentComplet = $formulaireFiltres.find('.removeInscriptionPaimentComplet').val() === 'true';
@@ -587,19 +608,6 @@ async function patchPaiementScolaire($formulaireFiltres, $formulaireValeurs, pk,
 	var removeInscriptionPaimentComplet = $formulaireValeurs.find('.removeInscriptionPaimentComplet').prop('checked');
 	if(removeInscriptionPaimentComplet != null && removeInscriptionPaimentComplet !== '')
 		vals['removeInscriptionPaimentComplet'] = removeInscriptionPaimentComplet;
-
-	var valeurPaiementPar = $formulaireValeurs.find('.valeurPaiementPar').val();
-	if(valeurPaiementPar != null && valeurPaiementPar !== '')
-	var removePaiementPar = $formulaireFiltres.find('.removePaiementPar').val() === 'true';
-	var setPaiementPar = removePaiementPar ? null : $formulaireValeurs.find('.setPaiementPar').val();
-	if(removePaiementPar || setPaiementPar != null && setPaiementPar !== '')
-		vals['setPaiementPar'] = setPaiementPar;
-	var addPaiementPar = $formulaireValeurs.find('.addPaiementPar').val();
-	if(addPaiementPar != null && addPaiementPar !== '')
-		vals['addPaiementPar'] = addPaiementPar;
-	var removePaiementPar = $formulaireValeurs.find('.removePaiementPar').val();
-	if(removePaiementPar != null && removePaiementPar !== '')
-		vals['removePaiementPar'] = removePaiementPar;
 
 	var valeurInscriptionPaimentChaqueMois = $formulaireValeurs.find('.valeurInscriptionPaimentChaqueMois').prop('checked');
 	if(valeurInscriptionPaimentChaqueMois != null && valeurInscriptionPaimentChaqueMois !== '')
@@ -657,10 +665,6 @@ async function patchPaiementScolaire($formulaireFiltres, $formulaireValeurs, pk,
 	if(removeTransactionStatus != null && removeTransactionStatus !== '')
 		vals['removeTransactionStatus'] = removeTransactionStatus;
 
-	var valeurInscriptionCle = $formulaireValeurs.find('input.valeurInscriptionCle:checked').val();
-	if(valeurInscriptionCle != null && valeurInscriptionCle !== '')
-		vals['setInscriptionCle'] = valeurInscriptionCle;
-
 	var valeurPaiementRecu = $formulaireValeurs.find('.valeurPaiementRecu').prop('checked');
 	if(valeurPaiementRecu != null && valeurPaiementRecu !== '')
 	var removePaiementRecu = $formulaireFiltres.find('.removePaiementRecu').val() === 'true';
@@ -677,6 +681,91 @@ async function patchPaiementScolaire($formulaireFiltres, $formulaireValeurs, pk,
 	var removePaiementRecu = $formulaireValeurs.find('.removePaiementRecu').prop('checked');
 	if(removePaiementRecu != null && removePaiementRecu !== '')
 		vals['removePaiementRecu'] = removePaiementRecu;
+
+	var valeurFraisMontant = $formulaireValeurs.find('.valeurFraisMontant').val();
+	if(valeurFraisMontant != null && valeurFraisMontant !== '')
+	var removeFraisMontant = $formulaireFiltres.find('.removeFraisMontant').val() === 'true';
+	var setFraisMontant = removeFraisMontant ? null : $formulaireValeurs.find('.setFraisMontant').val();
+	if(removeFraisMontant || setFraisMontant != null && setFraisMontant !== '')
+		vals['setFraisMontant'] = setFraisMontant;
+	var addFraisMontant = $formulaireValeurs.find('.addFraisMontant').val();
+	if(addFraisMontant != null && addFraisMontant !== '')
+		vals['addFraisMontant'] = addFraisMontant;
+	var removeFraisMontant = $formulaireValeurs.find('.removeFraisMontant').val();
+	if(removeFraisMontant != null && removeFraisMontant !== '')
+		vals['removeFraisMontant'] = removeFraisMontant;
+
+	var valeurFraisPremierDernier = $formulaireValeurs.find('.valeurFraisPremierDernier').prop('checked');
+	if(valeurFraisPremierDernier != null && valeurFraisPremierDernier !== '')
+	var removeFraisPremierDernier = $formulaireFiltres.find('.removeFraisPremierDernier').val() === 'true';
+	var valeurFraisPremierDernierSelectVal = $formulaireValeurs.find('select.setFraisPremierDernier').val();
+	var valeurFraisPremierDernier = null;
+	if(valeurFraisPremierDernierSelectVal !== '')
+		valeurFraisPremierDernier = valeurFraisPremierDernierSelectVal == 'true';
+	setFraisPremierDernier = removeFraisPremierDernier ? null : valeurFraisPremierDernier;
+	if(removeFraisPremierDernier || setFraisPremierDernier != null && setFraisPremierDernier !== '')
+		vals['setFraisPremierDernier'] = setFraisPremierDernier;
+	var addFraisPremierDernier = $formulaireValeurs.find('.addFraisPremierDernier').prop('checked');
+	if(addFraisPremierDernier != null && addFraisPremierDernier !== '')
+		vals['addFraisPremierDernier'] = addFraisPremierDernier;
+	var removeFraisPremierDernier = $formulaireValeurs.find('.removeFraisPremierDernier').prop('checked');
+	if(removeFraisPremierDernier != null && removeFraisPremierDernier !== '')
+		vals['removeFraisPremierDernier'] = removeFraisPremierDernier;
+
+	var valeurFraisInscription = $formulaireValeurs.find('.valeurFraisInscription').prop('checked');
+	if(valeurFraisInscription != null && valeurFraisInscription !== '')
+	var removeFraisInscription = $formulaireFiltres.find('.removeFraisInscription').val() === 'true';
+	var valeurFraisInscriptionSelectVal = $formulaireValeurs.find('select.setFraisInscription').val();
+	var valeurFraisInscription = null;
+	if(valeurFraisInscriptionSelectVal !== '')
+		valeurFraisInscription = valeurFraisInscriptionSelectVal == 'true';
+	setFraisInscription = removeFraisInscription ? null : valeurFraisInscription;
+	if(removeFraisInscription || setFraisInscription != null && setFraisInscription !== '')
+		vals['setFraisInscription'] = setFraisInscription;
+	var addFraisInscription = $formulaireValeurs.find('.addFraisInscription').prop('checked');
+	if(addFraisInscription != null && addFraisInscription !== '')
+		vals['addFraisInscription'] = addFraisInscription;
+	var removeFraisInscription = $formulaireValeurs.find('.removeFraisInscription').prop('checked');
+	if(removeFraisInscription != null && removeFraisInscription !== '')
+		vals['removeFraisInscription'] = removeFraisInscription;
+
+	var valeurFraisMois = $formulaireValeurs.find('.valeurFraisMois').prop('checked');
+	if(valeurFraisMois != null && valeurFraisMois !== '')
+	var removeFraisMois = $formulaireFiltres.find('.removeFraisMois').val() === 'true';
+	var valeurFraisMoisSelectVal = $formulaireValeurs.find('select.setFraisMois').val();
+	var valeurFraisMois = null;
+	if(valeurFraisMoisSelectVal !== '')
+		valeurFraisMois = valeurFraisMoisSelectVal == 'true';
+	setFraisMois = removeFraisMois ? null : valeurFraisMois;
+	if(removeFraisMois || setFraisMois != null && setFraisMois !== '')
+		vals['setFraisMois'] = setFraisMois;
+	var addFraisMois = $formulaireValeurs.find('.addFraisMois').prop('checked');
+	if(addFraisMois != null && addFraisMois !== '')
+		vals['addFraisMois'] = addFraisMois;
+	var removeFraisMois = $formulaireValeurs.find('.removeFraisMois').prop('checked');
+	if(removeFraisMois != null && removeFraisMois !== '')
+		vals['removeFraisMois'] = removeFraisMois;
+
+	var valeurFraisRetard = $formulaireValeurs.find('.valeurFraisRetard').prop('checked');
+	if(valeurFraisRetard != null && valeurFraisRetard !== '')
+	var removeFraisRetard = $formulaireFiltres.find('.removeFraisRetard').val() === 'true';
+	var valeurFraisRetardSelectVal = $formulaireValeurs.find('select.setFraisRetard').val();
+	var valeurFraisRetard = null;
+	if(valeurFraisRetardSelectVal !== '')
+		valeurFraisRetard = valeurFraisRetardSelectVal == 'true';
+	setFraisRetard = removeFraisRetard ? null : valeurFraisRetard;
+	if(removeFraisRetard || setFraisRetard != null && setFraisRetard !== '')
+		vals['setFraisRetard'] = setFraisRetard;
+	var addFraisRetard = $formulaireValeurs.find('.addFraisRetard').prop('checked');
+	if(addFraisRetard != null && addFraisRetard !== '')
+		vals['addFraisRetard'] = addFraisRetard;
+	var removeFraisRetard = $formulaireValeurs.find('.removeFraisRetard').prop('checked');
+	if(removeFraisRetard != null && removeFraisRetard !== '')
+		vals['removeFraisRetard'] = removeFraisRetard;
+
+	var valeurInscriptionCle = $formulaireValeurs.find('input.valeurInscriptionCle:checked').val();
+	if(valeurInscriptionCle != null && valeurInscriptionCle !== '')
+		vals['setInscriptionCle'] = valeurInscriptionCle;
 
 	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
 	if(valeurInheritPk != null && valeurInheritPk !== '')
@@ -795,18 +884,18 @@ async function patchPaiementScolaire($formulaireFiltres, $formulaireValeurs, pk,
 	if(removePereNomCompletPrefere != null && removePereNomCompletPrefere !== '')
 		vals['removePereNomCompletPrefere'] = removePereNomCompletPrefere;
 
-	var valeurFraisMontant = $formulaireValeurs.find('.valeurFraisMontant').val();
-	if(valeurFraisMontant != null && valeurFraisMontant !== '')
-	var removeFraisMontant = $formulaireFiltres.find('.removeFraisMontant').val() === 'true';
-	var setFraisMontant = removeFraisMontant ? null : $formulaireValeurs.find('.setFraisMontant').val();
-	if(removeFraisMontant || setFraisMontant != null && setFraisMontant !== '')
-		vals['setFraisMontant'] = setFraisMontant;
-	var addFraisMontant = $formulaireValeurs.find('.addFraisMontant').val();
-	if(addFraisMontant != null && addFraisMontant !== '')
-		vals['addFraisMontant'] = addFraisMontant;
-	var removeFraisMontant = $formulaireValeurs.find('.removeFraisMontant').val();
-	if(removeFraisMontant != null && removeFraisMontant !== '')
-		vals['removeFraisMontant'] = removeFraisMontant;
+	var valeurFraisMontantDu = $formulaireValeurs.find('.valeurFraisMontantDu').val();
+	if(valeurFraisMontantDu != null && valeurFraisMontantDu !== '')
+	var removeFraisMontantDu = $formulaireFiltres.find('.removeFraisMontantDu').val() === 'true';
+	var setFraisMontantDu = removeFraisMontantDu ? null : $formulaireValeurs.find('.setFraisMontantDu').val();
+	if(removeFraisMontantDu || setFraisMontantDu != null && setFraisMontantDu !== '')
+		vals['setFraisMontantDu'] = setFraisMontantDu;
+	var addFraisMontantDu = $formulaireValeurs.find('.addFraisMontantDu').val();
+	if(addFraisMontantDu != null && addFraisMontantDu !== '')
+		vals['addFraisMontantDu'] = addFraisMontantDu;
+	var removeFraisMontantDu = $formulaireValeurs.find('.removeFraisMontantDu').val();
+	if(removeFraisMontantDu != null && removeFraisMontantDu !== '')
+		vals['removeFraisMontantDu'] = removeFraisMontantDu;
 
 	var valeurFraisMontantFuture = $formulaireValeurs.find('.valeurFraisMontantFuture').val();
 	if(valeurFraisMontantFuture != null && valeurFraisMontantFuture !== '')
@@ -820,74 +909,6 @@ async function patchPaiementScolaire($formulaireFiltres, $formulaireValeurs, pk,
 	var removeFraisMontantFuture = $formulaireValeurs.find('.removeFraisMontantFuture').val();
 	if(removeFraisMontantFuture != null && removeFraisMontantFuture !== '')
 		vals['removeFraisMontantFuture'] = removeFraisMontantFuture;
-
-	var valeurFraisInscription = $formulaireValeurs.find('.valeurFraisInscription').prop('checked');
-	if(valeurFraisInscription != null && valeurFraisInscription !== '')
-	var removeFraisInscription = $formulaireFiltres.find('.removeFraisInscription').val() === 'true';
-	var valeurFraisInscriptionSelectVal = $formulaireValeurs.find('select.setFraisInscription').val();
-	var valeurFraisInscription = null;
-	if(valeurFraisInscriptionSelectVal !== '')
-		valeurFraisInscription = valeurFraisInscriptionSelectVal == 'true';
-	setFraisInscription = removeFraisInscription ? null : valeurFraisInscription;
-	if(removeFraisInscription || setFraisInscription != null && setFraisInscription !== '')
-		vals['setFraisInscription'] = setFraisInscription;
-	var addFraisInscription = $formulaireValeurs.find('.addFraisInscription').prop('checked');
-	if(addFraisInscription != null && addFraisInscription !== '')
-		vals['addFraisInscription'] = addFraisInscription;
-	var removeFraisInscription = $formulaireValeurs.find('.removeFraisInscription').prop('checked');
-	if(removeFraisInscription != null && removeFraisInscription !== '')
-		vals['removeFraisInscription'] = removeFraisInscription;
-
-	var valeurFraisPremierDernier = $formulaireValeurs.find('.valeurFraisPremierDernier').prop('checked');
-	if(valeurFraisPremierDernier != null && valeurFraisPremierDernier !== '')
-	var removeFraisPremierDernier = $formulaireFiltres.find('.removeFraisPremierDernier').val() === 'true';
-	var valeurFraisPremierDernierSelectVal = $formulaireValeurs.find('select.setFraisPremierDernier').val();
-	var valeurFraisPremierDernier = null;
-	if(valeurFraisPremierDernierSelectVal !== '')
-		valeurFraisPremierDernier = valeurFraisPremierDernierSelectVal == 'true';
-	setFraisPremierDernier = removeFraisPremierDernier ? null : valeurFraisPremierDernier;
-	if(removeFraisPremierDernier || setFraisPremierDernier != null && setFraisPremierDernier !== '')
-		vals['setFraisPremierDernier'] = setFraisPremierDernier;
-	var addFraisPremierDernier = $formulaireValeurs.find('.addFraisPremierDernier').prop('checked');
-	if(addFraisPremierDernier != null && addFraisPremierDernier !== '')
-		vals['addFraisPremierDernier'] = addFraisPremierDernier;
-	var removeFraisPremierDernier = $formulaireValeurs.find('.removeFraisPremierDernier').prop('checked');
-	if(removeFraisPremierDernier != null && removeFraisPremierDernier !== '')
-		vals['removeFraisPremierDernier'] = removeFraisPremierDernier;
-
-	var valeurFraisMois = $formulaireValeurs.find('.valeurFraisMois').prop('checked');
-	if(valeurFraisMois != null && valeurFraisMois !== '')
-	var removeFraisMois = $formulaireFiltres.find('.removeFraisMois').val() === 'true';
-	var valeurFraisMoisSelectVal = $formulaireValeurs.find('select.setFraisMois').val();
-	var valeurFraisMois = null;
-	if(valeurFraisMoisSelectVal !== '')
-		valeurFraisMois = valeurFraisMoisSelectVal == 'true';
-	setFraisMois = removeFraisMois ? null : valeurFraisMois;
-	if(removeFraisMois || setFraisMois != null && setFraisMois !== '')
-		vals['setFraisMois'] = setFraisMois;
-	var addFraisMois = $formulaireValeurs.find('.addFraisMois').prop('checked');
-	if(addFraisMois != null && addFraisMois !== '')
-		vals['addFraisMois'] = addFraisMois;
-	var removeFraisMois = $formulaireValeurs.find('.removeFraisMois').prop('checked');
-	if(removeFraisMois != null && removeFraisMois !== '')
-		vals['removeFraisMois'] = removeFraisMois;
-
-	var valeurFraisRetard = $formulaireValeurs.find('.valeurFraisRetard').prop('checked');
-	if(valeurFraisRetard != null && valeurFraisRetard !== '')
-	var removeFraisRetard = $formulaireFiltres.find('.removeFraisRetard').val() === 'true';
-	var valeurFraisRetardSelectVal = $formulaireValeurs.find('select.setFraisRetard').val();
-	var valeurFraisRetard = null;
-	if(valeurFraisRetardSelectVal !== '')
-		valeurFraisRetard = valeurFraisRetardSelectVal == 'true';
-	setFraisRetard = removeFraisRetard ? null : valeurFraisRetard;
-	if(removeFraisRetard || setFraisRetard != null && setFraisRetard !== '')
-		vals['setFraisRetard'] = setFraisRetard;
-	var addFraisRetard = $formulaireValeurs.find('.addFraisRetard').prop('checked');
-	if(addFraisRetard != null && addFraisRetard !== '')
-		vals['addFraisRetard'] = addFraisRetard;
-	var removeFraisRetard = $formulaireValeurs.find('.removeFraisRetard').prop('checked');
-	if(removeFraisRetard != null && removeFraisRetard !== '')
-		vals['removeFraisRetard'] = removeFraisRetard;
 
 	var valeurPaiementNomCourt = $formulaireValeurs.find('.valeurPaiementNomCourt').val();
 	if(valeurPaiementNomCourt != null && valeurPaiementNomCourt !== '')
@@ -987,6 +1008,10 @@ function patchPaiementScolaireFiltres($formulaireFiltres) {
 		if(filtrePaiementDescription != null && filtrePaiementDescription !== '')
 			filtres.push({ name: 'fq', value: 'paiementDescription:' + filtrePaiementDescription });
 
+		var filtrePaiementPar = $formulaireFiltres.find('.valeurPaiementPar').val();
+		if(filtrePaiementPar != null && filtrePaiementPar !== '')
+			filtres.push({ name: 'fq', value: 'paiementPar:' + filtrePaiementPar });
+
 		var $filtreInscriptionPaimentCompletCheckbox = $formulaireFiltres.find('input.valeurInscriptionPaimentComplet[type = "checkbox"]');
 		var $filtreInscriptionPaimentCompletSelect = $formulaireFiltres.find('select.valeurInscriptionPaimentComplet');
 		var filtreInscriptionPaimentComplet = $filtreInscriptionPaimentCompletSelect.length ? $filtreInscriptionPaimentCompletSelect.val() : $filtreInscriptionPaimentCompletCheckbox.prop('checked');
@@ -996,10 +1021,6 @@ function patchPaiementScolaireFiltres($formulaireFiltres) {
 			filtreInscriptionPaimentComplet = filtreInscriptionPaimentCompletSelectVal == 'true';
 		if(filtreInscriptionPaimentComplet != null && filtreInscriptionPaimentComplet === true)
 			filtres.push({ name: 'fq', value: 'inscriptionPaimentComplet:' + filtreInscriptionPaimentComplet });
-
-		var filtrePaiementPar = $formulaireFiltres.find('.valeurPaiementPar').val();
-		if(filtrePaiementPar != null && filtrePaiementPar !== '')
-			filtres.push({ name: 'fq', value: 'paiementPar:' + filtrePaiementPar });
 
 		var $filtreInscriptionPaimentChaqueMoisCheckbox = $formulaireFiltres.find('input.valeurInscriptionPaimentChaqueMois[type = "checkbox"]');
 		var $filtreInscriptionPaimentChaqueMoisSelect = $formulaireFiltres.find('select.valeurInscriptionPaimentChaqueMois');
@@ -1023,10 +1044,6 @@ function patchPaiementScolaireFiltres($formulaireFiltres) {
 		if(filtreTransactionStatus != null && filtreTransactionStatus !== '')
 			filtres.push({ name: 'fq', value: 'transactionStatus:' + filtreTransactionStatus });
 
-		var filtreInscriptionCle = $formulaireFiltres.find('.valeurInscriptionCle').val();
-		if(filtreInscriptionCle != null && filtreInscriptionCle !== '')
-			filtres.push({ name: 'fq', value: 'inscriptionCle:' + filtreInscriptionCle });
-
 		var $filtrePaiementRecuCheckbox = $formulaireFiltres.find('input.valeurPaiementRecu[type = "checkbox"]');
 		var $filtrePaiementRecuSelect = $formulaireFiltres.find('select.valeurPaiementRecu');
 		var filtrePaiementRecu = $filtrePaiementRecuSelect.length ? $filtrePaiementRecuSelect.val() : $filtrePaiementRecuCheckbox.prop('checked');
@@ -1036,6 +1053,54 @@ function patchPaiementScolaireFiltres($formulaireFiltres) {
 			filtrePaiementRecu = filtrePaiementRecuSelectVal == 'true';
 		if(filtrePaiementRecu != null && filtrePaiementRecu === true)
 			filtres.push({ name: 'fq', value: 'paiementRecu:' + filtrePaiementRecu });
+
+		var filtreFraisMontant = $formulaireFiltres.find('.valeurFraisMontant').val();
+		if(filtreFraisMontant != null && filtreFraisMontant !== '')
+			filtres.push({ name: 'fq', value: 'fraisMontant:' + filtreFraisMontant });
+
+		var $filtreFraisPremierDernierCheckbox = $formulaireFiltres.find('input.valeurFraisPremierDernier[type = "checkbox"]');
+		var $filtreFraisPremierDernierSelect = $formulaireFiltres.find('select.valeurFraisPremierDernier');
+		var filtreFraisPremierDernier = $filtreFraisPremierDernierSelect.length ? $filtreFraisPremierDernierSelect.val() : $filtreFraisPremierDernierCheckbox.prop('checked');
+		var filtreFraisPremierDernierSelectVal = $formulaireFiltres.find('select.filtreFraisPremierDernier').val();
+		var filtreFraisPremierDernier = null;
+		if(filtreFraisPremierDernierSelectVal !== '')
+			filtreFraisPremierDernier = filtreFraisPremierDernierSelectVal == 'true';
+		if(filtreFraisPremierDernier != null && filtreFraisPremierDernier === true)
+			filtres.push({ name: 'fq', value: 'fraisPremierDernier:' + filtreFraisPremierDernier });
+
+		var $filtreFraisInscriptionCheckbox = $formulaireFiltres.find('input.valeurFraisInscription[type = "checkbox"]');
+		var $filtreFraisInscriptionSelect = $formulaireFiltres.find('select.valeurFraisInscription');
+		var filtreFraisInscription = $filtreFraisInscriptionSelect.length ? $filtreFraisInscriptionSelect.val() : $filtreFraisInscriptionCheckbox.prop('checked');
+		var filtreFraisInscriptionSelectVal = $formulaireFiltres.find('select.filtreFraisInscription').val();
+		var filtreFraisInscription = null;
+		if(filtreFraisInscriptionSelectVal !== '')
+			filtreFraisInscription = filtreFraisInscriptionSelectVal == 'true';
+		if(filtreFraisInscription != null && filtreFraisInscription === true)
+			filtres.push({ name: 'fq', value: 'fraisInscription:' + filtreFraisInscription });
+
+		var $filtreFraisMoisCheckbox = $formulaireFiltres.find('input.valeurFraisMois[type = "checkbox"]');
+		var $filtreFraisMoisSelect = $formulaireFiltres.find('select.valeurFraisMois');
+		var filtreFraisMois = $filtreFraisMoisSelect.length ? $filtreFraisMoisSelect.val() : $filtreFraisMoisCheckbox.prop('checked');
+		var filtreFraisMoisSelectVal = $formulaireFiltres.find('select.filtreFraisMois').val();
+		var filtreFraisMois = null;
+		if(filtreFraisMoisSelectVal !== '')
+			filtreFraisMois = filtreFraisMoisSelectVal == 'true';
+		if(filtreFraisMois != null && filtreFraisMois === true)
+			filtres.push({ name: 'fq', value: 'fraisMois:' + filtreFraisMois });
+
+		var $filtreFraisRetardCheckbox = $formulaireFiltres.find('input.valeurFraisRetard[type = "checkbox"]');
+		var $filtreFraisRetardSelect = $formulaireFiltres.find('select.valeurFraisRetard');
+		var filtreFraisRetard = $filtreFraisRetardSelect.length ? $filtreFraisRetardSelect.val() : $filtreFraisRetardCheckbox.prop('checked');
+		var filtreFraisRetardSelectVal = $formulaireFiltres.find('select.filtreFraisRetard').val();
+		var filtreFraisRetard = null;
+		if(filtreFraisRetardSelectVal !== '')
+			filtreFraisRetard = filtreFraisRetardSelectVal == 'true';
+		if(filtreFraisRetard != null && filtreFraisRetard === true)
+			filtres.push({ name: 'fq', value: 'fraisRetard:' + filtreFraisRetard });
+
+		var filtreInscriptionCle = $formulaireFiltres.find('.valeurInscriptionCle').val();
+		if(filtreInscriptionCle != null && filtreInscriptionCle !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionCle:' + filtreInscriptionCle });
 
 		var filtreInheritPk = $formulaireFiltres.find('.valeurInheritPk').val();
 		if(filtreInheritPk != null && filtreInheritPk !== '')
@@ -1241,53 +1306,13 @@ function patchPaiementScolaireFiltres($formulaireFiltres) {
 		if(filtreBlocPrixTotal != null && filtreBlocPrixTotal !== '')
 			filtres.push({ name: 'fq', value: 'blocPrixTotal:' + filtreBlocPrixTotal });
 
-		var filtreFraisMontant = $formulaireFiltres.find('.valeurFraisMontant').val();
-		if(filtreFraisMontant != null && filtreFraisMontant !== '')
-			filtres.push({ name: 'fq', value: 'fraisMontant:' + filtreFraisMontant });
+		var filtreFraisMontantDu = $formulaireFiltres.find('.valeurFraisMontantDu').val();
+		if(filtreFraisMontantDu != null && filtreFraisMontantDu !== '')
+			filtres.push({ name: 'fq', value: 'fraisMontantDu:' + filtreFraisMontantDu });
 
 		var filtreFraisMontantFuture = $formulaireFiltres.find('.valeurFraisMontantFuture').val();
 		if(filtreFraisMontantFuture != null && filtreFraisMontantFuture !== '')
 			filtres.push({ name: 'fq', value: 'fraisMontantFuture:' + filtreFraisMontantFuture });
-
-		var $filtreFraisInscriptionCheckbox = $formulaireFiltres.find('input.valeurFraisInscription[type = "checkbox"]');
-		var $filtreFraisInscriptionSelect = $formulaireFiltres.find('select.valeurFraisInscription');
-		var filtreFraisInscription = $filtreFraisInscriptionSelect.length ? $filtreFraisInscriptionSelect.val() : $filtreFraisInscriptionCheckbox.prop('checked');
-		var filtreFraisInscriptionSelectVal = $formulaireFiltres.find('select.filtreFraisInscription').val();
-		var filtreFraisInscription = null;
-		if(filtreFraisInscriptionSelectVal !== '')
-			filtreFraisInscription = filtreFraisInscriptionSelectVal == 'true';
-		if(filtreFraisInscription != null && filtreFraisInscription === true)
-			filtres.push({ name: 'fq', value: 'fraisInscription:' + filtreFraisInscription });
-
-		var $filtreFraisPremierDernierCheckbox = $formulaireFiltres.find('input.valeurFraisPremierDernier[type = "checkbox"]');
-		var $filtreFraisPremierDernierSelect = $formulaireFiltres.find('select.valeurFraisPremierDernier');
-		var filtreFraisPremierDernier = $filtreFraisPremierDernierSelect.length ? $filtreFraisPremierDernierSelect.val() : $filtreFraisPremierDernierCheckbox.prop('checked');
-		var filtreFraisPremierDernierSelectVal = $formulaireFiltres.find('select.filtreFraisPremierDernier').val();
-		var filtreFraisPremierDernier = null;
-		if(filtreFraisPremierDernierSelectVal !== '')
-			filtreFraisPremierDernier = filtreFraisPremierDernierSelectVal == 'true';
-		if(filtreFraisPremierDernier != null && filtreFraisPremierDernier === true)
-			filtres.push({ name: 'fq', value: 'fraisPremierDernier:' + filtreFraisPremierDernier });
-
-		var $filtreFraisMoisCheckbox = $formulaireFiltres.find('input.valeurFraisMois[type = "checkbox"]');
-		var $filtreFraisMoisSelect = $formulaireFiltres.find('select.valeurFraisMois');
-		var filtreFraisMois = $filtreFraisMoisSelect.length ? $filtreFraisMoisSelect.val() : $filtreFraisMoisCheckbox.prop('checked');
-		var filtreFraisMoisSelectVal = $formulaireFiltres.find('select.filtreFraisMois').val();
-		var filtreFraisMois = null;
-		if(filtreFraisMoisSelectVal !== '')
-			filtreFraisMois = filtreFraisMoisSelectVal == 'true';
-		if(filtreFraisMois != null && filtreFraisMois === true)
-			filtres.push({ name: 'fq', value: 'fraisMois:' + filtreFraisMois });
-
-		var $filtreFraisRetardCheckbox = $formulaireFiltres.find('input.valeurFraisRetard[type = "checkbox"]');
-		var $filtreFraisRetardSelect = $formulaireFiltres.find('select.valeurFraisRetard');
-		var filtreFraisRetard = $filtreFraisRetardSelect.length ? $filtreFraisRetardSelect.val() : $filtreFraisRetardCheckbox.prop('checked');
-		var filtreFraisRetardSelectVal = $formulaireFiltres.find('select.filtreFraisRetard').val();
-		var filtreFraisRetard = null;
-		if(filtreFraisRetardSelectVal !== '')
-			filtreFraisRetard = filtreFraisRetardSelectVal == 'true';
-		if(filtreFraisRetard != null && filtreFraisRetard === true)
-			filtres.push({ name: 'fq', value: 'fraisRetard:' + filtreFraisRetard });
 
 		var filtrePaiementNomCourt = $formulaireFiltres.find('.valeurPaiementNomCourt').val();
 		if(filtrePaiementNomCourt != null && filtrePaiementNomCourt !== '')
@@ -1425,6 +1450,10 @@ function recherchePaiementScolaireFiltres($formulaireFiltres) {
 		if(filtrePaiementDescription != null && filtrePaiementDescription !== '')
 			filtres.push({ name: 'fq', value: 'paiementDescription:' + filtrePaiementDescription });
 
+		var filtrePaiementPar = $formulaireFiltres.find('.valeurPaiementPar').val();
+		if(filtrePaiementPar != null && filtrePaiementPar !== '')
+			filtres.push({ name: 'fq', value: 'paiementPar:' + filtrePaiementPar });
+
 		var $filtreInscriptionPaimentCompletCheckbox = $formulaireFiltres.find('input.valeurInscriptionPaimentComplet[type = "checkbox"]');
 		var $filtreInscriptionPaimentCompletSelect = $formulaireFiltres.find('select.valeurInscriptionPaimentComplet');
 		var filtreInscriptionPaimentComplet = $filtreInscriptionPaimentCompletSelect.length ? $filtreInscriptionPaimentCompletSelect.val() : $filtreInscriptionPaimentCompletCheckbox.prop('checked');
@@ -1434,10 +1463,6 @@ function recherchePaiementScolaireFiltres($formulaireFiltres) {
 			filtreInscriptionPaimentComplet = filtreInscriptionPaimentCompletSelectVal == 'true';
 		if(filtreInscriptionPaimentComplet != null && filtreInscriptionPaimentComplet === true)
 			filtres.push({ name: 'fq', value: 'inscriptionPaimentComplet:' + filtreInscriptionPaimentComplet });
-
-		var filtrePaiementPar = $formulaireFiltres.find('.valeurPaiementPar').val();
-		if(filtrePaiementPar != null && filtrePaiementPar !== '')
-			filtres.push({ name: 'fq', value: 'paiementPar:' + filtrePaiementPar });
 
 		var $filtreInscriptionPaimentChaqueMoisCheckbox = $formulaireFiltres.find('input.valeurInscriptionPaimentChaqueMois[type = "checkbox"]');
 		var $filtreInscriptionPaimentChaqueMoisSelect = $formulaireFiltres.find('select.valeurInscriptionPaimentChaqueMois');
@@ -1461,10 +1486,6 @@ function recherchePaiementScolaireFiltres($formulaireFiltres) {
 		if(filtreTransactionStatus != null && filtreTransactionStatus !== '')
 			filtres.push({ name: 'fq', value: 'transactionStatus:' + filtreTransactionStatus });
 
-		var filtreInscriptionCle = $formulaireFiltres.find('.valeurInscriptionCle').val();
-		if(filtreInscriptionCle != null && filtreInscriptionCle !== '')
-			filtres.push({ name: 'fq', value: 'inscriptionCle:' + filtreInscriptionCle });
-
 		var $filtrePaiementRecuCheckbox = $formulaireFiltres.find('input.valeurPaiementRecu[type = "checkbox"]');
 		var $filtrePaiementRecuSelect = $formulaireFiltres.find('select.valeurPaiementRecu');
 		var filtrePaiementRecu = $filtrePaiementRecuSelect.length ? $filtrePaiementRecuSelect.val() : $filtrePaiementRecuCheckbox.prop('checked');
@@ -1474,6 +1495,54 @@ function recherchePaiementScolaireFiltres($formulaireFiltres) {
 			filtrePaiementRecu = filtrePaiementRecuSelectVal == 'true';
 		if(filtrePaiementRecu != null && filtrePaiementRecu === true)
 			filtres.push({ name: 'fq', value: 'paiementRecu:' + filtrePaiementRecu });
+
+		var filtreFraisMontant = $formulaireFiltres.find('.valeurFraisMontant').val();
+		if(filtreFraisMontant != null && filtreFraisMontant !== '')
+			filtres.push({ name: 'fq', value: 'fraisMontant:' + filtreFraisMontant });
+
+		var $filtreFraisPremierDernierCheckbox = $formulaireFiltres.find('input.valeurFraisPremierDernier[type = "checkbox"]');
+		var $filtreFraisPremierDernierSelect = $formulaireFiltres.find('select.valeurFraisPremierDernier');
+		var filtreFraisPremierDernier = $filtreFraisPremierDernierSelect.length ? $filtreFraisPremierDernierSelect.val() : $filtreFraisPremierDernierCheckbox.prop('checked');
+		var filtreFraisPremierDernierSelectVal = $formulaireFiltres.find('select.filtreFraisPremierDernier').val();
+		var filtreFraisPremierDernier = null;
+		if(filtreFraisPremierDernierSelectVal !== '')
+			filtreFraisPremierDernier = filtreFraisPremierDernierSelectVal == 'true';
+		if(filtreFraisPremierDernier != null && filtreFraisPremierDernier === true)
+			filtres.push({ name: 'fq', value: 'fraisPremierDernier:' + filtreFraisPremierDernier });
+
+		var $filtreFraisInscriptionCheckbox = $formulaireFiltres.find('input.valeurFraisInscription[type = "checkbox"]');
+		var $filtreFraisInscriptionSelect = $formulaireFiltres.find('select.valeurFraisInscription');
+		var filtreFraisInscription = $filtreFraisInscriptionSelect.length ? $filtreFraisInscriptionSelect.val() : $filtreFraisInscriptionCheckbox.prop('checked');
+		var filtreFraisInscriptionSelectVal = $formulaireFiltres.find('select.filtreFraisInscription').val();
+		var filtreFraisInscription = null;
+		if(filtreFraisInscriptionSelectVal !== '')
+			filtreFraisInscription = filtreFraisInscriptionSelectVal == 'true';
+		if(filtreFraisInscription != null && filtreFraisInscription === true)
+			filtres.push({ name: 'fq', value: 'fraisInscription:' + filtreFraisInscription });
+
+		var $filtreFraisMoisCheckbox = $formulaireFiltres.find('input.valeurFraisMois[type = "checkbox"]');
+		var $filtreFraisMoisSelect = $formulaireFiltres.find('select.valeurFraisMois');
+		var filtreFraisMois = $filtreFraisMoisSelect.length ? $filtreFraisMoisSelect.val() : $filtreFraisMoisCheckbox.prop('checked');
+		var filtreFraisMoisSelectVal = $formulaireFiltres.find('select.filtreFraisMois').val();
+		var filtreFraisMois = null;
+		if(filtreFraisMoisSelectVal !== '')
+			filtreFraisMois = filtreFraisMoisSelectVal == 'true';
+		if(filtreFraisMois != null && filtreFraisMois === true)
+			filtres.push({ name: 'fq', value: 'fraisMois:' + filtreFraisMois });
+
+		var $filtreFraisRetardCheckbox = $formulaireFiltres.find('input.valeurFraisRetard[type = "checkbox"]');
+		var $filtreFraisRetardSelect = $formulaireFiltres.find('select.valeurFraisRetard');
+		var filtreFraisRetard = $filtreFraisRetardSelect.length ? $filtreFraisRetardSelect.val() : $filtreFraisRetardCheckbox.prop('checked');
+		var filtreFraisRetardSelectVal = $formulaireFiltres.find('select.filtreFraisRetard').val();
+		var filtreFraisRetard = null;
+		if(filtreFraisRetardSelectVal !== '')
+			filtreFraisRetard = filtreFraisRetardSelectVal == 'true';
+		if(filtreFraisRetard != null && filtreFraisRetard === true)
+			filtres.push({ name: 'fq', value: 'fraisRetard:' + filtreFraisRetard });
+
+		var filtreInscriptionCle = $formulaireFiltres.find('.valeurInscriptionCle').val();
+		if(filtreInscriptionCle != null && filtreInscriptionCle !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionCle:' + filtreInscriptionCle });
 
 		var filtreInheritPk = $formulaireFiltres.find('.valeurInheritPk').val();
 		if(filtreInheritPk != null && filtreInheritPk !== '')
@@ -1679,53 +1748,13 @@ function recherchePaiementScolaireFiltres($formulaireFiltres) {
 		if(filtreBlocPrixTotal != null && filtreBlocPrixTotal !== '')
 			filtres.push({ name: 'fq', value: 'blocPrixTotal:' + filtreBlocPrixTotal });
 
-		var filtreFraisMontant = $formulaireFiltres.find('.valeurFraisMontant').val();
-		if(filtreFraisMontant != null && filtreFraisMontant !== '')
-			filtres.push({ name: 'fq', value: 'fraisMontant:' + filtreFraisMontant });
+		var filtreFraisMontantDu = $formulaireFiltres.find('.valeurFraisMontantDu').val();
+		if(filtreFraisMontantDu != null && filtreFraisMontantDu !== '')
+			filtres.push({ name: 'fq', value: 'fraisMontantDu:' + filtreFraisMontantDu });
 
 		var filtreFraisMontantFuture = $formulaireFiltres.find('.valeurFraisMontantFuture').val();
 		if(filtreFraisMontantFuture != null && filtreFraisMontantFuture !== '')
 			filtres.push({ name: 'fq', value: 'fraisMontantFuture:' + filtreFraisMontantFuture });
-
-		var $filtreFraisInscriptionCheckbox = $formulaireFiltres.find('input.valeurFraisInscription[type = "checkbox"]');
-		var $filtreFraisInscriptionSelect = $formulaireFiltres.find('select.valeurFraisInscription');
-		var filtreFraisInscription = $filtreFraisInscriptionSelect.length ? $filtreFraisInscriptionSelect.val() : $filtreFraisInscriptionCheckbox.prop('checked');
-		var filtreFraisInscriptionSelectVal = $formulaireFiltres.find('select.filtreFraisInscription').val();
-		var filtreFraisInscription = null;
-		if(filtreFraisInscriptionSelectVal !== '')
-			filtreFraisInscription = filtreFraisInscriptionSelectVal == 'true';
-		if(filtreFraisInscription != null && filtreFraisInscription === true)
-			filtres.push({ name: 'fq', value: 'fraisInscription:' + filtreFraisInscription });
-
-		var $filtreFraisPremierDernierCheckbox = $formulaireFiltres.find('input.valeurFraisPremierDernier[type = "checkbox"]');
-		var $filtreFraisPremierDernierSelect = $formulaireFiltres.find('select.valeurFraisPremierDernier');
-		var filtreFraisPremierDernier = $filtreFraisPremierDernierSelect.length ? $filtreFraisPremierDernierSelect.val() : $filtreFraisPremierDernierCheckbox.prop('checked');
-		var filtreFraisPremierDernierSelectVal = $formulaireFiltres.find('select.filtreFraisPremierDernier').val();
-		var filtreFraisPremierDernier = null;
-		if(filtreFraisPremierDernierSelectVal !== '')
-			filtreFraisPremierDernier = filtreFraisPremierDernierSelectVal == 'true';
-		if(filtreFraisPremierDernier != null && filtreFraisPremierDernier === true)
-			filtres.push({ name: 'fq', value: 'fraisPremierDernier:' + filtreFraisPremierDernier });
-
-		var $filtreFraisMoisCheckbox = $formulaireFiltres.find('input.valeurFraisMois[type = "checkbox"]');
-		var $filtreFraisMoisSelect = $formulaireFiltres.find('select.valeurFraisMois');
-		var filtreFraisMois = $filtreFraisMoisSelect.length ? $filtreFraisMoisSelect.val() : $filtreFraisMoisCheckbox.prop('checked');
-		var filtreFraisMoisSelectVal = $formulaireFiltres.find('select.filtreFraisMois').val();
-		var filtreFraisMois = null;
-		if(filtreFraisMoisSelectVal !== '')
-			filtreFraisMois = filtreFraisMoisSelectVal == 'true';
-		if(filtreFraisMois != null && filtreFraisMois === true)
-			filtres.push({ name: 'fq', value: 'fraisMois:' + filtreFraisMois });
-
-		var $filtreFraisRetardCheckbox = $formulaireFiltres.find('input.valeurFraisRetard[type = "checkbox"]');
-		var $filtreFraisRetardSelect = $formulaireFiltres.find('select.valeurFraisRetard');
-		var filtreFraisRetard = $filtreFraisRetardSelect.length ? $filtreFraisRetardSelect.val() : $filtreFraisRetardCheckbox.prop('checked');
-		var filtreFraisRetardSelectVal = $formulaireFiltres.find('select.filtreFraisRetard').val();
-		var filtreFraisRetard = null;
-		if(filtreFraisRetardSelectVal !== '')
-			filtreFraisRetard = filtreFraisRetardSelectVal == 'true';
-		if(filtreFraisRetard != null && filtreFraisRetard === true)
-			filtres.push({ name: 'fq', value: 'fraisRetard:' + filtreFraisRetard });
 
 		var filtrePaiementNomCourt = $formulaireFiltres.find('.valeurPaiementNomCourt').val();
 		if(filtrePaiementNomCourt != null && filtrePaiementNomCourt !== '')
@@ -1911,15 +1940,15 @@ async function websocketPaiementScolaireInner(requeteApi) {
 				$('.varPaiementScolaire' + pk + 'PaiementDescription').text(o['paiementDescription']);
 				ajouterLueur($('.inputPaiementScolaire' + pk + 'PaiementDescription'));
 			}
-			if(vars.includes('inscriptionPaimentComplet')) {
-				$('.inputPaiementScolaire' + pk + 'InscriptionPaimentComplet').val(o['inscriptionPaimentComplet']);
-				$('.varPaiementScolaire' + pk + 'InscriptionPaimentComplet').text(o['inscriptionPaimentComplet']);
-				ajouterLueur($('.inputPaiementScolaire' + pk + 'InscriptionPaimentComplet'));
-			}
 			if(vars.includes('paiementPar')) {
 				$('.inputPaiementScolaire' + pk + 'PaiementPar').val(o['paiementPar']);
 				$('.varPaiementScolaire' + pk + 'PaiementPar').text(o['paiementPar']);
 				ajouterLueur($('.inputPaiementScolaire' + pk + 'PaiementPar'));
+			}
+			if(vars.includes('inscriptionPaimentComplet')) {
+				$('.inputPaiementScolaire' + pk + 'InscriptionPaimentComplet').val(o['inscriptionPaimentComplet']);
+				$('.varPaiementScolaire' + pk + 'InscriptionPaimentComplet').text(o['inscriptionPaimentComplet']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'InscriptionPaimentComplet'));
 			}
 			if(vars.includes('inscriptionPaimentChaqueMois')) {
 				$('.inputPaiementScolaire' + pk + 'InscriptionPaimentChaqueMois').val(o['inscriptionPaimentChaqueMois']);
@@ -1941,15 +1970,40 @@ async function websocketPaiementScolaireInner(requeteApi) {
 				$('.varPaiementScolaire' + pk + 'TransactionStatus').text(o['transactionStatus']);
 				ajouterLueur($('.inputPaiementScolaire' + pk + 'TransactionStatus'));
 			}
-			if(vars.includes('inscriptionCle')) {
-				$('.inputPaiementScolaire' + pk + 'InscriptionCle').val(o['inscriptionCle']);
-				$('.varPaiementScolaire' + pk + 'InscriptionCle').text(o['inscriptionCle']);
-				ajouterLueur($('.inputPaiementScolaire' + pk + 'InscriptionCle'));
-			}
 			if(vars.includes('paiementRecu')) {
 				$('.inputPaiementScolaire' + pk + 'PaiementRecu').val(o['paiementRecu']);
 				$('.varPaiementScolaire' + pk + 'PaiementRecu').text(o['paiementRecu']);
 				ajouterLueur($('.inputPaiementScolaire' + pk + 'PaiementRecu'));
+			}
+			if(vars.includes('fraisMontant')) {
+				$('.inputPaiementScolaire' + pk + 'FraisMontant').val(o['fraisMontant']);
+				$('.varPaiementScolaire' + pk + 'FraisMontant').text(o['fraisMontant']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'FraisMontant'));
+			}
+			if(vars.includes('fraisPremierDernier')) {
+				$('.inputPaiementScolaire' + pk + 'FraisPremierDernier').val(o['fraisPremierDernier']);
+				$('.varPaiementScolaire' + pk + 'FraisPremierDernier').text(o['fraisPremierDernier']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'FraisPremierDernier'));
+			}
+			if(vars.includes('fraisInscription')) {
+				$('.inputPaiementScolaire' + pk + 'FraisInscription').val(o['fraisInscription']);
+				$('.varPaiementScolaire' + pk + 'FraisInscription').text(o['fraisInscription']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'FraisInscription'));
+			}
+			if(vars.includes('fraisMois')) {
+				$('.inputPaiementScolaire' + pk + 'FraisMois').val(o['fraisMois']);
+				$('.varPaiementScolaire' + pk + 'FraisMois').text(o['fraisMois']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'FraisMois'));
+			}
+			if(vars.includes('fraisRetard')) {
+				$('.inputPaiementScolaire' + pk + 'FraisRetard').val(o['fraisRetard']);
+				$('.varPaiementScolaire' + pk + 'FraisRetard').text(o['fraisRetard']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'FraisRetard'));
+			}
+			if(vars.includes('inscriptionCle')) {
+				$('.inputPaiementScolaire' + pk + 'InscriptionCle').val(o['inscriptionCle']);
+				$('.varPaiementScolaire' + pk + 'InscriptionCle').text(o['inscriptionCle']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'InscriptionCle'));
 			}
 			if(vars.includes('inheritPk')) {
 				$('.inputPaiementScolaire' + pk + 'InheritPk').val(o['inheritPk']);
@@ -1991,35 +2045,15 @@ async function websocketPaiementScolaireInner(requeteApi) {
 				$('.varPaiementScolaire' + pk + 'PereNomCompletPrefere').text(o['pereNomCompletPrefere']);
 				ajouterLueur($('.inputPaiementScolaire' + pk + 'PereNomCompletPrefere'));
 			}
-			if(vars.includes('fraisMontant')) {
-				$('.inputPaiementScolaire' + pk + 'FraisMontant').val(o['fraisMontant']);
-				$('.varPaiementScolaire' + pk + 'FraisMontant').text(o['fraisMontant']);
-				ajouterLueur($('.inputPaiementScolaire' + pk + 'FraisMontant'));
+			if(vars.includes('fraisMontantDu')) {
+				$('.inputPaiementScolaire' + pk + 'FraisMontantDu').val(o['fraisMontantDu']);
+				$('.varPaiementScolaire' + pk + 'FraisMontantDu').text(o['fraisMontantDu']);
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'FraisMontantDu'));
 			}
 			if(vars.includes('fraisMontantFuture')) {
 				$('.inputPaiementScolaire' + pk + 'FraisMontantFuture').val(o['fraisMontantFuture']);
 				$('.varPaiementScolaire' + pk + 'FraisMontantFuture').text(o['fraisMontantFuture']);
 				ajouterLueur($('.inputPaiementScolaire' + pk + 'FraisMontantFuture'));
-			}
-			if(vars.includes('fraisInscription')) {
-				$('.inputPaiementScolaire' + pk + 'FraisInscription').val(o['fraisInscription']);
-				$('.varPaiementScolaire' + pk + 'FraisInscription').text(o['fraisInscription']);
-				ajouterLueur($('.inputPaiementScolaire' + pk + 'FraisInscription'));
-			}
-			if(vars.includes('fraisPremierDernier')) {
-				$('.inputPaiementScolaire' + pk + 'FraisPremierDernier').val(o['fraisPremierDernier']);
-				$('.varPaiementScolaire' + pk + 'FraisPremierDernier').text(o['fraisPremierDernier']);
-				ajouterLueur($('.inputPaiementScolaire' + pk + 'FraisPremierDernier'));
-			}
-			if(vars.includes('fraisMois')) {
-				$('.inputPaiementScolaire' + pk + 'FraisMois').val(o['fraisMois']);
-				$('.varPaiementScolaire' + pk + 'FraisMois').text(o['fraisMois']);
-				ajouterLueur($('.inputPaiementScolaire' + pk + 'FraisMois'));
-			}
-			if(vars.includes('fraisRetard')) {
-				$('.inputPaiementScolaire' + pk + 'FraisRetard').val(o['fraisRetard']);
-				$('.varPaiementScolaire' + pk + 'FraisRetard').text(o['fraisRetard']);
-				ajouterLueur($('.inputPaiementScolaire' + pk + 'FraisRetard'));
 			}
 			if(vars.includes('paiementNomCourt')) {
 				$('.inputPaiementScolaire' + pk + 'PaiementNomCourt').val(o['paiementNomCourt']);

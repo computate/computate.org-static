@@ -3,7 +3,6 @@
 
 body, html { font-size: 1.0em; }
 body {font-family: "Bellefair", sans-serif; }
-.top-box { z-index: 2 }
 h1,h2,h3,h4,h5,h6 { margin: 0; }
 h1,h3,h5 {font-family: "Stint Ultra Condensed", sans-serif; line-height: 1.2; }
 h2,h4,h6 {font-family: "Jomhuria", sans-serif; line-height: 0.9; }
@@ -55,17 +54,13 @@ input[type=text], input[type=radio], input[type=checkbox], textarea {
 	border: 1px solid rgba(215, 0, 0, 1);
 }
 
-.date-picker { z-index: 1; }
 
 .site-section-top { 
-	z-index: 2; 
 	background-color: white; 
 	padding-top: 5px;
 	padding-bottom: 5px;
 }
-.site-section-all { padding-bottom: 1000px; }
-.site-section-above {  position: relative; z-index: 1; background-repeat: repeat; background-color: white; }
-/*.site-section-primaire { position: relative; z-index: 1; min-height: 100%; background-image: url(/svg/stars.svg); background-repeat: no-repeat; center center cover; }*/
+.site-section-above {  background-repeat: repeat; background-color: white; }
 .site-section-primary {  min-height: 100%; }
 .site-section-contact { 
 	text-align: center; 
