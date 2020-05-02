@@ -109,32 +109,50 @@ async function postInscriptionScolaire($formulaireValeurs, success, error) {
 	if(valeurEnfantObjectifs != null && valeurEnfantObjectifs !== '')
 		vals['enfantObjectifs'] = valeurEnfantObjectifs;
 
-	var valeurBlocCles = $formulaireValeurs.find('input.valeurBlocCles:checked').val();
-	if(valeurBlocCles != null && valeurBlocCles !== '')
+	var valeurBlocCles = [];
+	$formulaireValeurs.find('input.valeurBlocCles:checked').each(function(index) {
+		valeurBlocCles.push($(this).val());
+	});
+	if(valeurBlocCles.length > 0)
 		vals['blocCles'] = valeurBlocCles;
 
-	var valeurEnfantCle = $formulaireValeurs.find('input.valeurEnfantCle:checked').val();
+		vals['enfantCle'] = [valeurEnfantCle];
 	if(valeurEnfantCle != null && valeurEnfantCle !== '')
 		vals['enfantCle'] = valeurEnfantCle;
 
-	var valeurMereCles = $formulaireValeurs.find('input.valeurMereCles:checked').val();
-	if(valeurMereCles != null && valeurMereCles !== '')
+	var valeurMereCles = [];
+	$formulaireValeurs.find('input.valeurMereCles:checked').each(function(index) {
+		valeurMereCles.push($(this).val());
+	});
+	if(valeurMereCles.length > 0)
 		vals['mereCles'] = valeurMereCles;
 
-	var valeurPereCles = $formulaireValeurs.find('input.valeurPereCles:checked').val();
-	if(valeurPereCles != null && valeurPereCles !== '')
+	var valeurPereCles = [];
+	$formulaireValeurs.find('input.valeurPereCles:checked').each(function(index) {
+		valeurPereCles.push($(this).val());
+	});
+	if(valeurPereCles.length > 0)
 		vals['pereCles'] = valeurPereCles;
 
-	var valeurGardienCles = $formulaireValeurs.find('input.valeurGardienCles:checked').val();
-	if(valeurGardienCles != null && valeurGardienCles !== '')
+	var valeurGardienCles = [];
+	$formulaireValeurs.find('input.valeurGardienCles:checked').each(function(index) {
+		valeurGardienCles.push($(this).val());
+	});
+	if(valeurGardienCles.length > 0)
 		vals['gardienCles'] = valeurGardienCles;
 
-	var valeurPaiementCles = $formulaireValeurs.find('input.valeurPaiementCles:checked').val();
-	if(valeurPaiementCles != null && valeurPaiementCles !== '')
+	var valeurPaiementCles = [];
+	$formulaireValeurs.find('input.valeurPaiementCles:checked').each(function(index) {
+		valeurPaiementCles.push($(this).val());
+	});
+	if(valeurPaiementCles.length > 0)
 		vals['paiementCles'] = valeurPaiementCles;
 
-	var valeurUtilisateurCles = $formulaireValeurs.find('input.valeurUtilisateurCles:checked').val();
-	if(valeurUtilisateurCles != null && valeurUtilisateurCles !== '')
+	var valeurUtilisateurCles = [];
+	$formulaireValeurs.find('input.valeurUtilisateurCles:checked').each(function(index) {
+		valeurUtilisateurCles.push($(this).val());
+	});
+	if(valeurUtilisateurCles.length > 0)
 		vals['utilisateurCles'] = valeurUtilisateurCles;
 
 	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();

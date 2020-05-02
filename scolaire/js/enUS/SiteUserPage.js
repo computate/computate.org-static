@@ -793,12 +793,18 @@ async function postSiteUser($formValues, success, error) {
 	if(valueCustomerProfileId != null && valueCustomerProfileId !== '')
 		vals['customerProfileId'] = valueCustomerProfileId;
 
-	var valueEnrollmentKeys = $formValues.find('input.valueEnrollmentKeys:checked').val();
-	if(valueEnrollmentKeys != null && valueEnrollmentKeys !== '')
+	var valueEnrollmentKeys = [];
+	$formValues.find('input.valueEnrollmentKeys:checked').each(function(index) {
+		valueEnrollmentKeys.push($(this).val());
+	});
+	if(valueEnrollmentKeys.length > 0)
 		vals['enrollmentKeys'] = valueEnrollmentKeys;
 
-	var valuePaymentKeys = $formValues.find('input.valuePaymentKeys:checked').val();
-	if(valuePaymentKeys != null && valuePaymentKeys !== '')
+	var valuePaymentKeys = [];
+	$formValues.find('input.valuePaymentKeys:checked').each(function(index) {
+		valuePaymentKeys.push($(this).val());
+	});
+	if(valuePaymentKeys.length > 0)
 		vals['paymentKeys'] = valuePaymentKeys;
 
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();

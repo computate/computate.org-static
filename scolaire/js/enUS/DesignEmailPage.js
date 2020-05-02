@@ -49,13 +49,19 @@ async function postPageDesign($formValues, success, error) {
 	if(valueDesignHidden != null && valueDesignHidden !== '')
 		vals['designHidden'] = valueDesignHidden;
 
-	var valueHtmlPartKeys = $formValues.find('input.valueHtmlPartKeys:checked').val();
-	if(valueHtmlPartKeys != null && valueHtmlPartKeys !== '')
-		vals['htmlPartKeys'] = valueHtmlPartKeys;
-
-	var valueParentDesignKeys = $formValues.find('input.valueParentDesignKeys:checked').val();
-	if(valueParentDesignKeys != null && valueParentDesignKeys !== '')
+	var valueParentDesignKeys = [];
+	$formValues.find('input.valueParentDesignKeys:checked').each(function(index) {
+		valueParentDesignKeys.push($(this).val());
+	});
+	if(valueParentDesignKeys.length > 0)
 		vals['parentDesignKeys'] = valueParentDesignKeys;
+
+	var valueHtmlPartKeys = [];
+	$formValues.find('input.valueHtmlPartKeys:checked').each(function(index) {
+		valueHtmlPartKeys.push($(this).val());
+	});
+	if(valueHtmlPartKeys.length > 0)
+		vals['htmlPartKeys'] = valueHtmlPartKeys;
 
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
 	if(valueInheritPk != null && valueInheritPk !== '')
@@ -177,13 +183,13 @@ async function putcopyPageDesign($formValues, pk, success, error) {
 	if(valueDesignHidden != null && valueDesignHidden !== '')
 		vals['designHidden'] = valueDesignHidden;
 
-	var valueHtmlPartKeys = $formValues.find('input.valueHtmlPartKeys:checked').val();
-	if(valueHtmlPartKeys != null && valueHtmlPartKeys !== '')
-		vals['htmlPartKeys'] = [valueHtmlPartKeys];
-
 	var valueParentDesignKeys = $formValues.find('input.valueParentDesignKeys:checked').val();
 	if(valueParentDesignKeys != null && valueParentDesignKeys !== '')
 		vals['parentDesignKeys'] = [valueParentDesignKeys];
+
+	var valueHtmlPartKeys = $formValues.find('input.valueHtmlPartKeys:checked').val();
+	if(valueHtmlPartKeys != null && valueHtmlPartKeys !== '')
+		vals['htmlPartKeys'] = [valueHtmlPartKeys];
 
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
 	if(valueInheritPk != null && valueInheritPk !== '')
@@ -343,13 +349,13 @@ async function patchPageDesign($formFilters, $formValues, pk, success, error) {
 	if(removeDesignHidden != null && removeDesignHidden !== '')
 		vals['removeDesignHidden'] = removeDesignHidden;
 
-	var valueHtmlPartKeys = $formValues.find('input.valueHtmlPartKeys:checked').val();
-	if(valueHtmlPartKeys != null && valueHtmlPartKeys !== '')
-		vals['addHtmlPartKeys'] = valueHtmlPartKeys;
-
 	var valueParentDesignKeys = $formValues.find('input.valueParentDesignKeys:checked').val();
 	if(valueParentDesignKeys != null && valueParentDesignKeys !== '')
 		vals['addParentDesignKeys'] = valueParentDesignKeys;
+
+	var valueHtmlPartKeys = $formValues.find('input.valueHtmlPartKeys:checked').val();
+	if(valueHtmlPartKeys != null && valueHtmlPartKeys !== '')
+		vals['addHtmlPartKeys'] = valueHtmlPartKeys;
 
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
 	if(valueInheritPk != null && valueInheritPk !== '')
@@ -473,13 +479,13 @@ function patchPageDesignFilters($formFilters) {
 		if(filterDesignHidden != null && filterDesignHidden === true)
 			filters.push({ name: 'fq', value: 'designHidden:' + filterDesignHidden });
 
-		var filterHtmlPartKeys = $formFilters.find('.valueHtmlPartKeys').val();
-		if(filterHtmlPartKeys != null && filterHtmlPartKeys !== '')
-			filters.push({ name: 'fq', value: 'htmlPartKeys:' + filterHtmlPartKeys });
-
 		var filterParentDesignKeys = $formFilters.find('.valueParentDesignKeys').val();
 		if(filterParentDesignKeys != null && filterParentDesignKeys !== '')
 			filters.push({ name: 'fq', value: 'parentDesignKeys:' + filterParentDesignKeys });
+
+		var filterHtmlPartKeys = $formFilters.find('.valueHtmlPartKeys').val();
+		if(filterHtmlPartKeys != null && filterHtmlPartKeys !== '')
+			filters.push({ name: 'fq', value: 'htmlPartKeys:' + filterHtmlPartKeys });
 
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
@@ -649,13 +655,13 @@ function searchPageDesignFilters($formFilters) {
 		if(filterDesignHidden != null && filterDesignHidden === true)
 			filters.push({ name: 'fq', value: 'designHidden:' + filterDesignHidden });
 
-		var filterHtmlPartKeys = $formFilters.find('.valueHtmlPartKeys').val();
-		if(filterHtmlPartKeys != null && filterHtmlPartKeys !== '')
-			filters.push({ name: 'fq', value: 'htmlPartKeys:' + filterHtmlPartKeys });
-
 		var filterParentDesignKeys = $formFilters.find('.valueParentDesignKeys').val();
 		if(filterParentDesignKeys != null && filterParentDesignKeys !== '')
 			filters.push({ name: 'fq', value: 'parentDesignKeys:' + filterParentDesignKeys });
+
+		var filterHtmlPartKeys = $formFilters.find('.valueHtmlPartKeys').val();
+		if(filterHtmlPartKeys != null && filterHtmlPartKeys !== '')
+			filters.push({ name: 'fq', value: 'htmlPartKeys:' + filterHtmlPartKeys });
 
 		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
 		if(filterInheritPk != null && filterInheritPk !== '')
@@ -1136,15 +1142,15 @@ async function websocketPageDesignInner(apiRequest) {
 				$('.varPageDesign' + pk + 'DesignHidden').text(o['designHidden']);
 				addGlow($('.inputPageDesign' + pk + 'DesignHidden'));
 			}
-			if(vars.includes('htmlPartKeys')) {
-				$('.inputPageDesign' + pk + 'HtmlPartKeys').val(o['htmlPartKeys']);
-				$('.varPageDesign' + pk + 'HtmlPartKeys').text(o['htmlPartKeys']);
-				addGlow($('.inputPageDesign' + pk + 'HtmlPartKeys'));
-			}
 			if(vars.includes('parentDesignKeys')) {
 				$('.inputPageDesign' + pk + 'ParentDesignKeys').val(o['parentDesignKeys']);
 				$('.varPageDesign' + pk + 'ParentDesignKeys').text(o['parentDesignKeys']);
 				addGlow($('.inputPageDesign' + pk + 'ParentDesignKeys'));
+			}
+			if(vars.includes('htmlPartKeys')) {
+				$('.inputPageDesign' + pk + 'HtmlPartKeys').val(o['htmlPartKeys']);
+				$('.varPageDesign' + pk + 'HtmlPartKeys').text(o['htmlPartKeys']);
+				addGlow($('.inputPageDesign' + pk + 'HtmlPartKeys'));
 			}
 			if(vars.includes('inheritPk')) {
 				$('.inputPageDesign' + pk + 'InheritPk').val(o['inheritPk']);

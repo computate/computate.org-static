@@ -41,8 +41,11 @@ async function postHtmlPart($formValues, success, error) {
 	if(valueDeleted != null && valueDeleted !== '')
 		vals['deleted'] = valueDeleted;
 
-	var valuePageDesignKeys = $formValues.find('input.valuePageDesignKeys:checked').val();
-	if(valuePageDesignKeys != null && valuePageDesignKeys !== '')
+	var valuePageDesignKeys = [];
+	$formValues.find('input.valuePageDesignKeys:checked').each(function(index) {
+		valuePageDesignKeys.push($(this).val());
+	});
+	if(valuePageDesignKeys.length > 0)
 		vals['pageDesignKeys'] = valuePageDesignKeys;
 
 	var valueHtmlLink = $formValues.find('.valueHtmlLink').val();
@@ -983,18 +986,6 @@ function patchHtmlPartFilters($formFilters) {
 		if(filterHtmlStyle != null && filterHtmlStyle !== '')
 			filters.push({ name: 'fq', value: 'htmlStyle:' + filterHtmlStyle });
 
-		var filterHtmlBefore = $formFilters.find('.valueHtmlBefore').val();
-		if(filterHtmlBefore != null && filterHtmlBefore !== '')
-			filters.push({ name: 'fq', value: 'htmlBefore:' + filterHtmlBefore });
-
-		var filterHtmlAfter = $formFilters.find('.valueHtmlAfter').val();
-		if(filterHtmlAfter != null && filterHtmlAfter !== '')
-			filters.push({ name: 'fq', value: 'htmlAfter:' + filterHtmlAfter });
-
-		var filterHtmlText = $formFilters.find('.valueHtmlText').val();
-		if(filterHtmlText != null && filterHtmlText !== '')
-			filters.push({ name: 'fq', value: 'htmlText:' + filterHtmlText });
-
 		var filterHtmlVar = $formFilters.find('.valueHtmlVar').val();
 		if(filterHtmlVar != null && filterHtmlVar !== '')
 			filters.push({ name: 'fq', value: 'htmlVar:' + filterHtmlVar });
@@ -1258,18 +1249,6 @@ function searchHtmlPartFilters($formFilters) {
 		var filterHtmlStyle = $formFilters.find('.valueHtmlStyle').val();
 		if(filterHtmlStyle != null && filterHtmlStyle !== '')
 			filters.push({ name: 'fq', value: 'htmlStyle:' + filterHtmlStyle });
-
-		var filterHtmlBefore = $formFilters.find('.valueHtmlBefore').val();
-		if(filterHtmlBefore != null && filterHtmlBefore !== '')
-			filters.push({ name: 'fq', value: 'htmlBefore:' + filterHtmlBefore });
-
-		var filterHtmlAfter = $formFilters.find('.valueHtmlAfter').val();
-		if(filterHtmlAfter != null && filterHtmlAfter !== '')
-			filters.push({ name: 'fq', value: 'htmlAfter:' + filterHtmlAfter });
-
-		var filterHtmlText = $formFilters.find('.valueHtmlText').val();
-		if(filterHtmlText != null && filterHtmlText !== '')
-			filters.push({ name: 'fq', value: 'htmlText:' + filterHtmlText });
 
 		var filterHtmlVar = $formFilters.find('.valueHtmlVar').val();
 		if(filterHtmlVar != null && filterHtmlVar !== '')

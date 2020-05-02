@@ -109,32 +109,50 @@ async function postSchoolEnrollment($formValues, success, error) {
 	if(valueChildObjectives != null && valueChildObjectives !== '')
 		vals['childObjectives'] = valueChildObjectives;
 
-	var valueBlockKeys = $formValues.find('input.valueBlockKeys:checked').val();
-	if(valueBlockKeys != null && valueBlockKeys !== '')
+	var valueBlockKeys = [];
+	$formValues.find('input.valueBlockKeys:checked').each(function(index) {
+		valueBlockKeys.push($(this).val());
+	});
+	if(valueBlockKeys.length > 0)
 		vals['blockKeys'] = valueBlockKeys;
 
-	var valueChildKey = $formValues.find('input.valueChildKey:checked').val();
+		vals['childKey'] = [valueChildKey];
 	if(valueChildKey != null && valueChildKey !== '')
 		vals['childKey'] = valueChildKey;
 
-	var valueMomKeys = $formValues.find('input.valueMomKeys:checked').val();
-	if(valueMomKeys != null && valueMomKeys !== '')
+	var valueMomKeys = [];
+	$formValues.find('input.valueMomKeys:checked').each(function(index) {
+		valueMomKeys.push($(this).val());
+	});
+	if(valueMomKeys.length > 0)
 		vals['momKeys'] = valueMomKeys;
 
-	var valueDadKeys = $formValues.find('input.valueDadKeys:checked').val();
-	if(valueDadKeys != null && valueDadKeys !== '')
+	var valueDadKeys = [];
+	$formValues.find('input.valueDadKeys:checked').each(function(index) {
+		valueDadKeys.push($(this).val());
+	});
+	if(valueDadKeys.length > 0)
 		vals['dadKeys'] = valueDadKeys;
 
-	var valueGuardianKeys = $formValues.find('input.valueGuardianKeys:checked').val();
-	if(valueGuardianKeys != null && valueGuardianKeys !== '')
+	var valueGuardianKeys = [];
+	$formValues.find('input.valueGuardianKeys:checked').each(function(index) {
+		valueGuardianKeys.push($(this).val());
+	});
+	if(valueGuardianKeys.length > 0)
 		vals['guardianKeys'] = valueGuardianKeys;
 
-	var valuePaymentKeys = $formValues.find('input.valuePaymentKeys:checked').val();
-	if(valuePaymentKeys != null && valuePaymentKeys !== '')
+	var valuePaymentKeys = [];
+	$formValues.find('input.valuePaymentKeys:checked').each(function(index) {
+		valuePaymentKeys.push($(this).val());
+	});
+	if(valuePaymentKeys.length > 0)
 		vals['paymentKeys'] = valuePaymentKeys;
 
-	var valueUserKeys = $formValues.find('input.valueUserKeys:checked').val();
-	if(valueUserKeys != null && valueUserKeys !== '')
+	var valueUserKeys = [];
+	$formValues.find('input.valueUserKeys:checked').each(function(index) {
+		valueUserKeys.push($(this).val());
+	});
+	if(valueUserKeys.length > 0)
 		vals['userKeys'] = valueUserKeys;
 
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();

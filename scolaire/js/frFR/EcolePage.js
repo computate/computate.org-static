@@ -45,17 +45,21 @@ async function postEcole($formulaireValeurs, success, error) {
 	if(valeurEcoleNom != null && valeurEcoleNom !== '')
 		vals['ecoleNom'] = valeurEcoleNom;
 
+	var valeurEcoleEmplacement = $formulaireValeurs.find('.valeurEcoleEmplacement').val();
+	if(valeurEcoleEmplacement != null && valeurEcoleEmplacement !== '')
+		vals['ecoleEmplacement'] = valeurEcoleEmplacement;
+
 	var valeurEcoleAdministrateurNom = $formulaireValeurs.find('.valeurEcoleAdministrateurNom').val();
 	if(valeurEcoleAdministrateurNom != null && valeurEcoleAdministrateurNom !== '')
 		vals['ecoleAdministrateurNom'] = valeurEcoleAdministrateurNom;
 
-	var valeurEcoleMail = $formulaireValeurs.find('.valeurEcoleMail').val();
-	if(valeurEcoleMail != null && valeurEcoleMail !== '')
-		vals['ecoleMail'] = valeurEcoleMail;
+	var valeurEcoleMailDe = $formulaireValeurs.find('.valeurEcoleMailDe').val();
+	if(valeurEcoleMailDe != null && valeurEcoleMailDe !== '')
+		vals['ecoleMailDe'] = valeurEcoleMailDe;
 
-	var valeurEcoleEmplacement = $formulaireValeurs.find('.valeurEcoleEmplacement').val();
-	if(valeurEcoleEmplacement != null && valeurEcoleEmplacement !== '')
-		vals['ecoleEmplacement'] = valeurEcoleEmplacement;
+	var valeurEcoleMailA = $formulaireValeurs.find('.valeurEcoleMailA').val();
+	if(valeurEcoleMailA != null && valeurEcoleMailA !== '')
+		vals['ecoleMailA'] = valeurEcoleMailA;
 
 	var valeurEcoleNumeroTelephone = $formulaireValeurs.find('.valeurEcoleNumeroTelephone').val();
 	if(valeurEcoleNumeroTelephone != null && valeurEcoleNumeroTelephone !== '')
@@ -65,8 +69,11 @@ async function postEcole($formulaireValeurs, success, error) {
 	if(valeurEcoleAddresse != null && valeurEcoleAddresse !== '')
 		vals['ecoleAddresse'] = valeurEcoleAddresse;
 
-	var valeurAnneeCles = $formulaireValeurs.find('input.valeurAnneeCles:checked').val();
-	if(valeurAnneeCles != null && valeurAnneeCles !== '')
+	var valeurAnneeCles = [];
+	$formulaireValeurs.find('input.valeurAnneeCles:checked').each(function(index) {
+		valeurAnneeCles.push($(this).val());
+	});
+	if(valeurAnneeCles.length > 0)
 		vals['anneeCles'] = valeurAnneeCles;
 
 	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
@@ -218,6 +225,19 @@ async function patchEcole($formulaireFiltres, $formulaireValeurs, pk, success, e
 	if(removeEcoleNom != null && removeEcoleNom !== '')
 		vals['removeEcoleNom'] = removeEcoleNom;
 
+	var valeurEcoleEmplacement = $formulaireValeurs.find('.valeurEcoleEmplacement').val();
+	if(valeurEcoleEmplacement != null && valeurEcoleEmplacement !== '')
+	var removeEcoleEmplacement = $formulaireFiltres.find('.removeEcoleEmplacement').val() === 'true';
+	var setEcoleEmplacement = removeEcoleEmplacement ? null : $formulaireValeurs.find('.setEcoleEmplacement').val();
+	if(removeEcoleEmplacement || setEcoleEmplacement != null && setEcoleEmplacement !== '')
+		vals['setEcoleEmplacement'] = setEcoleEmplacement;
+	var addEcoleEmplacement = $formulaireValeurs.find('.addEcoleEmplacement').val();
+	if(addEcoleEmplacement != null && addEcoleEmplacement !== '')
+		vals['addEcoleEmplacement'] = addEcoleEmplacement;
+	var removeEcoleEmplacement = $formulaireValeurs.find('.removeEcoleEmplacement').val();
+	if(removeEcoleEmplacement != null && removeEcoleEmplacement !== '')
+		vals['removeEcoleEmplacement'] = removeEcoleEmplacement;
+
 	var valeurEcoleAdministrateurNom = $formulaireValeurs.find('.valeurEcoleAdministrateurNom').val();
 	if(valeurEcoleAdministrateurNom != null && valeurEcoleAdministrateurNom !== '')
 	var removeEcoleAdministrateurNom = $formulaireFiltres.find('.removeEcoleAdministrateurNom').val() === 'true';
@@ -231,31 +251,31 @@ async function patchEcole($formulaireFiltres, $formulaireValeurs, pk, success, e
 	if(removeEcoleAdministrateurNom != null && removeEcoleAdministrateurNom !== '')
 		vals['removeEcoleAdministrateurNom'] = removeEcoleAdministrateurNom;
 
-	var valeurEcoleMail = $formulaireValeurs.find('.valeurEcoleMail').val();
-	if(valeurEcoleMail != null && valeurEcoleMail !== '')
-	var removeEcoleMail = $formulaireFiltres.find('.removeEcoleMail').val() === 'true';
-	var setEcoleMail = removeEcoleMail ? null : $formulaireValeurs.find('.setEcoleMail').val();
-	if(removeEcoleMail || setEcoleMail != null && setEcoleMail !== '')
-		vals['setEcoleMail'] = setEcoleMail;
-	var addEcoleMail = $formulaireValeurs.find('.addEcoleMail').val();
-	if(addEcoleMail != null && addEcoleMail !== '')
-		vals['addEcoleMail'] = addEcoleMail;
-	var removeEcoleMail = $formulaireValeurs.find('.removeEcoleMail').val();
-	if(removeEcoleMail != null && removeEcoleMail !== '')
-		vals['removeEcoleMail'] = removeEcoleMail;
+	var valeurEcoleMailDe = $formulaireValeurs.find('.valeurEcoleMailDe').val();
+	if(valeurEcoleMailDe != null && valeurEcoleMailDe !== '')
+	var removeEcoleMailDe = $formulaireFiltres.find('.removeEcoleMailDe').val() === 'true';
+	var setEcoleMailDe = removeEcoleMailDe ? null : $formulaireValeurs.find('.setEcoleMailDe').val();
+	if(removeEcoleMailDe || setEcoleMailDe != null && setEcoleMailDe !== '')
+		vals['setEcoleMailDe'] = setEcoleMailDe;
+	var addEcoleMailDe = $formulaireValeurs.find('.addEcoleMailDe').val();
+	if(addEcoleMailDe != null && addEcoleMailDe !== '')
+		vals['addEcoleMailDe'] = addEcoleMailDe;
+	var removeEcoleMailDe = $formulaireValeurs.find('.removeEcoleMailDe').val();
+	if(removeEcoleMailDe != null && removeEcoleMailDe !== '')
+		vals['removeEcoleMailDe'] = removeEcoleMailDe;
 
-	var valeurEcoleEmplacement = $formulaireValeurs.find('.valeurEcoleEmplacement').val();
-	if(valeurEcoleEmplacement != null && valeurEcoleEmplacement !== '')
-	var removeEcoleEmplacement = $formulaireFiltres.find('.removeEcoleEmplacement').val() === 'true';
-	var setEcoleEmplacement = removeEcoleEmplacement ? null : $formulaireValeurs.find('.setEcoleEmplacement').val();
-	if(removeEcoleEmplacement || setEcoleEmplacement != null && setEcoleEmplacement !== '')
-		vals['setEcoleEmplacement'] = setEcoleEmplacement;
-	var addEcoleEmplacement = $formulaireValeurs.find('.addEcoleEmplacement').val();
-	if(addEcoleEmplacement != null && addEcoleEmplacement !== '')
-		vals['addEcoleEmplacement'] = addEcoleEmplacement;
-	var removeEcoleEmplacement = $formulaireValeurs.find('.removeEcoleEmplacement').val();
-	if(removeEcoleEmplacement != null && removeEcoleEmplacement !== '')
-		vals['removeEcoleEmplacement'] = removeEcoleEmplacement;
+	var valeurEcoleMailA = $formulaireValeurs.find('.valeurEcoleMailA').val();
+	if(valeurEcoleMailA != null && valeurEcoleMailA !== '')
+	var removeEcoleMailA = $formulaireFiltres.find('.removeEcoleMailA').val() === 'true';
+	var setEcoleMailA = removeEcoleMailA ? null : $formulaireValeurs.find('.setEcoleMailA').val();
+	if(removeEcoleMailA || setEcoleMailA != null && setEcoleMailA !== '')
+		vals['setEcoleMailA'] = setEcoleMailA;
+	var addEcoleMailA = $formulaireValeurs.find('.addEcoleMailA').val();
+	if(addEcoleMailA != null && addEcoleMailA !== '')
+		vals['addEcoleMailA'] = addEcoleMailA;
+	var removeEcoleMailA = $formulaireValeurs.find('.removeEcoleMailA').val();
+	if(removeEcoleMailA != null && removeEcoleMailA !== '')
+		vals['removeEcoleMailA'] = removeEcoleMailA;
 
 	var valeurEcoleNumeroTelephone = $formulaireValeurs.find('.valeurEcoleNumeroTelephone').val();
 	if(valeurEcoleNumeroTelephone != null && valeurEcoleNumeroTelephone !== '')
@@ -399,17 +419,21 @@ function patchEcoleFiltres($formulaireFiltres) {
 		if(filtreEcoleNom != null && filtreEcoleNom !== '')
 			filtres.push({ name: 'fq', value: 'ecoleNom:' + filtreEcoleNom });
 
+		var filtreEcoleEmplacement = $formulaireFiltres.find('.valeurEcoleEmplacement').val();
+		if(filtreEcoleEmplacement != null && filtreEcoleEmplacement !== '')
+			filtres.push({ name: 'fq', value: 'ecoleEmplacement:' + filtreEcoleEmplacement });
+
 		var filtreEcoleAdministrateurNom = $formulaireFiltres.find('.valeurEcoleAdministrateurNom').val();
 		if(filtreEcoleAdministrateurNom != null && filtreEcoleAdministrateurNom !== '')
 			filtres.push({ name: 'fq', value: 'ecoleAdministrateurNom:' + filtreEcoleAdministrateurNom });
 
-		var filtreEcoleMail = $formulaireFiltres.find('.valeurEcoleMail').val();
-		if(filtreEcoleMail != null && filtreEcoleMail !== '')
-			filtres.push({ name: 'fq', value: 'ecoleMail:' + filtreEcoleMail });
+		var filtreEcoleMailDe = $formulaireFiltres.find('.valeurEcoleMailDe').val();
+		if(filtreEcoleMailDe != null && filtreEcoleMailDe !== '')
+			filtres.push({ name: 'fq', value: 'ecoleMailDe:' + filtreEcoleMailDe });
 
-		var filtreEcoleEmplacement = $formulaireFiltres.find('.valeurEcoleEmplacement').val();
-		if(filtreEcoleEmplacement != null && filtreEcoleEmplacement !== '')
-			filtres.push({ name: 'fq', value: 'ecoleEmplacement:' + filtreEcoleEmplacement });
+		var filtreEcoleMailA = $formulaireFiltres.find('.valeurEcoleMailA').val();
+		if(filtreEcoleMailA != null && filtreEcoleMailA !== '')
+			filtres.push({ name: 'fq', value: 'ecoleMailA:' + filtreEcoleMailA });
 
 		var filtreEcoleNumeroTelephone = $formulaireFiltres.find('.valeurEcoleNumeroTelephone').val();
 		if(filtreEcoleNumeroTelephone != null && filtreEcoleNumeroTelephone !== '')
@@ -613,17 +637,21 @@ function rechercheEcoleFiltres($formulaireFiltres) {
 		if(filtreEcoleNom != null && filtreEcoleNom !== '')
 			filtres.push({ name: 'fq', value: 'ecoleNom:' + filtreEcoleNom });
 
+		var filtreEcoleEmplacement = $formulaireFiltres.find('.valeurEcoleEmplacement').val();
+		if(filtreEcoleEmplacement != null && filtreEcoleEmplacement !== '')
+			filtres.push({ name: 'fq', value: 'ecoleEmplacement:' + filtreEcoleEmplacement });
+
 		var filtreEcoleAdministrateurNom = $formulaireFiltres.find('.valeurEcoleAdministrateurNom').val();
 		if(filtreEcoleAdministrateurNom != null && filtreEcoleAdministrateurNom !== '')
 			filtres.push({ name: 'fq', value: 'ecoleAdministrateurNom:' + filtreEcoleAdministrateurNom });
 
-		var filtreEcoleMail = $formulaireFiltres.find('.valeurEcoleMail').val();
-		if(filtreEcoleMail != null && filtreEcoleMail !== '')
-			filtres.push({ name: 'fq', value: 'ecoleMail:' + filtreEcoleMail });
+		var filtreEcoleMailDe = $formulaireFiltres.find('.valeurEcoleMailDe').val();
+		if(filtreEcoleMailDe != null && filtreEcoleMailDe !== '')
+			filtres.push({ name: 'fq', value: 'ecoleMailDe:' + filtreEcoleMailDe });
 
-		var filtreEcoleEmplacement = $formulaireFiltres.find('.valeurEcoleEmplacement').val();
-		if(filtreEcoleEmplacement != null && filtreEcoleEmplacement !== '')
-			filtres.push({ name: 'fq', value: 'ecoleEmplacement:' + filtreEcoleEmplacement });
+		var filtreEcoleMailA = $formulaireFiltres.find('.valeurEcoleMailA').val();
+		if(filtreEcoleMailA != null && filtreEcoleMailA !== '')
+			filtres.push({ name: 'fq', value: 'ecoleMailA:' + filtreEcoleMailA });
 
 		var filtreEcoleNumeroTelephone = $formulaireFiltres.find('.valeurEcoleNumeroTelephone').val();
 		if(filtreEcoleNumeroTelephone != null && filtreEcoleNumeroTelephone !== '')
@@ -878,17 +906,21 @@ async function putcopieEcole($formulaireValeurs, pk, success, error) {
 	if(valeurEcoleNom != null && valeurEcoleNom !== '')
 		vals['ecoleNom'] = valeurEcoleNom;
 
+	var valeurEcoleEmplacement = $formulaireValeurs.find('.valeurEcoleEmplacement').val();
+	if(valeurEcoleEmplacement != null && valeurEcoleEmplacement !== '')
+		vals['ecoleEmplacement'] = valeurEcoleEmplacement;
+
 	var valeurEcoleAdministrateurNom = $formulaireValeurs.find('.valeurEcoleAdministrateurNom').val();
 	if(valeurEcoleAdministrateurNom != null && valeurEcoleAdministrateurNom !== '')
 		vals['ecoleAdministrateurNom'] = valeurEcoleAdministrateurNom;
 
-	var valeurEcoleMail = $formulaireValeurs.find('.valeurEcoleMail').val();
-	if(valeurEcoleMail != null && valeurEcoleMail !== '')
-		vals['ecoleMail'] = valeurEcoleMail;
+	var valeurEcoleMailDe = $formulaireValeurs.find('.valeurEcoleMailDe').val();
+	if(valeurEcoleMailDe != null && valeurEcoleMailDe !== '')
+		vals['ecoleMailDe'] = valeurEcoleMailDe;
 
-	var valeurEcoleEmplacement = $formulaireValeurs.find('.valeurEcoleEmplacement').val();
-	if(valeurEcoleEmplacement != null && valeurEcoleEmplacement !== '')
-		vals['ecoleEmplacement'] = valeurEcoleEmplacement;
+	var valeurEcoleMailA = $formulaireValeurs.find('.valeurEcoleMailA').val();
+	if(valeurEcoleMailA != null && valeurEcoleMailA !== '')
+		vals['ecoleMailA'] = valeurEcoleMailA;
 
 	var valeurEcoleNumeroTelephone = $formulaireValeurs.find('.valeurEcoleNumeroTelephone').val();
 	if(valeurEcoleNumeroTelephone != null && valeurEcoleNumeroTelephone !== '')
@@ -1015,20 +1047,25 @@ async function websocketEcoleInner(requeteApi) {
 				$('.varEcole' + pk + 'EcoleNom').text(o['ecoleNom']);
 				ajouterLueur($('.inputEcole' + pk + 'EcoleNom'));
 			}
+			if(vars.includes('ecoleEmplacement')) {
+				$('.inputEcole' + pk + 'EcoleEmplacement').val(o['ecoleEmplacement']);
+				$('.varEcole' + pk + 'EcoleEmplacement').text(o['ecoleEmplacement']);
+				ajouterLueur($('.inputEcole' + pk + 'EcoleEmplacement'));
+			}
 			if(vars.includes('ecoleAdministrateurNom')) {
 				$('.inputEcole' + pk + 'EcoleAdministrateurNom').val(o['ecoleAdministrateurNom']);
 				$('.varEcole' + pk + 'EcoleAdministrateurNom').text(o['ecoleAdministrateurNom']);
 				ajouterLueur($('.inputEcole' + pk + 'EcoleAdministrateurNom'));
 			}
-			if(vars.includes('ecoleMail')) {
-				$('.inputEcole' + pk + 'EcoleMail').val(o['ecoleMail']);
-				$('.varEcole' + pk + 'EcoleMail').text(o['ecoleMail']);
-				ajouterLueur($('.inputEcole' + pk + 'EcoleMail'));
+			if(vars.includes('ecoleMailDe')) {
+				$('.inputEcole' + pk + 'EcoleMailDe').val(o['ecoleMailDe']);
+				$('.varEcole' + pk + 'EcoleMailDe').text(o['ecoleMailDe']);
+				ajouterLueur($('.inputEcole' + pk + 'EcoleMailDe'));
 			}
-			if(vars.includes('ecoleEmplacement')) {
-				$('.inputEcole' + pk + 'EcoleEmplacement').val(o['ecoleEmplacement']);
-				$('.varEcole' + pk + 'EcoleEmplacement').text(o['ecoleEmplacement']);
-				ajouterLueur($('.inputEcole' + pk + 'EcoleEmplacement'));
+			if(vars.includes('ecoleMailA')) {
+				$('.inputEcole' + pk + 'EcoleMailA').val(o['ecoleMailA']);
+				$('.varEcole' + pk + 'EcoleMailA').text(o['ecoleMailA']);
+				ajouterLueur($('.inputEcole' + pk + 'EcoleMailA'));
 			}
 			if(vars.includes('ecoleNumeroTelephone')) {
 				$('.inputEcole' + pk + 'EcoleNumeroTelephone').val(o['ecoleNumeroTelephone']);

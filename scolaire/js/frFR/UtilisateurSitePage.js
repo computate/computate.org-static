@@ -793,12 +793,18 @@ async function postUtilisateurSite($formulaireValeurs, success, error) {
 	if(valeurCustomerProfileId != null && valeurCustomerProfileId !== '')
 		vals['customerProfileId'] = valeurCustomerProfileId;
 
-	var valeurInscriptionCles = $formulaireValeurs.find('input.valeurInscriptionCles:checked').val();
-	if(valeurInscriptionCles != null && valeurInscriptionCles !== '')
+	var valeurInscriptionCles = [];
+	$formulaireValeurs.find('input.valeurInscriptionCles:checked').each(function(index) {
+		valeurInscriptionCles.push($(this).val());
+	});
+	if(valeurInscriptionCles.length > 0)
 		vals['inscriptionCles'] = valeurInscriptionCles;
 
-	var valeurPaiementCles = $formulaireValeurs.find('input.valeurPaiementCles:checked').val();
-	if(valeurPaiementCles != null && valeurPaiementCles !== '')
+	var valeurPaiementCles = [];
+	$formulaireValeurs.find('input.valeurPaiementCles:checked').each(function(index) {
+		valeurPaiementCles.push($(this).val());
+	});
+	if(valeurPaiementCles.length > 0)
 		vals['paiementCles'] = valeurPaiementCles;
 
 	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();

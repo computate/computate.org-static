@@ -69,8 +69,11 @@ async function postSchoolGuardian($formValues, success, error) {
 	if(valuePersonPickup != null && valuePersonPickup !== '')
 		vals['personPickup'] = valuePersonPickup;
 
-	var valueEnrollmentKeys = $formValues.find('input.valueEnrollmentKeys:checked').val();
-	if(valueEnrollmentKeys != null && valueEnrollmentKeys !== '')
+	var valueEnrollmentKeys = [];
+	$formValues.find('input.valueEnrollmentKeys:checked').each(function(index) {
+		valueEnrollmentKeys.push($(this).val());
+	});
+	if(valueEnrollmentKeys.length > 0)
 		vals['enrollmentKeys'] = valueEnrollmentKeys;
 
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();

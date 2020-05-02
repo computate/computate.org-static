@@ -61,8 +61,11 @@ async function postSchoolChild($formValues, success, error) {
 	if(valuePersonAgeInSeptember != null && valuePersonAgeInSeptember !== '')
 		vals['personAgeInSeptember'] = valuePersonAgeInSeptember;
 
-	var valueEnrollmentKeys = $formValues.find('input.valueEnrollmentKeys:checked').val();
-	if(valueEnrollmentKeys != null && valueEnrollmentKeys !== '')
+	var valueEnrollmentKeys = [];
+	$formValues.find('input.valueEnrollmentKeys:checked').each(function(index) {
+		valueEnrollmentKeys.push($(this).val());
+	});
+	if(valueEnrollmentKeys.length > 0)
 		vals['enrollmentKeys'] = valueEnrollmentKeys;
 
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();

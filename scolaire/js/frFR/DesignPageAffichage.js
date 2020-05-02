@@ -49,13 +49,19 @@ async function postDesignPage($formulaireValeurs, success, error) {
 	if(valeurDesignCache != null && valeurDesignCache !== '')
 		vals['designCache'] = valeurDesignCache;
 
-	var valeurPartHtmlCles = $formulaireValeurs.find('input.valeurPartHtmlCles:checked').val();
-	if(valeurPartHtmlCles != null && valeurPartHtmlCles !== '')
-		vals['partHtmlCles'] = valeurPartHtmlCles;
-
-	var valeurDesignParentCles = $formulaireValeurs.find('input.valeurDesignParentCles:checked').val();
-	if(valeurDesignParentCles != null && valeurDesignParentCles !== '')
+	var valeurDesignParentCles = [];
+	$formulaireValeurs.find('input.valeurDesignParentCles:checked').each(function(index) {
+		valeurDesignParentCles.push($(this).val());
+	});
+	if(valeurDesignParentCles.length > 0)
 		vals['designParentCles'] = valeurDesignParentCles;
+
+	var valeurPartHtmlCles = [];
+	$formulaireValeurs.find('input.valeurPartHtmlCles:checked').each(function(index) {
+		valeurPartHtmlCles.push($(this).val());
+	});
+	if(valeurPartHtmlCles.length > 0)
+		vals['partHtmlCles'] = valeurPartHtmlCles;
 
 	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
 	if(valeurInheritPk != null && valeurInheritPk !== '')
@@ -177,13 +183,13 @@ async function putcopieDesignPage($formulaireValeurs, pk, success, error) {
 	if(valeurDesignCache != null && valeurDesignCache !== '')
 		vals['designCache'] = valeurDesignCache;
 
-	var valeurPartHtmlCles = $formulaireValeurs.find('input.valeurPartHtmlCles:checked').val();
-	if(valeurPartHtmlCles != null && valeurPartHtmlCles !== '')
-		vals['partHtmlCles'] = [valeurPartHtmlCles];
-
 	var valeurDesignParentCles = $formulaireValeurs.find('input.valeurDesignParentCles:checked').val();
 	if(valeurDesignParentCles != null && valeurDesignParentCles !== '')
 		vals['designParentCles'] = [valeurDesignParentCles];
+
+	var valeurPartHtmlCles = $formulaireValeurs.find('input.valeurPartHtmlCles:checked').val();
+	if(valeurPartHtmlCles != null && valeurPartHtmlCles !== '')
+		vals['partHtmlCles'] = [valeurPartHtmlCles];
 
 	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
 	if(valeurInheritPk != null && valeurInheritPk !== '')
@@ -343,13 +349,13 @@ async function patchDesignPage($formulaireFiltres, $formulaireValeurs, pk, succe
 	if(removeDesignCache != null && removeDesignCache !== '')
 		vals['removeDesignCache'] = removeDesignCache;
 
-	var valeurPartHtmlCles = $formulaireValeurs.find('input.valeurPartHtmlCles:checked').val();
-	if(valeurPartHtmlCles != null && valeurPartHtmlCles !== '')
-		vals['addPartHtmlCles'] = valeurPartHtmlCles;
-
 	var valeurDesignParentCles = $formulaireValeurs.find('input.valeurDesignParentCles:checked').val();
 	if(valeurDesignParentCles != null && valeurDesignParentCles !== '')
 		vals['addDesignParentCles'] = valeurDesignParentCles;
+
+	var valeurPartHtmlCles = $formulaireValeurs.find('input.valeurPartHtmlCles:checked').val();
+	if(valeurPartHtmlCles != null && valeurPartHtmlCles !== '')
+		vals['addPartHtmlCles'] = valeurPartHtmlCles;
 
 	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
 	if(valeurInheritPk != null && valeurInheritPk !== '')
@@ -473,13 +479,13 @@ function patchDesignPageFiltres($formulaireFiltres) {
 		if(filtreDesignCache != null && filtreDesignCache === true)
 			filtres.push({ name: 'fq', value: 'designCache:' + filtreDesignCache });
 
-		var filtrePartHtmlCles = $formulaireFiltres.find('.valeurPartHtmlCles').val();
-		if(filtrePartHtmlCles != null && filtrePartHtmlCles !== '')
-			filtres.push({ name: 'fq', value: 'partHtmlCles:' + filtrePartHtmlCles });
-
 		var filtreDesignParentCles = $formulaireFiltres.find('.valeurDesignParentCles').val();
 		if(filtreDesignParentCles != null && filtreDesignParentCles !== '')
 			filtres.push({ name: 'fq', value: 'designParentCles:' + filtreDesignParentCles });
+
+		var filtrePartHtmlCles = $formulaireFiltres.find('.valeurPartHtmlCles').val();
+		if(filtrePartHtmlCles != null && filtrePartHtmlCles !== '')
+			filtres.push({ name: 'fq', value: 'partHtmlCles:' + filtrePartHtmlCles });
 
 		var filtreInheritPk = $formulaireFiltres.find('.valeurInheritPk').val();
 		if(filtreInheritPk != null && filtreInheritPk !== '')
@@ -649,13 +655,13 @@ function rechercheDesignPageFiltres($formulaireFiltres) {
 		if(filtreDesignCache != null && filtreDesignCache === true)
 			filtres.push({ name: 'fq', value: 'designCache:' + filtreDesignCache });
 
-		var filtrePartHtmlCles = $formulaireFiltres.find('.valeurPartHtmlCles').val();
-		if(filtrePartHtmlCles != null && filtrePartHtmlCles !== '')
-			filtres.push({ name: 'fq', value: 'partHtmlCles:' + filtrePartHtmlCles });
-
 		var filtreDesignParentCles = $formulaireFiltres.find('.valeurDesignParentCles').val();
 		if(filtreDesignParentCles != null && filtreDesignParentCles !== '')
 			filtres.push({ name: 'fq', value: 'designParentCles:' + filtreDesignParentCles });
+
+		var filtrePartHtmlCles = $formulaireFiltres.find('.valeurPartHtmlCles').val();
+		if(filtrePartHtmlCles != null && filtrePartHtmlCles !== '')
+			filtres.push({ name: 'fq', value: 'partHtmlCles:' + filtrePartHtmlCles });
 
 		var filtreInheritPk = $formulaireFiltres.find('.valeurInheritPk').val();
 		if(filtreInheritPk != null && filtreInheritPk !== '')
@@ -1136,15 +1142,15 @@ async function websocketDesignPageInner(requeteApi) {
 				$('.varDesignPage' + pk + 'DesignCache').text(o['designCache']);
 				ajouterLueur($('.inputDesignPage' + pk + 'DesignCache'));
 			}
-			if(vars.includes('partHtmlCles')) {
-				$('.inputDesignPage' + pk + 'PartHtmlCles').val(o['partHtmlCles']);
-				$('.varDesignPage' + pk + 'PartHtmlCles').text(o['partHtmlCles']);
-				ajouterLueur($('.inputDesignPage' + pk + 'PartHtmlCles'));
-			}
 			if(vars.includes('designParentCles')) {
 				$('.inputDesignPage' + pk + 'DesignParentCles').val(o['designParentCles']);
 				$('.varDesignPage' + pk + 'DesignParentCles').text(o['designParentCles']);
 				ajouterLueur($('.inputDesignPage' + pk + 'DesignParentCles'));
+			}
+			if(vars.includes('partHtmlCles')) {
+				$('.inputDesignPage' + pk + 'PartHtmlCles').val(o['partHtmlCles']);
+				$('.varDesignPage' + pk + 'PartHtmlCles').text(o['partHtmlCles']);
+				ajouterLueur($('.inputDesignPage' + pk + 'PartHtmlCles'));
 			}
 			if(vars.includes('inheritPk')) {
 				$('.inputDesignPage' + pk + 'InheritPk').val(o['inheritPk']);

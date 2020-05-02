@@ -646,3 +646,51 @@ function patchClusterBase($formulaireFiltres, $formulaireValeurs) {
 		}
 	});
 }
+
+(function ($) {
+	$.deparam = function (params, coerce) {
+	  var obj = [],
+	      coerce_types = { 'true': !0, 'false': !1, 'null': null };
+	    
+	  // Iterate over all name=value pairs.
+	  $.each(params.replace(/\+/g, ' ').split('&'), function (j,v) {
+	    var param = v.split('='),
+	        key = decodeURIComponent(param[0]),
+	        val,
+	        cur = obj,
+	        i = 0,
+	          
+	        // If key is more complex than 'foo', like 'a[]' or 'a[b][c]', split it
+	        // into its component parts.
+	        keys = key.split(']['),
+	        keys_last = keys.length - 1;
+	      
+	    // Basic 'foo' style key.
+	    keys_last = 0;
+	    
+	    // Are we dealing with a name=value pair, or just a name?
+	    if (param.length === 2) {
+	      val = decodeURIComponent(param[1]);
+	        
+	      // Coerce values.
+	      if (coerce) {
+	        val = val && !isNaN(val)              ? +val              // number
+	            : val === 'undefined'             ? undefined         // undefined
+	            : coerce_types[val] !== undefined ? coerce_types[val] // true, false, null
+	            : val;                                                // string
+	      }
+
+	      // Simple key, even simpler rules, since only scalars and shallow
+	      // arrays are allowed.
+
+	      // val is a scalar.
+	      obj.push({name: key, 'value': val});
+	    } else if (key) {
+	      // No value was defined, so set something meaningful.
+	      obj.push({name: key, value: (coerce ? undefined : '')});
+	    }
+	  });
+	    
+	  return obj;
+	};
+	})(jQuery);

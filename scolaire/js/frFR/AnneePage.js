@@ -53,12 +53,15 @@ async function postAnneeScolaire($formulaireValeurs, success, error) {
 	if(valeurAnneeFraisInscription != null && valeurAnneeFraisInscription !== '')
 		vals['anneeFraisInscription'] = valeurAnneeFraisInscription;
 
-	var valeurEcoleCle = $formulaireValeurs.find('input.valeurEcoleCle:checked').val();
+		vals['ecoleCle'] = [valeurEcoleCle];
 	if(valeurEcoleCle != null && valeurEcoleCle !== '')
 		vals['ecoleCle'] = valeurEcoleCle;
 
-	var valeurSaisonCles = $formulaireValeurs.find('input.valeurSaisonCles:checked').val();
-	if(valeurSaisonCles != null && valeurSaisonCles !== '')
+	var valeurSaisonCles = [];
+	$formulaireValeurs.find('input.valeurSaisonCles:checked').each(function(index) {
+		valeurSaisonCles.push($(this).val());
+	});
+	if(valeurSaisonCles.length > 0)
 		vals['saisonCles'] = valeurSaisonCles;
 
 	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();

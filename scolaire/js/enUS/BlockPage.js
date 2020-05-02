@@ -73,12 +73,15 @@ async function postSchoolBlock($formValues, success, error) {
 	if(valueBlockFriday != null && valueBlockFriday !== '')
 		vals['blockFriday'] = valueBlockFriday;
 
-	var valueAgeKey = $formValues.find('input.valueAgeKey:checked').val();
+		vals['ageKey'] = [valueAgeKey];
 	if(valueAgeKey != null && valueAgeKey !== '')
 		vals['ageKey'] = valueAgeKey;
 
-	var valueEnrollmentKeys = $formValues.find('input.valueEnrollmentKeys:checked').val();
-	if(valueEnrollmentKeys != null && valueEnrollmentKeys !== '')
+	var valueEnrollmentKeys = [];
+	$formValues.find('input.valueEnrollmentKeys:checked').each(function(index) {
+		valueEnrollmentKeys.push($(this).val());
+	});
+	if(valueEnrollmentKeys.length > 0)
 		vals['enrollmentKeys'] = valueEnrollmentKeys;
 
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();

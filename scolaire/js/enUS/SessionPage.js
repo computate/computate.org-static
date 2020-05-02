@@ -49,12 +49,15 @@ async function postSchoolSession($formValues, success, error) {
 	if(valueSessionEndDate != null && valueSessionEndDate !== '')
 		vals['sessionEndDate'] = valueSessionEndDate;
 
-	var valueSeasonKey = $formValues.find('input.valueSeasonKey:checked').val();
+		vals['seasonKey'] = [valueSeasonKey];
 	if(valueSeasonKey != null && valueSeasonKey !== '')
 		vals['seasonKey'] = valueSeasonKey;
 
-	var valueAgeKeys = $formValues.find('input.valueAgeKeys:checked').val();
-	if(valueAgeKeys != null && valueAgeKeys !== '')
+	var valueAgeKeys = [];
+	$formValues.find('input.valueAgeKeys:checked').each(function(index) {
+		valueAgeKeys.push($(this).val());
+	});
+	if(valueAgeKeys.length > 0)
 		vals['ageKeys'] = valueAgeKeys;
 
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();

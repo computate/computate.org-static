@@ -61,8 +61,11 @@ async function postEnfantScolaire($formulaireValeurs, success, error) {
 	if(valeurPersonneAgeEnSeptembre != null && valeurPersonneAgeEnSeptembre !== '')
 		vals['personneAgeEnSeptembre'] = valeurPersonneAgeEnSeptembre;
 
-	var valeurInscriptionCles = $formulaireValeurs.find('input.valeurInscriptionCles:checked').val();
-	if(valeurInscriptionCles != null && valeurInscriptionCles !== '')
+	var valeurInscriptionCles = [];
+	$formulaireValeurs.find('input.valeurInscriptionCles:checked').each(function(index) {
+		valeurInscriptionCles.push($(this).val());
+	});
+	if(valeurInscriptionCles.length > 0)
 		vals['inscriptionCles'] = valeurInscriptionCles;
 
 	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();

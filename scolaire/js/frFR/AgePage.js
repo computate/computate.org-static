@@ -49,12 +49,15 @@ async function postAgeScolaire($formulaireValeurs, success, error) {
 	if(valeurAgeFin != null && valeurAgeFin !== '')
 		vals['ageFin'] = valeurAgeFin;
 
-	var valeurSessionCle = $formulaireValeurs.find('input.valeurSessionCle:checked').val();
+		vals['sessionCle'] = [valeurSessionCle];
 	if(valeurSessionCle != null && valeurSessionCle !== '')
 		vals['sessionCle'] = valeurSessionCle;
 
-	var valeurBlocCles = $formulaireValeurs.find('input.valeurBlocCles:checked').val();
-	if(valeurBlocCles != null && valeurBlocCles !== '')
+	var valeurBlocCles = [];
+	$formulaireValeurs.find('input.valeurBlocCles:checked').each(function(index) {
+		valeurBlocCles.push($(this).val());
+	});
+	if(valeurBlocCles.length > 0)
 		vals['blocCles'] = valeurBlocCles;
 
 	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();

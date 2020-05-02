@@ -41,8 +41,11 @@ async function postPartHtml($formulaireValeurs, success, error) {
 	if(valeurSupprime != null && valeurSupprime !== '')
 		vals['supprime'] = valeurSupprime;
 
-	var valeurDesignPageCles = $formulaireValeurs.find('input.valeurDesignPageCles:checked').val();
-	if(valeurDesignPageCles != null && valeurDesignPageCles !== '')
+	var valeurDesignPageCles = [];
+	$formulaireValeurs.find('input.valeurDesignPageCles:checked').each(function(index) {
+		valeurDesignPageCles.push($(this).val());
+	});
+	if(valeurDesignPageCles.length > 0)
 		vals['designPageCles'] = valeurDesignPageCles;
 
 	var valeurHtmlLien = $formulaireValeurs.find('.valeurHtmlLien').val();
@@ -983,18 +986,6 @@ function patchPartHtmlFiltres($formulaireFiltres) {
 		if(filtreHtmlStyle != null && filtreHtmlStyle !== '')
 			filtres.push({ name: 'fq', value: 'htmlStyle:' + filtreHtmlStyle });
 
-		var filtreHtmlAvant = $formulaireFiltres.find('.valeurHtmlAvant').val();
-		if(filtreHtmlAvant != null && filtreHtmlAvant !== '')
-			filtres.push({ name: 'fq', value: 'htmlAvant:' + filtreHtmlAvant });
-
-		var filtreHtmlApres = $formulaireFiltres.find('.valeurHtmlApres').val();
-		if(filtreHtmlApres != null && filtreHtmlApres !== '')
-			filtres.push({ name: 'fq', value: 'htmlApres:' + filtreHtmlApres });
-
-		var filtreHtmlTexte = $formulaireFiltres.find('.valeurHtmlTexte').val();
-		if(filtreHtmlTexte != null && filtreHtmlTexte !== '')
-			filtres.push({ name: 'fq', value: 'htmlTexte:' + filtreHtmlTexte });
-
 		var filtreHtmlVar = $formulaireFiltres.find('.valeurHtmlVar').val();
 		if(filtreHtmlVar != null && filtreHtmlVar !== '')
 			filtres.push({ name: 'fq', value: 'htmlVar:' + filtreHtmlVar });
@@ -1258,18 +1249,6 @@ function recherchePartHtmlFiltres($formulaireFiltres) {
 		var filtreHtmlStyle = $formulaireFiltres.find('.valeurHtmlStyle').val();
 		if(filtreHtmlStyle != null && filtreHtmlStyle !== '')
 			filtres.push({ name: 'fq', value: 'htmlStyle:' + filtreHtmlStyle });
-
-		var filtreHtmlAvant = $formulaireFiltres.find('.valeurHtmlAvant').val();
-		if(filtreHtmlAvant != null && filtreHtmlAvant !== '')
-			filtres.push({ name: 'fq', value: 'htmlAvant:' + filtreHtmlAvant });
-
-		var filtreHtmlApres = $formulaireFiltres.find('.valeurHtmlApres').val();
-		if(filtreHtmlApres != null && filtreHtmlApres !== '')
-			filtres.push({ name: 'fq', value: 'htmlApres:' + filtreHtmlApres });
-
-		var filtreHtmlTexte = $formulaireFiltres.find('.valeurHtmlTexte').val();
-		if(filtreHtmlTexte != null && filtreHtmlTexte !== '')
-			filtres.push({ name: 'fq', value: 'htmlTexte:' + filtreHtmlTexte });
 
 		var filtreHtmlVar = $formulaireFiltres.find('.valeurHtmlVar').val();
 		if(filtreHtmlVar != null && filtreHtmlVar !== '')

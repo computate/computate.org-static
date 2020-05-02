@@ -49,12 +49,15 @@ async function postSaisonScolaire($formulaireValeurs, success, error) {
 	if(valeurSaisonFuture != null && valeurSaisonFuture !== '')
 		vals['saisonFuture'] = valeurSaisonFuture;
 
-	var valeurAnneeCle = $formulaireValeurs.find('input.valeurAnneeCle:checked').val();
+		vals['anneeCle'] = [valeurAnneeCle];
 	if(valeurAnneeCle != null && valeurAnneeCle !== '')
 		vals['anneeCle'] = valeurAnneeCle;
 
-	var valeurSessionCles = $formulaireValeurs.find('input.valeurSessionCles:checked').val();
-	if(valeurSessionCles != null && valeurSessionCles !== '')
+	var valeurSessionCles = [];
+	$formulaireValeurs.find('input.valeurSessionCles:checked').each(function(index) {
+		valeurSessionCles.push($(this).val());
+	});
+	if(valeurSessionCles.length > 0)
 		vals['sessionCles'] = valeurSessionCles;
 
 	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();

@@ -53,12 +53,15 @@ async function postSchoolYear($formValues, success, error) {
 	if(valueYearEnrollmentFee != null && valueYearEnrollmentFee !== '')
 		vals['yearEnrollmentFee'] = valueYearEnrollmentFee;
 
-	var valueSchoolKey = $formValues.find('input.valueSchoolKey:checked').val();
+		vals['schoolKey'] = [valueSchoolKey];
 	if(valueSchoolKey != null && valueSchoolKey !== '')
 		vals['schoolKey'] = valueSchoolKey;
 
-	var valueSeasonKeys = $formValues.find('input.valueSeasonKeys:checked').val();
-	if(valueSeasonKeys != null && valueSeasonKeys !== '')
+	var valueSeasonKeys = [];
+	$formValues.find('input.valueSeasonKeys:checked').each(function(index) {
+		valueSeasonKeys.push($(this).val());
+	});
+	if(valueSeasonKeys.length > 0)
 		vals['seasonKeys'] = valueSeasonKeys;
 
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
