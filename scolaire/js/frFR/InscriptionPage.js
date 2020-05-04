@@ -195,10 +195,6 @@ async function postInscriptionScolaire($formulaireValeurs, success, error) {
 	if(valeurInscriptionDateFrais != null && valeurInscriptionDateFrais !== '')
 		vals['inscriptionDateFrais'] = valeurInscriptionDateFrais;
 
-	var valeurInscriptionNomsParents = $formulaireValeurs.find('.valeurInscriptionNomsParents').val();
-	if(valeurInscriptionNomsParents != null && valeurInscriptionNomsParents !== '')
-		vals['inscriptionNomsParents'] = valeurInscriptionNomsParents;
-
 	var valeurInscriptionSignature1 = $formulaireValeurs.find('.valeurInscriptionSignature1').val();
 	if(valeurInscriptionSignature1 != null && valeurInscriptionSignature1 !== '')
 		vals['inscriptionSignature1'] = valeurInscriptionSignature1;
@@ -506,10 +502,6 @@ async function putcopieInscriptionScolaire($formulaireValeurs, pk, success, erro
 	var valeurInscriptionDateFrais = $formulaireValeurs.find('.valeurInscriptionDateFrais').val();
 	if(valeurInscriptionDateFrais != null && valeurInscriptionDateFrais !== '')
 		vals['inscriptionDateFrais'] = valeurInscriptionDateFrais;
-
-	var valeurInscriptionNomsParents = $formulaireValeurs.find('.valeurInscriptionNomsParents').val();
-	if(valeurInscriptionNomsParents != null && valeurInscriptionNomsParents !== '')
-		vals['inscriptionNomsParents'] = valeurInscriptionNomsParents;
 
 	var valeurInscriptionSignature1 = $formulaireValeurs.find('.valeurInscriptionSignature1').val();
 	if(valeurInscriptionSignature1 != null && valeurInscriptionSignature1 !== '')
@@ -1109,19 +1101,6 @@ async function patchInscriptionScolaire($formulaireFiltres, $formulaireValeurs, 
 	var removeInscriptionDateFrais = $formulaireValeurs.find('.removeInscriptionDateFrais').val();
 	if(removeInscriptionDateFrais != null && removeInscriptionDateFrais !== '')
 		vals['removeInscriptionDateFrais'] = removeInscriptionDateFrais;
-
-	var valeurInscriptionNomsParents = $formulaireValeurs.find('.valeurInscriptionNomsParents').val();
-	if(valeurInscriptionNomsParents != null && valeurInscriptionNomsParents !== '')
-	var removeInscriptionNomsParents = $formulaireFiltres.find('.removeInscriptionNomsParents').val() === 'true';
-	var setInscriptionNomsParents = removeInscriptionNomsParents ? null : $formulaireValeurs.find('.setInscriptionNomsParents').val();
-	if(removeInscriptionNomsParents || setInscriptionNomsParents != null && setInscriptionNomsParents !== '')
-		vals['setInscriptionNomsParents'] = setInscriptionNomsParents;
-	var addInscriptionNomsParents = $formulaireValeurs.find('.addInscriptionNomsParents').val();
-	if(addInscriptionNomsParents != null && addInscriptionNomsParents !== '')
-		vals['addInscriptionNomsParents'] = addInscriptionNomsParents;
-	var removeInscriptionNomsParents = $formulaireValeurs.find('.removeInscriptionNomsParents').val();
-	if(removeInscriptionNomsParents != null && removeInscriptionNomsParents !== '')
-		vals['removeInscriptionNomsParents'] = removeInscriptionNomsParents;
 
 	var valeurInscriptionSignature1 = $formulaireValeurs.find('.valeurInscriptionSignature1').val();
 	if(valeurInscriptionSignature1 != null && valeurInscriptionSignature1 !== '')
@@ -1948,10 +1927,6 @@ function patchInscriptionScolaireFiltres($formulaireFiltres) {
 		if(filtreInscriptionJoursDeSemaine != null && filtreInscriptionJoursDeSemaine !== '')
 			filtres.push({ name: 'fq', value: 'inscriptionJoursDeSemaine:' + filtreInscriptionJoursDeSemaine });
 
-		var filtreInscriptionNomsParents = $formulaireFiltres.find('.valeurInscriptionNomsParents').val();
-		if(filtreInscriptionNomsParents != null && filtreInscriptionNomsParents !== '')
-			filtres.push({ name: 'fq', value: 'inscriptionNomsParents:' + filtreInscriptionNomsParents });
-
 		var filtreInscriptionDate1 = $formulaireFiltres.find('.valeurInscriptionDate1').val();
 		if(filtreInscriptionDate1 != null && filtreInscriptionDate1 !== '')
 			filtres.push({ name: 'fq', value: 'inscriptionDate1:' + filtreInscriptionDate1 });
@@ -2611,10 +2586,6 @@ function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 		var filtreInscriptionJoursDeSemaine = $formulaireFiltres.find('.valeurInscriptionJoursDeSemaine').val();
 		if(filtreInscriptionJoursDeSemaine != null && filtreInscriptionJoursDeSemaine !== '')
 			filtres.push({ name: 'fq', value: 'inscriptionJoursDeSemaine:' + filtreInscriptionJoursDeSemaine });
-
-		var filtreInscriptionNomsParents = $formulaireFiltres.find('.valeurInscriptionNomsParents').val();
-		if(filtreInscriptionNomsParents != null && filtreInscriptionNomsParents !== '')
-			filtres.push({ name: 'fq', value: 'inscriptionNomsParents:' + filtreInscriptionNomsParents });
 
 		var filtreInscriptionDate1 = $formulaireFiltres.find('.valeurInscriptionDate1').val();
 		if(filtreInscriptionDate1 != null && filtreInscriptionDate1 !== '')
@@ -3492,19 +3463,6 @@ async function patchpaiementsInscriptionScolaire($formulaireFiltres, $formulaire
 	if(removeInscriptionDateFrais != null && removeInscriptionDateFrais !== '')
 		vals['removeInscriptionDateFrais'] = removeInscriptionDateFrais;
 
-	var valeurInscriptionNomsParents = $formulaireValeurs.find('.valeurInscriptionNomsParents').val();
-	if(valeurInscriptionNomsParents != null && valeurInscriptionNomsParents !== '')
-	var removeInscriptionNomsParents = $formulaireFiltres.find('.removeInscriptionNomsParents').val() === 'true';
-	var setInscriptionNomsParents = removeInscriptionNomsParents ? null : $formulaireValeurs.find('.setInscriptionNomsParents').val();
-	if(removeInscriptionNomsParents || setInscriptionNomsParents != null && setInscriptionNomsParents !== '')
-		vals['setInscriptionNomsParents'] = setInscriptionNomsParents;
-	var addInscriptionNomsParents = $formulaireValeurs.find('.addInscriptionNomsParents').val();
-	if(addInscriptionNomsParents != null && addInscriptionNomsParents !== '')
-		vals['addInscriptionNomsParents'] = addInscriptionNomsParents;
-	var removeInscriptionNomsParents = $formulaireValeurs.find('.removeInscriptionNomsParents').val();
-	if(removeInscriptionNomsParents != null && removeInscriptionNomsParents !== '')
-		vals['removeInscriptionNomsParents'] = removeInscriptionNomsParents;
-
 	var valeurInscriptionSignature1 = $formulaireValeurs.find('.valeurInscriptionSignature1').val();
 	if(valeurInscriptionSignature1 != null && valeurInscriptionSignature1 !== '')
 	var removeInscriptionSignature1 = $formulaireFiltres.find('.removeInscriptionSignature1').val() === 'true';
@@ -4330,10 +4288,6 @@ function patchpaiementsInscriptionScolaireFiltres($formulaireFiltres) {
 		if(filtreInscriptionJoursDeSemaine != null && filtreInscriptionJoursDeSemaine !== '')
 			filtres.push({ name: 'fq', value: 'inscriptionJoursDeSemaine:' + filtreInscriptionJoursDeSemaine });
 
-		var filtreInscriptionNomsParents = $formulaireFiltres.find('.valeurInscriptionNomsParents').val();
-		if(filtreInscriptionNomsParents != null && filtreInscriptionNomsParents !== '')
-			filtres.push({ name: 'fq', value: 'inscriptionNomsParents:' + filtreInscriptionNomsParents });
-
 		var filtreInscriptionDate1 = $formulaireFiltres.find('.valeurInscriptionDate1').val();
 		if(filtreInscriptionDate1 != null && filtreInscriptionDate1 !== '')
 			filtres.push({ name: 'fq', value: 'inscriptionDate1:' + filtreInscriptionDate1 });
@@ -4677,11 +4631,6 @@ async function websocketInscriptionScolaireInner(requeteApi) {
 				$('.inputInscriptionScolaire' + pk + 'InscriptionDateFrais').val(o['inscriptionDateFrais']);
 				$('.varInscriptionScolaire' + pk + 'InscriptionDateFrais').text(o['inscriptionDateFrais']);
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionDateFrais'));
-			}
-			if(vars.includes('inscriptionNomsParents')) {
-				$('.inputInscriptionScolaire' + pk + 'InscriptionNomsParents').val(o['inscriptionNomsParents']);
-				$('.varInscriptionScolaire' + pk + 'InscriptionNomsParents').text(o['inscriptionNomsParents']);
-				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionNomsParents'));
 			}
 			if(vars.includes('inscriptionSignature1')) {
 				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature1').val(o['inscriptionSignature1']);

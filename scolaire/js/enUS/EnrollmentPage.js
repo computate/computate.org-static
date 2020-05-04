@@ -195,10 +195,6 @@ async function postSchoolEnrollment($formValues, success, error) {
 	if(valueEnrollmentChargeDate != null && valueEnrollmentChargeDate !== '')
 		vals['enrollmentChargeDate'] = valueEnrollmentChargeDate;
 
-	var valueEnrollmentParentNames = $formValues.find('.valueEnrollmentParentNames').val();
-	if(valueEnrollmentParentNames != null && valueEnrollmentParentNames !== '')
-		vals['enrollmentParentNames'] = valueEnrollmentParentNames;
-
 	var valueEnrollmentSignature1 = $formValues.find('.valueEnrollmentSignature1').val();
 	if(valueEnrollmentSignature1 != null && valueEnrollmentSignature1 !== '')
 		vals['enrollmentSignature1'] = valueEnrollmentSignature1;
@@ -506,10 +502,6 @@ async function putcopySchoolEnrollment($formValues, pk, success, error) {
 	var valueEnrollmentChargeDate = $formValues.find('.valueEnrollmentChargeDate').val();
 	if(valueEnrollmentChargeDate != null && valueEnrollmentChargeDate !== '')
 		vals['enrollmentChargeDate'] = valueEnrollmentChargeDate;
-
-	var valueEnrollmentParentNames = $formValues.find('.valueEnrollmentParentNames').val();
-	if(valueEnrollmentParentNames != null && valueEnrollmentParentNames !== '')
-		vals['enrollmentParentNames'] = valueEnrollmentParentNames;
 
 	var valueEnrollmentSignature1 = $formValues.find('.valueEnrollmentSignature1').val();
 	if(valueEnrollmentSignature1 != null && valueEnrollmentSignature1 !== '')
@@ -1109,19 +1101,6 @@ async function patchSchoolEnrollment($formFilters, $formValues, pk, success, err
 	var removeEnrollmentChargeDate = $formValues.find('.removeEnrollmentChargeDate').val();
 	if(removeEnrollmentChargeDate != null && removeEnrollmentChargeDate !== '')
 		vals['removeEnrollmentChargeDate'] = removeEnrollmentChargeDate;
-
-	var valueEnrollmentParentNames = $formValues.find('.valueEnrollmentParentNames').val();
-	if(valueEnrollmentParentNames != null && valueEnrollmentParentNames !== '')
-	var removeEnrollmentParentNames = $formFilters.find('.removeEnrollmentParentNames').val() === 'true';
-	var setEnrollmentParentNames = removeEnrollmentParentNames ? null : $formValues.find('.setEnrollmentParentNames').val();
-	if(removeEnrollmentParentNames || setEnrollmentParentNames != null && setEnrollmentParentNames !== '')
-		vals['setEnrollmentParentNames'] = setEnrollmentParentNames;
-	var addEnrollmentParentNames = $formValues.find('.addEnrollmentParentNames').val();
-	if(addEnrollmentParentNames != null && addEnrollmentParentNames !== '')
-		vals['addEnrollmentParentNames'] = addEnrollmentParentNames;
-	var removeEnrollmentParentNames = $formValues.find('.removeEnrollmentParentNames').val();
-	if(removeEnrollmentParentNames != null && removeEnrollmentParentNames !== '')
-		vals['removeEnrollmentParentNames'] = removeEnrollmentParentNames;
 
 	var valueEnrollmentSignature1 = $formValues.find('.valueEnrollmentSignature1').val();
 	if(valueEnrollmentSignature1 != null && valueEnrollmentSignature1 !== '')
@@ -1948,10 +1927,6 @@ function patchSchoolEnrollmentFilters($formFilters) {
 		if(filterEnrollmentDaysOfWeek != null && filterEnrollmentDaysOfWeek !== '')
 			filters.push({ name: 'fq', value: 'enrollmentDaysOfWeek:' + filterEnrollmentDaysOfWeek });
 
-		var filterEnrollmentParentNames = $formFilters.find('.valueEnrollmentParentNames').val();
-		if(filterEnrollmentParentNames != null && filterEnrollmentParentNames !== '')
-			filters.push({ name: 'fq', value: 'enrollmentParentNames:' + filterEnrollmentParentNames });
-
 		var filterEnrollmentDate1 = $formFilters.find('.valueEnrollmentDate1').val();
 		if(filterEnrollmentDate1 != null && filterEnrollmentDate1 !== '')
 			filters.push({ name: 'fq', value: 'enrollmentDate1:' + filterEnrollmentDate1 });
@@ -2611,10 +2586,6 @@ function searchSchoolEnrollmentFilters($formFilters) {
 		var filterEnrollmentDaysOfWeek = $formFilters.find('.valueEnrollmentDaysOfWeek').val();
 		if(filterEnrollmentDaysOfWeek != null && filterEnrollmentDaysOfWeek !== '')
 			filters.push({ name: 'fq', value: 'enrollmentDaysOfWeek:' + filterEnrollmentDaysOfWeek });
-
-		var filterEnrollmentParentNames = $formFilters.find('.valueEnrollmentParentNames').val();
-		if(filterEnrollmentParentNames != null && filterEnrollmentParentNames !== '')
-			filters.push({ name: 'fq', value: 'enrollmentParentNames:' + filterEnrollmentParentNames });
 
 		var filterEnrollmentDate1 = $formFilters.find('.valueEnrollmentDate1').val();
 		if(filterEnrollmentDate1 != null && filterEnrollmentDate1 !== '')
@@ -3492,19 +3463,6 @@ async function patchpaymentsSchoolEnrollment($formFilters, $formValues, pk, succ
 	if(removeEnrollmentChargeDate != null && removeEnrollmentChargeDate !== '')
 		vals['removeEnrollmentChargeDate'] = removeEnrollmentChargeDate;
 
-	var valueEnrollmentParentNames = $formValues.find('.valueEnrollmentParentNames').val();
-	if(valueEnrollmentParentNames != null && valueEnrollmentParentNames !== '')
-	var removeEnrollmentParentNames = $formFilters.find('.removeEnrollmentParentNames').val() === 'true';
-	var setEnrollmentParentNames = removeEnrollmentParentNames ? null : $formValues.find('.setEnrollmentParentNames').val();
-	if(removeEnrollmentParentNames || setEnrollmentParentNames != null && setEnrollmentParentNames !== '')
-		vals['setEnrollmentParentNames'] = setEnrollmentParentNames;
-	var addEnrollmentParentNames = $formValues.find('.addEnrollmentParentNames').val();
-	if(addEnrollmentParentNames != null && addEnrollmentParentNames !== '')
-		vals['addEnrollmentParentNames'] = addEnrollmentParentNames;
-	var removeEnrollmentParentNames = $formValues.find('.removeEnrollmentParentNames').val();
-	if(removeEnrollmentParentNames != null && removeEnrollmentParentNames !== '')
-		vals['removeEnrollmentParentNames'] = removeEnrollmentParentNames;
-
 	var valueEnrollmentSignature1 = $formValues.find('.valueEnrollmentSignature1').val();
 	if(valueEnrollmentSignature1 != null && valueEnrollmentSignature1 !== '')
 	var removeEnrollmentSignature1 = $formFilters.find('.removeEnrollmentSignature1').val() === 'true';
@@ -4330,10 +4288,6 @@ function patchpaymentsSchoolEnrollmentFilters($formFilters) {
 		if(filterEnrollmentDaysOfWeek != null && filterEnrollmentDaysOfWeek !== '')
 			filters.push({ name: 'fq', value: 'enrollmentDaysOfWeek:' + filterEnrollmentDaysOfWeek });
 
-		var filterEnrollmentParentNames = $formFilters.find('.valueEnrollmentParentNames').val();
-		if(filterEnrollmentParentNames != null && filterEnrollmentParentNames !== '')
-			filters.push({ name: 'fq', value: 'enrollmentParentNames:' + filterEnrollmentParentNames });
-
 		var filterEnrollmentDate1 = $formFilters.find('.valueEnrollmentDate1').val();
 		if(filterEnrollmentDate1 != null && filterEnrollmentDate1 !== '')
 			filters.push({ name: 'fq', value: 'enrollmentDate1:' + filterEnrollmentDate1 });
@@ -4677,11 +4631,6 @@ async function websocketSchoolEnrollmentInner(apiRequest) {
 				$('.inputSchoolEnrollment' + pk + 'EnrollmentChargeDate').val(o['enrollmentChargeDate']);
 				$('.varSchoolEnrollment' + pk + 'EnrollmentChargeDate').text(o['enrollmentChargeDate']);
 				addGlow($('.inputSchoolEnrollment' + pk + 'EnrollmentChargeDate'));
-			}
-			if(vars.includes('enrollmentParentNames')) {
-				$('.inputSchoolEnrollment' + pk + 'EnrollmentParentNames').val(o['enrollmentParentNames']);
-				$('.varSchoolEnrollment' + pk + 'EnrollmentParentNames').text(o['enrollmentParentNames']);
-				addGlow($('.inputSchoolEnrollment' + pk + 'EnrollmentParentNames'));
 			}
 			if(vars.includes('enrollmentSignature1')) {
 				$('.inputSchoolEnrollment' + pk + 'EnrollmentSignature1').val(o['enrollmentSignature1']);
