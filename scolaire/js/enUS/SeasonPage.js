@@ -1108,73 +1108,157 @@ async function websocketSchoolSeasonInner(apiRequest) {
 		searchSchoolSeasonVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
 			if(vars.includes('created')) {
-				$('.inputSchoolSeason' + pk + 'Created').val(o['created']);
-				$('.varSchoolSeason' + pk + 'Created').text(o['created']);
+				$('.inputSchoolSeason' + pk + 'Created').each(function() {
+					if(o['created'] !== $(this).val())
+						$(this).val(o['created']);
+				});
+				$('.varSchoolSeason' + pk + 'Created').each(function() {
+					if(o['created'] !== $(this).text())
+						$(this).text(o['created']);
+				});
 				addGlow($('.inputSchoolSeason' + pk + 'Created'));
 			}
 			if(vars.includes('modified')) {
-				$('.inputSchoolSeason' + pk + 'Modified').val(o['modified']);
-				$('.varSchoolSeason' + pk + 'Modified').text(o['modified']);
+				$('.inputSchoolSeason' + pk + 'Modified').each(function() {
+					if(o['modified'] !== $(this).val())
+						$(this).val(o['modified']);
+				});
+				$('.varSchoolSeason' + pk + 'Modified').each(function() {
+					if(o['modified'] !== $(this).text())
+						$(this).text(o['modified']);
+				});
 				addGlow($('.inputSchoolSeason' + pk + 'Modified'));
 			}
 			if(vars.includes('archived')) {
-				$('.inputSchoolSeason' + pk + 'Archived').val(o['archived']);
-				$('.varSchoolSeason' + pk + 'Archived').text(o['archived']);
+				$('.inputSchoolSeason' + pk + 'Archived').each(function() {
+					if(o['archived'] !== $(this).val())
+						$(this).val(o['archived']);
+				});
+				$('.varSchoolSeason' + pk + 'Archived').each(function() {
+					if(o['archived'] !== $(this).text())
+						$(this).text(o['archived']);
+				});
 				addGlow($('.inputSchoolSeason' + pk + 'Archived'));
 			}
 			if(vars.includes('deleted')) {
-				$('.inputSchoolSeason' + pk + 'Deleted').val(o['deleted']);
-				$('.varSchoolSeason' + pk + 'Deleted').text(o['deleted']);
+				$('.inputSchoolSeason' + pk + 'Deleted').each(function() {
+					if(o['deleted'] !== $(this).val())
+						$(this).val(o['deleted']);
+				});
+				$('.varSchoolSeason' + pk + 'Deleted').each(function() {
+					if(o['deleted'] !== $(this).text())
+						$(this).text(o['deleted']);
+				});
 				addGlow($('.inputSchoolSeason' + pk + 'Deleted'));
 			}
 			if(vars.includes('seasonStartDate')) {
-				$('.inputSchoolSeason' + pk + 'SeasonStartDate').val(o['seasonStartDate']);
-				$('.varSchoolSeason' + pk + 'SeasonStartDate').text(o['seasonStartDate']);
+				$('.inputSchoolSeason' + pk + 'SeasonStartDate').each(function() {
+					if(o['seasonStartDate'] !== $(this).val())
+						$(this).val(o['seasonStartDate']);
+				});
+				$('.varSchoolSeason' + pk + 'SeasonStartDate').each(function() {
+					if(o['seasonStartDate'] !== $(this).text())
+						$(this).text(o['seasonStartDate']);
+				});
 				addGlow($('.inputSchoolSeason' + pk + 'SeasonStartDate'));
 			}
 			if(vars.includes('seasonFuture')) {
-				$('.inputSchoolSeason' + pk + 'SeasonFuture').val(o['seasonFuture']);
-				$('.varSchoolSeason' + pk + 'SeasonFuture').text(o['seasonFuture']);
+				$('.inputSchoolSeason' + pk + 'SeasonFuture').each(function() {
+					if(o['seasonFuture'] !== $(this).val())
+						$(this).val(o['seasonFuture']);
+				});
+				$('.varSchoolSeason' + pk + 'SeasonFuture').each(function() {
+					if(o['seasonFuture'] !== $(this).text())
+						$(this).text(o['seasonFuture']);
+				});
 				addGlow($('.inputSchoolSeason' + pk + 'SeasonFuture'));
 			}
 			if(vars.includes('yearKey')) {
-				$('.inputSchoolSeason' + pk + 'YearKey').val(o['yearKey']);
-				$('.varSchoolSeason' + pk + 'YearKey').text(o['yearKey']);
+				$('.inputSchoolSeason' + pk + 'YearKey').each(function() {
+					if(o['yearKey'] !== $(this).val())
+						$(this).val(o['yearKey']);
+				});
+				$('.varSchoolSeason' + pk + 'YearKey').each(function() {
+					if(o['yearKey'] !== $(this).text())
+						$(this).text(o['yearKey']);
+				});
 				addGlow($('.inputSchoolSeason' + pk + 'YearKey'));
 			}
 			if(vars.includes('sessionKeys')) {
-				$('.inputSchoolSeason' + pk + 'SessionKeys').val(o['sessionKeys']);
-				$('.varSchoolSeason' + pk + 'SessionKeys').text(o['sessionKeys']);
+				$('.inputSchoolSeason' + pk + 'SessionKeys').each(function() {
+					if(o['sessionKeys'] !== $(this).val())
+						$(this).val(o['sessionKeys']);
+				});
+				$('.varSchoolSeason' + pk + 'SessionKeys').each(function() {
+					if(o['sessionKeys'] !== $(this).text())
+						$(this).text(o['sessionKeys']);
+				});
 				addGlow($('.inputSchoolSeason' + pk + 'SessionKeys'));
 			}
 			if(vars.includes('inheritPk')) {
-				$('.inputSchoolSeason' + pk + 'InheritPk').val(o['inheritPk']);
-				$('.varSchoolSeason' + pk + 'InheritPk').text(o['inheritPk']);
+				$('.inputSchoolSeason' + pk + 'InheritPk').each(function() {
+					if(o['inheritPk'] !== $(this).val())
+						$(this).val(o['inheritPk']);
+				});
+				$('.varSchoolSeason' + pk + 'InheritPk').each(function() {
+					if(o['inheritPk'] !== $(this).text())
+						$(this).text(o['inheritPk']);
+				});
 				addGlow($('.inputSchoolSeason' + pk + 'InheritPk'));
 			}
 			if(vars.includes('sessionId')) {
-				$('.inputSchoolSeason' + pk + 'SessionId').val(o['sessionId']);
-				$('.varSchoolSeason' + pk + 'SessionId').text(o['sessionId']);
+				$('.inputSchoolSeason' + pk + 'SessionId').each(function() {
+					if(o['sessionId'] !== $(this).val())
+						$(this).val(o['sessionId']);
+				});
+				$('.varSchoolSeason' + pk + 'SessionId').each(function() {
+					if(o['sessionId'] !== $(this).text())
+						$(this).text(o['sessionId']);
+				});
 				addGlow($('.inputSchoolSeason' + pk + 'SessionId'));
 			}
 			if(vars.includes('userId')) {
-				$('.inputSchoolSeason' + pk + 'UserId').val(o['userId']);
-				$('.varSchoolSeason' + pk + 'UserId').text(o['userId']);
+				$('.inputSchoolSeason' + pk + 'UserId').each(function() {
+					if(o['userId'] !== $(this).val())
+						$(this).val(o['userId']);
+				});
+				$('.varSchoolSeason' + pk + 'UserId').each(function() {
+					if(o['userId'] !== $(this).text())
+						$(this).text(o['userId']);
+				});
 				addGlow($('.inputSchoolSeason' + pk + 'UserId'));
 			}
 			if(vars.includes('userKey')) {
-				$('.inputSchoolSeason' + pk + 'UserKey').val(o['userKey']);
-				$('.varSchoolSeason' + pk + 'UserKey').text(o['userKey']);
+				$('.inputSchoolSeason' + pk + 'UserKey').each(function() {
+					if(o['userKey'] !== $(this).val())
+						$(this).val(o['userKey']);
+				});
+				$('.varSchoolSeason' + pk + 'UserKey').each(function() {
+					if(o['userKey'] !== $(this).text())
+						$(this).text(o['userKey']);
+				});
 				addGlow($('.inputSchoolSeason' + pk + 'UserKey'));
 			}
 			if(vars.includes('seasonSummer')) {
-				$('.inputSchoolSeason' + pk + 'SeasonSummer').val(o['seasonSummer']);
-				$('.varSchoolSeason' + pk + 'SeasonSummer').text(o['seasonSummer']);
+				$('.inputSchoolSeason' + pk + 'SeasonSummer').each(function() {
+					if(o['seasonSummer'] !== $(this).val())
+						$(this).val(o['seasonSummer']);
+				});
+				$('.varSchoolSeason' + pk + 'SeasonSummer').each(function() {
+					if(o['seasonSummer'] !== $(this).text())
+						$(this).text(o['seasonSummer']);
+				});
 				addGlow($('.inputSchoolSeason' + pk + 'SeasonSummer'));
 			}
 			if(vars.includes('seasonWinter')) {
-				$('.inputSchoolSeason' + pk + 'SeasonWinter').val(o['seasonWinter']);
-				$('.varSchoolSeason' + pk + 'SeasonWinter').text(o['seasonWinter']);
+				$('.inputSchoolSeason' + pk + 'SeasonWinter').each(function() {
+					if(o['seasonWinter'] !== $(this).val())
+						$(this).val(o['seasonWinter']);
+				});
+				$('.varSchoolSeason' + pk + 'SeasonWinter').each(function() {
+					if(o['seasonWinter'] !== $(this).text())
+						$(this).text(o['seasonWinter']);
+				});
 				addGlow($('.inputSchoolSeason' + pk + 'SeasonWinter'));
 			}
 		});

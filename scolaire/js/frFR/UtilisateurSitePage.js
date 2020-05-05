@@ -916,83 +916,179 @@ async function websocketUtilisateurSiteInner(requeteApi) {
 		rechercherUtilisateurSiteVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
 			if(vars.includes('cree')) {
-				$('.inputUtilisateurSite' + pk + 'Cree').val(o['cree']);
-				$('.varUtilisateurSite' + pk + 'Cree').text(o['cree']);
+				$('.inputUtilisateurSite' + pk + 'Cree').each(function() {
+					if(o['cree'] !== $(this).val())
+						$(this).val(o['cree']);
+				});
+				$('.varUtilisateurSite' + pk + 'Cree').each(function() {
+					if(o['cree'] !== $(this).text())
+						$(this).text(o['cree']);
+				});
 				ajouterLueur($('.inputUtilisateurSite' + pk + 'Cree'));
 			}
 			if(vars.includes('modifie')) {
-				$('.inputUtilisateurSite' + pk + 'Modifie').val(o['modifie']);
-				$('.varUtilisateurSite' + pk + 'Modifie').text(o['modifie']);
+				$('.inputUtilisateurSite' + pk + 'Modifie').each(function() {
+					if(o['modifie'] !== $(this).val())
+						$(this).val(o['modifie']);
+				});
+				$('.varUtilisateurSite' + pk + 'Modifie').each(function() {
+					if(o['modifie'] !== $(this).text())
+						$(this).text(o['modifie']);
+				});
 				ajouterLueur($('.inputUtilisateurSite' + pk + 'Modifie'));
 			}
 			if(vars.includes('archive')) {
-				$('.inputUtilisateurSite' + pk + 'Archive').val(o['archive']);
-				$('.varUtilisateurSite' + pk + 'Archive').text(o['archive']);
+				$('.inputUtilisateurSite' + pk + 'Archive').each(function() {
+					if(o['archive'] !== $(this).val())
+						$(this).val(o['archive']);
+				});
+				$('.varUtilisateurSite' + pk + 'Archive').each(function() {
+					if(o['archive'] !== $(this).text())
+						$(this).text(o['archive']);
+				});
 				ajouterLueur($('.inputUtilisateurSite' + pk + 'Archive'));
 			}
 			if(vars.includes('supprime')) {
-				$('.inputUtilisateurSite' + pk + 'Supprime').val(o['supprime']);
-				$('.varUtilisateurSite' + pk + 'Supprime').text(o['supprime']);
+				$('.inputUtilisateurSite' + pk + 'Supprime').each(function() {
+					if(o['supprime'] !== $(this).val())
+						$(this).val(o['supprime']);
+				});
+				$('.varUtilisateurSite' + pk + 'Supprime').each(function() {
+					if(o['supprime'] !== $(this).text())
+						$(this).text(o['supprime']);
+				});
 				ajouterLueur($('.inputUtilisateurSite' + pk + 'Supprime'));
 			}
 			if(vars.includes('utilisateurRecevoirCourriels')) {
-				$('.inputUtilisateurSite' + pk + 'UtilisateurRecevoirCourriels').val(o['utilisateurRecevoirCourriels']);
-				$('.varUtilisateurSite' + pk + 'UtilisateurRecevoirCourriels').text(o['utilisateurRecevoirCourriels']);
+				$('.inputUtilisateurSite' + pk + 'UtilisateurRecevoirCourriels').each(function() {
+					if(o['utilisateurRecevoirCourriels'] !== $(this).val())
+						$(this).val(o['utilisateurRecevoirCourriels']);
+				});
+				$('.varUtilisateurSite' + pk + 'UtilisateurRecevoirCourriels').each(function() {
+					if(o['utilisateurRecevoirCourriels'] !== $(this).text())
+						$(this).text(o['utilisateurRecevoirCourriels']);
+				});
 				ajouterLueur($('.inputUtilisateurSite' + pk + 'UtilisateurRecevoirCourriels'));
 			}
 			if(vars.includes('voirArchive')) {
-				$('.inputUtilisateurSite' + pk + 'VoirArchive').val(o['voirArchive']);
-				$('.varUtilisateurSite' + pk + 'VoirArchive').text(o['voirArchive']);
+				$('.inputUtilisateurSite' + pk + 'VoirArchive').each(function() {
+					if(o['voirArchive'] !== $(this).val())
+						$(this).val(o['voirArchive']);
+				});
+				$('.varUtilisateurSite' + pk + 'VoirArchive').each(function() {
+					if(o['voirArchive'] !== $(this).text())
+						$(this).text(o['voirArchive']);
+				});
 				ajouterLueur($('.inputUtilisateurSite' + pk + 'VoirArchive'));
 			}
 			if(vars.includes('voirSupprime')) {
-				$('.inputUtilisateurSite' + pk + 'VoirSupprime').val(o['voirSupprime']);
-				$('.varUtilisateurSite' + pk + 'VoirSupprime').text(o['voirSupprime']);
+				$('.inputUtilisateurSite' + pk + 'VoirSupprime').each(function() {
+					if(o['voirSupprime'] !== $(this).val())
+						$(this).val(o['voirSupprime']);
+				});
+				$('.varUtilisateurSite' + pk + 'VoirSupprime').each(function() {
+					if(o['voirSupprime'] !== $(this).text())
+						$(this).text(o['voirSupprime']);
+				});
 				ajouterLueur($('.inputUtilisateurSite' + pk + 'VoirSupprime'));
 			}
 			if(vars.includes('customerProfileId')) {
-				$('.inputUtilisateurSite' + pk + 'CustomerProfileId').val(o['customerProfileId']);
-				$('.varUtilisateurSite' + pk + 'CustomerProfileId').text(o['customerProfileId']);
+				$('.inputUtilisateurSite' + pk + 'CustomerProfileId').each(function() {
+					if(o['customerProfileId'] !== $(this).val())
+						$(this).val(o['customerProfileId']);
+				});
+				$('.varUtilisateurSite' + pk + 'CustomerProfileId').each(function() {
+					if(o['customerProfileId'] !== $(this).text())
+						$(this).text(o['customerProfileId']);
+				});
 				ajouterLueur($('.inputUtilisateurSite' + pk + 'CustomerProfileId'));
 			}
 			if(vars.includes('inscriptionCles')) {
-				$('.inputUtilisateurSite' + pk + 'InscriptionCles').val(o['inscriptionCles']);
-				$('.varUtilisateurSite' + pk + 'InscriptionCles').text(o['inscriptionCles']);
+				$('.inputUtilisateurSite' + pk + 'InscriptionCles').each(function() {
+					if(o['inscriptionCles'] !== $(this).val())
+						$(this).val(o['inscriptionCles']);
+				});
+				$('.varUtilisateurSite' + pk + 'InscriptionCles').each(function() {
+					if(o['inscriptionCles'] !== $(this).text())
+						$(this).text(o['inscriptionCles']);
+				});
 				ajouterLueur($('.inputUtilisateurSite' + pk + 'InscriptionCles'));
 			}
 			if(vars.includes('paiementCles')) {
-				$('.inputUtilisateurSite' + pk + 'PaiementCles').val(o['paiementCles']);
-				$('.varUtilisateurSite' + pk + 'PaiementCles').text(o['paiementCles']);
+				$('.inputUtilisateurSite' + pk + 'PaiementCles').each(function() {
+					if(o['paiementCles'] !== $(this).val())
+						$(this).val(o['paiementCles']);
+				});
+				$('.varUtilisateurSite' + pk + 'PaiementCles').each(function() {
+					if(o['paiementCles'] !== $(this).text())
+						$(this).text(o['paiementCles']);
+				});
 				ajouterLueur($('.inputUtilisateurSite' + pk + 'PaiementCles'));
 			}
 			if(vars.includes('inheritPk')) {
-				$('.inputUtilisateurSite' + pk + 'InheritPk').val(o['inheritPk']);
-				$('.varUtilisateurSite' + pk + 'InheritPk').text(o['inheritPk']);
+				$('.inputUtilisateurSite' + pk + 'InheritPk').each(function() {
+					if(o['inheritPk'] !== $(this).val())
+						$(this).val(o['inheritPk']);
+				});
+				$('.varUtilisateurSite' + pk + 'InheritPk').each(function() {
+					if(o['inheritPk'] !== $(this).text())
+						$(this).text(o['inheritPk']);
+				});
 				ajouterLueur($('.inputUtilisateurSite' + pk + 'InheritPk'));
 			}
 			if(vars.includes('sessionId')) {
-				$('.inputUtilisateurSite' + pk + 'SessionId').val(o['sessionId']);
-				$('.varUtilisateurSite' + pk + 'SessionId').text(o['sessionId']);
+				$('.inputUtilisateurSite' + pk + 'SessionId').each(function() {
+					if(o['sessionId'] !== $(this).val())
+						$(this).val(o['sessionId']);
+				});
+				$('.varUtilisateurSite' + pk + 'SessionId').each(function() {
+					if(o['sessionId'] !== $(this).text())
+						$(this).text(o['sessionId']);
+				});
 				ajouterLueur($('.inputUtilisateurSite' + pk + 'SessionId'));
 			}
 			if(vars.includes('utilisateurId')) {
-				$('.inputUtilisateurSite' + pk + 'UtilisateurId').val(o['utilisateurId']);
-				$('.varUtilisateurSite' + pk + 'UtilisateurId').text(o['utilisateurId']);
+				$('.inputUtilisateurSite' + pk + 'UtilisateurId').each(function() {
+					if(o['utilisateurId'] !== $(this).val())
+						$(this).val(o['utilisateurId']);
+				});
+				$('.varUtilisateurSite' + pk + 'UtilisateurId').each(function() {
+					if(o['utilisateurId'] !== $(this).text())
+						$(this).text(o['utilisateurId']);
+				});
 				ajouterLueur($('.inputUtilisateurSite' + pk + 'UtilisateurId'));
 			}
 			if(vars.includes('utilisateurCle')) {
-				$('.inputUtilisateurSite' + pk + 'UtilisateurCle').val(o['utilisateurCle']);
-				$('.varUtilisateurSite' + pk + 'UtilisateurCle').text(o['utilisateurCle']);
+				$('.inputUtilisateurSite' + pk + 'UtilisateurCle').each(function() {
+					if(o['utilisateurCle'] !== $(this).val())
+						$(this).val(o['utilisateurCle']);
+				});
+				$('.varUtilisateurSite' + pk + 'UtilisateurCle').each(function() {
+					if(o['utilisateurCle'] !== $(this).text())
+						$(this).text(o['utilisateurCle']);
+				});
 				ajouterLueur($('.inputUtilisateurSite' + pk + 'UtilisateurCle'));
 			}
 			if(vars.includes('utilisateurNom')) {
-				$('.inputUtilisateurSite' + pk + 'UtilisateurNom').val(o['utilisateurNom']);
-				$('.varUtilisateurSite' + pk + 'UtilisateurNom').text(o['utilisateurNom']);
+				$('.inputUtilisateurSite' + pk + 'UtilisateurNom').each(function() {
+					if(o['utilisateurNom'] !== $(this).val())
+						$(this).val(o['utilisateurNom']);
+				});
+				$('.varUtilisateurSite' + pk + 'UtilisateurNom').each(function() {
+					if(o['utilisateurNom'] !== $(this).text())
+						$(this).text(o['utilisateurNom']);
+				});
 				ajouterLueur($('.inputUtilisateurSite' + pk + 'UtilisateurNom'));
 			}
 			if(vars.includes('utilisateurMail')) {
-				$('.inputUtilisateurSite' + pk + 'UtilisateurMail').val(o['utilisateurMail']);
-				$('.varUtilisateurSite' + pk + 'UtilisateurMail').text(o['utilisateurMail']);
+				$('.inputUtilisateurSite' + pk + 'UtilisateurMail').each(function() {
+					if(o['utilisateurMail'] !== $(this).val())
+						$(this).val(o['utilisateurMail']);
+				});
+				$('.varUtilisateurSite' + pk + 'UtilisateurMail').each(function() {
+					if(o['utilisateurMail'] !== $(this).text())
+						$(this).text(o['utilisateurMail']);
+				});
 				ajouterLueur($('.inputUtilisateurSite' + pk + 'UtilisateurMail'));
 			}
 		});

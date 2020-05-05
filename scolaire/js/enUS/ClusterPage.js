@@ -677,43 +677,91 @@ async function websocketClusterInner(apiRequest) {
 		searchClusterVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
 			if(vars.includes('created')) {
-				$('.inputCluster' + pk + 'Created').val(o['created']);
-				$('.varCluster' + pk + 'Created').text(o['created']);
+				$('.inputCluster' + pk + 'Created').each(function() {
+					if(o['created'] !== $(this).val())
+						$(this).val(o['created']);
+				});
+				$('.varCluster' + pk + 'Created').each(function() {
+					if(o['created'] !== $(this).text())
+						$(this).text(o['created']);
+				});
 				addGlow($('.inputCluster' + pk + 'Created'));
 			}
 			if(vars.includes('modified')) {
-				$('.inputCluster' + pk + 'Modified').val(o['modified']);
-				$('.varCluster' + pk + 'Modified').text(o['modified']);
+				$('.inputCluster' + pk + 'Modified').each(function() {
+					if(o['modified'] !== $(this).val())
+						$(this).val(o['modified']);
+				});
+				$('.varCluster' + pk + 'Modified').each(function() {
+					if(o['modified'] !== $(this).text())
+						$(this).text(o['modified']);
+				});
 				addGlow($('.inputCluster' + pk + 'Modified'));
 			}
 			if(vars.includes('archived')) {
-				$('.inputCluster' + pk + 'Archived').val(o['archived']);
-				$('.varCluster' + pk + 'Archived').text(o['archived']);
+				$('.inputCluster' + pk + 'Archived').each(function() {
+					if(o['archived'] !== $(this).val())
+						$(this).val(o['archived']);
+				});
+				$('.varCluster' + pk + 'Archived').each(function() {
+					if(o['archived'] !== $(this).text())
+						$(this).text(o['archived']);
+				});
 				addGlow($('.inputCluster' + pk + 'Archived'));
 			}
 			if(vars.includes('deleted')) {
-				$('.inputCluster' + pk + 'Deleted').val(o['deleted']);
-				$('.varCluster' + pk + 'Deleted').text(o['deleted']);
+				$('.inputCluster' + pk + 'Deleted').each(function() {
+					if(o['deleted'] !== $(this).val())
+						$(this).val(o['deleted']);
+				});
+				$('.varCluster' + pk + 'Deleted').each(function() {
+					if(o['deleted'] !== $(this).text())
+						$(this).text(o['deleted']);
+				});
 				addGlow($('.inputCluster' + pk + 'Deleted'));
 			}
 			if(vars.includes('inheritPk')) {
-				$('.inputCluster' + pk + 'InheritPk').val(o['inheritPk']);
-				$('.varCluster' + pk + 'InheritPk').text(o['inheritPk']);
+				$('.inputCluster' + pk + 'InheritPk').each(function() {
+					if(o['inheritPk'] !== $(this).val())
+						$(this).val(o['inheritPk']);
+				});
+				$('.varCluster' + pk + 'InheritPk').each(function() {
+					if(o['inheritPk'] !== $(this).text())
+						$(this).text(o['inheritPk']);
+				});
 				addGlow($('.inputCluster' + pk + 'InheritPk'));
 			}
 			if(vars.includes('sessionId')) {
-				$('.inputCluster' + pk + 'SessionId').val(o['sessionId']);
-				$('.varCluster' + pk + 'SessionId').text(o['sessionId']);
+				$('.inputCluster' + pk + 'SessionId').each(function() {
+					if(o['sessionId'] !== $(this).val())
+						$(this).val(o['sessionId']);
+				});
+				$('.varCluster' + pk + 'SessionId').each(function() {
+					if(o['sessionId'] !== $(this).text())
+						$(this).text(o['sessionId']);
+				});
 				addGlow($('.inputCluster' + pk + 'SessionId'));
 			}
 			if(vars.includes('userId')) {
-				$('.inputCluster' + pk + 'UserId').val(o['userId']);
-				$('.varCluster' + pk + 'UserId').text(o['userId']);
+				$('.inputCluster' + pk + 'UserId').each(function() {
+					if(o['userId'] !== $(this).val())
+						$(this).val(o['userId']);
+				});
+				$('.varCluster' + pk + 'UserId').each(function() {
+					if(o['userId'] !== $(this).text())
+						$(this).text(o['userId']);
+				});
 				addGlow($('.inputCluster' + pk + 'UserId'));
 			}
 			if(vars.includes('userKey')) {
-				$('.inputCluster' + pk + 'UserKey').val(o['userKey']);
-				$('.varCluster' + pk + 'UserKey').text(o['userKey']);
+				$('.inputCluster' + pk + 'UserKey').each(function() {
+					if(o['userKey'] !== $(this).val())
+						$(this).val(o['userKey']);
+				});
+				$('.varCluster' + pk + 'UserKey').each(function() {
+					if(o['userKey'] !== $(this).text())
+						$(this).text(o['userKey']);
+				});
 				addGlow($('.inputCluster' + pk + 'UserKey'));
 			}
 		});

@@ -1409,7 +1409,7 @@ function searchHtmlPartFilters($formFilters) {
 
 function searchHtmlPartVals(filters, success, error) {
 
-	filters.push({ name: 'rows', value: 1000 });
+	filters.push({ name: 'rows', value: 300 });
 
 	filters.push({ name: 'sort', value: 'sort1 asc' });
 	filters.push({ name: 'sort', value: 'sort2 asc' });
@@ -1539,178 +1539,388 @@ async function websocketHtmlPartInner(apiRequest) {
 		searchHtmlPartVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
 			if(vars.includes('created')) {
-				$('.inputHtmlPart' + pk + 'Created').val(o['created']);
-				$('.varHtmlPart' + pk + 'Created').text(o['created']);
+				$('.inputHtmlPart' + pk + 'Created').each(function() {
+					if(o['created'] !== $(this).val())
+						$(this).val(o['created']);
+				});
+				$('.varHtmlPart' + pk + 'Created').each(function() {
+					if(o['created'] !== $(this).text())
+						$(this).text(o['created']);
+				});
 				addGlow($('.inputHtmlPart' + pk + 'Created'));
 			}
 			if(vars.includes('modified')) {
-				$('.inputHtmlPart' + pk + 'Modified').val(o['modified']);
-				$('.varHtmlPart' + pk + 'Modified').text(o['modified']);
+				$('.inputHtmlPart' + pk + 'Modified').each(function() {
+					if(o['modified'] !== $(this).val())
+						$(this).val(o['modified']);
+				});
+				$('.varHtmlPart' + pk + 'Modified').each(function() {
+					if(o['modified'] !== $(this).text())
+						$(this).text(o['modified']);
+				});
 				addGlow($('.inputHtmlPart' + pk + 'Modified'));
 			}
 			if(vars.includes('archived')) {
-				$('.inputHtmlPart' + pk + 'Archived').val(o['archived']);
-				$('.varHtmlPart' + pk + 'Archived').text(o['archived']);
+				$('.inputHtmlPart' + pk + 'Archived').each(function() {
+					if(o['archived'] !== $(this).val())
+						$(this).val(o['archived']);
+				});
+				$('.varHtmlPart' + pk + 'Archived').each(function() {
+					if(o['archived'] !== $(this).text())
+						$(this).text(o['archived']);
+				});
 				addGlow($('.inputHtmlPart' + pk + 'Archived'));
 			}
 			if(vars.includes('deleted')) {
-				$('.inputHtmlPart' + pk + 'Deleted').val(o['deleted']);
-				$('.varHtmlPart' + pk + 'Deleted').text(o['deleted']);
+				$('.inputHtmlPart' + pk + 'Deleted').each(function() {
+					if(o['deleted'] !== $(this).val())
+						$(this).val(o['deleted']);
+				});
+				$('.varHtmlPart' + pk + 'Deleted').each(function() {
+					if(o['deleted'] !== $(this).text())
+						$(this).text(o['deleted']);
+				});
 				addGlow($('.inputHtmlPart' + pk + 'Deleted'));
 			}
 			if(vars.includes('pageDesignKeys')) {
-				$('.inputHtmlPart' + pk + 'PageDesignKeys').val(o['pageDesignKeys']);
-				$('.varHtmlPart' + pk + 'PageDesignKeys').text(o['pageDesignKeys']);
+				$('.inputHtmlPart' + pk + 'PageDesignKeys').each(function() {
+					if(o['pageDesignKeys'] !== $(this).val())
+						$(this).val(o['pageDesignKeys']);
+				});
+				$('.varHtmlPart' + pk + 'PageDesignKeys').each(function() {
+					if(o['pageDesignKeys'] !== $(this).text())
+						$(this).text(o['pageDesignKeys']);
+				});
 				addGlow($('.inputHtmlPart' + pk + 'PageDesignKeys'));
 			}
 			if(vars.includes('htmlLink')) {
-				$('.inputHtmlPart' + pk + 'HtmlLink').val(o['htmlLink']);
-				$('.varHtmlPart' + pk + 'HtmlLink').text(o['htmlLink']);
+				$('.inputHtmlPart' + pk + 'HtmlLink').each(function() {
+					if(o['htmlLink'] !== $(this).val())
+						$(this).val(o['htmlLink']);
+				});
+				$('.varHtmlPart' + pk + 'HtmlLink').each(function() {
+					if(o['htmlLink'] !== $(this).text())
+						$(this).text(o['htmlLink']);
+				});
 				addGlow($('.inputHtmlPart' + pk + 'HtmlLink'));
 			}
 			if(vars.includes('htmlElement')) {
-				$('.inputHtmlPart' + pk + 'HtmlElement').val(o['htmlElement']);
-				$('.varHtmlPart' + pk + 'HtmlElement').text(o['htmlElement']);
+				$('.inputHtmlPart' + pk + 'HtmlElement').each(function() {
+					if(o['htmlElement'] !== $(this).val())
+						$(this).val(o['htmlElement']);
+				});
+				$('.varHtmlPart' + pk + 'HtmlElement').each(function() {
+					if(o['htmlElement'] !== $(this).text())
+						$(this).text(o['htmlElement']);
+				});
 				addGlow($('.inputHtmlPart' + pk + 'HtmlElement'));
 			}
 			if(vars.includes('htmlId')) {
-				$('.inputHtmlPart' + pk + 'HtmlId').val(o['htmlId']);
-				$('.varHtmlPart' + pk + 'HtmlId').text(o['htmlId']);
+				$('.inputHtmlPart' + pk + 'HtmlId').each(function() {
+					if(o['htmlId'] !== $(this).val())
+						$(this).val(o['htmlId']);
+				});
+				$('.varHtmlPart' + pk + 'HtmlId').each(function() {
+					if(o['htmlId'] !== $(this).text())
+						$(this).text(o['htmlId']);
+				});
 				addGlow($('.inputHtmlPart' + pk + 'HtmlId'));
 			}
 			if(vars.includes('htmlClasses')) {
-				$('.inputHtmlPart' + pk + 'HtmlClasses').val(o['htmlClasses']);
-				$('.varHtmlPart' + pk + 'HtmlClasses').text(o['htmlClasses']);
+				$('.inputHtmlPart' + pk + 'HtmlClasses').each(function() {
+					if(o['htmlClasses'] !== $(this).val())
+						$(this).val(o['htmlClasses']);
+				});
+				$('.varHtmlPart' + pk + 'HtmlClasses').each(function() {
+					if(o['htmlClasses'] !== $(this).text())
+						$(this).text(o['htmlClasses']);
+				});
 				addGlow($('.inputHtmlPart' + pk + 'HtmlClasses'));
 			}
 			if(vars.includes('htmlStyle')) {
-				$('.inputHtmlPart' + pk + 'HtmlStyle').val(o['htmlStyle']);
-				$('.varHtmlPart' + pk + 'HtmlStyle').text(o['htmlStyle']);
+				$('.inputHtmlPart' + pk + 'HtmlStyle').each(function() {
+					if(o['htmlStyle'] !== $(this).val())
+						$(this).val(o['htmlStyle']);
+				});
+				$('.varHtmlPart' + pk + 'HtmlStyle').each(function() {
+					if(o['htmlStyle'] !== $(this).text())
+						$(this).text(o['htmlStyle']);
+				});
 				addGlow($('.inputHtmlPart' + pk + 'HtmlStyle'));
 			}
 			if(vars.includes('htmlBefore')) {
-				$('.inputHtmlPart' + pk + 'HtmlBefore').val(o['htmlBefore']);
-				$('.varHtmlPart' + pk + 'HtmlBefore').text(o['htmlBefore']);
+				$('.inputHtmlPart' + pk + 'HtmlBefore').each(function() {
+					if(o['htmlBefore'] !== $(this).val())
+						$(this).val(o['htmlBefore']);
+				});
+				$('.varHtmlPart' + pk + 'HtmlBefore').each(function() {
+					if(o['htmlBefore'] !== $(this).text())
+						$(this).text(o['htmlBefore']);
+				});
 				addGlow($('.inputHtmlPart' + pk + 'HtmlBefore'));
 			}
 			if(vars.includes('htmlAfter')) {
-				$('.inputHtmlPart' + pk + 'HtmlAfter').val(o['htmlAfter']);
-				$('.varHtmlPart' + pk + 'HtmlAfter').text(o['htmlAfter']);
+				$('.inputHtmlPart' + pk + 'HtmlAfter').each(function() {
+					if(o['htmlAfter'] !== $(this).val())
+						$(this).val(o['htmlAfter']);
+				});
+				$('.varHtmlPart' + pk + 'HtmlAfter').each(function() {
+					if(o['htmlAfter'] !== $(this).text())
+						$(this).text(o['htmlAfter']);
+				});
 				addGlow($('.inputHtmlPart' + pk + 'HtmlAfter'));
 			}
 			if(vars.includes('htmlText')) {
-				$('.inputHtmlPart' + pk + 'HtmlText').val(o['htmlText']);
-				$('.varHtmlPart' + pk + 'HtmlText').text(o['htmlText']);
+				$('.inputHtmlPart' + pk + 'HtmlText').each(function() {
+					if(o['htmlText'] !== $(this).val())
+						$(this).val(o['htmlText']);
+				});
+				$('.varHtmlPart' + pk + 'HtmlText').each(function() {
+					if(o['htmlText'] !== $(this).text())
+						$(this).text(o['htmlText']);
+				});
 				addGlow($('.inputHtmlPart' + pk + 'HtmlText'));
 			}
 			if(vars.includes('htmlVar')) {
-				$('.inputHtmlPart' + pk + 'HtmlVar').val(o['htmlVar']);
-				$('.varHtmlPart' + pk + 'HtmlVar').text(o['htmlVar']);
+				$('.inputHtmlPart' + pk + 'HtmlVar').each(function() {
+					if(o['htmlVar'] !== $(this).val())
+						$(this).val(o['htmlVar']);
+				});
+				$('.varHtmlPart' + pk + 'HtmlVar').each(function() {
+					if(o['htmlVar'] !== $(this).text())
+						$(this).text(o['htmlVar']);
+				});
 				addGlow($('.inputHtmlPart' + pk + 'HtmlVar'));
 			}
 			if(vars.includes('htmlVarSpan')) {
-				$('.inputHtmlPart' + pk + 'HtmlVarSpan').val(o['htmlVarSpan']);
-				$('.varHtmlPart' + pk + 'HtmlVarSpan').text(o['htmlVarSpan']);
+				$('.inputHtmlPart' + pk + 'HtmlVarSpan').each(function() {
+					if(o['htmlVarSpan'] !== $(this).val())
+						$(this).val(o['htmlVarSpan']);
+				});
+				$('.varHtmlPart' + pk + 'HtmlVarSpan').each(function() {
+					if(o['htmlVarSpan'] !== $(this).text())
+						$(this).text(o['htmlVarSpan']);
+				});
 				addGlow($('.inputHtmlPart' + pk + 'HtmlVarSpan'));
 			}
 			if(vars.includes('htmlVarForm')) {
-				$('.inputHtmlPart' + pk + 'HtmlVarForm').val(o['htmlVarForm']);
-				$('.varHtmlPart' + pk + 'HtmlVarForm').text(o['htmlVarForm']);
+				$('.inputHtmlPart' + pk + 'HtmlVarForm').each(function() {
+					if(o['htmlVarForm'] !== $(this).val())
+						$(this).val(o['htmlVarForm']);
+				});
+				$('.varHtmlPart' + pk + 'HtmlVarForm').each(function() {
+					if(o['htmlVarForm'] !== $(this).text())
+						$(this).text(o['htmlVarForm']);
+				});
 				addGlow($('.inputHtmlPart' + pk + 'HtmlVarForm'));
 			}
 			if(vars.includes('htmlVarInput')) {
-				$('.inputHtmlPart' + pk + 'HtmlVarInput').val(o['htmlVarInput']);
-				$('.varHtmlPart' + pk + 'HtmlVarInput').text(o['htmlVarInput']);
+				$('.inputHtmlPart' + pk + 'HtmlVarInput').each(function() {
+					if(o['htmlVarInput'] !== $(this).val())
+						$(this).val(o['htmlVarInput']);
+				});
+				$('.varHtmlPart' + pk + 'HtmlVarInput').each(function() {
+					if(o['htmlVarInput'] !== $(this).text())
+						$(this).text(o['htmlVarInput']);
+				});
 				addGlow($('.inputHtmlPart' + pk + 'HtmlVarInput'));
 			}
 			if(vars.includes('htmlVarForEach')) {
-				$('.inputHtmlPart' + pk + 'HtmlVarForEach').val(o['htmlVarForEach']);
-				$('.varHtmlPart' + pk + 'HtmlVarForEach').text(o['htmlVarForEach']);
+				$('.inputHtmlPart' + pk + 'HtmlVarForEach').each(function() {
+					if(o['htmlVarForEach'] !== $(this).val())
+						$(this).val(o['htmlVarForEach']);
+				});
+				$('.varHtmlPart' + pk + 'HtmlVarForEach').each(function() {
+					if(o['htmlVarForEach'] !== $(this).text())
+						$(this).text(o['htmlVarForEach']);
+				});
 				addGlow($('.inputHtmlPart' + pk + 'HtmlVarForEach'));
 			}
 			if(vars.includes('htmlExclude')) {
-				$('.inputHtmlPart' + pk + 'HtmlExclude').val(o['htmlExclude']);
-				$('.varHtmlPart' + pk + 'HtmlExclude').text(o['htmlExclude']);
+				$('.inputHtmlPart' + pk + 'HtmlExclude').each(function() {
+					if(o['htmlExclude'] !== $(this).val())
+						$(this).val(o['htmlExclude']);
+				});
+				$('.varHtmlPart' + pk + 'HtmlExclude').each(function() {
+					if(o['htmlExclude'] !== $(this).text())
+						$(this).text(o['htmlExclude']);
+				});
 				addGlow($('.inputHtmlPart' + pk + 'HtmlExclude'));
 			}
 			if(vars.includes('pdfExclude')) {
-				$('.inputHtmlPart' + pk + 'PdfExclude').val(o['pdfExclude']);
-				$('.varHtmlPart' + pk + 'PdfExclude').text(o['pdfExclude']);
+				$('.inputHtmlPart' + pk + 'PdfExclude').each(function() {
+					if(o['pdfExclude'] !== $(this).val())
+						$(this).val(o['pdfExclude']);
+				});
+				$('.varHtmlPart' + pk + 'PdfExclude').each(function() {
+					if(o['pdfExclude'] !== $(this).text())
+						$(this).text(o['pdfExclude']);
+				});
 				addGlow($('.inputHtmlPart' + pk + 'PdfExclude'));
 			}
 			if(vars.includes('loginLogout')) {
-				$('.inputHtmlPart' + pk + 'LoginLogout').val(o['loginLogout']);
-				$('.varHtmlPart' + pk + 'LoginLogout').text(o['loginLogout']);
+				$('.inputHtmlPart' + pk + 'LoginLogout').each(function() {
+					if(o['loginLogout'] !== $(this).val())
+						$(this).val(o['loginLogout']);
+				});
+				$('.varHtmlPart' + pk + 'LoginLogout').each(function() {
+					if(o['loginLogout'] !== $(this).text())
+						$(this).text(o['loginLogout']);
+				});
 				addGlow($('.inputHtmlPart' + pk + 'LoginLogout'));
 			}
 			if(vars.includes('sort1')) {
-				$('.inputHtmlPart' + pk + 'Sort1').val(o['sort1']);
-				$('.varHtmlPart' + pk + 'Sort1').text(o['sort1']);
+				$('.inputHtmlPart' + pk + 'Sort1').each(function() {
+					if(o['sort1'] !== $(this).val())
+						$(this).val(o['sort1']);
+				});
+				$('.varHtmlPart' + pk + 'Sort1').each(function() {
+					if(o['sort1'] !== $(this).text())
+						$(this).text(o['sort1']);
+				});
 				addGlow($('.inputHtmlPart' + pk + 'Sort1'));
 			}
 			if(vars.includes('sort2')) {
-				$('.inputHtmlPart' + pk + 'Sort2').val(o['sort2']);
-				$('.varHtmlPart' + pk + 'Sort2').text(o['sort2']);
+				$('.inputHtmlPart' + pk + 'Sort2').each(function() {
+					if(o['sort2'] !== $(this).val())
+						$(this).val(o['sort2']);
+				});
+				$('.varHtmlPart' + pk + 'Sort2').each(function() {
+					if(o['sort2'] !== $(this).text())
+						$(this).text(o['sort2']);
+				});
 				addGlow($('.inputHtmlPart' + pk + 'Sort2'));
 			}
 			if(vars.includes('sort3')) {
-				$('.inputHtmlPart' + pk + 'Sort3').val(o['sort3']);
-				$('.varHtmlPart' + pk + 'Sort3').text(o['sort3']);
+				$('.inputHtmlPart' + pk + 'Sort3').each(function() {
+					if(o['sort3'] !== $(this).val())
+						$(this).val(o['sort3']);
+				});
+				$('.varHtmlPart' + pk + 'Sort3').each(function() {
+					if(o['sort3'] !== $(this).text())
+						$(this).text(o['sort3']);
+				});
 				addGlow($('.inputHtmlPart' + pk + 'Sort3'));
 			}
 			if(vars.includes('sort4')) {
-				$('.inputHtmlPart' + pk + 'Sort4').val(o['sort4']);
-				$('.varHtmlPart' + pk + 'Sort4').text(o['sort4']);
+				$('.inputHtmlPart' + pk + 'Sort4').each(function() {
+					if(o['sort4'] !== $(this).val())
+						$(this).val(o['sort4']);
+				});
+				$('.varHtmlPart' + pk + 'Sort4').each(function() {
+					if(o['sort4'] !== $(this).text())
+						$(this).text(o['sort4']);
+				});
 				addGlow($('.inputHtmlPart' + pk + 'Sort4'));
 			}
 			if(vars.includes('sort5')) {
-				$('.inputHtmlPart' + pk + 'Sort5').val(o['sort5']);
-				$('.varHtmlPart' + pk + 'Sort5').text(o['sort5']);
+				$('.inputHtmlPart' + pk + 'Sort5').each(function() {
+					if(o['sort5'] !== $(this).val())
+						$(this).val(o['sort5']);
+				});
+				$('.varHtmlPart' + pk + 'Sort5').each(function() {
+					if(o['sort5'] !== $(this).text())
+						$(this).text(o['sort5']);
+				});
 				addGlow($('.inputHtmlPart' + pk + 'Sort5'));
 			}
 			if(vars.includes('sort6')) {
-				$('.inputHtmlPart' + pk + 'Sort6').val(o['sort6']);
-				$('.varHtmlPart' + pk + 'Sort6').text(o['sort6']);
+				$('.inputHtmlPart' + pk + 'Sort6').each(function() {
+					if(o['sort6'] !== $(this).val())
+						$(this).val(o['sort6']);
+				});
+				$('.varHtmlPart' + pk + 'Sort6').each(function() {
+					if(o['sort6'] !== $(this).text())
+						$(this).text(o['sort6']);
+				});
 				addGlow($('.inputHtmlPart' + pk + 'Sort6'));
 			}
 			if(vars.includes('sort7')) {
-				$('.inputHtmlPart' + pk + 'Sort7').val(o['sort7']);
-				$('.varHtmlPart' + pk + 'Sort7').text(o['sort7']);
+				$('.inputHtmlPart' + pk + 'Sort7').each(function() {
+					if(o['sort7'] !== $(this).val())
+						$(this).val(o['sort7']);
+				});
+				$('.varHtmlPart' + pk + 'Sort7').each(function() {
+					if(o['sort7'] !== $(this).text())
+						$(this).text(o['sort7']);
+				});
 				addGlow($('.inputHtmlPart' + pk + 'Sort7'));
 			}
 			if(vars.includes('sort8')) {
-				$('.inputHtmlPart' + pk + 'Sort8').val(o['sort8']);
-				$('.varHtmlPart' + pk + 'Sort8').text(o['sort8']);
+				$('.inputHtmlPart' + pk + 'Sort8').each(function() {
+					if(o['sort8'] !== $(this).val())
+						$(this).val(o['sort8']);
+				});
+				$('.varHtmlPart' + pk + 'Sort8').each(function() {
+					if(o['sort8'] !== $(this).text())
+						$(this).text(o['sort8']);
+				});
 				addGlow($('.inputHtmlPart' + pk + 'Sort8'));
 			}
 			if(vars.includes('sort9')) {
-				$('.inputHtmlPart' + pk + 'Sort9').val(o['sort9']);
-				$('.varHtmlPart' + pk + 'Sort9').text(o['sort9']);
+				$('.inputHtmlPart' + pk + 'Sort9').each(function() {
+					if(o['sort9'] !== $(this).val())
+						$(this).val(o['sort9']);
+				});
+				$('.varHtmlPart' + pk + 'Sort9').each(function() {
+					if(o['sort9'] !== $(this).text())
+						$(this).text(o['sort9']);
+				});
 				addGlow($('.inputHtmlPart' + pk + 'Sort9'));
 			}
 			if(vars.includes('sort10')) {
-				$('.inputHtmlPart' + pk + 'Sort10').val(o['sort10']);
-				$('.varHtmlPart' + pk + 'Sort10').text(o['sort10']);
+				$('.inputHtmlPart' + pk + 'Sort10').each(function() {
+					if(o['sort10'] !== $(this).val())
+						$(this).val(o['sort10']);
+				});
+				$('.varHtmlPart' + pk + 'Sort10').each(function() {
+					if(o['sort10'] !== $(this).text())
+						$(this).text(o['sort10']);
+				});
 				addGlow($('.inputHtmlPart' + pk + 'Sort10'));
 			}
 			if(vars.includes('inheritPk')) {
-				$('.inputHtmlPart' + pk + 'InheritPk').val(o['inheritPk']);
-				$('.varHtmlPart' + pk + 'InheritPk').text(o['inheritPk']);
+				$('.inputHtmlPart' + pk + 'InheritPk').each(function() {
+					if(o['inheritPk'] !== $(this).val())
+						$(this).val(o['inheritPk']);
+				});
+				$('.varHtmlPart' + pk + 'InheritPk').each(function() {
+					if(o['inheritPk'] !== $(this).text())
+						$(this).text(o['inheritPk']);
+				});
 				addGlow($('.inputHtmlPart' + pk + 'InheritPk'));
 			}
 			if(vars.includes('sessionId')) {
-				$('.inputHtmlPart' + pk + 'SessionId').val(o['sessionId']);
-				$('.varHtmlPart' + pk + 'SessionId').text(o['sessionId']);
+				$('.inputHtmlPart' + pk + 'SessionId').each(function() {
+					if(o['sessionId'] !== $(this).val())
+						$(this).val(o['sessionId']);
+				});
+				$('.varHtmlPart' + pk + 'SessionId').each(function() {
+					if(o['sessionId'] !== $(this).text())
+						$(this).text(o['sessionId']);
+				});
 				addGlow($('.inputHtmlPart' + pk + 'SessionId'));
 			}
 			if(vars.includes('userId')) {
-				$('.inputHtmlPart' + pk + 'UserId').val(o['userId']);
-				$('.varHtmlPart' + pk + 'UserId').text(o['userId']);
+				$('.inputHtmlPart' + pk + 'UserId').each(function() {
+					if(o['userId'] !== $(this).val())
+						$(this).val(o['userId']);
+				});
+				$('.varHtmlPart' + pk + 'UserId').each(function() {
+					if(o['userId'] !== $(this).text())
+						$(this).text(o['userId']);
+				});
 				addGlow($('.inputHtmlPart' + pk + 'UserId'));
 			}
 			if(vars.includes('userKey')) {
-				$('.inputHtmlPart' + pk + 'UserKey').val(o['userKey']);
-				$('.varHtmlPart' + pk + 'UserKey').text(o['userKey']);
+				$('.inputHtmlPart' + pk + 'UserKey').each(function() {
+					if(o['userKey'] !== $(this).val())
+						$(this).val(o['userKey']);
+				});
+				$('.varHtmlPart' + pk + 'UserKey').each(function() {
+					if(o['userKey'] !== $(this).text())
+						$(this).text(o['userKey']);
+				});
 				addGlow($('.inputHtmlPart' + pk + 'UserKey'));
 			}
 		});

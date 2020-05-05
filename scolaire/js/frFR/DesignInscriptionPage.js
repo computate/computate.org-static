@@ -860,53 +860,113 @@ async function websocketDesignInscriptionInner(requeteApi) {
 		rechercherDesignInscriptionVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
 			if(vars.includes('cree')) {
-				$('.inputDesignInscription' + pk + 'Cree').val(o['cree']);
-				$('.varDesignInscription' + pk + 'Cree').text(o['cree']);
+				$('.inputDesignInscription' + pk + 'Cree').each(function() {
+					if(o['cree'] !== $(this).val())
+						$(this).val(o['cree']);
+				});
+				$('.varDesignInscription' + pk + 'Cree').each(function() {
+					if(o['cree'] !== $(this).text())
+						$(this).text(o['cree']);
+				});
 				ajouterLueur($('.inputDesignInscription' + pk + 'Cree'));
 			}
 			if(vars.includes('modifie')) {
-				$('.inputDesignInscription' + pk + 'Modifie').val(o['modifie']);
-				$('.varDesignInscription' + pk + 'Modifie').text(o['modifie']);
+				$('.inputDesignInscription' + pk + 'Modifie').each(function() {
+					if(o['modifie'] !== $(this).val())
+						$(this).val(o['modifie']);
+				});
+				$('.varDesignInscription' + pk + 'Modifie').each(function() {
+					if(o['modifie'] !== $(this).text())
+						$(this).text(o['modifie']);
+				});
 				ajouterLueur($('.inputDesignInscription' + pk + 'Modifie'));
 			}
 			if(vars.includes('archive')) {
-				$('.inputDesignInscription' + pk + 'Archive').val(o['archive']);
-				$('.varDesignInscription' + pk + 'Archive').text(o['archive']);
+				$('.inputDesignInscription' + pk + 'Archive').each(function() {
+					if(o['archive'] !== $(this).val())
+						$(this).val(o['archive']);
+				});
+				$('.varDesignInscription' + pk + 'Archive').each(function() {
+					if(o['archive'] !== $(this).text())
+						$(this).text(o['archive']);
+				});
 				ajouterLueur($('.inputDesignInscription' + pk + 'Archive'));
 			}
 			if(vars.includes('supprime')) {
-				$('.inputDesignInscription' + pk + 'Supprime').val(o['supprime']);
-				$('.varDesignInscription' + pk + 'Supprime').text(o['supprime']);
+				$('.inputDesignInscription' + pk + 'Supprime').each(function() {
+					if(o['supprime'] !== $(this).val())
+						$(this).val(o['supprime']);
+				});
+				$('.varDesignInscription' + pk + 'Supprime').each(function() {
+					if(o['supprime'] !== $(this).text())
+						$(this).text(o['supprime']);
+				});
 				ajouterLueur($('.inputDesignInscription' + pk + 'Supprime'));
 			}
 			if(vars.includes('designInscriptionNomComplet')) {
-				$('.inputDesignInscription' + pk + 'DesignInscriptionNomComplet').val(o['designInscriptionNomComplet']);
-				$('.varDesignInscription' + pk + 'DesignInscriptionNomComplet').text(o['designInscriptionNomComplet']);
+				$('.inputDesignInscription' + pk + 'DesignInscriptionNomComplet').each(function() {
+					if(o['designInscriptionNomComplet'] !== $(this).val())
+						$(this).val(o['designInscriptionNomComplet']);
+				});
+				$('.varDesignInscription' + pk + 'DesignInscriptionNomComplet').each(function() {
+					if(o['designInscriptionNomComplet'] !== $(this).text())
+						$(this).text(o['designInscriptionNomComplet']);
+				});
 				ajouterLueur($('.inputDesignInscription' + pk + 'DesignInscriptionNomComplet'));
 			}
 			if(vars.includes('designCache')) {
-				$('.inputDesignInscription' + pk + 'DesignCache').val(o['designCache']);
-				$('.varDesignInscription' + pk + 'DesignCache').text(o['designCache']);
+				$('.inputDesignInscription' + pk + 'DesignCache').each(function() {
+					if(o['designCache'] !== $(this).val())
+						$(this).val(o['designCache']);
+				});
+				$('.varDesignInscription' + pk + 'DesignCache').each(function() {
+					if(o['designCache'] !== $(this).text())
+						$(this).text(o['designCache']);
+				});
 				ajouterLueur($('.inputDesignInscription' + pk + 'DesignCache'));
 			}
 			if(vars.includes('inheritPk')) {
-				$('.inputDesignInscription' + pk + 'InheritPk').val(o['inheritPk']);
-				$('.varDesignInscription' + pk + 'InheritPk').text(o['inheritPk']);
+				$('.inputDesignInscription' + pk + 'InheritPk').each(function() {
+					if(o['inheritPk'] !== $(this).val())
+						$(this).val(o['inheritPk']);
+				});
+				$('.varDesignInscription' + pk + 'InheritPk').each(function() {
+					if(o['inheritPk'] !== $(this).text())
+						$(this).text(o['inheritPk']);
+				});
 				ajouterLueur($('.inputDesignInscription' + pk + 'InheritPk'));
 			}
 			if(vars.includes('sessionId')) {
-				$('.inputDesignInscription' + pk + 'SessionId').val(o['sessionId']);
-				$('.varDesignInscription' + pk + 'SessionId').text(o['sessionId']);
+				$('.inputDesignInscription' + pk + 'SessionId').each(function() {
+					if(o['sessionId'] !== $(this).val())
+						$(this).val(o['sessionId']);
+				});
+				$('.varDesignInscription' + pk + 'SessionId').each(function() {
+					if(o['sessionId'] !== $(this).text())
+						$(this).text(o['sessionId']);
+				});
 				ajouterLueur($('.inputDesignInscription' + pk + 'SessionId'));
 			}
 			if(vars.includes('utilisateurId')) {
-				$('.inputDesignInscription' + pk + 'UtilisateurId').val(o['utilisateurId']);
-				$('.varDesignInscription' + pk + 'UtilisateurId').text(o['utilisateurId']);
+				$('.inputDesignInscription' + pk + 'UtilisateurId').each(function() {
+					if(o['utilisateurId'] !== $(this).val())
+						$(this).val(o['utilisateurId']);
+				});
+				$('.varDesignInscription' + pk + 'UtilisateurId').each(function() {
+					if(o['utilisateurId'] !== $(this).text())
+						$(this).text(o['utilisateurId']);
+				});
 				ajouterLueur($('.inputDesignInscription' + pk + 'UtilisateurId'));
 			}
 			if(vars.includes('utilisateurCle')) {
-				$('.inputDesignInscription' + pk + 'UtilisateurCle').val(o['utilisateurCle']);
-				$('.varDesignInscription' + pk + 'UtilisateurCle').text(o['utilisateurCle']);
+				$('.inputDesignInscription' + pk + 'UtilisateurCle').each(function() {
+					if(o['utilisateurCle'] !== $(this).val())
+						$(this).val(o['utilisateurCle']);
+				});
+				$('.varDesignInscription' + pk + 'UtilisateurCle').each(function() {
+					if(o['utilisateurCle'] !== $(this).text())
+						$(this).text(o['utilisateurCle']);
+				});
 				ajouterLueur($('.inputDesignInscription' + pk + 'UtilisateurCle'));
 			}
 		});

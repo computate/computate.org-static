@@ -4443,293 +4443,641 @@ async function websocketInscriptionScolaireInner(requeteApi) {
 		rechercherInscriptionScolaireVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
 			if(vars.includes('cree')) {
-				$('.inputInscriptionScolaire' + pk + 'Cree').val(o['cree']);
-				$('.varInscriptionScolaire' + pk + 'Cree').text(o['cree']);
+				$('.inputInscriptionScolaire' + pk + 'Cree').each(function() {
+					if(o['cree'] !== $(this).val())
+						$(this).val(o['cree']);
+				});
+				$('.varInscriptionScolaire' + pk + 'Cree').each(function() {
+					if(o['cree'] !== $(this).text())
+						$(this).text(o['cree']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'Cree'));
 			}
 			if(vars.includes('modifie')) {
-				$('.inputInscriptionScolaire' + pk + 'Modifie').val(o['modifie']);
-				$('.varInscriptionScolaire' + pk + 'Modifie').text(o['modifie']);
+				$('.inputInscriptionScolaire' + pk + 'Modifie').each(function() {
+					if(o['modifie'] !== $(this).val())
+						$(this).val(o['modifie']);
+				});
+				$('.varInscriptionScolaire' + pk + 'Modifie').each(function() {
+					if(o['modifie'] !== $(this).text())
+						$(this).text(o['modifie']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'Modifie'));
 			}
 			if(vars.includes('archive')) {
-				$('.inputInscriptionScolaire' + pk + 'Archive').val(o['archive']);
-				$('.varInscriptionScolaire' + pk + 'Archive').text(o['archive']);
+				$('.inputInscriptionScolaire' + pk + 'Archive').each(function() {
+					if(o['archive'] !== $(this).val())
+						$(this).val(o['archive']);
+				});
+				$('.varInscriptionScolaire' + pk + 'Archive').each(function() {
+					if(o['archive'] !== $(this).text())
+						$(this).text(o['archive']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'Archive'));
 			}
 			if(vars.includes('supprime')) {
-				$('.inputInscriptionScolaire' + pk + 'Supprime').val(o['supprime']);
-				$('.varInscriptionScolaire' + pk + 'Supprime').text(o['supprime']);
+				$('.inputInscriptionScolaire' + pk + 'Supprime').each(function() {
+					if(o['supprime'] !== $(this).val())
+						$(this).val(o['supprime']);
+				});
+				$('.varInscriptionScolaire' + pk + 'Supprime').each(function() {
+					if(o['supprime'] !== $(this).text())
+						$(this).text(o['supprime']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'Supprime'));
 			}
 			if(vars.includes('inscriptionApprouve')) {
-				$('.inputInscriptionScolaire' + pk + 'InscriptionApprouve').val(o['inscriptionApprouve']);
-				$('.varInscriptionScolaire' + pk + 'InscriptionApprouve').text(o['inscriptionApprouve']);
+				$('.inputInscriptionScolaire' + pk + 'InscriptionApprouve').each(function() {
+					if(o['inscriptionApprouve'] !== $(this).val())
+						$(this).val(o['inscriptionApprouve']);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionApprouve').each(function() {
+					if(o['inscriptionApprouve'] !== $(this).text())
+						$(this).text(o['inscriptionApprouve']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionApprouve'));
 			}
 			if(vars.includes('inscriptionImmunisations')) {
-				$('.inputInscriptionScolaire' + pk + 'InscriptionImmunisations').val(o['inscriptionImmunisations']);
-				$('.varInscriptionScolaire' + pk + 'InscriptionImmunisations').text(o['inscriptionImmunisations']);
+				$('.inputInscriptionScolaire' + pk + 'InscriptionImmunisations').each(function() {
+					if(o['inscriptionImmunisations'] !== $(this).val())
+						$(this).val(o['inscriptionImmunisations']);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionImmunisations').each(function() {
+					if(o['inscriptionImmunisations'] !== $(this).text())
+						$(this).text(o['inscriptionImmunisations']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionImmunisations'));
 			}
 			if(vars.includes('inscriptionNomGroupe')) {
-				$('.inputInscriptionScolaire' + pk + 'InscriptionNomGroupe').val(o['inscriptionNomGroupe']);
-				$('.varInscriptionScolaire' + pk + 'InscriptionNomGroupe').text(o['inscriptionNomGroupe']);
+				$('.inputInscriptionScolaire' + pk + 'InscriptionNomGroupe').each(function() {
+					if(o['inscriptionNomGroupe'] !== $(this).val())
+						$(this).val(o['inscriptionNomGroupe']);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionNomGroupe').each(function() {
+					if(o['inscriptionNomGroupe'] !== $(this).text())
+						$(this).text(o['inscriptionNomGroupe']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionNomGroupe'));
 			}
 			if(vars.includes('customerProfileId')) {
-				$('.inputInscriptionScolaire' + pk + 'CustomerProfileId').val(o['customerProfileId']);
-				$('.varInscriptionScolaire' + pk + 'CustomerProfileId').text(o['customerProfileId']);
+				$('.inputInscriptionScolaire' + pk + 'CustomerProfileId').each(function() {
+					if(o['customerProfileId'] !== $(this).val())
+						$(this).val(o['customerProfileId']);
+				});
+				$('.varInscriptionScolaire' + pk + 'CustomerProfileId').each(function() {
+					if(o['customerProfileId'] !== $(this).text())
+						$(this).text(o['customerProfileId']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'CustomerProfileId'));
 			}
 			if(vars.includes('inscriptionPaimentComplet')) {
-				$('.inputInscriptionScolaire' + pk + 'InscriptionPaimentComplet').val(o['inscriptionPaimentComplet']);
-				$('.varInscriptionScolaire' + pk + 'InscriptionPaimentComplet').text(o['inscriptionPaimentComplet']);
+				$('.inputInscriptionScolaire' + pk + 'InscriptionPaimentComplet').each(function() {
+					if(o['inscriptionPaimentComplet'] !== $(this).val())
+						$(this).val(o['inscriptionPaimentComplet']);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionPaimentComplet').each(function() {
+					if(o['inscriptionPaimentComplet'] !== $(this).text())
+						$(this).text(o['inscriptionPaimentComplet']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionPaimentComplet'));
 			}
 			if(vars.includes('enfantPropre')) {
-				$('.inputInscriptionScolaire' + pk + 'EnfantPropre').val(o['enfantPropre']);
-				$('.varInscriptionScolaire' + pk + 'EnfantPropre').text(o['enfantPropre']);
+				$('.inputInscriptionScolaire' + pk + 'EnfantPropre').each(function() {
+					if(o['enfantPropre'] !== $(this).val())
+						$(this).val(o['enfantPropre']);
+				});
+				$('.varInscriptionScolaire' + pk + 'EnfantPropre').each(function() {
+					if(o['enfantPropre'] !== $(this).text())
+						$(this).text(o['enfantPropre']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EnfantPropre'));
 			}
 			if(vars.includes('inscriptionPaimentChaqueMois')) {
-				$('.inputInscriptionScolaire' + pk + 'InscriptionPaimentChaqueMois').val(o['inscriptionPaimentChaqueMois']);
-				$('.varInscriptionScolaire' + pk + 'InscriptionPaimentChaqueMois').text(o['inscriptionPaimentChaqueMois']);
+				$('.inputInscriptionScolaire' + pk + 'InscriptionPaimentChaqueMois').each(function() {
+					if(o['inscriptionPaimentChaqueMois'] !== $(this).val())
+						$(this).val(o['inscriptionPaimentChaqueMois']);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionPaimentChaqueMois').each(function() {
+					if(o['inscriptionPaimentChaqueMois'] !== $(this).text())
+						$(this).text(o['inscriptionPaimentChaqueMois']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionPaimentChaqueMois'));
 			}
 			if(vars.includes('familleMarie')) {
-				$('.inputInscriptionScolaire' + pk + 'FamilleMarie').val(o['familleMarie']);
-				$('.varInscriptionScolaire' + pk + 'FamilleMarie').text(o['familleMarie']);
+				$('.inputInscriptionScolaire' + pk + 'FamilleMarie').each(function() {
+					if(o['familleMarie'] !== $(this).val())
+						$(this).val(o['familleMarie']);
+				});
+				$('.varInscriptionScolaire' + pk + 'FamilleMarie').each(function() {
+					if(o['familleMarie'] !== $(this).text())
+						$(this).text(o['familleMarie']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'FamilleMarie'));
 			}
 			if(vars.includes('familleSepare')) {
-				$('.inputInscriptionScolaire' + pk + 'FamilleSepare').val(o['familleSepare']);
-				$('.varInscriptionScolaire' + pk + 'FamilleSepare').text(o['familleSepare']);
+				$('.inputInscriptionScolaire' + pk + 'FamilleSepare').each(function() {
+					if(o['familleSepare'] !== $(this).val())
+						$(this).val(o['familleSepare']);
+				});
+				$('.varInscriptionScolaire' + pk + 'FamilleSepare').each(function() {
+					if(o['familleSepare'] !== $(this).text())
+						$(this).text(o['familleSepare']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'FamilleSepare'));
 			}
 			if(vars.includes('familleDivorce')) {
-				$('.inputInscriptionScolaire' + pk + 'FamilleDivorce').val(o['familleDivorce']);
-				$('.varInscriptionScolaire' + pk + 'FamilleDivorce').text(o['familleDivorce']);
+				$('.inputInscriptionScolaire' + pk + 'FamilleDivorce').each(function() {
+					if(o['familleDivorce'] !== $(this).val())
+						$(this).val(o['familleDivorce']);
+				});
+				$('.varInscriptionScolaire' + pk + 'FamilleDivorce').each(function() {
+					if(o['familleDivorce'] !== $(this).text())
+						$(this).text(o['familleDivorce']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'FamilleDivorce'));
 			}
 			if(vars.includes('familleAddresse')) {
-				$('.inputInscriptionScolaire' + pk + 'FamilleAddresse').val(o['familleAddresse']);
-				$('.varInscriptionScolaire' + pk + 'FamilleAddresse').text(o['familleAddresse']);
+				$('.inputInscriptionScolaire' + pk + 'FamilleAddresse').each(function() {
+					if(o['familleAddresse'] !== $(this).val())
+						$(this).val(o['familleAddresse']);
+				});
+				$('.varInscriptionScolaire' + pk + 'FamilleAddresse').each(function() {
+					if(o['familleAddresse'] !== $(this).text())
+						$(this).text(o['familleAddresse']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'FamilleAddresse'));
 			}
 			if(vars.includes('inscriptionConsiderationsSpeciales')) {
-				$('.inputInscriptionScolaire' + pk + 'InscriptionConsiderationsSpeciales').val(o['inscriptionConsiderationsSpeciales']);
-				$('.varInscriptionScolaire' + pk + 'InscriptionConsiderationsSpeciales').text(o['inscriptionConsiderationsSpeciales']);
+				$('.inputInscriptionScolaire' + pk + 'InscriptionConsiderationsSpeciales').each(function() {
+					if(o['inscriptionConsiderationsSpeciales'] !== $(this).val())
+						$(this).val(o['inscriptionConsiderationsSpeciales']);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionConsiderationsSpeciales').each(function() {
+					if(o['inscriptionConsiderationsSpeciales'] !== $(this).text())
+						$(this).text(o['inscriptionConsiderationsSpeciales']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionConsiderationsSpeciales'));
 			}
 			if(vars.includes('enfantConditionsMedicales')) {
-				$('.inputInscriptionScolaire' + pk + 'EnfantConditionsMedicales').val(o['enfantConditionsMedicales']);
-				$('.varInscriptionScolaire' + pk + 'EnfantConditionsMedicales').text(o['enfantConditionsMedicales']);
+				$('.inputInscriptionScolaire' + pk + 'EnfantConditionsMedicales').each(function() {
+					if(o['enfantConditionsMedicales'] !== $(this).val())
+						$(this).val(o['enfantConditionsMedicales']);
+				});
+				$('.varInscriptionScolaire' + pk + 'EnfantConditionsMedicales').each(function() {
+					if(o['enfantConditionsMedicales'] !== $(this).text())
+						$(this).text(o['enfantConditionsMedicales']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EnfantConditionsMedicales'));
 			}
 			if(vars.includes('enfantEcolesPrecedemmentFrequentees')) {
-				$('.inputInscriptionScolaire' + pk + 'EnfantEcolesPrecedemmentFrequentees').val(o['enfantEcolesPrecedemmentFrequentees']);
-				$('.varInscriptionScolaire' + pk + 'EnfantEcolesPrecedemmentFrequentees').text(o['enfantEcolesPrecedemmentFrequentees']);
+				$('.inputInscriptionScolaire' + pk + 'EnfantEcolesPrecedemmentFrequentees').each(function() {
+					if(o['enfantEcolesPrecedemmentFrequentees'] !== $(this).val())
+						$(this).val(o['enfantEcolesPrecedemmentFrequentees']);
+				});
+				$('.varInscriptionScolaire' + pk + 'EnfantEcolesPrecedemmentFrequentees').each(function() {
+					if(o['enfantEcolesPrecedemmentFrequentees'] !== $(this).text())
+						$(this).text(o['enfantEcolesPrecedemmentFrequentees']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EnfantEcolesPrecedemmentFrequentees'));
 			}
 			if(vars.includes('familleCommentVousConnaissezEcole')) {
-				$('.inputInscriptionScolaire' + pk + 'FamilleCommentVousConnaissezEcole').val(o['familleCommentVousConnaissezEcole']);
-				$('.varInscriptionScolaire' + pk + 'FamilleCommentVousConnaissezEcole').text(o['familleCommentVousConnaissezEcole']);
+				$('.inputInscriptionScolaire' + pk + 'FamilleCommentVousConnaissezEcole').each(function() {
+					if(o['familleCommentVousConnaissezEcole'] !== $(this).val())
+						$(this).val(o['familleCommentVousConnaissezEcole']);
+				});
+				$('.varInscriptionScolaire' + pk + 'FamilleCommentVousConnaissezEcole').each(function() {
+					if(o['familleCommentVousConnaissezEcole'] !== $(this).text())
+						$(this).text(o['familleCommentVousConnaissezEcole']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'FamilleCommentVousConnaissezEcole'));
 			}
 			if(vars.includes('enfantDescription')) {
-				$('.inputInscriptionScolaire' + pk + 'EnfantDescription').val(o['enfantDescription']);
-				$('.varInscriptionScolaire' + pk + 'EnfantDescription').text(o['enfantDescription']);
+				$('.inputInscriptionScolaire' + pk + 'EnfantDescription').each(function() {
+					if(o['enfantDescription'] !== $(this).val())
+						$(this).val(o['enfantDescription']);
+				});
+				$('.varInscriptionScolaire' + pk + 'EnfantDescription').each(function() {
+					if(o['enfantDescription'] !== $(this).text())
+						$(this).text(o['enfantDescription']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EnfantDescription'));
 			}
 			if(vars.includes('enfantObjectifs')) {
-				$('.inputInscriptionScolaire' + pk + 'EnfantObjectifs').val(o['enfantObjectifs']);
-				$('.varInscriptionScolaire' + pk + 'EnfantObjectifs').text(o['enfantObjectifs']);
+				$('.inputInscriptionScolaire' + pk + 'EnfantObjectifs').each(function() {
+					if(o['enfantObjectifs'] !== $(this).val())
+						$(this).val(o['enfantObjectifs']);
+				});
+				$('.varInscriptionScolaire' + pk + 'EnfantObjectifs').each(function() {
+					if(o['enfantObjectifs'] !== $(this).text())
+						$(this).text(o['enfantObjectifs']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EnfantObjectifs'));
 			}
 			if(vars.includes('blocCles')) {
-				$('.inputInscriptionScolaire' + pk + 'BlocCles').val(o['blocCles']);
-				$('.varInscriptionScolaire' + pk + 'BlocCles').text(o['blocCles']);
+				$('.inputInscriptionScolaire' + pk + 'BlocCles').each(function() {
+					if(o['blocCles'] !== $(this).val())
+						$(this).val(o['blocCles']);
+				});
+				$('.varInscriptionScolaire' + pk + 'BlocCles').each(function() {
+					if(o['blocCles'] !== $(this).text())
+						$(this).text(o['blocCles']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'BlocCles'));
 			}
 			if(vars.includes('enfantCle')) {
-				$('.inputInscriptionScolaire' + pk + 'EnfantCle').val(o['enfantCle']);
-				$('.varInscriptionScolaire' + pk + 'EnfantCle').text(o['enfantCle']);
+				$('.inputInscriptionScolaire' + pk + 'EnfantCle').each(function() {
+					if(o['enfantCle'] !== $(this).val())
+						$(this).val(o['enfantCle']);
+				});
+				$('.varInscriptionScolaire' + pk + 'EnfantCle').each(function() {
+					if(o['enfantCle'] !== $(this).text())
+						$(this).text(o['enfantCle']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EnfantCle'));
 			}
 			if(vars.includes('mereCles')) {
-				$('.inputInscriptionScolaire' + pk + 'MereCles').val(o['mereCles']);
-				$('.varInscriptionScolaire' + pk + 'MereCles').text(o['mereCles']);
+				$('.inputInscriptionScolaire' + pk + 'MereCles').each(function() {
+					if(o['mereCles'] !== $(this).val())
+						$(this).val(o['mereCles']);
+				});
+				$('.varInscriptionScolaire' + pk + 'MereCles').each(function() {
+					if(o['mereCles'] !== $(this).text())
+						$(this).text(o['mereCles']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'MereCles'));
 			}
 			if(vars.includes('pereCles')) {
-				$('.inputInscriptionScolaire' + pk + 'PereCles').val(o['pereCles']);
-				$('.varInscriptionScolaire' + pk + 'PereCles').text(o['pereCles']);
+				$('.inputInscriptionScolaire' + pk + 'PereCles').each(function() {
+					if(o['pereCles'] !== $(this).val())
+						$(this).val(o['pereCles']);
+				});
+				$('.varInscriptionScolaire' + pk + 'PereCles').each(function() {
+					if(o['pereCles'] !== $(this).text())
+						$(this).text(o['pereCles']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'PereCles'));
 			}
 			if(vars.includes('gardienCles')) {
-				$('.inputInscriptionScolaire' + pk + 'GardienCles').val(o['gardienCles']);
-				$('.varInscriptionScolaire' + pk + 'GardienCles').text(o['gardienCles']);
+				$('.inputInscriptionScolaire' + pk + 'GardienCles').each(function() {
+					if(o['gardienCles'] !== $(this).val())
+						$(this).val(o['gardienCles']);
+				});
+				$('.varInscriptionScolaire' + pk + 'GardienCles').each(function() {
+					if(o['gardienCles'] !== $(this).text())
+						$(this).text(o['gardienCles']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'GardienCles'));
 			}
 			if(vars.includes('paiementCles')) {
-				$('.inputInscriptionScolaire' + pk + 'PaiementCles').val(o['paiementCles']);
-				$('.varInscriptionScolaire' + pk + 'PaiementCles').text(o['paiementCles']);
+				$('.inputInscriptionScolaire' + pk + 'PaiementCles').each(function() {
+					if(o['paiementCles'] !== $(this).val())
+						$(this).val(o['paiementCles']);
+				});
+				$('.varInscriptionScolaire' + pk + 'PaiementCles').each(function() {
+					if(o['paiementCles'] !== $(this).text())
+						$(this).text(o['paiementCles']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'PaiementCles'));
 			}
 			if(vars.includes('utilisateurCles')) {
-				$('.inputInscriptionScolaire' + pk + 'UtilisateurCles').val(o['utilisateurCles']);
-				$('.varInscriptionScolaire' + pk + 'UtilisateurCles').text(o['utilisateurCles']);
+				$('.inputInscriptionScolaire' + pk + 'UtilisateurCles').each(function() {
+					if(o['utilisateurCles'] !== $(this).val())
+						$(this).val(o['utilisateurCles']);
+				});
+				$('.varInscriptionScolaire' + pk + 'UtilisateurCles').each(function() {
+					if(o['utilisateurCles'] !== $(this).text())
+						$(this).text(o['utilisateurCles']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'UtilisateurCles'));
 			}
 			if(vars.includes('inheritPk')) {
-				$('.inputInscriptionScolaire' + pk + 'InheritPk').val(o['inheritPk']);
-				$('.varInscriptionScolaire' + pk + 'InheritPk').text(o['inheritPk']);
+				$('.inputInscriptionScolaire' + pk + 'InheritPk').each(function() {
+					if(o['inheritPk'] !== $(this).val())
+						$(this).val(o['inheritPk']);
+				});
+				$('.varInscriptionScolaire' + pk + 'InheritPk').each(function() {
+					if(o['inheritPk'] !== $(this).text())
+						$(this).text(o['inheritPk']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InheritPk'));
 			}
 			if(vars.includes('sessionId')) {
-				$('.inputInscriptionScolaire' + pk + 'SessionId').val(o['sessionId']);
-				$('.varInscriptionScolaire' + pk + 'SessionId').text(o['sessionId']);
+				$('.inputInscriptionScolaire' + pk + 'SessionId').each(function() {
+					if(o['sessionId'] !== $(this).val())
+						$(this).val(o['sessionId']);
+				});
+				$('.varInscriptionScolaire' + pk + 'SessionId').each(function() {
+					if(o['sessionId'] !== $(this).text())
+						$(this).text(o['sessionId']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'SessionId'));
 			}
 			if(vars.includes('utilisateurId')) {
-				$('.inputInscriptionScolaire' + pk + 'UtilisateurId').val(o['utilisateurId']);
-				$('.varInscriptionScolaire' + pk + 'UtilisateurId').text(o['utilisateurId']);
+				$('.inputInscriptionScolaire' + pk + 'UtilisateurId').each(function() {
+					if(o['utilisateurId'] !== $(this).val())
+						$(this).val(o['utilisateurId']);
+				});
+				$('.varInscriptionScolaire' + pk + 'UtilisateurId').each(function() {
+					if(o['utilisateurId'] !== $(this).text())
+						$(this).text(o['utilisateurId']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'UtilisateurId'));
 			}
 			if(vars.includes('utilisateurCle')) {
-				$('.inputInscriptionScolaire' + pk + 'UtilisateurCle').val(o['utilisateurCle']);
-				$('.varInscriptionScolaire' + pk + 'UtilisateurCle').text(o['utilisateurCle']);
+				$('.inputInscriptionScolaire' + pk + 'UtilisateurCle').each(function() {
+					if(o['utilisateurCle'] !== $(this).val())
+						$(this).val(o['utilisateurCle']);
+				});
+				$('.varInscriptionScolaire' + pk + 'UtilisateurCle').each(function() {
+					if(o['utilisateurCle'] !== $(this).text())
+						$(this).text(o['utilisateurCle']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'UtilisateurCle'));
 			}
 			if(vars.includes('anneeCle')) {
-				$('.inputInscriptionScolaire' + pk + 'AnneeCle').val(o['anneeCle']);
-				$('.varInscriptionScolaire' + pk + 'AnneeCle').text(o['anneeCle']);
+				$('.inputInscriptionScolaire' + pk + 'AnneeCle').each(function() {
+					if(o['anneeCle'] !== $(this).val())
+						$(this).val(o['anneeCle']);
+				});
+				$('.varInscriptionScolaire' + pk + 'AnneeCle').each(function() {
+					if(o['anneeCle'] !== $(this).text())
+						$(this).text(o['anneeCle']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'AnneeCle'));
 			}
 			if(vars.includes('enfantNomComplet')) {
-				$('.inputInscriptionScolaire' + pk + 'EnfantNomComplet').val(o['enfantNomComplet']);
-				$('.varInscriptionScolaire' + pk + 'EnfantNomComplet').text(o['enfantNomComplet']);
+				$('.inputInscriptionScolaire' + pk + 'EnfantNomComplet').each(function() {
+					if(o['enfantNomComplet'] !== $(this).val())
+						$(this).val(o['enfantNomComplet']);
+				});
+				$('.varInscriptionScolaire' + pk + 'EnfantNomComplet').each(function() {
+					if(o['enfantNomComplet'] !== $(this).text())
+						$(this).text(o['enfantNomComplet']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EnfantNomComplet'));
 			}
 			if(vars.includes('enfantNomCompletPrefere')) {
-				$('.inputInscriptionScolaire' + pk + 'EnfantNomCompletPrefere').val(o['enfantNomCompletPrefere']);
-				$('.varInscriptionScolaire' + pk + 'EnfantNomCompletPrefere').text(o['enfantNomCompletPrefere']);
+				$('.inputInscriptionScolaire' + pk + 'EnfantNomCompletPrefere').each(function() {
+					if(o['enfantNomCompletPrefere'] !== $(this).val())
+						$(this).val(o['enfantNomCompletPrefere']);
+				});
+				$('.varInscriptionScolaire' + pk + 'EnfantNomCompletPrefere').each(function() {
+					if(o['enfantNomCompletPrefere'] !== $(this).text())
+						$(this).text(o['enfantNomCompletPrefere']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EnfantNomCompletPrefere'));
 			}
 			if(vars.includes('enfantDateNaissance')) {
-				$('.inputInscriptionScolaire' + pk + 'EnfantDateNaissance').val(o['enfantDateNaissance']);
-				$('.varInscriptionScolaire' + pk + 'EnfantDateNaissance').text(o['enfantDateNaissance']);
+				$('.inputInscriptionScolaire' + pk + 'EnfantDateNaissance').each(function() {
+					if(o['enfantDateNaissance'] !== $(this).val())
+						$(this).val(o['enfantDateNaissance']);
+				});
+				$('.varInscriptionScolaire' + pk + 'EnfantDateNaissance').each(function() {
+					if(o['enfantDateNaissance'] !== $(this).text())
+						$(this).text(o['enfantDateNaissance']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EnfantDateNaissance'));
 			}
 			if(vars.includes('ecoleAddresse')) {
-				$('.inputInscriptionScolaire' + pk + 'EcoleAddresse').val(o['ecoleAddresse']);
-				$('.varInscriptionScolaire' + pk + 'EcoleAddresse').text(o['ecoleAddresse']);
+				$('.inputInscriptionScolaire' + pk + 'EcoleAddresse').each(function() {
+					if(o['ecoleAddresse'] !== $(this).val())
+						$(this).val(o['ecoleAddresse']);
+				});
+				$('.varInscriptionScolaire' + pk + 'EcoleAddresse').each(function() {
+					if(o['ecoleAddresse'] !== $(this).text())
+						$(this).text(o['ecoleAddresse']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EcoleAddresse'));
 			}
 			if(vars.includes('inscriptionDateFrais')) {
-				$('.inputInscriptionScolaire' + pk + 'InscriptionDateFrais').val(o['inscriptionDateFrais']);
-				$('.varInscriptionScolaire' + pk + 'InscriptionDateFrais').text(o['inscriptionDateFrais']);
+				$('.inputInscriptionScolaire' + pk + 'InscriptionDateFrais').each(function() {
+					if(o['inscriptionDateFrais'] !== $(this).val())
+						$(this).val(o['inscriptionDateFrais']);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionDateFrais').each(function() {
+					if(o['inscriptionDateFrais'] !== $(this).text())
+						$(this).text(o['inscriptionDateFrais']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionDateFrais'));
 			}
 			if(vars.includes('inscriptionSignature1')) {
-				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature1').val(o['inscriptionSignature1']);
-				$('.varInscriptionScolaire' + pk + 'InscriptionSignature1').text(o['inscriptionSignature1']);
+				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature1').each(function() {
+					if(o['inscriptionSignature1'] !== $(this).val())
+						$(this).val(o['inscriptionSignature1']);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionSignature1').each(function() {
+					if(o['inscriptionSignature1'] !== $(this).text())
+						$(this).text(o['inscriptionSignature1']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionSignature1'));
 			}
 			if(vars.includes('inscriptionSignature2')) {
-				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature2').val(o['inscriptionSignature2']);
-				$('.varInscriptionScolaire' + pk + 'InscriptionSignature2').text(o['inscriptionSignature2']);
+				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature2').each(function() {
+					if(o['inscriptionSignature2'] !== $(this).val())
+						$(this).val(o['inscriptionSignature2']);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionSignature2').each(function() {
+					if(o['inscriptionSignature2'] !== $(this).text())
+						$(this).text(o['inscriptionSignature2']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionSignature2'));
 			}
 			if(vars.includes('inscriptionSignature3')) {
-				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature3').val(o['inscriptionSignature3']);
-				$('.varInscriptionScolaire' + pk + 'InscriptionSignature3').text(o['inscriptionSignature3']);
+				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature3').each(function() {
+					if(o['inscriptionSignature3'] !== $(this).val())
+						$(this).val(o['inscriptionSignature3']);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionSignature3').each(function() {
+					if(o['inscriptionSignature3'] !== $(this).text())
+						$(this).text(o['inscriptionSignature3']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionSignature3'));
 			}
 			if(vars.includes('inscriptionSignature4')) {
-				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature4').val(o['inscriptionSignature4']);
-				$('.varInscriptionScolaire' + pk + 'InscriptionSignature4').text(o['inscriptionSignature4']);
+				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature4').each(function() {
+					if(o['inscriptionSignature4'] !== $(this).val())
+						$(this).val(o['inscriptionSignature4']);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionSignature4').each(function() {
+					if(o['inscriptionSignature4'] !== $(this).text())
+						$(this).text(o['inscriptionSignature4']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionSignature4'));
 			}
 			if(vars.includes('inscriptionSignature5')) {
-				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature5').val(o['inscriptionSignature5']);
-				$('.varInscriptionScolaire' + pk + 'InscriptionSignature5').text(o['inscriptionSignature5']);
+				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature5').each(function() {
+					if(o['inscriptionSignature5'] !== $(this).val())
+						$(this).val(o['inscriptionSignature5']);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionSignature5').each(function() {
+					if(o['inscriptionSignature5'] !== $(this).text())
+						$(this).text(o['inscriptionSignature5']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionSignature5'));
 			}
 			if(vars.includes('inscriptionSignature6')) {
-				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature6').val(o['inscriptionSignature6']);
-				$('.varInscriptionScolaire' + pk + 'InscriptionSignature6').text(o['inscriptionSignature6']);
+				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature6').each(function() {
+					if(o['inscriptionSignature6'] !== $(this).val())
+						$(this).val(o['inscriptionSignature6']);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionSignature6').each(function() {
+					if(o['inscriptionSignature6'] !== $(this).text())
+						$(this).text(o['inscriptionSignature6']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionSignature6'));
 			}
 			if(vars.includes('inscriptionSignature7')) {
-				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature7').val(o['inscriptionSignature7']);
-				$('.varInscriptionScolaire' + pk + 'InscriptionSignature7').text(o['inscriptionSignature7']);
+				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature7').each(function() {
+					if(o['inscriptionSignature7'] !== $(this).val())
+						$(this).val(o['inscriptionSignature7']);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionSignature7').each(function() {
+					if(o['inscriptionSignature7'] !== $(this).text())
+						$(this).text(o['inscriptionSignature7']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionSignature7'));
 			}
 			if(vars.includes('inscriptionSignature8')) {
-				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature8').val(o['inscriptionSignature8']);
-				$('.varInscriptionScolaire' + pk + 'InscriptionSignature8').text(o['inscriptionSignature8']);
+				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature8').each(function() {
+					if(o['inscriptionSignature8'] !== $(this).val())
+						$(this).val(o['inscriptionSignature8']);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionSignature8').each(function() {
+					if(o['inscriptionSignature8'] !== $(this).text())
+						$(this).text(o['inscriptionSignature8']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionSignature8'));
 			}
 			if(vars.includes('inscriptionSignature9')) {
-				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature9').val(o['inscriptionSignature9']);
-				$('.varInscriptionScolaire' + pk + 'InscriptionSignature9').text(o['inscriptionSignature9']);
+				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature9').each(function() {
+					if(o['inscriptionSignature9'] !== $(this).val())
+						$(this).val(o['inscriptionSignature9']);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionSignature9').each(function() {
+					if(o['inscriptionSignature9'] !== $(this).text())
+						$(this).text(o['inscriptionSignature9']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionSignature9'));
 			}
 			if(vars.includes('inscriptionSignature10')) {
-				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature10').val(o['inscriptionSignature10']);
-				$('.varInscriptionScolaire' + pk + 'InscriptionSignature10').text(o['inscriptionSignature10']);
+				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature10').each(function() {
+					if(o['inscriptionSignature10'] !== $(this).val())
+						$(this).val(o['inscriptionSignature10']);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionSignature10').each(function() {
+					if(o['inscriptionSignature10'] !== $(this).text())
+						$(this).text(o['inscriptionSignature10']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionSignature10'));
 			}
 			if(vars.includes('inscriptionDate1')) {
-				$('.inputInscriptionScolaire' + pk + 'InscriptionDate1').val(o['inscriptionDate1']);
-				$('.varInscriptionScolaire' + pk + 'InscriptionDate1').text(o['inscriptionDate1']);
+				$('.inputInscriptionScolaire' + pk + 'InscriptionDate1').each(function() {
+					if(o['inscriptionDate1'] !== $(this).val())
+						$(this).val(o['inscriptionDate1']);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionDate1').each(function() {
+					if(o['inscriptionDate1'] !== $(this).text())
+						$(this).text(o['inscriptionDate1']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionDate1'));
 			}
 			if(vars.includes('inscriptionDate2')) {
-				$('.inputInscriptionScolaire' + pk + 'InscriptionDate2').val(o['inscriptionDate2']);
-				$('.varInscriptionScolaire' + pk + 'InscriptionDate2').text(o['inscriptionDate2']);
+				$('.inputInscriptionScolaire' + pk + 'InscriptionDate2').each(function() {
+					if(o['inscriptionDate2'] !== $(this).val())
+						$(this).val(o['inscriptionDate2']);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionDate2').each(function() {
+					if(o['inscriptionDate2'] !== $(this).text())
+						$(this).text(o['inscriptionDate2']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionDate2'));
 			}
 			if(vars.includes('inscriptionDate3')) {
-				$('.inputInscriptionScolaire' + pk + 'InscriptionDate3').val(o['inscriptionDate3']);
-				$('.varInscriptionScolaire' + pk + 'InscriptionDate3').text(o['inscriptionDate3']);
+				$('.inputInscriptionScolaire' + pk + 'InscriptionDate3').each(function() {
+					if(o['inscriptionDate3'] !== $(this).val())
+						$(this).val(o['inscriptionDate3']);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionDate3').each(function() {
+					if(o['inscriptionDate3'] !== $(this).text())
+						$(this).text(o['inscriptionDate3']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionDate3'));
 			}
 			if(vars.includes('inscriptionDate4')) {
-				$('.inputInscriptionScolaire' + pk + 'InscriptionDate4').val(o['inscriptionDate4']);
-				$('.varInscriptionScolaire' + pk + 'InscriptionDate4').text(o['inscriptionDate4']);
+				$('.inputInscriptionScolaire' + pk + 'InscriptionDate4').each(function() {
+					if(o['inscriptionDate4'] !== $(this).val())
+						$(this).val(o['inscriptionDate4']);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionDate4').each(function() {
+					if(o['inscriptionDate4'] !== $(this).text())
+						$(this).text(o['inscriptionDate4']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionDate4'));
 			}
 			if(vars.includes('inscriptionDate5')) {
-				$('.inputInscriptionScolaire' + pk + 'InscriptionDate5').val(o['inscriptionDate5']);
-				$('.varInscriptionScolaire' + pk + 'InscriptionDate5').text(o['inscriptionDate5']);
+				$('.inputInscriptionScolaire' + pk + 'InscriptionDate5').each(function() {
+					if(o['inscriptionDate5'] !== $(this).val())
+						$(this).val(o['inscriptionDate5']);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionDate5').each(function() {
+					if(o['inscriptionDate5'] !== $(this).text())
+						$(this).text(o['inscriptionDate5']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionDate5'));
 			}
 			if(vars.includes('inscriptionDate6')) {
-				$('.inputInscriptionScolaire' + pk + 'InscriptionDate6').val(o['inscriptionDate6']);
-				$('.varInscriptionScolaire' + pk + 'InscriptionDate6').text(o['inscriptionDate6']);
+				$('.inputInscriptionScolaire' + pk + 'InscriptionDate6').each(function() {
+					if(o['inscriptionDate6'] !== $(this).val())
+						$(this).val(o['inscriptionDate6']);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionDate6').each(function() {
+					if(o['inscriptionDate6'] !== $(this).text())
+						$(this).text(o['inscriptionDate6']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionDate6'));
 			}
 			if(vars.includes('inscriptionDate7')) {
-				$('.inputInscriptionScolaire' + pk + 'InscriptionDate7').val(o['inscriptionDate7']);
-				$('.varInscriptionScolaire' + pk + 'InscriptionDate7').text(o['inscriptionDate7']);
+				$('.inputInscriptionScolaire' + pk + 'InscriptionDate7').each(function() {
+					if(o['inscriptionDate7'] !== $(this).val())
+						$(this).val(o['inscriptionDate7']);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionDate7').each(function() {
+					if(o['inscriptionDate7'] !== $(this).text())
+						$(this).text(o['inscriptionDate7']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionDate7'));
 			}
 			if(vars.includes('inscriptionDate8')) {
-				$('.inputInscriptionScolaire' + pk + 'InscriptionDate8').val(o['inscriptionDate8']);
-				$('.varInscriptionScolaire' + pk + 'InscriptionDate8').text(o['inscriptionDate8']);
+				$('.inputInscriptionScolaire' + pk + 'InscriptionDate8').each(function() {
+					if(o['inscriptionDate8'] !== $(this).val())
+						$(this).val(o['inscriptionDate8']);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionDate8').each(function() {
+					if(o['inscriptionDate8'] !== $(this).text())
+						$(this).text(o['inscriptionDate8']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionDate8'));
 			}
 			if(vars.includes('inscriptionDate9')) {
-				$('.inputInscriptionScolaire' + pk + 'InscriptionDate9').val(o['inscriptionDate9']);
-				$('.varInscriptionScolaire' + pk + 'InscriptionDate9').text(o['inscriptionDate9']);
+				$('.inputInscriptionScolaire' + pk + 'InscriptionDate9').each(function() {
+					if(o['inscriptionDate9'] !== $(this).val())
+						$(this).val(o['inscriptionDate9']);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionDate9').each(function() {
+					if(o['inscriptionDate9'] !== $(this).text())
+						$(this).text(o['inscriptionDate9']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionDate9'));
 			}
 			if(vars.includes('inscriptionDate10')) {
-				$('.inputInscriptionScolaire' + pk + 'InscriptionDate10').val(o['inscriptionDate10']);
-				$('.varInscriptionScolaire' + pk + 'InscriptionDate10').text(o['inscriptionDate10']);
+				$('.inputInscriptionScolaire' + pk + 'InscriptionDate10').each(function() {
+					if(o['inscriptionDate10'] !== $(this).val())
+						$(this).val(o['inscriptionDate10']);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionDate10').each(function() {
+					if(o['inscriptionDate10'] !== $(this).text())
+						$(this).text(o['inscriptionDate10']);
+				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionDate10'));
 			}
 		});

@@ -916,83 +916,179 @@ async function websocketSiteUserInner(apiRequest) {
 		searchSiteUserVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
 			if(vars.includes('created')) {
-				$('.inputSiteUser' + pk + 'Created').val(o['created']);
-				$('.varSiteUser' + pk + 'Created').text(o['created']);
+				$('.inputSiteUser' + pk + 'Created').each(function() {
+					if(o['created'] !== $(this).val())
+						$(this).val(o['created']);
+				});
+				$('.varSiteUser' + pk + 'Created').each(function() {
+					if(o['created'] !== $(this).text())
+						$(this).text(o['created']);
+				});
 				addGlow($('.inputSiteUser' + pk + 'Created'));
 			}
 			if(vars.includes('modified')) {
-				$('.inputSiteUser' + pk + 'Modified').val(o['modified']);
-				$('.varSiteUser' + pk + 'Modified').text(o['modified']);
+				$('.inputSiteUser' + pk + 'Modified').each(function() {
+					if(o['modified'] !== $(this).val())
+						$(this).val(o['modified']);
+				});
+				$('.varSiteUser' + pk + 'Modified').each(function() {
+					if(o['modified'] !== $(this).text())
+						$(this).text(o['modified']);
+				});
 				addGlow($('.inputSiteUser' + pk + 'Modified'));
 			}
 			if(vars.includes('archived')) {
-				$('.inputSiteUser' + pk + 'Archived').val(o['archived']);
-				$('.varSiteUser' + pk + 'Archived').text(o['archived']);
+				$('.inputSiteUser' + pk + 'Archived').each(function() {
+					if(o['archived'] !== $(this).val())
+						$(this).val(o['archived']);
+				});
+				$('.varSiteUser' + pk + 'Archived').each(function() {
+					if(o['archived'] !== $(this).text())
+						$(this).text(o['archived']);
+				});
 				addGlow($('.inputSiteUser' + pk + 'Archived'));
 			}
 			if(vars.includes('deleted')) {
-				$('.inputSiteUser' + pk + 'Deleted').val(o['deleted']);
-				$('.varSiteUser' + pk + 'Deleted').text(o['deleted']);
+				$('.inputSiteUser' + pk + 'Deleted').each(function() {
+					if(o['deleted'] !== $(this).val())
+						$(this).val(o['deleted']);
+				});
+				$('.varSiteUser' + pk + 'Deleted').each(function() {
+					if(o['deleted'] !== $(this).text())
+						$(this).text(o['deleted']);
+				});
 				addGlow($('.inputSiteUser' + pk + 'Deleted'));
 			}
 			if(vars.includes('userReceiveEmails')) {
-				$('.inputSiteUser' + pk + 'UserReceiveEmails').val(o['userReceiveEmails']);
-				$('.varSiteUser' + pk + 'UserReceiveEmails').text(o['userReceiveEmails']);
+				$('.inputSiteUser' + pk + 'UserReceiveEmails').each(function() {
+					if(o['userReceiveEmails'] !== $(this).val())
+						$(this).val(o['userReceiveEmails']);
+				});
+				$('.varSiteUser' + pk + 'UserReceiveEmails').each(function() {
+					if(o['userReceiveEmails'] !== $(this).text())
+						$(this).text(o['userReceiveEmails']);
+				});
 				addGlow($('.inputSiteUser' + pk + 'UserReceiveEmails'));
 			}
 			if(vars.includes('seeArchived')) {
-				$('.inputSiteUser' + pk + 'SeeArchived').val(o['seeArchived']);
-				$('.varSiteUser' + pk + 'SeeArchived').text(o['seeArchived']);
+				$('.inputSiteUser' + pk + 'SeeArchived').each(function() {
+					if(o['seeArchived'] !== $(this).val())
+						$(this).val(o['seeArchived']);
+				});
+				$('.varSiteUser' + pk + 'SeeArchived').each(function() {
+					if(o['seeArchived'] !== $(this).text())
+						$(this).text(o['seeArchived']);
+				});
 				addGlow($('.inputSiteUser' + pk + 'SeeArchived'));
 			}
 			if(vars.includes('seeDeleted')) {
-				$('.inputSiteUser' + pk + 'SeeDeleted').val(o['seeDeleted']);
-				$('.varSiteUser' + pk + 'SeeDeleted').text(o['seeDeleted']);
+				$('.inputSiteUser' + pk + 'SeeDeleted').each(function() {
+					if(o['seeDeleted'] !== $(this).val())
+						$(this).val(o['seeDeleted']);
+				});
+				$('.varSiteUser' + pk + 'SeeDeleted').each(function() {
+					if(o['seeDeleted'] !== $(this).text())
+						$(this).text(o['seeDeleted']);
+				});
 				addGlow($('.inputSiteUser' + pk + 'SeeDeleted'));
 			}
 			if(vars.includes('customerProfileId')) {
-				$('.inputSiteUser' + pk + 'CustomerProfileId').val(o['customerProfileId']);
-				$('.varSiteUser' + pk + 'CustomerProfileId').text(o['customerProfileId']);
+				$('.inputSiteUser' + pk + 'CustomerProfileId').each(function() {
+					if(o['customerProfileId'] !== $(this).val())
+						$(this).val(o['customerProfileId']);
+				});
+				$('.varSiteUser' + pk + 'CustomerProfileId').each(function() {
+					if(o['customerProfileId'] !== $(this).text())
+						$(this).text(o['customerProfileId']);
+				});
 				addGlow($('.inputSiteUser' + pk + 'CustomerProfileId'));
 			}
 			if(vars.includes('enrollmentKeys')) {
-				$('.inputSiteUser' + pk + 'EnrollmentKeys').val(o['enrollmentKeys']);
-				$('.varSiteUser' + pk + 'EnrollmentKeys').text(o['enrollmentKeys']);
+				$('.inputSiteUser' + pk + 'EnrollmentKeys').each(function() {
+					if(o['enrollmentKeys'] !== $(this).val())
+						$(this).val(o['enrollmentKeys']);
+				});
+				$('.varSiteUser' + pk + 'EnrollmentKeys').each(function() {
+					if(o['enrollmentKeys'] !== $(this).text())
+						$(this).text(o['enrollmentKeys']);
+				});
 				addGlow($('.inputSiteUser' + pk + 'EnrollmentKeys'));
 			}
 			if(vars.includes('paymentKeys')) {
-				$('.inputSiteUser' + pk + 'PaymentKeys').val(o['paymentKeys']);
-				$('.varSiteUser' + pk + 'PaymentKeys').text(o['paymentKeys']);
+				$('.inputSiteUser' + pk + 'PaymentKeys').each(function() {
+					if(o['paymentKeys'] !== $(this).val())
+						$(this).val(o['paymentKeys']);
+				});
+				$('.varSiteUser' + pk + 'PaymentKeys').each(function() {
+					if(o['paymentKeys'] !== $(this).text())
+						$(this).text(o['paymentKeys']);
+				});
 				addGlow($('.inputSiteUser' + pk + 'PaymentKeys'));
 			}
 			if(vars.includes('inheritPk')) {
-				$('.inputSiteUser' + pk + 'InheritPk').val(o['inheritPk']);
-				$('.varSiteUser' + pk + 'InheritPk').text(o['inheritPk']);
+				$('.inputSiteUser' + pk + 'InheritPk').each(function() {
+					if(o['inheritPk'] !== $(this).val())
+						$(this).val(o['inheritPk']);
+				});
+				$('.varSiteUser' + pk + 'InheritPk').each(function() {
+					if(o['inheritPk'] !== $(this).text())
+						$(this).text(o['inheritPk']);
+				});
 				addGlow($('.inputSiteUser' + pk + 'InheritPk'));
 			}
 			if(vars.includes('sessionId')) {
-				$('.inputSiteUser' + pk + 'SessionId').val(o['sessionId']);
-				$('.varSiteUser' + pk + 'SessionId').text(o['sessionId']);
+				$('.inputSiteUser' + pk + 'SessionId').each(function() {
+					if(o['sessionId'] !== $(this).val())
+						$(this).val(o['sessionId']);
+				});
+				$('.varSiteUser' + pk + 'SessionId').each(function() {
+					if(o['sessionId'] !== $(this).text())
+						$(this).text(o['sessionId']);
+				});
 				addGlow($('.inputSiteUser' + pk + 'SessionId'));
 			}
 			if(vars.includes('userId')) {
-				$('.inputSiteUser' + pk + 'UserId').val(o['userId']);
-				$('.varSiteUser' + pk + 'UserId').text(o['userId']);
+				$('.inputSiteUser' + pk + 'UserId').each(function() {
+					if(o['userId'] !== $(this).val())
+						$(this).val(o['userId']);
+				});
+				$('.varSiteUser' + pk + 'UserId').each(function() {
+					if(o['userId'] !== $(this).text())
+						$(this).text(o['userId']);
+				});
 				addGlow($('.inputSiteUser' + pk + 'UserId'));
 			}
 			if(vars.includes('userKey')) {
-				$('.inputSiteUser' + pk + 'UserKey').val(o['userKey']);
-				$('.varSiteUser' + pk + 'UserKey').text(o['userKey']);
+				$('.inputSiteUser' + pk + 'UserKey').each(function() {
+					if(o['userKey'] !== $(this).val())
+						$(this).val(o['userKey']);
+				});
+				$('.varSiteUser' + pk + 'UserKey').each(function() {
+					if(o['userKey'] !== $(this).text())
+						$(this).text(o['userKey']);
+				});
 				addGlow($('.inputSiteUser' + pk + 'UserKey'));
 			}
 			if(vars.includes('userName')) {
-				$('.inputSiteUser' + pk + 'UserName').val(o['userName']);
-				$('.varSiteUser' + pk + 'UserName').text(o['userName']);
+				$('.inputSiteUser' + pk + 'UserName').each(function() {
+					if(o['userName'] !== $(this).val())
+						$(this).val(o['userName']);
+				});
+				$('.varSiteUser' + pk + 'UserName').each(function() {
+					if(o['userName'] !== $(this).text())
+						$(this).text(o['userName']);
+				});
 				addGlow($('.inputSiteUser' + pk + 'UserName'));
 			}
 			if(vars.includes('userEmail')) {
-				$('.inputSiteUser' + pk + 'UserEmail').val(o['userEmail']);
-				$('.varSiteUser' + pk + 'UserEmail').text(o['userEmail']);
+				$('.inputSiteUser' + pk + 'UserEmail').each(function() {
+					if(o['userEmail'] !== $(this).val())
+						$(this).val(o['userEmail']);
+				});
+				$('.varSiteUser' + pk + 'UserEmail').each(function() {
+					if(o['userEmail'] !== $(this).text())
+						$(this).text(o['userEmail']);
+				});
 				addGlow($('.inputSiteUser' + pk + 'UserEmail'));
 			}
 		});

@@ -1113,68 +1113,146 @@ async function websocketDesignPageInner(requeteApi) {
 		rechercherDesignPageVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
 			if(vars.includes('cree')) {
-				$('.inputDesignPage' + pk + 'Cree').val(o['cree']);
-				$('.varDesignPage' + pk + 'Cree').text(o['cree']);
+				$('.inputDesignPage' + pk + 'Cree').each(function() {
+					if(o['cree'] !== $(this).val())
+						$(this).val(o['cree']);
+				});
+				$('.varDesignPage' + pk + 'Cree').each(function() {
+					if(o['cree'] !== $(this).text())
+						$(this).text(o['cree']);
+				});
 				ajouterLueur($('.inputDesignPage' + pk + 'Cree'));
 			}
 			if(vars.includes('modifie')) {
-				$('.inputDesignPage' + pk + 'Modifie').val(o['modifie']);
-				$('.varDesignPage' + pk + 'Modifie').text(o['modifie']);
+				$('.inputDesignPage' + pk + 'Modifie').each(function() {
+					if(o['modifie'] !== $(this).val())
+						$(this).val(o['modifie']);
+				});
+				$('.varDesignPage' + pk + 'Modifie').each(function() {
+					if(o['modifie'] !== $(this).text())
+						$(this).text(o['modifie']);
+				});
 				ajouterLueur($('.inputDesignPage' + pk + 'Modifie'));
 			}
 			if(vars.includes('archive')) {
-				$('.inputDesignPage' + pk + 'Archive').val(o['archive']);
-				$('.varDesignPage' + pk + 'Archive').text(o['archive']);
+				$('.inputDesignPage' + pk + 'Archive').each(function() {
+					if(o['archive'] !== $(this).val())
+						$(this).val(o['archive']);
+				});
+				$('.varDesignPage' + pk + 'Archive').each(function() {
+					if(o['archive'] !== $(this).text())
+						$(this).text(o['archive']);
+				});
 				ajouterLueur($('.inputDesignPage' + pk + 'Archive'));
 			}
 			if(vars.includes('supprime')) {
-				$('.inputDesignPage' + pk + 'Supprime').val(o['supprime']);
-				$('.varDesignPage' + pk + 'Supprime').text(o['supprime']);
+				$('.inputDesignPage' + pk + 'Supprime').each(function() {
+					if(o['supprime'] !== $(this).val())
+						$(this).val(o['supprime']);
+				});
+				$('.varDesignPage' + pk + 'Supprime').each(function() {
+					if(o['supprime'] !== $(this).text())
+						$(this).text(o['supprime']);
+				});
 				ajouterLueur($('.inputDesignPage' + pk + 'Supprime'));
 			}
 			if(vars.includes('designPageNomComplet')) {
-				$('.inputDesignPage' + pk + 'DesignPageNomComplet').val(o['designPageNomComplet']);
-				$('.varDesignPage' + pk + 'DesignPageNomComplet').text(o['designPageNomComplet']);
+				$('.inputDesignPage' + pk + 'DesignPageNomComplet').each(function() {
+					if(o['designPageNomComplet'] !== $(this).val())
+						$(this).val(o['designPageNomComplet']);
+				});
+				$('.varDesignPage' + pk + 'DesignPageNomComplet').each(function() {
+					if(o['designPageNomComplet'] !== $(this).text())
+						$(this).text(o['designPageNomComplet']);
+				});
 				ajouterLueur($('.inputDesignPage' + pk + 'DesignPageNomComplet'));
 			}
 			if(vars.includes('designCache')) {
-				$('.inputDesignPage' + pk + 'DesignCache').val(o['designCache']);
-				$('.varDesignPage' + pk + 'DesignCache').text(o['designCache']);
+				$('.inputDesignPage' + pk + 'DesignCache').each(function() {
+					if(o['designCache'] !== $(this).val())
+						$(this).val(o['designCache']);
+				});
+				$('.varDesignPage' + pk + 'DesignCache').each(function() {
+					if(o['designCache'] !== $(this).text())
+						$(this).text(o['designCache']);
+				});
 				ajouterLueur($('.inputDesignPage' + pk + 'DesignCache'));
 			}
 			if(vars.includes('designParentCles')) {
-				$('.inputDesignPage' + pk + 'DesignParentCles').val(o['designParentCles']);
-				$('.varDesignPage' + pk + 'DesignParentCles').text(o['designParentCles']);
+				$('.inputDesignPage' + pk + 'DesignParentCles').each(function() {
+					if(o['designParentCles'] !== $(this).val())
+						$(this).val(o['designParentCles']);
+				});
+				$('.varDesignPage' + pk + 'DesignParentCles').each(function() {
+					if(o['designParentCles'] !== $(this).text())
+						$(this).text(o['designParentCles']);
+				});
 				ajouterLueur($('.inputDesignPage' + pk + 'DesignParentCles'));
 			}
 			if(vars.includes('partHtmlCles')) {
-				$('.inputDesignPage' + pk + 'PartHtmlCles').val(o['partHtmlCles']);
-				$('.varDesignPage' + pk + 'PartHtmlCles').text(o['partHtmlCles']);
+				$('.inputDesignPage' + pk + 'PartHtmlCles').each(function() {
+					if(o['partHtmlCles'] !== $(this).val())
+						$(this).val(o['partHtmlCles']);
+				});
+				$('.varDesignPage' + pk + 'PartHtmlCles').each(function() {
+					if(o['partHtmlCles'] !== $(this).text())
+						$(this).text(o['partHtmlCles']);
+				});
 				ajouterLueur($('.inputDesignPage' + pk + 'PartHtmlCles'));
 			}
 			if(vars.includes('inheritPk')) {
-				$('.inputDesignPage' + pk + 'InheritPk').val(o['inheritPk']);
-				$('.varDesignPage' + pk + 'InheritPk').text(o['inheritPk']);
+				$('.inputDesignPage' + pk + 'InheritPk').each(function() {
+					if(o['inheritPk'] !== $(this).val())
+						$(this).val(o['inheritPk']);
+				});
+				$('.varDesignPage' + pk + 'InheritPk').each(function() {
+					if(o['inheritPk'] !== $(this).text())
+						$(this).text(o['inheritPk']);
+				});
 				ajouterLueur($('.inputDesignPage' + pk + 'InheritPk'));
 			}
 			if(vars.includes('sessionId')) {
-				$('.inputDesignPage' + pk + 'SessionId').val(o['sessionId']);
-				$('.varDesignPage' + pk + 'SessionId').text(o['sessionId']);
+				$('.inputDesignPage' + pk + 'SessionId').each(function() {
+					if(o['sessionId'] !== $(this).val())
+						$(this).val(o['sessionId']);
+				});
+				$('.varDesignPage' + pk + 'SessionId').each(function() {
+					if(o['sessionId'] !== $(this).text())
+						$(this).text(o['sessionId']);
+				});
 				ajouterLueur($('.inputDesignPage' + pk + 'SessionId'));
 			}
 			if(vars.includes('utilisateurId')) {
-				$('.inputDesignPage' + pk + 'UtilisateurId').val(o['utilisateurId']);
-				$('.varDesignPage' + pk + 'UtilisateurId').text(o['utilisateurId']);
+				$('.inputDesignPage' + pk + 'UtilisateurId').each(function() {
+					if(o['utilisateurId'] !== $(this).val())
+						$(this).val(o['utilisateurId']);
+				});
+				$('.varDesignPage' + pk + 'UtilisateurId').each(function() {
+					if(o['utilisateurId'] !== $(this).text())
+						$(this).text(o['utilisateurId']);
+				});
 				ajouterLueur($('.inputDesignPage' + pk + 'UtilisateurId'));
 			}
 			if(vars.includes('utilisateurCle')) {
-				$('.inputDesignPage' + pk + 'UtilisateurCle').val(o['utilisateurCle']);
-				$('.varDesignPage' + pk + 'UtilisateurCle').text(o['utilisateurCle']);
+				$('.inputDesignPage' + pk + 'UtilisateurCle').each(function() {
+					if(o['utilisateurCle'] !== $(this).val())
+						$(this).val(o['utilisateurCle']);
+				});
+				$('.varDesignPage' + pk + 'UtilisateurCle').each(function() {
+					if(o['utilisateurCle'] !== $(this).text())
+						$(this).text(o['utilisateurCle']);
+				});
 				ajouterLueur($('.inputDesignPage' + pk + 'UtilisateurCle'));
 			}
 			if(vars.includes('designEnfantCles')) {
-				$('.inputDesignPage' + pk + 'DesignEnfantCles').val(o['designEnfantCles']);
-				$('.varDesignPage' + pk + 'DesignEnfantCles').text(o['designEnfantCles']);
+				$('.inputDesignPage' + pk + 'DesignEnfantCles').each(function() {
+					if(o['designEnfantCles'] !== $(this).val())
+						$(this).val(o['designEnfantCles']);
+				});
+				$('.varDesignPage' + pk + 'DesignEnfantCles').each(function() {
+					if(o['designEnfantCles'] !== $(this).text())
+						$(this).text(o['designEnfantCles']);
+				});
 				ajouterLueur($('.inputDesignPage' + pk + 'DesignEnfantCles'));
 			}
 		});

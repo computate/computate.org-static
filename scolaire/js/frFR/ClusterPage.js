@@ -677,43 +677,91 @@ async function websocketClusterInner(requeteApi) {
 		rechercherClusterVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
 			if(vars.includes('cree')) {
-				$('.inputCluster' + pk + 'Cree').val(o['cree']);
-				$('.varCluster' + pk + 'Cree').text(o['cree']);
+				$('.inputCluster' + pk + 'Cree').each(function() {
+					if(o['cree'] !== $(this).val())
+						$(this).val(o['cree']);
+				});
+				$('.varCluster' + pk + 'Cree').each(function() {
+					if(o['cree'] !== $(this).text())
+						$(this).text(o['cree']);
+				});
 				ajouterLueur($('.inputCluster' + pk + 'Cree'));
 			}
 			if(vars.includes('modifie')) {
-				$('.inputCluster' + pk + 'Modifie').val(o['modifie']);
-				$('.varCluster' + pk + 'Modifie').text(o['modifie']);
+				$('.inputCluster' + pk + 'Modifie').each(function() {
+					if(o['modifie'] !== $(this).val())
+						$(this).val(o['modifie']);
+				});
+				$('.varCluster' + pk + 'Modifie').each(function() {
+					if(o['modifie'] !== $(this).text())
+						$(this).text(o['modifie']);
+				});
 				ajouterLueur($('.inputCluster' + pk + 'Modifie'));
 			}
 			if(vars.includes('archive')) {
-				$('.inputCluster' + pk + 'Archive').val(o['archive']);
-				$('.varCluster' + pk + 'Archive').text(o['archive']);
+				$('.inputCluster' + pk + 'Archive').each(function() {
+					if(o['archive'] !== $(this).val())
+						$(this).val(o['archive']);
+				});
+				$('.varCluster' + pk + 'Archive').each(function() {
+					if(o['archive'] !== $(this).text())
+						$(this).text(o['archive']);
+				});
 				ajouterLueur($('.inputCluster' + pk + 'Archive'));
 			}
 			if(vars.includes('supprime')) {
-				$('.inputCluster' + pk + 'Supprime').val(o['supprime']);
-				$('.varCluster' + pk + 'Supprime').text(o['supprime']);
+				$('.inputCluster' + pk + 'Supprime').each(function() {
+					if(o['supprime'] !== $(this).val())
+						$(this).val(o['supprime']);
+				});
+				$('.varCluster' + pk + 'Supprime').each(function() {
+					if(o['supprime'] !== $(this).text())
+						$(this).text(o['supprime']);
+				});
 				ajouterLueur($('.inputCluster' + pk + 'Supprime'));
 			}
 			if(vars.includes('inheritPk')) {
-				$('.inputCluster' + pk + 'InheritPk').val(o['inheritPk']);
-				$('.varCluster' + pk + 'InheritPk').text(o['inheritPk']);
+				$('.inputCluster' + pk + 'InheritPk').each(function() {
+					if(o['inheritPk'] !== $(this).val())
+						$(this).val(o['inheritPk']);
+				});
+				$('.varCluster' + pk + 'InheritPk').each(function() {
+					if(o['inheritPk'] !== $(this).text())
+						$(this).text(o['inheritPk']);
+				});
 				ajouterLueur($('.inputCluster' + pk + 'InheritPk'));
 			}
 			if(vars.includes('sessionId')) {
-				$('.inputCluster' + pk + 'SessionId').val(o['sessionId']);
-				$('.varCluster' + pk + 'SessionId').text(o['sessionId']);
+				$('.inputCluster' + pk + 'SessionId').each(function() {
+					if(o['sessionId'] !== $(this).val())
+						$(this).val(o['sessionId']);
+				});
+				$('.varCluster' + pk + 'SessionId').each(function() {
+					if(o['sessionId'] !== $(this).text())
+						$(this).text(o['sessionId']);
+				});
 				ajouterLueur($('.inputCluster' + pk + 'SessionId'));
 			}
 			if(vars.includes('utilisateurId')) {
-				$('.inputCluster' + pk + 'UtilisateurId').val(o['utilisateurId']);
-				$('.varCluster' + pk + 'UtilisateurId').text(o['utilisateurId']);
+				$('.inputCluster' + pk + 'UtilisateurId').each(function() {
+					if(o['utilisateurId'] !== $(this).val())
+						$(this).val(o['utilisateurId']);
+				});
+				$('.varCluster' + pk + 'UtilisateurId').each(function() {
+					if(o['utilisateurId'] !== $(this).text())
+						$(this).text(o['utilisateurId']);
+				});
 				ajouterLueur($('.inputCluster' + pk + 'UtilisateurId'));
 			}
 			if(vars.includes('utilisateurCle')) {
-				$('.inputCluster' + pk + 'UtilisateurCle').val(o['utilisateurCle']);
-				$('.varCluster' + pk + 'UtilisateurCle').text(o['utilisateurCle']);
+				$('.inputCluster' + pk + 'UtilisateurCle').each(function() {
+					if(o['utilisateurCle'] !== $(this).val())
+						$(this).val(o['utilisateurCle']);
+				});
+				$('.varCluster' + pk + 'UtilisateurCle').each(function() {
+					if(o['utilisateurCle'] !== $(this).text())
+						$(this).text(o['utilisateurCle']);
+				});
 				ajouterLueur($('.inputCluster' + pk + 'UtilisateurCle'));
 			}
 		});

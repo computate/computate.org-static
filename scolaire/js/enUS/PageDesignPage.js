@@ -1113,68 +1113,146 @@ async function websocketPageDesignInner(apiRequest) {
 		searchPageDesignVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
 			if(vars.includes('created')) {
-				$('.inputPageDesign' + pk + 'Created').val(o['created']);
-				$('.varPageDesign' + pk + 'Created').text(o['created']);
+				$('.inputPageDesign' + pk + 'Created').each(function() {
+					if(o['created'] !== $(this).val())
+						$(this).val(o['created']);
+				});
+				$('.varPageDesign' + pk + 'Created').each(function() {
+					if(o['created'] !== $(this).text())
+						$(this).text(o['created']);
+				});
 				addGlow($('.inputPageDesign' + pk + 'Created'));
 			}
 			if(vars.includes('modified')) {
-				$('.inputPageDesign' + pk + 'Modified').val(o['modified']);
-				$('.varPageDesign' + pk + 'Modified').text(o['modified']);
+				$('.inputPageDesign' + pk + 'Modified').each(function() {
+					if(o['modified'] !== $(this).val())
+						$(this).val(o['modified']);
+				});
+				$('.varPageDesign' + pk + 'Modified').each(function() {
+					if(o['modified'] !== $(this).text())
+						$(this).text(o['modified']);
+				});
 				addGlow($('.inputPageDesign' + pk + 'Modified'));
 			}
 			if(vars.includes('archived')) {
-				$('.inputPageDesign' + pk + 'Archived').val(o['archived']);
-				$('.varPageDesign' + pk + 'Archived').text(o['archived']);
+				$('.inputPageDesign' + pk + 'Archived').each(function() {
+					if(o['archived'] !== $(this).val())
+						$(this).val(o['archived']);
+				});
+				$('.varPageDesign' + pk + 'Archived').each(function() {
+					if(o['archived'] !== $(this).text())
+						$(this).text(o['archived']);
+				});
 				addGlow($('.inputPageDesign' + pk + 'Archived'));
 			}
 			if(vars.includes('deleted')) {
-				$('.inputPageDesign' + pk + 'Deleted').val(o['deleted']);
-				$('.varPageDesign' + pk + 'Deleted').text(o['deleted']);
+				$('.inputPageDesign' + pk + 'Deleted').each(function() {
+					if(o['deleted'] !== $(this).val())
+						$(this).val(o['deleted']);
+				});
+				$('.varPageDesign' + pk + 'Deleted').each(function() {
+					if(o['deleted'] !== $(this).text())
+						$(this).text(o['deleted']);
+				});
 				addGlow($('.inputPageDesign' + pk + 'Deleted'));
 			}
 			if(vars.includes('pageDesignCompleteName')) {
-				$('.inputPageDesign' + pk + 'PageDesignCompleteName').val(o['pageDesignCompleteName']);
-				$('.varPageDesign' + pk + 'PageDesignCompleteName').text(o['pageDesignCompleteName']);
+				$('.inputPageDesign' + pk + 'PageDesignCompleteName').each(function() {
+					if(o['pageDesignCompleteName'] !== $(this).val())
+						$(this).val(o['pageDesignCompleteName']);
+				});
+				$('.varPageDesign' + pk + 'PageDesignCompleteName').each(function() {
+					if(o['pageDesignCompleteName'] !== $(this).text())
+						$(this).text(o['pageDesignCompleteName']);
+				});
 				addGlow($('.inputPageDesign' + pk + 'PageDesignCompleteName'));
 			}
 			if(vars.includes('designHidden')) {
-				$('.inputPageDesign' + pk + 'DesignHidden').val(o['designHidden']);
-				$('.varPageDesign' + pk + 'DesignHidden').text(o['designHidden']);
+				$('.inputPageDesign' + pk + 'DesignHidden').each(function() {
+					if(o['designHidden'] !== $(this).val())
+						$(this).val(o['designHidden']);
+				});
+				$('.varPageDesign' + pk + 'DesignHidden').each(function() {
+					if(o['designHidden'] !== $(this).text())
+						$(this).text(o['designHidden']);
+				});
 				addGlow($('.inputPageDesign' + pk + 'DesignHidden'));
 			}
 			if(vars.includes('parentDesignKeys')) {
-				$('.inputPageDesign' + pk + 'ParentDesignKeys').val(o['parentDesignKeys']);
-				$('.varPageDesign' + pk + 'ParentDesignKeys').text(o['parentDesignKeys']);
+				$('.inputPageDesign' + pk + 'ParentDesignKeys').each(function() {
+					if(o['parentDesignKeys'] !== $(this).val())
+						$(this).val(o['parentDesignKeys']);
+				});
+				$('.varPageDesign' + pk + 'ParentDesignKeys').each(function() {
+					if(o['parentDesignKeys'] !== $(this).text())
+						$(this).text(o['parentDesignKeys']);
+				});
 				addGlow($('.inputPageDesign' + pk + 'ParentDesignKeys'));
 			}
 			if(vars.includes('htmlPartKeys')) {
-				$('.inputPageDesign' + pk + 'HtmlPartKeys').val(o['htmlPartKeys']);
-				$('.varPageDesign' + pk + 'HtmlPartKeys').text(o['htmlPartKeys']);
+				$('.inputPageDesign' + pk + 'HtmlPartKeys').each(function() {
+					if(o['htmlPartKeys'] !== $(this).val())
+						$(this).val(o['htmlPartKeys']);
+				});
+				$('.varPageDesign' + pk + 'HtmlPartKeys').each(function() {
+					if(o['htmlPartKeys'] !== $(this).text())
+						$(this).text(o['htmlPartKeys']);
+				});
 				addGlow($('.inputPageDesign' + pk + 'HtmlPartKeys'));
 			}
 			if(vars.includes('inheritPk')) {
-				$('.inputPageDesign' + pk + 'InheritPk').val(o['inheritPk']);
-				$('.varPageDesign' + pk + 'InheritPk').text(o['inheritPk']);
+				$('.inputPageDesign' + pk + 'InheritPk').each(function() {
+					if(o['inheritPk'] !== $(this).val())
+						$(this).val(o['inheritPk']);
+				});
+				$('.varPageDesign' + pk + 'InheritPk').each(function() {
+					if(o['inheritPk'] !== $(this).text())
+						$(this).text(o['inheritPk']);
+				});
 				addGlow($('.inputPageDesign' + pk + 'InheritPk'));
 			}
 			if(vars.includes('sessionId')) {
-				$('.inputPageDesign' + pk + 'SessionId').val(o['sessionId']);
-				$('.varPageDesign' + pk + 'SessionId').text(o['sessionId']);
+				$('.inputPageDesign' + pk + 'SessionId').each(function() {
+					if(o['sessionId'] !== $(this).val())
+						$(this).val(o['sessionId']);
+				});
+				$('.varPageDesign' + pk + 'SessionId').each(function() {
+					if(o['sessionId'] !== $(this).text())
+						$(this).text(o['sessionId']);
+				});
 				addGlow($('.inputPageDesign' + pk + 'SessionId'));
 			}
 			if(vars.includes('userId')) {
-				$('.inputPageDesign' + pk + 'UserId').val(o['userId']);
-				$('.varPageDesign' + pk + 'UserId').text(o['userId']);
+				$('.inputPageDesign' + pk + 'UserId').each(function() {
+					if(o['userId'] !== $(this).val())
+						$(this).val(o['userId']);
+				});
+				$('.varPageDesign' + pk + 'UserId').each(function() {
+					if(o['userId'] !== $(this).text())
+						$(this).text(o['userId']);
+				});
 				addGlow($('.inputPageDesign' + pk + 'UserId'));
 			}
 			if(vars.includes('userKey')) {
-				$('.inputPageDesign' + pk + 'UserKey').val(o['userKey']);
-				$('.varPageDesign' + pk + 'UserKey').text(o['userKey']);
+				$('.inputPageDesign' + pk + 'UserKey').each(function() {
+					if(o['userKey'] !== $(this).val())
+						$(this).val(o['userKey']);
+				});
+				$('.varPageDesign' + pk + 'UserKey').each(function() {
+					if(o['userKey'] !== $(this).text())
+						$(this).text(o['userKey']);
+				});
 				addGlow($('.inputPageDesign' + pk + 'UserKey'));
 			}
 			if(vars.includes('childDesignKeys')) {
-				$('.inputPageDesign' + pk + 'ChildDesignKeys').val(o['childDesignKeys']);
-				$('.varPageDesign' + pk + 'ChildDesignKeys').text(o['childDesignKeys']);
+				$('.inputPageDesign' + pk + 'ChildDesignKeys').each(function() {
+					if(o['childDesignKeys'] !== $(this).val())
+						$(this).val(o['childDesignKeys']);
+				});
+				$('.varPageDesign' + pk + 'ChildDesignKeys').each(function() {
+					if(o['childDesignKeys'] !== $(this).text())
+						$(this).text(o['childDesignKeys']);
+				});
 				addGlow($('.inputPageDesign' + pk + 'ChildDesignKeys'));
 			}
 		});
