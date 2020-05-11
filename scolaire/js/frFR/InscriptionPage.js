@@ -2959,6 +2959,952 @@ function suggereInscriptionScolaireUtilisateurCles(filtres, $list, pk = null, at
 	rechercheUtilisateurSiteVals(filtres, success, error);
 }
 
+// RechercheAdmin //
+
+async function rechercheadminInscriptionScolaire($formulaireFiltres, success, error) {
+	var filtres = rechercheadminInscriptionScolaireFiltres($formulaireFiltres);
+	if(success == null)
+		success = function( data, textStatus, jQxhr ) {};
+	if(error == null)
+		error = function( jqXhr, textStatus, errorThrown ) {};
+
+	rechercheadminInscriptionScolaireVals(filtres, success, error);
+}
+
+function rechercheadminInscriptionScolaireFiltres($formulaireFiltres) {
+	var filtres = [];
+	if($formulaireFiltres) {
+
+		var filtrePk = $formulaireFiltres.find('.valeurPk').val();
+		if(filtrePk != null && filtrePk !== '')
+			filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
+
+		var filtreCree = $formulaireFiltres.find('.valeurCree').val();
+		if(filtreCree != null && filtreCree !== '')
+			filtres.push({ name: 'fq', value: 'cree:' + filtreCree });
+
+		var filtreModifie = $formulaireFiltres.find('.valeurModifie').val();
+		if(filtreModifie != null && filtreModifie !== '')
+			filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
+
+		var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
+		if(filtreObjetId != null && filtreObjetId !== '')
+			filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
+
+		var $filtreArchiveCheckbox = $formulaireFiltres.find('input.valeurArchive[type = "checkbox"]');
+		var $filtreArchiveSelect = $formulaireFiltres.find('select.valeurArchive');
+		var filtreArchive = $filtreArchiveSelect.length ? $filtreArchiveSelect.val() : $filtreArchiveCheckbox.prop('checked');
+		var filtreArchiveSelectVal = $formulaireFiltres.find('select.filtreArchive').val();
+		var filtreArchive = null;
+		if(filtreArchiveSelectVal !== '')
+			filtreArchive = filtreArchiveSelectVal == 'true';
+		if(filtreArchive != null && filtreArchive === true)
+			filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
+
+		var $filtreSupprimeCheckbox = $formulaireFiltres.find('input.valeurSupprime[type = "checkbox"]');
+		var $filtreSupprimeSelect = $formulaireFiltres.find('select.valeurSupprime');
+		var filtreSupprime = $filtreSupprimeSelect.length ? $filtreSupprimeSelect.val() : $filtreSupprimeCheckbox.prop('checked');
+		var filtreSupprimeSelectVal = $formulaireFiltres.find('select.filtreSupprime').val();
+		var filtreSupprime = null;
+		if(filtreSupprimeSelectVal !== '')
+			filtreSupprime = filtreSupprimeSelectVal == 'true';
+		if(filtreSupprime != null && filtreSupprime === true)
+			filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
+
+		var $filtreInscriptionApprouveCheckbox = $formulaireFiltres.find('input.valeurInscriptionApprouve[type = "checkbox"]');
+		var $filtreInscriptionApprouveSelect = $formulaireFiltres.find('select.valeurInscriptionApprouve');
+		var filtreInscriptionApprouve = $filtreInscriptionApprouveSelect.length ? $filtreInscriptionApprouveSelect.val() : $filtreInscriptionApprouveCheckbox.prop('checked');
+		var filtreInscriptionApprouveSelectVal = $formulaireFiltres.find('select.filtreInscriptionApprouve').val();
+		var filtreInscriptionApprouve = null;
+		if(filtreInscriptionApprouveSelectVal !== '')
+			filtreInscriptionApprouve = filtreInscriptionApprouveSelectVal == 'true';
+		if(filtreInscriptionApprouve != null && filtreInscriptionApprouve === true)
+			filtres.push({ name: 'fq', value: 'inscriptionApprouve:' + filtreInscriptionApprouve });
+
+		var $filtreInscriptionImmunisationsCheckbox = $formulaireFiltres.find('input.valeurInscriptionImmunisations[type = "checkbox"]');
+		var $filtreInscriptionImmunisationsSelect = $formulaireFiltres.find('select.valeurInscriptionImmunisations');
+		var filtreInscriptionImmunisations = $filtreInscriptionImmunisationsSelect.length ? $filtreInscriptionImmunisationsSelect.val() : $filtreInscriptionImmunisationsCheckbox.prop('checked');
+		var filtreInscriptionImmunisationsSelectVal = $formulaireFiltres.find('select.filtreInscriptionImmunisations').val();
+		var filtreInscriptionImmunisations = null;
+		if(filtreInscriptionImmunisationsSelectVal !== '')
+			filtreInscriptionImmunisations = filtreInscriptionImmunisationsSelectVal == 'true';
+		if(filtreInscriptionImmunisations != null && filtreInscriptionImmunisations === true)
+			filtres.push({ name: 'fq', value: 'inscriptionImmunisations:' + filtreInscriptionImmunisations });
+
+		var filtreInscriptionNomGroupe = $formulaireFiltres.find('.valeurInscriptionNomGroupe').val();
+		if(filtreInscriptionNomGroupe != null && filtreInscriptionNomGroupe !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionNomGroupe:' + filtreInscriptionNomGroupe });
+
+		var filtreCustomerProfileId = $formulaireFiltres.find('.valeurCustomerProfileId').val();
+		if(filtreCustomerProfileId != null && filtreCustomerProfileId !== '')
+			filtres.push({ name: 'fq', value: 'customerProfileId:' + filtreCustomerProfileId });
+
+		var $filtreInscriptionPaimentCompletCheckbox = $formulaireFiltres.find('input.valeurInscriptionPaimentComplet[type = "checkbox"]');
+		var $filtreInscriptionPaimentCompletSelect = $formulaireFiltres.find('select.valeurInscriptionPaimentComplet');
+		var filtreInscriptionPaimentComplet = $filtreInscriptionPaimentCompletSelect.length ? $filtreInscriptionPaimentCompletSelect.val() : $filtreInscriptionPaimentCompletCheckbox.prop('checked');
+		var filtreInscriptionPaimentCompletSelectVal = $formulaireFiltres.find('select.filtreInscriptionPaimentComplet').val();
+		var filtreInscriptionPaimentComplet = null;
+		if(filtreInscriptionPaimentCompletSelectVal !== '')
+			filtreInscriptionPaimentComplet = filtreInscriptionPaimentCompletSelectVal == 'true';
+		if(filtreInscriptionPaimentComplet != null && filtreInscriptionPaimentComplet === true)
+			filtres.push({ name: 'fq', value: 'inscriptionPaimentComplet:' + filtreInscriptionPaimentComplet });
+
+		var $filtreEnfantPropreCheckbox = $formulaireFiltres.find('input.valeurEnfantPropre[type = "checkbox"]');
+		var $filtreEnfantPropreSelect = $formulaireFiltres.find('select.valeurEnfantPropre');
+		var filtreEnfantPropre = $filtreEnfantPropreSelect.length ? $filtreEnfantPropreSelect.val() : $filtreEnfantPropreCheckbox.prop('checked');
+		var filtreEnfantPropreSelectVal = $formulaireFiltres.find('select.filtreEnfantPropre').val();
+		var filtreEnfantPropre = null;
+		if(filtreEnfantPropreSelectVal !== '')
+			filtreEnfantPropre = filtreEnfantPropreSelectVal == 'true';
+		if(filtreEnfantPropre != null && filtreEnfantPropre === true)
+			filtres.push({ name: 'fq', value: 'enfantPropre:' + filtreEnfantPropre });
+
+		var $filtreInscriptionPaimentChaqueMoisCheckbox = $formulaireFiltres.find('input.valeurInscriptionPaimentChaqueMois[type = "checkbox"]');
+		var $filtreInscriptionPaimentChaqueMoisSelect = $formulaireFiltres.find('select.valeurInscriptionPaimentChaqueMois');
+		var filtreInscriptionPaimentChaqueMois = $filtreInscriptionPaimentChaqueMoisSelect.length ? $filtreInscriptionPaimentChaqueMoisSelect.val() : $filtreInscriptionPaimentChaqueMoisCheckbox.prop('checked');
+		var filtreInscriptionPaimentChaqueMoisSelectVal = $formulaireFiltres.find('select.filtreInscriptionPaimentChaqueMois').val();
+		var filtreInscriptionPaimentChaqueMois = null;
+		if(filtreInscriptionPaimentChaqueMoisSelectVal !== '')
+			filtreInscriptionPaimentChaqueMois = filtreInscriptionPaimentChaqueMoisSelectVal == 'true';
+		if(filtreInscriptionPaimentChaqueMois != null && filtreInscriptionPaimentChaqueMois === true)
+			filtres.push({ name: 'fq', value: 'inscriptionPaimentChaqueMois:' + filtreInscriptionPaimentChaqueMois });
+
+		var $filtreFamilleMarieCheckbox = $formulaireFiltres.find('input.valeurFamilleMarie[type = "checkbox"]');
+		var $filtreFamilleMarieSelect = $formulaireFiltres.find('select.valeurFamilleMarie');
+		var filtreFamilleMarie = $filtreFamilleMarieSelect.length ? $filtreFamilleMarieSelect.val() : $filtreFamilleMarieCheckbox.prop('checked');
+		var filtreFamilleMarieSelectVal = $formulaireFiltres.find('select.filtreFamilleMarie').val();
+		var filtreFamilleMarie = null;
+		if(filtreFamilleMarieSelectVal !== '')
+			filtreFamilleMarie = filtreFamilleMarieSelectVal == 'true';
+		if(filtreFamilleMarie != null && filtreFamilleMarie === true)
+			filtres.push({ name: 'fq', value: 'familleMarie:' + filtreFamilleMarie });
+
+		var $filtreFamilleSepareCheckbox = $formulaireFiltres.find('input.valeurFamilleSepare[type = "checkbox"]');
+		var $filtreFamilleSepareSelect = $formulaireFiltres.find('select.valeurFamilleSepare');
+		var filtreFamilleSepare = $filtreFamilleSepareSelect.length ? $filtreFamilleSepareSelect.val() : $filtreFamilleSepareCheckbox.prop('checked');
+		var filtreFamilleSepareSelectVal = $formulaireFiltres.find('select.filtreFamilleSepare').val();
+		var filtreFamilleSepare = null;
+		if(filtreFamilleSepareSelectVal !== '')
+			filtreFamilleSepare = filtreFamilleSepareSelectVal == 'true';
+		if(filtreFamilleSepare != null && filtreFamilleSepare === true)
+			filtres.push({ name: 'fq', value: 'familleSepare:' + filtreFamilleSepare });
+
+		var $filtreFamilleDivorceCheckbox = $formulaireFiltres.find('input.valeurFamilleDivorce[type = "checkbox"]');
+		var $filtreFamilleDivorceSelect = $formulaireFiltres.find('select.valeurFamilleDivorce');
+		var filtreFamilleDivorce = $filtreFamilleDivorceSelect.length ? $filtreFamilleDivorceSelect.val() : $filtreFamilleDivorceCheckbox.prop('checked');
+		var filtreFamilleDivorceSelectVal = $formulaireFiltres.find('select.filtreFamilleDivorce').val();
+		var filtreFamilleDivorce = null;
+		if(filtreFamilleDivorceSelectVal !== '')
+			filtreFamilleDivorce = filtreFamilleDivorceSelectVal == 'true';
+		if(filtreFamilleDivorce != null && filtreFamilleDivorce === true)
+			filtres.push({ name: 'fq', value: 'familleDivorce:' + filtreFamilleDivorce });
+
+		var filtreFamilleAddresse = $formulaireFiltres.find('.valeurFamilleAddresse').val();
+		if(filtreFamilleAddresse != null && filtreFamilleAddresse !== '')
+			filtres.push({ name: 'fq', value: 'familleAddresse:' + filtreFamilleAddresse });
+
+		var filtreInscriptionConsiderationsSpeciales = $formulaireFiltres.find('.valeurInscriptionConsiderationsSpeciales').val();
+		if(filtreInscriptionConsiderationsSpeciales != null && filtreInscriptionConsiderationsSpeciales !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionConsiderationsSpeciales:' + filtreInscriptionConsiderationsSpeciales });
+
+		var filtreEnfantConditionsMedicales = $formulaireFiltres.find('.valeurEnfantConditionsMedicales').val();
+		if(filtreEnfantConditionsMedicales != null && filtreEnfantConditionsMedicales !== '')
+			filtres.push({ name: 'fq', value: 'enfantConditionsMedicales:' + filtreEnfantConditionsMedicales });
+
+		var filtreEnfantEcolesPrecedemmentFrequentees = $formulaireFiltres.find('.valeurEnfantEcolesPrecedemmentFrequentees').val();
+		if(filtreEnfantEcolesPrecedemmentFrequentees != null && filtreEnfantEcolesPrecedemmentFrequentees !== '')
+			filtres.push({ name: 'fq', value: 'enfantEcolesPrecedemmentFrequentees:' + filtreEnfantEcolesPrecedemmentFrequentees });
+
+		var filtreFamilleCommentVousConnaissezEcole = $formulaireFiltres.find('.valeurFamilleCommentVousConnaissezEcole').val();
+		if(filtreFamilleCommentVousConnaissezEcole != null && filtreFamilleCommentVousConnaissezEcole !== '')
+			filtres.push({ name: 'fq', value: 'familleCommentVousConnaissezEcole:' + filtreFamilleCommentVousConnaissezEcole });
+
+		var filtreEnfantDescription = $formulaireFiltres.find('.valeurEnfantDescription').val();
+		if(filtreEnfantDescription != null && filtreEnfantDescription !== '')
+			filtres.push({ name: 'fq', value: 'enfantDescription:' + filtreEnfantDescription });
+
+		var filtreEnfantObjectifs = $formulaireFiltres.find('.valeurEnfantObjectifs').val();
+		if(filtreEnfantObjectifs != null && filtreEnfantObjectifs !== '')
+			filtres.push({ name: 'fq', value: 'enfantObjectifs:' + filtreEnfantObjectifs });
+
+		var filtreBlocCles = $formulaireFiltres.find('.valeurBlocCles').val();
+		if(filtreBlocCles != null && filtreBlocCles !== '')
+			filtres.push({ name: 'fq', value: 'blocCles:' + filtreBlocCles });
+
+		var filtreEnfantCle = $formulaireFiltres.find('.valeurEnfantCle').val();
+		if(filtreEnfantCle != null && filtreEnfantCle !== '')
+			filtres.push({ name: 'fq', value: 'enfantCle:' + filtreEnfantCle });
+
+		var filtreMereCles = $formulaireFiltres.find('.valeurMereCles').val();
+		if(filtreMereCles != null && filtreMereCles !== '')
+			filtres.push({ name: 'fq', value: 'mereCles:' + filtreMereCles });
+
+		var filtrePereCles = $formulaireFiltres.find('.valeurPereCles').val();
+		if(filtrePereCles != null && filtrePereCles !== '')
+			filtres.push({ name: 'fq', value: 'pereCles:' + filtrePereCles });
+
+		var filtreGardienCles = $formulaireFiltres.find('.valeurGardienCles').val();
+		if(filtreGardienCles != null && filtreGardienCles !== '')
+			filtres.push({ name: 'fq', value: 'gardienCles:' + filtreGardienCles });
+
+		var filtrePaiementCles = $formulaireFiltres.find('.valeurPaiementCles').val();
+		if(filtrePaiementCles != null && filtrePaiementCles !== '')
+			filtres.push({ name: 'fq', value: 'paiementCles:' + filtrePaiementCles });
+
+		var filtreUtilisateurCles = $formulaireFiltres.find('.valeurUtilisateurCles').val();
+		if(filtreUtilisateurCles != null && filtreUtilisateurCles !== '')
+			filtres.push({ name: 'fq', value: 'utilisateurCles:' + filtreUtilisateurCles });
+
+		var filtreInheritPk = $formulaireFiltres.find('.valeurInheritPk').val();
+		if(filtreInheritPk != null && filtreInheritPk !== '')
+			filtres.push({ name: 'fq', value: 'inheritPk:' + filtreInheritPk });
+
+		var filtreId = $formulaireFiltres.find('.valeurId').val();
+		if(filtreId != null && filtreId !== '')
+			filtres.push({ name: 'fq', value: 'id:' + filtreId });
+
+		var filtreClasseNomCanonique = $formulaireFiltres.find('.valeurClasseNomCanonique').val();
+		if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
+			filtres.push({ name: 'fq', value: 'classeNomCanonique:' + filtreClasseNomCanonique });
+
+		var filtreClasseNomSimple = $formulaireFiltres.find('.valeurClasseNomSimple').val();
+		if(filtreClasseNomSimple != null && filtreClasseNomSimple !== '')
+			filtres.push({ name: 'fq', value: 'classeNomSimple:' + filtreClasseNomSimple });
+
+		var filtreClasseNomsCanoniques = $formulaireFiltres.find('.valeurClasseNomsCanoniques').val();
+		if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
+			filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
+
+		var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
+		if(filtreSessionId != null && filtreSessionId !== '')
+			filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
+
+		var filtreUtilisateurId = $formulaireFiltres.find('.valeurUtilisateurId').val();
+		if(filtreUtilisateurId != null && filtreUtilisateurId !== '')
+			filtres.push({ name: 'fq', value: 'utilisateurId:' + filtreUtilisateurId });
+
+		var filtreUtilisateurCle = $formulaireFiltres.find('.valeurUtilisateurCle').val();
+		if(filtreUtilisateurCle != null && filtreUtilisateurCle !== '')
+			filtres.push({ name: 'fq', value: 'utilisateurCle:' + filtreUtilisateurCle });
+
+		var filtreSauvegardes = $formulaireFiltres.find('.valeurSauvegardes').val();
+		if(filtreSauvegardes != null && filtreSauvegardes !== '')
+			filtres.push({ name: 'fq', value: 'sauvegardes:' + filtreSauvegardes });
+
+		var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
+		if(filtreObjetTitre != null && filtreObjetTitre !== '')
+			filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
+
+		var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
+		if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
+			filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
+
+		var filtreObjetTexte = $formulaireFiltres.find('.valeurObjetTexte').val();
+		if(filtreObjetTexte != null && filtreObjetTexte !== '')
+			filtres.push({ name: 'fq', value: 'objetTexte:' + filtreObjetTexte });
+
+		var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
+		if(filtrePageUrlId != null && filtrePageUrlId !== '')
+			filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
+
+		var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
+		if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
+			filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
+
+		var filtrePageUrlApi = $formulaireFiltres.find('.valeurPageUrlApi').val();
+		if(filtrePageUrlApi != null && filtrePageUrlApi !== '')
+			filtres.push({ name: 'fq', value: 'pageUrlApi:' + filtrePageUrlApi });
+
+		var filtreInscriptionCle = $formulaireFiltres.find('.valeurInscriptionCle').val();
+		if(filtreInscriptionCle != null && filtreInscriptionCle !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionCle:' + filtreInscriptionCle });
+
+		var filtreAnneeCle = $formulaireFiltres.find('.valeurAnneeCle').val();
+		if(filtreAnneeCle != null && filtreAnneeCle !== '')
+			filtres.push({ name: 'fq', value: 'anneeCle:' + filtreAnneeCle });
+
+		var filtreEcoleCle = $formulaireFiltres.find('.valeurEcoleCle').val();
+		if(filtreEcoleCle != null && filtreEcoleCle !== '')
+			filtres.push({ name: 'fq', value: 'ecoleCle:' + filtreEcoleCle });
+
+		var filtreSaisonCle = $formulaireFiltres.find('.valeurSaisonCle').val();
+		if(filtreSaisonCle != null && filtreSaisonCle !== '')
+			filtres.push({ name: 'fq', value: 'saisonCle:' + filtreSaisonCle });
+
+		var filtreSessionCle = $formulaireFiltres.find('.valeurSessionCle').val();
+		if(filtreSessionCle != null && filtreSessionCle !== '')
+			filtres.push({ name: 'fq', value: 'sessionCle:' + filtreSessionCle });
+
+		var filtreAgeCle = $formulaireFiltres.find('.valeurAgeCle').val();
+		if(filtreAgeCle != null && filtreAgeCle !== '')
+			filtres.push({ name: 'fq', value: 'ageCle:' + filtreAgeCle });
+
+		var filtreBlocCle = $formulaireFiltres.find('.valeurBlocCle').val();
+		if(filtreBlocCle != null && filtreBlocCle !== '')
+			filtres.push({ name: 'fq', value: 'blocCle:' + filtreBlocCle });
+
+		var filtreFormInscriptionCle = $formulaireFiltres.find('.valeurFormInscriptionCle').val();
+		if(filtreFormInscriptionCle != null && filtreFormInscriptionCle !== '')
+			filtres.push({ name: 'fq', value: 'formInscriptionCle:' + filtreFormInscriptionCle });
+
+		var filtreScolaireTri = $formulaireFiltres.find('.valeurScolaireTri').val();
+		if(filtreScolaireTri != null && filtreScolaireTri !== '')
+			filtres.push({ name: 'fq', value: 'scolaireTri:' + filtreScolaireTri });
+
+		var filtreEcoleTri = $formulaireFiltres.find('.valeurEcoleTri').val();
+		if(filtreEcoleTri != null && filtreEcoleTri !== '')
+			filtres.push({ name: 'fq', value: 'ecoleTri:' + filtreEcoleTri });
+
+		var filtreAnneeTri = $formulaireFiltres.find('.valeurAnneeTri').val();
+		if(filtreAnneeTri != null && filtreAnneeTri !== '')
+			filtres.push({ name: 'fq', value: 'anneeTri:' + filtreAnneeTri });
+
+		var filtreSaisonTri = $formulaireFiltres.find('.valeurSaisonTri').val();
+		if(filtreSaisonTri != null && filtreSaisonTri !== '')
+			filtres.push({ name: 'fq', value: 'saisonTri:' + filtreSaisonTri });
+
+		var filtreSessionTri = $formulaireFiltres.find('.valeurSessionTri').val();
+		if(filtreSessionTri != null && filtreSessionTri !== '')
+			filtres.push({ name: 'fq', value: 'sessionTri:' + filtreSessionTri });
+
+		var filtreAgeTri = $formulaireFiltres.find('.valeurAgeTri').val();
+		if(filtreAgeTri != null && filtreAgeTri !== '')
+			filtres.push({ name: 'fq', value: 'ageTri:' + filtreAgeTri });
+
+		var filtreEnfantPrenom = $formulaireFiltres.find('.valeurEnfantPrenom').val();
+		if(filtreEnfantPrenom != null && filtreEnfantPrenom !== '')
+			filtres.push({ name: 'fq', value: 'enfantPrenom:' + filtreEnfantPrenom });
+
+		var filtreEnfantPrenomPrefere = $formulaireFiltres.find('.valeurEnfantPrenomPrefere').val();
+		if(filtreEnfantPrenomPrefere != null && filtreEnfantPrenomPrefere !== '')
+			filtres.push({ name: 'fq', value: 'enfantPrenomPrefere:' + filtreEnfantPrenomPrefere });
+
+		var filtreEnfantFamilleNom = $formulaireFiltres.find('.valeurEnfantFamilleNom').val();
+		if(filtreEnfantFamilleNom != null && filtreEnfantFamilleNom !== '')
+			filtres.push({ name: 'fq', value: 'enfantFamilleNom:' + filtreEnfantFamilleNom });
+
+		var filtreMerePrenom = $formulaireFiltres.find('.valeurMerePrenom').val();
+		if(filtreMerePrenom != null && filtreMerePrenom !== '')
+			filtres.push({ name: 'fq', value: 'merePrenom:' + filtreMerePrenom });
+
+		var filtreMerePrenomPrefere = $formulaireFiltres.find('.valeurMerePrenomPrefere').val();
+		if(filtreMerePrenomPrefere != null && filtreMerePrenomPrefere !== '')
+			filtres.push({ name: 'fq', value: 'merePrenomPrefere:' + filtreMerePrenomPrefere });
+
+		var filtreMereNomCompletPrefere = $formulaireFiltres.find('.valeurMereNomCompletPrefere').val();
+		if(filtreMereNomCompletPrefere != null && filtreMereNomCompletPrefere !== '')
+			filtres.push({ name: 'fq', value: 'mereNomCompletPrefere:' + filtreMereNomCompletPrefere });
+
+		var filtrePerePrenom = $formulaireFiltres.find('.valeurPerePrenom').val();
+		if(filtrePerePrenom != null && filtrePerePrenom !== '')
+			filtres.push({ name: 'fq', value: 'perePrenom:' + filtrePerePrenom });
+
+		var filtrePerePrenomPrefere = $formulaireFiltres.find('.valeurPerePrenomPrefere').val();
+		if(filtrePerePrenomPrefere != null && filtrePerePrenomPrefere !== '')
+			filtres.push({ name: 'fq', value: 'perePrenomPrefere:' + filtrePerePrenomPrefere });
+
+		var filtrePereNomCompletPrefere = $formulaireFiltres.find('.valeurPereNomCompletPrefere').val();
+		if(filtrePereNomCompletPrefere != null && filtrePereNomCompletPrefere !== '')
+			filtres.push({ name: 'fq', value: 'pereNomCompletPrefere:' + filtrePereNomCompletPrefere });
+
+		var filtreEnfantNomComplet = $formulaireFiltres.find('.valeurEnfantNomComplet').val();
+		if(filtreEnfantNomComplet != null && filtreEnfantNomComplet !== '')
+			filtres.push({ name: 'fq', value: 'enfantNomComplet:' + filtreEnfantNomComplet });
+
+		var filtreEnfantNomCompletPrefere = $formulaireFiltres.find('.valeurEnfantNomCompletPrefere').val();
+		if(filtreEnfantNomCompletPrefere != null && filtreEnfantNomCompletPrefere !== '')
+			filtres.push({ name: 'fq', value: 'enfantNomCompletPrefere:' + filtreEnfantNomCompletPrefere });
+
+		var filtreEnfantDateNaissance = $formulaireFiltres.find('.valeurEnfantDateNaissance').val();
+		if(filtreEnfantDateNaissance != null && filtreEnfantDateNaissance !== '')
+			filtres.push({ name: 'fq', value: 'enfantDateNaissance:' + filtreEnfantDateNaissance });
+
+		var filtreEnfantMoisNaissance = $formulaireFiltres.find('.valeurEnfantMoisNaissance').val();
+		if(filtreEnfantMoisNaissance != null && filtreEnfantMoisNaissance !== '')
+			filtres.push({ name: 'fq', value: 'enfantMoisNaissance:' + filtreEnfantMoisNaissance });
+
+		var filtreEnfantJourNaissance = $formulaireFiltres.find('.valeurEnfantJourNaissance').val();
+		if(filtreEnfantJourNaissance != null && filtreEnfantJourNaissance !== '')
+			filtres.push({ name: 'fq', value: 'enfantJourNaissance:' + filtreEnfantJourNaissance });
+
+		var filtreEcoleNom = $formulaireFiltres.find('.valeurEcoleNom').val();
+		if(filtreEcoleNom != null && filtreEcoleNom !== '')
+			filtres.push({ name: 'fq', value: 'ecoleNom:' + filtreEcoleNom });
+
+		var filtreEcoleNomComplet = $formulaireFiltres.find('.valeurEcoleNomComplet').val();
+		if(filtreEcoleNomComplet != null && filtreEcoleNomComplet !== '')
+			filtres.push({ name: 'fq', value: 'ecoleNomComplet:' + filtreEcoleNomComplet });
+
+		var filtreEcoleEmplacement = $formulaireFiltres.find('.valeurEcoleEmplacement').val();
+		if(filtreEcoleEmplacement != null && filtreEcoleEmplacement !== '')
+			filtres.push({ name: 'fq', value: 'ecoleEmplacement:' + filtreEcoleEmplacement });
+
+		var filtreEcoleAddresse = $formulaireFiltres.find('.valeurEcoleAddresse').val();
+		if(filtreEcoleAddresse != null && filtreEcoleAddresse !== '')
+			filtres.push({ name: 'fq', value: 'ecoleAddresse:' + filtreEcoleAddresse });
+
+		var filtreEcoleNumeroTelephone = $formulaireFiltres.find('.valeurEcoleNumeroTelephone').val();
+		if(filtreEcoleNumeroTelephone != null && filtreEcoleNumeroTelephone !== '')
+			filtres.push({ name: 'fq', value: 'ecoleNumeroTelephone:' + filtreEcoleNumeroTelephone });
+
+		var filtreEcoleAdministrateurNom = $formulaireFiltres.find('.valeurEcoleAdministrateurNom').val();
+		if(filtreEcoleAdministrateurNom != null && filtreEcoleAdministrateurNom !== '')
+			filtres.push({ name: 'fq', value: 'ecoleAdministrateurNom:' + filtreEcoleAdministrateurNom });
+
+		var filtreAnneeDebut = $formulaireFiltres.find('.valeurAnneeDebut').val();
+		if(filtreAnneeDebut != null && filtreAnneeDebut !== '')
+			filtres.push({ name: 'fq', value: 'anneeDebut:' + filtreAnneeDebut });
+
+		var filtreAnneeFin = $formulaireFiltres.find('.valeurAnneeFin').val();
+		if(filtreAnneeFin != null && filtreAnneeFin !== '')
+			filtres.push({ name: 'fq', value: 'anneeFin:' + filtreAnneeFin });
+
+		var filtreSaisonJourDebut = $formulaireFiltres.find('.valeurSaisonJourDebut').val();
+		if(filtreSaisonJourDebut != null && filtreSaisonJourDebut !== '')
+			filtres.push({ name: 'fq', value: 'saisonJourDebut:' + filtreSaisonJourDebut });
+
+		var $filtreSaisonEteCheckbox = $formulaireFiltres.find('input.valeurSaisonEte[type = "checkbox"]');
+		var $filtreSaisonEteSelect = $formulaireFiltres.find('select.valeurSaisonEte');
+		var filtreSaisonEte = $filtreSaisonEteSelect.length ? $filtreSaisonEteSelect.val() : $filtreSaisonEteCheckbox.prop('checked');
+		var filtreSaisonEteSelectVal = $formulaireFiltres.find('select.filtreSaisonEte').val();
+		var filtreSaisonEte = null;
+		if(filtreSaisonEteSelectVal !== '')
+			filtreSaisonEte = filtreSaisonEteSelectVal == 'true';
+		if(filtreSaisonEte != null && filtreSaisonEte === true)
+			filtres.push({ name: 'fq', value: 'saisonEte:' + filtreSaisonEte });
+
+		var $filtreSaisonHiverCheckbox = $formulaireFiltres.find('input.valeurSaisonHiver[type = "checkbox"]');
+		var $filtreSaisonHiverSelect = $formulaireFiltres.find('select.valeurSaisonHiver');
+		var filtreSaisonHiver = $filtreSaisonHiverSelect.length ? $filtreSaisonHiverSelect.val() : $filtreSaisonHiverCheckbox.prop('checked');
+		var filtreSaisonHiverSelectVal = $formulaireFiltres.find('select.filtreSaisonHiver').val();
+		var filtreSaisonHiver = null;
+		if(filtreSaisonHiverSelectVal !== '')
+			filtreSaisonHiver = filtreSaisonHiverSelectVal == 'true';
+		if(filtreSaisonHiver != null && filtreSaisonHiver === true)
+			filtres.push({ name: 'fq', value: 'saisonHiver:' + filtreSaisonHiver });
+
+		var filtreAnneeFraisInscription = $formulaireFiltres.find('.valeurAnneeFraisInscription').val();
+		if(filtreAnneeFraisInscription != null && filtreAnneeFraisInscription !== '')
+			filtres.push({ name: 'fq', value: 'anneeFraisInscription:' + filtreAnneeFraisInscription });
+
+		var filtreSaisonNomComplet = $formulaireFiltres.find('.valeurSaisonNomComplet').val();
+		if(filtreSaisonNomComplet != null && filtreSaisonNomComplet !== '')
+			filtres.push({ name: 'fq', value: 'saisonNomComplet:' + filtreSaisonNomComplet });
+
+		var filtreSessionJourDebut = $formulaireFiltres.find('.valeurSessionJourDebut').val();
+		if(filtreSessionJourDebut != null && filtreSessionJourDebut !== '')
+			filtres.push({ name: 'fq', value: 'sessionJourDebut:' + filtreSessionJourDebut });
+
+		var filtreSessionJourFin = $formulaireFiltres.find('.valeurSessionJourFin').val();
+		if(filtreSessionJourFin != null && filtreSessionJourFin !== '')
+			filtres.push({ name: 'fq', value: 'sessionJourFin:' + filtreSessionJourFin });
+
+		var filtreAgeNomComplet = $formulaireFiltres.find('.valeurAgeNomComplet').val();
+		if(filtreAgeNomComplet != null && filtreAgeNomComplet !== '')
+			filtres.push({ name: 'fq', value: 'ageNomComplet:' + filtreAgeNomComplet });
+
+		var filtreAgeDebut = $formulaireFiltres.find('.valeurAgeDebut').val();
+		if(filtreAgeDebut != null && filtreAgeDebut !== '')
+			filtres.push({ name: 'fq', value: 'ageDebut:' + filtreAgeDebut });
+
+		var filtreAgeFin = $formulaireFiltres.find('.valeurAgeFin').val();
+		if(filtreAgeFin != null && filtreAgeFin !== '')
+			filtres.push({ name: 'fq', value: 'ageFin:' + filtreAgeFin });
+
+		var filtreBlocHeureDebut = $formulaireFiltres.find('.valeurBlocHeureDebut').val();
+		if(filtreBlocHeureDebut != null && filtreBlocHeureDebut !== '')
+			filtres.push({ name: 'fq', value: 'blocHeureDebut:' + filtreBlocHeureDebut });
+
+		var filtreBlocHeureFin = $formulaireFiltres.find('.valeurBlocHeureFin').val();
+		if(filtreBlocHeureFin != null && filtreBlocHeureFin !== '')
+			filtres.push({ name: 'fq', value: 'blocHeureFin:' + filtreBlocHeureFin });
+
+		var filtreBlocPrixParMois = $formulaireFiltres.find('.valeurBlocPrixParMois').val();
+		if(filtreBlocPrixParMois != null && filtreBlocPrixParMois !== '')
+			filtres.push({ name: 'fq', value: 'blocPrixParMois:' + filtreBlocPrixParMois });
+
+		var $filtreBlocDimancheCheckbox = $formulaireFiltres.find('input.valeurBlocDimanche[type = "checkbox"]');
+		var $filtreBlocDimancheSelect = $formulaireFiltres.find('select.valeurBlocDimanche');
+		var filtreBlocDimanche = $filtreBlocDimancheSelect.length ? $filtreBlocDimancheSelect.val() : $filtreBlocDimancheCheckbox.prop('checked');
+		var filtreBlocDimancheSelectVal = $formulaireFiltres.find('select.filtreBlocDimanche').val();
+		var filtreBlocDimanche = null;
+		if(filtreBlocDimancheSelectVal !== '')
+			filtreBlocDimanche = filtreBlocDimancheSelectVal == 'true';
+		if(filtreBlocDimanche != null && filtreBlocDimanche === true)
+			filtres.push({ name: 'fq', value: 'blocDimanche:' + filtreBlocDimanche });
+
+		var $filtreBlocLundiCheckbox = $formulaireFiltres.find('input.valeurBlocLundi[type = "checkbox"]');
+		var $filtreBlocLundiSelect = $formulaireFiltres.find('select.valeurBlocLundi');
+		var filtreBlocLundi = $filtreBlocLundiSelect.length ? $filtreBlocLundiSelect.val() : $filtreBlocLundiCheckbox.prop('checked');
+		var filtreBlocLundiSelectVal = $formulaireFiltres.find('select.filtreBlocLundi').val();
+		var filtreBlocLundi = null;
+		if(filtreBlocLundiSelectVal !== '')
+			filtreBlocLundi = filtreBlocLundiSelectVal == 'true';
+		if(filtreBlocLundi != null && filtreBlocLundi === true)
+			filtres.push({ name: 'fq', value: 'blocLundi:' + filtreBlocLundi });
+
+		var $filtreBlocMardiCheckbox = $formulaireFiltres.find('input.valeurBlocMardi[type = "checkbox"]');
+		var $filtreBlocMardiSelect = $formulaireFiltres.find('select.valeurBlocMardi');
+		var filtreBlocMardi = $filtreBlocMardiSelect.length ? $filtreBlocMardiSelect.val() : $filtreBlocMardiCheckbox.prop('checked');
+		var filtreBlocMardiSelectVal = $formulaireFiltres.find('select.filtreBlocMardi').val();
+		var filtreBlocMardi = null;
+		if(filtreBlocMardiSelectVal !== '')
+			filtreBlocMardi = filtreBlocMardiSelectVal == 'true';
+		if(filtreBlocMardi != null && filtreBlocMardi === true)
+			filtres.push({ name: 'fq', value: 'blocMardi:' + filtreBlocMardi });
+
+		var $filtreBlocMercrediCheckbox = $formulaireFiltres.find('input.valeurBlocMercredi[type = "checkbox"]');
+		var $filtreBlocMercrediSelect = $formulaireFiltres.find('select.valeurBlocMercredi');
+		var filtreBlocMercredi = $filtreBlocMercrediSelect.length ? $filtreBlocMercrediSelect.val() : $filtreBlocMercrediCheckbox.prop('checked');
+		var filtreBlocMercrediSelectVal = $formulaireFiltres.find('select.filtreBlocMercredi').val();
+		var filtreBlocMercredi = null;
+		if(filtreBlocMercrediSelectVal !== '')
+			filtreBlocMercredi = filtreBlocMercrediSelectVal == 'true';
+		if(filtreBlocMercredi != null && filtreBlocMercredi === true)
+			filtres.push({ name: 'fq', value: 'blocMercredi:' + filtreBlocMercredi });
+
+		var $filtreBlocJeudiCheckbox = $formulaireFiltres.find('input.valeurBlocJeudi[type = "checkbox"]');
+		var $filtreBlocJeudiSelect = $formulaireFiltres.find('select.valeurBlocJeudi');
+		var filtreBlocJeudi = $filtreBlocJeudiSelect.length ? $filtreBlocJeudiSelect.val() : $filtreBlocJeudiCheckbox.prop('checked');
+		var filtreBlocJeudiSelectVal = $formulaireFiltres.find('select.filtreBlocJeudi').val();
+		var filtreBlocJeudi = null;
+		if(filtreBlocJeudiSelectVal !== '')
+			filtreBlocJeudi = filtreBlocJeudiSelectVal == 'true';
+		if(filtreBlocJeudi != null && filtreBlocJeudi === true)
+			filtres.push({ name: 'fq', value: 'blocJeudi:' + filtreBlocJeudi });
+
+		var $filtreBlocVendrediCheckbox = $formulaireFiltres.find('input.valeurBlocVendredi[type = "checkbox"]');
+		var $filtreBlocVendrediSelect = $formulaireFiltres.find('select.valeurBlocVendredi');
+		var filtreBlocVendredi = $filtreBlocVendrediSelect.length ? $filtreBlocVendrediSelect.val() : $filtreBlocVendrediCheckbox.prop('checked');
+		var filtreBlocVendrediSelectVal = $formulaireFiltres.find('select.filtreBlocVendredi').val();
+		var filtreBlocVendredi = null;
+		if(filtreBlocVendrediSelectVal !== '')
+			filtreBlocVendredi = filtreBlocVendrediSelectVal == 'true';
+		if(filtreBlocVendredi != null && filtreBlocVendredi === true)
+			filtres.push({ name: 'fq', value: 'blocVendredi:' + filtreBlocVendredi });
+
+		var $filtreBlocSamediCheckbox = $formulaireFiltres.find('input.valeurBlocSamedi[type = "checkbox"]');
+		var $filtreBlocSamediSelect = $formulaireFiltres.find('select.valeurBlocSamedi');
+		var filtreBlocSamedi = $filtreBlocSamediSelect.length ? $filtreBlocSamediSelect.val() : $filtreBlocSamediCheckbox.prop('checked');
+		var filtreBlocSamediSelectVal = $formulaireFiltres.find('select.filtreBlocSamedi').val();
+		var filtreBlocSamedi = null;
+		if(filtreBlocSamediSelectVal !== '')
+			filtreBlocSamedi = filtreBlocSamediSelectVal == 'true';
+		if(filtreBlocSamedi != null && filtreBlocSamedi === true)
+			filtres.push({ name: 'fq', value: 'blocSamedi:' + filtreBlocSamedi });
+
+		var filtreBlocPrixTotal = $formulaireFiltres.find('.valeurBlocPrixTotal').val();
+		if(filtreBlocPrixTotal != null && filtreBlocPrixTotal !== '')
+			filtres.push({ name: 'fq', value: 'blocPrixTotal:' + filtreBlocPrixTotal });
+
+		var filtreBlocNomAdmin = $formulaireFiltres.find('.valeurBlocNomAdmin').val();
+		if(filtreBlocNomAdmin != null && filtreBlocNomAdmin !== '')
+			filtres.push({ name: 'fq', value: 'blocNomAdmin:' + filtreBlocNomAdmin });
+
+		var filtreBlocNomCourt = $formulaireFiltres.find('.valeurBlocNomCourt').val();
+		if(filtreBlocNomCourt != null && filtreBlocNomCourt !== '')
+			filtres.push({ name: 'fq', value: 'blocNomCourt:' + filtreBlocNomCourt });
+
+		var filtreBlocNomComplet = $formulaireFiltres.find('.valeurBlocNomComplet').val();
+		if(filtreBlocNomComplet != null && filtreBlocNomComplet !== '')
+			filtres.push({ name: 'fq', value: 'blocNomComplet:' + filtreBlocNomComplet });
+
+		var filtreInscriptionDateFrais = $formulaireFiltres.find('.valeurInscriptionDateFrais').val();
+		if(filtreInscriptionDateFrais != null && filtreInscriptionDateFrais !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionDateFrais:' + filtreInscriptionDateFrais });
+
+		var filtreCreeDAnnee = $formulaireFiltres.find('.valeurCreeDAnnee').val();
+		if(filtreCreeDAnnee != null && filtreCreeDAnnee !== '')
+			filtres.push({ name: 'fq', value: 'creeDAnnee:' + filtreCreeDAnnee });
+
+		var filtreCreeJourDeSemaine = $formulaireFiltres.find('.valeurCreeJourDeSemaine').val();
+		if(filtreCreeJourDeSemaine != null && filtreCreeJourDeSemaine !== '')
+			filtres.push({ name: 'fq', value: 'creeJourDeSemaine:' + filtreCreeJourDeSemaine });
+
+		var filtreCreeMoisDAnnee = $formulaireFiltres.find('.valeurCreeMoisDAnnee').val();
+		if(filtreCreeMoisDAnnee != null && filtreCreeMoisDAnnee !== '')
+			filtres.push({ name: 'fq', value: 'creeMoisDAnnee:' + filtreCreeMoisDAnnee });
+
+		var filtreCreeHeureDuJour = $formulaireFiltres.find('.valeurCreeHeureDuJour').val();
+		if(filtreCreeHeureDuJour != null && filtreCreeHeureDuJour !== '')
+			filtres.push({ name: 'fq', value: 'creeHeureDuJour:' + filtreCreeHeureDuJour });
+
+		var filtreInscriptionJoursDeSemaine = $formulaireFiltres.find('.valeurInscriptionJoursDeSemaine').val();
+		if(filtreInscriptionJoursDeSemaine != null && filtreInscriptionJoursDeSemaine !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionJoursDeSemaine:' + filtreInscriptionJoursDeSemaine });
+
+		var filtreInscriptionDate1 = $formulaireFiltres.find('.valeurInscriptionDate1').val();
+		if(filtreInscriptionDate1 != null && filtreInscriptionDate1 !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionDate1:' + filtreInscriptionDate1 });
+
+		var filtreInscriptionDate2 = $formulaireFiltres.find('.valeurInscriptionDate2').val();
+		if(filtreInscriptionDate2 != null && filtreInscriptionDate2 !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionDate2:' + filtreInscriptionDate2 });
+
+		var filtreInscriptionDate3 = $formulaireFiltres.find('.valeurInscriptionDate3').val();
+		if(filtreInscriptionDate3 != null && filtreInscriptionDate3 !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionDate3:' + filtreInscriptionDate3 });
+
+		var filtreInscriptionDate4 = $formulaireFiltres.find('.valeurInscriptionDate4').val();
+		if(filtreInscriptionDate4 != null && filtreInscriptionDate4 !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionDate4:' + filtreInscriptionDate4 });
+
+		var filtreInscriptionDate5 = $formulaireFiltres.find('.valeurInscriptionDate5').val();
+		if(filtreInscriptionDate5 != null && filtreInscriptionDate5 !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionDate5:' + filtreInscriptionDate5 });
+
+		var filtreInscriptionDate6 = $formulaireFiltres.find('.valeurInscriptionDate6').val();
+		if(filtreInscriptionDate6 != null && filtreInscriptionDate6 !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionDate6:' + filtreInscriptionDate6 });
+
+		var filtreInscriptionDate7 = $formulaireFiltres.find('.valeurInscriptionDate7').val();
+		if(filtreInscriptionDate7 != null && filtreInscriptionDate7 !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionDate7:' + filtreInscriptionDate7 });
+
+		var filtreInscriptionDate8 = $formulaireFiltres.find('.valeurInscriptionDate8').val();
+		if(filtreInscriptionDate8 != null && filtreInscriptionDate8 !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionDate8:' + filtreInscriptionDate8 });
+
+		var filtreInscriptionDate9 = $formulaireFiltres.find('.valeurInscriptionDate9').val();
+		if(filtreInscriptionDate9 != null && filtreInscriptionDate9 !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionDate9:' + filtreInscriptionDate9 });
+
+		var filtreInscriptionDate10 = $formulaireFiltres.find('.valeurInscriptionDate10').val();
+		if(filtreInscriptionDate10 != null && filtreInscriptionDate10 !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionDate10:' + filtreInscriptionDate10 });
+
+		var filtreEnfantImmunisationsRecu = $formulaireFiltres.find('.valeurEnfantImmunisationsRecu').val();
+		if(filtreEnfantImmunisationsRecu != null && filtreEnfantImmunisationsRecu !== '')
+			filtres.push({ name: 'fq', value: 'enfantImmunisationsRecu:' + filtreEnfantImmunisationsRecu });
+
+		var filtreEnfantPhotosApprouve = $formulaireFiltres.find('.valeurEnfantPhotosApprouve').val();
+		if(filtreEnfantPhotosApprouve != null && filtreEnfantPhotosApprouve !== '')
+			filtres.push({ name: 'fq', value: 'enfantPhotosApprouve:' + filtreEnfantPhotosApprouve });
+
+		var filtreInscriptionNomComplet = $formulaireFiltres.find('.valeurInscriptionNomComplet').val();
+		if(filtreInscriptionNomComplet != null && filtreInscriptionNomComplet !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionNomComplet:' + filtreInscriptionNomComplet });
+	}
+	return filtres;
+}
+
+function rechercheadminInscriptionScolaireVals(filtres, success, error) {
+	$.ajax({
+		url: '/api/admin/inscription?' + $.param(filtres)
+		, dataType: 'json'
+		, type: 'GET'
+		, contentType: 'application/json; charset=utf-8'
+		, success: success
+		, error: error
+	});
+}
+
+function suggereInscriptionScolaireObjetSuggere($formulaireFiltres, $list) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'fas fa-edit ');
+			var $span = $('<span>').attr('class', '').text(o['inscriptionNomComplet']);
+			var $li = $('<li>');
+			var $a = $('<a>').attr('href', o['pageUrlPk']);
+			$a.append($i);
+			$a.append($span);
+			$li.append($a);
+			$list.append($li);
+		});
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	rechercherInscriptionScolaireVals($formulaireFiltres, success, error);
+}
+
+function suggereInscriptionScolaireAnneeCle(filtres, $list, pk = null, attribuer=true) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'fa fa-calendar-check ');
+			var $span = $('<span>').attr('class', '').text(o['anneeNomComplet']);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
+			$a.append($i);
+			$a.append($span);
+			var val = o['inscriptionCles'];
+			var checked = pk == null ? false : Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
+			var $input = $('<input>');
+			$input.attr('id', 'GET_anneeCle_' + pk + '_inscriptionCles_' + o['pk']);
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valeurAnneeCle w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_anneeCle_" + pk + "_inscriptionCles_" + o['pk'] + "'); patchInscriptionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'set' : 'remove') + 'AnneeCle']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'enleverLueur($(this)); ');
+			}
+			$input.attr('type', 'checkbox');
+			if(checked)
+				$input.attr('checked', 'checked');
+			var $li = $('<li>');
+			if(attribuer)
+				$li.append($input);
+			$li.append($a);
+			$list.append($li);
+		});
+		var focusId = $('#InscriptionScolaireForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	rechercheAnneeScolaireVals(filtres, success, error);
+}
+
+function suggereInscriptionScolaireBlocCles(filtres, $list, pk = null, attribuer=true) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'fa fa-bell ');
+			var $span = $('<span>').attr('class', '').text(o['blocNomComplet']);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
+			$a.append($i);
+			$a.append($span);
+			var val = o['inscriptionCles'];
+			var checked = pk == null ? false : Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
+			var $input = $('<input>');
+			$input.attr('id', 'GET_blocCles_' + pk + '_inscriptionCles_' + o['pk']);
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valeurBlocCles w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_blocCles_" + pk + "_inscriptionCles_" + o['pk'] + "'); patchInscriptionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'BlocCles']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'enleverLueur($(this)); ');
+			}
+			$input.attr('type', 'checkbox');
+			if(checked)
+				$input.attr('checked', 'checked');
+			var $li = $('<li>');
+			if(attribuer)
+				$li.append($input);
+			$li.append($a);
+			$list.append($li);
+		});
+		var focusId = $('#InscriptionScolaireForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	rechercheBlocScolaireVals(filtres, success, error);
+}
+
+function suggereInscriptionScolaireEnfantCle(filtres, $list, pk = null, attribuer=true) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'fa fa-child ');
+			var $span = $('<span>').attr('class', '').text(o['enfantNomComplet']);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
+			$a.append($i);
+			$a.append($span);
+			var val = o['inscriptionCles'];
+			var checked = pk == null ? false : Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
+			var $input = $('<input>');
+			$input.attr('id', 'GET_enfantCle_' + pk + '_inscriptionCles_' + o['pk']);
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valeurEnfantCle w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_enfantCle_" + pk + "_inscriptionCles_" + o['pk'] + "'); patchInscriptionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'set' : 'remove') + 'EnfantCle']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'enleverLueur($(this)); ');
+			}
+			$input.attr('type', 'checkbox');
+			if(checked)
+				$input.attr('checked', 'checked');
+			var $li = $('<li>');
+			if(attribuer)
+				$li.append($input);
+			$li.append($a);
+			$list.append($li);
+		});
+		var focusId = $('#InscriptionScolaireForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	rechercheEnfantScolaireVals(filtres, success, error);
+}
+
+function suggereInscriptionScolaireMereCles(filtres, $list, pk = null, attribuer=true) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'fa fa-female ');
+			var $span = $('<span>').attr('class', '').text(o['mereNomComplet']);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
+			$a.append($i);
+			$a.append($span);
+			var val = o['inscriptionCles'];
+			var checked = pk == null ? false : Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
+			var $input = $('<input>');
+			$input.attr('id', 'GET_mereCles_' + pk + '_inscriptionCles_' + o['pk']);
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valeurMereCles w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_mereCles_" + pk + "_inscriptionCles_" + o['pk'] + "'); patchInscriptionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'MereCles']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'enleverLueur($(this)); ');
+			}
+			$input.attr('type', 'checkbox');
+			if(checked)
+				$input.attr('checked', 'checked');
+			var $li = $('<li>');
+			if(attribuer)
+				$li.append($input);
+			$li.append($a);
+			$list.append($li);
+		});
+		var focusId = $('#InscriptionScolaireForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	rechercheMereScolaireVals(filtres, success, error);
+}
+
+function suggereInscriptionScolairePereCles(filtres, $list, pk = null, attribuer=true) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'fa fa-male ');
+			var $span = $('<span>').attr('class', '').text(o['pereNomComplet']);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
+			$a.append($i);
+			$a.append($span);
+			var val = o['inscriptionCles'];
+			var checked = pk == null ? false : Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
+			var $input = $('<input>');
+			$input.attr('id', 'GET_pereCles_' + pk + '_inscriptionCles_' + o['pk']);
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valeurPereCles w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_pereCles_" + pk + "_inscriptionCles_" + o['pk'] + "'); patchInscriptionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'PereCles']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'enleverLueur($(this)); ');
+			}
+			$input.attr('type', 'checkbox');
+			if(checked)
+				$input.attr('checked', 'checked');
+			var $li = $('<li>');
+			if(attribuer)
+				$li.append($input);
+			$li.append($a);
+			$list.append($li);
+		});
+		var focusId = $('#InscriptionScolaireForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	recherchePereScolaireVals(filtres, success, error);
+}
+
+function suggereInscriptionScolaireGardienCles(filtres, $list, pk = null, attribuer=true) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'fa fa-phone ');
+			var $span = $('<span>').attr('class', '').text(o['gardienNomComplet']);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
+			$a.append($i);
+			$a.append($span);
+			var val = o['inscriptionCles'];
+			var checked = pk == null ? false : Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
+			var $input = $('<input>');
+			$input.attr('id', 'GET_gardienCles_' + pk + '_inscriptionCles_' + o['pk']);
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valeurGardienCles w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_gardienCles_" + pk + "_inscriptionCles_" + o['pk'] + "'); patchInscriptionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'GardienCles']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'enleverLueur($(this)); ');
+			}
+			$input.attr('type', 'checkbox');
+			if(checked)
+				$input.attr('checked', 'checked');
+			var $li = $('<li>');
+			if(attribuer)
+				$li.append($input);
+			$li.append($a);
+			$list.append($li);
+		});
+		var focusId = $('#InscriptionScolaireForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	rechercheGardienScolaireVals(filtres, success, error);
+}
+
+function suggereInscriptionScolairePaiementCles(filtres, $list, pk = null, attribuer=true) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'fa fa-search-dollar ');
+			var $span = $('<span>').attr('class', '').text(o['paiementNomComplet']);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
+			$a.append($i);
+			$a.append($span);
+			var val = o['inscriptionCle'];
+			var checked = pk == null ? false : Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
+			var $input = $('<input>');
+			$input.attr('id', 'GET_paiementCles_' + pk + '_inscriptionCle_' + o['pk']);
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valeurPaiementCles w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_paiementCles_" + pk + "_inscriptionCle_" + o['pk'] + "'); patchInscriptionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'PaiementCles']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'enleverLueur($(this)); ');
+			}
+			$input.attr('type', 'checkbox');
+			if(checked)
+				$input.attr('checked', 'checked');
+			var $li = $('<li>');
+			if(attribuer)
+				$li.append($input);
+			$li.append($a);
+			$list.append($li);
+		});
+		var focusId = $('#InscriptionScolaireForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	recherchePaiementScolaireVals(filtres, success, error);
+}
+
+function suggereInscriptionScolaireUtilisateurCles(filtres, $list, pk = null, attribuer=true) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'fa fa-user-cog ');
+			var $span = $('<span>').attr('class', '').text(o['objetTitre']);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
+			$a.append($i);
+			$a.append($span);
+			var val = o['inscriptionCles'];
+			var checked = pk == null ? false : Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
+			var $input = $('<input>');
+			$input.attr('id', 'GET_utilisateurCles_' + pk + '_inscriptionCles_' + o['pk']);
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valeurUtilisateurCles w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_utilisateurCles_" + pk + "_inscriptionCles_" + o['pk'] + "'); patchInscriptionScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'UtilisateurCles']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'enleverLueur($(this)); ');
+			}
+			$input.attr('type', 'checkbox');
+			if(checked)
+				$input.attr('checked', 'checked');
+			var $li = $('<li>');
+			if(attribuer)
+				$li.append($input);
+			$li.append($a);
+			$list.append($li);
+		});
+		var focusId = $('#InscriptionScolaireForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	rechercheUtilisateurSiteVals(filtres, success, error);
+}
+
 // PATCHPaiements //
 
 async function patchpaiementsInscriptionScolaire($formulaireFiltres, $formulaireValeurs, pk, success, error) {
@@ -4397,6 +5343,38 @@ async function websocketInscriptionScolaire(success) {
 				$('.top-box').append($box);
 			if(success)
 					success(json);
+		});
+
+		window.eventBus.registerHandler('websocketAnneeScolaire', function (error, message) {
+			$('#Page_anneeCle').trigger('oninput');
+		});
+
+		window.eventBus.registerHandler('websocketBlocScolaire', function (error, message) {
+			$('#Page_blocCles').trigger('oninput');
+		});
+
+		window.eventBus.registerHandler('websocketEnfantScolaire', function (error, message) {
+			$('#Page_enfantCle').trigger('oninput');
+		});
+
+		window.eventBus.registerHandler('websocketMereScolaire', function (error, message) {
+			$('#Page_mereCles').trigger('oninput');
+		});
+
+		window.eventBus.registerHandler('websocketPereScolaire', function (error, message) {
+			$('#Page_pereCles').trigger('oninput');
+		});
+
+		window.eventBus.registerHandler('websocketGardienScolaire', function (error, message) {
+			$('#Page_gardienCles').trigger('oninput');
+		});
+
+		window.eventBus.registerHandler('websocketPaiementScolaire', function (error, message) {
+			$('#Page_paiementCles').trigger('oninput');
+		});
+
+		window.eventBus.registerHandler('websocketUtilisateurSite', function (error, message) {
+			$('#Page_utilisateurCles').trigger('oninput');
 		});
 
 		window.eventBus.registerHandler('websocketAnneeScolaire', function (error, message) {

@@ -1081,6 +1081,310 @@ function suggereGardienScolaireInscriptionCles(filtres, $list, pk = null, attrib
 	rechercheInscriptionScolaireVals(filtres, success, error);
 }
 
+// RechercheAdmin //
+
+async function rechercheadminGardienScolaire($formulaireFiltres, success, error) {
+	var filtres = rechercheadminGardienScolaireFiltres($formulaireFiltres);
+	if(success == null)
+		success = function( data, textStatus, jQxhr ) {};
+	if(error == null)
+		error = function( jqXhr, textStatus, errorThrown ) {};
+
+	rechercheadminGardienScolaireVals(filtres, success, error);
+}
+
+function rechercheadminGardienScolaireFiltres($formulaireFiltres) {
+	var filtres = [];
+	if($formulaireFiltres) {
+
+		var filtrePk = $formulaireFiltres.find('.valeurPk').val();
+		if(filtrePk != null && filtrePk !== '')
+			filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
+
+		var filtreCree = $formulaireFiltres.find('.valeurCree').val();
+		if(filtreCree != null && filtreCree !== '')
+			filtres.push({ name: 'fq', value: 'cree:' + filtreCree });
+
+		var filtreModifie = $formulaireFiltres.find('.valeurModifie').val();
+		if(filtreModifie != null && filtreModifie !== '')
+			filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
+
+		var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
+		if(filtreObjetId != null && filtreObjetId !== '')
+			filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
+
+		var $filtreArchiveCheckbox = $formulaireFiltres.find('input.valeurArchive[type = "checkbox"]');
+		var $filtreArchiveSelect = $formulaireFiltres.find('select.valeurArchive');
+		var filtreArchive = $filtreArchiveSelect.length ? $filtreArchiveSelect.val() : $filtreArchiveCheckbox.prop('checked');
+		var filtreArchiveSelectVal = $formulaireFiltres.find('select.filtreArchive').val();
+		var filtreArchive = null;
+		if(filtreArchiveSelectVal !== '')
+			filtreArchive = filtreArchiveSelectVal == 'true';
+		if(filtreArchive != null && filtreArchive === true)
+			filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
+
+		var $filtreSupprimeCheckbox = $formulaireFiltres.find('input.valeurSupprime[type = "checkbox"]');
+		var $filtreSupprimeSelect = $formulaireFiltres.find('select.valeurSupprime');
+		var filtreSupprime = $filtreSupprimeSelect.length ? $filtreSupprimeSelect.val() : $filtreSupprimeCheckbox.prop('checked');
+		var filtreSupprimeSelectVal = $formulaireFiltres.find('select.filtreSupprime').val();
+		var filtreSupprime = null;
+		if(filtreSupprimeSelectVal !== '')
+			filtreSupprime = filtreSupprimeSelectVal == 'true';
+		if(filtreSupprime != null && filtreSupprime === true)
+			filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
+
+		var filtrePersonnePrenom = $formulaireFiltres.find('.valeurPersonnePrenom').val();
+		if(filtrePersonnePrenom != null && filtrePersonnePrenom !== '')
+			filtres.push({ name: 'fq', value: 'personnePrenom:' + filtrePersonnePrenom });
+
+		var filtreFamilleNom = $formulaireFiltres.find('.valeurFamilleNom').val();
+		if(filtreFamilleNom != null && filtreFamilleNom !== '')
+			filtres.push({ name: 'fq', value: 'familleNom:' + filtreFamilleNom });
+
+		var filtrePersonnePrenomPrefere = $formulaireFiltres.find('.valeurPersonnePrenomPrefere').val();
+		if(filtrePersonnePrenomPrefere != null && filtrePersonnePrenomPrefere !== '')
+			filtres.push({ name: 'fq', value: 'personnePrenomPrefere:' + filtrePersonnePrenomPrefere });
+
+		var filtrePersonneNumeroTelephone = $formulaireFiltres.find('.valeurPersonneNumeroTelephone').val();
+		if(filtrePersonneNumeroTelephone != null && filtrePersonneNumeroTelephone !== '')
+			filtres.push({ name: 'fq', value: 'personneNumeroTelephone:' + filtrePersonneNumeroTelephone });
+
+		var filtrePersonneRelation = $formulaireFiltres.find('.valeurPersonneRelation').val();
+		if(filtrePersonneRelation != null && filtrePersonneRelation !== '')
+			filtres.push({ name: 'fq', value: 'personneRelation:' + filtrePersonneRelation });
+
+		var $filtrePersonneContactUrgenceCheckbox = $formulaireFiltres.find('input.valeurPersonneContactUrgence[type = "checkbox"]');
+		var $filtrePersonneContactUrgenceSelect = $formulaireFiltres.find('select.valeurPersonneContactUrgence');
+		var filtrePersonneContactUrgence = $filtrePersonneContactUrgenceSelect.length ? $filtrePersonneContactUrgenceSelect.val() : $filtrePersonneContactUrgenceCheckbox.prop('checked');
+		var filtrePersonneContactUrgenceSelectVal = $formulaireFiltres.find('select.filtrePersonneContactUrgence').val();
+		var filtrePersonneContactUrgence = null;
+		if(filtrePersonneContactUrgenceSelectVal !== '')
+			filtrePersonneContactUrgence = filtrePersonneContactUrgenceSelectVal == 'true';
+		if(filtrePersonneContactUrgence != null && filtrePersonneContactUrgence === true)
+			filtres.push({ name: 'fq', value: 'personneContactUrgence:' + filtrePersonneContactUrgence });
+
+		var $filtrePersonneChercherCheckbox = $formulaireFiltres.find('input.valeurPersonneChercher[type = "checkbox"]');
+		var $filtrePersonneChercherSelect = $formulaireFiltres.find('select.valeurPersonneChercher');
+		var filtrePersonneChercher = $filtrePersonneChercherSelect.length ? $filtrePersonneChercherSelect.val() : $filtrePersonneChercherCheckbox.prop('checked');
+		var filtrePersonneChercherSelectVal = $formulaireFiltres.find('select.filtrePersonneChercher').val();
+		var filtrePersonneChercher = null;
+		if(filtrePersonneChercherSelectVal !== '')
+			filtrePersonneChercher = filtrePersonneChercherSelectVal == 'true';
+		if(filtrePersonneChercher != null && filtrePersonneChercher === true)
+			filtres.push({ name: 'fq', value: 'personneChercher:' + filtrePersonneChercher });
+
+		var filtreInscriptionCles = $formulaireFiltres.find('.valeurInscriptionCles').val();
+		if(filtreInscriptionCles != null && filtreInscriptionCles !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionCles:' + filtreInscriptionCles });
+
+		var filtreInheritPk = $formulaireFiltres.find('.valeurInheritPk').val();
+		if(filtreInheritPk != null && filtreInheritPk !== '')
+			filtres.push({ name: 'fq', value: 'inheritPk:' + filtreInheritPk });
+
+		var filtreId = $formulaireFiltres.find('.valeurId').val();
+		if(filtreId != null && filtreId !== '')
+			filtres.push({ name: 'fq', value: 'id:' + filtreId });
+
+		var filtreClasseNomCanonique = $formulaireFiltres.find('.valeurClasseNomCanonique').val();
+		if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
+			filtres.push({ name: 'fq', value: 'classeNomCanonique:' + filtreClasseNomCanonique });
+
+		var filtreClasseNomSimple = $formulaireFiltres.find('.valeurClasseNomSimple').val();
+		if(filtreClasseNomSimple != null && filtreClasseNomSimple !== '')
+			filtres.push({ name: 'fq', value: 'classeNomSimple:' + filtreClasseNomSimple });
+
+		var filtreClasseNomsCanoniques = $formulaireFiltres.find('.valeurClasseNomsCanoniques').val();
+		if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
+			filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
+
+		var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
+		if(filtreSessionId != null && filtreSessionId !== '')
+			filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
+
+		var filtreUtilisateurId = $formulaireFiltres.find('.valeurUtilisateurId').val();
+		if(filtreUtilisateurId != null && filtreUtilisateurId !== '')
+			filtres.push({ name: 'fq', value: 'utilisateurId:' + filtreUtilisateurId });
+
+		var filtreUtilisateurCle = $formulaireFiltres.find('.valeurUtilisateurCle').val();
+		if(filtreUtilisateurCle != null && filtreUtilisateurCle !== '')
+			filtres.push({ name: 'fq', value: 'utilisateurCle:' + filtreUtilisateurCle });
+
+		var filtreSauvegardes = $formulaireFiltres.find('.valeurSauvegardes').val();
+		if(filtreSauvegardes != null && filtreSauvegardes !== '')
+			filtres.push({ name: 'fq', value: 'sauvegardes:' + filtreSauvegardes });
+
+		var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
+		if(filtreObjetTitre != null && filtreObjetTitre !== '')
+			filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
+
+		var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
+		if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
+			filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
+
+		var filtreObjetTexte = $formulaireFiltres.find('.valeurObjetTexte').val();
+		if(filtreObjetTexte != null && filtreObjetTexte !== '')
+			filtres.push({ name: 'fq', value: 'objetTexte:' + filtreObjetTexte });
+
+		var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
+		if(filtrePageUrlId != null && filtrePageUrlId !== '')
+			filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
+
+		var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
+		if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
+			filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
+
+		var filtrePageUrlApi = $formulaireFiltres.find('.valeurPageUrlApi').val();
+		if(filtrePageUrlApi != null && filtrePageUrlApi !== '')
+			filtres.push({ name: 'fq', value: 'pageUrlApi:' + filtrePageUrlApi });
+
+		var filtreGardienCle = $formulaireFiltres.find('.valeurGardienCle').val();
+		if(filtreGardienCle != null && filtreGardienCle !== '')
+			filtres.push({ name: 'fq', value: 'gardienCle:' + filtreGardienCle });
+
+		var filtreFamilleTri = $formulaireFiltres.find('.valeurFamilleTri').val();
+		if(filtreFamilleTri != null && filtreFamilleTri !== '')
+			filtres.push({ name: 'fq', value: 'familleTri:' + filtreFamilleTri });
+
+		var filtreGardienTri = $formulaireFiltres.find('.valeurGardienTri').val();
+		if(filtreGardienTri != null && filtreGardienTri !== '')
+			filtres.push({ name: 'fq', value: 'gardienTri:' + filtreGardienTri });
+
+		var filtreUtilisateurCles = $formulaireFiltres.find('.valeurUtilisateurCles').val();
+		if(filtreUtilisateurCles != null && filtreUtilisateurCles !== '')
+			filtres.push({ name: 'fq', value: 'utilisateurCles:' + filtreUtilisateurCles });
+
+		var filtreEcoleCles = $formulaireFiltres.find('.valeurEcoleCles').val();
+		if(filtreEcoleCles != null && filtreEcoleCles !== '')
+			filtres.push({ name: 'fq', value: 'ecoleCles:' + filtreEcoleCles });
+
+		var filtreAnneeCles = $formulaireFiltres.find('.valeurAnneeCles').val();
+		if(filtreAnneeCles != null && filtreAnneeCles !== '')
+			filtres.push({ name: 'fq', value: 'anneeCles:' + filtreAnneeCles });
+
+		var filtreSaisonCles = $formulaireFiltres.find('.valeurSaisonCles').val();
+		if(filtreSaisonCles != null && filtreSaisonCles !== '')
+			filtres.push({ name: 'fq', value: 'saisonCles:' + filtreSaisonCles });
+
+		var filtreSessionCles = $formulaireFiltres.find('.valeurSessionCles').val();
+		if(filtreSessionCles != null && filtreSessionCles !== '')
+			filtres.push({ name: 'fq', value: 'sessionCles:' + filtreSessionCles });
+
+		var filtreAgeCles = $formulaireFiltres.find('.valeurAgeCles').val();
+		if(filtreAgeCles != null && filtreAgeCles !== '')
+			filtres.push({ name: 'fq', value: 'ageCles:' + filtreAgeCles });
+
+		var filtrePersonneNomComplet = $formulaireFiltres.find('.valeurPersonneNomComplet').val();
+		if(filtrePersonneNomComplet != null && filtrePersonneNomComplet !== '')
+			filtres.push({ name: 'fq', value: 'personneNomComplet:' + filtrePersonneNomComplet });
+
+		var filtrePersonneNomCompletPrefere = $formulaireFiltres.find('.valeurPersonneNomCompletPrefere').val();
+		if(filtrePersonneNomCompletPrefere != null && filtrePersonneNomCompletPrefere !== '')
+			filtres.push({ name: 'fq', value: 'personneNomCompletPrefere:' + filtrePersonneNomCompletPrefere });
+
+		var filtrePersonneNomFormel = $formulaireFiltres.find('.valeurPersonneNomFormel').val();
+		if(filtrePersonneNomFormel != null && filtrePersonneNomFormel !== '')
+			filtres.push({ name: 'fq', value: 'personneNomFormel:' + filtrePersonneNomFormel });
+
+		var filtrePersonneOccupation = $formulaireFiltres.find('.valeurPersonneOccupation').val();
+		if(filtrePersonneOccupation != null && filtrePersonneOccupation !== '')
+			filtres.push({ name: 'fq', value: 'personneOccupation:' + filtrePersonneOccupation });
+
+		var filtrePersonneMail = $formulaireFiltres.find('.valeurPersonneMail').val();
+		if(filtrePersonneMail != null && filtrePersonneMail !== '')
+			filtres.push({ name: 'fq', value: 'personneMail:' + filtrePersonneMail });
+
+		var $filtrePersonneSmsCheckbox = $formulaireFiltres.find('input.valeurPersonneSms[type = "checkbox"]');
+		var $filtrePersonneSmsSelect = $formulaireFiltres.find('select.valeurPersonneSms');
+		var filtrePersonneSms = $filtrePersonneSmsSelect.length ? $filtrePersonneSmsSelect.val() : $filtrePersonneSmsCheckbox.prop('checked');
+		var filtrePersonneSmsSelectVal = $formulaireFiltres.find('select.filtrePersonneSms').val();
+		var filtrePersonneSms = null;
+		if(filtrePersonneSmsSelectVal !== '')
+			filtrePersonneSms = filtrePersonneSmsSelectVal == 'true';
+		if(filtrePersonneSms != null && filtrePersonneSms === true)
+			filtres.push({ name: 'fq', value: 'personneSms:' + filtrePersonneSms });
+
+		var $filtrePersonneRecevoirMailCheckbox = $formulaireFiltres.find('input.valeurPersonneRecevoirMail[type = "checkbox"]');
+		var $filtrePersonneRecevoirMailSelect = $formulaireFiltres.find('select.valeurPersonneRecevoirMail');
+		var filtrePersonneRecevoirMail = $filtrePersonneRecevoirMailSelect.length ? $filtrePersonneRecevoirMailSelect.val() : $filtrePersonneRecevoirMailCheckbox.prop('checked');
+		var filtrePersonneRecevoirMailSelectVal = $formulaireFiltres.find('select.filtrePersonneRecevoirMail').val();
+		var filtrePersonneRecevoirMail = null;
+		if(filtrePersonneRecevoirMailSelectVal !== '')
+			filtrePersonneRecevoirMail = filtrePersonneRecevoirMailSelectVal == 'true';
+		if(filtrePersonneRecevoirMail != null && filtrePersonneRecevoirMail === true)
+			filtres.push({ name: 'fq', value: 'personneRecevoirMail:' + filtrePersonneRecevoirMail });
+
+		var filtreGardienNomComplet = $formulaireFiltres.find('.valeurGardienNomComplet').val();
+		if(filtreGardienNomComplet != null && filtreGardienNomComplet !== '')
+			filtres.push({ name: 'fq', value: 'gardienNomComplet:' + filtreGardienNomComplet });
+	}
+	return filtres;
+}
+
+function rechercheadminGardienScolaireVals(filtres, success, error) {
+	$.ajax({
+		url: '/api/admin/gardien?' + $.param(filtres)
+		, dataType: 'json'
+		, type: 'GET'
+		, contentType: 'application/json; charset=utf-8'
+		, success: success
+		, error: error
+	});
+}
+
+function suggereGardienScolaireObjetSuggere($formulaireFiltres, $list) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'far fa-phone ');
+			var $span = $('<span>').attr('class', '').text(o['gardienNomComplet']);
+			var $li = $('<li>');
+			var $a = $('<a>').attr('href', o['pageUrlPk']);
+			$a.append($i);
+			$a.append($span);
+			$li.append($a);
+			$list.append($li);
+		});
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	rechercherGardienScolaireVals($formulaireFiltres, success, error);
+}
+
+function suggereGardienScolaireInscriptionCles(filtres, $list, pk = null, attribuer=true) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'fa fa-edit ');
+			var $span = $('<span>').attr('class', '').text(o['inscriptionNomComplet']);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
+			$a.append($i);
+			$a.append($span);
+			var val = o['gardienCles'];
+			var checked = pk == null ? false : Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
+			var $input = $('<input>');
+			$input.attr('id', 'GET_inscriptionCles_' + pk + '_gardienCles_' + o['pk']);
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valeurInscriptionCles w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_inscriptionCles_" + pk + "_gardienCles_" + o['pk'] + "'); patchGardienScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'InscriptionCles']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'enleverLueur($(this)); ');
+			}
+			$input.attr('type', 'checkbox');
+			if(checked)
+				$input.attr('checked', 'checked');
+			var $li = $('<li>');
+			if(attribuer)
+				$li.append($input);
+			$li.append($a);
+			$list.append($li);
+		});
+		var focusId = $('#GardienScolaireForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	rechercheInscriptionScolaireVals(filtres, success, error);
+}
+
 async function websocketGardienScolaire(success) {
 	window.eventBus.onopen = function () {
 
@@ -1117,6 +1421,10 @@ async function websocketGardienScolaire(success) {
 				$('.top-box').append($box);
 			if(success)
 					success(json);
+		});
+
+		window.eventBus.registerHandler('websocketInscriptionScolaire', function (error, message) {
+			$('#Page_inscriptionCles').trigger('oninput');
 		});
 
 		window.eventBus.registerHandler('websocketInscriptionScolaire', function (error, message) {

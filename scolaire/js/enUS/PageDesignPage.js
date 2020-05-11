@@ -1051,6 +1051,468 @@ function suggestPageDesignHtmlPartKeys(filters, $list, pk = null, attribute=true
 	searchHtmlPartVals(filters, success, error);
 }
 
+// AdminSearch //
+
+async function adminsearchPageDesign($formFilters, success, error) {
+	var filters = adminsearchPageDesignFilters($formFilters);
+	if(success == null)
+		success = function( data, textStatus, jQxhr ) {};
+	if(error == null)
+		error = function( jqXhr, textStatus, errorThrown ) {};
+
+	adminsearchPageDesignVals(filters, success, error);
+}
+
+function adminsearchPageDesignFilters($formFilters) {
+	var filters = [];
+	if($formFilters) {
+
+		var filterPk = $formFilters.find('.valuePk').val();
+		if(filterPk != null && filterPk !== '')
+			filters.push({ name: 'fq', value: 'pk:' + filterPk });
+
+		var filterCreated = $formFilters.find('.valueCreated').val();
+		if(filterCreated != null && filterCreated !== '')
+			filters.push({ name: 'fq', value: 'created:' + filterCreated });
+
+		var filterModified = $formFilters.find('.valueModified').val();
+		if(filterModified != null && filterModified !== '')
+			filters.push({ name: 'fq', value: 'modified:' + filterModified });
+
+		var filterObjectId = $formFilters.find('.valueObjectId').val();
+		if(filterObjectId != null && filterObjectId !== '')
+			filters.push({ name: 'fq', value: 'objectId:' + filterObjectId });
+
+		var $filterArchivedCheckbox = $formFilters.find('input.valueArchived[type = "checkbox"]');
+		var $filterArchivedSelect = $formFilters.find('select.valueArchived');
+		var filterArchived = $filterArchivedSelect.length ? $filterArchivedSelect.val() : $filterArchivedCheckbox.prop('checked');
+		var filterArchivedSelectVal = $formFilters.find('select.filterArchived').val();
+		var filterArchived = null;
+		if(filterArchivedSelectVal !== '')
+			filterArchived = filterArchivedSelectVal == 'true';
+		if(filterArchived != null && filterArchived === true)
+			filters.push({ name: 'fq', value: 'archived:' + filterArchived });
+
+		var $filterDeletedCheckbox = $formFilters.find('input.valueDeleted[type = "checkbox"]');
+		var $filterDeletedSelect = $formFilters.find('select.valueDeleted');
+		var filterDeleted = $filterDeletedSelect.length ? $filterDeletedSelect.val() : $filterDeletedCheckbox.prop('checked');
+		var filterDeletedSelectVal = $formFilters.find('select.filterDeleted').val();
+		var filterDeleted = null;
+		if(filterDeletedSelectVal !== '')
+			filterDeleted = filterDeletedSelectVal == 'true';
+		if(filterDeleted != null && filterDeleted === true)
+			filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
+
+		var filterPageDesignCompleteName = $formFilters.find('.valuePageDesignCompleteName').val();
+		if(filterPageDesignCompleteName != null && filterPageDesignCompleteName !== '')
+			filters.push({ name: 'fq', value: 'pageDesignCompleteName:' + filterPageDesignCompleteName });
+
+		var $filterDesignHiddenCheckbox = $formFilters.find('input.valueDesignHidden[type = "checkbox"]');
+		var $filterDesignHiddenSelect = $formFilters.find('select.valueDesignHidden');
+		var filterDesignHidden = $filterDesignHiddenSelect.length ? $filterDesignHiddenSelect.val() : $filterDesignHiddenCheckbox.prop('checked');
+		var filterDesignHiddenSelectVal = $formFilters.find('select.filterDesignHidden').val();
+		var filterDesignHidden = null;
+		if(filterDesignHiddenSelectVal !== '')
+			filterDesignHidden = filterDesignHiddenSelectVal == 'true';
+		if(filterDesignHidden != null && filterDesignHidden === true)
+			filters.push({ name: 'fq', value: 'designHidden:' + filterDesignHidden });
+
+		var filterParentDesignKeys = $formFilters.find('.valueParentDesignKeys').val();
+		if(filterParentDesignKeys != null && filterParentDesignKeys !== '')
+			filters.push({ name: 'fq', value: 'parentDesignKeys:' + filterParentDesignKeys });
+
+		var filterHtmlPartKeys = $formFilters.find('.valueHtmlPartKeys').val();
+		if(filterHtmlPartKeys != null && filterHtmlPartKeys !== '')
+			filters.push({ name: 'fq', value: 'htmlPartKeys:' + filterHtmlPartKeys });
+
+		var filterInheritPk = $formFilters.find('.valueInheritPk').val();
+		if(filterInheritPk != null && filterInheritPk !== '')
+			filters.push({ name: 'fq', value: 'inheritPk:' + filterInheritPk });
+
+		var filterId = $formFilters.find('.valueId').val();
+		if(filterId != null && filterId !== '')
+			filters.push({ name: 'fq', value: 'id:' + filterId });
+
+		var filterClassCanonicalName = $formFilters.find('.valueClassCanonicalName').val();
+		if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
+			filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+
+		var filterClassSimpleName = $formFilters.find('.valueClassSimpleName').val();
+		if(filterClassSimpleName != null && filterClassSimpleName !== '')
+			filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+
+		var filterClassCanonicalNames = $formFilters.find('.valueClassCanonicalNames').val();
+		if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+			filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+		var filterSessionId = $formFilters.find('.valueSessionId').val();
+		if(filterSessionId != null && filterSessionId !== '')
+			filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+		var filterUserId = $formFilters.find('.valueUserId').val();
+		if(filterUserId != null && filterUserId !== '')
+			filters.push({ name: 'fq', value: 'userId:' + filterUserId });
+
+		var filterUserKey = $formFilters.find('.valueUserKey').val();
+		if(filterUserKey != null && filterUserKey !== '')
+			filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+
+		var filterSaves = $formFilters.find('.valueSaves').val();
+		if(filterSaves != null && filterSaves !== '')
+			filters.push({ name: 'fq', value: 'saves:' + filterSaves });
+
+		var filterObjectTitle = $formFilters.find('.valueObjectTitle').val();
+		if(filterObjectTitle != null && filterObjectTitle !== '')
+			filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
+
+		var filterObjectSuggest = $formFilters.find('.valueObjectSuggest').val();
+		if(filterObjectSuggest != null && filterObjectSuggest !== '')
+			filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+
+		var filterObjectText = $formFilters.find('.valueObjectText').val();
+		if(filterObjectText != null && filterObjectText !== '')
+			filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
+
+		var filterPageUrlId = $formFilters.find('.valuePageUrlId').val();
+		if(filterPageUrlId != null && filterPageUrlId !== '')
+			filters.push({ name: 'fq', value: 'pageUrlId:' + filterPageUrlId });
+
+		var filterPageUrlPk = $formFilters.find('.valuePageUrlPk').val();
+		if(filterPageUrlPk != null && filterPageUrlPk !== '')
+			filters.push({ name: 'fq', value: 'pageUrlPk:' + filterPageUrlPk });
+
+		var filterPageUrlApi = $formFilters.find('.valuePageUrlApi').val();
+		if(filterPageUrlApi != null && filterPageUrlApi !== '')
+			filters.push({ name: 'fq', value: 'pageUrlApi:' + filterPageUrlApi });
+
+		var filterPageDesignKey = $formFilters.find('.valuePageDesignKey').val();
+		if(filterPageDesignKey != null && filterPageDesignKey !== '')
+			filters.push({ name: 'fq', value: 'pageDesignKey:' + filterPageDesignKey });
+
+		var filterChildDesignKeys = $formFilters.find('.valueChildDesignKeys').val();
+		if(filterChildDesignKeys != null && filterChildDesignKeys !== '')
+			filters.push({ name: 'fq', value: 'childDesignKeys:' + filterChildDesignKeys });
+	}
+	return filters;
+}
+
+function adminsearchPageDesignVals(filters, success, error) {
+
+	filters.push({ name: 'rows', value: 100 });
+	$.ajax({
+		url: '/api/admin/page-design?' + $.param(filters)
+		, dataType: 'json'
+		, type: 'GET'
+		, contentType: 'application/json; charset=utf-8'
+		, success: success
+		, error: error
+	});
+}
+
+function suggestPageDesignObjectSuggest($formFilters, $list) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'far fa-drafting-compass ');
+			var $span = $('<span>').attr('class', '').text(o['pageDesignCompleteName']);
+			var $li = $('<li>');
+			var $a = $('<a>').attr('href', o['pageUrlPk']);
+			$a.append($i);
+			$a.append($span);
+			$li.append($a);
+			$list.append($li);
+		});
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	searchPageDesignVals($formFilters, success, error);
+}
+
+function suggestPageDesignChildDesignKeys(filters, $list, pk = null, attribute=true) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'fa fa-drafting-compass ');
+			var $span = $('<span>').attr('class', '').text(o['pageDesignCompleteName']);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
+			$a.append($i);
+			$a.append($span);
+			var val = o['parentDesignKeys'];
+			var checked = pk == null ? false : Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
+			var $input = $('<input>');
+			$input.attr('id', 'GET_childDesignKeys_' + pk + '_parentDesignKeys_' + o['pk']);
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valueChildDesignKeys w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_childDesignKeys_" + pk + "_parentDesignKeys_" + o['pk'] + "'); patchPageDesignVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'ChildDesignKeys']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'removeGlow($(this)); ');
+			}
+			$input.attr('type', 'checkbox');
+			if(checked)
+				$input.attr('checked', 'checked');
+			var $li = $('<li>');
+			if(attribute)
+				$li.append($input);
+			$li.append($a);
+			$list.append($li);
+		});
+		var focusId = $('#PageDesignForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	searchPageDesignVals(filters, success, error);
+}
+
+function suggestPageDesignParentDesignKeys(filters, $list, pk = null, attribute=true) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'fa fa-drafting-compass ');
+			var $span = $('<span>').attr('class', '').text(o['pageDesignCompleteName']);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
+			$a.append($i);
+			$a.append($span);
+			var val = o['childDesignKeys'];
+			var checked = pk == null ? false : Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
+			var $input = $('<input>');
+			$input.attr('id', 'GET_parentDesignKeys_' + pk + '_childDesignKeys_' + o['pk']);
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valueParentDesignKeys w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_parentDesignKeys_" + pk + "_childDesignKeys_" + o['pk'] + "'); patchPageDesignVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'ParentDesignKeys']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'removeGlow($(this)); ');
+			}
+			$input.attr('type', 'checkbox');
+			if(checked)
+				$input.attr('checked', 'checked');
+			var $li = $('<li>');
+			if(attribute)
+				$li.append($input);
+			$li.append($a);
+			$list.append($li);
+		});
+		var focusId = $('#PageDesignForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	searchPageDesignVals(filters, success, error);
+}
+
+function suggestPageDesignHtmlPartKeys(filters, $list, pk = null, attribute=true) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'fa fa-sun ');
+			var $span = $('<span>').attr('class', '').text(o['objectTitle']);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
+			$a.append($i);
+			$a.append($span);
+			var val = o['pageDesignKeys'];
+			var checked = pk == null ? false : Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
+			var $input = $('<input>');
+			$input.attr('id', 'GET_htmlPartKeys_' + pk + '_pageDesignKeys_' + o['pk']);
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valueHtmlPartKeys w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_htmlPartKeys_" + pk + "_pageDesignKeys_" + o['pk'] + "'); patchPageDesignVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'HtmlPartKeys']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'removeGlow($(this)); ');
+			}
+			$input.attr('type', 'checkbox');
+			if(checked)
+				$input.attr('checked', 'checked');
+			var $li = $('<li>');
+			var sort1 = o['sort1'];
+			var sort2 = o['sort2'];
+			var sort3 = o['sort3'];
+			var sort4 = o['sort4'];
+			var sort5 = o['sort5'];
+			var sort6 = o['sort6'];
+			var sort7 = o['sort7'];
+			var sort8 = o['sort8'];
+			var sort9 = o['sort9'];
+			var sort10 = o['sort10'];
+
+			$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+			var $sortInput = $('<input>')
+			$sortInput.attr('class', 'w3-tiny ');
+			$sortInput.attr('style', 'width: 4em; ');
+			$sortInput.attr('id', "attribute_" + o['pk'] + "_sort_sort1");
+			$sortInput.attr('value', sort1).attr('onchange', 
+				"$('#PageDesignForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+				+ "patchHtmlPartVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setSort1']: $(this).val() ? $(this).val() : null }"
+					+ ", function() { "
+					+ "}"
+					+ ", function() { addError($('#attribute_" + o['pk'] + "_sort_sort1')); }"
+					+ " ); "); 
+			$sort.append($sortInput);
+			$li.append($sort);
+
+			if(sort1 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribute_" + o['pk'] + "_sort_sort2");
+				$sortInput.attr('value', sort2).attr('onchange', 
+					"$('#PageDesignForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchHtmlPartVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setSort2']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { addError($('#attribute_" + o['pk'] + "_sort_sort2')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+
+			if(sort2 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribute_" + o['pk'] + "_sort_sort3");
+				$sortInput.attr('value', sort3).attr('onchange', 
+					"$('#PageDesignForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchHtmlPartVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setSort3']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { addError($('#attribute_" + o['pk'] + "_sort_sort3')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+
+			if(sort3 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribute_" + o['pk'] + "_sort_sort4");
+				$sortInput.attr('value', sort4).attr('onchange', 
+					"$('#PageDesignForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchHtmlPartVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setSort4']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { addError($('#attribute_" + o['pk'] + "_sort_sort4')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+
+			if(sort4 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribute_" + o['pk'] + "_sort_sort5");
+				$sortInput.attr('value', sort5).attr('onchange', 
+					"$('#PageDesignForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchHtmlPartVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setSort5']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { addError($('#attribute_" + o['pk'] + "_sort_sort5')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+
+			if(sort5 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribute_" + o['pk'] + "_sort_sort6");
+				$sortInput.attr('value', sort6).attr('onchange', 
+					"$('#PageDesignForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchHtmlPartVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setSort6']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { addError($('#attribute_" + o['pk'] + "_sort_sort6')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+
+			if(sort6 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribute_" + o['pk'] + "_sort_sort7");
+				$sortInput.attr('value', sort7).attr('onchange', 
+					"$('#PageDesignForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchHtmlPartVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setSort7']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { addError($('#attribute_" + o['pk'] + "_sort_sort7')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+
+			if(sort7 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribute_" + o['pk'] + "_sort_sort8");
+				$sortInput.attr('value', sort8).attr('onchange', 
+					"$('#PageDesignForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchHtmlPartVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setSort8']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { addError($('#attribute_" + o['pk'] + "_sort_sort8')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+
+			if(sort8 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribute_" + o['pk'] + "_sort_sort9");
+				$sortInput.attr('value', sort9).attr('onchange', 
+					"$('#PageDesignForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchHtmlPartVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setSort9']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { addError($('#attribute_" + o['pk'] + "_sort_sort9')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+
+			if(sort9 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribute_" + o['pk'] + "_sort_sort10");
+				$sortInput.attr('value', sort10).attr('onchange', 
+					"$('#PageDesignForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchHtmlPartVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setSort10']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { addError($('#attribute_" + o['pk'] + "_sort_sort10')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+			if(attribute)
+				$li.append($input);
+			$li.append($a);
+			$list.append($li);
+		});
+		var focusId = $('#PageDesignForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	searchHtmlPartVals(filters, success, error);
+}
+
 async function websocketPageDesign(success) {
 	window.eventBus.onopen = function () {
 
@@ -1087,6 +1549,18 @@ async function websocketPageDesign(success) {
 				$('.top-box').append($box);
 			if(success)
 					success(json);
+		});
+
+		window.eventBus.registerHandler('websocketPageDesign', function (error, message) {
+			$('#Page_childDesignKeys').trigger('oninput');
+		});
+
+		window.eventBus.registerHandler('websocketPageDesign', function (error, message) {
+			$('#Page_parentDesignKeys').trigger('oninput');
+		});
+
+		window.eventBus.registerHandler('websocketHtmlPart', function (error, message) {
+			$('#Page_htmlPartKeys').trigger('oninput');
 		});
 
 		window.eventBus.registerHandler('websocketPageDesign', function (error, message) {

@@ -1051,6 +1051,468 @@ function suggereDesignPagePartHtmlCles(filtres, $list, pk = null, attribuer=true
 	recherchePartHtmlVals(filtres, success, error);
 }
 
+// RechercheAdmin //
+
+async function rechercheadminDesignPage($formulaireFiltres, success, error) {
+	var filtres = rechercheadminDesignPageFiltres($formulaireFiltres);
+	if(success == null)
+		success = function( data, textStatus, jQxhr ) {};
+	if(error == null)
+		error = function( jqXhr, textStatus, errorThrown ) {};
+
+	rechercheadminDesignPageVals(filtres, success, error);
+}
+
+function rechercheadminDesignPageFiltres($formulaireFiltres) {
+	var filtres = [];
+	if($formulaireFiltres) {
+
+		var filtrePk = $formulaireFiltres.find('.valeurPk').val();
+		if(filtrePk != null && filtrePk !== '')
+			filtres.push({ name: 'fq', value: 'pk:' + filtrePk });
+
+		var filtreCree = $formulaireFiltres.find('.valeurCree').val();
+		if(filtreCree != null && filtreCree !== '')
+			filtres.push({ name: 'fq', value: 'cree:' + filtreCree });
+
+		var filtreModifie = $formulaireFiltres.find('.valeurModifie').val();
+		if(filtreModifie != null && filtreModifie !== '')
+			filtres.push({ name: 'fq', value: 'modifie:' + filtreModifie });
+
+		var filtreObjetId = $formulaireFiltres.find('.valeurObjetId').val();
+		if(filtreObjetId != null && filtreObjetId !== '')
+			filtres.push({ name: 'fq', value: 'objetId:' + filtreObjetId });
+
+		var $filtreArchiveCheckbox = $formulaireFiltres.find('input.valeurArchive[type = "checkbox"]');
+		var $filtreArchiveSelect = $formulaireFiltres.find('select.valeurArchive');
+		var filtreArchive = $filtreArchiveSelect.length ? $filtreArchiveSelect.val() : $filtreArchiveCheckbox.prop('checked');
+		var filtreArchiveSelectVal = $formulaireFiltres.find('select.filtreArchive').val();
+		var filtreArchive = null;
+		if(filtreArchiveSelectVal !== '')
+			filtreArchive = filtreArchiveSelectVal == 'true';
+		if(filtreArchive != null && filtreArchive === true)
+			filtres.push({ name: 'fq', value: 'archive:' + filtreArchive });
+
+		var $filtreSupprimeCheckbox = $formulaireFiltres.find('input.valeurSupprime[type = "checkbox"]');
+		var $filtreSupprimeSelect = $formulaireFiltres.find('select.valeurSupprime');
+		var filtreSupprime = $filtreSupprimeSelect.length ? $filtreSupprimeSelect.val() : $filtreSupprimeCheckbox.prop('checked');
+		var filtreSupprimeSelectVal = $formulaireFiltres.find('select.filtreSupprime').val();
+		var filtreSupprime = null;
+		if(filtreSupprimeSelectVal !== '')
+			filtreSupprime = filtreSupprimeSelectVal == 'true';
+		if(filtreSupprime != null && filtreSupprime === true)
+			filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
+
+		var filtreDesignPageNomComplet = $formulaireFiltres.find('.valeurDesignPageNomComplet').val();
+		if(filtreDesignPageNomComplet != null && filtreDesignPageNomComplet !== '')
+			filtres.push({ name: 'fq', value: 'designPageNomComplet:' + filtreDesignPageNomComplet });
+
+		var $filtreDesignCacheCheckbox = $formulaireFiltres.find('input.valeurDesignCache[type = "checkbox"]');
+		var $filtreDesignCacheSelect = $formulaireFiltres.find('select.valeurDesignCache');
+		var filtreDesignCache = $filtreDesignCacheSelect.length ? $filtreDesignCacheSelect.val() : $filtreDesignCacheCheckbox.prop('checked');
+		var filtreDesignCacheSelectVal = $formulaireFiltres.find('select.filtreDesignCache').val();
+		var filtreDesignCache = null;
+		if(filtreDesignCacheSelectVal !== '')
+			filtreDesignCache = filtreDesignCacheSelectVal == 'true';
+		if(filtreDesignCache != null && filtreDesignCache === true)
+			filtres.push({ name: 'fq', value: 'designCache:' + filtreDesignCache });
+
+		var filtreDesignParentCles = $formulaireFiltres.find('.valeurDesignParentCles').val();
+		if(filtreDesignParentCles != null && filtreDesignParentCles !== '')
+			filtres.push({ name: 'fq', value: 'designParentCles:' + filtreDesignParentCles });
+
+		var filtrePartHtmlCles = $formulaireFiltres.find('.valeurPartHtmlCles').val();
+		if(filtrePartHtmlCles != null && filtrePartHtmlCles !== '')
+			filtres.push({ name: 'fq', value: 'partHtmlCles:' + filtrePartHtmlCles });
+
+		var filtreInheritPk = $formulaireFiltres.find('.valeurInheritPk').val();
+		if(filtreInheritPk != null && filtreInheritPk !== '')
+			filtres.push({ name: 'fq', value: 'inheritPk:' + filtreInheritPk });
+
+		var filtreId = $formulaireFiltres.find('.valeurId').val();
+		if(filtreId != null && filtreId !== '')
+			filtres.push({ name: 'fq', value: 'id:' + filtreId });
+
+		var filtreClasseNomCanonique = $formulaireFiltres.find('.valeurClasseNomCanonique').val();
+		if(filtreClasseNomCanonique != null && filtreClasseNomCanonique !== '')
+			filtres.push({ name: 'fq', value: 'classeNomCanonique:' + filtreClasseNomCanonique });
+
+		var filtreClasseNomSimple = $formulaireFiltres.find('.valeurClasseNomSimple').val();
+		if(filtreClasseNomSimple != null && filtreClasseNomSimple !== '')
+			filtres.push({ name: 'fq', value: 'classeNomSimple:' + filtreClasseNomSimple });
+
+		var filtreClasseNomsCanoniques = $formulaireFiltres.find('.valeurClasseNomsCanoniques').val();
+		if(filtreClasseNomsCanoniques != null && filtreClasseNomsCanoniques !== '')
+			filtres.push({ name: 'fq', value: 'classeNomsCanoniques:' + filtreClasseNomsCanoniques });
+
+		var filtreSessionId = $formulaireFiltres.find('.valeurSessionId').val();
+		if(filtreSessionId != null && filtreSessionId !== '')
+			filtres.push({ name: 'fq', value: 'sessionId:' + filtreSessionId });
+
+		var filtreUtilisateurId = $formulaireFiltres.find('.valeurUtilisateurId').val();
+		if(filtreUtilisateurId != null && filtreUtilisateurId !== '')
+			filtres.push({ name: 'fq', value: 'utilisateurId:' + filtreUtilisateurId });
+
+		var filtreUtilisateurCle = $formulaireFiltres.find('.valeurUtilisateurCle').val();
+		if(filtreUtilisateurCle != null && filtreUtilisateurCle !== '')
+			filtres.push({ name: 'fq', value: 'utilisateurCle:' + filtreUtilisateurCle });
+
+		var filtreSauvegardes = $formulaireFiltres.find('.valeurSauvegardes').val();
+		if(filtreSauvegardes != null && filtreSauvegardes !== '')
+			filtres.push({ name: 'fq', value: 'sauvegardes:' + filtreSauvegardes });
+
+		var filtreObjetTitre = $formulaireFiltres.find('.valeurObjetTitre').val();
+		if(filtreObjetTitre != null && filtreObjetTitre !== '')
+			filtres.push({ name: 'fq', value: 'objetTitre:' + filtreObjetTitre });
+
+		var filtreObjetSuggere = $formulaireFiltres.find('.valeurObjetSuggere').val();
+		if(filtreObjetSuggere != null && filtreObjetSuggere !== '')
+			filtres.push({ name: 'q', value: 'objetSuggere:' + filtreObjetSuggere });
+
+		var filtreObjetTexte = $formulaireFiltres.find('.valeurObjetTexte').val();
+		if(filtreObjetTexte != null && filtreObjetTexte !== '')
+			filtres.push({ name: 'fq', value: 'objetTexte:' + filtreObjetTexte });
+
+		var filtrePageUrlId = $formulaireFiltres.find('.valeurPageUrlId').val();
+		if(filtrePageUrlId != null && filtrePageUrlId !== '')
+			filtres.push({ name: 'fq', value: 'pageUrlId:' + filtrePageUrlId });
+
+		var filtrePageUrlPk = $formulaireFiltres.find('.valeurPageUrlPk').val();
+		if(filtrePageUrlPk != null && filtrePageUrlPk !== '')
+			filtres.push({ name: 'fq', value: 'pageUrlPk:' + filtrePageUrlPk });
+
+		var filtrePageUrlApi = $formulaireFiltres.find('.valeurPageUrlApi').val();
+		if(filtrePageUrlApi != null && filtrePageUrlApi !== '')
+			filtres.push({ name: 'fq', value: 'pageUrlApi:' + filtrePageUrlApi });
+
+		var filtreDesignPageCle = $formulaireFiltres.find('.valeurDesignPageCle').val();
+		if(filtreDesignPageCle != null && filtreDesignPageCle !== '')
+			filtres.push({ name: 'fq', value: 'designPageCle:' + filtreDesignPageCle });
+
+		var filtreDesignEnfantCles = $formulaireFiltres.find('.valeurDesignEnfantCles').val();
+		if(filtreDesignEnfantCles != null && filtreDesignEnfantCles !== '')
+			filtres.push({ name: 'fq', value: 'designEnfantCles:' + filtreDesignEnfantCles });
+	}
+	return filtres;
+}
+
+function rechercheadminDesignPageVals(filtres, success, error) {
+
+	filtres.push({ name: 'rows', value: 100 });
+	$.ajax({
+		url: '/api/admin/design-page?' + $.param(filtres)
+		, dataType: 'json'
+		, type: 'GET'
+		, contentType: 'application/json; charset=utf-8'
+		, success: success
+		, error: error
+	});
+}
+
+function suggereDesignPageObjetSuggere($formulaireFiltres, $list) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'far fa-drafting-compass ');
+			var $span = $('<span>').attr('class', '').text(o['designPageNomComplet']);
+			var $li = $('<li>');
+			var $a = $('<a>').attr('href', o['pageUrlPk']);
+			$a.append($i);
+			$a.append($span);
+			$li.append($a);
+			$list.append($li);
+		});
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	rechercherDesignPageVals($formulaireFiltres, success, error);
+}
+
+function suggereDesignPageDesignEnfantCles(filtres, $list, pk = null, attribuer=true) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'fa fa-drafting-compass ');
+			var $span = $('<span>').attr('class', '').text(o['designPageNomComplet']);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
+			$a.append($i);
+			$a.append($span);
+			var val = o['designParentCles'];
+			var checked = pk == null ? false : Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
+			var $input = $('<input>');
+			$input.attr('id', 'GET_designEnfantCles_' + pk + '_designParentCles_' + o['pk']);
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valeurDesignEnfantCles w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_designEnfantCles_" + pk + "_designParentCles_" + o['pk'] + "'); patchDesignPageVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'DesignEnfantCles']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'enleverLueur($(this)); ');
+			}
+			$input.attr('type', 'checkbox');
+			if(checked)
+				$input.attr('checked', 'checked');
+			var $li = $('<li>');
+			if(attribuer)
+				$li.append($input);
+			$li.append($a);
+			$list.append($li);
+		});
+		var focusId = $('#DesignPageForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	rechercheDesignPageVals(filtres, success, error);
+}
+
+function suggereDesignPageDesignParentCles(filtres, $list, pk = null, attribuer=true) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'fa fa-drafting-compass ');
+			var $span = $('<span>').attr('class', '').text(o['designPageNomComplet']);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
+			$a.append($i);
+			$a.append($span);
+			var val = o['designEnfantCles'];
+			var checked = pk == null ? false : Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
+			var $input = $('<input>');
+			$input.attr('id', 'GET_designParentCles_' + pk + '_designEnfantCles_' + o['pk']);
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valeurDesignParentCles w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_designParentCles_" + pk + "_designEnfantCles_" + o['pk'] + "'); patchDesignPageVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'DesignParentCles']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'enleverLueur($(this)); ');
+			}
+			$input.attr('type', 'checkbox');
+			if(checked)
+				$input.attr('checked', 'checked');
+			var $li = $('<li>');
+			if(attribuer)
+				$li.append($input);
+			$li.append($a);
+			$list.append($li);
+		});
+		var focusId = $('#DesignPageForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	rechercheDesignPageVals(filtres, success, error);
+}
+
+function suggereDesignPagePartHtmlCles(filtres, $list, pk = null, attribuer=true) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'fa fa-sun ');
+			var $span = $('<span>').attr('class', '').text(o['objetTitre']);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
+			$a.append($i);
+			$a.append($span);
+			var val = o['designPageCles'];
+			var checked = pk == null ? false : Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
+			var $input = $('<input>');
+			$input.attr('id', 'GET_partHtmlCles_' + pk + '_designPageCles_' + o['pk']);
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valeurPartHtmlCles w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_partHtmlCles_" + pk + "_designPageCles_" + o['pk'] + "'); patchDesignPageVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'add' : 'remove') + 'PartHtmlCles']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'enleverLueur($(this)); ');
+			}
+			$input.attr('type', 'checkbox');
+			if(checked)
+				$input.attr('checked', 'checked');
+			var $li = $('<li>');
+			var tri1 = o['tri1'];
+			var tri2 = o['tri2'];
+			var tri3 = o['tri3'];
+			var tri4 = o['tri4'];
+			var tri5 = o['tri5'];
+			var tri6 = o['tri6'];
+			var tri7 = o['tri7'];
+			var tri8 = o['tri8'];
+			var tri9 = o['tri9'];
+			var tri10 = o['tri10'];
+
+			$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+			var $sortInput = $('<input>')
+			$sortInput.attr('class', 'w3-tiny ');
+			$sortInput.attr('style', 'width: 4em; ');
+			$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri1");
+			$sortInput.attr('value', tri1).attr('onchange', 
+				"$('#DesignPageForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+				+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri1']: $(this).val() ? $(this).val() : null }"
+					+ ", function() { "
+					+ "}"
+					+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri1')); }"
+					+ " ); "); 
+			$sort.append($sortInput);
+			$li.append($sort);
+
+			if(tri1 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri2");
+				$sortInput.attr('value', tri2).attr('onchange', 
+					"$('#DesignPageForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri2']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri2')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+
+			if(tri2 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri3");
+				$sortInput.attr('value', tri3).attr('onchange', 
+					"$('#DesignPageForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri3']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri3')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+
+			if(tri3 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri4");
+				$sortInput.attr('value', tri4).attr('onchange', 
+					"$('#DesignPageForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri4']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri4')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+
+			if(tri4 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri5");
+				$sortInput.attr('value', tri5).attr('onchange', 
+					"$('#DesignPageForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri5']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri5')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+
+			if(tri5 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri6");
+				$sortInput.attr('value', tri6).attr('onchange', 
+					"$('#DesignPageForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri6']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri6')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+
+			if(tri6 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri7");
+				$sortInput.attr('value', tri7).attr('onchange', 
+					"$('#DesignPageForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri7']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri7')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+
+			if(tri7 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri8");
+				$sortInput.attr('value', tri8).attr('onchange', 
+					"$('#DesignPageForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri8']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri8')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+
+			if(tri8 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri9");
+				$sortInput.attr('value', tri9).attr('onchange', 
+					"$('#DesignPageForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri9']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri9')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+
+			if(tri9 != null) {
+				$sort = $('<span>').attr('class', 'w3-text-grey ').attr('style', 'padding-right: 8px; ');
+				var $sortInput = $('<input>')
+				$sortInput.attr('class', 'w3-tiny ');
+				$sortInput.attr('style', 'width: 4em; ');
+				$sortInput.attr('id', "attribuer_" + o['pk'] + "_tri_tri10");
+				$sortInput.attr('value', tri10).attr('onchange', 
+					"$('#DesignPageForm :input[name=\"focusId\"]').val($(this).attr('id')); "
+					+ "patchPartHtmlVals([{ name: 'fq', value: 'pk:" + o['pk'] + "' }], { ['setTri10']: $(this).val() ? $(this).val() : null }"
+						+ ", function() { "
+						+ "}"
+						+ ", function() { ajouterErreur($('#attribuer_" + o['pk'] + "_tri_tri10')); }"
+						+ " ); "); 
+				$sort.append($sortInput);
+				$li.append($sort);
+			}
+			if(attribuer)
+				$li.append($input);
+			$li.append($a);
+			$list.append($li);
+		});
+		var focusId = $('#DesignPageForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	recherchePartHtmlVals(filtres, success, error);
+}
+
 async function websocketDesignPage(success) {
 	window.eventBus.onopen = function () {
 
@@ -1087,6 +1549,18 @@ async function websocketDesignPage(success) {
 				$('.top-box').append($box);
 			if(success)
 					success(json);
+		});
+
+		window.eventBus.registerHandler('websocketDesignPage', function (error, message) {
+			$('#Page_designEnfantCles').trigger('oninput');
+		});
+
+		window.eventBus.registerHandler('websocketDesignPage', function (error, message) {
+			$('#Page_designParentCles').trigger('oninput');
+		});
+
+		window.eventBus.registerHandler('websocketPartHtml', function (error, message) {
+			$('#Page_partHtmlCles').trigger('oninput');
 		});
 
 		window.eventBus.registerHandler('websocketDesignPage', function (error, message) {
