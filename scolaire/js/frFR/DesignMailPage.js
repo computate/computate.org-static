@@ -737,6 +737,8 @@ function rechercheDesignPageFiltres($formulaireFiltres) {
 function rechercheDesignPageVals(filtres, success, error) {
 
 	filtres.push({ name: 'rows', value: 100 });
+
+	filtres.push({ name: 'sort', value: 'designPageNomComplet asc' });
 	$.ajax({
 		url: '/api/design-page?' + $.param(filtres)
 		, dataType: 'json'
@@ -769,7 +771,7 @@ function suggereDesignPageDesignEnfantCles(filtres, $list, pk = null, attribuer=
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-drafting-compass ');
+			var $i = $('<i>').attr('class', 'far fa-drafting-compass ');
 			var $span = $('<span>').attr('class', '').text(o['designPageNomComplet']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);
@@ -805,7 +807,7 @@ function suggereDesignPageDesignParentCles(filtres, $list, pk = null, attribuer=
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-drafting-compass ');
+			var $i = $('<i>').attr('class', 'far fa-drafting-compass ');
 			var $span = $('<span>').attr('class', '').text(o['designPageNomComplet']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);
@@ -841,7 +843,7 @@ function suggereDesignPagePartHtmlCles(filtres, $list, pk = null, attribuer=true
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-sun ');
+			var $i = $('<i>').attr('class', 'far fa-sun ');
 			var $span = $('<span>').attr('class', '').text(o['objetTitre']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);
@@ -1199,6 +1201,8 @@ function rechercheadminDesignPageFiltres($formulaireFiltres) {
 function rechercheadminDesignPageVals(filtres, success, error) {
 
 	filtres.push({ name: 'rows', value: 100 });
+
+	filtres.push({ name: 'sort', value: 'designPageNomComplet asc' });
 	$.ajax({
 		url: '/api/admin/design-page?' + $.param(filtres)
 		, dataType: 'json'
@@ -1231,7 +1235,7 @@ function suggereDesignPageDesignEnfantCles(filtres, $list, pk = null, attribuer=
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-drafting-compass ');
+			var $i = $('<i>').attr('class', 'far fa-drafting-compass ');
 			var $span = $('<span>').attr('class', '').text(o['designPageNomComplet']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);
@@ -1267,7 +1271,7 @@ function suggereDesignPageDesignParentCles(filtres, $list, pk = null, attribuer=
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-drafting-compass ');
+			var $i = $('<i>').attr('class', 'far fa-drafting-compass ');
 			var $span = $('<span>').attr('class', '').text(o['designPageNomComplet']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);
@@ -1303,7 +1307,7 @@ function suggereDesignPagePartHtmlCles(filtres, $list, pk = null, attribuer=true
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-sun ');
+			var $i = $('<i>').attr('class', 'far fa-sun ');
 			var $span = $('<span>').attr('class', '').text(o['objetTitre']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);

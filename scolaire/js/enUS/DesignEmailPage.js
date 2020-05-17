@@ -737,6 +737,8 @@ function searchPageDesignFilters($formFilters) {
 function searchPageDesignVals(filters, success, error) {
 
 	filters.push({ name: 'rows', value: 100 });
+
+	filters.push({ name: 'sort', value: 'pageDesignCompleteName asc' });
 	$.ajax({
 		url: '/api/page-design?' + $.param(filters)
 		, dataType: 'json'
@@ -769,7 +771,7 @@ function suggestPageDesignChildDesignKeys(filters, $list, pk = null, attribute=t
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-drafting-compass ');
+			var $i = $('<i>').attr('class', 'far fa-drafting-compass ');
 			var $span = $('<span>').attr('class', '').text(o['pageDesignCompleteName']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);
@@ -805,7 +807,7 @@ function suggestPageDesignParentDesignKeys(filters, $list, pk = null, attribute=
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-drafting-compass ');
+			var $i = $('<i>').attr('class', 'far fa-drafting-compass ');
 			var $span = $('<span>').attr('class', '').text(o['pageDesignCompleteName']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);
@@ -841,7 +843,7 @@ function suggestPageDesignHtmlPartKeys(filters, $list, pk = null, attribute=true
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-sun ');
+			var $i = $('<i>').attr('class', 'far fa-sun ');
 			var $span = $('<span>').attr('class', '').text(o['objectTitle']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);
@@ -1199,6 +1201,8 @@ function adminsearchPageDesignFilters($formFilters) {
 function adminsearchPageDesignVals(filters, success, error) {
 
 	filters.push({ name: 'rows', value: 100 });
+
+	filters.push({ name: 'sort', value: 'pageDesignCompleteName asc' });
 	$.ajax({
 		url: '/api/admin/page-design?' + $.param(filters)
 		, dataType: 'json'
@@ -1231,7 +1235,7 @@ function suggestPageDesignChildDesignKeys(filters, $list, pk = null, attribute=t
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-drafting-compass ');
+			var $i = $('<i>').attr('class', 'far fa-drafting-compass ');
 			var $span = $('<span>').attr('class', '').text(o['pageDesignCompleteName']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);
@@ -1267,7 +1271,7 @@ function suggestPageDesignParentDesignKeys(filters, $list, pk = null, attribute=
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-drafting-compass ');
+			var $i = $('<i>').attr('class', 'far fa-drafting-compass ');
 			var $span = $('<span>').attr('class', '').text(o['pageDesignCompleteName']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);
@@ -1303,7 +1307,7 @@ function suggestPageDesignHtmlPartKeys(filters, $list, pk = null, attribute=true
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-sun ');
+			var $i = $('<i>').attr('class', 'far fa-sun ');
 			var $span = $('<span>').attr('class', '').text(o['objectTitle']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);
