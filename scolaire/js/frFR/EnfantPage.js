@@ -1248,146 +1248,164 @@ async function websocketEnfantScolaireInner(requeteApi) {
 	if(pk != null) {
 		rechercherEnfantScolaireVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
+			var val = o['cree'];
 			if(vars.includes('cree')) {
 				$('.inputEnfantScolaire' + pk + 'Cree').each(function() {
-					if(o['cree'] !== $(this).val())
-						$(this).val(o['cree']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varEnfantScolaire' + pk + 'Cree').each(function() {
-					if(o['cree'] !== $(this).text())
-						$(this).text(o['cree']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputEnfantScolaire' + pk + 'Cree'));
 			}
+			var val = o['modifie'];
 			if(vars.includes('modifie')) {
 				$('.inputEnfantScolaire' + pk + 'Modifie').each(function() {
-					if(o['modifie'] !== $(this).val())
-						$(this).val(o['modifie']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varEnfantScolaire' + pk + 'Modifie').each(function() {
-					if(o['modifie'] !== $(this).text())
-						$(this).text(o['modifie']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputEnfantScolaire' + pk + 'Modifie'));
 			}
+			var val = o['archive'];
 			if(vars.includes('archive')) {
 				$('.inputEnfantScolaire' + pk + 'Archive').each(function() {
-					if(o['archive'] !== $(this).val())
-						$(this).val(o['archive']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varEnfantScolaire' + pk + 'Archive').each(function() {
-					if(o['archive'] !== $(this).text())
-						$(this).text(o['archive']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputEnfantScolaire' + pk + 'Archive'));
 			}
+			var val = o['supprime'];
 			if(vars.includes('supprime')) {
 				$('.inputEnfantScolaire' + pk + 'Supprime').each(function() {
-					if(o['supprime'] !== $(this).val())
-						$(this).val(o['supprime']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varEnfantScolaire' + pk + 'Supprime').each(function() {
-					if(o['supprime'] !== $(this).text())
-						$(this).text(o['supprime']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputEnfantScolaire' + pk + 'Supprime'));
 			}
+			var val = o['personnePrenom'];
 			if(vars.includes('personnePrenom')) {
 				$('.inputEnfantScolaire' + pk + 'PersonnePrenom').each(function() {
-					if(o['personnePrenom'] !== $(this).val())
-						$(this).val(o['personnePrenom']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varEnfantScolaire' + pk + 'PersonnePrenom').each(function() {
-					if(o['personnePrenom'] !== $(this).text())
-						$(this).text(o['personnePrenom']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputEnfantScolaire' + pk + 'PersonnePrenom'));
 			}
+			var val = o['familleNom'];
 			if(vars.includes('familleNom')) {
 				$('.inputEnfantScolaire' + pk + 'FamilleNom').each(function() {
-					if(o['familleNom'] !== $(this).val())
-						$(this).val(o['familleNom']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varEnfantScolaire' + pk + 'FamilleNom').each(function() {
-					if(o['familleNom'] !== $(this).text())
-						$(this).text(o['familleNom']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputEnfantScolaire' + pk + 'FamilleNom'));
 			}
+			var val = o['personnePrenomPrefere'];
 			if(vars.includes('personnePrenomPrefere')) {
 				$('.inputEnfantScolaire' + pk + 'PersonnePrenomPrefere').each(function() {
-					if(o['personnePrenomPrefere'] !== $(this).val())
-						$(this).val(o['personnePrenomPrefere']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varEnfantScolaire' + pk + 'PersonnePrenomPrefere').each(function() {
-					if(o['personnePrenomPrefere'] !== $(this).text())
-						$(this).text(o['personnePrenomPrefere']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputEnfantScolaire' + pk + 'PersonnePrenomPrefere'));
 			}
+			var val = o['personneDateNaissance'];
+			if(val != null) {
+				var t = moment(val, 'yyyy-MM-dd');
+				if(t)
+					val = t.format('DD-MM-YYYY');
+			}
 			if(vars.includes('personneDateNaissance')) {
 				$('.inputEnfantScolaire' + pk + 'PersonneDateNaissance').each(function() {
-					if(o['personneDateNaissance'] !== $(this).val())
-						$(this).val(o['personneDateNaissance']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varEnfantScolaire' + pk + 'PersonneDateNaissance').each(function() {
-					if(o['personneDateNaissance'] !== $(this).text())
-						$(this).text(o['personneDateNaissance']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputEnfantScolaire' + pk + 'PersonneDateNaissance'));
 			}
+			var val = o['inscriptionCles'];
 			if(vars.includes('inscriptionCles')) {
 				$('.inputEnfantScolaire' + pk + 'InscriptionCles').each(function() {
-					if(o['inscriptionCles'] !== $(this).val())
-						$(this).val(o['inscriptionCles']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varEnfantScolaire' + pk + 'InscriptionCles').each(function() {
-					if(o['inscriptionCles'] !== $(this).text())
-						$(this).text(o['inscriptionCles']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputEnfantScolaire' + pk + 'InscriptionCles'));
 			}
+			var val = o['inheritPk'];
 			if(vars.includes('inheritPk')) {
 				$('.inputEnfantScolaire' + pk + 'InheritPk').each(function() {
-					if(o['inheritPk'] !== $(this).val())
-						$(this).val(o['inheritPk']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varEnfantScolaire' + pk + 'InheritPk').each(function() {
-					if(o['inheritPk'] !== $(this).text())
-						$(this).text(o['inheritPk']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputEnfantScolaire' + pk + 'InheritPk'));
 			}
+			var val = o['sessionId'];
 			if(vars.includes('sessionId')) {
 				$('.inputEnfantScolaire' + pk + 'SessionId').each(function() {
-					if(o['sessionId'] !== $(this).val())
-						$(this).val(o['sessionId']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varEnfantScolaire' + pk + 'SessionId').each(function() {
-					if(o['sessionId'] !== $(this).text())
-						$(this).text(o['sessionId']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputEnfantScolaire' + pk + 'SessionId'));
 			}
+			var val = o['utilisateurId'];
 			if(vars.includes('utilisateurId')) {
 				$('.inputEnfantScolaire' + pk + 'UtilisateurId').each(function() {
-					if(o['utilisateurId'] !== $(this).val())
-						$(this).val(o['utilisateurId']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varEnfantScolaire' + pk + 'UtilisateurId').each(function() {
-					if(o['utilisateurId'] !== $(this).text())
-						$(this).text(o['utilisateurId']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputEnfantScolaire' + pk + 'UtilisateurId'));
 			}
+			var val = o['utilisateurCle'];
 			if(vars.includes('utilisateurCle')) {
 				$('.inputEnfantScolaire' + pk + 'UtilisateurCle').each(function() {
-					if(o['utilisateurCle'] !== $(this).val())
-						$(this).val(o['utilisateurCle']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varEnfantScolaire' + pk + 'UtilisateurCle').each(function() {
-					if(o['utilisateurCle'] !== $(this).text())
-						$(this).text(o['utilisateurCle']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputEnfantScolaire' + pk + 'UtilisateurCle'));
 			}
