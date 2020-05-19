@@ -835,9 +835,9 @@ function patchBlocScolaireFiltres($formulaireFiltres) {
 		if(filtreAnneeFin != null && filtreAnneeFin !== '')
 			filtres.push({ name: 'fq', value: 'anneeFin:' + filtreAnneeFin });
 
-		var filtreSaisonJourDebut = $formulaireFiltres.find('.valeurSaisonJourDebut').val();
-		if(filtreSaisonJourDebut != null && filtreSaisonJourDebut !== '')
-			filtres.push({ name: 'fq', value: 'saisonJourDebut:' + filtreSaisonJourDebut });
+		var filtreSaisonDateDebut = $formulaireFiltres.find('.valeurSaisonDateDebut').val();
+		if(filtreSaisonDateDebut != null && filtreSaisonDateDebut !== '')
+			filtres.push({ name: 'fq', value: 'saisonDateDebut:' + filtreSaisonDateDebut });
 
 		var $filtreSaisonEteCheckbox = $formulaireFiltres.find('input.valeurSaisonEte[type = "checkbox"]');
 		var $filtreSaisonEteSelect = $formulaireFiltres.find('select.valeurSaisonEte');
@@ -871,13 +871,13 @@ function patchBlocScolaireFiltres($formulaireFiltres) {
 		if(filtreSaisonNomComplet != null && filtreSaisonNomComplet !== '')
 			filtres.push({ name: 'fq', value: 'saisonNomComplet:' + filtreSaisonNomComplet });
 
-		var filtreSessionJourDebut = $formulaireFiltres.find('.valeurSessionJourDebut').val();
-		if(filtreSessionJourDebut != null && filtreSessionJourDebut !== '')
-			filtres.push({ name: 'fq', value: 'sessionJourDebut:' + filtreSessionJourDebut });
+		var filtreSessionDateDebut = $formulaireFiltres.find('.valeurSessionDateDebut').val();
+		if(filtreSessionDateDebut != null && filtreSessionDateDebut !== '')
+			filtres.push({ name: 'fq', value: 'sessionDateDebut:' + filtreSessionDateDebut });
 
-		var filtreSessionJourFin = $formulaireFiltres.find('.valeurSessionJourFin').val();
-		if(filtreSessionJourFin != null && filtreSessionJourFin !== '')
-			filtres.push({ name: 'fq', value: 'sessionJourFin:' + filtreSessionJourFin });
+		var filtreSessionDateFin = $formulaireFiltres.find('.valeurSessionDateFin').val();
+		if(filtreSessionDateFin != null && filtreSessionDateFin !== '')
+			filtres.push({ name: 'fq', value: 'sessionDateFin:' + filtreSessionDateFin });
 
 		var filtreAgeNomCourt = $formulaireFiltres.find('.valeurAgeNomCourt').val();
 		if(filtreAgeNomCourt != null && filtreAgeNomCourt !== '')
@@ -1227,9 +1227,9 @@ function rechercheBlocScolaireFiltres($formulaireFiltres) {
 		if(filtreAnneeFin != null && filtreAnneeFin !== '')
 			filtres.push({ name: 'fq', value: 'anneeFin:' + filtreAnneeFin });
 
-		var filtreSaisonJourDebut = $formulaireFiltres.find('.valeurSaisonJourDebut').val();
-		if(filtreSaisonJourDebut != null && filtreSaisonJourDebut !== '')
-			filtres.push({ name: 'fq', value: 'saisonJourDebut:' + filtreSaisonJourDebut });
+		var filtreSaisonDateDebut = $formulaireFiltres.find('.valeurSaisonDateDebut').val();
+		if(filtreSaisonDateDebut != null && filtreSaisonDateDebut !== '')
+			filtres.push({ name: 'fq', value: 'saisonDateDebut:' + filtreSaisonDateDebut });
 
 		var $filtreSaisonEteCheckbox = $formulaireFiltres.find('input.valeurSaisonEte[type = "checkbox"]');
 		var $filtreSaisonEteSelect = $formulaireFiltres.find('select.valeurSaisonEte');
@@ -1263,13 +1263,13 @@ function rechercheBlocScolaireFiltres($formulaireFiltres) {
 		if(filtreSaisonNomComplet != null && filtreSaisonNomComplet !== '')
 			filtres.push({ name: 'fq', value: 'saisonNomComplet:' + filtreSaisonNomComplet });
 
-		var filtreSessionJourDebut = $formulaireFiltres.find('.valeurSessionJourDebut').val();
-		if(filtreSessionJourDebut != null && filtreSessionJourDebut !== '')
-			filtres.push({ name: 'fq', value: 'sessionJourDebut:' + filtreSessionJourDebut });
+		var filtreSessionDateDebut = $formulaireFiltres.find('.valeurSessionDateDebut').val();
+		if(filtreSessionDateDebut != null && filtreSessionDateDebut !== '')
+			filtres.push({ name: 'fq', value: 'sessionDateDebut:' + filtreSessionDateDebut });
 
-		var filtreSessionJourFin = $formulaireFiltres.find('.valeurSessionJourFin').val();
-		if(filtreSessionJourFin != null && filtreSessionJourFin !== '')
-			filtres.push({ name: 'fq', value: 'sessionJourFin:' + filtreSessionJourFin });
+		var filtreSessionDateFin = $formulaireFiltres.find('.valeurSessionDateFin').val();
+		if(filtreSessionDateFin != null && filtreSessionDateFin !== '')
+			filtres.push({ name: 'fq', value: 'sessionDateFin:' + filtreSessionDateFin });
 
 		var filtreAgeNomCourt = $formulaireFiltres.find('.valeurAgeNomCourt').val();
 		if(filtreAgeNomCourt != null && filtreAgeNomCourt !== '')

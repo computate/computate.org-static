@@ -1334,7 +1334,7 @@ async function websocketEnfantScolaireInner(requeteApi) {
 			}
 			var val = o['personneDateNaissance'];
 			if(val != null) {
-				var t = moment(val, 'yyyy-MM-dd');
+				var t = moment(val, 'YYYY-MM-DD');
 				if(t)
 					val = t.format('DD-MM-YYYY');
 			}

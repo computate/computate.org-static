@@ -1538,388 +1538,423 @@ async function websocketPartHtmlInner(requeteApi) {
 	if(pk != null) {
 		rechercherPartHtmlVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
+			var val = o['cree'];
 			if(vars.includes('cree')) {
 				$('.inputPartHtml' + pk + 'Cree').each(function() {
-					if(o['cree'] !== $(this).val())
-						$(this).val(o['cree']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varPartHtml' + pk + 'Cree').each(function() {
-					if(o['cree'] !== $(this).text())
-						$(this).text(o['cree']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'Cree'));
 			}
+			var val = o['modifie'];
 			if(vars.includes('modifie')) {
 				$('.inputPartHtml' + pk + 'Modifie').each(function() {
-					if(o['modifie'] !== $(this).val())
-						$(this).val(o['modifie']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varPartHtml' + pk + 'Modifie').each(function() {
-					if(o['modifie'] !== $(this).text())
-						$(this).text(o['modifie']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'Modifie'));
 			}
+			var val = o['archive'];
 			if(vars.includes('archive')) {
 				$('.inputPartHtml' + pk + 'Archive').each(function() {
-					if(o['archive'] !== $(this).val())
-						$(this).val(o['archive']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varPartHtml' + pk + 'Archive').each(function() {
-					if(o['archive'] !== $(this).text())
-						$(this).text(o['archive']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'Archive'));
 			}
+			var val = o['supprime'];
 			if(vars.includes('supprime')) {
 				$('.inputPartHtml' + pk + 'Supprime').each(function() {
-					if(o['supprime'] !== $(this).val())
-						$(this).val(o['supprime']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varPartHtml' + pk + 'Supprime').each(function() {
-					if(o['supprime'] !== $(this).text())
-						$(this).text(o['supprime']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'Supprime'));
 			}
+			var val = o['designPageCles'];
 			if(vars.includes('designPageCles')) {
 				$('.inputPartHtml' + pk + 'DesignPageCles').each(function() {
-					if(o['designPageCles'] !== $(this).val())
-						$(this).val(o['designPageCles']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varPartHtml' + pk + 'DesignPageCles').each(function() {
-					if(o['designPageCles'] !== $(this).text())
-						$(this).text(o['designPageCles']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'DesignPageCles'));
 			}
+			var val = o['htmlLien'];
 			if(vars.includes('htmlLien')) {
 				$('.inputPartHtml' + pk + 'HtmlLien').each(function() {
-					if(o['htmlLien'] !== $(this).val())
-						$(this).val(o['htmlLien']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varPartHtml' + pk + 'HtmlLien').each(function() {
-					if(o['htmlLien'] !== $(this).text())
-						$(this).text(o['htmlLien']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'HtmlLien'));
 			}
+			var val = o['htmlElement'];
 			if(vars.includes('htmlElement')) {
 				$('.inputPartHtml' + pk + 'HtmlElement').each(function() {
-					if(o['htmlElement'] !== $(this).val())
-						$(this).val(o['htmlElement']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varPartHtml' + pk + 'HtmlElement').each(function() {
-					if(o['htmlElement'] !== $(this).text())
-						$(this).text(o['htmlElement']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'HtmlElement'));
 			}
+			var val = o['htmlId'];
 			if(vars.includes('htmlId')) {
 				$('.inputPartHtml' + pk + 'HtmlId').each(function() {
-					if(o['htmlId'] !== $(this).val())
-						$(this).val(o['htmlId']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varPartHtml' + pk + 'HtmlId').each(function() {
-					if(o['htmlId'] !== $(this).text())
-						$(this).text(o['htmlId']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'HtmlId'));
 			}
+			var val = o['htmlClasses'];
 			if(vars.includes('htmlClasses')) {
 				$('.inputPartHtml' + pk + 'HtmlClasses').each(function() {
-					if(o['htmlClasses'] !== $(this).val())
-						$(this).val(o['htmlClasses']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varPartHtml' + pk + 'HtmlClasses').each(function() {
-					if(o['htmlClasses'] !== $(this).text())
-						$(this).text(o['htmlClasses']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'HtmlClasses'));
 			}
+			var val = o['htmlStyle'];
 			if(vars.includes('htmlStyle')) {
 				$('.inputPartHtml' + pk + 'HtmlStyle').each(function() {
-					if(o['htmlStyle'] !== $(this).val())
-						$(this).val(o['htmlStyle']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varPartHtml' + pk + 'HtmlStyle').each(function() {
-					if(o['htmlStyle'] !== $(this).text())
-						$(this).text(o['htmlStyle']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'HtmlStyle'));
 			}
+			var val = o['htmlAvant'];
 			if(vars.includes('htmlAvant')) {
 				$('.inputPartHtml' + pk + 'HtmlAvant').each(function() {
-					if(o['htmlAvant'] !== $(this).val())
-						$(this).val(o['htmlAvant']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varPartHtml' + pk + 'HtmlAvant').each(function() {
-					if(o['htmlAvant'] !== $(this).text())
-						$(this).text(o['htmlAvant']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'HtmlAvant'));
 			}
+			var val = o['htmlApres'];
 			if(vars.includes('htmlApres')) {
 				$('.inputPartHtml' + pk + 'HtmlApres').each(function() {
-					if(o['htmlApres'] !== $(this).val())
-						$(this).val(o['htmlApres']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varPartHtml' + pk + 'HtmlApres').each(function() {
-					if(o['htmlApres'] !== $(this).text())
-						$(this).text(o['htmlApres']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'HtmlApres'));
 			}
+			var val = o['htmlTexte'];
 			if(vars.includes('htmlTexte')) {
 				$('.inputPartHtml' + pk + 'HtmlTexte').each(function() {
-					if(o['htmlTexte'] !== $(this).val())
-						$(this).val(o['htmlTexte']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varPartHtml' + pk + 'HtmlTexte').each(function() {
-					if(o['htmlTexte'] !== $(this).text())
-						$(this).text(o['htmlTexte']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'HtmlTexte'));
 			}
+			var val = o['htmlVar'];
 			if(vars.includes('htmlVar')) {
 				$('.inputPartHtml' + pk + 'HtmlVar').each(function() {
-					if(o['htmlVar'] !== $(this).val())
-						$(this).val(o['htmlVar']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varPartHtml' + pk + 'HtmlVar').each(function() {
-					if(o['htmlVar'] !== $(this).text())
-						$(this).text(o['htmlVar']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'HtmlVar'));
 			}
+			var val = o['htmlVarSpan'];
 			if(vars.includes('htmlVarSpan')) {
 				$('.inputPartHtml' + pk + 'HtmlVarSpan').each(function() {
-					if(o['htmlVarSpan'] !== $(this).val())
-						$(this).val(o['htmlVarSpan']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varPartHtml' + pk + 'HtmlVarSpan').each(function() {
-					if(o['htmlVarSpan'] !== $(this).text())
-						$(this).text(o['htmlVarSpan']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'HtmlVarSpan'));
 			}
+			var val = o['htmlVarForm'];
 			if(vars.includes('htmlVarForm')) {
 				$('.inputPartHtml' + pk + 'HtmlVarForm').each(function() {
-					if(o['htmlVarForm'] !== $(this).val())
-						$(this).val(o['htmlVarForm']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varPartHtml' + pk + 'HtmlVarForm').each(function() {
-					if(o['htmlVarForm'] !== $(this).text())
-						$(this).text(o['htmlVarForm']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'HtmlVarForm'));
 			}
+			var val = o['htmlVarInput'];
 			if(vars.includes('htmlVarInput')) {
 				$('.inputPartHtml' + pk + 'HtmlVarInput').each(function() {
-					if(o['htmlVarInput'] !== $(this).val())
-						$(this).val(o['htmlVarInput']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varPartHtml' + pk + 'HtmlVarInput').each(function() {
-					if(o['htmlVarInput'] !== $(this).text())
-						$(this).text(o['htmlVarInput']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'HtmlVarInput'));
 			}
+			var val = o['htmlVarForEach'];
 			if(vars.includes('htmlVarForEach')) {
 				$('.inputPartHtml' + pk + 'HtmlVarForEach').each(function() {
-					if(o['htmlVarForEach'] !== $(this).val())
-						$(this).val(o['htmlVarForEach']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varPartHtml' + pk + 'HtmlVarForEach').each(function() {
-					if(o['htmlVarForEach'] !== $(this).text())
-						$(this).text(o['htmlVarForEach']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'HtmlVarForEach'));
 			}
+			var val = o['htmlExclure'];
 			if(vars.includes('htmlExclure')) {
 				$('.inputPartHtml' + pk + 'HtmlExclure').each(function() {
-					if(o['htmlExclure'] !== $(this).val())
-						$(this).val(o['htmlExclure']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varPartHtml' + pk + 'HtmlExclure').each(function() {
-					if(o['htmlExclure'] !== $(this).text())
-						$(this).text(o['htmlExclure']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'HtmlExclure'));
 			}
+			var val = o['pdfExclure'];
 			if(vars.includes('pdfExclure')) {
 				$('.inputPartHtml' + pk + 'PdfExclure').each(function() {
-					if(o['pdfExclure'] !== $(this).val())
-						$(this).val(o['pdfExclure']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varPartHtml' + pk + 'PdfExclure').each(function() {
-					if(o['pdfExclure'] !== $(this).text())
-						$(this).text(o['pdfExclure']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'PdfExclure'));
 			}
+			var val = o['connecterDeconnecter'];
 			if(vars.includes('connecterDeconnecter')) {
 				$('.inputPartHtml' + pk + 'ConnecterDeconnecter').each(function() {
-					if(o['connecterDeconnecter'] !== $(this).val())
-						$(this).val(o['connecterDeconnecter']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varPartHtml' + pk + 'ConnecterDeconnecter').each(function() {
-					if(o['connecterDeconnecter'] !== $(this).text())
-						$(this).text(o['connecterDeconnecter']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'ConnecterDeconnecter'));
 			}
+			var val = o['tri1'];
 			if(vars.includes('tri1')) {
 				$('.inputPartHtml' + pk + 'Tri1').each(function() {
-					if(o['tri1'] !== $(this).val())
-						$(this).val(o['tri1']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varPartHtml' + pk + 'Tri1').each(function() {
-					if(o['tri1'] !== $(this).text())
-						$(this).text(o['tri1']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'Tri1'));
 			}
+			var val = o['tri2'];
 			if(vars.includes('tri2')) {
 				$('.inputPartHtml' + pk + 'Tri2').each(function() {
-					if(o['tri2'] !== $(this).val())
-						$(this).val(o['tri2']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varPartHtml' + pk + 'Tri2').each(function() {
-					if(o['tri2'] !== $(this).text())
-						$(this).text(o['tri2']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'Tri2'));
 			}
+			var val = o['tri3'];
 			if(vars.includes('tri3')) {
 				$('.inputPartHtml' + pk + 'Tri3').each(function() {
-					if(o['tri3'] !== $(this).val())
-						$(this).val(o['tri3']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varPartHtml' + pk + 'Tri3').each(function() {
-					if(o['tri3'] !== $(this).text())
-						$(this).text(o['tri3']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'Tri3'));
 			}
+			var val = o['tri4'];
 			if(vars.includes('tri4')) {
 				$('.inputPartHtml' + pk + 'Tri4').each(function() {
-					if(o['tri4'] !== $(this).val())
-						$(this).val(o['tri4']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varPartHtml' + pk + 'Tri4').each(function() {
-					if(o['tri4'] !== $(this).text())
-						$(this).text(o['tri4']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'Tri4'));
 			}
+			var val = o['tri5'];
 			if(vars.includes('tri5')) {
 				$('.inputPartHtml' + pk + 'Tri5').each(function() {
-					if(o['tri5'] !== $(this).val())
-						$(this).val(o['tri5']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varPartHtml' + pk + 'Tri5').each(function() {
-					if(o['tri5'] !== $(this).text())
-						$(this).text(o['tri5']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'Tri5'));
 			}
+			var val = o['tri6'];
 			if(vars.includes('tri6')) {
 				$('.inputPartHtml' + pk + 'Tri6').each(function() {
-					if(o['tri6'] !== $(this).val())
-						$(this).val(o['tri6']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varPartHtml' + pk + 'Tri6').each(function() {
-					if(o['tri6'] !== $(this).text())
-						$(this).text(o['tri6']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'Tri6'));
 			}
+			var val = o['tri7'];
 			if(vars.includes('tri7')) {
 				$('.inputPartHtml' + pk + 'Tri7').each(function() {
-					if(o['tri7'] !== $(this).val())
-						$(this).val(o['tri7']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varPartHtml' + pk + 'Tri7').each(function() {
-					if(o['tri7'] !== $(this).text())
-						$(this).text(o['tri7']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'Tri7'));
 			}
+			var val = o['tri8'];
 			if(vars.includes('tri8')) {
 				$('.inputPartHtml' + pk + 'Tri8').each(function() {
-					if(o['tri8'] !== $(this).val())
-						$(this).val(o['tri8']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varPartHtml' + pk + 'Tri8').each(function() {
-					if(o['tri8'] !== $(this).text())
-						$(this).text(o['tri8']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'Tri8'));
 			}
+			var val = o['tri9'];
 			if(vars.includes('tri9')) {
 				$('.inputPartHtml' + pk + 'Tri9').each(function() {
-					if(o['tri9'] !== $(this).val())
-						$(this).val(o['tri9']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varPartHtml' + pk + 'Tri9').each(function() {
-					if(o['tri9'] !== $(this).text())
-						$(this).text(o['tri9']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'Tri9'));
 			}
+			var val = o['tri10'];
 			if(vars.includes('tri10')) {
 				$('.inputPartHtml' + pk + 'Tri10').each(function() {
-					if(o['tri10'] !== $(this).val())
-						$(this).val(o['tri10']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varPartHtml' + pk + 'Tri10').each(function() {
-					if(o['tri10'] !== $(this).text())
-						$(this).text(o['tri10']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'Tri10'));
 			}
+			var val = o['inheritPk'];
 			if(vars.includes('inheritPk')) {
 				$('.inputPartHtml' + pk + 'InheritPk').each(function() {
-					if(o['inheritPk'] !== $(this).val())
-						$(this).val(o['inheritPk']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varPartHtml' + pk + 'InheritPk').each(function() {
-					if(o['inheritPk'] !== $(this).text())
-						$(this).text(o['inheritPk']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'InheritPk'));
 			}
+			var val = o['sessionId'];
 			if(vars.includes('sessionId')) {
 				$('.inputPartHtml' + pk + 'SessionId').each(function() {
-					if(o['sessionId'] !== $(this).val())
-						$(this).val(o['sessionId']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varPartHtml' + pk + 'SessionId').each(function() {
-					if(o['sessionId'] !== $(this).text())
-						$(this).text(o['sessionId']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'SessionId'));
 			}
+			var val = o['utilisateurId'];
 			if(vars.includes('utilisateurId')) {
 				$('.inputPartHtml' + pk + 'UtilisateurId').each(function() {
-					if(o['utilisateurId'] !== $(this).val())
-						$(this).val(o['utilisateurId']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varPartHtml' + pk + 'UtilisateurId').each(function() {
-					if(o['utilisateurId'] !== $(this).text())
-						$(this).text(o['utilisateurId']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'UtilisateurId'));
 			}
+			var val = o['utilisateurCle'];
 			if(vars.includes('utilisateurCle')) {
 				$('.inputPartHtml' + pk + 'UtilisateurCle').each(function() {
-					if(o['utilisateurCle'] !== $(this).val())
-						$(this).val(o['utilisateurCle']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varPartHtml' + pk + 'UtilisateurCle').each(function() {
-					if(o['utilisateurCle'] !== $(this).text())
-						$(this).text(o['utilisateurCle']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'UtilisateurCle'));
 			}

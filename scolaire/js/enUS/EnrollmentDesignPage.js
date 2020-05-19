@@ -859,113 +859,123 @@ async function websocketEnrollmentDesignInner(apiRequest) {
 	if(pk != null) {
 		searchEnrollmentDesignVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
+			var val = o['created'];
 			if(vars.includes('created')) {
 				$('.inputEnrollmentDesign' + pk + 'Created').each(function() {
-					if(o['created'] !== $(this).val())
-						$(this).val(o['created']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varEnrollmentDesign' + pk + 'Created').each(function() {
-					if(o['created'] !== $(this).text())
-						$(this).text(o['created']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputEnrollmentDesign' + pk + 'Created'));
 			}
+			var val = o['modified'];
 			if(vars.includes('modified')) {
 				$('.inputEnrollmentDesign' + pk + 'Modified').each(function() {
-					if(o['modified'] !== $(this).val())
-						$(this).val(o['modified']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varEnrollmentDesign' + pk + 'Modified').each(function() {
-					if(o['modified'] !== $(this).text())
-						$(this).text(o['modified']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputEnrollmentDesign' + pk + 'Modified'));
 			}
+			var val = o['archived'];
 			if(vars.includes('archived')) {
 				$('.inputEnrollmentDesign' + pk + 'Archived').each(function() {
-					if(o['archived'] !== $(this).val())
-						$(this).val(o['archived']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varEnrollmentDesign' + pk + 'Archived').each(function() {
-					if(o['archived'] !== $(this).text())
-						$(this).text(o['archived']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputEnrollmentDesign' + pk + 'Archived'));
 			}
+			var val = o['deleted'];
 			if(vars.includes('deleted')) {
 				$('.inputEnrollmentDesign' + pk + 'Deleted').each(function() {
-					if(o['deleted'] !== $(this).val())
-						$(this).val(o['deleted']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varEnrollmentDesign' + pk + 'Deleted').each(function() {
-					if(o['deleted'] !== $(this).text())
-						$(this).text(o['deleted']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputEnrollmentDesign' + pk + 'Deleted'));
 			}
+			var val = o['enrollmentDesignCompleteName'];
 			if(vars.includes('enrollmentDesignCompleteName')) {
 				$('.inputEnrollmentDesign' + pk + 'EnrollmentDesignCompleteName').each(function() {
-					if(o['enrollmentDesignCompleteName'] !== $(this).val())
-						$(this).val(o['enrollmentDesignCompleteName']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varEnrollmentDesign' + pk + 'EnrollmentDesignCompleteName').each(function() {
-					if(o['enrollmentDesignCompleteName'] !== $(this).text())
-						$(this).text(o['enrollmentDesignCompleteName']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputEnrollmentDesign' + pk + 'EnrollmentDesignCompleteName'));
 			}
+			var val = o['designHidden'];
 			if(vars.includes('designHidden')) {
 				$('.inputEnrollmentDesign' + pk + 'DesignHidden').each(function() {
-					if(o['designHidden'] !== $(this).val())
-						$(this).val(o['designHidden']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varEnrollmentDesign' + pk + 'DesignHidden').each(function() {
-					if(o['designHidden'] !== $(this).text())
-						$(this).text(o['designHidden']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputEnrollmentDesign' + pk + 'DesignHidden'));
 			}
+			var val = o['inheritPk'];
 			if(vars.includes('inheritPk')) {
 				$('.inputEnrollmentDesign' + pk + 'InheritPk').each(function() {
-					if(o['inheritPk'] !== $(this).val())
-						$(this).val(o['inheritPk']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varEnrollmentDesign' + pk + 'InheritPk').each(function() {
-					if(o['inheritPk'] !== $(this).text())
-						$(this).text(o['inheritPk']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputEnrollmentDesign' + pk + 'InheritPk'));
 			}
+			var val = o['sessionId'];
 			if(vars.includes('sessionId')) {
 				$('.inputEnrollmentDesign' + pk + 'SessionId').each(function() {
-					if(o['sessionId'] !== $(this).val())
-						$(this).val(o['sessionId']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varEnrollmentDesign' + pk + 'SessionId').each(function() {
-					if(o['sessionId'] !== $(this).text())
-						$(this).text(o['sessionId']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputEnrollmentDesign' + pk + 'SessionId'));
 			}
+			var val = o['userId'];
 			if(vars.includes('userId')) {
 				$('.inputEnrollmentDesign' + pk + 'UserId').each(function() {
-					if(o['userId'] !== $(this).val())
-						$(this).val(o['userId']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varEnrollmentDesign' + pk + 'UserId').each(function() {
-					if(o['userId'] !== $(this).text())
-						$(this).text(o['userId']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputEnrollmentDesign' + pk + 'UserId'));
 			}
+			var val = o['userKey'];
 			if(vars.includes('userKey')) {
 				$('.inputEnrollmentDesign' + pk + 'UserKey').each(function() {
-					if(o['userKey'] !== $(this).val())
-						$(this).val(o['userKey']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varEnrollmentDesign' + pk + 'UserKey').each(function() {
-					if(o['userKey'] !== $(this).text())
-						$(this).text(o['userKey']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputEnrollmentDesign' + pk + 'UserKey'));
 			}

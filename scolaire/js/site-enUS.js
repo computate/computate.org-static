@@ -26,12 +26,10 @@ $(document).ready(function() {
 		}
 	});
 	$('.timepicker').datePicker({
-		timeFormat: "HH:MM AM"
+		timeFormat: "HH:mm a"
 		, readValue: function(element) {
 			if (!element.value) {
-				var d = new Date();
-				var s = dateFormat(d, "hh:MM TT"); 
-				return s; // initial time if empty
+				return moment().format('h:mm a'); // initial time if empty
 			}
 			return element.value; // triggers default behavior
 		}

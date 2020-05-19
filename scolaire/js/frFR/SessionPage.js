@@ -41,13 +41,13 @@ async function postSessionScolaire($formulaireValeurs, success, error) {
 	if(valeurSupprime != null && valeurSupprime !== '')
 		vals['supprime'] = valeurSupprime;
 
-	var valeurSessionJourDebut = $formulaireValeurs.find('.valeurSessionJourDebut').val();
-	if(valeurSessionJourDebut != null && valeurSessionJourDebut !== '')
-		vals['sessionJourDebut'] = valeurSessionJourDebut;
+	var valeurSessionDateDebut = $formulaireValeurs.find('.valeurSessionDateDebut').val();
+	if(valeurSessionDateDebut != null && valeurSessionDateDebut !== '')
+		vals['sessionDateDebut'] = valeurSessionDateDebut;
 
-	var valeurSessionJourFin = $formulaireValeurs.find('.valeurSessionJourFin').val();
-	if(valeurSessionJourFin != null && valeurSessionJourFin !== '')
-		vals['sessionJourFin'] = valeurSessionJourFin;
+	var valeurSessionDateFin = $formulaireValeurs.find('.valeurSessionDateFin').val();
+	if(valeurSessionDateFin != null && valeurSessionDateFin !== '')
+		vals['sessionDateFin'] = valeurSessionDateFin;
 
 		vals['saisonCle'] = [valeurSaisonCle];
 	if(valeurSaisonCle != null && valeurSaisonCle !== '')
@@ -176,13 +176,13 @@ async function putcopieSessionScolaire($formulaireValeurs, pk, success, error) {
 	if(valeurSupprime != null && valeurSupprime !== '')
 		vals['supprime'] = valeurSupprime;
 
-	var valeurSessionJourDebut = $formulaireValeurs.find('.valeurSessionJourDebut').val();
-	if(valeurSessionJourDebut != null && valeurSessionJourDebut !== '')
-		vals['sessionJourDebut'] = valeurSessionJourDebut;
+	var valeurSessionDateDebut = $formulaireValeurs.find('.valeurSessionDateDebut').val();
+	if(valeurSessionDateDebut != null && valeurSessionDateDebut !== '')
+		vals['sessionDateDebut'] = valeurSessionDateDebut;
 
-	var valeurSessionJourFin = $formulaireValeurs.find('.valeurSessionJourFin').val();
-	if(valeurSessionJourFin != null && valeurSessionJourFin !== '')
-		vals['sessionJourFin'] = valeurSessionJourFin;
+	var valeurSessionDateFin = $formulaireValeurs.find('.valeurSessionDateFin').val();
+	if(valeurSessionDateFin != null && valeurSessionDateFin !== '')
+		vals['sessionDateFin'] = valeurSessionDateFin;
 
 	var valeurSaisonCle = $formulaireValeurs.find('input.valeurSaisonCle:checked').val();
 	if(valeurSaisonCle != null && valeurSaisonCle !== '')
@@ -324,31 +324,31 @@ async function patchSessionScolaire($formulaireFiltres, $formulaireValeurs, pk, 
 	if(removeSupprime != null && removeSupprime !== '')
 		vals['removeSupprime'] = removeSupprime;
 
-	var valeurSessionJourDebut = $formulaireValeurs.find('.valeurSessionJourDebut').val();
-	if(valeurSessionJourDebut != null && valeurSessionJourDebut !== '')
-	var removeSessionJourDebut = $formulaireFiltres.find('.removeSessionJourDebut').val() === 'true';
-	var setSessionJourDebut = removeSessionJourDebut ? null : $formulaireValeurs.find('.setSessionJourDebut').val();
-	if(removeSessionJourDebut || setSessionJourDebut != null && setSessionJourDebut !== '')
-		vals['setSessionJourDebut'] = setSessionJourDebut;
-	var addSessionJourDebut = $formulaireValeurs.find('.addSessionJourDebut').val();
-	if(addSessionJourDebut != null && addSessionJourDebut !== '')
-		vals['addSessionJourDebut'] = addSessionJourDebut;
-	var removeSessionJourDebut = $formulaireValeurs.find('.removeSessionJourDebut').val();
-	if(removeSessionJourDebut != null && removeSessionJourDebut !== '')
-		vals['removeSessionJourDebut'] = removeSessionJourDebut;
+	var valeurSessionDateDebut = $formulaireValeurs.find('.valeurSessionDateDebut').val();
+	if(valeurSessionDateDebut != null && valeurSessionDateDebut !== '')
+	var removeSessionDateDebut = $formulaireFiltres.find('.removeSessionDateDebut').val() === 'true';
+	var setSessionDateDebut = removeSessionDateDebut ? null : $formulaireValeurs.find('.setSessionDateDebut').val();
+	if(removeSessionDateDebut || setSessionDateDebut != null && setSessionDateDebut !== '')
+		vals['setSessionDateDebut'] = setSessionDateDebut;
+	var addSessionDateDebut = $formulaireValeurs.find('.addSessionDateDebut').val();
+	if(addSessionDateDebut != null && addSessionDateDebut !== '')
+		vals['addSessionDateDebut'] = addSessionDateDebut;
+	var removeSessionDateDebut = $formulaireValeurs.find('.removeSessionDateDebut').val();
+	if(removeSessionDateDebut != null && removeSessionDateDebut !== '')
+		vals['removeSessionDateDebut'] = removeSessionDateDebut;
 
-	var valeurSessionJourFin = $formulaireValeurs.find('.valeurSessionJourFin').val();
-	if(valeurSessionJourFin != null && valeurSessionJourFin !== '')
-	var removeSessionJourFin = $formulaireFiltres.find('.removeSessionJourFin').val() === 'true';
-	var setSessionJourFin = removeSessionJourFin ? null : $formulaireValeurs.find('.setSessionJourFin').val();
-	if(removeSessionJourFin || setSessionJourFin != null && setSessionJourFin !== '')
-		vals['setSessionJourFin'] = setSessionJourFin;
-	var addSessionJourFin = $formulaireValeurs.find('.addSessionJourFin').val();
-	if(addSessionJourFin != null && addSessionJourFin !== '')
-		vals['addSessionJourFin'] = addSessionJourFin;
-	var removeSessionJourFin = $formulaireValeurs.find('.removeSessionJourFin').val();
-	if(removeSessionJourFin != null && removeSessionJourFin !== '')
-		vals['removeSessionJourFin'] = removeSessionJourFin;
+	var valeurSessionDateFin = $formulaireValeurs.find('.valeurSessionDateFin').val();
+	if(valeurSessionDateFin != null && valeurSessionDateFin !== '')
+	var removeSessionDateFin = $formulaireFiltres.find('.removeSessionDateFin').val() === 'true';
+	var setSessionDateFin = removeSessionDateFin ? null : $formulaireValeurs.find('.setSessionDateFin').val();
+	if(removeSessionDateFin || setSessionDateFin != null && setSessionDateFin !== '')
+		vals['setSessionDateFin'] = setSessionDateFin;
+	var addSessionDateFin = $formulaireValeurs.find('.addSessionDateFin').val();
+	if(addSessionDateFin != null && addSessionDateFin !== '')
+		vals['addSessionDateFin'] = addSessionDateFin;
+	var removeSessionDateFin = $formulaireValeurs.find('.removeSessionDateFin').val();
+	if(removeSessionDateFin != null && removeSessionDateFin !== '')
+		vals['removeSessionDateFin'] = removeSessionDateFin;
 
 	var valeurSaisonCle = $formulaireValeurs.find('input.valeurSaisonCle:checked').val();
 	if(valeurSaisonCle != null && valeurSaisonCle !== '')
@@ -479,13 +479,13 @@ function patchSessionScolaireFiltres($formulaireFiltres) {
 		if(filtreSupprime != null && filtreSupprime === true)
 			filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
-		var filtreSessionJourDebut = $formulaireFiltres.find('.valeurSessionJourDebut').val();
-		if(filtreSessionJourDebut != null && filtreSessionJourDebut !== '')
-			filtres.push({ name: 'fq', value: 'sessionJourDebut:' + filtreSessionJourDebut });
+		var filtreSessionDateDebut = $formulaireFiltres.find('.valeurSessionDateDebut').val();
+		if(filtreSessionDateDebut != null && filtreSessionDateDebut !== '')
+			filtres.push({ name: 'fq', value: 'sessionDateDebut:' + filtreSessionDateDebut });
 
-		var filtreSessionJourFin = $formulaireFiltres.find('.valeurSessionJourFin').val();
-		if(filtreSessionJourFin != null && filtreSessionJourFin !== '')
-			filtres.push({ name: 'fq', value: 'sessionJourFin:' + filtreSessionJourFin });
+		var filtreSessionDateFin = $formulaireFiltres.find('.valeurSessionDateFin').val();
+		if(filtreSessionDateFin != null && filtreSessionDateFin !== '')
+			filtres.push({ name: 'fq', value: 'sessionDateFin:' + filtreSessionDateFin });
 
 		var filtreSaisonCle = $formulaireFiltres.find('.valeurSaisonCle').val();
 		if(filtreSaisonCle != null && filtreSaisonCle !== '')
@@ -623,9 +623,9 @@ function patchSessionScolaireFiltres($formulaireFiltres) {
 		if(filtreAnneeFin != null && filtreAnneeFin !== '')
 			filtres.push({ name: 'fq', value: 'anneeFin:' + filtreAnneeFin });
 
-		var filtreSaisonJourDebut = $formulaireFiltres.find('.valeurSaisonJourDebut').val();
-		if(filtreSaisonJourDebut != null && filtreSaisonJourDebut !== '')
-			filtres.push({ name: 'fq', value: 'saisonJourDebut:' + filtreSaisonJourDebut });
+		var filtreSaisonDateDebut = $formulaireFiltres.find('.valeurSaisonDateDebut').val();
+		if(filtreSaisonDateDebut != null && filtreSaisonDateDebut !== '')
+			filtres.push({ name: 'fq', value: 'saisonDateDebut:' + filtreSaisonDateDebut });
 
 		var $filtreSaisonEteCheckbox = $formulaireFiltres.find('input.valeurSaisonEte[type = "checkbox"]');
 		var $filtreSaisonEteSelect = $formulaireFiltres.find('select.valeurSaisonEte');
@@ -753,13 +753,13 @@ function rechercheSessionScolaireFiltres($formulaireFiltres) {
 		if(filtreSupprime != null && filtreSupprime === true)
 			filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
-		var filtreSessionJourDebut = $formulaireFiltres.find('.valeurSessionJourDebut').val();
-		if(filtreSessionJourDebut != null && filtreSessionJourDebut !== '')
-			filtres.push({ name: 'fq', value: 'sessionJourDebut:' + filtreSessionJourDebut });
+		var filtreSessionDateDebut = $formulaireFiltres.find('.valeurSessionDateDebut').val();
+		if(filtreSessionDateDebut != null && filtreSessionDateDebut !== '')
+			filtres.push({ name: 'fq', value: 'sessionDateDebut:' + filtreSessionDateDebut });
 
-		var filtreSessionJourFin = $formulaireFiltres.find('.valeurSessionJourFin').val();
-		if(filtreSessionJourFin != null && filtreSessionJourFin !== '')
-			filtres.push({ name: 'fq', value: 'sessionJourFin:' + filtreSessionJourFin });
+		var filtreSessionDateFin = $formulaireFiltres.find('.valeurSessionDateFin').val();
+		if(filtreSessionDateFin != null && filtreSessionDateFin !== '')
+			filtres.push({ name: 'fq', value: 'sessionDateFin:' + filtreSessionDateFin });
 
 		var filtreSaisonCle = $formulaireFiltres.find('.valeurSaisonCle').val();
 		if(filtreSaisonCle != null && filtreSaisonCle !== '')
@@ -897,9 +897,9 @@ function rechercheSessionScolaireFiltres($formulaireFiltres) {
 		if(filtreAnneeFin != null && filtreAnneeFin !== '')
 			filtres.push({ name: 'fq', value: 'anneeFin:' + filtreAnneeFin });
 
-		var filtreSaisonJourDebut = $formulaireFiltres.find('.valeurSaisonJourDebut').val();
-		if(filtreSaisonJourDebut != null && filtreSaisonJourDebut !== '')
-			filtres.push({ name: 'fq', value: 'saisonJourDebut:' + filtreSaisonJourDebut });
+		var filtreSaisonDateDebut = $formulaireFiltres.find('.valeurSaisonDateDebut').val();
+		if(filtreSaisonDateDebut != null && filtreSaisonDateDebut !== '')
+			filtres.push({ name: 'fq', value: 'saisonDateDebut:' + filtreSaisonDateDebut });
 
 		var $filtreSaisonEteCheckbox = $formulaireFiltres.find('input.valeurSaisonEte[type = "checkbox"]');
 		var $filtreSaisonEteSelect = $formulaireFiltres.find('select.valeurSaisonEte');
@@ -1102,146 +1102,169 @@ async function websocketSessionScolaireInner(requeteApi) {
 	if(pk != null) {
 		rechercherSessionScolaireVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
+			var val = o['cree'];
 			if(vars.includes('cree')) {
 				$('.inputSessionScolaire' + pk + 'Cree').each(function() {
-					if(o['cree'] !== $(this).val())
-						$(this).val(o['cree']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSessionScolaire' + pk + 'Cree').each(function() {
-					if(o['cree'] !== $(this).text())
-						$(this).text(o['cree']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputSessionScolaire' + pk + 'Cree'));
 			}
+			var val = o['modifie'];
 			if(vars.includes('modifie')) {
 				$('.inputSessionScolaire' + pk + 'Modifie').each(function() {
-					if(o['modifie'] !== $(this).val())
-						$(this).val(o['modifie']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSessionScolaire' + pk + 'Modifie').each(function() {
-					if(o['modifie'] !== $(this).text())
-						$(this).text(o['modifie']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputSessionScolaire' + pk + 'Modifie'));
 			}
+			var val = o['archive'];
 			if(vars.includes('archive')) {
 				$('.inputSessionScolaire' + pk + 'Archive').each(function() {
-					if(o['archive'] !== $(this).val())
-						$(this).val(o['archive']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSessionScolaire' + pk + 'Archive').each(function() {
-					if(o['archive'] !== $(this).text())
-						$(this).text(o['archive']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputSessionScolaire' + pk + 'Archive'));
 			}
+			var val = o['supprime'];
 			if(vars.includes('supprime')) {
 				$('.inputSessionScolaire' + pk + 'Supprime').each(function() {
-					if(o['supprime'] !== $(this).val())
-						$(this).val(o['supprime']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSessionScolaire' + pk + 'Supprime').each(function() {
-					if(o['supprime'] !== $(this).text())
-						$(this).text(o['supprime']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputSessionScolaire' + pk + 'Supprime'));
 			}
-			if(vars.includes('sessionJourDebut')) {
-				$('.inputSessionScolaire' + pk + 'SessionJourDebut').each(function() {
-					if(o['sessionJourDebut'] !== $(this).val())
-						$(this).val(o['sessionJourDebut']);
-				});
-				$('.varSessionScolaire' + pk + 'SessionJourDebut').each(function() {
-					if(o['sessionJourDebut'] !== $(this).text())
-						$(this).text(o['sessionJourDebut']);
-				});
-				ajouterLueur($('.inputSessionScolaire' + pk + 'SessionJourDebut'));
+			var val = o['sessionDateDebut'];
+			if(val != null) {
+				var t = moment(val, 'YYYY-MM-DD');
+				if(t)
+					val = t.format('DD-MM-YYYY');
 			}
-			if(vars.includes('sessionJourFin')) {
-				$('.inputSessionScolaire' + pk + 'SessionJourFin').each(function() {
-					if(o['sessionJourFin'] !== $(this).val())
-						$(this).val(o['sessionJourFin']);
+			if(vars.includes('sessionDateDebut')) {
+				$('.inputSessionScolaire' + pk + 'SessionDateDebut').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
-				$('.varSessionScolaire' + pk + 'SessionJourFin').each(function() {
-					if(o['sessionJourFin'] !== $(this).text())
-						$(this).text(o['sessionJourFin']);
+				$('.varSessionScolaire' + pk + 'SessionDateDebut').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
-				ajouterLueur($('.inputSessionScolaire' + pk + 'SessionJourFin'));
+				ajouterLueur($('.inputSessionScolaire' + pk + 'SessionDateDebut'));
 			}
+			var val = o['sessionDateFin'];
+			if(val != null) {
+				var t = moment(val, 'YYYY-MM-DD');
+				if(t)
+					val = t.format('DD-MM-YYYY');
+			}
+			if(vars.includes('sessionDateFin')) {
+				$('.inputSessionScolaire' + pk + 'SessionDateFin').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSessionScolaire' + pk + 'SessionDateFin').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputSessionScolaire' + pk + 'SessionDateFin'));
+			}
+			var val = o['saisonCle'];
 			if(vars.includes('saisonCle')) {
 				$('.inputSessionScolaire' + pk + 'SaisonCle').each(function() {
-					if(o['saisonCle'] !== $(this).val())
-						$(this).val(o['saisonCle']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSessionScolaire' + pk + 'SaisonCle').each(function() {
-					if(o['saisonCle'] !== $(this).text())
-						$(this).text(o['saisonCle']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputSessionScolaire' + pk + 'SaisonCle'));
 			}
+			var val = o['ageCles'];
 			if(vars.includes('ageCles')) {
 				$('.inputSessionScolaire' + pk + 'AgeCles').each(function() {
-					if(o['ageCles'] !== $(this).val())
-						$(this).val(o['ageCles']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSessionScolaire' + pk + 'AgeCles').each(function() {
-					if(o['ageCles'] !== $(this).text())
-						$(this).text(o['ageCles']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputSessionScolaire' + pk + 'AgeCles'));
 			}
+			var val = o['inheritPk'];
 			if(vars.includes('inheritPk')) {
 				$('.inputSessionScolaire' + pk + 'InheritPk').each(function() {
-					if(o['inheritPk'] !== $(this).val())
-						$(this).val(o['inheritPk']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSessionScolaire' + pk + 'InheritPk').each(function() {
-					if(o['inheritPk'] !== $(this).text())
-						$(this).text(o['inheritPk']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputSessionScolaire' + pk + 'InheritPk'));
 			}
+			var val = o['sessionId'];
 			if(vars.includes('sessionId')) {
 				$('.inputSessionScolaire' + pk + 'SessionId').each(function() {
-					if(o['sessionId'] !== $(this).val())
-						$(this).val(o['sessionId']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSessionScolaire' + pk + 'SessionId').each(function() {
-					if(o['sessionId'] !== $(this).text())
-						$(this).text(o['sessionId']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputSessionScolaire' + pk + 'SessionId'));
 			}
+			var val = o['utilisateurId'];
 			if(vars.includes('utilisateurId')) {
 				$('.inputSessionScolaire' + pk + 'UtilisateurId').each(function() {
-					if(o['utilisateurId'] !== $(this).val())
-						$(this).val(o['utilisateurId']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSessionScolaire' + pk + 'UtilisateurId').each(function() {
-					if(o['utilisateurId'] !== $(this).text())
-						$(this).text(o['utilisateurId']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputSessionScolaire' + pk + 'UtilisateurId'));
 			}
+			var val = o['utilisateurCle'];
 			if(vars.includes('utilisateurCle')) {
 				$('.inputSessionScolaire' + pk + 'UtilisateurCle').each(function() {
-					if(o['utilisateurCle'] !== $(this).val())
-						$(this).val(o['utilisateurCle']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSessionScolaire' + pk + 'UtilisateurCle').each(function() {
-					if(o['utilisateurCle'] !== $(this).text())
-						$(this).text(o['utilisateurCle']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputSessionScolaire' + pk + 'UtilisateurCle'));
 			}
+			var val = o['ecoleAddresse'];
 			if(vars.includes('ecoleAddresse')) {
 				$('.inputSessionScolaire' + pk + 'EcoleAddresse').each(function() {
-					if(o['ecoleAddresse'] !== $(this).val())
-						$(this).val(o['ecoleAddresse']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSessionScolaire' + pk + 'EcoleAddresse').each(function() {
-					if(o['ecoleAddresse'] !== $(this).text())
-						$(this).text(o['ecoleAddresse']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputSessionScolaire' + pk + 'EcoleAddresse'));
 			}

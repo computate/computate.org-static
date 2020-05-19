@@ -1442,179 +1442,195 @@ async function websocketSchoolGuardianInner(apiRequest) {
 	if(pk != null) {
 		searchSchoolGuardianVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
+			var val = o['created'];
 			if(vars.includes('created')) {
 				$('.inputSchoolGuardian' + pk + 'Created').each(function() {
-					if(o['created'] !== $(this).val())
-						$(this).val(o['created']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolGuardian' + pk + 'Created').each(function() {
-					if(o['created'] !== $(this).text())
-						$(this).text(o['created']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolGuardian' + pk + 'Created'));
 			}
+			var val = o['modified'];
 			if(vars.includes('modified')) {
 				$('.inputSchoolGuardian' + pk + 'Modified').each(function() {
-					if(o['modified'] !== $(this).val())
-						$(this).val(o['modified']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolGuardian' + pk + 'Modified').each(function() {
-					if(o['modified'] !== $(this).text())
-						$(this).text(o['modified']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolGuardian' + pk + 'Modified'));
 			}
+			var val = o['archived'];
 			if(vars.includes('archived')) {
 				$('.inputSchoolGuardian' + pk + 'Archived').each(function() {
-					if(o['archived'] !== $(this).val())
-						$(this).val(o['archived']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolGuardian' + pk + 'Archived').each(function() {
-					if(o['archived'] !== $(this).text())
-						$(this).text(o['archived']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolGuardian' + pk + 'Archived'));
 			}
+			var val = o['deleted'];
 			if(vars.includes('deleted')) {
 				$('.inputSchoolGuardian' + pk + 'Deleted').each(function() {
-					if(o['deleted'] !== $(this).val())
-						$(this).val(o['deleted']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolGuardian' + pk + 'Deleted').each(function() {
-					if(o['deleted'] !== $(this).text())
-						$(this).text(o['deleted']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolGuardian' + pk + 'Deleted'));
 			}
+			var val = o['personFirstName'];
 			if(vars.includes('personFirstName')) {
 				$('.inputSchoolGuardian' + pk + 'PersonFirstName').each(function() {
-					if(o['personFirstName'] !== $(this).val())
-						$(this).val(o['personFirstName']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolGuardian' + pk + 'PersonFirstName').each(function() {
-					if(o['personFirstName'] !== $(this).text())
-						$(this).text(o['personFirstName']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolGuardian' + pk + 'PersonFirstName'));
 			}
+			var val = o['familyName'];
 			if(vars.includes('familyName')) {
 				$('.inputSchoolGuardian' + pk + 'FamilyName').each(function() {
-					if(o['familyName'] !== $(this).val())
-						$(this).val(o['familyName']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolGuardian' + pk + 'FamilyName').each(function() {
-					if(o['familyName'] !== $(this).text())
-						$(this).text(o['familyName']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolGuardian' + pk + 'FamilyName'));
 			}
+			var val = o['personFirstNamePreferred'];
 			if(vars.includes('personFirstNamePreferred')) {
 				$('.inputSchoolGuardian' + pk + 'PersonFirstNamePreferred').each(function() {
-					if(o['personFirstNamePreferred'] !== $(this).val())
-						$(this).val(o['personFirstNamePreferred']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolGuardian' + pk + 'PersonFirstNamePreferred').each(function() {
-					if(o['personFirstNamePreferred'] !== $(this).text())
-						$(this).text(o['personFirstNamePreferred']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolGuardian' + pk + 'PersonFirstNamePreferred'));
 			}
+			var val = o['personPhoneNumber'];
 			if(vars.includes('personPhoneNumber')) {
 				$('.inputSchoolGuardian' + pk + 'PersonPhoneNumber').each(function() {
-					if(o['personPhoneNumber'] !== $(this).val())
-						$(this).val(o['personPhoneNumber']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolGuardian' + pk + 'PersonPhoneNumber').each(function() {
-					if(o['personPhoneNumber'] !== $(this).text())
-						$(this).text(o['personPhoneNumber']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolGuardian' + pk + 'PersonPhoneNumber'));
 			}
+			var val = o['personRelation'];
 			if(vars.includes('personRelation')) {
 				$('.inputSchoolGuardian' + pk + 'PersonRelation').each(function() {
-					if(o['personRelation'] !== $(this).val())
-						$(this).val(o['personRelation']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolGuardian' + pk + 'PersonRelation').each(function() {
-					if(o['personRelation'] !== $(this).text())
-						$(this).text(o['personRelation']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolGuardian' + pk + 'PersonRelation'));
 			}
+			var val = o['personEmergencyContact'];
 			if(vars.includes('personEmergencyContact')) {
 				$('.inputSchoolGuardian' + pk + 'PersonEmergencyContact').each(function() {
-					if(o['personEmergencyContact'] !== $(this).val())
-						$(this).val(o['personEmergencyContact']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolGuardian' + pk + 'PersonEmergencyContact').each(function() {
-					if(o['personEmergencyContact'] !== $(this).text())
-						$(this).text(o['personEmergencyContact']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolGuardian' + pk + 'PersonEmergencyContact'));
 			}
+			var val = o['personPickup'];
 			if(vars.includes('personPickup')) {
 				$('.inputSchoolGuardian' + pk + 'PersonPickup').each(function() {
-					if(o['personPickup'] !== $(this).val())
-						$(this).val(o['personPickup']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolGuardian' + pk + 'PersonPickup').each(function() {
-					if(o['personPickup'] !== $(this).text())
-						$(this).text(o['personPickup']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolGuardian' + pk + 'PersonPickup'));
 			}
+			var val = o['enrollmentKeys'];
 			if(vars.includes('enrollmentKeys')) {
 				$('.inputSchoolGuardian' + pk + 'EnrollmentKeys').each(function() {
-					if(o['enrollmentKeys'] !== $(this).val())
-						$(this).val(o['enrollmentKeys']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolGuardian' + pk + 'EnrollmentKeys').each(function() {
-					if(o['enrollmentKeys'] !== $(this).text())
-						$(this).text(o['enrollmentKeys']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolGuardian' + pk + 'EnrollmentKeys'));
 			}
+			var val = o['inheritPk'];
 			if(vars.includes('inheritPk')) {
 				$('.inputSchoolGuardian' + pk + 'InheritPk').each(function() {
-					if(o['inheritPk'] !== $(this).val())
-						$(this).val(o['inheritPk']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolGuardian' + pk + 'InheritPk').each(function() {
-					if(o['inheritPk'] !== $(this).text())
-						$(this).text(o['inheritPk']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolGuardian' + pk + 'InheritPk'));
 			}
+			var val = o['sessionId'];
 			if(vars.includes('sessionId')) {
 				$('.inputSchoolGuardian' + pk + 'SessionId').each(function() {
-					if(o['sessionId'] !== $(this).val())
-						$(this).val(o['sessionId']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolGuardian' + pk + 'SessionId').each(function() {
-					if(o['sessionId'] !== $(this).text())
-						$(this).text(o['sessionId']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolGuardian' + pk + 'SessionId'));
 			}
+			var val = o['userId'];
 			if(vars.includes('userId')) {
 				$('.inputSchoolGuardian' + pk + 'UserId').each(function() {
-					if(o['userId'] !== $(this).val())
-						$(this).val(o['userId']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolGuardian' + pk + 'UserId').each(function() {
-					if(o['userId'] !== $(this).text())
-						$(this).text(o['userId']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolGuardian' + pk + 'UserId'));
 			}
+			var val = o['userKey'];
 			if(vars.includes('userKey')) {
 				$('.inputSchoolGuardian' + pk + 'UserKey').each(function() {
-					if(o['userKey'] !== $(this).val())
-						$(this).val(o['userKey']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolGuardian' + pk + 'UserKey').each(function() {
-					if(o['userKey'] !== $(this).text())
-						$(this).text(o['userKey']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolGuardian' + pk + 'UserKey'));
 			}

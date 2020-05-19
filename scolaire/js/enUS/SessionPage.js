@@ -1102,146 +1102,169 @@ async function websocketSchoolSessionInner(apiRequest) {
 	if(pk != null) {
 		searchSchoolSessionVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
+			var val = o['created'];
 			if(vars.includes('created')) {
 				$('.inputSchoolSession' + pk + 'Created').each(function() {
-					if(o['created'] !== $(this).val())
-						$(this).val(o['created']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolSession' + pk + 'Created').each(function() {
-					if(o['created'] !== $(this).text())
-						$(this).text(o['created']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolSession' + pk + 'Created'));
 			}
+			var val = o['modified'];
 			if(vars.includes('modified')) {
 				$('.inputSchoolSession' + pk + 'Modified').each(function() {
-					if(o['modified'] !== $(this).val())
-						$(this).val(o['modified']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolSession' + pk + 'Modified').each(function() {
-					if(o['modified'] !== $(this).text())
-						$(this).text(o['modified']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolSession' + pk + 'Modified'));
 			}
+			var val = o['archived'];
 			if(vars.includes('archived')) {
 				$('.inputSchoolSession' + pk + 'Archived').each(function() {
-					if(o['archived'] !== $(this).val())
-						$(this).val(o['archived']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolSession' + pk + 'Archived').each(function() {
-					if(o['archived'] !== $(this).text())
-						$(this).text(o['archived']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolSession' + pk + 'Archived'));
 			}
+			var val = o['deleted'];
 			if(vars.includes('deleted')) {
 				$('.inputSchoolSession' + pk + 'Deleted').each(function() {
-					if(o['deleted'] !== $(this).val())
-						$(this).val(o['deleted']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolSession' + pk + 'Deleted').each(function() {
-					if(o['deleted'] !== $(this).text())
-						$(this).text(o['deleted']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolSession' + pk + 'Deleted'));
 			}
+			var val = o['sessionStartDate'];
+			if(val != null) {
+				var t = moment(val, 'YYYY-MM-DD');
+				if(t)
+					val = t.format('MM/DD/YYYY');
+			}
 			if(vars.includes('sessionStartDate')) {
 				$('.inputSchoolSession' + pk + 'SessionStartDate').each(function() {
-					if(o['sessionStartDate'] !== $(this).val())
-						$(this).val(o['sessionStartDate']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolSession' + pk + 'SessionStartDate').each(function() {
-					if(o['sessionStartDate'] !== $(this).text())
-						$(this).text(o['sessionStartDate']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolSession' + pk + 'SessionStartDate'));
 			}
+			var val = o['sessionEndDate'];
+			if(val != null) {
+				var t = moment(val, 'YYYY-MM-DD');
+				if(t)
+					val = t.format('MM/DD/YYYY');
+			}
 			if(vars.includes('sessionEndDate')) {
 				$('.inputSchoolSession' + pk + 'SessionEndDate').each(function() {
-					if(o['sessionEndDate'] !== $(this).val())
-						$(this).val(o['sessionEndDate']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolSession' + pk + 'SessionEndDate').each(function() {
-					if(o['sessionEndDate'] !== $(this).text())
-						$(this).text(o['sessionEndDate']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolSession' + pk + 'SessionEndDate'));
 			}
+			var val = o['seasonKey'];
 			if(vars.includes('seasonKey')) {
 				$('.inputSchoolSession' + pk + 'SeasonKey').each(function() {
-					if(o['seasonKey'] !== $(this).val())
-						$(this).val(o['seasonKey']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolSession' + pk + 'SeasonKey').each(function() {
-					if(o['seasonKey'] !== $(this).text())
-						$(this).text(o['seasonKey']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolSession' + pk + 'SeasonKey'));
 			}
+			var val = o['ageKeys'];
 			if(vars.includes('ageKeys')) {
 				$('.inputSchoolSession' + pk + 'AgeKeys').each(function() {
-					if(o['ageKeys'] !== $(this).val())
-						$(this).val(o['ageKeys']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolSession' + pk + 'AgeKeys').each(function() {
-					if(o['ageKeys'] !== $(this).text())
-						$(this).text(o['ageKeys']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolSession' + pk + 'AgeKeys'));
 			}
+			var val = o['inheritPk'];
 			if(vars.includes('inheritPk')) {
 				$('.inputSchoolSession' + pk + 'InheritPk').each(function() {
-					if(o['inheritPk'] !== $(this).val())
-						$(this).val(o['inheritPk']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolSession' + pk + 'InheritPk').each(function() {
-					if(o['inheritPk'] !== $(this).text())
-						$(this).text(o['inheritPk']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolSession' + pk + 'InheritPk'));
 			}
+			var val = o['sessionId'];
 			if(vars.includes('sessionId')) {
 				$('.inputSchoolSession' + pk + 'SessionId').each(function() {
-					if(o['sessionId'] !== $(this).val())
-						$(this).val(o['sessionId']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolSession' + pk + 'SessionId').each(function() {
-					if(o['sessionId'] !== $(this).text())
-						$(this).text(o['sessionId']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolSession' + pk + 'SessionId'));
 			}
+			var val = o['userId'];
 			if(vars.includes('userId')) {
 				$('.inputSchoolSession' + pk + 'UserId').each(function() {
-					if(o['userId'] !== $(this).val())
-						$(this).val(o['userId']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolSession' + pk + 'UserId').each(function() {
-					if(o['userId'] !== $(this).text())
-						$(this).text(o['userId']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolSession' + pk + 'UserId'));
 			}
+			var val = o['userKey'];
 			if(vars.includes('userKey')) {
 				$('.inputSchoolSession' + pk + 'UserKey').each(function() {
-					if(o['userKey'] !== $(this).val())
-						$(this).val(o['userKey']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolSession' + pk + 'UserKey').each(function() {
-					if(o['userKey'] !== $(this).text())
-						$(this).text(o['userKey']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolSession' + pk + 'UserKey'));
 			}
+			var val = o['schoolAddress'];
 			if(vars.includes('schoolAddress')) {
 				$('.inputSchoolSession' + pk + 'SchoolAddress').each(function() {
-					if(o['schoolAddress'] !== $(this).val())
-						$(this).val(o['schoolAddress']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolSession' + pk + 'SchoolAddress').each(function() {
-					if(o['schoolAddress'] !== $(this).text())
-						$(this).text(o['schoolAddress']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolSession' + pk + 'SchoolAddress'));
 			}

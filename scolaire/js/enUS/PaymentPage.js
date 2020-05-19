@@ -1890,377 +1890,421 @@ async function websocketSchoolPaymentInner(apiRequest) {
 	if(pk != null) {
 		searchSchoolPaymentVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
+			var val = o['created'];
 			if(vars.includes('created')) {
 				$('.inputSchoolPayment' + pk + 'Created').each(function() {
-					if(o['created'] !== $(this).val())
-						$(this).val(o['created']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolPayment' + pk + 'Created').each(function() {
-					if(o['created'] !== $(this).text())
-						$(this).text(o['created']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'Created'));
 			}
+			var val = o['modified'];
 			if(vars.includes('modified')) {
 				$('.inputSchoolPayment' + pk + 'Modified').each(function() {
-					if(o['modified'] !== $(this).val())
-						$(this).val(o['modified']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolPayment' + pk + 'Modified').each(function() {
-					if(o['modified'] !== $(this).text())
-						$(this).text(o['modified']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'Modified'));
 			}
+			var val = o['archived'];
 			if(vars.includes('archived')) {
 				$('.inputSchoolPayment' + pk + 'Archived').each(function() {
-					if(o['archived'] !== $(this).val())
-						$(this).val(o['archived']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolPayment' + pk + 'Archived').each(function() {
-					if(o['archived'] !== $(this).text())
-						$(this).text(o['archived']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'Archived'));
 			}
+			var val = o['deleted'];
 			if(vars.includes('deleted')) {
 				$('.inputSchoolPayment' + pk + 'Deleted').each(function() {
-					if(o['deleted'] !== $(this).val())
-						$(this).val(o['deleted']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolPayment' + pk + 'Deleted').each(function() {
-					if(o['deleted'] !== $(this).text())
-						$(this).text(o['deleted']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'Deleted'));
 			}
+			var val = o['paymentDate'];
+			if(val != null) {
+				var t = moment(val, 'YYYY-MM-DD');
+				if(t)
+					val = t.format('MM/DD/YYYY');
+			}
 			if(vars.includes('paymentDate')) {
 				$('.inputSchoolPayment' + pk + 'PaymentDate').each(function() {
-					if(o['paymentDate'] !== $(this).val())
-						$(this).val(o['paymentDate']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolPayment' + pk + 'PaymentDate').each(function() {
-					if(o['paymentDate'] !== $(this).text())
-						$(this).text(o['paymentDate']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'PaymentDate'));
 			}
+			var val = o['paymentAmount'];
 			if(vars.includes('paymentAmount')) {
 				$('.inputSchoolPayment' + pk + 'PaymentAmount').each(function() {
-					if(o['paymentAmount'] !== $(this).val())
-						$(this).val(o['paymentAmount']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolPayment' + pk + 'PaymentAmount').each(function() {
-					if(o['paymentAmount'] !== $(this).text())
-						$(this).text(o['paymentAmount']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'PaymentAmount'));
 			}
+			var val = o['paymentCash'];
 			if(vars.includes('paymentCash')) {
 				$('.inputSchoolPayment' + pk + 'PaymentCash').each(function() {
-					if(o['paymentCash'] !== $(this).val())
-						$(this).val(o['paymentCash']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolPayment' + pk + 'PaymentCash').each(function() {
-					if(o['paymentCash'] !== $(this).text())
-						$(this).text(o['paymentCash']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'PaymentCash'));
 			}
+			var val = o['paymentCheck'];
 			if(vars.includes('paymentCheck')) {
 				$('.inputSchoolPayment' + pk + 'PaymentCheck').each(function() {
-					if(o['paymentCheck'] !== $(this).val())
-						$(this).val(o['paymentCheck']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolPayment' + pk + 'PaymentCheck').each(function() {
-					if(o['paymentCheck'] !== $(this).text())
-						$(this).text(o['paymentCheck']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'PaymentCheck'));
 			}
+			var val = o['paymentSystem'];
 			if(vars.includes('paymentSystem')) {
 				$('.inputSchoolPayment' + pk + 'PaymentSystem').each(function() {
-					if(o['paymentSystem'] !== $(this).val())
-						$(this).val(o['paymentSystem']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolPayment' + pk + 'PaymentSystem').each(function() {
-					if(o['paymentSystem'] !== $(this).text())
-						$(this).text(o['paymentSystem']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'PaymentSystem'));
 			}
+			var val = o['paymentDescription'];
 			if(vars.includes('paymentDescription')) {
 				$('.inputSchoolPayment' + pk + 'PaymentDescription').each(function() {
-					if(o['paymentDescription'] !== $(this).val())
-						$(this).val(o['paymentDescription']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolPayment' + pk + 'PaymentDescription').each(function() {
-					if(o['paymentDescription'] !== $(this).text())
-						$(this).text(o['paymentDescription']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'PaymentDescription'));
 			}
+			var val = o['paymentBy'];
 			if(vars.includes('paymentBy')) {
 				$('.inputSchoolPayment' + pk + 'PaymentBy').each(function() {
-					if(o['paymentBy'] !== $(this).val())
-						$(this).val(o['paymentBy']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolPayment' + pk + 'PaymentBy').each(function() {
-					if(o['paymentBy'] !== $(this).text())
-						$(this).text(o['paymentBy']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'PaymentBy'));
 			}
+			var val = o['enrollmentPaymentComplete'];
 			if(vars.includes('enrollmentPaymentComplete')) {
 				$('.inputSchoolPayment' + pk + 'EnrollmentPaymentComplete').each(function() {
-					if(o['enrollmentPaymentComplete'] !== $(this).val())
-						$(this).val(o['enrollmentPaymentComplete']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolPayment' + pk + 'EnrollmentPaymentComplete').each(function() {
-					if(o['enrollmentPaymentComplete'] !== $(this).text())
-						$(this).text(o['enrollmentPaymentComplete']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'EnrollmentPaymentComplete'));
 			}
+			var val = o['enrollmentPaymentEachMonth'];
 			if(vars.includes('enrollmentPaymentEachMonth')) {
 				$('.inputSchoolPayment' + pk + 'EnrollmentPaymentEachMonth').each(function() {
-					if(o['enrollmentPaymentEachMonth'] !== $(this).val())
-						$(this).val(o['enrollmentPaymentEachMonth']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolPayment' + pk + 'EnrollmentPaymentEachMonth').each(function() {
-					if(o['enrollmentPaymentEachMonth'] !== $(this).text())
-						$(this).text(o['enrollmentPaymentEachMonth']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'EnrollmentPaymentEachMonth'));
 			}
+			var val = o['transactionId'];
 			if(vars.includes('transactionId')) {
 				$('.inputSchoolPayment' + pk + 'TransactionId').each(function() {
-					if(o['transactionId'] !== $(this).val())
-						$(this).val(o['transactionId']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolPayment' + pk + 'TransactionId').each(function() {
-					if(o['transactionId'] !== $(this).text())
-						$(this).text(o['transactionId']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'TransactionId'));
 			}
+			var val = o['customerProfileId'];
 			if(vars.includes('customerProfileId')) {
 				$('.inputSchoolPayment' + pk + 'CustomerProfileId').each(function() {
-					if(o['customerProfileId'] !== $(this).val())
-						$(this).val(o['customerProfileId']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolPayment' + pk + 'CustomerProfileId').each(function() {
-					if(o['customerProfileId'] !== $(this).text())
-						$(this).text(o['customerProfileId']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'CustomerProfileId'));
 			}
+			var val = o['transactionStatus'];
 			if(vars.includes('transactionStatus')) {
 				$('.inputSchoolPayment' + pk + 'TransactionStatus').each(function() {
-					if(o['transactionStatus'] !== $(this).val())
-						$(this).val(o['transactionStatus']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolPayment' + pk + 'TransactionStatus').each(function() {
-					if(o['transactionStatus'] !== $(this).text())
-						$(this).text(o['transactionStatus']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'TransactionStatus'));
 			}
+			var val = o['paymentRecieved'];
 			if(vars.includes('paymentRecieved')) {
 				$('.inputSchoolPayment' + pk + 'PaymentRecieved').each(function() {
-					if(o['paymentRecieved'] !== $(this).val())
-						$(this).val(o['paymentRecieved']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolPayment' + pk + 'PaymentRecieved').each(function() {
-					if(o['paymentRecieved'] !== $(this).text())
-						$(this).text(o['paymentRecieved']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'PaymentRecieved'));
 			}
+			var val = o['chargeAmount'];
 			if(vars.includes('chargeAmount')) {
 				$('.inputSchoolPayment' + pk + 'ChargeAmount').each(function() {
-					if(o['chargeAmount'] !== $(this).val())
-						$(this).val(o['chargeAmount']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolPayment' + pk + 'ChargeAmount').each(function() {
-					if(o['chargeAmount'] !== $(this).text())
-						$(this).text(o['chargeAmount']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'ChargeAmount'));
 			}
+			var val = o['chargeFirstLast'];
 			if(vars.includes('chargeFirstLast')) {
 				$('.inputSchoolPayment' + pk + 'ChargeFirstLast').each(function() {
-					if(o['chargeFirstLast'] !== $(this).val())
-						$(this).val(o['chargeFirstLast']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolPayment' + pk + 'ChargeFirstLast').each(function() {
-					if(o['chargeFirstLast'] !== $(this).text())
-						$(this).text(o['chargeFirstLast']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'ChargeFirstLast'));
 			}
+			var val = o['chargeEnrollment'];
 			if(vars.includes('chargeEnrollment')) {
 				$('.inputSchoolPayment' + pk + 'ChargeEnrollment').each(function() {
-					if(o['chargeEnrollment'] !== $(this).val())
-						$(this).val(o['chargeEnrollment']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolPayment' + pk + 'ChargeEnrollment').each(function() {
-					if(o['chargeEnrollment'] !== $(this).text())
-						$(this).text(o['chargeEnrollment']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'ChargeEnrollment'));
 			}
+			var val = o['chargeMonth'];
 			if(vars.includes('chargeMonth')) {
 				$('.inputSchoolPayment' + pk + 'ChargeMonth').each(function() {
-					if(o['chargeMonth'] !== $(this).val())
-						$(this).val(o['chargeMonth']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolPayment' + pk + 'ChargeMonth').each(function() {
-					if(o['chargeMonth'] !== $(this).text())
-						$(this).text(o['chargeMonth']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'ChargeMonth'));
 			}
+			var val = o['chargeLateFee'];
 			if(vars.includes('chargeLateFee')) {
 				$('.inputSchoolPayment' + pk + 'ChargeLateFee').each(function() {
-					if(o['chargeLateFee'] !== $(this).val())
-						$(this).val(o['chargeLateFee']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolPayment' + pk + 'ChargeLateFee').each(function() {
-					if(o['chargeLateFee'] !== $(this).text())
-						$(this).text(o['chargeLateFee']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'ChargeLateFee'));
 			}
+			var val = o['enrollmentKey'];
 			if(vars.includes('enrollmentKey')) {
 				$('.inputSchoolPayment' + pk + 'EnrollmentKey').each(function() {
-					if(o['enrollmentKey'] !== $(this).val())
-						$(this).val(o['enrollmentKey']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolPayment' + pk + 'EnrollmentKey').each(function() {
-					if(o['enrollmentKey'] !== $(this).text())
-						$(this).text(o['enrollmentKey']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'EnrollmentKey'));
 			}
+			var val = o['inheritPk'];
 			if(vars.includes('inheritPk')) {
 				$('.inputSchoolPayment' + pk + 'InheritPk').each(function() {
-					if(o['inheritPk'] !== $(this).val())
-						$(this).val(o['inheritPk']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolPayment' + pk + 'InheritPk').each(function() {
-					if(o['inheritPk'] !== $(this).text())
-						$(this).text(o['inheritPk']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'InheritPk'));
 			}
+			var val = o['sessionId'];
 			if(vars.includes('sessionId')) {
 				$('.inputSchoolPayment' + pk + 'SessionId').each(function() {
-					if(o['sessionId'] !== $(this).val())
-						$(this).val(o['sessionId']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolPayment' + pk + 'SessionId').each(function() {
-					if(o['sessionId'] !== $(this).text())
-						$(this).text(o['sessionId']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'SessionId'));
 			}
+			var val = o['userId'];
 			if(vars.includes('userId')) {
 				$('.inputSchoolPayment' + pk + 'UserId').each(function() {
-					if(o['userId'] !== $(this).val())
-						$(this).val(o['userId']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolPayment' + pk + 'UserId').each(function() {
-					if(o['userId'] !== $(this).text())
-						$(this).text(o['userId']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'UserId'));
 			}
+			var val = o['userKey'];
 			if(vars.includes('userKey')) {
 				$('.inputSchoolPayment' + pk + 'UserKey').each(function() {
-					if(o['userKey'] !== $(this).val())
-						$(this).val(o['userKey']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolPayment' + pk + 'UserKey').each(function() {
-					if(o['userKey'] !== $(this).text())
-						$(this).text(o['userKey']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'UserKey'));
 			}
+			var val = o['childCompleteNamePreferred'];
 			if(vars.includes('childCompleteNamePreferred')) {
 				$('.inputSchoolPayment' + pk + 'ChildCompleteNamePreferred').each(function() {
-					if(o['childCompleteNamePreferred'] !== $(this).val())
-						$(this).val(o['childCompleteNamePreferred']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolPayment' + pk + 'ChildCompleteNamePreferred').each(function() {
-					if(o['childCompleteNamePreferred'] !== $(this).text())
-						$(this).text(o['childCompleteNamePreferred']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'ChildCompleteNamePreferred'));
 			}
+			var val = o['childBirthDate'];
+			if(val != null) {
+				var t = moment(val, 'YYYY-MM-DD');
+				if(t)
+					val = t.format('MM/DD/YYYY');
+			}
 			if(vars.includes('childBirthDate')) {
 				$('.inputSchoolPayment' + pk + 'ChildBirthDate').each(function() {
-					if(o['childBirthDate'] !== $(this).val())
-						$(this).val(o['childBirthDate']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolPayment' + pk + 'ChildBirthDate').each(function() {
-					if(o['childBirthDate'] !== $(this).text())
-						$(this).text(o['childBirthDate']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'ChildBirthDate'));
 			}
+			var val = o['momCompleteNamePreferred'];
 			if(vars.includes('momCompleteNamePreferred')) {
 				$('.inputSchoolPayment' + pk + 'MomCompleteNamePreferred').each(function() {
-					if(o['momCompleteNamePreferred'] !== $(this).val())
-						$(this).val(o['momCompleteNamePreferred']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolPayment' + pk + 'MomCompleteNamePreferred').each(function() {
-					if(o['momCompleteNamePreferred'] !== $(this).text())
-						$(this).text(o['momCompleteNamePreferred']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'MomCompleteNamePreferred'));
 			}
+			var val = o['dadCompleteNamePreferred'];
 			if(vars.includes('dadCompleteNamePreferred')) {
 				$('.inputSchoolPayment' + pk + 'DadCompleteNamePreferred').each(function() {
-					if(o['dadCompleteNamePreferred'] !== $(this).val())
-						$(this).val(o['dadCompleteNamePreferred']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolPayment' + pk + 'DadCompleteNamePreferred').each(function() {
-					if(o['dadCompleteNamePreferred'] !== $(this).text())
-						$(this).text(o['dadCompleteNamePreferred']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'DadCompleteNamePreferred'));
 			}
+			var val = o['chargeAmountDue'];
 			if(vars.includes('chargeAmountDue')) {
 				$('.inputSchoolPayment' + pk + 'ChargeAmountDue').each(function() {
-					if(o['chargeAmountDue'] !== $(this).val())
-						$(this).val(o['chargeAmountDue']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolPayment' + pk + 'ChargeAmountDue').each(function() {
-					if(o['chargeAmountDue'] !== $(this).text())
-						$(this).text(o['chargeAmountDue']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'ChargeAmountDue'));
 			}
+			var val = o['chargeAmountFuture'];
 			if(vars.includes('chargeAmountFuture')) {
 				$('.inputSchoolPayment' + pk + 'ChargeAmountFuture').each(function() {
-					if(o['chargeAmountFuture'] !== $(this).val())
-						$(this).val(o['chargeAmountFuture']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolPayment' + pk + 'ChargeAmountFuture').each(function() {
-					if(o['chargeAmountFuture'] !== $(this).text())
-						$(this).text(o['chargeAmountFuture']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'ChargeAmountFuture'));
 			}
+			var val = o['paymentShortName'];
 			if(vars.includes('paymentShortName')) {
 				$('.inputSchoolPayment' + pk + 'PaymentShortName').each(function() {
-					if(o['paymentShortName'] !== $(this).val())
-						$(this).val(o['paymentShortName']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSchoolPayment' + pk + 'PaymentShortName').each(function() {
-					if(o['paymentShortName'] !== $(this).text())
-						$(this).text(o['paymentShortName']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'PaymentShortName'));
 			}

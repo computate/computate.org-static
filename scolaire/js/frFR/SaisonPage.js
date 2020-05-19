@@ -41,9 +41,9 @@ async function postSaisonScolaire($formulaireValeurs, success, error) {
 	if(valeurSupprime != null && valeurSupprime !== '')
 		vals['supprime'] = valeurSupprime;
 
-	var valeurSaisonJourDebut = $formulaireValeurs.find('.valeurSaisonJourDebut').val();
-	if(valeurSaisonJourDebut != null && valeurSaisonJourDebut !== '')
-		vals['saisonJourDebut'] = valeurSaisonJourDebut;
+	var valeurSaisonDateDebut = $formulaireValeurs.find('.valeurSaisonDateDebut').val();
+	if(valeurSaisonDateDebut != null && valeurSaisonDateDebut !== '')
+		vals['saisonDateDebut'] = valeurSaisonDateDebut;
 
 	var valeurSaisonFuture = $formulaireValeurs.find('.valeurSaisonFuture').prop('checked');
 	if(valeurSaisonFuture != null && valeurSaisonFuture !== '')
@@ -180,9 +180,9 @@ async function putcopieSaisonScolaire($formulaireValeurs, pk, success, error) {
 	if(valeurSupprime != null && valeurSupprime !== '')
 		vals['supprime'] = valeurSupprime;
 
-	var valeurSaisonJourDebut = $formulaireValeurs.find('.valeurSaisonJourDebut').val();
-	if(valeurSaisonJourDebut != null && valeurSaisonJourDebut !== '')
-		vals['saisonJourDebut'] = valeurSaisonJourDebut;
+	var valeurSaisonDateDebut = $formulaireValeurs.find('.valeurSaisonDateDebut').val();
+	if(valeurSaisonDateDebut != null && valeurSaisonDateDebut !== '')
+		vals['saisonDateDebut'] = valeurSaisonDateDebut;
 
 	var valeurSaisonFuture = $formulaireValeurs.find('.valeurSaisonFuture').prop('checked');
 	if(valeurSaisonFuture != null && valeurSaisonFuture !== '')
@@ -332,18 +332,18 @@ async function patchSaisonScolaire($formulaireFiltres, $formulaireValeurs, pk, s
 	if(removeSupprime != null && removeSupprime !== '')
 		vals['removeSupprime'] = removeSupprime;
 
-	var valeurSaisonJourDebut = $formulaireValeurs.find('.valeurSaisonJourDebut').val();
-	if(valeurSaisonJourDebut != null && valeurSaisonJourDebut !== '')
-	var removeSaisonJourDebut = $formulaireFiltres.find('.removeSaisonJourDebut').val() === 'true';
-	var setSaisonJourDebut = removeSaisonJourDebut ? null : $formulaireValeurs.find('.setSaisonJourDebut').val();
-	if(removeSaisonJourDebut || setSaisonJourDebut != null && setSaisonJourDebut !== '')
-		vals['setSaisonJourDebut'] = setSaisonJourDebut;
-	var addSaisonJourDebut = $formulaireValeurs.find('.addSaisonJourDebut').val();
-	if(addSaisonJourDebut != null && addSaisonJourDebut !== '')
-		vals['addSaisonJourDebut'] = addSaisonJourDebut;
-	var removeSaisonJourDebut = $formulaireValeurs.find('.removeSaisonJourDebut').val();
-	if(removeSaisonJourDebut != null && removeSaisonJourDebut !== '')
-		vals['removeSaisonJourDebut'] = removeSaisonJourDebut;
+	var valeurSaisonDateDebut = $formulaireValeurs.find('.valeurSaisonDateDebut').val();
+	if(valeurSaisonDateDebut != null && valeurSaisonDateDebut !== '')
+	var removeSaisonDateDebut = $formulaireFiltres.find('.removeSaisonDateDebut').val() === 'true';
+	var setSaisonDateDebut = removeSaisonDateDebut ? null : $formulaireValeurs.find('.setSaisonDateDebut').val();
+	if(removeSaisonDateDebut || setSaisonDateDebut != null && setSaisonDateDebut !== '')
+		vals['setSaisonDateDebut'] = setSaisonDateDebut;
+	var addSaisonDateDebut = $formulaireValeurs.find('.addSaisonDateDebut').val();
+	if(addSaisonDateDebut != null && addSaisonDateDebut !== '')
+		vals['addSaisonDateDebut'] = addSaisonDateDebut;
+	var removeSaisonDateDebut = $formulaireValeurs.find('.removeSaisonDateDebut').val();
+	if(removeSaisonDateDebut != null && removeSaisonDateDebut !== '')
+		vals['removeSaisonDateDebut'] = removeSaisonDateDebut;
 
 	var valeurSaisonFuture = $formulaireValeurs.find('.valeurSaisonFuture').prop('checked');
 	if(valeurSaisonFuture != null && valeurSaisonFuture !== '')
@@ -512,9 +512,9 @@ function patchSaisonScolaireFiltres($formulaireFiltres) {
 		if(filtreSupprime != null && filtreSupprime === true)
 			filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
-		var filtreSaisonJourDebut = $formulaireFiltres.find('.valeurSaisonJourDebut').val();
-		if(filtreSaisonJourDebut != null && filtreSaisonJourDebut !== '')
-			filtres.push({ name: 'fq', value: 'saisonJourDebut:' + filtreSaisonJourDebut });
+		var filtreSaisonDateDebut = $formulaireFiltres.find('.valeurSaisonDateDebut').val();
+		if(filtreSaisonDateDebut != null && filtreSaisonDateDebut !== '')
+			filtres.push({ name: 'fq', value: 'saisonDateDebut:' + filtreSaisonDateDebut });
 
 		var $filtreSaisonFutureCheckbox = $formulaireFiltres.find('input.valeurSaisonFuture[type = "checkbox"]');
 		var $filtreSaisonFutureSelect = $formulaireFiltres.find('select.valeurSaisonFuture');
@@ -772,9 +772,9 @@ function rechercheSaisonScolaireFiltres($formulaireFiltres) {
 		if(filtreSupprime != null && filtreSupprime === true)
 			filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
-		var filtreSaisonJourDebut = $formulaireFiltres.find('.valeurSaisonJourDebut').val();
-		if(filtreSaisonJourDebut != null && filtreSaisonJourDebut !== '')
-			filtres.push({ name: 'fq', value: 'saisonJourDebut:' + filtreSaisonJourDebut });
+		var filtreSaisonDateDebut = $formulaireFiltres.find('.valeurSaisonDateDebut').val();
+		if(filtreSaisonDateDebut != null && filtreSaisonDateDebut !== '')
+			filtres.push({ name: 'fq', value: 'saisonDateDebut:' + filtreSaisonDateDebut });
 
 		var $filtreSaisonFutureCheckbox = $formulaireFiltres.find('input.valeurSaisonFuture[type = "checkbox"]');
 		var $filtreSaisonFutureSelect = $formulaireFiltres.find('select.valeurSaisonFuture');
@@ -1107,157 +1107,176 @@ async function websocketSaisonScolaireInner(requeteApi) {
 	if(pk != null) {
 		rechercherSaisonScolaireVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
+			var val = o['cree'];
 			if(vars.includes('cree')) {
 				$('.inputSaisonScolaire' + pk + 'Cree').each(function() {
-					if(o['cree'] !== $(this).val())
-						$(this).val(o['cree']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSaisonScolaire' + pk + 'Cree').each(function() {
-					if(o['cree'] !== $(this).text())
-						$(this).text(o['cree']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputSaisonScolaire' + pk + 'Cree'));
 			}
+			var val = o['modifie'];
 			if(vars.includes('modifie')) {
 				$('.inputSaisonScolaire' + pk + 'Modifie').each(function() {
-					if(o['modifie'] !== $(this).val())
-						$(this).val(o['modifie']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSaisonScolaire' + pk + 'Modifie').each(function() {
-					if(o['modifie'] !== $(this).text())
-						$(this).text(o['modifie']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputSaisonScolaire' + pk + 'Modifie'));
 			}
+			var val = o['archive'];
 			if(vars.includes('archive')) {
 				$('.inputSaisonScolaire' + pk + 'Archive').each(function() {
-					if(o['archive'] !== $(this).val())
-						$(this).val(o['archive']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSaisonScolaire' + pk + 'Archive').each(function() {
-					if(o['archive'] !== $(this).text())
-						$(this).text(o['archive']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputSaisonScolaire' + pk + 'Archive'));
 			}
+			var val = o['supprime'];
 			if(vars.includes('supprime')) {
 				$('.inputSaisonScolaire' + pk + 'Supprime').each(function() {
-					if(o['supprime'] !== $(this).val())
-						$(this).val(o['supprime']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSaisonScolaire' + pk + 'Supprime').each(function() {
-					if(o['supprime'] !== $(this).text())
-						$(this).text(o['supprime']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputSaisonScolaire' + pk + 'Supprime'));
 			}
-			if(vars.includes('saisonJourDebut')) {
-				$('.inputSaisonScolaire' + pk + 'SaisonJourDebut').each(function() {
-					if(o['saisonJourDebut'] !== $(this).val())
-						$(this).val(o['saisonJourDebut']);
-				});
-				$('.varSaisonScolaire' + pk + 'SaisonJourDebut').each(function() {
-					if(o['saisonJourDebut'] !== $(this).text())
-						$(this).text(o['saisonJourDebut']);
-				});
-				ajouterLueur($('.inputSaisonScolaire' + pk + 'SaisonJourDebut'));
+			var val = o['saisonDateDebut'];
+			if(val != null) {
+				var t = moment(val, 'YYYY-MM-DD');
+				if(t)
+					val = t.format('DD-MM-YYYY');
 			}
+			if(vars.includes('saisonDateDebut')) {
+				$('.inputSaisonScolaire' + pk + 'SaisonDateDebut').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSaisonScolaire' + pk + 'SaisonDateDebut').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputSaisonScolaire' + pk + 'SaisonDateDebut'));
+			}
+			var val = o['saisonFuture'];
 			if(vars.includes('saisonFuture')) {
 				$('.inputSaisonScolaire' + pk + 'SaisonFuture').each(function() {
-					if(o['saisonFuture'] !== $(this).val())
-						$(this).val(o['saisonFuture']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSaisonScolaire' + pk + 'SaisonFuture').each(function() {
-					if(o['saisonFuture'] !== $(this).text())
-						$(this).text(o['saisonFuture']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputSaisonScolaire' + pk + 'SaisonFuture'));
 			}
+			var val = o['anneeCle'];
 			if(vars.includes('anneeCle')) {
 				$('.inputSaisonScolaire' + pk + 'AnneeCle').each(function() {
-					if(o['anneeCle'] !== $(this).val())
-						$(this).val(o['anneeCle']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSaisonScolaire' + pk + 'AnneeCle').each(function() {
-					if(o['anneeCle'] !== $(this).text())
-						$(this).text(o['anneeCle']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputSaisonScolaire' + pk + 'AnneeCle'));
 			}
+			var val = o['sessionCles'];
 			if(vars.includes('sessionCles')) {
 				$('.inputSaisonScolaire' + pk + 'SessionCles').each(function() {
-					if(o['sessionCles'] !== $(this).val())
-						$(this).val(o['sessionCles']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSaisonScolaire' + pk + 'SessionCles').each(function() {
-					if(o['sessionCles'] !== $(this).text())
-						$(this).text(o['sessionCles']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputSaisonScolaire' + pk + 'SessionCles'));
 			}
+			var val = o['inheritPk'];
 			if(vars.includes('inheritPk')) {
 				$('.inputSaisonScolaire' + pk + 'InheritPk').each(function() {
-					if(o['inheritPk'] !== $(this).val())
-						$(this).val(o['inheritPk']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSaisonScolaire' + pk + 'InheritPk').each(function() {
-					if(o['inheritPk'] !== $(this).text())
-						$(this).text(o['inheritPk']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputSaisonScolaire' + pk + 'InheritPk'));
 			}
+			var val = o['sessionId'];
 			if(vars.includes('sessionId')) {
 				$('.inputSaisonScolaire' + pk + 'SessionId').each(function() {
-					if(o['sessionId'] !== $(this).val())
-						$(this).val(o['sessionId']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSaisonScolaire' + pk + 'SessionId').each(function() {
-					if(o['sessionId'] !== $(this).text())
-						$(this).text(o['sessionId']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputSaisonScolaire' + pk + 'SessionId'));
 			}
+			var val = o['utilisateurId'];
 			if(vars.includes('utilisateurId')) {
 				$('.inputSaisonScolaire' + pk + 'UtilisateurId').each(function() {
-					if(o['utilisateurId'] !== $(this).val())
-						$(this).val(o['utilisateurId']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSaisonScolaire' + pk + 'UtilisateurId').each(function() {
-					if(o['utilisateurId'] !== $(this).text())
-						$(this).text(o['utilisateurId']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputSaisonScolaire' + pk + 'UtilisateurId'));
 			}
+			var val = o['utilisateurCle'];
 			if(vars.includes('utilisateurCle')) {
 				$('.inputSaisonScolaire' + pk + 'UtilisateurCle').each(function() {
-					if(o['utilisateurCle'] !== $(this).val())
-						$(this).val(o['utilisateurCle']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSaisonScolaire' + pk + 'UtilisateurCle').each(function() {
-					if(o['utilisateurCle'] !== $(this).text())
-						$(this).text(o['utilisateurCle']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputSaisonScolaire' + pk + 'UtilisateurCle'));
 			}
+			var val = o['saisonEte'];
 			if(vars.includes('saisonEte')) {
 				$('.inputSaisonScolaire' + pk + 'SaisonEte').each(function() {
-					if(o['saisonEte'] !== $(this).val())
-						$(this).val(o['saisonEte']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSaisonScolaire' + pk + 'SaisonEte').each(function() {
-					if(o['saisonEte'] !== $(this).text())
-						$(this).text(o['saisonEte']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputSaisonScolaire' + pk + 'SaisonEte'));
 			}
+			var val = o['saisonHiver'];
 			if(vars.includes('saisonHiver')) {
 				$('.inputSaisonScolaire' + pk + 'SaisonHiver').each(function() {
-					if(o['saisonHiver'] !== $(this).val())
-						$(this).val(o['saisonHiver']);
+					if(val !== $(this).val())
+						$(this).val(val);
 				});
 				$('.varSaisonScolaire' + pk + 'SaisonHiver').each(function() {
-					if(o['saisonHiver'] !== $(this).text())
-						$(this).text(o['saisonHiver']);
+					if(val !== $(this).text())
+						$(this).text(val);
 				});
 				ajouterLueur($('.inputSaisonScolaire' + pk + 'SaisonHiver'));
 			}
