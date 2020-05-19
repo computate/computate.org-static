@@ -898,10 +898,16 @@ async function websocketSiteUser(success) {
 
 		window.eventBus.registerHandler('websocketSchoolEnrollment', function (error, message) {
 			$('#Page_enrollmentKeys').trigger('oninput');
+			$('#Page_enrollmentKeys_add').text('add an enrollment');
+			$('#Page_enrollmentKeys_add').removeClass('w3-disabled');
+			$('#Page_enrollmentKeys_add').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketSchoolPayment', function (error, message) {
 			$('#Page_paymentKeys').trigger('oninput');
+			$('#Page_paymentKeys_add').text('add a payment');
+			$('#Page_paymentKeys_add').removeClass('w3-disabled');
+			$('#Page_paymentKeys_add').attr('disabled', false);
 		});
 	}
 }

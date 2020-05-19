@@ -1009,6 +1009,9 @@ async function websocketEcole(success) {
 
 		window.eventBus.registerHandler('websocketAnneeScolaire', function (error, message) {
 			$('#Page_anneeCles').trigger('oninput');
+			$('#Page_anneeCles_ajouter').text('ajouter une année');
+			$('#Page_anneeCles_ajouter').removeClass('w3-disabled');
+			$('#Page_anneeCles_ajouter').attr('disabled', false);
 		});
 	}
 }

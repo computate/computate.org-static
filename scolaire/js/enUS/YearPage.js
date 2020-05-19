@@ -981,10 +981,16 @@ async function websocketSchoolYear(success) {
 
 		window.eventBus.registerHandler('websocketSchool', function (error, message) {
 			$('#Page_schoolKey').trigger('oninput');
+			$('#Page_schoolKey_add').text('add a school');
+			$('#Page_schoolKey_add').removeClass('w3-disabled');
+			$('#Page_schoolKey_add').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketSchoolSeason', function (error, message) {
 			$('#Page_seasonKeys').trigger('oninput');
+			$('#Page_seasonKeys_add').text('add a season');
+			$('#Page_seasonKeys_add').removeClass('w3-disabled');
+			$('#Page_seasonKeys_add').attr('disabled', false);
 		});
 	}
 }

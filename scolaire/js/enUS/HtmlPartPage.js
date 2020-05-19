@@ -1525,6 +1525,9 @@ async function websocketHtmlPart(success) {
 
 		window.eventBus.registerHandler('websocketPageDesign', function (error, message) {
 			$('#Page_pageDesignKeys').trigger('oninput');
+			$('#Page_pageDesignKeys_add').text('add a page design');
+			$('#Page_pageDesignKeys_add').removeClass('w3-disabled');
+			$('#Page_pageDesignKeys_add').attr('disabled', false);
 		});
 	}
 }

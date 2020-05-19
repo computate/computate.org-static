@@ -5347,66 +5347,114 @@ async function websocketInscriptionScolaire(success) {
 
 		window.eventBus.registerHandler('websocketAnneeScolaire', function (error, message) {
 			$('#Page_anneeCle').trigger('oninput');
+			$('#Page_anneeCle_ajouter').text('ajouter une année');
+			$('#Page_anneeCle_ajouter').removeClass('w3-disabled');
+			$('#Page_anneeCle_ajouter').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketBlocScolaire', function (error, message) {
 			$('#Page_blocCles').trigger('oninput');
+			$('#Page_blocCles_ajouter').text('ajouter un bloc');
+			$('#Page_blocCles_ajouter').removeClass('w3-disabled');
+			$('#Page_blocCles_ajouter').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketEnfantScolaire', function (error, message) {
 			$('#Page_enfantCle').trigger('oninput');
+			$('#Page_enfantCle_ajouter').text('ajouter un enfant');
+			$('#Page_enfantCle_ajouter').removeClass('w3-disabled');
+			$('#Page_enfantCle_ajouter').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketMereScolaire', function (error, message) {
 			$('#Page_mereCles').trigger('oninput');
+			$('#Page_mereCles_ajouter').text('ajouter une mère');
+			$('#Page_mereCles_ajouter').removeClass('w3-disabled');
+			$('#Page_mereCles_ajouter').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketPereScolaire', function (error, message) {
 			$('#Page_pereCles').trigger('oninput');
+			$('#Page_pereCles_ajouter').text('ajouter un père');
+			$('#Page_pereCles_ajouter').removeClass('w3-disabled');
+			$('#Page_pereCles_ajouter').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketGardienScolaire', function (error, message) {
 			$('#Page_gardienCles').trigger('oninput');
+			$('#Page_gardienCles_ajouter').text('ajouter un gardien');
+			$('#Page_gardienCles_ajouter').removeClass('w3-disabled');
+			$('#Page_gardienCles_ajouter').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketPaiementScolaire', function (error, message) {
 			$('#Page_paiementCles').trigger('oninput');
+			$('#Page_paiementCles_ajouter').text('ajouter un paiement');
+			$('#Page_paiementCles_ajouter').removeClass('w3-disabled');
+			$('#Page_paiementCles_ajouter').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketUtilisateurSite', function (error, message) {
 			$('#Page_utilisateurCles').trigger('oninput');
+			$('#Page_utilisateurCles_ajouter').text('ajouter un utilisateur du site');
+			$('#Page_utilisateurCles_ajouter').removeClass('w3-disabled');
+			$('#Page_utilisateurCles_ajouter').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketAnneeScolaire', function (error, message) {
 			$('#Page_anneeCle').trigger('oninput');
+			$('#Page_anneeCle_ajouter').text('ajouter une année');
+			$('#Page_anneeCle_ajouter').removeClass('w3-disabled');
+			$('#Page_anneeCle_ajouter').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketBlocScolaire', function (error, message) {
 			$('#Page_blocCles').trigger('oninput');
+			$('#Page_blocCles_ajouter').text('ajouter un bloc');
+			$('#Page_blocCles_ajouter').removeClass('w3-disabled');
+			$('#Page_blocCles_ajouter').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketEnfantScolaire', function (error, message) {
 			$('#Page_enfantCle').trigger('oninput');
+			$('#Page_enfantCle_ajouter').text('ajouter un enfant');
+			$('#Page_enfantCle_ajouter').removeClass('w3-disabled');
+			$('#Page_enfantCle_ajouter').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketMereScolaire', function (error, message) {
 			$('#Page_mereCles').trigger('oninput');
+			$('#Page_mereCles_ajouter').text('ajouter une mère');
+			$('#Page_mereCles_ajouter').removeClass('w3-disabled');
+			$('#Page_mereCles_ajouter').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketPereScolaire', function (error, message) {
 			$('#Page_pereCles').trigger('oninput');
+			$('#Page_pereCles_ajouter').text('ajouter un père');
+			$('#Page_pereCles_ajouter').removeClass('w3-disabled');
+			$('#Page_pereCles_ajouter').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketGardienScolaire', function (error, message) {
 			$('#Page_gardienCles').trigger('oninput');
+			$('#Page_gardienCles_ajouter').text('ajouter un gardien');
+			$('#Page_gardienCles_ajouter').removeClass('w3-disabled');
+			$('#Page_gardienCles_ajouter').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketPaiementScolaire', function (error, message) {
 			$('#Page_paiementCles').trigger('oninput');
+			$('#Page_paiementCles_ajouter').text('ajouter un paiement');
+			$('#Page_paiementCles_ajouter').removeClass('w3-disabled');
+			$('#Page_paiementCles_ajouter').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketUtilisateurSite', function (error, message) {
 			$('#Page_utilisateurCles').trigger('oninput');
+			$('#Page_utilisateurCles_ajouter').text('ajouter un utilisateur du site');
+			$('#Page_utilisateurCles_ajouter').removeClass('w3-disabled');
+			$('#Page_utilisateurCles_ajouter').attr('disabled', false);
 		});
 	}
 }

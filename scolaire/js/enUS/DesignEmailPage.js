@@ -1557,26 +1557,44 @@ async function websocketPageDesign(success) {
 
 		window.eventBus.registerHandler('websocketPageDesign', function (error, message) {
 			$('#Page_childDesignKeys').trigger('oninput');
+			$('#Page_childDesignKeys_add').text('add a page design');
+			$('#Page_childDesignKeys_add').removeClass('w3-disabled');
+			$('#Page_childDesignKeys_add').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketPageDesign', function (error, message) {
 			$('#Page_parentDesignKeys').trigger('oninput');
+			$('#Page_parentDesignKeys_add').text('add a page design');
+			$('#Page_parentDesignKeys_add').removeClass('w3-disabled');
+			$('#Page_parentDesignKeys_add').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketHtmlPart', function (error, message) {
 			$('#Page_htmlPartKeys').trigger('oninput');
+			$('#Page_htmlPartKeys_add').text('add an HTML part');
+			$('#Page_htmlPartKeys_add').removeClass('w3-disabled');
+			$('#Page_htmlPartKeys_add').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketPageDesign', function (error, message) {
 			$('#Page_childDesignKeys').trigger('oninput');
+			$('#Page_childDesignKeys_add').text('add a page design');
+			$('#Page_childDesignKeys_add').removeClass('w3-disabled');
+			$('#Page_childDesignKeys_add').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketPageDesign', function (error, message) {
 			$('#Page_parentDesignKeys').trigger('oninput');
+			$('#Page_parentDesignKeys_add').text('add a page design');
+			$('#Page_parentDesignKeys_add').removeClass('w3-disabled');
+			$('#Page_parentDesignKeys_add').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketHtmlPart', function (error, message) {
 			$('#Page_htmlPartKeys').trigger('oninput');
+			$('#Page_htmlPartKeys_add').text('add an HTML part');
+			$('#Page_htmlPartKeys_add').removeClass('w3-disabled');
+			$('#Page_htmlPartKeys_add').attr('disabled', false);
 		});
 	}
 }

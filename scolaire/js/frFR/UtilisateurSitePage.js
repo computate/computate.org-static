@@ -898,10 +898,16 @@ async function websocketUtilisateurSite(success) {
 
 		window.eventBus.registerHandler('websocketInscriptionScolaire', function (error, message) {
 			$('#Page_inscriptionCles').trigger('oninput');
+			$('#Page_inscriptionCles_ajouter').text('ajouter une inscription');
+			$('#Page_inscriptionCles_ajouter').removeClass('w3-disabled');
+			$('#Page_inscriptionCles_ajouter').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketPaiementScolaire', function (error, message) {
 			$('#Page_paiementCles').trigger('oninput');
+			$('#Page_paiementCles_ajouter').text('ajouter un paiement');
+			$('#Page_paiementCles_ajouter').removeClass('w3-disabled');
+			$('#Page_paiementCles_ajouter').attr('disabled', false);
 		});
 	}
 }

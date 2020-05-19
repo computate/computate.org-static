@@ -1090,10 +1090,16 @@ async function websocketSchoolSeason(success) {
 
 		window.eventBus.registerHandler('websocketSchoolYear', function (error, message) {
 			$('#Page_yearKey').trigger('oninput');
+			$('#Page_yearKey_add').text('add a year');
+			$('#Page_yearKey_add').removeClass('w3-disabled');
+			$('#Page_yearKey_add').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketSchoolSession', function (error, message) {
 			$('#Page_sessionKeys').trigger('oninput');
+			$('#Page_sessionKeys_add').text('add a session');
+			$('#Page_sessionKeys_add').removeClass('w3-disabled');
+			$('#Page_sessionKeys_add').attr('disabled', false);
 		});
 	}
 }

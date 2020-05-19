@@ -1117,10 +1117,16 @@ async function websocketAgeScolaire(success) {
 
 		window.eventBus.registerHandler('websocketBlocScolaire', function (error, message) {
 			$('#Page_blocCles').trigger('oninput');
+			$('#Page_blocCles_ajouter').text('ajouter un bloc');
+			$('#Page_blocCles_ajouter').removeClass('w3-disabled');
+			$('#Page_blocCles_ajouter').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketSessionScolaire', function (error, message) {
 			$('#Page_sessionCle').trigger('oninput');
+			$('#Page_sessionCle_ajouter').text('ajouter une session');
+			$('#Page_sessionCle_ajouter').removeClass('w3-disabled');
+			$('#Page_sessionCle_ajouter').attr('disabled', false);
 		});
 	}
 }

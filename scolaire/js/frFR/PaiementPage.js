@@ -1877,6 +1877,9 @@ async function websocketPaiementScolaire(success) {
 
 		window.eventBus.registerHandler('websocketInscriptionScolaire', function (error, message) {
 			$('#Page_inscriptionCle').trigger('oninput');
+			$('#Page_inscriptionCle_ajouter').text('ajouter une inscription');
+			$('#Page_inscriptionCle_ajouter').removeClass('w3-disabled');
+			$('#Page_inscriptionCle_ajouter').attr('disabled', false);
 		});
 	}
 }

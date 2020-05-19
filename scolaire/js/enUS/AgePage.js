@@ -1117,10 +1117,16 @@ async function websocketSchoolAge(success) {
 
 		window.eventBus.registerHandler('websocketSchoolBlock', function (error, message) {
 			$('#Page_blockKeys').trigger('oninput');
+			$('#Page_blockKeys_add').text('add a block');
+			$('#Page_blockKeys_add').removeClass('w3-disabled');
+			$('#Page_blockKeys_add').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketSchoolSession', function (error, message) {
 			$('#Page_sessionKey').trigger('oninput');
+			$('#Page_sessionKey_add').text('add a session');
+			$('#Page_sessionKey_add').removeClass('w3-disabled');
+			$('#Page_sessionKey_add').attr('disabled', false);
 		});
 	}
 }

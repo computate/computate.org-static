@@ -1557,26 +1557,44 @@ async function websocketDesignPage(success) {
 
 		window.eventBus.registerHandler('websocketDesignPage', function (error, message) {
 			$('#Page_designEnfantCles').trigger('oninput');
+			$('#Page_designEnfantCles_ajouter').text('ajouter un design de page');
+			$('#Page_designEnfantCles_ajouter').removeClass('w3-disabled');
+			$('#Page_designEnfantCles_ajouter').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketDesignPage', function (error, message) {
 			$('#Page_designParentCles').trigger('oninput');
+			$('#Page_designParentCles_ajouter').text('ajouter un design de page');
+			$('#Page_designParentCles_ajouter').removeClass('w3-disabled');
+			$('#Page_designParentCles_ajouter').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketPartHtml', function (error, message) {
 			$('#Page_partHtmlCles').trigger('oninput');
+			$('#Page_partHtmlCles_ajouter').text('ajouter un part de HTML');
+			$('#Page_partHtmlCles_ajouter').removeClass('w3-disabled');
+			$('#Page_partHtmlCles_ajouter').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketDesignPage', function (error, message) {
 			$('#Page_designEnfantCles').trigger('oninput');
+			$('#Page_designEnfantCles_ajouter').text('ajouter un design de page');
+			$('#Page_designEnfantCles_ajouter').removeClass('w3-disabled');
+			$('#Page_designEnfantCles_ajouter').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketDesignPage', function (error, message) {
 			$('#Page_designParentCles').trigger('oninput');
+			$('#Page_designParentCles_ajouter').text('ajouter un design de page');
+			$('#Page_designParentCles_ajouter').removeClass('w3-disabled');
+			$('#Page_designParentCles_ajouter').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketPartHtml', function (error, message) {
 			$('#Page_partHtmlCles').trigger('oninput');
+			$('#Page_partHtmlCles_ajouter').text('ajouter un part de HTML');
+			$('#Page_partHtmlCles_ajouter').removeClass('w3-disabled');
+			$('#Page_partHtmlCles_ajouter').attr('disabled', false);
 		});
 	}
 }

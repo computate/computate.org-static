@@ -981,10 +981,16 @@ async function websocketAnneeScolaire(success) {
 
 		window.eventBus.registerHandler('websocketEcole', function (error, message) {
 			$('#Page_ecoleCle').trigger('oninput');
+			$('#Page_ecoleCle_ajouter').text('ajouter une école');
+			$('#Page_ecoleCle_ajouter').removeClass('w3-disabled');
+			$('#Page_ecoleCle_ajouter').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketSaisonScolaire', function (error, message) {
 			$('#Page_saisonCles').trigger('oninput');
+			$('#Page_saisonCles_ajouter').text('ajouter une saison');
+			$('#Page_saisonCles_ajouter').removeClass('w3-disabled');
+			$('#Page_saisonCles_ajouter').attr('disabled', false);
 		});
 	}
 }

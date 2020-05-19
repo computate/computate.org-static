@@ -1877,6 +1877,9 @@ async function websocketSchoolPayment(success) {
 
 		window.eventBus.registerHandler('websocketSchoolEnrollment', function (error, message) {
 			$('#Page_enrollmentKey').trigger('oninput');
+			$('#Page_enrollmentKey_add').text('add an enrollment');
+			$('#Page_enrollmentKey_add').removeClass('w3-disabled');
+			$('#Page_enrollmentKey_add').attr('disabled', false);
 		});
 	}
 }

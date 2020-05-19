@@ -1467,10 +1467,16 @@ async function websocketSchoolBlock(success) {
 
 		window.eventBus.registerHandler('websocketSchoolEnrollment', function (error, message) {
 			$('#Page_enrollmentKeys').trigger('oninput');
+			$('#Page_enrollmentKeys_add').text('add an enrollment');
+			$('#Page_enrollmentKeys_add').removeClass('w3-disabled');
+			$('#Page_enrollmentKeys_add').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketSchoolAge', function (error, message) {
 			$('#Page_ageKey').trigger('oninput');
+			$('#Page_ageKey_add').text('add an age');
+			$('#Page_ageKey_add').removeClass('w3-disabled');
+			$('#Page_ageKey_add').attr('disabled', false);
 		});
 	}
 }

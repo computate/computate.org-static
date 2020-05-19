@@ -1085,10 +1085,16 @@ async function websocketSessionScolaire(success) {
 
 		window.eventBus.registerHandler('websocketAgeScolaire', function (error, message) {
 			$('#Page_ageCles').trigger('oninput');
+			$('#Page_ageCles_ajouter').text('ajouter un âge');
+			$('#Page_ageCles_ajouter').removeClass('w3-disabled');
+			$('#Page_ageCles_ajouter').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketSaisonScolaire', function (error, message) {
 			$('#Page_saisonCle').trigger('oninput');
+			$('#Page_saisonCle_ajouter').text('ajouter une saison');
+			$('#Page_saisonCle_ajouter').removeClass('w3-disabled');
+			$('#Page_saisonCle_ajouter').attr('disabled', false);
 		});
 	}
 }

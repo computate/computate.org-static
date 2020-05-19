@@ -1467,10 +1467,16 @@ async function websocketBlocScolaire(success) {
 
 		window.eventBus.registerHandler('websocketInscriptionScolaire', function (error, message) {
 			$('#Page_inscriptionCles').trigger('oninput');
+			$('#Page_inscriptionCles_ajouter').text('ajouter une inscription');
+			$('#Page_inscriptionCles_ajouter').removeClass('w3-disabled');
+			$('#Page_inscriptionCles_ajouter').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketAgeScolaire', function (error, message) {
 			$('#Page_ageCle').trigger('oninput');
+			$('#Page_ageCle_ajouter').text('ajouter un âge');
+			$('#Page_ageCle_ajouter').removeClass('w3-disabled');
+			$('#Page_ageCle_ajouter').attr('disabled', false);
 		});
 	}
 }

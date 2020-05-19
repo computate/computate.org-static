@@ -1090,10 +1090,16 @@ async function websocketSaisonScolaire(success) {
 
 		window.eventBus.registerHandler('websocketAnneeScolaire', function (error, message) {
 			$('#Page_anneeCle').trigger('oninput');
+			$('#Page_anneeCle_ajouter').text('ajouter une année');
+			$('#Page_anneeCle_ajouter').removeClass('w3-disabled');
+			$('#Page_anneeCle_ajouter').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketSessionScolaire', function (error, message) {
 			$('#Page_sessionCles').trigger('oninput');
+			$('#Page_sessionCles_ajouter').text('ajouter une session');
+			$('#Page_sessionCles_ajouter').removeClass('w3-disabled');
+			$('#Page_sessionCles_ajouter').attr('disabled', false);
 		});
 	}
 }

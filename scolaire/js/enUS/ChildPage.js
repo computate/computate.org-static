@@ -1231,10 +1231,16 @@ async function websocketSchoolChild(success) {
 
 		window.eventBus.registerHandler('websocketSchoolEnrollment', function (error, message) {
 			$('#Page_enrollmentKeys').trigger('oninput');
+			$('#Page_enrollmentKeys_add').text('add an enrollment');
+			$('#Page_enrollmentKeys_add').removeClass('w3-disabled');
+			$('#Page_enrollmentKeys_add').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketSchoolEnrollment', function (error, message) {
 			$('#Page_enrollmentKeys').trigger('oninput');
+			$('#Page_enrollmentKeys_add').text('add an enrollment');
+			$('#Page_enrollmentKeys_add').removeClass('w3-disabled');
+			$('#Page_enrollmentKeys_add').attr('disabled', false);
 		});
 	}
 }

@@ -1009,6 +1009,9 @@ async function websocketSchool(success) {
 
 		window.eventBus.registerHandler('websocketSchoolYear', function (error, message) {
 			$('#Page_yearKeys').trigger('oninput');
+			$('#Page_yearKeys_add').text('add a year');
+			$('#Page_yearKeys_add').removeClass('w3-disabled');
+			$('#Page_yearKeys_add').attr('disabled', false);
 		});
 	}
 }

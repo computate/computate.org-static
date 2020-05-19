@@ -5347,66 +5347,114 @@ async function websocketSchoolEnrollment(success) {
 
 		window.eventBus.registerHandler('websocketSchoolYear', function (error, message) {
 			$('#Page_yearKey').trigger('oninput');
+			$('#Page_yearKey_add').text('add a year');
+			$('#Page_yearKey_add').removeClass('w3-disabled');
+			$('#Page_yearKey_add').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketSchoolBlock', function (error, message) {
 			$('#Page_blockKeys').trigger('oninput');
+			$('#Page_blockKeys_add').text('add a block');
+			$('#Page_blockKeys_add').removeClass('w3-disabled');
+			$('#Page_blockKeys_add').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketSchoolChild', function (error, message) {
 			$('#Page_childKey').trigger('oninput');
+			$('#Page_childKey_add').text('add a child');
+			$('#Page_childKey_add').removeClass('w3-disabled');
+			$('#Page_childKey_add').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketSchoolMom', function (error, message) {
 			$('#Page_momKeys').trigger('oninput');
+			$('#Page_momKeys_add').text('add a mom');
+			$('#Page_momKeys_add').removeClass('w3-disabled');
+			$('#Page_momKeys_add').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketSchoolDad', function (error, message) {
 			$('#Page_dadKeys').trigger('oninput');
+			$('#Page_dadKeys_add').text('add a dad');
+			$('#Page_dadKeys_add').removeClass('w3-disabled');
+			$('#Page_dadKeys_add').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketSchoolGuardian', function (error, message) {
 			$('#Page_guardianKeys').trigger('oninput');
+			$('#Page_guardianKeys_add').text('add a guardian');
+			$('#Page_guardianKeys_add').removeClass('w3-disabled');
+			$('#Page_guardianKeys_add').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketSchoolPayment', function (error, message) {
 			$('#Page_paymentKeys').trigger('oninput');
+			$('#Page_paymentKeys_add').text('add a payment');
+			$('#Page_paymentKeys_add').removeClass('w3-disabled');
+			$('#Page_paymentKeys_add').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketSiteUser', function (error, message) {
 			$('#Page_userKeys').trigger('oninput');
+			$('#Page_userKeys_add').text('add a site user');
+			$('#Page_userKeys_add').removeClass('w3-disabled');
+			$('#Page_userKeys_add').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketSchoolYear', function (error, message) {
 			$('#Page_yearKey').trigger('oninput');
+			$('#Page_yearKey_add').text('add a year');
+			$('#Page_yearKey_add').removeClass('w3-disabled');
+			$('#Page_yearKey_add').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketSchoolBlock', function (error, message) {
 			$('#Page_blockKeys').trigger('oninput');
+			$('#Page_blockKeys_add').text('add a block');
+			$('#Page_blockKeys_add').removeClass('w3-disabled');
+			$('#Page_blockKeys_add').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketSchoolChild', function (error, message) {
 			$('#Page_childKey').trigger('oninput');
+			$('#Page_childKey_add').text('add a child');
+			$('#Page_childKey_add').removeClass('w3-disabled');
+			$('#Page_childKey_add').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketSchoolMom', function (error, message) {
 			$('#Page_momKeys').trigger('oninput');
+			$('#Page_momKeys_add').text('add a mom');
+			$('#Page_momKeys_add').removeClass('w3-disabled');
+			$('#Page_momKeys_add').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketSchoolDad', function (error, message) {
 			$('#Page_dadKeys').trigger('oninput');
+			$('#Page_dadKeys_add').text('add a dad');
+			$('#Page_dadKeys_add').removeClass('w3-disabled');
+			$('#Page_dadKeys_add').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketSchoolGuardian', function (error, message) {
 			$('#Page_guardianKeys').trigger('oninput');
+			$('#Page_guardianKeys_add').text('add a guardian');
+			$('#Page_guardianKeys_add').removeClass('w3-disabled');
+			$('#Page_guardianKeys_add').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketSchoolPayment', function (error, message) {
 			$('#Page_paymentKeys').trigger('oninput');
+			$('#Page_paymentKeys_add').text('add a payment');
+			$('#Page_paymentKeys_add').removeClass('w3-disabled');
+			$('#Page_paymentKeys_add').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketSiteUser', function (error, message) {
 			$('#Page_userKeys').trigger('oninput');
+			$('#Page_userKeys_add').text('add a site user');
+			$('#Page_userKeys_add').removeClass('w3-disabled');
+			$('#Page_userKeys_add').attr('disabled', false);
 		});
 	}
 }

@@ -1425,10 +1425,16 @@ async function websocketGardienScolaire(success) {
 
 		window.eventBus.registerHandler('websocketInscriptionScolaire', function (error, message) {
 			$('#Page_inscriptionCles').trigger('oninput');
+			$('#Page_inscriptionCles_ajouter').text('ajouter une inscription');
+			$('#Page_inscriptionCles_ajouter').removeClass('w3-disabled');
+			$('#Page_inscriptionCles_ajouter').attr('disabled', false);
 		});
 
 		window.eventBus.registerHandler('websocketInscriptionScolaire', function (error, message) {
 			$('#Page_inscriptionCles').trigger('oninput');
+			$('#Page_inscriptionCles_ajouter').text('ajouter une inscription');
+			$('#Page_inscriptionCles_ajouter').removeClass('w3-disabled');
+			$('#Page_inscriptionCles_ajouter').attr('disabled', false);
 		});
 	}
 }
