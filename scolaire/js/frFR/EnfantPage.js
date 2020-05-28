@@ -61,6 +61,10 @@ async function postEnfantScolaire($formulaireValeurs, success, error) {
 	if(valeurPersonneAgeEnSeptembre != null && valeurPersonneAgeEnSeptembre !== '')
 		vals['personneAgeEnSeptembre'] = valeurPersonneAgeEnSeptembre;
 
+	var valeurPhoto = $formulaireValeurs.find('.valeurPhoto').val();
+	if(valeurPhoto != null && valeurPhoto !== '')
+		vals['photo'] = valeurPhoto;
+
 	var valeurInscriptionCles = [];
 	$formulaireValeurs.find('input.valeurInscriptionCles:checked').each(function(index) {
 		valeurInscriptionCles.push($(this).val());
@@ -199,6 +203,10 @@ async function putcopieEnfantScolaire($formulaireValeurs, pk, success, error) {
 	var valeurPersonneAgeEnSeptembre = $formulaireValeurs.find('.valeurPersonneAgeEnSeptembre').val();
 	if(valeurPersonneAgeEnSeptembre != null && valeurPersonneAgeEnSeptembre !== '')
 		vals['personneAgeEnSeptembre'] = valeurPersonneAgeEnSeptembre;
+
+	var valeurPhoto = $formulaireValeurs.find('.valeurPhoto').val();
+	if(valeurPhoto != null && valeurPhoto !== '')
+		vals['photo'] = valeurPhoto;
 
 	var valeurInscriptionCles = $formulaireValeurs.find('input.valeurInscriptionCles:checked').val();
 	if(valeurInscriptionCles != null && valeurInscriptionCles !== '')
@@ -396,6 +404,19 @@ async function patchEnfantScolaire($formulaireFiltres, $formulaireValeurs, pk, s
 	var removePersonneAgeEnSeptembre = $formulaireValeurs.find('.removePersonneAgeEnSeptembre').val();
 	if(removePersonneAgeEnSeptembre != null && removePersonneAgeEnSeptembre !== '')
 		vals['removePersonneAgeEnSeptembre'] = removePersonneAgeEnSeptembre;
+
+	var valeurPhoto = $formulaireValeurs.find('.valeurPhoto').val();
+	if(valeurPhoto != null && valeurPhoto !== '')
+	var removePhoto = $formulaireFiltres.find('.removePhoto').val() === 'true';
+	var setPhoto = removePhoto ? null : $formulaireValeurs.find('.setPhoto').val();
+	if(removePhoto || setPhoto != null && setPhoto !== '')
+		vals['setPhoto'] = setPhoto;
+	var addPhoto = $formulaireValeurs.find('.addPhoto').val();
+	if(addPhoto != null && addPhoto !== '')
+		vals['addPhoto'] = addPhoto;
+	var removePhoto = $formulaireValeurs.find('.removePhoto').val();
+	if(removePhoto != null && removePhoto !== '')
+		vals['removePhoto'] = removePhoto;
 
 	var valeurInscriptionCles = $formulaireValeurs.find('input.valeurInscriptionCles:checked').val();
 	if(valeurInscriptionCles != null && valeurInscriptionCles !== '')
@@ -1354,6 +1375,22 @@ async function websocketEnfantScolaireInner(requeteApi) {
 						$(this).text(val);
 				});
 				ajouterLueur($('.inputEnfantScolaire' + pk + 'PersonneDateNaissance'));
+			}
+			var val = o['photo'];
+			if(vars.includes('photo')) {
+				$('.imgEnfantScolaire' + pk + 'Photo').each(function() {
+					if(val !== $(this).attr('src'))
+						$(this).attr('src', val);
+				});
+				$('.inputEnfantScolaire' + pk + 'Photo').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varEnfantScolaire' + pk + 'Photo').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputEnfantScolaire' + pk + 'Photo'));
 			}
 			var val = o['inscriptionCles'];
 			if(vars.includes('inscriptionCles')) {

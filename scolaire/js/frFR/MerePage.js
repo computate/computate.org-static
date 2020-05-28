@@ -65,6 +65,10 @@ async function postMereScolaire($formulaireValeurs, success, error) {
 	if(valeurPersonneOccupation != null && valeurPersonneOccupation !== '')
 		vals['personneOccupation'] = valeurPersonneOccupation;
 
+	var valeurPhoto = $formulaireValeurs.find('.valeurPhoto').val();
+	if(valeurPhoto != null && valeurPhoto !== '')
+		vals['photo'] = valeurPhoto;
+
 	var valeurPersonneSms = $formulaireValeurs.find('.valeurPersonneSms').prop('checked');
 	if(valeurPersonneSms != null && valeurPersonneSms !== '')
 		vals['personneSms'] = valeurPersonneSms;
@@ -223,6 +227,10 @@ async function putcopieMereScolaire($formulaireValeurs, pk, success, error) {
 	var valeurPersonneOccupation = $formulaireValeurs.find('.valeurPersonneOccupation').val();
 	if(valeurPersonneOccupation != null && valeurPersonneOccupation !== '')
 		vals['personneOccupation'] = valeurPersonneOccupation;
+
+	var valeurPhoto = $formulaireValeurs.find('.valeurPhoto').val();
+	if(valeurPhoto != null && valeurPhoto !== '')
+		vals['photo'] = valeurPhoto;
 
 	var valeurPersonneSms = $formulaireValeurs.find('.valeurPersonneSms').prop('checked');
 	if(valeurPersonneSms != null && valeurPersonneSms !== '')
@@ -449,6 +457,19 @@ async function patchMereScolaire($formulaireFiltres, $formulaireValeurs, pk, suc
 	var removePersonneOccupation = $formulaireValeurs.find('.removePersonneOccupation').val();
 	if(removePersonneOccupation != null && removePersonneOccupation !== '')
 		vals['removePersonneOccupation'] = removePersonneOccupation;
+
+	var valeurPhoto = $formulaireValeurs.find('.valeurPhoto').val();
+	if(valeurPhoto != null && valeurPhoto !== '')
+	var removePhoto = $formulaireFiltres.find('.removePhoto').val() === 'true';
+	var setPhoto = removePhoto ? null : $formulaireValeurs.find('.setPhoto').val();
+	if(removePhoto || setPhoto != null && setPhoto !== '')
+		vals['setPhoto'] = setPhoto;
+	var addPhoto = $formulaireValeurs.find('.addPhoto').val();
+	if(addPhoto != null && addPhoto !== '')
+		vals['addPhoto'] = addPhoto;
+	var removePhoto = $formulaireValeurs.find('.removePhoto').val();
+	if(removePhoto != null && removePhoto !== '')
+		vals['removePhoto'] = removePhoto;
 
 	var valeurPersonneSms = $formulaireValeurs.find('.valeurPersonneSms').prop('checked');
 	if(valeurPersonneSms != null && valeurPersonneSms !== '')
@@ -1638,6 +1659,22 @@ async function websocketMereScolaireInner(requeteApi) {
 						$(this).text(val);
 				});
 				ajouterLueur($('.inputMereScolaire' + pk + 'PersonneOccupation'));
+			}
+			var val = o['photo'];
+			if(vars.includes('photo')) {
+				$('.imgMereScolaire' + pk + 'Photo').each(function() {
+					if(val !== $(this).attr('src'))
+						$(this).attr('src', val);
+				});
+				$('.inputMereScolaire' + pk + 'Photo').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varMereScolaire' + pk + 'Photo').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputMereScolaire' + pk + 'Photo'));
 			}
 			var val = o['personneSms'];
 			if(vars.includes('personneSms')) {

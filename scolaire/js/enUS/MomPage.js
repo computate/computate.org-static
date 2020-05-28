@@ -65,6 +65,10 @@ async function postSchoolMom($formValues, success, error) {
 	if(valuePersonOccupation != null && valuePersonOccupation !== '')
 		vals['personOccupation'] = valuePersonOccupation;
 
+	var valuePhoto = $formValues.find('.valuePhoto').val();
+	if(valuePhoto != null && valuePhoto !== '')
+		vals['photo'] = valuePhoto;
+
 	var valuePersonSms = $formValues.find('.valuePersonSms').prop('checked');
 	if(valuePersonSms != null && valuePersonSms !== '')
 		vals['personSms'] = valuePersonSms;
@@ -223,6 +227,10 @@ async function putcopySchoolMom($formValues, pk, success, error) {
 	var valuePersonOccupation = $formValues.find('.valuePersonOccupation').val();
 	if(valuePersonOccupation != null && valuePersonOccupation !== '')
 		vals['personOccupation'] = valuePersonOccupation;
+
+	var valuePhoto = $formValues.find('.valuePhoto').val();
+	if(valuePhoto != null && valuePhoto !== '')
+		vals['photo'] = valuePhoto;
 
 	var valuePersonSms = $formValues.find('.valuePersonSms').prop('checked');
 	if(valuePersonSms != null && valuePersonSms !== '')
@@ -449,6 +457,19 @@ async function patchSchoolMom($formFilters, $formValues, pk, success, error) {
 	var removePersonOccupation = $formValues.find('.removePersonOccupation').val();
 	if(removePersonOccupation != null && removePersonOccupation !== '')
 		vals['removePersonOccupation'] = removePersonOccupation;
+
+	var valuePhoto = $formValues.find('.valuePhoto').val();
+	if(valuePhoto != null && valuePhoto !== '')
+	var removePhoto = $formFilters.find('.removePhoto').val() === 'true';
+	var setPhoto = removePhoto ? null : $formValues.find('.setPhoto').val();
+	if(removePhoto || setPhoto != null && setPhoto !== '')
+		vals['setPhoto'] = setPhoto;
+	var addPhoto = $formValues.find('.addPhoto').val();
+	if(addPhoto != null && addPhoto !== '')
+		vals['addPhoto'] = addPhoto;
+	var removePhoto = $formValues.find('.removePhoto').val();
+	if(removePhoto != null && removePhoto !== '')
+		vals['removePhoto'] = removePhoto;
 
 	var valuePersonSms = $formValues.find('.valuePersonSms').prop('checked');
 	if(valuePersonSms != null && valuePersonSms !== '')
@@ -1638,6 +1659,22 @@ async function websocketSchoolMomInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputSchoolMom' + pk + 'PersonOccupation'));
+			}
+			var val = o['photo'];
+			if(vars.includes('photo')) {
+				$('.imgSchoolMom' + pk + 'Photo').each(function() {
+					if(val !== $(this).attr('src'))
+						$(this).attr('src', val);
+				});
+				$('.inputSchoolMom' + pk + 'Photo').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolMom' + pk + 'Photo').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolMom' + pk + 'Photo'));
 			}
 			var val = o['personSms'];
 			if(vars.includes('personSms')) {

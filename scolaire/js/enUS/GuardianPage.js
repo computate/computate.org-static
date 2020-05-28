@@ -69,6 +69,10 @@ async function postSchoolGuardian($formValues, success, error) {
 	if(valuePersonPickup != null && valuePersonPickup !== '')
 		vals['personPickup'] = valuePersonPickup;
 
+	var valuePhoto = $formValues.find('.valuePhoto').val();
+	if(valuePhoto != null && valuePhoto !== '')
+		vals['photo'] = valuePhoto;
+
 	var valueEnrollmentKeys = [];
 	$formValues.find('input.valueEnrollmentKeys:checked').each(function(index) {
 		valueEnrollmentKeys.push($(this).val());
@@ -215,6 +219,10 @@ async function putcopySchoolGuardian($formValues, pk, success, error) {
 	var valuePersonPickup = $formValues.find('.valuePersonPickup').prop('checked');
 	if(valuePersonPickup != null && valuePersonPickup !== '')
 		vals['personPickup'] = valuePersonPickup;
+
+	var valuePhoto = $formValues.find('.valuePhoto').val();
+	if(valuePhoto != null && valuePhoto !== '')
+		vals['photo'] = valuePhoto;
 
 	var valueEnrollmentKeys = $formValues.find('input.valueEnrollmentKeys:checked').val();
 	if(valueEnrollmentKeys != null && valueEnrollmentKeys !== '')
@@ -446,6 +454,19 @@ async function patchSchoolGuardian($formFilters, $formValues, pk, success, error
 	var removePersonPickup = $formValues.find('.removePersonPickup').prop('checked');
 	if(removePersonPickup != null && removePersonPickup !== '')
 		vals['removePersonPickup'] = removePersonPickup;
+
+	var valuePhoto = $formValues.find('.valuePhoto').val();
+	if(valuePhoto != null && valuePhoto !== '')
+	var removePhoto = $formFilters.find('.removePhoto').val() === 'true';
+	var setPhoto = removePhoto ? null : $formValues.find('.setPhoto').val();
+	if(removePhoto || setPhoto != null && setPhoto !== '')
+		vals['setPhoto'] = setPhoto;
+	var addPhoto = $formValues.find('.addPhoto').val();
+	if(addPhoto != null && addPhoto !== '')
+		vals['addPhoto'] = addPhoto;
+	var removePhoto = $formValues.find('.removePhoto').val();
+	if(removePhoto != null && removePhoto !== '')
+		vals['removePhoto'] = removePhoto;
 
 	var valueEnrollmentKeys = $formValues.find('input.valueEnrollmentKeys:checked').val();
 	if(valueEnrollmentKeys != null && valueEnrollmentKeys !== '')
@@ -1579,6 +1600,22 @@ async function websocketSchoolGuardianInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputSchoolGuardian' + pk + 'PersonPickup'));
+			}
+			var val = o['photo'];
+			if(vars.includes('photo')) {
+				$('.imgSchoolGuardian' + pk + 'Photo').each(function() {
+					if(val !== $(this).attr('src'))
+						$(this).attr('src', val);
+				});
+				$('.inputSchoolGuardian' + pk + 'Photo').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolGuardian' + pk + 'Photo').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolGuardian' + pk + 'Photo'));
 			}
 			var val = o['enrollmentKeys'];
 			if(vars.includes('enrollmentKeys')) {

@@ -69,6 +69,10 @@ async function postGardienScolaire($formulaireValeurs, success, error) {
 	if(valeurPersonneChercher != null && valeurPersonneChercher !== '')
 		vals['personneChercher'] = valeurPersonneChercher;
 
+	var valeurPhoto = $formulaireValeurs.find('.valeurPhoto').val();
+	if(valeurPhoto != null && valeurPhoto !== '')
+		vals['photo'] = valeurPhoto;
+
 	var valeurInscriptionCles = [];
 	$formulaireValeurs.find('input.valeurInscriptionCles:checked').each(function(index) {
 		valeurInscriptionCles.push($(this).val());
@@ -215,6 +219,10 @@ async function putcopieGardienScolaire($formulaireValeurs, pk, success, error) {
 	var valeurPersonneChercher = $formulaireValeurs.find('.valeurPersonneChercher').prop('checked');
 	if(valeurPersonneChercher != null && valeurPersonneChercher !== '')
 		vals['personneChercher'] = valeurPersonneChercher;
+
+	var valeurPhoto = $formulaireValeurs.find('.valeurPhoto').val();
+	if(valeurPhoto != null && valeurPhoto !== '')
+		vals['photo'] = valeurPhoto;
 
 	var valeurInscriptionCles = $formulaireValeurs.find('input.valeurInscriptionCles:checked').val();
 	if(valeurInscriptionCles != null && valeurInscriptionCles !== '')
@@ -446,6 +454,19 @@ async function patchGardienScolaire($formulaireFiltres, $formulaireValeurs, pk, 
 	var removePersonneChercher = $formulaireValeurs.find('.removePersonneChercher').prop('checked');
 	if(removePersonneChercher != null && removePersonneChercher !== '')
 		vals['removePersonneChercher'] = removePersonneChercher;
+
+	var valeurPhoto = $formulaireValeurs.find('.valeurPhoto').val();
+	if(valeurPhoto != null && valeurPhoto !== '')
+	var removePhoto = $formulaireFiltres.find('.removePhoto').val() === 'true';
+	var setPhoto = removePhoto ? null : $formulaireValeurs.find('.setPhoto').val();
+	if(removePhoto || setPhoto != null && setPhoto !== '')
+		vals['setPhoto'] = setPhoto;
+	var addPhoto = $formulaireValeurs.find('.addPhoto').val();
+	if(addPhoto != null && addPhoto !== '')
+		vals['addPhoto'] = addPhoto;
+	var removePhoto = $formulaireValeurs.find('.removePhoto').val();
+	if(removePhoto != null && removePhoto !== '')
+		vals['removePhoto'] = removePhoto;
 
 	var valeurInscriptionCles = $formulaireValeurs.find('input.valeurInscriptionCles:checked').val();
 	if(valeurInscriptionCles != null && valeurInscriptionCles !== '')
@@ -1579,6 +1600,22 @@ async function websocketGardienScolaireInner(requeteApi) {
 						$(this).text(val);
 				});
 				ajouterLueur($('.inputGardienScolaire' + pk + 'PersonneChercher'));
+			}
+			var val = o['photo'];
+			if(vars.includes('photo')) {
+				$('.imgGardienScolaire' + pk + 'Photo').each(function() {
+					if(val !== $(this).attr('src'))
+						$(this).attr('src', val);
+				});
+				$('.inputGardienScolaire' + pk + 'Photo').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varGardienScolaire' + pk + 'Photo').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputGardienScolaire' + pk + 'Photo'));
 			}
 			var val = o['inscriptionCles'];
 			if(vars.includes('inscriptionCles')) {
