@@ -662,6 +662,18 @@ function patchEnfantScolaireFiltres($formulaireFiltres) {
 		if(filtrePersonneNomFormel != null && filtrePersonneNomFormel !== '')
 			filtres.push({ name: 'fq', value: 'personneNomFormel:' + filtrePersonneNomFormel });
 
+		var filtrePersonneDateNaissanceDAnnee = $formulaireFiltres.find('.valeurPersonneDateNaissanceDAnnee').val();
+		if(filtrePersonneDateNaissanceDAnnee != null && filtrePersonneDateNaissanceDAnnee !== '')
+			filtres.push({ name: 'fq', value: 'personneDateNaissanceDAnnee:' + filtrePersonneDateNaissanceDAnnee });
+
+		var filtrePersonneDateNaissanceMoisDAnnee = $formulaireFiltres.find('.valeurPersonneDateNaissanceMoisDAnnee').val();
+		if(filtrePersonneDateNaissanceMoisDAnnee != null && filtrePersonneDateNaissanceMoisDAnnee !== '')
+			filtres.push({ name: 'fq', value: 'personneDateNaissanceMoisDAnnee:' + filtrePersonneDateNaissanceMoisDAnnee });
+
+		var filtrePersonneDateNaissanceJourDeSemaine = $formulaireFiltres.find('.valeurPersonneDateNaissanceJourDeSemaine').val();
+		if(filtrePersonneDateNaissanceJourDeSemaine != null && filtrePersonneDateNaissanceJourDeSemaine !== '')
+			filtres.push({ name: 'fq', value: 'personneDateNaissanceJourDeSemaine:' + filtrePersonneDateNaissanceJourDeSemaine });
+
 		var filtreEnfantNomComplet = $formulaireFiltres.find('.valeurEnfantNomComplet').val();
 		if(filtreEnfantNomComplet != null && filtreEnfantNomComplet !== '')
 			filtres.push({ name: 'fq', value: 'enfantNomComplet:' + filtreEnfantNomComplet });
@@ -883,6 +895,18 @@ function rechercheEnfantScolaireFiltres($formulaireFiltres) {
 		var filtrePersonneNomFormel = $formulaireFiltres.find('.valeurPersonneNomFormel').val();
 		if(filtrePersonneNomFormel != null && filtrePersonneNomFormel !== '')
 			filtres.push({ name: 'fq', value: 'personneNomFormel:' + filtrePersonneNomFormel });
+
+		var filtrePersonneDateNaissanceDAnnee = $formulaireFiltres.find('.valeurPersonneDateNaissanceDAnnee').val();
+		if(filtrePersonneDateNaissanceDAnnee != null && filtrePersonneDateNaissanceDAnnee !== '')
+			filtres.push({ name: 'fq', value: 'personneDateNaissanceDAnnee:' + filtrePersonneDateNaissanceDAnnee });
+
+		var filtrePersonneDateNaissanceMoisDAnnee = $formulaireFiltres.find('.valeurPersonneDateNaissanceMoisDAnnee').val();
+		if(filtrePersonneDateNaissanceMoisDAnnee != null && filtrePersonneDateNaissanceMoisDAnnee !== '')
+			filtres.push({ name: 'fq', value: 'personneDateNaissanceMoisDAnnee:' + filtrePersonneDateNaissanceMoisDAnnee });
+
+		var filtrePersonneDateNaissanceJourDeSemaine = $formulaireFiltres.find('.valeurPersonneDateNaissanceJourDeSemaine').val();
+		if(filtrePersonneDateNaissanceJourDeSemaine != null && filtrePersonneDateNaissanceJourDeSemaine !== '')
+			filtres.push({ name: 'fq', value: 'personneDateNaissanceJourDeSemaine:' + filtrePersonneDateNaissanceJourDeSemaine });
 
 		var filtreEnfantNomComplet = $formulaireFiltres.find('.valeurEnfantNomComplet').val();
 		if(filtreEnfantNomComplet != null && filtreEnfantNomComplet !== '')
@@ -1139,6 +1163,18 @@ function rechercheadminEnfantScolaireFiltres($formulaireFiltres) {
 		var filtrePersonneNomFormel = $formulaireFiltres.find('.valeurPersonneNomFormel').val();
 		if(filtrePersonneNomFormel != null && filtrePersonneNomFormel !== '')
 			filtres.push({ name: 'fq', value: 'personneNomFormel:' + filtrePersonneNomFormel });
+
+		var filtrePersonneDateNaissanceDAnnee = $formulaireFiltres.find('.valeurPersonneDateNaissanceDAnnee').val();
+		if(filtrePersonneDateNaissanceDAnnee != null && filtrePersonneDateNaissanceDAnnee !== '')
+			filtres.push({ name: 'fq', value: 'personneDateNaissanceDAnnee:' + filtrePersonneDateNaissanceDAnnee });
+
+		var filtrePersonneDateNaissanceMoisDAnnee = $formulaireFiltres.find('.valeurPersonneDateNaissanceMoisDAnnee').val();
+		if(filtrePersonneDateNaissanceMoisDAnnee != null && filtrePersonneDateNaissanceMoisDAnnee !== '')
+			filtres.push({ name: 'fq', value: 'personneDateNaissanceMoisDAnnee:' + filtrePersonneDateNaissanceMoisDAnnee });
+
+		var filtrePersonneDateNaissanceJourDeSemaine = $formulaireFiltres.find('.valeurPersonneDateNaissanceJourDeSemaine').val();
+		if(filtrePersonneDateNaissanceJourDeSemaine != null && filtrePersonneDateNaissanceJourDeSemaine !== '')
+			filtres.push({ name: 'fq', value: 'personneDateNaissanceJourDeSemaine:' + filtrePersonneDateNaissanceJourDeSemaine });
 
 		var filtreEnfantNomComplet = $formulaireFiltres.find('.valeurEnfantNomComplet').val();
 		if(filtreEnfantNomComplet != null && filtreEnfantNomComplet !== '')

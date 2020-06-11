@@ -662,6 +662,18 @@ function patchSchoolChildFilters($formFilters) {
 		if(filterPersonFormalName != null && filterPersonFormalName !== '')
 			filters.push({ name: 'fq', value: 'personFormalName:' + filterPersonFormalName });
 
+		var filterPersonBirthDateYear = $formFilters.find('.valuePersonBirthDateYear').val();
+		if(filterPersonBirthDateYear != null && filterPersonBirthDateYear !== '')
+			filters.push({ name: 'fq', value: 'personBirthDateYear:' + filterPersonBirthDateYear });
+
+		var filterPersonBirthDateMonthOfYear = $formFilters.find('.valuePersonBirthDateMonthOfYear').val();
+		if(filterPersonBirthDateMonthOfYear != null && filterPersonBirthDateMonthOfYear !== '')
+			filters.push({ name: 'fq', value: 'personBirthDateMonthOfYear:' + filterPersonBirthDateMonthOfYear });
+
+		var filterPersonBirthDateDayOfWeek = $formFilters.find('.valuePersonBirthDateDayOfWeek').val();
+		if(filterPersonBirthDateDayOfWeek != null && filterPersonBirthDateDayOfWeek !== '')
+			filters.push({ name: 'fq', value: 'personBirthDateDayOfWeek:' + filterPersonBirthDateDayOfWeek });
+
 		var filterChildCompleteName = $formFilters.find('.valueChildCompleteName').val();
 		if(filterChildCompleteName != null && filterChildCompleteName !== '')
 			filters.push({ name: 'fq', value: 'childCompleteName:' + filterChildCompleteName });
@@ -883,6 +895,18 @@ function searchSchoolChildFilters($formFilters) {
 		var filterPersonFormalName = $formFilters.find('.valuePersonFormalName').val();
 		if(filterPersonFormalName != null && filterPersonFormalName !== '')
 			filters.push({ name: 'fq', value: 'personFormalName:' + filterPersonFormalName });
+
+		var filterPersonBirthDateYear = $formFilters.find('.valuePersonBirthDateYear').val();
+		if(filterPersonBirthDateYear != null && filterPersonBirthDateYear !== '')
+			filters.push({ name: 'fq', value: 'personBirthDateYear:' + filterPersonBirthDateYear });
+
+		var filterPersonBirthDateMonthOfYear = $formFilters.find('.valuePersonBirthDateMonthOfYear').val();
+		if(filterPersonBirthDateMonthOfYear != null && filterPersonBirthDateMonthOfYear !== '')
+			filters.push({ name: 'fq', value: 'personBirthDateMonthOfYear:' + filterPersonBirthDateMonthOfYear });
+
+		var filterPersonBirthDateDayOfWeek = $formFilters.find('.valuePersonBirthDateDayOfWeek').val();
+		if(filterPersonBirthDateDayOfWeek != null && filterPersonBirthDateDayOfWeek !== '')
+			filters.push({ name: 'fq', value: 'personBirthDateDayOfWeek:' + filterPersonBirthDateDayOfWeek });
 
 		var filterChildCompleteName = $formFilters.find('.valueChildCompleteName').val();
 		if(filterChildCompleteName != null && filterChildCompleteName !== '')
@@ -1139,6 +1163,18 @@ function adminsearchSchoolChildFilters($formFilters) {
 		var filterPersonFormalName = $formFilters.find('.valuePersonFormalName').val();
 		if(filterPersonFormalName != null && filterPersonFormalName !== '')
 			filters.push({ name: 'fq', value: 'personFormalName:' + filterPersonFormalName });
+
+		var filterPersonBirthDateYear = $formFilters.find('.valuePersonBirthDateYear').val();
+		if(filterPersonBirthDateYear != null && filterPersonBirthDateYear !== '')
+			filters.push({ name: 'fq', value: 'personBirthDateYear:' + filterPersonBirthDateYear });
+
+		var filterPersonBirthDateMonthOfYear = $formFilters.find('.valuePersonBirthDateMonthOfYear').val();
+		if(filterPersonBirthDateMonthOfYear != null && filterPersonBirthDateMonthOfYear !== '')
+			filters.push({ name: 'fq', value: 'personBirthDateMonthOfYear:' + filterPersonBirthDateMonthOfYear });
+
+		var filterPersonBirthDateDayOfWeek = $formFilters.find('.valuePersonBirthDateDayOfWeek').val();
+		if(filterPersonBirthDateDayOfWeek != null && filterPersonBirthDateDayOfWeek !== '')
+			filters.push({ name: 'fq', value: 'personBirthDateDayOfWeek:' + filterPersonBirthDateDayOfWeek });
 
 		var filterChildCompleteName = $formFilters.find('.valueChildCompleteName').val();
 		if(filterChildCompleteName != null && filterChildCompleteName !== '')

@@ -195,6 +195,10 @@ async function postSchoolEnrollment($formValues, success, error) {
 	if(valueEnrollmentChargeDate != null && valueEnrollmentChargeDate !== '')
 		vals['enrollmentChargeDate'] = valueEnrollmentChargeDate;
 
+	var valueEnrollmentParentNames = $formValues.find('.valueEnrollmentParentNames').val();
+	if(valueEnrollmentParentNames != null && valueEnrollmentParentNames !== '')
+		vals['enrollmentParentNames'] = valueEnrollmentParentNames;
+
 	var valueEnrollmentSignature1 = $formValues.find('.valueEnrollmentSignature1').val();
 	if(valueEnrollmentSignature1 != null && valueEnrollmentSignature1 !== '')
 		vals['enrollmentSignature1'] = valueEnrollmentSignature1;
@@ -502,6 +506,10 @@ async function putcopySchoolEnrollment($formValues, pk, success, error) {
 	var valueEnrollmentChargeDate = $formValues.find('.valueEnrollmentChargeDate').val();
 	if(valueEnrollmentChargeDate != null && valueEnrollmentChargeDate !== '')
 		vals['enrollmentChargeDate'] = valueEnrollmentChargeDate;
+
+	var valueEnrollmentParentNames = $formValues.find('.valueEnrollmentParentNames').val();
+	if(valueEnrollmentParentNames != null && valueEnrollmentParentNames !== '')
+		vals['enrollmentParentNames'] = valueEnrollmentParentNames;
 
 	var valueEnrollmentSignature1 = $formValues.find('.valueEnrollmentSignature1').val();
 	if(valueEnrollmentSignature1 != null && valueEnrollmentSignature1 !== '')
@@ -1101,6 +1109,19 @@ async function patchSchoolEnrollment($formFilters, $formValues, pk, success, err
 	var removeEnrollmentChargeDate = $formValues.find('.removeEnrollmentChargeDate').val();
 	if(removeEnrollmentChargeDate != null && removeEnrollmentChargeDate !== '')
 		vals['removeEnrollmentChargeDate'] = removeEnrollmentChargeDate;
+
+	var valueEnrollmentParentNames = $formValues.find('.valueEnrollmentParentNames').val();
+	if(valueEnrollmentParentNames != null && valueEnrollmentParentNames !== '')
+	var removeEnrollmentParentNames = $formFilters.find('.removeEnrollmentParentNames').val() === 'true';
+	var setEnrollmentParentNames = removeEnrollmentParentNames ? null : $formValues.find('.setEnrollmentParentNames').val();
+	if(removeEnrollmentParentNames || setEnrollmentParentNames != null && setEnrollmentParentNames !== '')
+		vals['setEnrollmentParentNames'] = setEnrollmentParentNames;
+	var addEnrollmentParentNames = $formValues.find('.addEnrollmentParentNames').val();
+	if(addEnrollmentParentNames != null && addEnrollmentParentNames !== '')
+		vals['addEnrollmentParentNames'] = addEnrollmentParentNames;
+	var removeEnrollmentParentNames = $formValues.find('.removeEnrollmentParentNames').val();
+	if(removeEnrollmentParentNames != null && removeEnrollmentParentNames !== '')
+		vals['removeEnrollmentParentNames'] = removeEnrollmentParentNames;
 
 	var valueEnrollmentSignature1 = $formValues.find('.valueEnrollmentSignature1').val();
 	if(valueEnrollmentSignature1 != null && valueEnrollmentSignature1 !== '')
@@ -1712,6 +1733,18 @@ function patchSchoolEnrollmentFilters($formFilters) {
 		var filterChildBirthDate = $formFilters.find('.valueChildBirthDate').val();
 		if(filterChildBirthDate != null && filterChildBirthDate !== '')
 			filters.push({ name: 'fq', value: 'childBirthDate:' + filterChildBirthDate });
+
+		var filterChildBirthDateYear = $formFilters.find('.valueChildBirthDateYear').val();
+		if(filterChildBirthDateYear != null && filterChildBirthDateYear !== '')
+			filters.push({ name: 'fq', value: 'childBirthDateYear:' + filterChildBirthDateYear });
+
+		var filterChildBirthDateMonthOfYear = $formFilters.find('.valueChildBirthDateMonthOfYear').val();
+		if(filterChildBirthDateMonthOfYear != null && filterChildBirthDateMonthOfYear !== '')
+			filters.push({ name: 'fq', value: 'childBirthDateMonthOfYear:' + filterChildBirthDateMonthOfYear });
+
+		var filterChildBirthDateDayOfWeek = $formFilters.find('.valueChildBirthDateDayOfWeek').val();
+		if(filterChildBirthDateDayOfWeek != null && filterChildBirthDateDayOfWeek !== '')
+			filters.push({ name: 'fq', value: 'childBirthDateDayOfWeek:' + filterChildBirthDateDayOfWeek });
 
 		var filterChildBirthMonth = $formFilters.find('.valueChildBirthMonth').val();
 		if(filterChildBirthMonth != null && filterChildBirthMonth !== '')
@@ -2372,6 +2405,18 @@ function searchSchoolEnrollmentFilters($formFilters) {
 		var filterChildBirthDate = $formFilters.find('.valueChildBirthDate').val();
 		if(filterChildBirthDate != null && filterChildBirthDate !== '')
 			filters.push({ name: 'fq', value: 'childBirthDate:' + filterChildBirthDate });
+
+		var filterChildBirthDateYear = $formFilters.find('.valueChildBirthDateYear').val();
+		if(filterChildBirthDateYear != null && filterChildBirthDateYear !== '')
+			filters.push({ name: 'fq', value: 'childBirthDateYear:' + filterChildBirthDateYear });
+
+		var filterChildBirthDateMonthOfYear = $formFilters.find('.valueChildBirthDateMonthOfYear').val();
+		if(filterChildBirthDateMonthOfYear != null && filterChildBirthDateMonthOfYear !== '')
+			filters.push({ name: 'fq', value: 'childBirthDateMonthOfYear:' + filterChildBirthDateMonthOfYear });
+
+		var filterChildBirthDateDayOfWeek = $formFilters.find('.valueChildBirthDateDayOfWeek').val();
+		if(filterChildBirthDateDayOfWeek != null && filterChildBirthDateDayOfWeek !== '')
+			filters.push({ name: 'fq', value: 'childBirthDateDayOfWeek:' + filterChildBirthDateDayOfWeek });
 
 		var filterChildBirthMonth = $formFilters.find('.valueChildBirthMonth').val();
 		if(filterChildBirthMonth != null && filterChildBirthMonth !== '')
@@ -3318,6 +3363,18 @@ function adminsearchSchoolEnrollmentFilters($formFilters) {
 		var filterChildBirthDate = $formFilters.find('.valueChildBirthDate').val();
 		if(filterChildBirthDate != null && filterChildBirthDate !== '')
 			filters.push({ name: 'fq', value: 'childBirthDate:' + filterChildBirthDate });
+
+		var filterChildBirthDateYear = $formFilters.find('.valueChildBirthDateYear').val();
+		if(filterChildBirthDateYear != null && filterChildBirthDateYear !== '')
+			filters.push({ name: 'fq', value: 'childBirthDateYear:' + filterChildBirthDateYear });
+
+		var filterChildBirthDateMonthOfYear = $formFilters.find('.valueChildBirthDateMonthOfYear').val();
+		if(filterChildBirthDateMonthOfYear != null && filterChildBirthDateMonthOfYear !== '')
+			filters.push({ name: 'fq', value: 'childBirthDateMonthOfYear:' + filterChildBirthDateMonthOfYear });
+
+		var filterChildBirthDateDayOfWeek = $formFilters.find('.valueChildBirthDateDayOfWeek').val();
+		if(filterChildBirthDateDayOfWeek != null && filterChildBirthDateDayOfWeek !== '')
+			filters.push({ name: 'fq', value: 'childBirthDateDayOfWeek:' + filterChildBirthDateDayOfWeek });
 
 		var filterChildBirthMonth = $formFilters.find('.valueChildBirthMonth').val();
 		if(filterChildBirthMonth != null && filterChildBirthMonth !== '')
@@ -4409,6 +4466,19 @@ async function patchpaymentsSchoolEnrollment($formFilters, $formValues, pk, succ
 	if(removeEnrollmentChargeDate != null && removeEnrollmentChargeDate !== '')
 		vals['removeEnrollmentChargeDate'] = removeEnrollmentChargeDate;
 
+	var valueEnrollmentParentNames = $formValues.find('.valueEnrollmentParentNames').val();
+	if(valueEnrollmentParentNames != null && valueEnrollmentParentNames !== '')
+	var removeEnrollmentParentNames = $formFilters.find('.removeEnrollmentParentNames').val() === 'true';
+	var setEnrollmentParentNames = removeEnrollmentParentNames ? null : $formValues.find('.setEnrollmentParentNames').val();
+	if(removeEnrollmentParentNames || setEnrollmentParentNames != null && setEnrollmentParentNames !== '')
+		vals['setEnrollmentParentNames'] = setEnrollmentParentNames;
+	var addEnrollmentParentNames = $formValues.find('.addEnrollmentParentNames').val();
+	if(addEnrollmentParentNames != null && addEnrollmentParentNames !== '')
+		vals['addEnrollmentParentNames'] = addEnrollmentParentNames;
+	var removeEnrollmentParentNames = $formValues.find('.removeEnrollmentParentNames').val();
+	if(removeEnrollmentParentNames != null && removeEnrollmentParentNames !== '')
+		vals['removeEnrollmentParentNames'] = removeEnrollmentParentNames;
+
 	var valueEnrollmentSignature1 = $formValues.find('.valueEnrollmentSignature1').val();
 	if(valueEnrollmentSignature1 != null && valueEnrollmentSignature1 !== '')
 	var removeEnrollmentSignature1 = $formFilters.find('.removeEnrollmentSignature1').val() === 'true';
@@ -5019,6 +5089,18 @@ function patchpaymentsSchoolEnrollmentFilters($formFilters) {
 		var filterChildBirthDate = $formFilters.find('.valueChildBirthDate').val();
 		if(filterChildBirthDate != null && filterChildBirthDate !== '')
 			filters.push({ name: 'fq', value: 'childBirthDate:' + filterChildBirthDate });
+
+		var filterChildBirthDateYear = $formFilters.find('.valueChildBirthDateYear').val();
+		if(filterChildBirthDateYear != null && filterChildBirthDateYear !== '')
+			filters.push({ name: 'fq', value: 'childBirthDateYear:' + filterChildBirthDateYear });
+
+		var filterChildBirthDateMonthOfYear = $formFilters.find('.valueChildBirthDateMonthOfYear').val();
+		if(filterChildBirthDateMonthOfYear != null && filterChildBirthDateMonthOfYear !== '')
+			filters.push({ name: 'fq', value: 'childBirthDateMonthOfYear:' + filterChildBirthDateMonthOfYear });
+
+		var filterChildBirthDateDayOfWeek = $formFilters.find('.valueChildBirthDateDayOfWeek').val();
+		if(filterChildBirthDateDayOfWeek != null && filterChildBirthDateDayOfWeek !== '')
+			filters.push({ name: 'fq', value: 'childBirthDateDayOfWeek:' + filterChildBirthDateDayOfWeek });
 
 		var filterChildBirthMonth = $formFilters.find('.valueChildBirthMonth').val();
 		if(filterChildBirthMonth != null && filterChildBirthMonth !== '')
@@ -5933,6 +6015,18 @@ async function websocketSchoolEnrollmentInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputSchoolEnrollment' + pk + 'EnrollmentChargeDate'));
+			}
+			var val = o['enrollmentParentNames'];
+			if(vars.includes('enrollmentParentNames')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentParentNames').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'EnrollmentParentNames').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'EnrollmentParentNames'));
 			}
 			var val = o['enrollmentSignature1'];
 			if(vars.includes('enrollmentSignature1')) {
