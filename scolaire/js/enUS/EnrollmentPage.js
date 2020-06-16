@@ -6030,6 +6030,13 @@ async function websocketSchoolEnrollmentInner(apiRequest) {
 			}
 			var val = o['enrollmentSignature1'];
 			if(vars.includes('enrollmentSignature1')) {
+				if(val === undefined)
+					val = null;
+				$('.signatureInputSchoolEnrollment' + pk + 'EnrollmentSignature1').each(function() {
+					if(val !== $('.signatureImgSchoolEnrollment' + pk + 'EnrollmentSignature1').attr('src'))
+						$('.signatureImgSchoolEnrollment' + pk + 'EnrollmentSignature1').attr('src', val == null ? 'data:image/png;base64,' : val);
+					addGlow($('.signatureInputSchoolEnrollment' + pk + 'EnrollmentSignature1'));
+				});
 				$('.inputSchoolEnrollment' + pk + 'EnrollmentSignature1').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
@@ -6042,6 +6049,13 @@ async function websocketSchoolEnrollmentInner(apiRequest) {
 			}
 			var val = o['enrollmentSignature2'];
 			if(vars.includes('enrollmentSignature2')) {
+				if(val === undefined)
+					val = null;
+				$('.signatureInputSchoolEnrollment' + pk + 'EnrollmentSignature2').each(function() {
+					if(val !== $('.signatureImgSchoolEnrollment' + pk + 'EnrollmentSignature2').attr('src'))
+						$('.signatureImgSchoolEnrollment' + pk + 'EnrollmentSignature2').attr('src', val == null ? 'data:image/png;base64,' : val);
+					addGlow($('.signatureInputSchoolEnrollment' + pk + 'EnrollmentSignature2'));
+				});
 				$('.inputSchoolEnrollment' + pk + 'EnrollmentSignature2').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
@@ -6054,6 +6068,13 @@ async function websocketSchoolEnrollmentInner(apiRequest) {
 			}
 			var val = o['enrollmentSignature3'];
 			if(vars.includes('enrollmentSignature3')) {
+				if(val === undefined)
+					val = null;
+				$('.signatureInputSchoolEnrollment' + pk + 'EnrollmentSignature3').each(function() {
+					if(val !== $('.signatureImgSchoolEnrollment' + pk + 'EnrollmentSignature3').attr('src'))
+						$('.signatureImgSchoolEnrollment' + pk + 'EnrollmentSignature3').attr('src', val == null ? 'data:image/png;base64,' : val);
+					addGlow($('.signatureInputSchoolEnrollment' + pk + 'EnrollmentSignature3'));
+				});
 				$('.inputSchoolEnrollment' + pk + 'EnrollmentSignature3').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
@@ -6066,6 +6087,13 @@ async function websocketSchoolEnrollmentInner(apiRequest) {
 			}
 			var val = o['enrollmentSignature4'];
 			if(vars.includes('enrollmentSignature4')) {
+				if(val === undefined)
+					val = null;
+				$('.signatureInputSchoolEnrollment' + pk + 'EnrollmentSignature4').each(function() {
+					if(val !== $('.signatureImgSchoolEnrollment' + pk + 'EnrollmentSignature4').attr('src'))
+						$('.signatureImgSchoolEnrollment' + pk + 'EnrollmentSignature4').attr('src', val == null ? 'data:image/png;base64,' : val);
+					addGlow($('.signatureInputSchoolEnrollment' + pk + 'EnrollmentSignature4'));
+				});
 				$('.inputSchoolEnrollment' + pk + 'EnrollmentSignature4').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
@@ -6078,6 +6106,13 @@ async function websocketSchoolEnrollmentInner(apiRequest) {
 			}
 			var val = o['enrollmentSignature5'];
 			if(vars.includes('enrollmentSignature5')) {
+				if(val === undefined)
+					val = null;
+				$('.signatureInputSchoolEnrollment' + pk + 'EnrollmentSignature5').each(function() {
+					if(val !== $('.signatureImgSchoolEnrollment' + pk + 'EnrollmentSignature5').attr('src'))
+						$('.signatureImgSchoolEnrollment' + pk + 'EnrollmentSignature5').attr('src', val == null ? 'data:image/png;base64,' : val);
+					addGlow($('.signatureInputSchoolEnrollment' + pk + 'EnrollmentSignature5'));
+				});
 				$('.inputSchoolEnrollment' + pk + 'EnrollmentSignature5').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
@@ -6090,6 +6125,13 @@ async function websocketSchoolEnrollmentInner(apiRequest) {
 			}
 			var val = o['enrollmentSignature6'];
 			if(vars.includes('enrollmentSignature6')) {
+				if(val === undefined)
+					val = null;
+				$('.signatureInputSchoolEnrollment' + pk + 'EnrollmentSignature6').each(function() {
+					if(val !== $('.signatureImgSchoolEnrollment' + pk + 'EnrollmentSignature6').attr('src'))
+						$('.signatureImgSchoolEnrollment' + pk + 'EnrollmentSignature6').attr('src', val == null ? 'data:image/png;base64,' : val);
+					addGlow($('.signatureInputSchoolEnrollment' + pk + 'EnrollmentSignature6'));
+				});
 				$('.inputSchoolEnrollment' + pk + 'EnrollmentSignature6').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
@@ -6102,6 +6144,13 @@ async function websocketSchoolEnrollmentInner(apiRequest) {
 			}
 			var val = o['enrollmentSignature7'];
 			if(vars.includes('enrollmentSignature7')) {
+				if(val === undefined)
+					val = null;
+				$('.signatureInputSchoolEnrollment' + pk + 'EnrollmentSignature7').each(function() {
+					if(val !== $('.signatureImgSchoolEnrollment' + pk + 'EnrollmentSignature7').attr('src'))
+						$('.signatureImgSchoolEnrollment' + pk + 'EnrollmentSignature7').attr('src', val == null ? 'data:image/png;base64,' : val);
+					addGlow($('.signatureInputSchoolEnrollment' + pk + 'EnrollmentSignature7'));
+				});
 				$('.inputSchoolEnrollment' + pk + 'EnrollmentSignature7').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
@@ -6114,6 +6163,13 @@ async function websocketSchoolEnrollmentInner(apiRequest) {
 			}
 			var val = o['enrollmentSignature8'];
 			if(vars.includes('enrollmentSignature8')) {
+				if(val === undefined)
+					val = null;
+				$('.signatureInputSchoolEnrollment' + pk + 'EnrollmentSignature8').each(function() {
+					if(val !== $('.signatureImgSchoolEnrollment' + pk + 'EnrollmentSignature8').attr('src'))
+						$('.signatureImgSchoolEnrollment' + pk + 'EnrollmentSignature8').attr('src', val == null ? 'data:image/png;base64,' : val);
+					addGlow($('.signatureInputSchoolEnrollment' + pk + 'EnrollmentSignature8'));
+				});
 				$('.inputSchoolEnrollment' + pk + 'EnrollmentSignature8').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
@@ -6126,6 +6182,13 @@ async function websocketSchoolEnrollmentInner(apiRequest) {
 			}
 			var val = o['enrollmentSignature9'];
 			if(vars.includes('enrollmentSignature9')) {
+				if(val === undefined)
+					val = null;
+				$('.signatureInputSchoolEnrollment' + pk + 'EnrollmentSignature9').each(function() {
+					if(val !== $('.signatureImgSchoolEnrollment' + pk + 'EnrollmentSignature9').attr('src'))
+						$('.signatureImgSchoolEnrollment' + pk + 'EnrollmentSignature9').attr('src', val == null ? 'data:image/png;base64,' : val);
+					addGlow($('.signatureInputSchoolEnrollment' + pk + 'EnrollmentSignature9'));
+				});
 				$('.inputSchoolEnrollment' + pk + 'EnrollmentSignature9').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
@@ -6138,6 +6201,13 @@ async function websocketSchoolEnrollmentInner(apiRequest) {
 			}
 			var val = o['enrollmentSignature10'];
 			if(vars.includes('enrollmentSignature10')) {
+				if(val === undefined)
+					val = null;
+				$('.signatureInputSchoolEnrollment' + pk + 'EnrollmentSignature10').each(function() {
+					if(val !== $('.signatureImgSchoolEnrollment' + pk + 'EnrollmentSignature10').attr('src'))
+						$('.signatureImgSchoolEnrollment' + pk + 'EnrollmentSignature10').attr('src', val == null ? 'data:image/png;base64,' : val);
+					addGlow($('.signatureInputSchoolEnrollment' + pk + 'EnrollmentSignature10'));
+				});
 				$('.inputSchoolEnrollment' + pk + 'EnrollmentSignature10').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);

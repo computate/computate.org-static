@@ -6030,6 +6030,13 @@ async function websocketInscriptionScolaireInner(requeteApi) {
 			}
 			var val = o['inscriptionSignature1'];
 			if(vars.includes('inscriptionSignature1')) {
+				if(val === undefined)
+					val = null;
+				$('.signatureInputInscriptionScolaire' + pk + 'InscriptionSignature1').each(function() {
+					if(val !== $('.signatureImgInscriptionScolaire' + pk + 'InscriptionSignature1').attr('src'))
+						$('.signatureImgInscriptionScolaire' + pk + 'InscriptionSignature1').attr('src', val == null ? 'data:image/png;base64,' : val);
+					ajouterLueur($('.signatureInputInscriptionScolaire' + pk + 'InscriptionSignature1'));
+				});
 				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature1').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
@@ -6042,6 +6049,13 @@ async function websocketInscriptionScolaireInner(requeteApi) {
 			}
 			var val = o['inscriptionSignature2'];
 			if(vars.includes('inscriptionSignature2')) {
+				if(val === undefined)
+					val = null;
+				$('.signatureInputInscriptionScolaire' + pk + 'InscriptionSignature2').each(function() {
+					if(val !== $('.signatureImgInscriptionScolaire' + pk + 'InscriptionSignature2').attr('src'))
+						$('.signatureImgInscriptionScolaire' + pk + 'InscriptionSignature2').attr('src', val == null ? 'data:image/png;base64,' : val);
+					ajouterLueur($('.signatureInputInscriptionScolaire' + pk + 'InscriptionSignature2'));
+				});
 				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature2').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
@@ -6054,6 +6068,13 @@ async function websocketInscriptionScolaireInner(requeteApi) {
 			}
 			var val = o['inscriptionSignature3'];
 			if(vars.includes('inscriptionSignature3')) {
+				if(val === undefined)
+					val = null;
+				$('.signatureInputInscriptionScolaire' + pk + 'InscriptionSignature3').each(function() {
+					if(val !== $('.signatureImgInscriptionScolaire' + pk + 'InscriptionSignature3').attr('src'))
+						$('.signatureImgInscriptionScolaire' + pk + 'InscriptionSignature3').attr('src', val == null ? 'data:image/png;base64,' : val);
+					ajouterLueur($('.signatureInputInscriptionScolaire' + pk + 'InscriptionSignature3'));
+				});
 				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature3').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
@@ -6066,6 +6087,13 @@ async function websocketInscriptionScolaireInner(requeteApi) {
 			}
 			var val = o['inscriptionSignature4'];
 			if(vars.includes('inscriptionSignature4')) {
+				if(val === undefined)
+					val = null;
+				$('.signatureInputInscriptionScolaire' + pk + 'InscriptionSignature4').each(function() {
+					if(val !== $('.signatureImgInscriptionScolaire' + pk + 'InscriptionSignature4').attr('src'))
+						$('.signatureImgInscriptionScolaire' + pk + 'InscriptionSignature4').attr('src', val == null ? 'data:image/png;base64,' : val);
+					ajouterLueur($('.signatureInputInscriptionScolaire' + pk + 'InscriptionSignature4'));
+				});
 				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature4').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
@@ -6078,6 +6106,13 @@ async function websocketInscriptionScolaireInner(requeteApi) {
 			}
 			var val = o['inscriptionSignature5'];
 			if(vars.includes('inscriptionSignature5')) {
+				if(val === undefined)
+					val = null;
+				$('.signatureInputInscriptionScolaire' + pk + 'InscriptionSignature5').each(function() {
+					if(val !== $('.signatureImgInscriptionScolaire' + pk + 'InscriptionSignature5').attr('src'))
+						$('.signatureImgInscriptionScolaire' + pk + 'InscriptionSignature5').attr('src', val == null ? 'data:image/png;base64,' : val);
+					ajouterLueur($('.signatureInputInscriptionScolaire' + pk + 'InscriptionSignature5'));
+				});
 				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature5').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
@@ -6090,6 +6125,13 @@ async function websocketInscriptionScolaireInner(requeteApi) {
 			}
 			var val = o['inscriptionSignature6'];
 			if(vars.includes('inscriptionSignature6')) {
+				if(val === undefined)
+					val = null;
+				$('.signatureInputInscriptionScolaire' + pk + 'InscriptionSignature6').each(function() {
+					if(val !== $('.signatureImgInscriptionScolaire' + pk + 'InscriptionSignature6').attr('src'))
+						$('.signatureImgInscriptionScolaire' + pk + 'InscriptionSignature6').attr('src', val == null ? 'data:image/png;base64,' : val);
+					ajouterLueur($('.signatureInputInscriptionScolaire' + pk + 'InscriptionSignature6'));
+				});
 				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature6').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
@@ -6102,6 +6144,13 @@ async function websocketInscriptionScolaireInner(requeteApi) {
 			}
 			var val = o['inscriptionSignature7'];
 			if(vars.includes('inscriptionSignature7')) {
+				if(val === undefined)
+					val = null;
+				$('.signatureInputInscriptionScolaire' + pk + 'InscriptionSignature7').each(function() {
+					if(val !== $('.signatureImgInscriptionScolaire' + pk + 'InscriptionSignature7').attr('src'))
+						$('.signatureImgInscriptionScolaire' + pk + 'InscriptionSignature7').attr('src', val == null ? 'data:image/png;base64,' : val);
+					ajouterLueur($('.signatureInputInscriptionScolaire' + pk + 'InscriptionSignature7'));
+				});
 				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature7').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
@@ -6114,6 +6163,13 @@ async function websocketInscriptionScolaireInner(requeteApi) {
 			}
 			var val = o['inscriptionSignature8'];
 			if(vars.includes('inscriptionSignature8')) {
+				if(val === undefined)
+					val = null;
+				$('.signatureInputInscriptionScolaire' + pk + 'InscriptionSignature8').each(function() {
+					if(val !== $('.signatureImgInscriptionScolaire' + pk + 'InscriptionSignature8').attr('src'))
+						$('.signatureImgInscriptionScolaire' + pk + 'InscriptionSignature8').attr('src', val == null ? 'data:image/png;base64,' : val);
+					ajouterLueur($('.signatureInputInscriptionScolaire' + pk + 'InscriptionSignature8'));
+				});
 				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature8').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
@@ -6126,6 +6182,13 @@ async function websocketInscriptionScolaireInner(requeteApi) {
 			}
 			var val = o['inscriptionSignature9'];
 			if(vars.includes('inscriptionSignature9')) {
+				if(val === undefined)
+					val = null;
+				$('.signatureInputInscriptionScolaire' + pk + 'InscriptionSignature9').each(function() {
+					if(val !== $('.signatureImgInscriptionScolaire' + pk + 'InscriptionSignature9').attr('src'))
+						$('.signatureImgInscriptionScolaire' + pk + 'InscriptionSignature9').attr('src', val == null ? 'data:image/png;base64,' : val);
+					ajouterLueur($('.signatureInputInscriptionScolaire' + pk + 'InscriptionSignature9'));
+				});
 				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature9').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
@@ -6138,6 +6201,13 @@ async function websocketInscriptionScolaireInner(requeteApi) {
 			}
 			var val = o['inscriptionSignature10'];
 			if(vars.includes('inscriptionSignature10')) {
+				if(val === undefined)
+					val = null;
+				$('.signatureInputInscriptionScolaire' + pk + 'InscriptionSignature10').each(function() {
+					if(val !== $('.signatureImgInscriptionScolaire' + pk + 'InscriptionSignature10').attr('src'))
+						$('.signatureImgInscriptionScolaire' + pk + 'InscriptionSignature10').attr('src', val == null ? 'data:image/png;base64,' : val);
+					ajouterLueur($('.signatureInputInscriptionScolaire' + pk + 'InscriptionSignature10'));
+				});
 				$('.inputInscriptionScolaire' + pk + 'InscriptionSignature10').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
