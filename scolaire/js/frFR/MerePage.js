@@ -1491,7 +1491,7 @@ async function websocketMereScolaire(success) {
 			var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
 			var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
 			var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
-			var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
+			var $card = $('<div>').attr('class', 'w3-card w3-white ').attr('id', 'card-' + id);
 			var $header = $('<div>').attr('class', 'w3-container fa-pink ').attr('id', 'header-' + id);
 			var $i = $('<i>').attr('class', 'far fa-female w3-margin-right ').attr('id', 'icon-' + id);
 			var $headerSpan = $('<span>').attr('class', '').text('modifier mères');
@@ -1662,6 +1662,8 @@ async function websocketMereScolaireInner(requeteApi) {
 			}
 			var val = o['photo'];
 			if(vars.includes('photo')) {
+				if(val === undefined)
+					val = null;
 				$('.imgMereScolaire' + pk + 'Photo').each(function() {
 					if(val !== $(this).attr('src'))
 						$(this).attr('src', val);
