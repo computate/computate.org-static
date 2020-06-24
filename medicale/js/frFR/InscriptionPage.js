@@ -49,10 +49,6 @@ async function postInscriptionMedicale($formulaireValeurs, success, error) {
 	if(valeurInscriptionImmunisations != null && valeurInscriptionImmunisations !== '')
 		vals['inscriptionImmunisations'] = valeurInscriptionImmunisations;
 
-	var valeurCustomerProfileId = $formulaireValeurs.find('.valeurCustomerProfileId').val();
-	if(valeurCustomerProfileId != null && valeurCustomerProfileId !== '')
-		vals['customerProfileId'] = valeurCustomerProfileId;
-
 	var valeurFamilleAddresse = $formulaireValeurs.find('.valeurFamilleAddresse').val();
 	if(valeurFamilleAddresse != null && valeurFamilleAddresse !== '')
 		vals['familleAddresse'] = valeurFamilleAddresse;
@@ -127,6 +123,10 @@ async function postInscriptionMedicale($formulaireValeurs, success, error) {
 	var valeurCliniqueAddresse = $formulaireValeurs.find('.valeurCliniqueAddresse').val();
 	if(valeurCliniqueAddresse != null && valeurCliniqueAddresse !== '')
 		vals['cliniqueAddresse'] = valeurCliniqueAddresse;
+
+	var valeurCustomerProfileId = $formulaireValeurs.find('.valeurCustomerProfileId').val();
+	if(valeurCustomerProfileId != null && valeurCustomerProfileId !== '')
+		vals['customerProfileId'] = valeurCustomerProfileId;
 
 	var valeurInscriptionSignature1 = $formulaireValeurs.find('.valeurInscriptionSignature1').val();
 	if(valeurInscriptionSignature1 != null && valeurInscriptionSignature1 !== '')
@@ -308,10 +308,6 @@ async function putcopieInscriptionMedicale($formulaireValeurs, pk, success, erro
 	if(valeurInscriptionImmunisations != null && valeurInscriptionImmunisations !== '')
 		vals['inscriptionImmunisations'] = valeurInscriptionImmunisations;
 
-	var valeurCustomerProfileId = $formulaireValeurs.find('.valeurCustomerProfileId').val();
-	if(valeurCustomerProfileId != null && valeurCustomerProfileId !== '')
-		vals['customerProfileId'] = valeurCustomerProfileId;
-
 	var valeurFamilleAddresse = $formulaireValeurs.find('.valeurFamilleAddresse').val();
 	if(valeurFamilleAddresse != null && valeurFamilleAddresse !== '')
 		vals['familleAddresse'] = valeurFamilleAddresse;
@@ -383,6 +379,10 @@ async function putcopieInscriptionMedicale($formulaireValeurs, pk, success, erro
 	var valeurCliniqueAddresse = $formulaireValeurs.find('.valeurCliniqueAddresse').val();
 	if(valeurCliniqueAddresse != null && valeurCliniqueAddresse !== '')
 		vals['cliniqueAddresse'] = valeurCliniqueAddresse;
+
+	var valeurCustomerProfileId = $formulaireValeurs.find('.valeurCustomerProfileId').val();
+	if(valeurCustomerProfileId != null && valeurCustomerProfileId !== '')
+		vals['customerProfileId'] = valeurCustomerProfileId;
 
 	var valeurInscriptionSignature1 = $formulaireValeurs.find('.valeurInscriptionSignature1').val();
 	if(valeurInscriptionSignature1 != null && valeurInscriptionSignature1 !== '')
@@ -606,19 +606,6 @@ async function patchInscriptionMedicale($formulaireFiltres, $formulaireValeurs, 
 	if(removeInscriptionImmunisations != null && removeInscriptionImmunisations !== '')
 		vals['removeInscriptionImmunisations'] = removeInscriptionImmunisations;
 
-	var valeurCustomerProfileId = $formulaireValeurs.find('.valeurCustomerProfileId').val();
-	if(valeurCustomerProfileId != null && valeurCustomerProfileId !== '')
-	var removeCustomerProfileId = $formulaireFiltres.find('.removeCustomerProfileId').val() === 'true';
-	var setCustomerProfileId = removeCustomerProfileId ? null : $formulaireValeurs.find('.setCustomerProfileId').val();
-	if(removeCustomerProfileId || setCustomerProfileId != null && setCustomerProfileId !== '')
-		vals['setCustomerProfileId'] = setCustomerProfileId;
-	var addCustomerProfileId = $formulaireValeurs.find('.addCustomerProfileId').val();
-	if(addCustomerProfileId != null && addCustomerProfileId !== '')
-		vals['addCustomerProfileId'] = addCustomerProfileId;
-	var removeCustomerProfileId = $formulaireValeurs.find('.removeCustomerProfileId').val();
-	if(removeCustomerProfileId != null && removeCustomerProfileId !== '')
-		vals['removeCustomerProfileId'] = removeCustomerProfileId;
-
 	var valeurFamilleAddresse = $formulaireValeurs.find('.valeurFamilleAddresse').val();
 	if(valeurFamilleAddresse != null && valeurFamilleAddresse !== '')
 	var removeFamilleAddresse = $formulaireFiltres.find('.removeFamilleAddresse').val() === 'true';
@@ -834,6 +821,19 @@ async function patchInscriptionMedicale($formulaireFiltres, $formulaireValeurs, 
 	var removeCliniqueAddresse = $formulaireValeurs.find('.removeCliniqueAddresse').val();
 	if(removeCliniqueAddresse != null && removeCliniqueAddresse !== '')
 		vals['removeCliniqueAddresse'] = removeCliniqueAddresse;
+
+	var valeurCustomerProfileId = $formulaireValeurs.find('.valeurCustomerProfileId').val();
+	if(valeurCustomerProfileId != null && valeurCustomerProfileId !== '')
+	var removeCustomerProfileId = $formulaireFiltres.find('.removeCustomerProfileId').val() === 'true';
+	var setCustomerProfileId = removeCustomerProfileId ? null : $formulaireValeurs.find('.setCustomerProfileId').val();
+	if(removeCustomerProfileId || setCustomerProfileId != null && setCustomerProfileId !== '')
+		vals['setCustomerProfileId'] = setCustomerProfileId;
+	var addCustomerProfileId = $formulaireValeurs.find('.addCustomerProfileId').val();
+	if(addCustomerProfileId != null && addCustomerProfileId !== '')
+		vals['addCustomerProfileId'] = addCustomerProfileId;
+	var removeCustomerProfileId = $formulaireValeurs.find('.removeCustomerProfileId').val();
+	if(removeCustomerProfileId != null && removeCustomerProfileId !== '')
+		vals['removeCustomerProfileId'] = removeCustomerProfileId;
 
 	var valeurInscriptionSignature1 = $formulaireValeurs.find('.valeurInscriptionSignature1').val();
 	if(valeurInscriptionSignature1 != null && valeurInscriptionSignature1 !== '')
@@ -1158,10 +1158,6 @@ function patchInscriptionMedicaleFiltres($formulaireFiltres) {
 		if(filtreInscriptionImmunisations != null && filtreInscriptionImmunisations === true)
 			filtres.push({ name: 'fq', value: 'inscriptionImmunisations:' + filtreInscriptionImmunisations });
 
-		var filtreCustomerProfileId = $formulaireFiltres.find('.valeurCustomerProfileId').val();
-		if(filtreCustomerProfileId != null && filtreCustomerProfileId !== '')
-			filtres.push({ name: 'fq', value: 'customerProfileId:' + filtreCustomerProfileId });
-
 		var filtreFamilleAddresse = $formulaireFiltres.find('.valeurFamilleAddresse').val();
 		if(filtreFamilleAddresse != null && filtreFamilleAddresse !== '')
 			filtres.push({ name: 'fq', value: 'familleAddresse:' + filtreFamilleAddresse });
@@ -1345,6 +1341,10 @@ function patchInscriptionMedicaleFiltres($formulaireFiltres) {
 		var filtreCliniqueAdministrateurNom = $formulaireFiltres.find('.valeurCliniqueAdministrateurNom').val();
 		if(filtreCliniqueAdministrateurNom != null && filtreCliniqueAdministrateurNom !== '')
 			filtres.push({ name: 'fq', value: 'cliniqueAdministrateurNom:' + filtreCliniqueAdministrateurNom });
+
+		var filtreCustomerProfileId = $formulaireFiltres.find('.valeurCustomerProfileId').val();
+		if(filtreCustomerProfileId != null && filtreCustomerProfileId !== '')
+			filtres.push({ name: 'fq', value: 'customerProfileId:' + filtreCustomerProfileId });
 
 		var filtreCreeDAnnee = $formulaireFiltres.find('.valeurCreeDAnnee').val();
 		if(filtreCreeDAnnee != null && filtreCreeDAnnee !== '')
@@ -1512,10 +1512,6 @@ function rechercheInscriptionMedicaleFiltres($formulaireFiltres) {
 		if(filtreInscriptionImmunisations != null && filtreInscriptionImmunisations === true)
 			filtres.push({ name: 'fq', value: 'inscriptionImmunisations:' + filtreInscriptionImmunisations });
 
-		var filtreCustomerProfileId = $formulaireFiltres.find('.valeurCustomerProfileId').val();
-		if(filtreCustomerProfileId != null && filtreCustomerProfileId !== '')
-			filtres.push({ name: 'fq', value: 'customerProfileId:' + filtreCustomerProfileId });
-
 		var filtreFamilleAddresse = $formulaireFiltres.find('.valeurFamilleAddresse').val();
 		if(filtreFamilleAddresse != null && filtreFamilleAddresse !== '')
 			filtres.push({ name: 'fq', value: 'familleAddresse:' + filtreFamilleAddresse });
@@ -1700,6 +1696,10 @@ function rechercheInscriptionMedicaleFiltres($formulaireFiltres) {
 		if(filtreCliniqueAdministrateurNom != null && filtreCliniqueAdministrateurNom !== '')
 			filtres.push({ name: 'fq', value: 'cliniqueAdministrateurNom:' + filtreCliniqueAdministrateurNom });
 
+		var filtreCustomerProfileId = $formulaireFiltres.find('.valeurCustomerProfileId').val();
+		if(filtreCustomerProfileId != null && filtreCustomerProfileId !== '')
+			filtres.push({ name: 'fq', value: 'customerProfileId:' + filtreCustomerProfileId });
+
 		var filtreCreeDAnnee = $formulaireFiltres.find('.valeurCreeDAnnee').val();
 		if(filtreCreeDAnnee != null && filtreCreeDAnnee !== '')
 			filtres.push({ name: 'fq', value: 'creeDAnnee:' + filtreCreeDAnnee });
@@ -1778,7 +1778,7 @@ function suggereInscriptionMedicaleObjetSuggere($formulaireFiltres, $list) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fas fa-edit ');
+			var $i = $('<i>').attr('class', 'fas fa-notes-medical ');
 			var $span = $('<span>').attr('class', '').text(o['inscriptionNomComplet']);
 			var $li = $('<li>');
 			var $a = $('<a>').attr('href', o['pageUrlPk']);
@@ -1796,7 +1796,7 @@ function suggereInscriptionMedicalePatientCle(filtres, $list, pk = null, attribu
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-patient ');
+			var $i = $('<i>').attr('class', 'fa fa-hostpital-user ');
 			var $span = $('<span>').attr('class', '').text(o['patientNomComplet']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);
@@ -1936,10 +1936,6 @@ function rechercheadminInscriptionMedicaleFiltres($formulaireFiltres) {
 		if(filtreInscriptionImmunisations != null && filtreInscriptionImmunisations === true)
 			filtres.push({ name: 'fq', value: 'inscriptionImmunisations:' + filtreInscriptionImmunisations });
 
-		var filtreCustomerProfileId = $formulaireFiltres.find('.valeurCustomerProfileId').val();
-		if(filtreCustomerProfileId != null && filtreCustomerProfileId !== '')
-			filtres.push({ name: 'fq', value: 'customerProfileId:' + filtreCustomerProfileId });
-
 		var filtreFamilleAddresse = $formulaireFiltres.find('.valeurFamilleAddresse').val();
 		if(filtreFamilleAddresse != null && filtreFamilleAddresse !== '')
 			filtres.push({ name: 'fq', value: 'familleAddresse:' + filtreFamilleAddresse });
@@ -2124,6 +2120,10 @@ function rechercheadminInscriptionMedicaleFiltres($formulaireFiltres) {
 		if(filtreCliniqueAdministrateurNom != null && filtreCliniqueAdministrateurNom !== '')
 			filtres.push({ name: 'fq', value: 'cliniqueAdministrateurNom:' + filtreCliniqueAdministrateurNom });
 
+		var filtreCustomerProfileId = $formulaireFiltres.find('.valeurCustomerProfileId').val();
+		if(filtreCustomerProfileId != null && filtreCustomerProfileId !== '')
+			filtres.push({ name: 'fq', value: 'customerProfileId:' + filtreCustomerProfileId });
+
 		var filtreCreeDAnnee = $formulaireFiltres.find('.valeurCreeDAnnee').val();
 		if(filtreCreeDAnnee != null && filtreCreeDAnnee !== '')
 			filtres.push({ name: 'fq', value: 'creeDAnnee:' + filtreCreeDAnnee });
@@ -2202,7 +2202,7 @@ function suggereInscriptionMedicaleObjetSuggere($formulaireFiltres, $list) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fas fa-edit ');
+			var $i = $('<i>').attr('class', 'fas fa-notes-medical ');
 			var $span = $('<span>').attr('class', '').text(o['inscriptionNomComplet']);
 			var $li = $('<li>');
 			var $a = $('<a>').attr('href', o['pageUrlPk']);
@@ -2220,7 +2220,7 @@ function suggereInscriptionMedicalePatientCle(filtres, $list, pk = null, attribu
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-patient ');
+			var $i = $('<i>').attr('class', 'fa fa-hostpital-user ');
 			var $span = $('<span>').attr('class', '').text(o['patientNomComplet']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);
@@ -2414,19 +2414,6 @@ async function patchpaiementsInscriptionMedicale($formulaireFiltres, $formulaire
 	var removeInscriptionImmunisations = $formulaireValeurs.find('.removeInscriptionImmunisations').prop('checked');
 	if(removeInscriptionImmunisations != null && removeInscriptionImmunisations !== '')
 		vals['removeInscriptionImmunisations'] = removeInscriptionImmunisations;
-
-	var valeurCustomerProfileId = $formulaireValeurs.find('.valeurCustomerProfileId').val();
-	if(valeurCustomerProfileId != null && valeurCustomerProfileId !== '')
-	var removeCustomerProfileId = $formulaireFiltres.find('.removeCustomerProfileId').val() === 'true';
-	var setCustomerProfileId = removeCustomerProfileId ? null : $formulaireValeurs.find('.setCustomerProfileId').val();
-	if(removeCustomerProfileId || setCustomerProfileId != null && setCustomerProfileId !== '')
-		vals['setCustomerProfileId'] = setCustomerProfileId;
-	var addCustomerProfileId = $formulaireValeurs.find('.addCustomerProfileId').val();
-	if(addCustomerProfileId != null && addCustomerProfileId !== '')
-		vals['addCustomerProfileId'] = addCustomerProfileId;
-	var removeCustomerProfileId = $formulaireValeurs.find('.removeCustomerProfileId').val();
-	if(removeCustomerProfileId != null && removeCustomerProfileId !== '')
-		vals['removeCustomerProfileId'] = removeCustomerProfileId;
 
 	var valeurFamilleAddresse = $formulaireValeurs.find('.valeurFamilleAddresse').val();
 	if(valeurFamilleAddresse != null && valeurFamilleAddresse !== '')
@@ -2643,6 +2630,19 @@ async function patchpaiementsInscriptionMedicale($formulaireFiltres, $formulaire
 	var removeCliniqueAddresse = $formulaireValeurs.find('.removeCliniqueAddresse').val();
 	if(removeCliniqueAddresse != null && removeCliniqueAddresse !== '')
 		vals['removeCliniqueAddresse'] = removeCliniqueAddresse;
+
+	var valeurCustomerProfileId = $formulaireValeurs.find('.valeurCustomerProfileId').val();
+	if(valeurCustomerProfileId != null && valeurCustomerProfileId !== '')
+	var removeCustomerProfileId = $formulaireFiltres.find('.removeCustomerProfileId').val() === 'true';
+	var setCustomerProfileId = removeCustomerProfileId ? null : $formulaireValeurs.find('.setCustomerProfileId').val();
+	if(removeCustomerProfileId || setCustomerProfileId != null && setCustomerProfileId !== '')
+		vals['setCustomerProfileId'] = setCustomerProfileId;
+	var addCustomerProfileId = $formulaireValeurs.find('.addCustomerProfileId').val();
+	if(addCustomerProfileId != null && addCustomerProfileId !== '')
+		vals['addCustomerProfileId'] = addCustomerProfileId;
+	var removeCustomerProfileId = $formulaireValeurs.find('.removeCustomerProfileId').val();
+	if(removeCustomerProfileId != null && removeCustomerProfileId !== '')
+		vals['removeCustomerProfileId'] = removeCustomerProfileId;
 
 	var valeurInscriptionSignature1 = $formulaireValeurs.find('.valeurInscriptionSignature1').val();
 	if(valeurInscriptionSignature1 != null && valeurInscriptionSignature1 !== '')
@@ -2967,10 +2967,6 @@ function patchpaiementsInscriptionMedicaleFiltres($formulaireFiltres) {
 		if(filtreInscriptionImmunisations != null && filtreInscriptionImmunisations === true)
 			filtres.push({ name: 'fq', value: 'inscriptionImmunisations:' + filtreInscriptionImmunisations });
 
-		var filtreCustomerProfileId = $formulaireFiltres.find('.valeurCustomerProfileId').val();
-		if(filtreCustomerProfileId != null && filtreCustomerProfileId !== '')
-			filtres.push({ name: 'fq', value: 'customerProfileId:' + filtreCustomerProfileId });
-
 		var filtreFamilleAddresse = $formulaireFiltres.find('.valeurFamilleAddresse').val();
 		if(filtreFamilleAddresse != null && filtreFamilleAddresse !== '')
 			filtres.push({ name: 'fq', value: 'familleAddresse:' + filtreFamilleAddresse });
@@ -3155,6 +3151,10 @@ function patchpaiementsInscriptionMedicaleFiltres($formulaireFiltres) {
 		if(filtreCliniqueAdministrateurNom != null && filtreCliniqueAdministrateurNom !== '')
 			filtres.push({ name: 'fq', value: 'cliniqueAdministrateurNom:' + filtreCliniqueAdministrateurNom });
 
+		var filtreCustomerProfileId = $formulaireFiltres.find('.valeurCustomerProfileId').val();
+		if(filtreCustomerProfileId != null && filtreCustomerProfileId !== '')
+			filtres.push({ name: 'fq', value: 'customerProfileId:' + filtreCustomerProfileId });
+
 		var filtreCreeDAnnee = $formulaireFiltres.find('.valeurCreeDAnnee').val();
 		if(filtreCreeDAnnee != null && filtreCreeDAnnee !== '')
 			filtres.push({ name: 'fq', value: 'creeDAnnee:' + filtreCreeDAnnee });
@@ -3252,7 +3252,7 @@ async function websocketInscriptionMedicale(success) {
 			var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
 			var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
 			var $header = $('<div>').attr('class', 'w3-container fa-blue-gray ').attr('id', 'header-' + id);
-			var $i = $('<i>').attr('class', 'fas fa-edit w3-margin-right ').attr('id', 'icon-' + id);
+			var $i = $('<i>').attr('class', 'fas fa-notes-medical w3-margin-right ').attr('id', 'icon-' + id);
 			var $headerSpan = $('<span>').attr('class', '').text('modifier inscriptions');
 			var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
 			var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
@@ -3384,18 +3384,6 @@ async function websocketInscriptionMedicaleInner(requeteApi) {
 						$(this).text(val);
 				});
 				ajouterLueur($('.inputInscriptionMedicale' + pk + 'InscriptionImmunisations'));
-			}
-			var val = o['customerProfileId'];
-			if(vars.includes('customerProfileId')) {
-				$('.inputInscriptionMedicale' + pk + 'CustomerProfileId').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varInscriptionMedicale' + pk + 'CustomerProfileId').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				ajouterLueur($('.inputInscriptionMedicale' + pk + 'CustomerProfileId'));
 			}
 			var val = o['familleAddresse'];
 			if(vars.includes('familleAddresse')) {
@@ -3605,6 +3593,18 @@ async function websocketInscriptionMedicaleInner(requeteApi) {
 						$(this).text(val);
 				});
 				ajouterLueur($('.inputInscriptionMedicale' + pk + 'CliniqueAddresse'));
+			}
+			var val = o['customerProfileId'];
+			if(vars.includes('customerProfileId')) {
+				$('.inputInscriptionMedicale' + pk + 'CustomerProfileId').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionMedicale' + pk + 'CustomerProfileId').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionMedicale' + pk + 'CustomerProfileId'));
 			}
 			var val = o['inscriptionSignature1'];
 			if(vars.includes('inscriptionSignature1')) {

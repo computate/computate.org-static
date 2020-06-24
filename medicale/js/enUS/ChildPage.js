@@ -832,7 +832,7 @@ function suggestMedicalPatientObjectSuggest($formFilters, $list) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'far fa-patient ');
+			var $i = $('<i>').attr('class', 'far fa-hospital-user ');
 			var $span = $('<span>').attr('class', '').text(o['patientCompleteName']);
 			var $li = $('<li>');
 			var $a = $('<a>').attr('href', o['pageUrlPk']);
@@ -850,7 +850,7 @@ function suggestMedicalPatientEnrollmentKeys(filters, $list, pk = null, attribut
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-edit ');
+			var $i = $('<i>').attr('class', 'fa fa-notes-medical ');
 			var $span = $('<span>').attr('class', '').text(o['enrollmentCompleteName']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);
@@ -1072,7 +1072,7 @@ function suggestMedicalPatientObjectSuggest($formFilters, $list) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'far fa-patient ');
+			var $i = $('<i>').attr('class', 'far fa-hospital-user ');
 			var $span = $('<span>').attr('class', '').text(o['patientCompleteName']);
 			var $li = $('<li>');
 			var $a = $('<a>').attr('href', o['pageUrlPk']);
@@ -1090,7 +1090,7 @@ function suggestMedicalPatientEnrollmentKeys(filters, $list, pk = null, attribut
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'fa fa-edit ');
+			var $i = $('<i>').attr('class', 'fa fa-notes-medical ');
 			var $span = $('<span>').attr('class', '').text(o['enrollmentCompleteName']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);
@@ -1138,7 +1138,7 @@ async function websocketMedicalPatient(success) {
 			var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
 			var $card = $('<div>').attr('class', 'w3-card ').attr('id', 'card-' + id);
 			var $header = $('<div>').attr('class', 'w3-container fa-orange ').attr('id', 'header-' + id);
-			var $i = $('<i>').attr('class', 'far fa-patient w3-margin-right ').attr('id', 'icon-' + id);
+			var $i = $('<i>').attr('class', 'far fa-hospital-user w3-margin-right ').attr('id', 'icon-' + id);
 			var $headerSpan = $('<span>').attr('class', '').text('modify patients');
 			var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
 			var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
