@@ -1166,6 +1166,10 @@ function patchPaiementScolaireFiltres($formulaireFiltres) {
 		if(filtrePaiementCle != null && filtrePaiementCle !== '')
 			filtres.push({ name: 'fq', value: 'paiementCle:' + filtrePaiementCle });
 
+		var filtreEcoleNumero = $formulaireFiltres.find('.valeurEcoleNumero').val();
+		if(filtreEcoleNumero != null && filtreEcoleNumero !== '')
+			filtres.push({ name: 'fq', value: 'ecoleNumero:' + filtreEcoleNumero });
+
 		var filtreUtilisateurCles = $formulaireFiltres.find('.valeurUtilisateurCles').val();
 		if(filtreUtilisateurCles != null && filtreUtilisateurCles !== '')
 			filtres.push({ name: 'fq', value: 'utilisateurCles:' + filtreUtilisateurCles });
@@ -1607,6 +1611,10 @@ function recherchePaiementScolaireFiltres($formulaireFiltres) {
 		var filtrePaiementCle = $formulaireFiltres.find('.valeurPaiementCle').val();
 		if(filtrePaiementCle != null && filtrePaiementCle !== '')
 			filtres.push({ name: 'fq', value: 'paiementCle:' + filtrePaiementCle });
+
+		var filtreEcoleNumero = $formulaireFiltres.find('.valeurEcoleNumero').val();
+		if(filtreEcoleNumero != null && filtreEcoleNumero !== '')
+			filtres.push({ name: 'fq', value: 'ecoleNumero:' + filtreEcoleNumero });
 
 		var filtreUtilisateurCles = $formulaireFiltres.find('.valeurUtilisateurCles').val();
 		if(filtreUtilisateurCles != null && filtreUtilisateurCles !== '')

@@ -53,6 +53,10 @@ async function postSchool($formValues, success, error) {
 	if(valueSchoolAdministratorName != null && valueSchoolAdministratorName !== '')
 		vals['schoolAdministratorName'] = valueSchoolAdministratorName;
 
+	var valueSchoolEmail = $formValues.find('.valueSchoolEmail').val();
+	if(valueSchoolEmail != null && valueSchoolEmail !== '')
+		vals['schoolEmail'] = valueSchoolEmail;
+
 	var valueSchoolEmailFrom = $formValues.find('.valueSchoolEmailFrom').val();
 	if(valueSchoolEmailFrom != null && valueSchoolEmailFrom !== '')
 		vals['schoolEmailFrom'] = valueSchoolEmailFrom;
@@ -68,6 +72,10 @@ async function postSchool($formValues, success, error) {
 	var valueSchoolAddress = $formValues.find('.valueSchoolAddress').val();
 	if(valueSchoolAddress != null && valueSchoolAddress !== '')
 		vals['schoolAddress'] = valueSchoolAddress;
+
+	var valueSchoolNumber = $formValues.find('.valueSchoolNumber').val();
+	if(valueSchoolNumber != null && valueSchoolNumber !== '')
+		vals['schoolNumber'] = valueSchoolNumber;
 
 	var valueYearKeys = [];
 	$formValues.find('input.valueYearKeys:checked').each(function(index) {
@@ -251,6 +259,19 @@ async function patchSchool($formFilters, $formValues, pk, success, error) {
 	if(removeSchoolAdministratorName != null && removeSchoolAdministratorName !== '')
 		vals['removeSchoolAdministratorName'] = removeSchoolAdministratorName;
 
+	var valueSchoolEmail = $formValues.find('.valueSchoolEmail').val();
+	if(valueSchoolEmail != null && valueSchoolEmail !== '')
+	var removeSchoolEmail = $formFilters.find('.removeSchoolEmail').val() === 'true';
+	var setSchoolEmail = removeSchoolEmail ? null : $formValues.find('.setSchoolEmail').val();
+	if(removeSchoolEmail || setSchoolEmail != null && setSchoolEmail !== '')
+		vals['setSchoolEmail'] = setSchoolEmail;
+	var addSchoolEmail = $formValues.find('.addSchoolEmail').val();
+	if(addSchoolEmail != null && addSchoolEmail !== '')
+		vals['addSchoolEmail'] = addSchoolEmail;
+	var removeSchoolEmail = $formValues.find('.removeSchoolEmail').val();
+	if(removeSchoolEmail != null && removeSchoolEmail !== '')
+		vals['removeSchoolEmail'] = removeSchoolEmail;
+
 	var valueSchoolEmailFrom = $formValues.find('.valueSchoolEmailFrom').val();
 	if(valueSchoolEmailFrom != null && valueSchoolEmailFrom !== '')
 	var removeSchoolEmailFrom = $formFilters.find('.removeSchoolEmailFrom').val() === 'true';
@@ -302,6 +323,19 @@ async function patchSchool($formFilters, $formValues, pk, success, error) {
 	var removeSchoolAddress = $formValues.find('.removeSchoolAddress').val();
 	if(removeSchoolAddress != null && removeSchoolAddress !== '')
 		vals['removeSchoolAddress'] = removeSchoolAddress;
+
+	var valueSchoolNumber = $formValues.find('.valueSchoolNumber').val();
+	if(valueSchoolNumber != null && valueSchoolNumber !== '')
+	var removeSchoolNumber = $formFilters.find('.removeSchoolNumber').val() === 'true';
+	var setSchoolNumber = removeSchoolNumber ? null : $formValues.find('.setSchoolNumber').val();
+	if(removeSchoolNumber || setSchoolNumber != null && setSchoolNumber !== '')
+		vals['setSchoolNumber'] = setSchoolNumber;
+	var addSchoolNumber = $formValues.find('.addSchoolNumber').val();
+	if(addSchoolNumber != null && addSchoolNumber !== '')
+		vals['addSchoolNumber'] = addSchoolNumber;
+	var removeSchoolNumber = $formValues.find('.removeSchoolNumber').val();
+	if(removeSchoolNumber != null && removeSchoolNumber !== '')
+		vals['removeSchoolNumber'] = removeSchoolNumber;
 
 	var valueYearKeys = $formValues.find('input.valueYearKeys:checked').val();
 	if(valueYearKeys != null && valueYearKeys !== '')
@@ -427,6 +461,10 @@ function patchSchoolFilters($formFilters) {
 		if(filterSchoolAdministratorName != null && filterSchoolAdministratorName !== '')
 			filters.push({ name: 'fq', value: 'schoolAdministratorName:' + filterSchoolAdministratorName });
 
+		var filterSchoolEmail = $formFilters.find('.valueSchoolEmail').val();
+		if(filterSchoolEmail != null && filterSchoolEmail !== '')
+			filters.push({ name: 'fq', value: 'schoolEmail:' + filterSchoolEmail });
+
 		var filterSchoolEmailFrom = $formFilters.find('.valueSchoolEmailFrom').val();
 		if(filterSchoolEmailFrom != null && filterSchoolEmailFrom !== '')
 			filters.push({ name: 'fq', value: 'schoolEmailFrom:' + filterSchoolEmailFrom });
@@ -442,6 +480,10 @@ function patchSchoolFilters($formFilters) {
 		var filterSchoolAddress = $formFilters.find('.valueSchoolAddress').val();
 		if(filterSchoolAddress != null && filterSchoolAddress !== '')
 			filters.push({ name: 'fq', value: 'schoolAddress:' + filterSchoolAddress });
+
+		var filterSchoolNumber = $formFilters.find('.valueSchoolNumber').val();
+		if(filterSchoolNumber != null && filterSchoolNumber !== '')
+			filters.push({ name: 'fq', value: 'schoolNumber:' + filterSchoolNumber });
 
 		var filterYearKeys = $formFilters.find('.valueYearKeys').val();
 		if(filterYearKeys != null && filterYearKeys !== '')
@@ -645,6 +687,10 @@ function searchSchoolFilters($formFilters) {
 		if(filterSchoolAdministratorName != null && filterSchoolAdministratorName !== '')
 			filters.push({ name: 'fq', value: 'schoolAdministratorName:' + filterSchoolAdministratorName });
 
+		var filterSchoolEmail = $formFilters.find('.valueSchoolEmail').val();
+		if(filterSchoolEmail != null && filterSchoolEmail !== '')
+			filters.push({ name: 'fq', value: 'schoolEmail:' + filterSchoolEmail });
+
 		var filterSchoolEmailFrom = $formFilters.find('.valueSchoolEmailFrom').val();
 		if(filterSchoolEmailFrom != null && filterSchoolEmailFrom !== '')
 			filters.push({ name: 'fq', value: 'schoolEmailFrom:' + filterSchoolEmailFrom });
@@ -660,6 +706,10 @@ function searchSchoolFilters($formFilters) {
 		var filterSchoolAddress = $formFilters.find('.valueSchoolAddress').val();
 		if(filterSchoolAddress != null && filterSchoolAddress !== '')
 			filters.push({ name: 'fq', value: 'schoolAddress:' + filterSchoolAddress });
+
+		var filterSchoolNumber = $formFilters.find('.valueSchoolNumber').val();
+		if(filterSchoolNumber != null && filterSchoolNumber !== '')
+			filters.push({ name: 'fq', value: 'schoolNumber:' + filterSchoolNumber });
 
 		var filterYearKeys = $formFilters.find('.valueYearKeys').val();
 		if(filterYearKeys != null && filterYearKeys !== '')
@@ -914,6 +964,10 @@ async function putcopySchool($formValues, pk, success, error) {
 	if(valueSchoolAdministratorName != null && valueSchoolAdministratorName !== '')
 		vals['schoolAdministratorName'] = valueSchoolAdministratorName;
 
+	var valueSchoolEmail = $formValues.find('.valueSchoolEmail').val();
+	if(valueSchoolEmail != null && valueSchoolEmail !== '')
+		vals['schoolEmail'] = valueSchoolEmail;
+
 	var valueSchoolEmailFrom = $formValues.find('.valueSchoolEmailFrom').val();
 	if(valueSchoolEmailFrom != null && valueSchoolEmailFrom !== '')
 		vals['schoolEmailFrom'] = valueSchoolEmailFrom;
@@ -929,6 +983,10 @@ async function putcopySchool($formValues, pk, success, error) {
 	var valueSchoolAddress = $formValues.find('.valueSchoolAddress').val();
 	if(valueSchoolAddress != null && valueSchoolAddress !== '')
 		vals['schoolAddress'] = valueSchoolAddress;
+
+	var valueSchoolNumber = $formValues.find('.valueSchoolNumber').val();
+	if(valueSchoolNumber != null && valueSchoolNumber !== '')
+		vals['schoolNumber'] = valueSchoolNumber;
 
 	var valueYearKeys = $formValues.find('input.valueYearKeys:checked').val();
 	if(valueYearKeys != null && valueYearKeys !== '')
@@ -1109,6 +1167,18 @@ async function websocketSchoolInner(apiRequest) {
 				});
 				addGlow($('.inputSchool' + pk + 'SchoolAdministratorName'));
 			}
+			var val = o['schoolEmail'];
+			if(vars.includes('schoolEmail')) {
+				$('.inputSchool' + pk + 'SchoolEmail').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchool' + pk + 'SchoolEmail').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchool' + pk + 'SchoolEmail'));
+			}
 			var val = o['schoolEmailFrom'];
 			if(vars.includes('schoolEmailFrom')) {
 				$('.inputSchool' + pk + 'SchoolEmailFrom').each(function() {
@@ -1156,6 +1226,18 @@ async function websocketSchoolInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputSchool' + pk + 'SchoolAddress'));
+			}
+			var val = o['schoolNumber'];
+			if(vars.includes('schoolNumber')) {
+				$('.inputSchool' + pk + 'SchoolNumber').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchool' + pk + 'SchoolNumber').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchool' + pk + 'SchoolNumber'));
 			}
 			var val = o['yearKeys'];
 			if(vars.includes('yearKeys')) {

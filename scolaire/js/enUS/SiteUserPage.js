@@ -81,9 +81,13 @@ function searchSiteUserFilters($formFilters) {
 		if(filterSeeDeleted != null && filterSeeDeleted === true)
 			filters.push({ name: 'fq', value: 'seeDeleted:' + filterSeeDeleted });
 
-		var filterCustomerProfileId = $formFilters.find('.valueCustomerProfileId').val();
-		if(filterCustomerProfileId != null && filterCustomerProfileId !== '')
-			filters.push({ name: 'fq', value: 'customerProfileId:' + filterCustomerProfileId });
+		var filterCustomerProfileId1 = $formFilters.find('.valueCustomerProfileId1').val();
+		if(filterCustomerProfileId1 != null && filterCustomerProfileId1 !== '')
+			filters.push({ name: 'fq', value: 'customerProfileId1:' + filterCustomerProfileId1 });
+
+		var filterCustomerProfileId2 = $formFilters.find('.valueCustomerProfileId2').val();
+		if(filterCustomerProfileId2 != null && filterCustomerProfileId2 !== '')
+			filters.push({ name: 'fq', value: 'customerProfileId2:' + filterCustomerProfileId2 });
 
 		var filterEnrollmentKeys = $formFilters.find('.valueEnrollmentKeys').val();
 		if(filterEnrollmentKeys != null && filterEnrollmentKeys !== '')
@@ -429,18 +433,31 @@ async function patchSiteUser($formFilters, $formValues, pk, success, error) {
 	if(removeSeeDeleted != null && removeSeeDeleted !== '')
 		vals['removeSeeDeleted'] = removeSeeDeleted;
 
-	var valueCustomerProfileId = $formValues.find('.valueCustomerProfileId').val();
-	if(valueCustomerProfileId != null && valueCustomerProfileId !== '')
-	var removeCustomerProfileId = $formFilters.find('.removeCustomerProfileId').val() === 'true';
-	var setCustomerProfileId = removeCustomerProfileId ? null : $formValues.find('.setCustomerProfileId').val();
-	if(removeCustomerProfileId || setCustomerProfileId != null && setCustomerProfileId !== '')
-		vals['setCustomerProfileId'] = setCustomerProfileId;
-	var addCustomerProfileId = $formValues.find('.addCustomerProfileId').val();
-	if(addCustomerProfileId != null && addCustomerProfileId !== '')
-		vals['addCustomerProfileId'] = addCustomerProfileId;
-	var removeCustomerProfileId = $formValues.find('.removeCustomerProfileId').val();
-	if(removeCustomerProfileId != null && removeCustomerProfileId !== '')
-		vals['removeCustomerProfileId'] = removeCustomerProfileId;
+	var valueCustomerProfileId1 = $formValues.find('.valueCustomerProfileId1').val();
+	if(valueCustomerProfileId1 != null && valueCustomerProfileId1 !== '')
+	var removeCustomerProfileId1 = $formFilters.find('.removeCustomerProfileId1').val() === 'true';
+	var setCustomerProfileId1 = removeCustomerProfileId1 ? null : $formValues.find('.setCustomerProfileId1').val();
+	if(removeCustomerProfileId1 || setCustomerProfileId1 != null && setCustomerProfileId1 !== '')
+		vals['setCustomerProfileId1'] = setCustomerProfileId1;
+	var addCustomerProfileId1 = $formValues.find('.addCustomerProfileId1').val();
+	if(addCustomerProfileId1 != null && addCustomerProfileId1 !== '')
+		vals['addCustomerProfileId1'] = addCustomerProfileId1;
+	var removeCustomerProfileId1 = $formValues.find('.removeCustomerProfileId1').val();
+	if(removeCustomerProfileId1 != null && removeCustomerProfileId1 !== '')
+		vals['removeCustomerProfileId1'] = removeCustomerProfileId1;
+
+	var valueCustomerProfileId2 = $formValues.find('.valueCustomerProfileId2').val();
+	if(valueCustomerProfileId2 != null && valueCustomerProfileId2 !== '')
+	var removeCustomerProfileId2 = $formFilters.find('.removeCustomerProfileId2').val() === 'true';
+	var setCustomerProfileId2 = removeCustomerProfileId2 ? null : $formValues.find('.setCustomerProfileId2').val();
+	if(removeCustomerProfileId2 || setCustomerProfileId2 != null && setCustomerProfileId2 !== '')
+		vals['setCustomerProfileId2'] = setCustomerProfileId2;
+	var addCustomerProfileId2 = $formValues.find('.addCustomerProfileId2').val();
+	if(addCustomerProfileId2 != null && addCustomerProfileId2 !== '')
+		vals['addCustomerProfileId2'] = addCustomerProfileId2;
+	var removeCustomerProfileId2 = $formValues.find('.removeCustomerProfileId2').val();
+	if(removeCustomerProfileId2 != null && removeCustomerProfileId2 !== '')
+		vals['removeCustomerProfileId2'] = removeCustomerProfileId2;
 
 	var valueEnrollmentKeys = $formValues.find('input.valueEnrollmentKeys:checked').val();
 	if(valueEnrollmentKeys != null && valueEnrollmentKeys !== '')
@@ -614,9 +631,13 @@ function patchSiteUserFilters($formFilters) {
 		if(filterSeeDeleted != null && filterSeeDeleted === true)
 			filters.push({ name: 'fq', value: 'seeDeleted:' + filterSeeDeleted });
 
-		var filterCustomerProfileId = $formFilters.find('.valueCustomerProfileId').val();
-		if(filterCustomerProfileId != null && filterCustomerProfileId !== '')
-			filters.push({ name: 'fq', value: 'customerProfileId:' + filterCustomerProfileId });
+		var filterCustomerProfileId1 = $formFilters.find('.valueCustomerProfileId1').val();
+		if(filterCustomerProfileId1 != null && filterCustomerProfileId1 !== '')
+			filters.push({ name: 'fq', value: 'customerProfileId1:' + filterCustomerProfileId1 });
+
+		var filterCustomerProfileId2 = $formFilters.find('.valueCustomerProfileId2').val();
+		if(filterCustomerProfileId2 != null && filterCustomerProfileId2 !== '')
+			filters.push({ name: 'fq', value: 'customerProfileId2:' + filterCustomerProfileId2 });
 
 		var filterEnrollmentKeys = $formFilters.find('.valueEnrollmentKeys').val();
 		if(filterEnrollmentKeys != null && filterEnrollmentKeys !== '')
@@ -789,9 +810,13 @@ async function postSiteUser($formValues, success, error) {
 	if(valueSeeDeleted != null && valueSeeDeleted !== '')
 		vals['seeDeleted'] = valueSeeDeleted;
 
-	var valueCustomerProfileId = $formValues.find('.valueCustomerProfileId').val();
-	if(valueCustomerProfileId != null && valueCustomerProfileId !== '')
-		vals['customerProfileId'] = valueCustomerProfileId;
+	var valueCustomerProfileId1 = $formValues.find('.valueCustomerProfileId1').val();
+	if(valueCustomerProfileId1 != null && valueCustomerProfileId1 !== '')
+		vals['customerProfileId1'] = valueCustomerProfileId1;
+
+	var valueCustomerProfileId2 = $formValues.find('.valueCustomerProfileId2').val();
+	if(valueCustomerProfileId2 != null && valueCustomerProfileId2 !== '')
+		vals['customerProfileId2'] = valueCustomerProfileId2;
 
 	var valueEnrollmentKeys = [];
 	$formValues.find('input.valueEnrollmentKeys:checked').each(function(index) {
@@ -1005,17 +1030,29 @@ async function websocketSiteUserInner(apiRequest) {
 				});
 				addGlow($('.inputSiteUser' + pk + 'SeeDeleted'));
 			}
-			var val = o['customerProfileId'];
-			if(vars.includes('customerProfileId')) {
-				$('.inputSiteUser' + pk + 'CustomerProfileId').each(function() {
+			var val = o['customerProfileId1'];
+			if(vars.includes('customerProfileId1')) {
+				$('.inputSiteUser' + pk + 'CustomerProfileId1').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varSiteUser' + pk + 'CustomerProfileId').each(function() {
+				$('.varSiteUser' + pk + 'CustomerProfileId1').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputSiteUser' + pk + 'CustomerProfileId'));
+				addGlow($('.inputSiteUser' + pk + 'CustomerProfileId1'));
+			}
+			var val = o['customerProfileId2'];
+			if(vars.includes('customerProfileId2')) {
+				$('.inputSiteUser' + pk + 'CustomerProfileId2').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSiteUser' + pk + 'CustomerProfileId2').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSiteUser' + pk + 'CustomerProfileId2'));
 			}
 			var val = o['enrollmentKeys'];
 			if(vars.includes('enrollmentKeys')) {

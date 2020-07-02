@@ -49,9 +49,9 @@ async function postSchoolAge($formValues, success, error) {
 	if(valueAgeEnd != null && valueAgeEnd !== '')
 		vals['ageEnd'] = valueAgeEnd;
 
-		vals['sessionKey'] = [valueSessionKey];
-	if(valueSessionKey != null && valueSessionKey !== '')
-		vals['sessionKey'] = valueSessionKey;
+		vals['yearKey'] = [valueYearKey];
+	if(valueYearKey != null && valueYearKey !== '')
+		vals['yearKey'] = valueYearKey;
 
 	var valueBlockKeys = [];
 	$formValues.find('input.valueBlockKeys:checked').each(function(index) {
@@ -184,9 +184,9 @@ async function putcopySchoolAge($formValues, pk, success, error) {
 	if(valueAgeEnd != null && valueAgeEnd !== '')
 		vals['ageEnd'] = valueAgeEnd;
 
-	var valueSessionKey = $formValues.find('input.valueSessionKey:checked').val();
-	if(valueSessionKey != null && valueSessionKey !== '')
-		vals['sessionKey'] = valueSessionKey;
+	var valueYearKey = $formValues.find('input.valueYearKey:checked').val();
+	if(valueYearKey != null && valueYearKey !== '')
+		vals['yearKey'] = valueYearKey;
 
 	var valueBlockKeys = $formValues.find('input.valueBlockKeys:checked').val();
 	if(valueBlockKeys != null && valueBlockKeys !== '')
@@ -350,9 +350,9 @@ async function patchSchoolAge($formFilters, $formValues, pk, success, error) {
 	if(removeAgeEnd != null && removeAgeEnd !== '')
 		vals['removeAgeEnd'] = removeAgeEnd;
 
-	var valueSessionKey = $formValues.find('input.valueSessionKey:checked').val();
-	if(valueSessionKey != null && valueSessionKey !== '')
-		vals['setSessionKey'] = valueSessionKey;
+	var valueYearKey = $formValues.find('input.valueYearKey:checked').val();
+	if(valueYearKey != null && valueYearKey !== '')
+		vals['setYearKey'] = valueYearKey;
 
 	var valueBlockKeys = $formValues.find('input.valueBlockKeys:checked').val();
 	if(valueBlockKeys != null && valueBlockKeys !== '')
@@ -487,9 +487,9 @@ function patchSchoolAgeFilters($formFilters) {
 		if(filterAgeEnd != null && filterAgeEnd !== '')
 			filters.push({ name: 'fq', value: 'ageEnd:' + filterAgeEnd });
 
-		var filterSessionKey = $formFilters.find('.valueSessionKey').val();
-		if(filterSessionKey != null && filterSessionKey !== '')
-			filters.push({ name: 'fq', value: 'sessionKey:' + filterSessionKey });
+		var filterYearKey = $formFilters.find('.valueYearKey').val();
+		if(filterYearKey != null && filterYearKey !== '')
+			filters.push({ name: 'fq', value: 'yearKey:' + filterYearKey });
 
 		var filterBlockKeys = $formFilters.find('.valueBlockKeys').val();
 		if(filterBlockKeys != null && filterBlockKeys !== '')
@@ -583,13 +583,13 @@ function patchSchoolAgeFilters($formFilters) {
 		if(filterSessionSort != null && filterSessionSort !== '')
 			filters.push({ name: 'fq', value: 'sessionSort:' + filterSessionSort });
 
+		var filterSessionKey = $formFilters.find('.valueSessionKey').val();
+		if(filterSessionKey != null && filterSessionKey !== '')
+			filters.push({ name: 'fq', value: 'sessionKey:' + filterSessionKey });
+
 		var filterSchoolKey = $formFilters.find('.valueSchoolKey').val();
 		if(filterSchoolKey != null && filterSchoolKey !== '')
 			filters.push({ name: 'fq', value: 'schoolKey:' + filterSchoolKey });
-
-		var filterYearKey = $formFilters.find('.valueYearKey').val();
-		if(filterYearKey != null && filterYearKey !== '')
-			filters.push({ name: 'fq', value: 'yearKey:' + filterYearKey });
 
 		var filterSeasonKey = $formFilters.find('.valueSeasonKey').val();
 		if(filterSeasonKey != null && filterSeasonKey !== '')
@@ -614,6 +614,10 @@ function patchSchoolAgeFilters($formFilters) {
 		var filterSchoolPhoneNumber = $formFilters.find('.valueSchoolPhoneNumber').val();
 		if(filterSchoolPhoneNumber != null && filterSchoolPhoneNumber !== '')
 			filters.push({ name: 'fq', value: 'schoolPhoneNumber:' + filterSchoolPhoneNumber });
+
+		var filterSchoolNumber = $formFilters.find('.valueSchoolNumber').val();
+		if(filterSchoolNumber != null && filterSchoolNumber !== '')
+			filters.push({ name: 'fq', value: 'schoolNumber:' + filterSchoolNumber });
 
 		var filterSchoolAdministratorName = $formFilters.find('.valueSchoolAdministratorName').val();
 		if(filterSchoolAdministratorName != null && filterSchoolAdministratorName !== '')
@@ -777,9 +781,9 @@ function searchSchoolAgeFilters($formFilters) {
 		if(filterAgeEnd != null && filterAgeEnd !== '')
 			filters.push({ name: 'fq', value: 'ageEnd:' + filterAgeEnd });
 
-		var filterSessionKey = $formFilters.find('.valueSessionKey').val();
-		if(filterSessionKey != null && filterSessionKey !== '')
-			filters.push({ name: 'fq', value: 'sessionKey:' + filterSessionKey });
+		var filterYearKey = $formFilters.find('.valueYearKey').val();
+		if(filterYearKey != null && filterYearKey !== '')
+			filters.push({ name: 'fq', value: 'yearKey:' + filterYearKey });
 
 		var filterBlockKeys = $formFilters.find('.valueBlockKeys').val();
 		if(filterBlockKeys != null && filterBlockKeys !== '')
@@ -873,13 +877,13 @@ function searchSchoolAgeFilters($formFilters) {
 		if(filterSessionSort != null && filterSessionSort !== '')
 			filters.push({ name: 'fq', value: 'sessionSort:' + filterSessionSort });
 
+		var filterSessionKey = $formFilters.find('.valueSessionKey').val();
+		if(filterSessionKey != null && filterSessionKey !== '')
+			filters.push({ name: 'fq', value: 'sessionKey:' + filterSessionKey });
+
 		var filterSchoolKey = $formFilters.find('.valueSchoolKey').val();
 		if(filterSchoolKey != null && filterSchoolKey !== '')
 			filters.push({ name: 'fq', value: 'schoolKey:' + filterSchoolKey });
-
-		var filterYearKey = $formFilters.find('.valueYearKey').val();
-		if(filterYearKey != null && filterYearKey !== '')
-			filters.push({ name: 'fq', value: 'yearKey:' + filterYearKey });
 
 		var filterSeasonKey = $formFilters.find('.valueSeasonKey').val();
 		if(filterSeasonKey != null && filterSeasonKey !== '')
@@ -904,6 +908,10 @@ function searchSchoolAgeFilters($formFilters) {
 		var filterSchoolPhoneNumber = $formFilters.find('.valueSchoolPhoneNumber').val();
 		if(filterSchoolPhoneNumber != null && filterSchoolPhoneNumber !== '')
 			filters.push({ name: 'fq', value: 'schoolPhoneNumber:' + filterSchoolPhoneNumber });
+
+		var filterSchoolNumber = $formFilters.find('.valueSchoolNumber').val();
+		if(filterSchoolNumber != null && filterSchoolNumber !== '')
+			filters.push({ name: 'fq', value: 'schoolNumber:' + filterSchoolNumber });
 
 		var filterSchoolAdministratorName = $formFilters.find('.valueSchoolAdministratorName').val();
 		if(filterSchoolAdministratorName != null && filterSchoolAdministratorName !== '')
@@ -1077,6 +1085,42 @@ function suggestSchoolAgeSessionKey(filters, $list, pk = null, attribute=true) {
 	searchSchoolSessionVals(filters, success, error);
 }
 
+function suggestSchoolAgeYearKey(filters, $list, pk = null, attribute=true) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'fa fa-calendar-check ');
+			var $span = $('<span>').attr('class', '').text(o['yearCompleteName']);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
+			$a.append($i);
+			$a.append($span);
+			var val = o['ageKeys'];
+			var checked = pk == null ? false : Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
+			var $input = $('<input>');
+			$input.attr('id', 'GET_yearKey_' + pk + '_ageKeys_' + o['pk']);
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valueYearKey w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_yearKey_" + pk + "_ageKeys_" + o['pk'] + "'); patchSchoolAgeVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'set' : 'remove') + 'YearKey']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'removeGlow($(this)); ');
+			}
+			$input.attr('type', 'checkbox');
+			if(checked)
+				$input.attr('checked', 'checked');
+			var $li = $('<li>');
+			if(attribute)
+				$li.append($input);
+			$li.append($a);
+			$list.append($li);
+		});
+		var focusId = $('#SchoolAgeForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	searchSchoolYearVals(filters, success, error);
+}
+
 async function websocketSchoolAge(success) {
 	window.eventBus.onopen = function () {
 
@@ -1127,6 +1171,13 @@ async function websocketSchoolAge(success) {
 			$('#Page_sessionKey_add').text('add a session');
 			$('#Page_sessionKey_add').removeClass('w3-disabled');
 			$('#Page_sessionKey_add').attr('disabled', false);
+		});
+
+		window.eventBus.registerHandler('websocketSchoolYear', function (error, message) {
+			$('#Page_yearKey').trigger('oninput');
+			$('#Page_yearKey_add').text('add a year');
+			$('#Page_yearKey_add').removeClass('w3-disabled');
+			$('#Page_yearKey_add').attr('disabled', false);
 		});
 	}
 }
@@ -1212,17 +1263,17 @@ async function websocketSchoolAgeInner(apiRequest) {
 				});
 				addGlow($('.inputSchoolAge' + pk + 'AgeEnd'));
 			}
-			var val = o['sessionKey'];
-			if(vars.includes('sessionKey')) {
-				$('.inputSchoolAge' + pk + 'SessionKey').each(function() {
+			var val = o['yearKey'];
+			if(vars.includes('yearKey')) {
+				$('.inputSchoolAge' + pk + 'YearKey').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varSchoolAge' + pk + 'SessionKey').each(function() {
+				$('.varSchoolAge' + pk + 'YearKey').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputSchoolAge' + pk + 'SessionKey'));
+				addGlow($('.inputSchoolAge' + pk + 'YearKey'));
 			}
 			var val = o['blockKeys'];
 			if(vars.includes('blockKeys')) {
@@ -1283,6 +1334,18 @@ async function websocketSchoolAgeInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputSchoolAge' + pk + 'UserKey'));
+			}
+			var val = o['sessionKey'];
+			if(vars.includes('sessionKey')) {
+				$('.inputSchoolAge' + pk + 'SessionKey').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolAge' + pk + 'SessionKey').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolAge' + pk + 'SessionKey'));
 			}
 			var val = o['schoolAddress'];
 			if(vars.includes('schoolAddress')) {

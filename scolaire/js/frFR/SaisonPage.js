@@ -642,6 +642,10 @@ function patchSaisonScolaireFiltres($formulaireFiltres) {
 		if(filtreEcoleNumeroTelephone != null && filtreEcoleNumeroTelephone !== '')
 			filtres.push({ name: 'fq', value: 'ecoleNumeroTelephone:' + filtreEcoleNumeroTelephone });
 
+		var filtreEcoleNumero = $formulaireFiltres.find('.valeurEcoleNumero').val();
+		if(filtreEcoleNumero != null && filtreEcoleNumero !== '')
+			filtres.push({ name: 'fq', value: 'ecoleNumero:' + filtreEcoleNumero });
+
 		var filtreEcoleAdministrateurNom = $formulaireFiltres.find('.valeurEcoleAdministrateurNom').val();
 		if(filtreEcoleAdministrateurNom != null && filtreEcoleAdministrateurNom !== '')
 			filtres.push({ name: 'fq', value: 'ecoleAdministrateurNom:' + filtreEcoleAdministrateurNom });
@@ -901,6 +905,10 @@ function rechercheSaisonScolaireFiltres($formulaireFiltres) {
 		var filtreEcoleNumeroTelephone = $formulaireFiltres.find('.valeurEcoleNumeroTelephone').val();
 		if(filtreEcoleNumeroTelephone != null && filtreEcoleNumeroTelephone !== '')
 			filtres.push({ name: 'fq', value: 'ecoleNumeroTelephone:' + filtreEcoleNumeroTelephone });
+
+		var filtreEcoleNumero = $formulaireFiltres.find('.valeurEcoleNumero').val();
+		if(filtreEcoleNumero != null && filtreEcoleNumero !== '')
+			filtres.push({ name: 'fq', value: 'ecoleNumero:' + filtreEcoleNumero });
 
 		var filtreEcoleAdministrateurNom = $formulaireFiltres.find('.valeurEcoleAdministrateurNom').val();
 		if(filtreEcoleAdministrateurNom != null && filtreEcoleAdministrateurNom !== '')

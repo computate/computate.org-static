@@ -642,6 +642,10 @@ function patchSchoolSeasonFilters($formFilters) {
 		if(filterSchoolPhoneNumber != null && filterSchoolPhoneNumber !== '')
 			filters.push({ name: 'fq', value: 'schoolPhoneNumber:' + filterSchoolPhoneNumber });
 
+		var filterSchoolNumber = $formFilters.find('.valueSchoolNumber').val();
+		if(filterSchoolNumber != null && filterSchoolNumber !== '')
+			filters.push({ name: 'fq', value: 'schoolNumber:' + filterSchoolNumber });
+
 		var filterSchoolAdministratorName = $formFilters.find('.valueSchoolAdministratorName').val();
 		if(filterSchoolAdministratorName != null && filterSchoolAdministratorName !== '')
 			filters.push({ name: 'fq', value: 'schoolAdministratorName:' + filterSchoolAdministratorName });
@@ -901,6 +905,10 @@ function searchSchoolSeasonFilters($formFilters) {
 		var filterSchoolPhoneNumber = $formFilters.find('.valueSchoolPhoneNumber').val();
 		if(filterSchoolPhoneNumber != null && filterSchoolPhoneNumber !== '')
 			filters.push({ name: 'fq', value: 'schoolPhoneNumber:' + filterSchoolPhoneNumber });
+
+		var filterSchoolNumber = $formFilters.find('.valueSchoolNumber').val();
+		if(filterSchoolNumber != null && filterSchoolNumber !== '')
+			filters.push({ name: 'fq', value: 'schoolNumber:' + filterSchoolNumber });
 
 		var filterSchoolAdministratorName = $formFilters.find('.valueSchoolAdministratorName').val();
 		if(filterSchoolAdministratorName != null && filterSchoolAdministratorName !== '')

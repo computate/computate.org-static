@@ -81,9 +81,13 @@ function rechercheUtilisateurSiteFiltres($formulaireFiltres) {
 		if(filtreVoirSupprime != null && filtreVoirSupprime === true)
 			filtres.push({ name: 'fq', value: 'voirSupprime:' + filtreVoirSupprime });
 
-		var filtreCustomerProfileId = $formulaireFiltres.find('.valeurCustomerProfileId').val();
-		if(filtreCustomerProfileId != null && filtreCustomerProfileId !== '')
-			filtres.push({ name: 'fq', value: 'customerProfileId:' + filtreCustomerProfileId });
+		var filtreCustomerProfileId1 = $formulaireFiltres.find('.valeurCustomerProfileId1').val();
+		if(filtreCustomerProfileId1 != null && filtreCustomerProfileId1 !== '')
+			filtres.push({ name: 'fq', value: 'customerProfileId1:' + filtreCustomerProfileId1 });
+
+		var filtreCustomerProfileId2 = $formulaireFiltres.find('.valeurCustomerProfileId2').val();
+		if(filtreCustomerProfileId2 != null && filtreCustomerProfileId2 !== '')
+			filtres.push({ name: 'fq', value: 'customerProfileId2:' + filtreCustomerProfileId2 });
 
 		var filtreInscriptionCles = $formulaireFiltres.find('.valeurInscriptionCles').val();
 		if(filtreInscriptionCles != null && filtreInscriptionCles !== '')
@@ -429,18 +433,31 @@ async function patchUtilisateurSite($formulaireFiltres, $formulaireValeurs, pk, 
 	if(removeVoirSupprime != null && removeVoirSupprime !== '')
 		vals['removeVoirSupprime'] = removeVoirSupprime;
 
-	var valeurCustomerProfileId = $formulaireValeurs.find('.valeurCustomerProfileId').val();
-	if(valeurCustomerProfileId != null && valeurCustomerProfileId !== '')
-	var removeCustomerProfileId = $formulaireFiltres.find('.removeCustomerProfileId').val() === 'true';
-	var setCustomerProfileId = removeCustomerProfileId ? null : $formulaireValeurs.find('.setCustomerProfileId').val();
-	if(removeCustomerProfileId || setCustomerProfileId != null && setCustomerProfileId !== '')
-		vals['setCustomerProfileId'] = setCustomerProfileId;
-	var addCustomerProfileId = $formulaireValeurs.find('.addCustomerProfileId').val();
-	if(addCustomerProfileId != null && addCustomerProfileId !== '')
-		vals['addCustomerProfileId'] = addCustomerProfileId;
-	var removeCustomerProfileId = $formulaireValeurs.find('.removeCustomerProfileId').val();
-	if(removeCustomerProfileId != null && removeCustomerProfileId !== '')
-		vals['removeCustomerProfileId'] = removeCustomerProfileId;
+	var valeurCustomerProfileId1 = $formulaireValeurs.find('.valeurCustomerProfileId1').val();
+	if(valeurCustomerProfileId1 != null && valeurCustomerProfileId1 !== '')
+	var removeCustomerProfileId1 = $formulaireFiltres.find('.removeCustomerProfileId1').val() === 'true';
+	var setCustomerProfileId1 = removeCustomerProfileId1 ? null : $formulaireValeurs.find('.setCustomerProfileId1').val();
+	if(removeCustomerProfileId1 || setCustomerProfileId1 != null && setCustomerProfileId1 !== '')
+		vals['setCustomerProfileId1'] = setCustomerProfileId1;
+	var addCustomerProfileId1 = $formulaireValeurs.find('.addCustomerProfileId1').val();
+	if(addCustomerProfileId1 != null && addCustomerProfileId1 !== '')
+		vals['addCustomerProfileId1'] = addCustomerProfileId1;
+	var removeCustomerProfileId1 = $formulaireValeurs.find('.removeCustomerProfileId1').val();
+	if(removeCustomerProfileId1 != null && removeCustomerProfileId1 !== '')
+		vals['removeCustomerProfileId1'] = removeCustomerProfileId1;
+
+	var valeurCustomerProfileId2 = $formulaireValeurs.find('.valeurCustomerProfileId2').val();
+	if(valeurCustomerProfileId2 != null && valeurCustomerProfileId2 !== '')
+	var removeCustomerProfileId2 = $formulaireFiltres.find('.removeCustomerProfileId2').val() === 'true';
+	var setCustomerProfileId2 = removeCustomerProfileId2 ? null : $formulaireValeurs.find('.setCustomerProfileId2').val();
+	if(removeCustomerProfileId2 || setCustomerProfileId2 != null && setCustomerProfileId2 !== '')
+		vals['setCustomerProfileId2'] = setCustomerProfileId2;
+	var addCustomerProfileId2 = $formulaireValeurs.find('.addCustomerProfileId2').val();
+	if(addCustomerProfileId2 != null && addCustomerProfileId2 !== '')
+		vals['addCustomerProfileId2'] = addCustomerProfileId2;
+	var removeCustomerProfileId2 = $formulaireValeurs.find('.removeCustomerProfileId2').val();
+	if(removeCustomerProfileId2 != null && removeCustomerProfileId2 !== '')
+		vals['removeCustomerProfileId2'] = removeCustomerProfileId2;
 
 	var valeurInscriptionCles = $formulaireValeurs.find('input.valeurInscriptionCles:checked').val();
 	if(valeurInscriptionCles != null && valeurInscriptionCles !== '')
@@ -614,9 +631,13 @@ function patchUtilisateurSiteFiltres($formulaireFiltres) {
 		if(filtreVoirSupprime != null && filtreVoirSupprime === true)
 			filtres.push({ name: 'fq', value: 'voirSupprime:' + filtreVoirSupprime });
 
-		var filtreCustomerProfileId = $formulaireFiltres.find('.valeurCustomerProfileId').val();
-		if(filtreCustomerProfileId != null && filtreCustomerProfileId !== '')
-			filtres.push({ name: 'fq', value: 'customerProfileId:' + filtreCustomerProfileId });
+		var filtreCustomerProfileId1 = $formulaireFiltres.find('.valeurCustomerProfileId1').val();
+		if(filtreCustomerProfileId1 != null && filtreCustomerProfileId1 !== '')
+			filtres.push({ name: 'fq', value: 'customerProfileId1:' + filtreCustomerProfileId1 });
+
+		var filtreCustomerProfileId2 = $formulaireFiltres.find('.valeurCustomerProfileId2').val();
+		if(filtreCustomerProfileId2 != null && filtreCustomerProfileId2 !== '')
+			filtres.push({ name: 'fq', value: 'customerProfileId2:' + filtreCustomerProfileId2 });
 
 		var filtreInscriptionCles = $formulaireFiltres.find('.valeurInscriptionCles').val();
 		if(filtreInscriptionCles != null && filtreInscriptionCles !== '')
@@ -789,9 +810,13 @@ async function postUtilisateurSite($formulaireValeurs, success, error) {
 	if(valeurVoirSupprime != null && valeurVoirSupprime !== '')
 		vals['voirSupprime'] = valeurVoirSupprime;
 
-	var valeurCustomerProfileId = $formulaireValeurs.find('.valeurCustomerProfileId').val();
-	if(valeurCustomerProfileId != null && valeurCustomerProfileId !== '')
-		vals['customerProfileId'] = valeurCustomerProfileId;
+	var valeurCustomerProfileId1 = $formulaireValeurs.find('.valeurCustomerProfileId1').val();
+	if(valeurCustomerProfileId1 != null && valeurCustomerProfileId1 !== '')
+		vals['customerProfileId1'] = valeurCustomerProfileId1;
+
+	var valeurCustomerProfileId2 = $formulaireValeurs.find('.valeurCustomerProfileId2').val();
+	if(valeurCustomerProfileId2 != null && valeurCustomerProfileId2 !== '')
+		vals['customerProfileId2'] = valeurCustomerProfileId2;
 
 	var valeurInscriptionCles = [];
 	$formulaireValeurs.find('input.valeurInscriptionCles:checked').each(function(index) {
@@ -1005,17 +1030,29 @@ async function websocketUtilisateurSiteInner(requeteApi) {
 				});
 				ajouterLueur($('.inputUtilisateurSite' + pk + 'VoirSupprime'));
 			}
-			var val = o['customerProfileId'];
-			if(vars.includes('customerProfileId')) {
-				$('.inputUtilisateurSite' + pk + 'CustomerProfileId').each(function() {
+			var val = o['customerProfileId1'];
+			if(vars.includes('customerProfileId1')) {
+				$('.inputUtilisateurSite' + pk + 'CustomerProfileId1').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varUtilisateurSite' + pk + 'CustomerProfileId').each(function() {
+				$('.varUtilisateurSite' + pk + 'CustomerProfileId1').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				ajouterLueur($('.inputUtilisateurSite' + pk + 'CustomerProfileId'));
+				ajouterLueur($('.inputUtilisateurSite' + pk + 'CustomerProfileId1'));
+			}
+			var val = o['customerProfileId2'];
+			if(vars.includes('customerProfileId2')) {
+				$('.inputUtilisateurSite' + pk + 'CustomerProfileId2').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varUtilisateurSite' + pk + 'CustomerProfileId2').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputUtilisateurSite' + pk + 'CustomerProfileId2'));
 			}
 			var val = o['inscriptionCles'];
 			if(vars.includes('inscriptionCles')) {

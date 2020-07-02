@@ -1166,6 +1166,10 @@ function patchSchoolPaymentFilters($formFilters) {
 		if(filterPaymentKey != null && filterPaymentKey !== '')
 			filters.push({ name: 'fq', value: 'paymentKey:' + filterPaymentKey });
 
+		var filterSchoolNumber = $formFilters.find('.valueSchoolNumber').val();
+		if(filterSchoolNumber != null && filterSchoolNumber !== '')
+			filters.push({ name: 'fq', value: 'schoolNumber:' + filterSchoolNumber });
+
 		var filterUserKeys = $formFilters.find('.valueUserKeys').val();
 		if(filterUserKeys != null && filterUserKeys !== '')
 			filters.push({ name: 'fq', value: 'userKeys:' + filterUserKeys });
@@ -1607,6 +1611,10 @@ function searchSchoolPaymentFilters($formFilters) {
 		var filterPaymentKey = $formFilters.find('.valuePaymentKey').val();
 		if(filterPaymentKey != null && filterPaymentKey !== '')
 			filters.push({ name: 'fq', value: 'paymentKey:' + filterPaymentKey });
+
+		var filterSchoolNumber = $formFilters.find('.valueSchoolNumber').val();
+		if(filterSchoolNumber != null && filterSchoolNumber !== '')
+			filters.push({ name: 'fq', value: 'schoolNumber:' + filterSchoolNumber });
 
 		var filterUserKeys = $formFilters.find('.valueUserKeys').val();
 		if(filterUserKeys != null && filterUserKeys !== '')

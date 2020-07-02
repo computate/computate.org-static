@@ -1774,6 +1774,10 @@ function patchInscriptionScolaireFiltres($formulaireFiltres) {
 		if(filtreEcoleNumeroTelephone != null && filtreEcoleNumeroTelephone !== '')
 			filtres.push({ name: 'fq', value: 'ecoleNumeroTelephone:' + filtreEcoleNumeroTelephone });
 
+		var filtreEcoleNumero = $formulaireFiltres.find('.valeurEcoleNumero').val();
+		if(filtreEcoleNumero != null && filtreEcoleNumero !== '')
+			filtres.push({ name: 'fq', value: 'ecoleNumero:' + filtreEcoleNumero });
+
 		var filtreEcoleAdministrateurNom = $formulaireFiltres.find('.valeurEcoleAdministrateurNom').val();
 		if(filtreEcoleAdministrateurNom != null && filtreEcoleAdministrateurNom !== '')
 			filtres.push({ name: 'fq', value: 'ecoleAdministrateurNom:' + filtreEcoleAdministrateurNom });
@@ -2445,6 +2449,10 @@ function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 		var filtreEcoleNumeroTelephone = $formulaireFiltres.find('.valeurEcoleNumeroTelephone').val();
 		if(filtreEcoleNumeroTelephone != null && filtreEcoleNumeroTelephone !== '')
 			filtres.push({ name: 'fq', value: 'ecoleNumeroTelephone:' + filtreEcoleNumeroTelephone });
+
+		var filtreEcoleNumero = $formulaireFiltres.find('.valeurEcoleNumero').val();
+		if(filtreEcoleNumero != null && filtreEcoleNumero !== '')
+			filtres.push({ name: 'fq', value: 'ecoleNumero:' + filtreEcoleNumero });
 
 		var filtreEcoleAdministrateurNom = $formulaireFiltres.find('.valeurEcoleAdministrateurNom').val();
 		if(filtreEcoleAdministrateurNom != null && filtreEcoleAdministrateurNom !== '')
@@ -3403,6 +3411,10 @@ function rechercheadminInscriptionScolaireFiltres($formulaireFiltres) {
 		var filtreEcoleNumeroTelephone = $formulaireFiltres.find('.valeurEcoleNumeroTelephone').val();
 		if(filtreEcoleNumeroTelephone != null && filtreEcoleNumeroTelephone !== '')
 			filtres.push({ name: 'fq', value: 'ecoleNumeroTelephone:' + filtreEcoleNumeroTelephone });
+
+		var filtreEcoleNumero = $formulaireFiltres.find('.valeurEcoleNumero').val();
+		if(filtreEcoleNumero != null && filtreEcoleNumero !== '')
+			filtres.push({ name: 'fq', value: 'ecoleNumero:' + filtreEcoleNumero });
 
 		var filtreEcoleAdministrateurNom = $formulaireFiltres.find('.valeurEcoleAdministrateurNom').val();
 		if(filtreEcoleAdministrateurNom != null && filtreEcoleAdministrateurNom !== '')
@@ -5129,6 +5141,10 @@ function patchpaiementsInscriptionScolaireFiltres($formulaireFiltres) {
 		var filtreEcoleNumeroTelephone = $formulaireFiltres.find('.valeurEcoleNumeroTelephone').val();
 		if(filtreEcoleNumeroTelephone != null && filtreEcoleNumeroTelephone !== '')
 			filtres.push({ name: 'fq', value: 'ecoleNumeroTelephone:' + filtreEcoleNumeroTelephone });
+
+		var filtreEcoleNumero = $formulaireFiltres.find('.valeurEcoleNumero').val();
+		if(filtreEcoleNumero != null && filtreEcoleNumero !== '')
+			filtres.push({ name: 'fq', value: 'ecoleNumero:' + filtreEcoleNumero });
 
 		var filtreEcoleAdministrateurNom = $formulaireFiltres.find('.valeurEcoleAdministrateurNom').val();
 		if(filtreEcoleAdministrateurNom != null && filtreEcoleAdministrateurNom !== '')
