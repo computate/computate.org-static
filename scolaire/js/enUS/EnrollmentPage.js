@@ -116,7 +116,7 @@ async function postSchoolEnrollment($formValues, success, error) {
 	if(valueBlockKeys.length > 0)
 		vals['blockKeys'] = valueBlockKeys;
 
-		vals['childKey'] = [valueChildKey];
+	var valueChildKey = $formValues.find('.valueChildKey').val();
 	if(valueChildKey != null && valueChildKey !== '')
 		vals['childKey'] = valueChildKey;
 
@@ -1990,6 +1990,22 @@ function patchSchoolEnrollmentFilters($formFilters) {
 		if(filterEnrollmentEmails != null && filterEnrollmentEmails !== '')
 			filters.push({ name: 'fq', value: 'enrollmentEmails:' + filterEnrollmentEmails });
 
+		var filterEnrollmentEmail = $formFilters.find('.valueEnrollmentEmail').val();
+		if(filterEnrollmentEmail != null && filterEnrollmentEmail !== '')
+			filters.push({ name: 'fq', value: 'enrollmentEmail:' + filterEnrollmentEmail });
+
+		var filterEnrollmentPhoneNumbers = $formFilters.find('.valueEnrollmentPhoneNumbers').val();
+		if(filterEnrollmentPhoneNumbers != null && filterEnrollmentPhoneNumbers !== '')
+			filters.push({ name: 'fq', value: 'enrollmentPhoneNumbers:' + filterEnrollmentPhoneNumbers });
+
+		var filterEnrollmentPhoneNumber = $formFilters.find('.valueEnrollmentPhoneNumber').val();
+		if(filterEnrollmentPhoneNumber != null && filterEnrollmentPhoneNumber !== '')
+			filters.push({ name: 'fq', value: 'enrollmentPhoneNumber:' + filterEnrollmentPhoneNumber });
+
+		var filterEnrollmentParentName = $formFilters.find('.valueEnrollmentParentName').val();
+		if(filterEnrollmentParentName != null && filterEnrollmentParentName !== '')
+			filters.push({ name: 'fq', value: 'enrollmentParentName:' + filterEnrollmentParentName });
+
 		var filterEnrollmentDate1 = $formFilters.find('.valueEnrollmentDate1').val();
 		if(filterEnrollmentDate1 != null && filterEnrollmentDate1 !== '')
 			filters.push({ name: 'fq', value: 'enrollmentDate1:' + filterEnrollmentDate1 });
@@ -2691,6 +2707,22 @@ function searchSchoolEnrollmentFilters($formFilters) {
 		var filterEnrollmentEmails = $formFilters.find('.valueEnrollmentEmails').val();
 		if(filterEnrollmentEmails != null && filterEnrollmentEmails !== '')
 			filters.push({ name: 'fq', value: 'enrollmentEmails:' + filterEnrollmentEmails });
+
+		var filterEnrollmentEmail = $formFilters.find('.valueEnrollmentEmail').val();
+		if(filterEnrollmentEmail != null && filterEnrollmentEmail !== '')
+			filters.push({ name: 'fq', value: 'enrollmentEmail:' + filterEnrollmentEmail });
+
+		var filterEnrollmentPhoneNumbers = $formFilters.find('.valueEnrollmentPhoneNumbers').val();
+		if(filterEnrollmentPhoneNumbers != null && filterEnrollmentPhoneNumbers !== '')
+			filters.push({ name: 'fq', value: 'enrollmentPhoneNumbers:' + filterEnrollmentPhoneNumbers });
+
+		var filterEnrollmentPhoneNumber = $formFilters.find('.valueEnrollmentPhoneNumber').val();
+		if(filterEnrollmentPhoneNumber != null && filterEnrollmentPhoneNumber !== '')
+			filters.push({ name: 'fq', value: 'enrollmentPhoneNumber:' + filterEnrollmentPhoneNumber });
+
+		var filterEnrollmentParentName = $formFilters.find('.valueEnrollmentParentName').val();
+		if(filterEnrollmentParentName != null && filterEnrollmentParentName !== '')
+			filters.push({ name: 'fq', value: 'enrollmentParentName:' + filterEnrollmentParentName });
 
 		var filterEnrollmentDate1 = $formFilters.find('.valueEnrollmentDate1').val();
 		if(filterEnrollmentDate1 != null && filterEnrollmentDate1 !== '')
@@ -3679,6 +3711,22 @@ function adminsearchSchoolEnrollmentFilters($formFilters) {
 		var filterEnrollmentEmails = $formFilters.find('.valueEnrollmentEmails').val();
 		if(filterEnrollmentEmails != null && filterEnrollmentEmails !== '')
 			filters.push({ name: 'fq', value: 'enrollmentEmails:' + filterEnrollmentEmails });
+
+		var filterEnrollmentEmail = $formFilters.find('.valueEnrollmentEmail').val();
+		if(filterEnrollmentEmail != null && filterEnrollmentEmail !== '')
+			filters.push({ name: 'fq', value: 'enrollmentEmail:' + filterEnrollmentEmail });
+
+		var filterEnrollmentPhoneNumbers = $formFilters.find('.valueEnrollmentPhoneNumbers').val();
+		if(filterEnrollmentPhoneNumbers != null && filterEnrollmentPhoneNumbers !== '')
+			filters.push({ name: 'fq', value: 'enrollmentPhoneNumbers:' + filterEnrollmentPhoneNumbers });
+
+		var filterEnrollmentPhoneNumber = $formFilters.find('.valueEnrollmentPhoneNumber').val();
+		if(filterEnrollmentPhoneNumber != null && filterEnrollmentPhoneNumber !== '')
+			filters.push({ name: 'fq', value: 'enrollmentPhoneNumber:' + filterEnrollmentPhoneNumber });
+
+		var filterEnrollmentParentName = $formFilters.find('.valueEnrollmentParentName').val();
+		if(filterEnrollmentParentName != null && filterEnrollmentParentName !== '')
+			filters.push({ name: 'fq', value: 'enrollmentParentName:' + filterEnrollmentParentName });
 
 		var filterEnrollmentDate1 = $formFilters.find('.valueEnrollmentDate1').val();
 		if(filterEnrollmentDate1 != null && filterEnrollmentDate1 !== '')
@@ -5435,6 +5483,22 @@ function patchpaymentsSchoolEnrollmentFilters($formFilters) {
 		var filterEnrollmentEmails = $formFilters.find('.valueEnrollmentEmails').val();
 		if(filterEnrollmentEmails != null && filterEnrollmentEmails !== '')
 			filters.push({ name: 'fq', value: 'enrollmentEmails:' + filterEnrollmentEmails });
+
+		var filterEnrollmentEmail = $formFilters.find('.valueEnrollmentEmail').val();
+		if(filterEnrollmentEmail != null && filterEnrollmentEmail !== '')
+			filters.push({ name: 'fq', value: 'enrollmentEmail:' + filterEnrollmentEmail });
+
+		var filterEnrollmentPhoneNumbers = $formFilters.find('.valueEnrollmentPhoneNumbers').val();
+		if(filterEnrollmentPhoneNumbers != null && filterEnrollmentPhoneNumbers !== '')
+			filters.push({ name: 'fq', value: 'enrollmentPhoneNumbers:' + filterEnrollmentPhoneNumbers });
+
+		var filterEnrollmentPhoneNumber = $formFilters.find('.valueEnrollmentPhoneNumber').val();
+		if(filterEnrollmentPhoneNumber != null && filterEnrollmentPhoneNumber !== '')
+			filters.push({ name: 'fq', value: 'enrollmentPhoneNumber:' + filterEnrollmentPhoneNumber });
+
+		var filterEnrollmentParentName = $formFilters.find('.valueEnrollmentParentName').val();
+		if(filterEnrollmentParentName != null && filterEnrollmentParentName !== '')
+			filters.push({ name: 'fq', value: 'enrollmentParentName:' + filterEnrollmentParentName });
 
 		var filterEnrollmentDate1 = $formFilters.find('.valueEnrollmentDate1').val();
 		if(filterEnrollmentDate1 != null && filterEnrollmentDate1 !== '')

@@ -73,7 +73,7 @@ async function postSchoolBlock($formValues, success, error) {
 	if(valueBlockFriday != null && valueBlockFriday !== '')
 		vals['blockFriday'] = valueBlockFriday;
 
-		vals['ageKey'] = [valueAgeKey];
+	var valueAgeKey = $formValues.find('.valueAgeKey').val();
 	if(valueAgeKey != null && valueAgeKey !== '')
 		vals['ageKey'] = valueAgeKey;
 

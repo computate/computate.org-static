@@ -53,7 +53,7 @@ async function postAnneeScolaire($formulaireValeurs, success, error) {
 	if(valeurAnneeFraisInscription != null && valeurAnneeFraisInscription !== '')
 		vals['anneeFraisInscription'] = valeurAnneeFraisInscription;
 
-		vals['ecoleCle'] = [valeurEcoleCle];
+	var valeurEcoleCle = $formulaireValeurs.find('.valeurEcoleCle').val();
 	if(valeurEcoleCle != null && valeurEcoleCle !== '')
 		vals['ecoleCle'] = valeurEcoleCle;
 

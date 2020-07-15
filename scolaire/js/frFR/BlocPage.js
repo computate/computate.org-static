@@ -73,7 +73,7 @@ async function postBlocScolaire($formulaireValeurs, success, error) {
 	if(valeurBlocVendredi != null && valeurBlocVendredi !== '')
 		vals['blocVendredi'] = valeurBlocVendredi;
 
-		vals['ageCle'] = [valeurAgeCle];
+	var valeurAgeCle = $formulaireValeurs.find('.valeurAgeCle').val();
 	if(valeurAgeCle != null && valeurAgeCle !== '')
 		vals['ageCle'] = valeurAgeCle;
 

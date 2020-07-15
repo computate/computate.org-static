@@ -843,7 +843,7 @@ function suggestPageDesignHtmlPartKeys(filters, $list, pk = null, attribute=true
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'far fa-sun ');
+			var $i = $('<i>').attr('class', 'far fa-puzzle-piece ');
 			var $span = $('<span>').attr('class', '').text(o['objectTitle']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);
@@ -1307,7 +1307,7 @@ function suggestPageDesignHtmlPartKeys(filters, $list, pk = null, attribute=true
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'far fa-sun ');
+			var $i = $('<i>').attr('class', 'far fa-puzzle-piece ');
 			var $span = $('<span>').attr('class', '').text(o['objectTitle']);
 			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
 			$a.append($i);

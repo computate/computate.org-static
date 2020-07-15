@@ -116,7 +116,7 @@ async function postInscriptionScolaire($formulaireValeurs, success, error) {
 	if(valeurBlocCles.length > 0)
 		vals['blocCles'] = valeurBlocCles;
 
-		vals['enfantCle'] = [valeurEnfantCle];
+	var valeurEnfantCle = $formulaireValeurs.find('.valeurEnfantCle').val();
 	if(valeurEnfantCle != null && valeurEnfantCle !== '')
 		vals['enfantCle'] = valeurEnfantCle;
 
@@ -1990,6 +1990,22 @@ function patchInscriptionScolaireFiltres($formulaireFiltres) {
 		if(filtreInscriptionMails != null && filtreInscriptionMails !== '')
 			filtres.push({ name: 'fq', value: 'inscriptionMails:' + filtreInscriptionMails });
 
+		var filtreInscriptionMail = $formulaireFiltres.find('.valeurInscriptionMail').val();
+		if(filtreInscriptionMail != null && filtreInscriptionMail !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionMail:' + filtreInscriptionMail });
+
+		var filtreInscriptionNumeroTelephones = $formulaireFiltres.find('.valeurInscriptionNumeroTelephones').val();
+		if(filtreInscriptionNumeroTelephones != null && filtreInscriptionNumeroTelephones !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionNumeroTelephones:' + filtreInscriptionNumeroTelephones });
+
+		var filtreInscriptionNumeroTelephone = $formulaireFiltres.find('.valeurInscriptionNumeroTelephone').val();
+		if(filtreInscriptionNumeroTelephone != null && filtreInscriptionNumeroTelephone !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionNumeroTelephone:' + filtreInscriptionNumeroTelephone });
+
+		var filtreInscriptionNomParent = $formulaireFiltres.find('.valeurInscriptionNomParent').val();
+		if(filtreInscriptionNomParent != null && filtreInscriptionNomParent !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionNomParent:' + filtreInscriptionNomParent });
+
 		var filtreInscriptionDate1 = $formulaireFiltres.find('.valeurInscriptionDate1').val();
 		if(filtreInscriptionDate1 != null && filtreInscriptionDate1 !== '')
 			filtres.push({ name: 'fq', value: 'inscriptionDate1:' + filtreInscriptionDate1 });
@@ -2691,6 +2707,22 @@ function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 		var filtreInscriptionMails = $formulaireFiltres.find('.valeurInscriptionMails').val();
 		if(filtreInscriptionMails != null && filtreInscriptionMails !== '')
 			filtres.push({ name: 'fq', value: 'inscriptionMails:' + filtreInscriptionMails });
+
+		var filtreInscriptionMail = $formulaireFiltres.find('.valeurInscriptionMail').val();
+		if(filtreInscriptionMail != null && filtreInscriptionMail !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionMail:' + filtreInscriptionMail });
+
+		var filtreInscriptionNumeroTelephones = $formulaireFiltres.find('.valeurInscriptionNumeroTelephones').val();
+		if(filtreInscriptionNumeroTelephones != null && filtreInscriptionNumeroTelephones !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionNumeroTelephones:' + filtreInscriptionNumeroTelephones });
+
+		var filtreInscriptionNumeroTelephone = $formulaireFiltres.find('.valeurInscriptionNumeroTelephone').val();
+		if(filtreInscriptionNumeroTelephone != null && filtreInscriptionNumeroTelephone !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionNumeroTelephone:' + filtreInscriptionNumeroTelephone });
+
+		var filtreInscriptionNomParent = $formulaireFiltres.find('.valeurInscriptionNomParent').val();
+		if(filtreInscriptionNomParent != null && filtreInscriptionNomParent !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionNomParent:' + filtreInscriptionNomParent });
 
 		var filtreInscriptionDate1 = $formulaireFiltres.find('.valeurInscriptionDate1').val();
 		if(filtreInscriptionDate1 != null && filtreInscriptionDate1 !== '')
@@ -3679,6 +3711,22 @@ function rechercheadminInscriptionScolaireFiltres($formulaireFiltres) {
 		var filtreInscriptionMails = $formulaireFiltres.find('.valeurInscriptionMails').val();
 		if(filtreInscriptionMails != null && filtreInscriptionMails !== '')
 			filtres.push({ name: 'fq', value: 'inscriptionMails:' + filtreInscriptionMails });
+
+		var filtreInscriptionMail = $formulaireFiltres.find('.valeurInscriptionMail').val();
+		if(filtreInscriptionMail != null && filtreInscriptionMail !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionMail:' + filtreInscriptionMail });
+
+		var filtreInscriptionNumeroTelephones = $formulaireFiltres.find('.valeurInscriptionNumeroTelephones').val();
+		if(filtreInscriptionNumeroTelephones != null && filtreInscriptionNumeroTelephones !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionNumeroTelephones:' + filtreInscriptionNumeroTelephones });
+
+		var filtreInscriptionNumeroTelephone = $formulaireFiltres.find('.valeurInscriptionNumeroTelephone').val();
+		if(filtreInscriptionNumeroTelephone != null && filtreInscriptionNumeroTelephone !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionNumeroTelephone:' + filtreInscriptionNumeroTelephone });
+
+		var filtreInscriptionNomParent = $formulaireFiltres.find('.valeurInscriptionNomParent').val();
+		if(filtreInscriptionNomParent != null && filtreInscriptionNomParent !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionNomParent:' + filtreInscriptionNomParent });
 
 		var filtreInscriptionDate1 = $formulaireFiltres.find('.valeurInscriptionDate1').val();
 		if(filtreInscriptionDate1 != null && filtreInscriptionDate1 !== '')
@@ -5435,6 +5483,22 @@ function patchpaiementsInscriptionScolaireFiltres($formulaireFiltres) {
 		var filtreInscriptionMails = $formulaireFiltres.find('.valeurInscriptionMails').val();
 		if(filtreInscriptionMails != null && filtreInscriptionMails !== '')
 			filtres.push({ name: 'fq', value: 'inscriptionMails:' + filtreInscriptionMails });
+
+		var filtreInscriptionMail = $formulaireFiltres.find('.valeurInscriptionMail').val();
+		if(filtreInscriptionMail != null && filtreInscriptionMail !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionMail:' + filtreInscriptionMail });
+
+		var filtreInscriptionNumeroTelephones = $formulaireFiltres.find('.valeurInscriptionNumeroTelephones').val();
+		if(filtreInscriptionNumeroTelephones != null && filtreInscriptionNumeroTelephones !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionNumeroTelephones:' + filtreInscriptionNumeroTelephones });
+
+		var filtreInscriptionNumeroTelephone = $formulaireFiltres.find('.valeurInscriptionNumeroTelephone').val();
+		if(filtreInscriptionNumeroTelephone != null && filtreInscriptionNumeroTelephone !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionNumeroTelephone:' + filtreInscriptionNumeroTelephone });
+
+		var filtreInscriptionNomParent = $formulaireFiltres.find('.valeurInscriptionNomParent').val();
+		if(filtreInscriptionNomParent != null && filtreInscriptionNomParent !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionNomParent:' + filtreInscriptionNomParent });
 
 		var filtreInscriptionDate1 = $formulaireFiltres.find('.valeurInscriptionDate1').val();
 		if(filtreInscriptionDate1 != null && filtreInscriptionDate1 !== '')

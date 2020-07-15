@@ -53,7 +53,7 @@ async function postSchoolYear($formValues, success, error) {
 	if(valueYearEnrollmentFee != null && valueYearEnrollmentFee !== '')
 		vals['yearEnrollmentFee'] = valueYearEnrollmentFee;
 
-		vals['schoolKey'] = [valueSchoolKey];
+	var valueSchoolKey = $formValues.find('.valueSchoolKey').val();
 	if(valueSchoolKey != null && valueSchoolKey !== '')
 		vals['schoolKey'] = valueSchoolKey;
 

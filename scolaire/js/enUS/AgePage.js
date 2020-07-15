@@ -49,7 +49,7 @@ async function postSchoolAge($formValues, success, error) {
 	if(valueAgeEnd != null && valueAgeEnd !== '')
 		vals['ageEnd'] = valueAgeEnd;
 
-		vals['yearKey'] = [valueYearKey];
+	var valueYearKey = $formValues.find('.valueYearKey').val();
 	if(valueYearKey != null && valueYearKey !== '')
 		vals['yearKey'] = valueYearKey;
 

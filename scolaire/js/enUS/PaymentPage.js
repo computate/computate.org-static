@@ -117,7 +117,7 @@ async function postSchoolPayment($formValues, success, error) {
 	if(valueChargeLateFee != null && valueChargeLateFee !== '')
 		vals['chargeLateFee'] = valueChargeLateFee;
 
-		vals['enrollmentKey'] = [valueEnrollmentKey];
+	var valueEnrollmentKey = $formValues.find('.valueEnrollmentKey').val();
 	if(valueEnrollmentKey != null && valueEnrollmentKey !== '')
 		vals['enrollmentKey'] = valueEnrollmentKey;
 

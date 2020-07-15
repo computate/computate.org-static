@@ -49,7 +49,7 @@ async function postAgeScolaire($formulaireValeurs, success, error) {
 	if(valeurAgeFin != null && valeurAgeFin !== '')
 		vals['ageFin'] = valeurAgeFin;
 
-		vals['anneeCle'] = [valeurAnneeCle];
+	var valeurAnneeCle = $formulaireValeurs.find('.valeurAnneeCle').val();
 	if(valeurAnneeCle != null && valeurAnneeCle !== '')
 		vals['anneeCle'] = valeurAnneeCle;
 

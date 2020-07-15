@@ -49,7 +49,7 @@ async function postSchoolSession($formValues, success, error) {
 	if(valueSessionEndDate != null && valueSessionEndDate !== '')
 		vals['sessionEndDate'] = valueSessionEndDate;
 
-		vals['seasonKey'] = [valueSeasonKey];
+	var valueSeasonKey = $formValues.find('.valueSeasonKey').val();
 	if(valueSeasonKey != null && valueSeasonKey !== '')
 		vals['seasonKey'] = valueSeasonKey;
 

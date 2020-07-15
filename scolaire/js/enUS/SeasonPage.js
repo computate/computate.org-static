@@ -49,7 +49,7 @@ async function postSchoolSeason($formValues, success, error) {
 	if(valueSeasonFuture != null && valueSeasonFuture !== '')
 		vals['seasonFuture'] = valueSeasonFuture;
 
-		vals['yearKey'] = [valueYearKey];
+	var valueYearKey = $formValues.find('.valueYearKey').val();
 	if(valueYearKey != null && valueYearKey !== '')
 		vals['yearKey'] = valueYearKey;
 

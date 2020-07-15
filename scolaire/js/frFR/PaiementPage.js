@@ -117,7 +117,7 @@ async function postPaiementScolaire($formulaireValeurs, success, error) {
 	if(valeurFraisRetard != null && valeurFraisRetard !== '')
 		vals['fraisRetard'] = valeurFraisRetard;
 
-		vals['inscriptionCle'] = [valeurInscriptionCle];
+	var valeurInscriptionCle = $formulaireValeurs.find('.valeurInscriptionCle').val();
 	if(valeurInscriptionCle != null && valeurInscriptionCle !== '')
 		vals['inscriptionCle'] = valeurInscriptionCle;
 
