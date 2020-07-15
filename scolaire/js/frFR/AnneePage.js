@@ -49,14 +49,6 @@ async function postAnneeScolaire($formulaireValeurs, success, error) {
 	if(valeurSessionDateFin != null && valeurSessionDateFin !== '')
 		vals['sessionDateFin'] = valeurSessionDateFin;
 
-	var valeurAnneeDebut = $formulaireValeurs.find('.valeurAnneeDebut').val();
-	if(valeurAnneeDebut != null && valeurAnneeDebut !== '')
-		vals['anneeDebut'] = valeurAnneeDebut;
-
-	var valeurAnneeFin = $formulaireValeurs.find('.valeurAnneeFin').val();
-	if(valeurAnneeFin != null && valeurAnneeFin !== '')
-		vals['anneeFin'] = valeurAnneeFin;
-
 	var valeurAnneeFraisInscription = $formulaireValeurs.find('.valeurAnneeFraisInscription').val();
 	if(valeurAnneeFraisInscription != null && valeurAnneeFraisInscription !== '')
 		vals['anneeFraisInscription'] = valeurAnneeFraisInscription;
@@ -91,6 +83,18 @@ async function postAnneeScolaire($formulaireValeurs, success, error) {
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 		vals['objetTitre'] = valeurObjetTitre;
+
+	var valeurSaisonDateDebut = $formulaireValeurs.find('.valeurSaisonDateDebut').val();
+	if(valeurSaisonDateDebut != null && valeurSaisonDateDebut !== '')
+		vals['saisonDateDebut'] = valeurSaisonDateDebut;
+
+	var valeurAnneeDebut = $formulaireValeurs.find('.valeurAnneeDebut').val();
+	if(valeurAnneeDebut != null && valeurAnneeDebut !== '')
+		vals['anneeDebut'] = valeurAnneeDebut;
+
+	var valeurAnneeFin = $formulaireValeurs.find('.valeurAnneeFin').val();
+	if(valeurAnneeFin != null && valeurAnneeFin !== '')
+		vals['anneeFin'] = valeurAnneeFin;
 
 	$.ajax({
 		url: '/api/annee'
@@ -192,14 +196,6 @@ async function putcopieAnneeScolaire($formulaireValeurs, pk, success, error) {
 	if(valeurSessionDateFin != null && valeurSessionDateFin !== '')
 		vals['sessionDateFin'] = valeurSessionDateFin;
 
-	var valeurAnneeDebut = $formulaireValeurs.find('.valeurAnneeDebut').val();
-	if(valeurAnneeDebut != null && valeurAnneeDebut !== '')
-		vals['anneeDebut'] = valeurAnneeDebut;
-
-	var valeurAnneeFin = $formulaireValeurs.find('.valeurAnneeFin').val();
-	if(valeurAnneeFin != null && valeurAnneeFin !== '')
-		vals['anneeFin'] = valeurAnneeFin;
-
 	var valeurAnneeFraisInscription = $formulaireValeurs.find('.valeurAnneeFraisInscription').val();
 	if(valeurAnneeFraisInscription != null && valeurAnneeFraisInscription !== '')
 		vals['anneeFraisInscription'] = valeurAnneeFraisInscription;
@@ -231,6 +227,18 @@ async function putcopieAnneeScolaire($formulaireValeurs, pk, success, error) {
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 		vals['objetTitre'] = valeurObjetTitre;
+
+	var valeurSaisonDateDebut = $formulaireValeurs.find('.valeurSaisonDateDebut').val();
+	if(valeurSaisonDateDebut != null && valeurSaisonDateDebut !== '')
+		vals['saisonDateDebut'] = valeurSaisonDateDebut;
+
+	var valeurAnneeDebut = $formulaireValeurs.find('.valeurAnneeDebut').val();
+	if(valeurAnneeDebut != null && valeurAnneeDebut !== '')
+		vals['anneeDebut'] = valeurAnneeDebut;
+
+	var valeurAnneeFin = $formulaireValeurs.find('.valeurAnneeFin').val();
+	if(valeurAnneeFin != null && valeurAnneeFin !== '')
+		vals['anneeFin'] = valeurAnneeFin;
 
 	putcopieAnneeScolaireVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
@@ -366,32 +374,6 @@ async function patchAnneeScolaire($formulaireFiltres, $formulaireValeurs, pk, su
 	if(removeSessionDateFin != null && removeSessionDateFin !== '')
 		vals['removeSessionDateFin'] = removeSessionDateFin;
 
-	var valeurAnneeDebut = $formulaireValeurs.find('.valeurAnneeDebut').val();
-	if(valeurAnneeDebut != null && valeurAnneeDebut !== '')
-	var removeAnneeDebut = $formulaireFiltres.find('.removeAnneeDebut').val() === 'true';
-	var setAnneeDebut = removeAnneeDebut ? null : $formulaireValeurs.find('.setAnneeDebut').val();
-	if(removeAnneeDebut || setAnneeDebut != null && setAnneeDebut !== '')
-		vals['setAnneeDebut'] = setAnneeDebut;
-	var addAnneeDebut = $formulaireValeurs.find('.addAnneeDebut').val();
-	if(addAnneeDebut != null && addAnneeDebut !== '')
-		vals['addAnneeDebut'] = addAnneeDebut;
-	var removeAnneeDebut = $formulaireValeurs.find('.removeAnneeDebut').val();
-	if(removeAnneeDebut != null && removeAnneeDebut !== '')
-		vals['removeAnneeDebut'] = removeAnneeDebut;
-
-	var valeurAnneeFin = $formulaireValeurs.find('.valeurAnneeFin').val();
-	if(valeurAnneeFin != null && valeurAnneeFin !== '')
-	var removeAnneeFin = $formulaireFiltres.find('.removeAnneeFin').val() === 'true';
-	var setAnneeFin = removeAnneeFin ? null : $formulaireValeurs.find('.setAnneeFin').val();
-	if(removeAnneeFin || setAnneeFin != null && setAnneeFin !== '')
-		vals['setAnneeFin'] = setAnneeFin;
-	var addAnneeFin = $formulaireValeurs.find('.addAnneeFin').val();
-	if(addAnneeFin != null && addAnneeFin !== '')
-		vals['addAnneeFin'] = addAnneeFin;
-	var removeAnneeFin = $formulaireValeurs.find('.removeAnneeFin').val();
-	if(removeAnneeFin != null && removeAnneeFin !== '')
-		vals['removeAnneeFin'] = removeAnneeFin;
-
 	var valeurAnneeFraisInscription = $formulaireValeurs.find('.valeurAnneeFraisInscription').val();
 	if(valeurAnneeFraisInscription != null && valeurAnneeFraisInscription !== '')
 	var removeAnneeFraisInscription = $formulaireFiltres.find('.removeAnneeFraisInscription').val() === 'true';
@@ -478,6 +460,45 @@ async function patchAnneeScolaire($formulaireFiltres, $formulaireValeurs, pk, su
 	if(removeObjetTitre != null && removeObjetTitre !== '')
 		vals['removeObjetTitre'] = removeObjetTitre;
 
+	var valeurSaisonDateDebut = $formulaireValeurs.find('.valeurSaisonDateDebut').val();
+	if(valeurSaisonDateDebut != null && valeurSaisonDateDebut !== '')
+	var removeSaisonDateDebut = $formulaireFiltres.find('.removeSaisonDateDebut').val() === 'true';
+	var setSaisonDateDebut = removeSaisonDateDebut ? null : $formulaireValeurs.find('.setSaisonDateDebut').val();
+	if(removeSaisonDateDebut || setSaisonDateDebut != null && setSaisonDateDebut !== '')
+		vals['setSaisonDateDebut'] = setSaisonDateDebut;
+	var addSaisonDateDebut = $formulaireValeurs.find('.addSaisonDateDebut').val();
+	if(addSaisonDateDebut != null && addSaisonDateDebut !== '')
+		vals['addSaisonDateDebut'] = addSaisonDateDebut;
+	var removeSaisonDateDebut = $formulaireValeurs.find('.removeSaisonDateDebut').val();
+	if(removeSaisonDateDebut != null && removeSaisonDateDebut !== '')
+		vals['removeSaisonDateDebut'] = removeSaisonDateDebut;
+
+	var valeurAnneeDebut = $formulaireValeurs.find('.valeurAnneeDebut').val();
+	if(valeurAnneeDebut != null && valeurAnneeDebut !== '')
+	var removeAnneeDebut = $formulaireFiltres.find('.removeAnneeDebut').val() === 'true';
+	var setAnneeDebut = removeAnneeDebut ? null : $formulaireValeurs.find('.setAnneeDebut').val();
+	if(removeAnneeDebut || setAnneeDebut != null && setAnneeDebut !== '')
+		vals['setAnneeDebut'] = setAnneeDebut;
+	var addAnneeDebut = $formulaireValeurs.find('.addAnneeDebut').val();
+	if(addAnneeDebut != null && addAnneeDebut !== '')
+		vals['addAnneeDebut'] = addAnneeDebut;
+	var removeAnneeDebut = $formulaireValeurs.find('.removeAnneeDebut').val();
+	if(removeAnneeDebut != null && removeAnneeDebut !== '')
+		vals['removeAnneeDebut'] = removeAnneeDebut;
+
+	var valeurAnneeFin = $formulaireValeurs.find('.valeurAnneeFin').val();
+	if(valeurAnneeFin != null && valeurAnneeFin !== '')
+	var removeAnneeFin = $formulaireFiltres.find('.removeAnneeFin').val() === 'true';
+	var setAnneeFin = removeAnneeFin ? null : $formulaireValeurs.find('.setAnneeFin').val();
+	if(removeAnneeFin || setAnneeFin != null && setAnneeFin !== '')
+		vals['setAnneeFin'] = setAnneeFin;
+	var addAnneeFin = $formulaireValeurs.find('.addAnneeFin').val();
+	if(addAnneeFin != null && addAnneeFin !== '')
+		vals['addAnneeFin'] = addAnneeFin;
+	var removeAnneeFin = $formulaireValeurs.find('.removeAnneeFin').val();
+	if(removeAnneeFin != null && removeAnneeFin !== '')
+		vals['removeAnneeFin'] = removeAnneeFin;
+
 	patchAnneeScolaireVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
@@ -528,14 +549,6 @@ function patchAnneeScolaireFiltres($formulaireFiltres) {
 		var filtreSessionDateFin = $formulaireFiltres.find('.valeurSessionDateFin').val();
 		if(filtreSessionDateFin != null && filtreSessionDateFin !== '')
 			filtres.push({ name: 'fq', value: 'sessionDateFin:' + filtreSessionDateFin });
-
-		var filtreAnneeDebut = $formulaireFiltres.find('.valeurAnneeDebut').val();
-		if(filtreAnneeDebut != null && filtreAnneeDebut !== '')
-			filtres.push({ name: 'fq', value: 'anneeDebut:' + filtreAnneeDebut });
-
-		var filtreAnneeFin = $formulaireFiltres.find('.valeurAnneeFin').val();
-		if(filtreAnneeFin != null && filtreAnneeFin !== '')
-			filtres.push({ name: 'fq', value: 'anneeFin:' + filtreAnneeFin });
 
 		var filtreAnneeFraisInscription = $formulaireFiltres.find('.valeurAnneeFraisInscription').val();
 		if(filtreAnneeFraisInscription != null && filtreAnneeFraisInscription !== '')
@@ -664,6 +677,18 @@ function patchAnneeScolaireFiltres($formulaireFiltres) {
 		var filtreFormInscriptionCle = $formulaireFiltres.find('.valeurFormInscriptionCle').val();
 		if(filtreFormInscriptionCle != null && filtreFormInscriptionCle !== '')
 			filtres.push({ name: 'fq', value: 'formInscriptionCle:' + filtreFormInscriptionCle });
+
+		var filtreSaisonDateDebut = $formulaireFiltres.find('.valeurSaisonDateDebut').val();
+		if(filtreSaisonDateDebut != null && filtreSaisonDateDebut !== '')
+			filtres.push({ name: 'fq', value: 'saisonDateDebut:' + filtreSaisonDateDebut });
+
+		var filtreAnneeDebut = $formulaireFiltres.find('.valeurAnneeDebut').val();
+		if(filtreAnneeDebut != null && filtreAnneeDebut !== '')
+			filtres.push({ name: 'fq', value: 'anneeDebut:' + filtreAnneeDebut });
+
+		var filtreAnneeFin = $formulaireFiltres.find('.valeurAnneeFin').val();
+		if(filtreAnneeFin != null && filtreAnneeFin !== '')
+			filtres.push({ name: 'fq', value: 'anneeFin:' + filtreAnneeFin });
 
 		var filtreAnneeNomCourt = $formulaireFiltres.find('.valeurAnneeNomCourt').val();
 		if(filtreAnneeNomCourt != null && filtreAnneeNomCourt !== '')
@@ -767,14 +792,6 @@ function rechercheAnneeScolaireFiltres($formulaireFiltres) {
 		if(filtreSessionDateFin != null && filtreSessionDateFin !== '')
 			filtres.push({ name: 'fq', value: 'sessionDateFin:' + filtreSessionDateFin });
 
-		var filtreAnneeDebut = $formulaireFiltres.find('.valeurAnneeDebut').val();
-		if(filtreAnneeDebut != null && filtreAnneeDebut !== '')
-			filtres.push({ name: 'fq', value: 'anneeDebut:' + filtreAnneeDebut });
-
-		var filtreAnneeFin = $formulaireFiltres.find('.valeurAnneeFin').val();
-		if(filtreAnneeFin != null && filtreAnneeFin !== '')
-			filtres.push({ name: 'fq', value: 'anneeFin:' + filtreAnneeFin });
-
 		var filtreAnneeFraisInscription = $formulaireFiltres.find('.valeurAnneeFraisInscription').val();
 		if(filtreAnneeFraisInscription != null && filtreAnneeFraisInscription !== '')
 			filtres.push({ name: 'fq', value: 'anneeFraisInscription:' + filtreAnneeFraisInscription });
@@ -902,6 +919,18 @@ function rechercheAnneeScolaireFiltres($formulaireFiltres) {
 		var filtreFormInscriptionCle = $formulaireFiltres.find('.valeurFormInscriptionCle').val();
 		if(filtreFormInscriptionCle != null && filtreFormInscriptionCle !== '')
 			filtres.push({ name: 'fq', value: 'formInscriptionCle:' + filtreFormInscriptionCle });
+
+		var filtreSaisonDateDebut = $formulaireFiltres.find('.valeurSaisonDateDebut').val();
+		if(filtreSaisonDateDebut != null && filtreSaisonDateDebut !== '')
+			filtres.push({ name: 'fq', value: 'saisonDateDebut:' + filtreSaisonDateDebut });
+
+		var filtreAnneeDebut = $formulaireFiltres.find('.valeurAnneeDebut').val();
+		if(filtreAnneeDebut != null && filtreAnneeDebut !== '')
+			filtres.push({ name: 'fq', value: 'anneeDebut:' + filtreAnneeDebut });
+
+		var filtreAnneeFin = $formulaireFiltres.find('.valeurAnneeFin').val();
+		if(filtreAnneeFin != null && filtreAnneeFin !== '')
+			filtres.push({ name: 'fq', value: 'anneeFin:' + filtreAnneeFin });
 
 		var filtreAnneeNomCourt = $formulaireFiltres.find('.valeurAnneeNomCourt').val();
 		if(filtreAnneeNomCourt != null && filtreAnneeNomCourt !== '')
@@ -1203,30 +1232,6 @@ async function websocketAnneeScolaireInner(requeteApi) {
 				});
 				ajouterLueur($('.inputAnneeScolaire' + pk + 'SessionDateFin'));
 			}
-			var val = o['anneeDebut'];
-			if(vars.includes('anneeDebut')) {
-				$('.inputAnneeScolaire' + pk + 'AnneeDebut').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varAnneeScolaire' + pk + 'AnneeDebut').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				ajouterLueur($('.inputAnneeScolaire' + pk + 'AnneeDebut'));
-			}
-			var val = o['anneeFin'];
-			if(vars.includes('anneeFin')) {
-				$('.inputAnneeScolaire' + pk + 'AnneeFin').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varAnneeScolaire' + pk + 'AnneeFin').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				ajouterLueur($('.inputAnneeScolaire' + pk + 'AnneeFin'));
-			}
 			var val = o['anneeFraisInscription'];
 			if(vars.includes('anneeFraisInscription')) {
 				$('.inputAnneeScolaire' + pk + 'AnneeFraisInscription').each(function() {
@@ -1322,6 +1327,47 @@ async function websocketAnneeScolaireInner(requeteApi) {
 						$(this).text(val);
 				});
 				ajouterLueur($('.inputAnneeScolaire' + pk + 'SaisonCles'));
+			}
+			var val = o['saisonDateDebut'];
+			if(val != null) {
+				var t = moment(val, 'YYYY-MM-DD');
+				if(t)
+					val = t.format('DD-MM-YYYY');
+			}
+			if(vars.includes('saisonDateDebut')) {
+				$('.inputAnneeScolaire' + pk + 'SaisonDateDebut').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varAnneeScolaire' + pk + 'SaisonDateDebut').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputAnneeScolaire' + pk + 'SaisonDateDebut'));
+			}
+			var val = o['anneeDebut'];
+			if(vars.includes('anneeDebut')) {
+				$('.inputAnneeScolaire' + pk + 'AnneeDebut').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varAnneeScolaire' + pk + 'AnneeDebut').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputAnneeScolaire' + pk + 'AnneeDebut'));
+			}
+			var val = o['anneeFin'];
+			if(vars.includes('anneeFin')) {
+				$('.inputAnneeScolaire' + pk + 'AnneeFin').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varAnneeScolaire' + pk + 'AnneeFin').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputAnneeScolaire' + pk + 'AnneeFin'));
 			}
 		});
 	}

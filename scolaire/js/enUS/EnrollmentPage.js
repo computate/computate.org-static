@@ -1642,10 +1642,6 @@ function patchSchoolEnrollmentFilters($formFilters) {
 		if(filterSchoolKey != null && filterSchoolKey !== '')
 			filters.push({ name: 'fq', value: 'schoolKey:' + filterSchoolKey });
 
-		var filterSeasonKey = $formFilters.find('.valueSeasonKey').val();
-		if(filterSeasonKey != null && filterSeasonKey !== '')
-			filters.push({ name: 'fq', value: 'seasonKey:' + filterSeasonKey });
-
 		var filterSessionKey = $formFilters.find('.valueSessionKey').val();
 		if(filterSessionKey != null && filterSessionKey !== '')
 			filters.push({ name: 'fq', value: 'sessionKey:' + filterSessionKey });
@@ -1794,33 +1790,9 @@ function patchSchoolEnrollmentFilters($formFilters) {
 		if(filterSeasonStartDate != null && filterSeasonStartDate !== '')
 			filters.push({ name: 'fq', value: 'seasonStartDate:' + filterSeasonStartDate });
 
-		var $filterSeasonSummerCheckbox = $formFilters.find('input.valueSeasonSummer[type = "checkbox"]');
-		var $filterSeasonSummerSelect = $formFilters.find('select.valueSeasonSummer');
-		var filterSeasonSummer = $filterSeasonSummerSelect.length ? $filterSeasonSummerSelect.val() : $filterSeasonSummerCheckbox.prop('checked');
-		var filterSeasonSummerSelectVal = $formFilters.find('select.filterSeasonSummer').val();
-		var filterSeasonSummer = null;
-		if(filterSeasonSummerSelectVal !== '')
-			filterSeasonSummer = filterSeasonSummerSelectVal == 'true';
-		if(filterSeasonSummer != null && filterSeasonSummer === true)
-			filters.push({ name: 'fq', value: 'seasonSummer:' + filterSeasonSummer });
-
-		var $filterSeasonWinterCheckbox = $formFilters.find('input.valueSeasonWinter[type = "checkbox"]');
-		var $filterSeasonWinterSelect = $formFilters.find('select.valueSeasonWinter');
-		var filterSeasonWinter = $filterSeasonWinterSelect.length ? $filterSeasonWinterSelect.val() : $filterSeasonWinterCheckbox.prop('checked');
-		var filterSeasonWinterSelectVal = $formFilters.find('select.filterSeasonWinter').val();
-		var filterSeasonWinter = null;
-		if(filterSeasonWinterSelectVal !== '')
-			filterSeasonWinter = filterSeasonWinterSelectVal == 'true';
-		if(filterSeasonWinter != null && filterSeasonWinter === true)
-			filters.push({ name: 'fq', value: 'seasonWinter:' + filterSeasonWinter });
-
 		var filterYearEnrollmentFee = $formFilters.find('.valueYearEnrollmentFee').val();
 		if(filterYearEnrollmentFee != null && filterYearEnrollmentFee !== '')
 			filters.push({ name: 'fq', value: 'yearEnrollmentFee:' + filterYearEnrollmentFee });
-
-		var filterSeasonCompleteName = $formFilters.find('.valueSeasonCompleteName').val();
-		if(filterSeasonCompleteName != null && filterSeasonCompleteName !== '')
-			filters.push({ name: 'fq', value: 'seasonCompleteName:' + filterSeasonCompleteName });
 
 		var filterSessionStartDate = $formFilters.find('.valueSessionStartDate').val();
 		if(filterSessionStartDate != null && filterSessionStartDate !== '')
@@ -1944,6 +1916,56 @@ function patchSchoolEnrollmentFilters($formFilters) {
 		if(filterEnrollmentChargeDate != null && filterEnrollmentChargeDate !== '')
 			filters.push({ name: 'fq', value: 'enrollmentChargeDate:' + filterEnrollmentChargeDate });
 
+		var filterPaymentAmount = $formFilters.find('.valuePaymentAmount').val();
+		if(filterPaymentAmount != null && filterPaymentAmount !== '')
+			filters.push({ name: 'fq', value: 'paymentAmount:' + filterPaymentAmount });
+
+		var filterChargeAmount = $formFilters.find('.valueChargeAmount').val();
+		if(filterChargeAmount != null && filterChargeAmount !== '')
+			filters.push({ name: 'fq', value: 'chargeAmount:' + filterChargeAmount });
+
+		var filterChargeAmountFuture = $formFilters.find('.valueChargeAmountFuture').val();
+		if(filterChargeAmountFuture != null && filterChargeAmountFuture !== '')
+			filters.push({ name: 'fq', value: 'chargeAmountFuture:' + filterChargeAmountFuture });
+
+		var filterChargeAmountDue = $formFilters.find('.valueChargeAmountDue').val();
+		if(filterChargeAmountDue != null && filterChargeAmountDue !== '')
+			filters.push({ name: 'fq', value: 'chargeAmountDue:' + filterChargeAmountDue });
+
+		var filterChargesNow = $formFilters.find('.valueChargesNow').val();
+		if(filterChargesNow != null && filterChargesNow !== '')
+			filters.push({ name: 'fq', value: 'chargesNow:' + filterChargesNow });
+
+		var $filterPaymentsCurrentCheckbox = $formFilters.find('input.valuePaymentsCurrent[type = "checkbox"]');
+		var $filterPaymentsCurrentSelect = $formFilters.find('select.valuePaymentsCurrent');
+		var filterPaymentsCurrent = $filterPaymentsCurrentSelect.length ? $filterPaymentsCurrentSelect.val() : $filterPaymentsCurrentCheckbox.prop('checked');
+		var filterPaymentsCurrentSelectVal = $formFilters.find('select.filterPaymentsCurrent').val();
+		var filterPaymentsCurrent = null;
+		if(filterPaymentsCurrentSelectVal !== '')
+			filterPaymentsCurrent = filterPaymentsCurrentSelectVal == 'true';
+		if(filterPaymentsCurrent != null && filterPaymentsCurrent === true)
+			filters.push({ name: 'fq', value: 'paymentsCurrent:' + filterPaymentsCurrent });
+
+		var $filterPaymentsLateCheckbox = $formFilters.find('input.valuePaymentsLate[type = "checkbox"]');
+		var $filterPaymentsLateSelect = $formFilters.find('select.valuePaymentsLate');
+		var filterPaymentsLate = $filterPaymentsLateSelect.length ? $filterPaymentsLateSelect.val() : $filterPaymentsLateCheckbox.prop('checked');
+		var filterPaymentsLateSelectVal = $formFilters.find('select.filterPaymentsLate').val();
+		var filterPaymentsLate = null;
+		if(filterPaymentsLateSelectVal !== '')
+			filterPaymentsLate = filterPaymentsLateSelectVal == 'true';
+		if(filterPaymentsLate != null && filterPaymentsLate === true)
+			filters.push({ name: 'fq', value: 'paymentsLate:' + filterPaymentsLate });
+
+		var $filterPaymentsAheadCheckbox = $formFilters.find('input.valuePaymentsAhead[type = "checkbox"]');
+		var $filterPaymentsAheadSelect = $formFilters.find('select.valuePaymentsAhead');
+		var filterPaymentsAhead = $filterPaymentsAheadSelect.length ? $filterPaymentsAheadSelect.val() : $filterPaymentsAheadCheckbox.prop('checked');
+		var filterPaymentsAheadSelectVal = $formFilters.find('select.filterPaymentsAhead').val();
+		var filterPaymentsAhead = null;
+		if(filterPaymentsAheadSelectVal !== '')
+			filterPaymentsAhead = filterPaymentsAheadSelectVal == 'true';
+		if(filterPaymentsAhead != null && filterPaymentsAhead === true)
+			filters.push({ name: 'fq', value: 'paymentsAhead:' + filterPaymentsAhead });
+
 		var filterCreatedYear = $formFilters.find('.valueCreatedYear').val();
 		if(filterCreatedYear != null && filterCreatedYear !== '')
 			filters.push({ name: 'fq', value: 'createdYear:' + filterCreatedYear });
@@ -1963,6 +1985,10 @@ function patchSchoolEnrollmentFilters($formFilters) {
 		var filterEnrollmentDaysOfWeek = $formFilters.find('.valueEnrollmentDaysOfWeek').val();
 		if(filterEnrollmentDaysOfWeek != null && filterEnrollmentDaysOfWeek !== '')
 			filters.push({ name: 'fq', value: 'enrollmentDaysOfWeek:' + filterEnrollmentDaysOfWeek });
+
+		var filterEnrollmentEmails = $formFilters.find('.valueEnrollmentEmails').val();
+		if(filterEnrollmentEmails != null && filterEnrollmentEmails !== '')
+			filters.push({ name: 'fq', value: 'enrollmentEmails:' + filterEnrollmentEmails });
 
 		var filterEnrollmentDate1 = $formFilters.find('.valueEnrollmentDate1').val();
 		if(filterEnrollmentDate1 != null && filterEnrollmentDate1 !== '')
@@ -2318,10 +2344,6 @@ function searchSchoolEnrollmentFilters($formFilters) {
 		if(filterSchoolKey != null && filterSchoolKey !== '')
 			filters.push({ name: 'fq', value: 'schoolKey:' + filterSchoolKey });
 
-		var filterSeasonKey = $formFilters.find('.valueSeasonKey').val();
-		if(filterSeasonKey != null && filterSeasonKey !== '')
-			filters.push({ name: 'fq', value: 'seasonKey:' + filterSeasonKey });
-
 		var filterSessionKey = $formFilters.find('.valueSessionKey').val();
 		if(filterSessionKey != null && filterSessionKey !== '')
 			filters.push({ name: 'fq', value: 'sessionKey:' + filterSessionKey });
@@ -2470,33 +2492,9 @@ function searchSchoolEnrollmentFilters($formFilters) {
 		if(filterSeasonStartDate != null && filterSeasonStartDate !== '')
 			filters.push({ name: 'fq', value: 'seasonStartDate:' + filterSeasonStartDate });
 
-		var $filterSeasonSummerCheckbox = $formFilters.find('input.valueSeasonSummer[type = "checkbox"]');
-		var $filterSeasonSummerSelect = $formFilters.find('select.valueSeasonSummer');
-		var filterSeasonSummer = $filterSeasonSummerSelect.length ? $filterSeasonSummerSelect.val() : $filterSeasonSummerCheckbox.prop('checked');
-		var filterSeasonSummerSelectVal = $formFilters.find('select.filterSeasonSummer').val();
-		var filterSeasonSummer = null;
-		if(filterSeasonSummerSelectVal !== '')
-			filterSeasonSummer = filterSeasonSummerSelectVal == 'true';
-		if(filterSeasonSummer != null && filterSeasonSummer === true)
-			filters.push({ name: 'fq', value: 'seasonSummer:' + filterSeasonSummer });
-
-		var $filterSeasonWinterCheckbox = $formFilters.find('input.valueSeasonWinter[type = "checkbox"]');
-		var $filterSeasonWinterSelect = $formFilters.find('select.valueSeasonWinter');
-		var filterSeasonWinter = $filterSeasonWinterSelect.length ? $filterSeasonWinterSelect.val() : $filterSeasonWinterCheckbox.prop('checked');
-		var filterSeasonWinterSelectVal = $formFilters.find('select.filterSeasonWinter').val();
-		var filterSeasonWinter = null;
-		if(filterSeasonWinterSelectVal !== '')
-			filterSeasonWinter = filterSeasonWinterSelectVal == 'true';
-		if(filterSeasonWinter != null && filterSeasonWinter === true)
-			filters.push({ name: 'fq', value: 'seasonWinter:' + filterSeasonWinter });
-
 		var filterYearEnrollmentFee = $formFilters.find('.valueYearEnrollmentFee').val();
 		if(filterYearEnrollmentFee != null && filterYearEnrollmentFee !== '')
 			filters.push({ name: 'fq', value: 'yearEnrollmentFee:' + filterYearEnrollmentFee });
-
-		var filterSeasonCompleteName = $formFilters.find('.valueSeasonCompleteName').val();
-		if(filterSeasonCompleteName != null && filterSeasonCompleteName !== '')
-			filters.push({ name: 'fq', value: 'seasonCompleteName:' + filterSeasonCompleteName });
 
 		var filterSessionStartDate = $formFilters.find('.valueSessionStartDate').val();
 		if(filterSessionStartDate != null && filterSessionStartDate !== '')
@@ -2620,6 +2618,56 @@ function searchSchoolEnrollmentFilters($formFilters) {
 		if(filterEnrollmentChargeDate != null && filterEnrollmentChargeDate !== '')
 			filters.push({ name: 'fq', value: 'enrollmentChargeDate:' + filterEnrollmentChargeDate });
 
+		var filterPaymentAmount = $formFilters.find('.valuePaymentAmount').val();
+		if(filterPaymentAmount != null && filterPaymentAmount !== '')
+			filters.push({ name: 'fq', value: 'paymentAmount:' + filterPaymentAmount });
+
+		var filterChargeAmount = $formFilters.find('.valueChargeAmount').val();
+		if(filterChargeAmount != null && filterChargeAmount !== '')
+			filters.push({ name: 'fq', value: 'chargeAmount:' + filterChargeAmount });
+
+		var filterChargeAmountFuture = $formFilters.find('.valueChargeAmountFuture').val();
+		if(filterChargeAmountFuture != null && filterChargeAmountFuture !== '')
+			filters.push({ name: 'fq', value: 'chargeAmountFuture:' + filterChargeAmountFuture });
+
+		var filterChargeAmountDue = $formFilters.find('.valueChargeAmountDue').val();
+		if(filterChargeAmountDue != null && filterChargeAmountDue !== '')
+			filters.push({ name: 'fq', value: 'chargeAmountDue:' + filterChargeAmountDue });
+
+		var filterChargesNow = $formFilters.find('.valueChargesNow').val();
+		if(filterChargesNow != null && filterChargesNow !== '')
+			filters.push({ name: 'fq', value: 'chargesNow:' + filterChargesNow });
+
+		var $filterPaymentsCurrentCheckbox = $formFilters.find('input.valuePaymentsCurrent[type = "checkbox"]');
+		var $filterPaymentsCurrentSelect = $formFilters.find('select.valuePaymentsCurrent');
+		var filterPaymentsCurrent = $filterPaymentsCurrentSelect.length ? $filterPaymentsCurrentSelect.val() : $filterPaymentsCurrentCheckbox.prop('checked');
+		var filterPaymentsCurrentSelectVal = $formFilters.find('select.filterPaymentsCurrent').val();
+		var filterPaymentsCurrent = null;
+		if(filterPaymentsCurrentSelectVal !== '')
+			filterPaymentsCurrent = filterPaymentsCurrentSelectVal == 'true';
+		if(filterPaymentsCurrent != null && filterPaymentsCurrent === true)
+			filters.push({ name: 'fq', value: 'paymentsCurrent:' + filterPaymentsCurrent });
+
+		var $filterPaymentsLateCheckbox = $formFilters.find('input.valuePaymentsLate[type = "checkbox"]');
+		var $filterPaymentsLateSelect = $formFilters.find('select.valuePaymentsLate');
+		var filterPaymentsLate = $filterPaymentsLateSelect.length ? $filterPaymentsLateSelect.val() : $filterPaymentsLateCheckbox.prop('checked');
+		var filterPaymentsLateSelectVal = $formFilters.find('select.filterPaymentsLate').val();
+		var filterPaymentsLate = null;
+		if(filterPaymentsLateSelectVal !== '')
+			filterPaymentsLate = filterPaymentsLateSelectVal == 'true';
+		if(filterPaymentsLate != null && filterPaymentsLate === true)
+			filters.push({ name: 'fq', value: 'paymentsLate:' + filterPaymentsLate });
+
+		var $filterPaymentsAheadCheckbox = $formFilters.find('input.valuePaymentsAhead[type = "checkbox"]');
+		var $filterPaymentsAheadSelect = $formFilters.find('select.valuePaymentsAhead');
+		var filterPaymentsAhead = $filterPaymentsAheadSelect.length ? $filterPaymentsAheadSelect.val() : $filterPaymentsAheadCheckbox.prop('checked');
+		var filterPaymentsAheadSelectVal = $formFilters.find('select.filterPaymentsAhead').val();
+		var filterPaymentsAhead = null;
+		if(filterPaymentsAheadSelectVal !== '')
+			filterPaymentsAhead = filterPaymentsAheadSelectVal == 'true';
+		if(filterPaymentsAhead != null && filterPaymentsAhead === true)
+			filters.push({ name: 'fq', value: 'paymentsAhead:' + filterPaymentsAhead });
+
 		var filterCreatedYear = $formFilters.find('.valueCreatedYear').val();
 		if(filterCreatedYear != null && filterCreatedYear !== '')
 			filters.push({ name: 'fq', value: 'createdYear:' + filterCreatedYear });
@@ -2639,6 +2687,10 @@ function searchSchoolEnrollmentFilters($formFilters) {
 		var filterEnrollmentDaysOfWeek = $formFilters.find('.valueEnrollmentDaysOfWeek').val();
 		if(filterEnrollmentDaysOfWeek != null && filterEnrollmentDaysOfWeek !== '')
 			filters.push({ name: 'fq', value: 'enrollmentDaysOfWeek:' + filterEnrollmentDaysOfWeek });
+
+		var filterEnrollmentEmails = $formFilters.find('.valueEnrollmentEmails').val();
+		if(filterEnrollmentEmails != null && filterEnrollmentEmails !== '')
+			filters.push({ name: 'fq', value: 'enrollmentEmails:' + filterEnrollmentEmails });
 
 		var filterEnrollmentDate1 = $formFilters.find('.valueEnrollmentDate1').val();
 		if(filterEnrollmentDate1 != null && filterEnrollmentDate1 !== '')
@@ -3280,10 +3332,6 @@ function adminsearchSchoolEnrollmentFilters($formFilters) {
 		if(filterSchoolKey != null && filterSchoolKey !== '')
 			filters.push({ name: 'fq', value: 'schoolKey:' + filterSchoolKey });
 
-		var filterSeasonKey = $formFilters.find('.valueSeasonKey').val();
-		if(filterSeasonKey != null && filterSeasonKey !== '')
-			filters.push({ name: 'fq', value: 'seasonKey:' + filterSeasonKey });
-
 		var filterSessionKey = $formFilters.find('.valueSessionKey').val();
 		if(filterSessionKey != null && filterSessionKey !== '')
 			filters.push({ name: 'fq', value: 'sessionKey:' + filterSessionKey });
@@ -3432,33 +3480,9 @@ function adminsearchSchoolEnrollmentFilters($formFilters) {
 		if(filterSeasonStartDate != null && filterSeasonStartDate !== '')
 			filters.push({ name: 'fq', value: 'seasonStartDate:' + filterSeasonStartDate });
 
-		var $filterSeasonSummerCheckbox = $formFilters.find('input.valueSeasonSummer[type = "checkbox"]');
-		var $filterSeasonSummerSelect = $formFilters.find('select.valueSeasonSummer');
-		var filterSeasonSummer = $filterSeasonSummerSelect.length ? $filterSeasonSummerSelect.val() : $filterSeasonSummerCheckbox.prop('checked');
-		var filterSeasonSummerSelectVal = $formFilters.find('select.filterSeasonSummer').val();
-		var filterSeasonSummer = null;
-		if(filterSeasonSummerSelectVal !== '')
-			filterSeasonSummer = filterSeasonSummerSelectVal == 'true';
-		if(filterSeasonSummer != null && filterSeasonSummer === true)
-			filters.push({ name: 'fq', value: 'seasonSummer:' + filterSeasonSummer });
-
-		var $filterSeasonWinterCheckbox = $formFilters.find('input.valueSeasonWinter[type = "checkbox"]');
-		var $filterSeasonWinterSelect = $formFilters.find('select.valueSeasonWinter');
-		var filterSeasonWinter = $filterSeasonWinterSelect.length ? $filterSeasonWinterSelect.val() : $filterSeasonWinterCheckbox.prop('checked');
-		var filterSeasonWinterSelectVal = $formFilters.find('select.filterSeasonWinter').val();
-		var filterSeasonWinter = null;
-		if(filterSeasonWinterSelectVal !== '')
-			filterSeasonWinter = filterSeasonWinterSelectVal == 'true';
-		if(filterSeasonWinter != null && filterSeasonWinter === true)
-			filters.push({ name: 'fq', value: 'seasonWinter:' + filterSeasonWinter });
-
 		var filterYearEnrollmentFee = $formFilters.find('.valueYearEnrollmentFee').val();
 		if(filterYearEnrollmentFee != null && filterYearEnrollmentFee !== '')
 			filters.push({ name: 'fq', value: 'yearEnrollmentFee:' + filterYearEnrollmentFee });
-
-		var filterSeasonCompleteName = $formFilters.find('.valueSeasonCompleteName').val();
-		if(filterSeasonCompleteName != null && filterSeasonCompleteName !== '')
-			filters.push({ name: 'fq', value: 'seasonCompleteName:' + filterSeasonCompleteName });
 
 		var filterSessionStartDate = $formFilters.find('.valueSessionStartDate').val();
 		if(filterSessionStartDate != null && filterSessionStartDate !== '')
@@ -3582,6 +3606,56 @@ function adminsearchSchoolEnrollmentFilters($formFilters) {
 		if(filterEnrollmentChargeDate != null && filterEnrollmentChargeDate !== '')
 			filters.push({ name: 'fq', value: 'enrollmentChargeDate:' + filterEnrollmentChargeDate });
 
+		var filterPaymentAmount = $formFilters.find('.valuePaymentAmount').val();
+		if(filterPaymentAmount != null && filterPaymentAmount !== '')
+			filters.push({ name: 'fq', value: 'paymentAmount:' + filterPaymentAmount });
+
+		var filterChargeAmount = $formFilters.find('.valueChargeAmount').val();
+		if(filterChargeAmount != null && filterChargeAmount !== '')
+			filters.push({ name: 'fq', value: 'chargeAmount:' + filterChargeAmount });
+
+		var filterChargeAmountFuture = $formFilters.find('.valueChargeAmountFuture').val();
+		if(filterChargeAmountFuture != null && filterChargeAmountFuture !== '')
+			filters.push({ name: 'fq', value: 'chargeAmountFuture:' + filterChargeAmountFuture });
+
+		var filterChargeAmountDue = $formFilters.find('.valueChargeAmountDue').val();
+		if(filterChargeAmountDue != null && filterChargeAmountDue !== '')
+			filters.push({ name: 'fq', value: 'chargeAmountDue:' + filterChargeAmountDue });
+
+		var filterChargesNow = $formFilters.find('.valueChargesNow').val();
+		if(filterChargesNow != null && filterChargesNow !== '')
+			filters.push({ name: 'fq', value: 'chargesNow:' + filterChargesNow });
+
+		var $filterPaymentsCurrentCheckbox = $formFilters.find('input.valuePaymentsCurrent[type = "checkbox"]');
+		var $filterPaymentsCurrentSelect = $formFilters.find('select.valuePaymentsCurrent');
+		var filterPaymentsCurrent = $filterPaymentsCurrentSelect.length ? $filterPaymentsCurrentSelect.val() : $filterPaymentsCurrentCheckbox.prop('checked');
+		var filterPaymentsCurrentSelectVal = $formFilters.find('select.filterPaymentsCurrent').val();
+		var filterPaymentsCurrent = null;
+		if(filterPaymentsCurrentSelectVal !== '')
+			filterPaymentsCurrent = filterPaymentsCurrentSelectVal == 'true';
+		if(filterPaymentsCurrent != null && filterPaymentsCurrent === true)
+			filters.push({ name: 'fq', value: 'paymentsCurrent:' + filterPaymentsCurrent });
+
+		var $filterPaymentsLateCheckbox = $formFilters.find('input.valuePaymentsLate[type = "checkbox"]');
+		var $filterPaymentsLateSelect = $formFilters.find('select.valuePaymentsLate');
+		var filterPaymentsLate = $filterPaymentsLateSelect.length ? $filterPaymentsLateSelect.val() : $filterPaymentsLateCheckbox.prop('checked');
+		var filterPaymentsLateSelectVal = $formFilters.find('select.filterPaymentsLate').val();
+		var filterPaymentsLate = null;
+		if(filterPaymentsLateSelectVal !== '')
+			filterPaymentsLate = filterPaymentsLateSelectVal == 'true';
+		if(filterPaymentsLate != null && filterPaymentsLate === true)
+			filters.push({ name: 'fq', value: 'paymentsLate:' + filterPaymentsLate });
+
+		var $filterPaymentsAheadCheckbox = $formFilters.find('input.valuePaymentsAhead[type = "checkbox"]');
+		var $filterPaymentsAheadSelect = $formFilters.find('select.valuePaymentsAhead');
+		var filterPaymentsAhead = $filterPaymentsAheadSelect.length ? $filterPaymentsAheadSelect.val() : $filterPaymentsAheadCheckbox.prop('checked');
+		var filterPaymentsAheadSelectVal = $formFilters.find('select.filterPaymentsAhead').val();
+		var filterPaymentsAhead = null;
+		if(filterPaymentsAheadSelectVal !== '')
+			filterPaymentsAhead = filterPaymentsAheadSelectVal == 'true';
+		if(filterPaymentsAhead != null && filterPaymentsAhead === true)
+			filters.push({ name: 'fq', value: 'paymentsAhead:' + filterPaymentsAhead });
+
 		var filterCreatedYear = $formFilters.find('.valueCreatedYear').val();
 		if(filterCreatedYear != null && filterCreatedYear !== '')
 			filters.push({ name: 'fq', value: 'createdYear:' + filterCreatedYear });
@@ -3601,6 +3675,10 @@ function adminsearchSchoolEnrollmentFilters($formFilters) {
 		var filterEnrollmentDaysOfWeek = $formFilters.find('.valueEnrollmentDaysOfWeek').val();
 		if(filterEnrollmentDaysOfWeek != null && filterEnrollmentDaysOfWeek !== '')
 			filters.push({ name: 'fq', value: 'enrollmentDaysOfWeek:' + filterEnrollmentDaysOfWeek });
+
+		var filterEnrollmentEmails = $formFilters.find('.valueEnrollmentEmails').val();
+		if(filterEnrollmentEmails != null && filterEnrollmentEmails !== '')
+			filters.push({ name: 'fq', value: 'enrollmentEmails:' + filterEnrollmentEmails });
 
 		var filterEnrollmentDate1 = $formFilters.find('.valueEnrollmentDate1').val();
 		if(filterEnrollmentDate1 != null && filterEnrollmentDate1 !== '')
@@ -5010,10 +5088,6 @@ function patchpaymentsSchoolEnrollmentFilters($formFilters) {
 		if(filterSchoolKey != null && filterSchoolKey !== '')
 			filters.push({ name: 'fq', value: 'schoolKey:' + filterSchoolKey });
 
-		var filterSeasonKey = $formFilters.find('.valueSeasonKey').val();
-		if(filterSeasonKey != null && filterSeasonKey !== '')
-			filters.push({ name: 'fq', value: 'seasonKey:' + filterSeasonKey });
-
 		var filterSessionKey = $formFilters.find('.valueSessionKey').val();
 		if(filterSessionKey != null && filterSessionKey !== '')
 			filters.push({ name: 'fq', value: 'sessionKey:' + filterSessionKey });
@@ -5162,33 +5236,9 @@ function patchpaymentsSchoolEnrollmentFilters($formFilters) {
 		if(filterSeasonStartDate != null && filterSeasonStartDate !== '')
 			filters.push({ name: 'fq', value: 'seasonStartDate:' + filterSeasonStartDate });
 
-		var $filterSeasonSummerCheckbox = $formFilters.find('input.valueSeasonSummer[type = "checkbox"]');
-		var $filterSeasonSummerSelect = $formFilters.find('select.valueSeasonSummer');
-		var filterSeasonSummer = $filterSeasonSummerSelect.length ? $filterSeasonSummerSelect.val() : $filterSeasonSummerCheckbox.prop('checked');
-		var filterSeasonSummerSelectVal = $formFilters.find('select.filterSeasonSummer').val();
-		var filterSeasonSummer = null;
-		if(filterSeasonSummerSelectVal !== '')
-			filterSeasonSummer = filterSeasonSummerSelectVal == 'true';
-		if(filterSeasonSummer != null && filterSeasonSummer === true)
-			filters.push({ name: 'fq', value: 'seasonSummer:' + filterSeasonSummer });
-
-		var $filterSeasonWinterCheckbox = $formFilters.find('input.valueSeasonWinter[type = "checkbox"]');
-		var $filterSeasonWinterSelect = $formFilters.find('select.valueSeasonWinter');
-		var filterSeasonWinter = $filterSeasonWinterSelect.length ? $filterSeasonWinterSelect.val() : $filterSeasonWinterCheckbox.prop('checked');
-		var filterSeasonWinterSelectVal = $formFilters.find('select.filterSeasonWinter').val();
-		var filterSeasonWinter = null;
-		if(filterSeasonWinterSelectVal !== '')
-			filterSeasonWinter = filterSeasonWinterSelectVal == 'true';
-		if(filterSeasonWinter != null && filterSeasonWinter === true)
-			filters.push({ name: 'fq', value: 'seasonWinter:' + filterSeasonWinter });
-
 		var filterYearEnrollmentFee = $formFilters.find('.valueYearEnrollmentFee').val();
 		if(filterYearEnrollmentFee != null && filterYearEnrollmentFee !== '')
 			filters.push({ name: 'fq', value: 'yearEnrollmentFee:' + filterYearEnrollmentFee });
-
-		var filterSeasonCompleteName = $formFilters.find('.valueSeasonCompleteName').val();
-		if(filterSeasonCompleteName != null && filterSeasonCompleteName !== '')
-			filters.push({ name: 'fq', value: 'seasonCompleteName:' + filterSeasonCompleteName });
 
 		var filterSessionStartDate = $formFilters.find('.valueSessionStartDate').val();
 		if(filterSessionStartDate != null && filterSessionStartDate !== '')
@@ -5312,6 +5362,56 @@ function patchpaymentsSchoolEnrollmentFilters($formFilters) {
 		if(filterEnrollmentChargeDate != null && filterEnrollmentChargeDate !== '')
 			filters.push({ name: 'fq', value: 'enrollmentChargeDate:' + filterEnrollmentChargeDate });
 
+		var filterPaymentAmount = $formFilters.find('.valuePaymentAmount').val();
+		if(filterPaymentAmount != null && filterPaymentAmount !== '')
+			filters.push({ name: 'fq', value: 'paymentAmount:' + filterPaymentAmount });
+
+		var filterChargeAmount = $formFilters.find('.valueChargeAmount').val();
+		if(filterChargeAmount != null && filterChargeAmount !== '')
+			filters.push({ name: 'fq', value: 'chargeAmount:' + filterChargeAmount });
+
+		var filterChargeAmountFuture = $formFilters.find('.valueChargeAmountFuture').val();
+		if(filterChargeAmountFuture != null && filterChargeAmountFuture !== '')
+			filters.push({ name: 'fq', value: 'chargeAmountFuture:' + filterChargeAmountFuture });
+
+		var filterChargeAmountDue = $formFilters.find('.valueChargeAmountDue').val();
+		if(filterChargeAmountDue != null && filterChargeAmountDue !== '')
+			filters.push({ name: 'fq', value: 'chargeAmountDue:' + filterChargeAmountDue });
+
+		var filterChargesNow = $formFilters.find('.valueChargesNow').val();
+		if(filterChargesNow != null && filterChargesNow !== '')
+			filters.push({ name: 'fq', value: 'chargesNow:' + filterChargesNow });
+
+		var $filterPaymentsCurrentCheckbox = $formFilters.find('input.valuePaymentsCurrent[type = "checkbox"]');
+		var $filterPaymentsCurrentSelect = $formFilters.find('select.valuePaymentsCurrent');
+		var filterPaymentsCurrent = $filterPaymentsCurrentSelect.length ? $filterPaymentsCurrentSelect.val() : $filterPaymentsCurrentCheckbox.prop('checked');
+		var filterPaymentsCurrentSelectVal = $formFilters.find('select.filterPaymentsCurrent').val();
+		var filterPaymentsCurrent = null;
+		if(filterPaymentsCurrentSelectVal !== '')
+			filterPaymentsCurrent = filterPaymentsCurrentSelectVal == 'true';
+		if(filterPaymentsCurrent != null && filterPaymentsCurrent === true)
+			filters.push({ name: 'fq', value: 'paymentsCurrent:' + filterPaymentsCurrent });
+
+		var $filterPaymentsLateCheckbox = $formFilters.find('input.valuePaymentsLate[type = "checkbox"]');
+		var $filterPaymentsLateSelect = $formFilters.find('select.valuePaymentsLate');
+		var filterPaymentsLate = $filterPaymentsLateSelect.length ? $filterPaymentsLateSelect.val() : $filterPaymentsLateCheckbox.prop('checked');
+		var filterPaymentsLateSelectVal = $formFilters.find('select.filterPaymentsLate').val();
+		var filterPaymentsLate = null;
+		if(filterPaymentsLateSelectVal !== '')
+			filterPaymentsLate = filterPaymentsLateSelectVal == 'true';
+		if(filterPaymentsLate != null && filterPaymentsLate === true)
+			filters.push({ name: 'fq', value: 'paymentsLate:' + filterPaymentsLate });
+
+		var $filterPaymentsAheadCheckbox = $formFilters.find('input.valuePaymentsAhead[type = "checkbox"]');
+		var $filterPaymentsAheadSelect = $formFilters.find('select.valuePaymentsAhead');
+		var filterPaymentsAhead = $filterPaymentsAheadSelect.length ? $filterPaymentsAheadSelect.val() : $filterPaymentsAheadCheckbox.prop('checked');
+		var filterPaymentsAheadSelectVal = $formFilters.find('select.filterPaymentsAhead').val();
+		var filterPaymentsAhead = null;
+		if(filterPaymentsAheadSelectVal !== '')
+			filterPaymentsAhead = filterPaymentsAheadSelectVal == 'true';
+		if(filterPaymentsAhead != null && filterPaymentsAhead === true)
+			filters.push({ name: 'fq', value: 'paymentsAhead:' + filterPaymentsAhead });
+
 		var filterCreatedYear = $formFilters.find('.valueCreatedYear').val();
 		if(filterCreatedYear != null && filterCreatedYear !== '')
 			filters.push({ name: 'fq', value: 'createdYear:' + filterCreatedYear });
@@ -5331,6 +5431,10 @@ function patchpaymentsSchoolEnrollmentFilters($formFilters) {
 		var filterEnrollmentDaysOfWeek = $formFilters.find('.valueEnrollmentDaysOfWeek').val();
 		if(filterEnrollmentDaysOfWeek != null && filterEnrollmentDaysOfWeek !== '')
 			filters.push({ name: 'fq', value: 'enrollmentDaysOfWeek:' + filterEnrollmentDaysOfWeek });
+
+		var filterEnrollmentEmails = $formFilters.find('.valueEnrollmentEmails').val();
+		if(filterEnrollmentEmails != null && filterEnrollmentEmails !== '')
+			filters.push({ name: 'fq', value: 'enrollmentEmails:' + filterEnrollmentEmails });
 
 		var filterEnrollmentDate1 = $formFilters.find('.valueEnrollmentDate1').val();
 		if(filterEnrollmentDate1 != null && filterEnrollmentDate1 !== '')

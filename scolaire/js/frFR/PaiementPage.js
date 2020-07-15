@@ -57,6 +57,10 @@ async function postPaiementScolaire($formulaireValeurs, success, error) {
 	if(valeurPaiementCheque != null && valeurPaiementCheque !== '')
 		vals['paiementCheque'] = valeurPaiementCheque;
 
+	var valeurPaiementECheck = $formulaireValeurs.find('.valeurPaiementECheck').prop('checked');
+	if(valeurPaiementECheck != null && valeurPaiementECheck !== '')
+		vals['paiementECheck'] = valeurPaiementECheck;
+
 	var valeurPaiementSysteme = $formulaireValeurs.find('.valeurPaiementSysteme').prop('checked');
 	if(valeurPaiementSysteme != null && valeurPaiementSysteme !== '')
 		vals['paiementSysteme'] = valeurPaiementSysteme;
@@ -272,6 +276,10 @@ async function putcopiePaiementScolaire($formulaireValeurs, pk, success, error) 
 	var valeurPaiementCheque = $formulaireValeurs.find('.valeurPaiementCheque').prop('checked');
 	if(valeurPaiementCheque != null && valeurPaiementCheque !== '')
 		vals['paiementCheque'] = valeurPaiementCheque;
+
+	var valeurPaiementECheck = $formulaireValeurs.find('.valeurPaiementECheck').prop('checked');
+	if(valeurPaiementECheck != null && valeurPaiementECheck !== '')
+		vals['paiementECheck'] = valeurPaiementECheck;
 
 	var valeurPaiementSysteme = $formulaireValeurs.find('.valeurPaiementSysteme').prop('checked');
 	if(valeurPaiementSysteme != null && valeurPaiementSysteme !== '')
@@ -548,6 +556,23 @@ async function patchPaiementScolaire($formulaireFiltres, $formulaireValeurs, pk,
 	var removePaiementCheque = $formulaireValeurs.find('.removePaiementCheque').prop('checked');
 	if(removePaiementCheque != null && removePaiementCheque !== '')
 		vals['removePaiementCheque'] = removePaiementCheque;
+
+	var valeurPaiementECheck = $formulaireValeurs.find('.valeurPaiementECheck').prop('checked');
+	if(valeurPaiementECheck != null && valeurPaiementECheck !== '')
+	var removePaiementECheck = $formulaireFiltres.find('.removePaiementECheck').val() === 'true';
+	var valeurPaiementECheckSelectVal = $formulaireValeurs.find('select.setPaiementECheck').val();
+	var valeurPaiementECheck = null;
+	if(valeurPaiementECheckSelectVal !== '')
+		valeurPaiementECheck = valeurPaiementECheckSelectVal == 'true';
+	setPaiementECheck = removePaiementECheck ? null : valeurPaiementECheck;
+	if(removePaiementECheck || setPaiementECheck != null && setPaiementECheck !== '')
+		vals['setPaiementECheck'] = setPaiementECheck;
+	var addPaiementECheck = $formulaireValeurs.find('.addPaiementECheck').prop('checked');
+	if(addPaiementECheck != null && addPaiementECheck !== '')
+		vals['addPaiementECheck'] = addPaiementECheck;
+	var removePaiementECheck = $formulaireValeurs.find('.removePaiementECheck').prop('checked');
+	if(removePaiementECheck != null && removePaiementECheck !== '')
+		vals['removePaiementECheck'] = removePaiementECheck;
 
 	var valeurPaiementSysteme = $formulaireValeurs.find('.valeurPaiementSysteme').prop('checked');
 	if(valeurPaiementSysteme != null && valeurPaiementSysteme !== '')
@@ -994,6 +1019,16 @@ function patchPaiementScolaireFiltres($formulaireFiltres) {
 		if(filtrePaiementCheque != null && filtrePaiementCheque === true)
 			filtres.push({ name: 'fq', value: 'paiementCheque:' + filtrePaiementCheque });
 
+		var $filtrePaiementECheckCheckbox = $formulaireFiltres.find('input.valeurPaiementECheck[type = "checkbox"]');
+		var $filtrePaiementECheckSelect = $formulaireFiltres.find('select.valeurPaiementECheck');
+		var filtrePaiementECheck = $filtrePaiementECheckSelect.length ? $filtrePaiementECheckSelect.val() : $filtrePaiementECheckCheckbox.prop('checked');
+		var filtrePaiementECheckSelectVal = $formulaireFiltres.find('select.filtrePaiementECheck').val();
+		var filtrePaiementECheck = null;
+		if(filtrePaiementECheckSelectVal !== '')
+			filtrePaiementECheck = filtrePaiementECheckSelectVal == 'true';
+		if(filtrePaiementECheck != null && filtrePaiementECheck === true)
+			filtres.push({ name: 'fq', value: 'paiementECheck:' + filtrePaiementECheck });
+
 		var $filtrePaiementSystemeCheckbox = $formulaireFiltres.find('input.valeurPaiementSysteme[type = "checkbox"]');
 		var $filtrePaiementSystemeSelect = $formulaireFiltres.find('select.valeurPaiementSysteme');
 		var filtrePaiementSysteme = $filtrePaiementSystemeSelect.length ? $filtrePaiementSystemeSelect.val() : $filtrePaiementSystemeCheckbox.prop('checked');
@@ -1182,10 +1217,6 @@ function patchPaiementScolaireFiltres($formulaireFiltres) {
 		if(filtreAnneeCle != null && filtreAnneeCle !== '')
 			filtres.push({ name: 'fq', value: 'anneeCle:' + filtreAnneeCle });
 
-		var filtreSaisonCle = $formulaireFiltres.find('.valeurSaisonCle').val();
-		if(filtreSaisonCle != null && filtreSaisonCle !== '')
-			filtres.push({ name: 'fq', value: 'saisonCle:' + filtreSaisonCle });
-
 		var filtreSessionCle = $formulaireFiltres.find('.valeurSessionCle').val();
 		if(filtreSessionCle != null && filtreSessionCle !== '')
 			filtres.push({ name: 'fq', value: 'sessionCle:' + filtreSessionCle });
@@ -1253,26 +1284,6 @@ function patchPaiementScolaireFiltres($formulaireFiltres) {
 		var filtreSaisonDateDebut = $formulaireFiltres.find('.valeurSaisonDateDebut').val();
 		if(filtreSaisonDateDebut != null && filtreSaisonDateDebut !== '')
 			filtres.push({ name: 'fq', value: 'saisonDateDebut:' + filtreSaisonDateDebut });
-
-		var $filtreSaisonEteCheckbox = $formulaireFiltres.find('input.valeurSaisonEte[type = "checkbox"]');
-		var $filtreSaisonEteSelect = $formulaireFiltres.find('select.valeurSaisonEte');
-		var filtreSaisonEte = $filtreSaisonEteSelect.length ? $filtreSaisonEteSelect.val() : $filtreSaisonEteCheckbox.prop('checked');
-		var filtreSaisonEteSelectVal = $formulaireFiltres.find('select.filtreSaisonEte').val();
-		var filtreSaisonEte = null;
-		if(filtreSaisonEteSelectVal !== '')
-			filtreSaisonEte = filtreSaisonEteSelectVal == 'true';
-		if(filtreSaisonEte != null && filtreSaisonEte === true)
-			filtres.push({ name: 'fq', value: 'saisonEte:' + filtreSaisonEte });
-
-		var $filtreSaisonHiverCheckbox = $formulaireFiltres.find('input.valeurSaisonHiver[type = "checkbox"]');
-		var $filtreSaisonHiverSelect = $formulaireFiltres.find('select.valeurSaisonHiver');
-		var filtreSaisonHiver = $filtreSaisonHiverSelect.length ? $filtreSaisonHiverSelect.val() : $filtreSaisonHiverCheckbox.prop('checked');
-		var filtreSaisonHiverSelectVal = $formulaireFiltres.find('select.filtreSaisonHiver').val();
-		var filtreSaisonHiver = null;
-		if(filtreSaisonHiverSelectVal !== '')
-			filtreSaisonHiver = filtreSaisonHiverSelectVal == 'true';
-		if(filtreSaisonHiver != null && filtreSaisonHiver === true)
-			filtres.push({ name: 'fq', value: 'saisonHiver:' + filtreSaisonHiver });
 
 		var filtreAnneeFraisInscription = $formulaireFiltres.find('.valeurAnneeFraisInscription').val();
 		if(filtreAnneeFraisInscription != null && filtreAnneeFraisInscription !== '')
@@ -1440,6 +1451,16 @@ function recherchePaiementScolaireFiltres($formulaireFiltres) {
 		if(filtrePaiementCheque != null && filtrePaiementCheque === true)
 			filtres.push({ name: 'fq', value: 'paiementCheque:' + filtrePaiementCheque });
 
+		var $filtrePaiementECheckCheckbox = $formulaireFiltres.find('input.valeurPaiementECheck[type = "checkbox"]');
+		var $filtrePaiementECheckSelect = $formulaireFiltres.find('select.valeurPaiementECheck');
+		var filtrePaiementECheck = $filtrePaiementECheckSelect.length ? $filtrePaiementECheckSelect.val() : $filtrePaiementECheckCheckbox.prop('checked');
+		var filtrePaiementECheckSelectVal = $formulaireFiltres.find('select.filtrePaiementECheck').val();
+		var filtrePaiementECheck = null;
+		if(filtrePaiementECheckSelectVal !== '')
+			filtrePaiementECheck = filtrePaiementECheckSelectVal == 'true';
+		if(filtrePaiementECheck != null && filtrePaiementECheck === true)
+			filtres.push({ name: 'fq', value: 'paiementECheck:' + filtrePaiementECheck });
+
 		var $filtrePaiementSystemeCheckbox = $formulaireFiltres.find('input.valeurPaiementSysteme[type = "checkbox"]');
 		var $filtrePaiementSystemeSelect = $formulaireFiltres.find('select.valeurPaiementSysteme');
 		var filtrePaiementSysteme = $filtrePaiementSystemeSelect.length ? $filtrePaiementSystemeSelect.val() : $filtrePaiementSystemeCheckbox.prop('checked');
@@ -1628,10 +1649,6 @@ function recherchePaiementScolaireFiltres($formulaireFiltres) {
 		if(filtreAnneeCle != null && filtreAnneeCle !== '')
 			filtres.push({ name: 'fq', value: 'anneeCle:' + filtreAnneeCle });
 
-		var filtreSaisonCle = $formulaireFiltres.find('.valeurSaisonCle').val();
-		if(filtreSaisonCle != null && filtreSaisonCle !== '')
-			filtres.push({ name: 'fq', value: 'saisonCle:' + filtreSaisonCle });
-
 		var filtreSessionCle = $formulaireFiltres.find('.valeurSessionCle').val();
 		if(filtreSessionCle != null && filtreSessionCle !== '')
 			filtres.push({ name: 'fq', value: 'sessionCle:' + filtreSessionCle });
@@ -1699,26 +1716,6 @@ function recherchePaiementScolaireFiltres($formulaireFiltres) {
 		var filtreSaisonDateDebut = $formulaireFiltres.find('.valeurSaisonDateDebut').val();
 		if(filtreSaisonDateDebut != null && filtreSaisonDateDebut !== '')
 			filtres.push({ name: 'fq', value: 'saisonDateDebut:' + filtreSaisonDateDebut });
-
-		var $filtreSaisonEteCheckbox = $formulaireFiltres.find('input.valeurSaisonEte[type = "checkbox"]');
-		var $filtreSaisonEteSelect = $formulaireFiltres.find('select.valeurSaisonEte');
-		var filtreSaisonEte = $filtreSaisonEteSelect.length ? $filtreSaisonEteSelect.val() : $filtreSaisonEteCheckbox.prop('checked');
-		var filtreSaisonEteSelectVal = $formulaireFiltres.find('select.filtreSaisonEte').val();
-		var filtreSaisonEte = null;
-		if(filtreSaisonEteSelectVal !== '')
-			filtreSaisonEte = filtreSaisonEteSelectVal == 'true';
-		if(filtreSaisonEte != null && filtreSaisonEte === true)
-			filtres.push({ name: 'fq', value: 'saisonEte:' + filtreSaisonEte });
-
-		var $filtreSaisonHiverCheckbox = $formulaireFiltres.find('input.valeurSaisonHiver[type = "checkbox"]');
-		var $filtreSaisonHiverSelect = $formulaireFiltres.find('select.valeurSaisonHiver');
-		var filtreSaisonHiver = $filtreSaisonHiverSelect.length ? $filtreSaisonHiverSelect.val() : $filtreSaisonHiverCheckbox.prop('checked');
-		var filtreSaisonHiverSelectVal = $formulaireFiltres.find('select.filtreSaisonHiver').val();
-		var filtreSaisonHiver = null;
-		if(filtreSaisonHiverSelectVal !== '')
-			filtreSaisonHiver = filtreSaisonHiverSelectVal == 'true';
-		if(filtreSaisonHiver != null && filtreSaisonHiver === true)
-			filtres.push({ name: 'fq', value: 'saisonHiver:' + filtreSaisonHiver });
 
 		var filtreAnneeFraisInscription = $formulaireFiltres.find('.valeurAnneeFraisInscription').val();
 		if(filtreAnneeFraisInscription != null && filtreAnneeFraisInscription !== '')
@@ -2001,6 +1998,18 @@ async function websocketPaiementScolaireInner(requeteApi) {
 						$(this).text(val);
 				});
 				ajouterLueur($('.inputPaiementScolaire' + pk + 'PaiementCheque'));
+			}
+			var val = o['paiementECheck'];
+			if(vars.includes('paiementECheck')) {
+				$('.inputPaiementScolaire' + pk + 'PaiementECheck').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varPaiementScolaire' + pk + 'PaiementECheck').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputPaiementScolaire' + pk + 'PaiementECheck'));
 			}
 			var val = o['paiementSysteme'];
 			if(vars.includes('paiementSysteme')) {

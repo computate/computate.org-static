@@ -49,14 +49,6 @@ async function postSchoolYear($formValues, success, error) {
 	if(valueSessionEndDate != null && valueSessionEndDate !== '')
 		vals['sessionEndDate'] = valueSessionEndDate;
 
-	var valueYearStart = $formValues.find('.valueYearStart').val();
-	if(valueYearStart != null && valueYearStart !== '')
-		vals['yearStart'] = valueYearStart;
-
-	var valueYearEnd = $formValues.find('.valueYearEnd').val();
-	if(valueYearEnd != null && valueYearEnd !== '')
-		vals['yearEnd'] = valueYearEnd;
-
 	var valueYearEnrollmentFee = $formValues.find('.valueYearEnrollmentFee').val();
 	if(valueYearEnrollmentFee != null && valueYearEnrollmentFee !== '')
 		vals['yearEnrollmentFee'] = valueYearEnrollmentFee;
@@ -91,6 +83,18 @@ async function postSchoolYear($formValues, success, error) {
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
+
+	var valueSeasonStartDate = $formValues.find('.valueSeasonStartDate').val();
+	if(valueSeasonStartDate != null && valueSeasonStartDate !== '')
+		vals['seasonStartDate'] = valueSeasonStartDate;
+
+	var valueYearStart = $formValues.find('.valueYearStart').val();
+	if(valueYearStart != null && valueYearStart !== '')
+		vals['yearStart'] = valueYearStart;
+
+	var valueYearEnd = $formValues.find('.valueYearEnd').val();
+	if(valueYearEnd != null && valueYearEnd !== '')
+		vals['yearEnd'] = valueYearEnd;
 
 	$.ajax({
 		url: '/api/year'
@@ -192,14 +196,6 @@ async function putcopySchoolYear($formValues, pk, success, error) {
 	if(valueSessionEndDate != null && valueSessionEndDate !== '')
 		vals['sessionEndDate'] = valueSessionEndDate;
 
-	var valueYearStart = $formValues.find('.valueYearStart').val();
-	if(valueYearStart != null && valueYearStart !== '')
-		vals['yearStart'] = valueYearStart;
-
-	var valueYearEnd = $formValues.find('.valueYearEnd').val();
-	if(valueYearEnd != null && valueYearEnd !== '')
-		vals['yearEnd'] = valueYearEnd;
-
 	var valueYearEnrollmentFee = $formValues.find('.valueYearEnrollmentFee').val();
 	if(valueYearEnrollmentFee != null && valueYearEnrollmentFee !== '')
 		vals['yearEnrollmentFee'] = valueYearEnrollmentFee;
@@ -231,6 +227,18 @@ async function putcopySchoolYear($formValues, pk, success, error) {
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
+
+	var valueSeasonStartDate = $formValues.find('.valueSeasonStartDate').val();
+	if(valueSeasonStartDate != null && valueSeasonStartDate !== '')
+		vals['seasonStartDate'] = valueSeasonStartDate;
+
+	var valueYearStart = $formValues.find('.valueYearStart').val();
+	if(valueYearStart != null && valueYearStart !== '')
+		vals['yearStart'] = valueYearStart;
+
+	var valueYearEnd = $formValues.find('.valueYearEnd').val();
+	if(valueYearEnd != null && valueYearEnd !== '')
+		vals['yearEnd'] = valueYearEnd;
 
 	putcopySchoolYearVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
@@ -366,32 +374,6 @@ async function patchSchoolYear($formFilters, $formValues, pk, success, error) {
 	if(removeSessionEndDate != null && removeSessionEndDate !== '')
 		vals['removeSessionEndDate'] = removeSessionEndDate;
 
-	var valueYearStart = $formValues.find('.valueYearStart').val();
-	if(valueYearStart != null && valueYearStart !== '')
-	var removeYearStart = $formFilters.find('.removeYearStart').val() === 'true';
-	var setYearStart = removeYearStart ? null : $formValues.find('.setYearStart').val();
-	if(removeYearStart || setYearStart != null && setYearStart !== '')
-		vals['setYearStart'] = setYearStart;
-	var addYearStart = $formValues.find('.addYearStart').val();
-	if(addYearStart != null && addYearStart !== '')
-		vals['addYearStart'] = addYearStart;
-	var removeYearStart = $formValues.find('.removeYearStart').val();
-	if(removeYearStart != null && removeYearStart !== '')
-		vals['removeYearStart'] = removeYearStart;
-
-	var valueYearEnd = $formValues.find('.valueYearEnd').val();
-	if(valueYearEnd != null && valueYearEnd !== '')
-	var removeYearEnd = $formFilters.find('.removeYearEnd').val() === 'true';
-	var setYearEnd = removeYearEnd ? null : $formValues.find('.setYearEnd').val();
-	if(removeYearEnd || setYearEnd != null && setYearEnd !== '')
-		vals['setYearEnd'] = setYearEnd;
-	var addYearEnd = $formValues.find('.addYearEnd').val();
-	if(addYearEnd != null && addYearEnd !== '')
-		vals['addYearEnd'] = addYearEnd;
-	var removeYearEnd = $formValues.find('.removeYearEnd').val();
-	if(removeYearEnd != null && removeYearEnd !== '')
-		vals['removeYearEnd'] = removeYearEnd;
-
 	var valueYearEnrollmentFee = $formValues.find('.valueYearEnrollmentFee').val();
 	if(valueYearEnrollmentFee != null && valueYearEnrollmentFee !== '')
 	var removeYearEnrollmentFee = $formFilters.find('.removeYearEnrollmentFee').val() === 'true';
@@ -478,6 +460,45 @@ async function patchSchoolYear($formFilters, $formValues, pk, success, error) {
 	if(removeObjectTitle != null && removeObjectTitle !== '')
 		vals['removeObjectTitle'] = removeObjectTitle;
 
+	var valueSeasonStartDate = $formValues.find('.valueSeasonStartDate').val();
+	if(valueSeasonStartDate != null && valueSeasonStartDate !== '')
+	var removeSeasonStartDate = $formFilters.find('.removeSeasonStartDate').val() === 'true';
+	var setSeasonStartDate = removeSeasonStartDate ? null : $formValues.find('.setSeasonStartDate').val();
+	if(removeSeasonStartDate || setSeasonStartDate != null && setSeasonStartDate !== '')
+		vals['setSeasonStartDate'] = setSeasonStartDate;
+	var addSeasonStartDate = $formValues.find('.addSeasonStartDate').val();
+	if(addSeasonStartDate != null && addSeasonStartDate !== '')
+		vals['addSeasonStartDate'] = addSeasonStartDate;
+	var removeSeasonStartDate = $formValues.find('.removeSeasonStartDate').val();
+	if(removeSeasonStartDate != null && removeSeasonStartDate !== '')
+		vals['removeSeasonStartDate'] = removeSeasonStartDate;
+
+	var valueYearStart = $formValues.find('.valueYearStart').val();
+	if(valueYearStart != null && valueYearStart !== '')
+	var removeYearStart = $formFilters.find('.removeYearStart').val() === 'true';
+	var setYearStart = removeYearStart ? null : $formValues.find('.setYearStart').val();
+	if(removeYearStart || setYearStart != null && setYearStart !== '')
+		vals['setYearStart'] = setYearStart;
+	var addYearStart = $formValues.find('.addYearStart').val();
+	if(addYearStart != null && addYearStart !== '')
+		vals['addYearStart'] = addYearStart;
+	var removeYearStart = $formValues.find('.removeYearStart').val();
+	if(removeYearStart != null && removeYearStart !== '')
+		vals['removeYearStart'] = removeYearStart;
+
+	var valueYearEnd = $formValues.find('.valueYearEnd').val();
+	if(valueYearEnd != null && valueYearEnd !== '')
+	var removeYearEnd = $formFilters.find('.removeYearEnd').val() === 'true';
+	var setYearEnd = removeYearEnd ? null : $formValues.find('.setYearEnd').val();
+	if(removeYearEnd || setYearEnd != null && setYearEnd !== '')
+		vals['setYearEnd'] = setYearEnd;
+	var addYearEnd = $formValues.find('.addYearEnd').val();
+	if(addYearEnd != null && addYearEnd !== '')
+		vals['addYearEnd'] = addYearEnd;
+	var removeYearEnd = $formValues.find('.removeYearEnd').val();
+	if(removeYearEnd != null && removeYearEnd !== '')
+		vals['removeYearEnd'] = removeYearEnd;
+
 	patchSchoolYearVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
@@ -528,14 +549,6 @@ function patchSchoolYearFilters($formFilters) {
 		var filterSessionEndDate = $formFilters.find('.valueSessionEndDate').val();
 		if(filterSessionEndDate != null && filterSessionEndDate !== '')
 			filters.push({ name: 'fq', value: 'sessionEndDate:' + filterSessionEndDate });
-
-		var filterYearStart = $formFilters.find('.valueYearStart').val();
-		if(filterYearStart != null && filterYearStart !== '')
-			filters.push({ name: 'fq', value: 'yearStart:' + filterYearStart });
-
-		var filterYearEnd = $formFilters.find('.valueYearEnd').val();
-		if(filterYearEnd != null && filterYearEnd !== '')
-			filters.push({ name: 'fq', value: 'yearEnd:' + filterYearEnd });
 
 		var filterYearEnrollmentFee = $formFilters.find('.valueYearEnrollmentFee').val();
 		if(filterYearEnrollmentFee != null && filterYearEnrollmentFee !== '')
@@ -664,6 +677,18 @@ function patchSchoolYearFilters($formFilters) {
 		var filterEnrollmentFormKey = $formFilters.find('.valueEnrollmentFormKey').val();
 		if(filterEnrollmentFormKey != null && filterEnrollmentFormKey !== '')
 			filters.push({ name: 'fq', value: 'enrollmentFormKey:' + filterEnrollmentFormKey });
+
+		var filterSeasonStartDate = $formFilters.find('.valueSeasonStartDate').val();
+		if(filterSeasonStartDate != null && filterSeasonStartDate !== '')
+			filters.push({ name: 'fq', value: 'seasonStartDate:' + filterSeasonStartDate });
+
+		var filterYearStart = $formFilters.find('.valueYearStart').val();
+		if(filterYearStart != null && filterYearStart !== '')
+			filters.push({ name: 'fq', value: 'yearStart:' + filterYearStart });
+
+		var filterYearEnd = $formFilters.find('.valueYearEnd').val();
+		if(filterYearEnd != null && filterYearEnd !== '')
+			filters.push({ name: 'fq', value: 'yearEnd:' + filterYearEnd });
 
 		var filterYearShortName = $formFilters.find('.valueYearShortName').val();
 		if(filterYearShortName != null && filterYearShortName !== '')
@@ -767,14 +792,6 @@ function searchSchoolYearFilters($formFilters) {
 		if(filterSessionEndDate != null && filterSessionEndDate !== '')
 			filters.push({ name: 'fq', value: 'sessionEndDate:' + filterSessionEndDate });
 
-		var filterYearStart = $formFilters.find('.valueYearStart').val();
-		if(filterYearStart != null && filterYearStart !== '')
-			filters.push({ name: 'fq', value: 'yearStart:' + filterYearStart });
-
-		var filterYearEnd = $formFilters.find('.valueYearEnd').val();
-		if(filterYearEnd != null && filterYearEnd !== '')
-			filters.push({ name: 'fq', value: 'yearEnd:' + filterYearEnd });
-
 		var filterYearEnrollmentFee = $formFilters.find('.valueYearEnrollmentFee').val();
 		if(filterYearEnrollmentFee != null && filterYearEnrollmentFee !== '')
 			filters.push({ name: 'fq', value: 'yearEnrollmentFee:' + filterYearEnrollmentFee });
@@ -902,6 +919,18 @@ function searchSchoolYearFilters($formFilters) {
 		var filterEnrollmentFormKey = $formFilters.find('.valueEnrollmentFormKey').val();
 		if(filterEnrollmentFormKey != null && filterEnrollmentFormKey !== '')
 			filters.push({ name: 'fq', value: 'enrollmentFormKey:' + filterEnrollmentFormKey });
+
+		var filterSeasonStartDate = $formFilters.find('.valueSeasonStartDate').val();
+		if(filterSeasonStartDate != null && filterSeasonStartDate !== '')
+			filters.push({ name: 'fq', value: 'seasonStartDate:' + filterSeasonStartDate });
+
+		var filterYearStart = $formFilters.find('.valueYearStart').val();
+		if(filterYearStart != null && filterYearStart !== '')
+			filters.push({ name: 'fq', value: 'yearStart:' + filterYearStart });
+
+		var filterYearEnd = $formFilters.find('.valueYearEnd').val();
+		if(filterYearEnd != null && filterYearEnd !== '')
+			filters.push({ name: 'fq', value: 'yearEnd:' + filterYearEnd });
 
 		var filterYearShortName = $formFilters.find('.valueYearShortName').val();
 		if(filterYearShortName != null && filterYearShortName !== '')
@@ -1203,30 +1232,6 @@ async function websocketSchoolYearInner(apiRequest) {
 				});
 				addGlow($('.inputSchoolYear' + pk + 'SessionEndDate'));
 			}
-			var val = o['yearStart'];
-			if(vars.includes('yearStart')) {
-				$('.inputSchoolYear' + pk + 'YearStart').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varSchoolYear' + pk + 'YearStart').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputSchoolYear' + pk + 'YearStart'));
-			}
-			var val = o['yearEnd'];
-			if(vars.includes('yearEnd')) {
-				$('.inputSchoolYear' + pk + 'YearEnd').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varSchoolYear' + pk + 'YearEnd').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputSchoolYear' + pk + 'YearEnd'));
-			}
 			var val = o['yearEnrollmentFee'];
 			if(vars.includes('yearEnrollmentFee')) {
 				$('.inputSchoolYear' + pk + 'YearEnrollmentFee').each(function() {
@@ -1322,6 +1327,47 @@ async function websocketSchoolYearInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputSchoolYear' + pk + 'SeasonKeys'));
+			}
+			var val = o['seasonStartDate'];
+			if(val != null) {
+				var t = moment(val, 'YYYY-MM-DD');
+				if(t)
+					val = t.format('MM/DD/YYYY');
+			}
+			if(vars.includes('seasonStartDate')) {
+				$('.inputSchoolYear' + pk + 'SeasonStartDate').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolYear' + pk + 'SeasonStartDate').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolYear' + pk + 'SeasonStartDate'));
+			}
+			var val = o['yearStart'];
+			if(vars.includes('yearStart')) {
+				$('.inputSchoolYear' + pk + 'YearStart').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolYear' + pk + 'YearStart').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolYear' + pk + 'YearStart'));
+			}
+			var val = o['yearEnd'];
+			if(vars.includes('yearEnd')) {
+				$('.inputSchoolYear' + pk + 'YearEnd').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolYear' + pk + 'YearEnd').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolYear' + pk + 'YearEnd'));
 			}
 		});
 	}

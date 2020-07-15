@@ -795,10 +795,6 @@ function patchBlocScolaireFiltres($formulaireFiltres) {
 		if(filtreAnneeCle != null && filtreAnneeCle !== '')
 			filtres.push({ name: 'fq', value: 'anneeCle:' + filtreAnneeCle });
 
-		var filtreSaisonCle = $formulaireFiltres.find('.valeurSaisonCle').val();
-		if(filtreSaisonCle != null && filtreSaisonCle !== '')
-			filtres.push({ name: 'fq', value: 'saisonCle:' + filtreSaisonCle });
-
 		var filtreSessionCle = $formulaireFiltres.find('.valeurSessionCle').val();
 		if(filtreSessionCle != null && filtreSessionCle !== '')
 			filtres.push({ name: 'fq', value: 'sessionCle:' + filtreSessionCle });
@@ -843,37 +839,9 @@ function patchBlocScolaireFiltres($formulaireFiltres) {
 		if(filtreSaisonDateDebut != null && filtreSaisonDateDebut !== '')
 			filtres.push({ name: 'fq', value: 'saisonDateDebut:' + filtreSaisonDateDebut });
 
-		var $filtreSaisonEteCheckbox = $formulaireFiltres.find('input.valeurSaisonEte[type = "checkbox"]');
-		var $filtreSaisonEteSelect = $formulaireFiltres.find('select.valeurSaisonEte');
-		var filtreSaisonEte = $filtreSaisonEteSelect.length ? $filtreSaisonEteSelect.val() : $filtreSaisonEteCheckbox.prop('checked');
-		var filtreSaisonEteSelectVal = $formulaireFiltres.find('select.filtreSaisonEte').val();
-		var filtreSaisonEte = null;
-		if(filtreSaisonEteSelectVal !== '')
-			filtreSaisonEte = filtreSaisonEteSelectVal == 'true';
-		if(filtreSaisonEte != null && filtreSaisonEte === true)
-			filtres.push({ name: 'fq', value: 'saisonEte:' + filtreSaisonEte });
-
-		var $filtreSaisonHiverCheckbox = $formulaireFiltres.find('input.valeurSaisonHiver[type = "checkbox"]');
-		var $filtreSaisonHiverSelect = $formulaireFiltres.find('select.valeurSaisonHiver');
-		var filtreSaisonHiver = $filtreSaisonHiverSelect.length ? $filtreSaisonHiverSelect.val() : $filtreSaisonHiverCheckbox.prop('checked');
-		var filtreSaisonHiverSelectVal = $formulaireFiltres.find('select.filtreSaisonHiver').val();
-		var filtreSaisonHiver = null;
-		if(filtreSaisonHiverSelectVal !== '')
-			filtreSaisonHiver = filtreSaisonHiverSelectVal == 'true';
-		if(filtreSaisonHiver != null && filtreSaisonHiver === true)
-			filtres.push({ name: 'fq', value: 'saisonHiver:' + filtreSaisonHiver });
-
 		var filtreAnneeFraisInscription = $formulaireFiltres.find('.valeurAnneeFraisInscription').val();
 		if(filtreAnneeFraisInscription != null && filtreAnneeFraisInscription !== '')
 			filtres.push({ name: 'fq', value: 'anneeFraisInscription:' + filtreAnneeFraisInscription });
-
-		var filtreSaisonNomCourt = $formulaireFiltres.find('.valeurSaisonNomCourt').val();
-		if(filtreSaisonNomCourt != null && filtreSaisonNomCourt !== '')
-			filtres.push({ name: 'fq', value: 'saisonNomCourt:' + filtreSaisonNomCourt });
-
-		var filtreSaisonNomComplet = $formulaireFiltres.find('.valeurSaisonNomComplet').val();
-		if(filtreSaisonNomComplet != null && filtreSaisonNomComplet !== '')
-			filtres.push({ name: 'fq', value: 'saisonNomComplet:' + filtreSaisonNomComplet });
 
 		var filtreSessionDateDebut = $formulaireFiltres.find('.valeurSessionDateDebut').val();
 		if(filtreSessionDateDebut != null && filtreSessionDateDebut !== '')
@@ -1191,10 +1159,6 @@ function rechercheBlocScolaireFiltres($formulaireFiltres) {
 		if(filtreAnneeCle != null && filtreAnneeCle !== '')
 			filtres.push({ name: 'fq', value: 'anneeCle:' + filtreAnneeCle });
 
-		var filtreSaisonCle = $formulaireFiltres.find('.valeurSaisonCle').val();
-		if(filtreSaisonCle != null && filtreSaisonCle !== '')
-			filtres.push({ name: 'fq', value: 'saisonCle:' + filtreSaisonCle });
-
 		var filtreSessionCle = $formulaireFiltres.find('.valeurSessionCle').val();
 		if(filtreSessionCle != null && filtreSessionCle !== '')
 			filtres.push({ name: 'fq', value: 'sessionCle:' + filtreSessionCle });
@@ -1239,37 +1203,9 @@ function rechercheBlocScolaireFiltres($formulaireFiltres) {
 		if(filtreSaisonDateDebut != null && filtreSaisonDateDebut !== '')
 			filtres.push({ name: 'fq', value: 'saisonDateDebut:' + filtreSaisonDateDebut });
 
-		var $filtreSaisonEteCheckbox = $formulaireFiltres.find('input.valeurSaisonEte[type = "checkbox"]');
-		var $filtreSaisonEteSelect = $formulaireFiltres.find('select.valeurSaisonEte');
-		var filtreSaisonEte = $filtreSaisonEteSelect.length ? $filtreSaisonEteSelect.val() : $filtreSaisonEteCheckbox.prop('checked');
-		var filtreSaisonEteSelectVal = $formulaireFiltres.find('select.filtreSaisonEte').val();
-		var filtreSaisonEte = null;
-		if(filtreSaisonEteSelectVal !== '')
-			filtreSaisonEte = filtreSaisonEteSelectVal == 'true';
-		if(filtreSaisonEte != null && filtreSaisonEte === true)
-			filtres.push({ name: 'fq', value: 'saisonEte:' + filtreSaisonEte });
-
-		var $filtreSaisonHiverCheckbox = $formulaireFiltres.find('input.valeurSaisonHiver[type = "checkbox"]');
-		var $filtreSaisonHiverSelect = $formulaireFiltres.find('select.valeurSaisonHiver');
-		var filtreSaisonHiver = $filtreSaisonHiverSelect.length ? $filtreSaisonHiverSelect.val() : $filtreSaisonHiverCheckbox.prop('checked');
-		var filtreSaisonHiverSelectVal = $formulaireFiltres.find('select.filtreSaisonHiver').val();
-		var filtreSaisonHiver = null;
-		if(filtreSaisonHiverSelectVal !== '')
-			filtreSaisonHiver = filtreSaisonHiverSelectVal == 'true';
-		if(filtreSaisonHiver != null && filtreSaisonHiver === true)
-			filtres.push({ name: 'fq', value: 'saisonHiver:' + filtreSaisonHiver });
-
 		var filtreAnneeFraisInscription = $formulaireFiltres.find('.valeurAnneeFraisInscription').val();
 		if(filtreAnneeFraisInscription != null && filtreAnneeFraisInscription !== '')
 			filtres.push({ name: 'fq', value: 'anneeFraisInscription:' + filtreAnneeFraisInscription });
-
-		var filtreSaisonNomCourt = $formulaireFiltres.find('.valeurSaisonNomCourt').val();
-		if(filtreSaisonNomCourt != null && filtreSaisonNomCourt !== '')
-			filtres.push({ name: 'fq', value: 'saisonNomCourt:' + filtreSaisonNomCourt });
-
-		var filtreSaisonNomComplet = $formulaireFiltres.find('.valeurSaisonNomComplet').val();
-		if(filtreSaisonNomComplet != null && filtreSaisonNomComplet !== '')
-			filtres.push({ name: 'fq', value: 'saisonNomComplet:' + filtreSaisonNomComplet });
 
 		var filtreSessionDateDebut = $formulaireFiltres.find('.valeurSessionDateDebut').val();
 		if(filtreSessionDateDebut != null && filtreSessionDateDebut !== '')

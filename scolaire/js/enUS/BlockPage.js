@@ -795,10 +795,6 @@ function patchSchoolBlockFilters($formFilters) {
 		if(filterYearKey != null && filterYearKey !== '')
 			filters.push({ name: 'fq', value: 'yearKey:' + filterYearKey });
 
-		var filterSeasonKey = $formFilters.find('.valueSeasonKey').val();
-		if(filterSeasonKey != null && filterSeasonKey !== '')
-			filters.push({ name: 'fq', value: 'seasonKey:' + filterSeasonKey });
-
 		var filterSessionKey = $formFilters.find('.valueSessionKey').val();
 		if(filterSessionKey != null && filterSessionKey !== '')
 			filters.push({ name: 'fq', value: 'sessionKey:' + filterSessionKey });
@@ -843,37 +839,9 @@ function patchSchoolBlockFilters($formFilters) {
 		if(filterSeasonStartDate != null && filterSeasonStartDate !== '')
 			filters.push({ name: 'fq', value: 'seasonStartDate:' + filterSeasonStartDate });
 
-		var $filterSeasonSummerCheckbox = $formFilters.find('input.valueSeasonSummer[type = "checkbox"]');
-		var $filterSeasonSummerSelect = $formFilters.find('select.valueSeasonSummer');
-		var filterSeasonSummer = $filterSeasonSummerSelect.length ? $filterSeasonSummerSelect.val() : $filterSeasonSummerCheckbox.prop('checked');
-		var filterSeasonSummerSelectVal = $formFilters.find('select.filterSeasonSummer').val();
-		var filterSeasonSummer = null;
-		if(filterSeasonSummerSelectVal !== '')
-			filterSeasonSummer = filterSeasonSummerSelectVal == 'true';
-		if(filterSeasonSummer != null && filterSeasonSummer === true)
-			filters.push({ name: 'fq', value: 'seasonSummer:' + filterSeasonSummer });
-
-		var $filterSeasonWinterCheckbox = $formFilters.find('input.valueSeasonWinter[type = "checkbox"]');
-		var $filterSeasonWinterSelect = $formFilters.find('select.valueSeasonWinter');
-		var filterSeasonWinter = $filterSeasonWinterSelect.length ? $filterSeasonWinterSelect.val() : $filterSeasonWinterCheckbox.prop('checked');
-		var filterSeasonWinterSelectVal = $formFilters.find('select.filterSeasonWinter').val();
-		var filterSeasonWinter = null;
-		if(filterSeasonWinterSelectVal !== '')
-			filterSeasonWinter = filterSeasonWinterSelectVal == 'true';
-		if(filterSeasonWinter != null && filterSeasonWinter === true)
-			filters.push({ name: 'fq', value: 'seasonWinter:' + filterSeasonWinter });
-
 		var filterYearEnrollmentFee = $formFilters.find('.valueYearEnrollmentFee').val();
 		if(filterYearEnrollmentFee != null && filterYearEnrollmentFee !== '')
 			filters.push({ name: 'fq', value: 'yearEnrollmentFee:' + filterYearEnrollmentFee });
-
-		var filterSeasonShortName = $formFilters.find('.valueSeasonShortName').val();
-		if(filterSeasonShortName != null && filterSeasonShortName !== '')
-			filters.push({ name: 'fq', value: 'seasonShortName:' + filterSeasonShortName });
-
-		var filterSeasonCompleteName = $formFilters.find('.valueSeasonCompleteName').val();
-		if(filterSeasonCompleteName != null && filterSeasonCompleteName !== '')
-			filters.push({ name: 'fq', value: 'seasonCompleteName:' + filterSeasonCompleteName });
 
 		var filterSessionStartDate = $formFilters.find('.valueSessionStartDate').val();
 		if(filterSessionStartDate != null && filterSessionStartDate !== '')
@@ -1191,10 +1159,6 @@ function searchSchoolBlockFilters($formFilters) {
 		if(filterYearKey != null && filterYearKey !== '')
 			filters.push({ name: 'fq', value: 'yearKey:' + filterYearKey });
 
-		var filterSeasonKey = $formFilters.find('.valueSeasonKey').val();
-		if(filterSeasonKey != null && filterSeasonKey !== '')
-			filters.push({ name: 'fq', value: 'seasonKey:' + filterSeasonKey });
-
 		var filterSessionKey = $formFilters.find('.valueSessionKey').val();
 		if(filterSessionKey != null && filterSessionKey !== '')
 			filters.push({ name: 'fq', value: 'sessionKey:' + filterSessionKey });
@@ -1239,37 +1203,9 @@ function searchSchoolBlockFilters($formFilters) {
 		if(filterSeasonStartDate != null && filterSeasonStartDate !== '')
 			filters.push({ name: 'fq', value: 'seasonStartDate:' + filterSeasonStartDate });
 
-		var $filterSeasonSummerCheckbox = $formFilters.find('input.valueSeasonSummer[type = "checkbox"]');
-		var $filterSeasonSummerSelect = $formFilters.find('select.valueSeasonSummer');
-		var filterSeasonSummer = $filterSeasonSummerSelect.length ? $filterSeasonSummerSelect.val() : $filterSeasonSummerCheckbox.prop('checked');
-		var filterSeasonSummerSelectVal = $formFilters.find('select.filterSeasonSummer').val();
-		var filterSeasonSummer = null;
-		if(filterSeasonSummerSelectVal !== '')
-			filterSeasonSummer = filterSeasonSummerSelectVal == 'true';
-		if(filterSeasonSummer != null && filterSeasonSummer === true)
-			filters.push({ name: 'fq', value: 'seasonSummer:' + filterSeasonSummer });
-
-		var $filterSeasonWinterCheckbox = $formFilters.find('input.valueSeasonWinter[type = "checkbox"]');
-		var $filterSeasonWinterSelect = $formFilters.find('select.valueSeasonWinter');
-		var filterSeasonWinter = $filterSeasonWinterSelect.length ? $filterSeasonWinterSelect.val() : $filterSeasonWinterCheckbox.prop('checked');
-		var filterSeasonWinterSelectVal = $formFilters.find('select.filterSeasonWinter').val();
-		var filterSeasonWinter = null;
-		if(filterSeasonWinterSelectVal !== '')
-			filterSeasonWinter = filterSeasonWinterSelectVal == 'true';
-		if(filterSeasonWinter != null && filterSeasonWinter === true)
-			filters.push({ name: 'fq', value: 'seasonWinter:' + filterSeasonWinter });
-
 		var filterYearEnrollmentFee = $formFilters.find('.valueYearEnrollmentFee').val();
 		if(filterYearEnrollmentFee != null && filterYearEnrollmentFee !== '')
 			filters.push({ name: 'fq', value: 'yearEnrollmentFee:' + filterYearEnrollmentFee });
-
-		var filterSeasonShortName = $formFilters.find('.valueSeasonShortName').val();
-		if(filterSeasonShortName != null && filterSeasonShortName !== '')
-			filters.push({ name: 'fq', value: 'seasonShortName:' + filterSeasonShortName });
-
-		var filterSeasonCompleteName = $formFilters.find('.valueSeasonCompleteName').val();
-		if(filterSeasonCompleteName != null && filterSeasonCompleteName !== '')
-			filters.push({ name: 'fq', value: 'seasonCompleteName:' + filterSeasonCompleteName });
 
 		var filterSessionStartDate = $formFilters.find('.valueSessionStartDate').val();
 		if(filterSessionStartDate != null && filterSessionStartDate !== '')
