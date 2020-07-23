@@ -1321,6 +1321,10 @@ function patchSchoolPaymentFilters($formFilters) {
 		if(filterBlockTotalPrice != null && filterBlockTotalPrice !== '')
 			filters.push({ name: 'fq', value: 'blockTotalPrice:' + filterBlockTotalPrice });
 
+		var filterPaymentNext = $formFilters.find('.valuePaymentNext').val();
+		if(filterPaymentNext != null && filterPaymentNext !== '')
+			filters.push({ name: 'fq', value: 'paymentNext:' + filterPaymentNext });
+
 		var filterChargeAmountDue = $formFilters.find('.valueChargeAmountDue').val();
 		if(filterChargeAmountDue != null && filterChargeAmountDue !== '')
 			filters.push({ name: 'fq', value: 'chargeAmountDue:' + filterChargeAmountDue });
@@ -1752,6 +1756,10 @@ function searchSchoolPaymentFilters($formFilters) {
 		var filterBlockTotalPrice = $formFilters.find('.valueBlockTotalPrice').val();
 		if(filterBlockTotalPrice != null && filterBlockTotalPrice !== '')
 			filters.push({ name: 'fq', value: 'blockTotalPrice:' + filterBlockTotalPrice });
+
+		var filterPaymentNext = $formFilters.find('.valuePaymentNext').val();
+		if(filterPaymentNext != null && filterPaymentNext !== '')
+			filters.push({ name: 'fq', value: 'paymentNext:' + filterPaymentNext });
 
 		var filterChargeAmountDue = $formFilters.find('.valueChargeAmountDue').val();
 		if(filterChargeAmountDue != null && filterChargeAmountDue !== '')

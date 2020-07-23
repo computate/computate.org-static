@@ -1321,6 +1321,10 @@ function patchPaiementScolaireFiltres($formulaireFiltres) {
 		if(filtreBlocPrixTotal != null && filtreBlocPrixTotal !== '')
 			filtres.push({ name: 'fq', value: 'blocPrixTotal:' + filtreBlocPrixTotal });
 
+		var filtrePaiementProchain = $formulaireFiltres.find('.valeurPaiementProchain').val();
+		if(filtrePaiementProchain != null && filtrePaiementProchain !== '')
+			filtres.push({ name: 'fq', value: 'paiementProchain:' + filtrePaiementProchain });
+
 		var filtreFraisMontantDu = $formulaireFiltres.find('.valeurFraisMontantDu').val();
 		if(filtreFraisMontantDu != null && filtreFraisMontantDu !== '')
 			filtres.push({ name: 'fq', value: 'fraisMontantDu:' + filtreFraisMontantDu });
@@ -1752,6 +1756,10 @@ function recherchePaiementScolaireFiltres($formulaireFiltres) {
 		var filtreBlocPrixTotal = $formulaireFiltres.find('.valeurBlocPrixTotal').val();
 		if(filtreBlocPrixTotal != null && filtreBlocPrixTotal !== '')
 			filtres.push({ name: 'fq', value: 'blocPrixTotal:' + filtreBlocPrixTotal });
+
+		var filtrePaiementProchain = $formulaireFiltres.find('.valeurPaiementProchain').val();
+		if(filtrePaiementProchain != null && filtrePaiementProchain !== '')
+			filtres.push({ name: 'fq', value: 'paiementProchain:' + filtrePaiementProchain });
 
 		var filtreFraisMontantDu = $formulaireFiltres.find('.valeurFraisMontantDu').val();
 		if(filtreFraisMontantDu != null && filtreFraisMontantDu !== '')
