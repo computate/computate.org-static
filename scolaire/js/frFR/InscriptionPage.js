@@ -41,13 +41,9 @@ async function postInscriptionScolaire($formulaireValeurs, success, error) {
 	if(valeurSupprime != null && valeurSupprime !== '')
 		vals['supprime'] = valeurSupprime;
 
-	var valeurInscriptionApprouve = $formulaireValeurs.find('.valeurInscriptionApprouve').prop('checked');
-	if(valeurInscriptionApprouve != null && valeurInscriptionApprouve !== '')
-		vals['inscriptionApprouve'] = valeurInscriptionApprouve;
-
-	var valeurInscriptionImmunisations = $formulaireValeurs.find('.valeurInscriptionImmunisations').prop('checked');
-	if(valeurInscriptionImmunisations != null && valeurInscriptionImmunisations !== '')
-		vals['inscriptionImmunisations'] = valeurInscriptionImmunisations;
+	var valeurPhoto = $formulaireValeurs.find('.valeurPhoto').val();
+	if(valeurPhoto != null && valeurPhoto !== '')
+		vals['photo'] = valeurPhoto;
 
 	var valeurInscriptionNomGroupe = $formulaireValeurs.find('.valeurInscriptionNomGroupe').val();
 	if(valeurInscriptionNomGroupe != null && valeurInscriptionNomGroupe !== '')
@@ -68,6 +64,14 @@ async function postInscriptionScolaire($formulaireValeurs, success, error) {
 	var valeurInscriptionPaimentChaqueMois = $formulaireValeurs.find('.valeurInscriptionPaimentChaqueMois').prop('checked');
 	if(valeurInscriptionPaimentChaqueMois != null && valeurInscriptionPaimentChaqueMois !== '')
 		vals['inscriptionPaimentChaqueMois'] = valeurInscriptionPaimentChaqueMois;
+
+	var valeurInscriptionImmunisations = $formulaireValeurs.find('.valeurInscriptionImmunisations').prop('checked');
+	if(valeurInscriptionImmunisations != null && valeurInscriptionImmunisations !== '')
+		vals['inscriptionImmunisations'] = valeurInscriptionImmunisations;
+
+	var valeurInscriptionApprouve = $formulaireValeurs.find('.valeurInscriptionApprouve').prop('checked');
+	if(valeurInscriptionApprouve != null && valeurInscriptionApprouve !== '')
+		vals['inscriptionApprouve'] = valeurInscriptionApprouve;
 
 	var valeurFamilleMarie = $formulaireValeurs.find('.valeurFamilleMarie').prop('checked');
 	if(valeurFamilleMarie != null && valeurFamilleMarie !== '')
@@ -371,13 +375,9 @@ async function putcopieInscriptionScolaire($formulaireValeurs, pk, success, erro
 	if(valeurSupprime != null && valeurSupprime !== '')
 		vals['supprime'] = valeurSupprime;
 
-	var valeurInscriptionApprouve = $formulaireValeurs.find('.valeurInscriptionApprouve').prop('checked');
-	if(valeurInscriptionApprouve != null && valeurInscriptionApprouve !== '')
-		vals['inscriptionApprouve'] = valeurInscriptionApprouve;
-
-	var valeurInscriptionImmunisations = $formulaireValeurs.find('.valeurInscriptionImmunisations').prop('checked');
-	if(valeurInscriptionImmunisations != null && valeurInscriptionImmunisations !== '')
-		vals['inscriptionImmunisations'] = valeurInscriptionImmunisations;
+	var valeurPhoto = $formulaireValeurs.find('.valeurPhoto').val();
+	if(valeurPhoto != null && valeurPhoto !== '')
+		vals['photo'] = valeurPhoto;
 
 	var valeurInscriptionNomGroupe = $formulaireValeurs.find('.valeurInscriptionNomGroupe').val();
 	if(valeurInscriptionNomGroupe != null && valeurInscriptionNomGroupe !== '')
@@ -398,6 +398,14 @@ async function putcopieInscriptionScolaire($formulaireValeurs, pk, success, erro
 	var valeurInscriptionPaimentChaqueMois = $formulaireValeurs.find('.valeurInscriptionPaimentChaqueMois').prop('checked');
 	if(valeurInscriptionPaimentChaqueMois != null && valeurInscriptionPaimentChaqueMois !== '')
 		vals['inscriptionPaimentChaqueMois'] = valeurInscriptionPaimentChaqueMois;
+
+	var valeurInscriptionImmunisations = $formulaireValeurs.find('.valeurInscriptionImmunisations').prop('checked');
+	if(valeurInscriptionImmunisations != null && valeurInscriptionImmunisations !== '')
+		vals['inscriptionImmunisations'] = valeurInscriptionImmunisations;
+
+	var valeurInscriptionApprouve = $formulaireValeurs.find('.valeurInscriptionApprouve').prop('checked');
+	if(valeurInscriptionApprouve != null && valeurInscriptionApprouve !== '')
+		vals['inscriptionApprouve'] = valeurInscriptionApprouve;
 
 	var valeurFamilleMarie = $formulaireValeurs.find('.valeurFamilleMarie').prop('checked');
 	if(valeurFamilleMarie != null && valeurFamilleMarie !== '')
@@ -699,39 +707,18 @@ async function patchInscriptionScolaire($formulaireFiltres, $formulaireValeurs, 
 	if(removeSupprime != null && removeSupprime !== '')
 		vals['removeSupprime'] = removeSupprime;
 
-	var valeurInscriptionApprouve = $formulaireValeurs.find('.valeurInscriptionApprouve').prop('checked');
-	if(valeurInscriptionApprouve != null && valeurInscriptionApprouve !== '')
-	var removeInscriptionApprouve = $formulaireFiltres.find('.removeInscriptionApprouve').val() === 'true';
-	var valeurInscriptionApprouveSelectVal = $formulaireValeurs.find('select.setInscriptionApprouve').val();
-	var valeurInscriptionApprouve = null;
-	if(valeurInscriptionApprouveSelectVal !== '')
-		valeurInscriptionApprouve = valeurInscriptionApprouveSelectVal == 'true';
-	setInscriptionApprouve = removeInscriptionApprouve ? null : valeurInscriptionApprouve;
-	if(removeInscriptionApprouve || setInscriptionApprouve != null && setInscriptionApprouve !== '')
-		vals['setInscriptionApprouve'] = setInscriptionApprouve;
-	var addInscriptionApprouve = $formulaireValeurs.find('.addInscriptionApprouve').prop('checked');
-	if(addInscriptionApprouve != null && addInscriptionApprouve !== '')
-		vals['addInscriptionApprouve'] = addInscriptionApprouve;
-	var removeInscriptionApprouve = $formulaireValeurs.find('.removeInscriptionApprouve').prop('checked');
-	if(removeInscriptionApprouve != null && removeInscriptionApprouve !== '')
-		vals['removeInscriptionApprouve'] = removeInscriptionApprouve;
-
-	var valeurInscriptionImmunisations = $formulaireValeurs.find('.valeurInscriptionImmunisations').prop('checked');
-	if(valeurInscriptionImmunisations != null && valeurInscriptionImmunisations !== '')
-	var removeInscriptionImmunisations = $formulaireFiltres.find('.removeInscriptionImmunisations').val() === 'true';
-	var valeurInscriptionImmunisationsSelectVal = $formulaireValeurs.find('select.setInscriptionImmunisations').val();
-	var valeurInscriptionImmunisations = null;
-	if(valeurInscriptionImmunisationsSelectVal !== '')
-		valeurInscriptionImmunisations = valeurInscriptionImmunisationsSelectVal == 'true';
-	setInscriptionImmunisations = removeInscriptionImmunisations ? null : valeurInscriptionImmunisations;
-	if(removeInscriptionImmunisations || setInscriptionImmunisations != null && setInscriptionImmunisations !== '')
-		vals['setInscriptionImmunisations'] = setInscriptionImmunisations;
-	var addInscriptionImmunisations = $formulaireValeurs.find('.addInscriptionImmunisations').prop('checked');
-	if(addInscriptionImmunisations != null && addInscriptionImmunisations !== '')
-		vals['addInscriptionImmunisations'] = addInscriptionImmunisations;
-	var removeInscriptionImmunisations = $formulaireValeurs.find('.removeInscriptionImmunisations').prop('checked');
-	if(removeInscriptionImmunisations != null && removeInscriptionImmunisations !== '')
-		vals['removeInscriptionImmunisations'] = removeInscriptionImmunisations;
+	var valeurPhoto = $formulaireValeurs.find('.valeurPhoto').val();
+	if(valeurPhoto != null && valeurPhoto !== '')
+	var removePhoto = $formulaireFiltres.find('.removePhoto').val() === 'true';
+	var setPhoto = removePhoto ? null : $formulaireValeurs.find('.setPhoto').val();
+	if(removePhoto || setPhoto != null && setPhoto !== '')
+		vals['setPhoto'] = setPhoto;
+	var addPhoto = $formulaireValeurs.find('.addPhoto').val();
+	if(addPhoto != null && addPhoto !== '')
+		vals['addPhoto'] = addPhoto;
+	var removePhoto = $formulaireValeurs.find('.removePhoto').val();
+	if(removePhoto != null && removePhoto !== '')
+		vals['removePhoto'] = removePhoto;
 
 	var valeurInscriptionNomGroupe = $formulaireValeurs.find('.valeurInscriptionNomGroupe').val();
 	if(valeurInscriptionNomGroupe != null && valeurInscriptionNomGroupe !== '')
@@ -809,6 +796,40 @@ async function patchInscriptionScolaire($formulaireFiltres, $formulaireValeurs, 
 	var removeInscriptionPaimentChaqueMois = $formulaireValeurs.find('.removeInscriptionPaimentChaqueMois').prop('checked');
 	if(removeInscriptionPaimentChaqueMois != null && removeInscriptionPaimentChaqueMois !== '')
 		vals['removeInscriptionPaimentChaqueMois'] = removeInscriptionPaimentChaqueMois;
+
+	var valeurInscriptionImmunisations = $formulaireValeurs.find('.valeurInscriptionImmunisations').prop('checked');
+	if(valeurInscriptionImmunisations != null && valeurInscriptionImmunisations !== '')
+	var removeInscriptionImmunisations = $formulaireFiltres.find('.removeInscriptionImmunisations').val() === 'true';
+	var valeurInscriptionImmunisationsSelectVal = $formulaireValeurs.find('select.setInscriptionImmunisations').val();
+	var valeurInscriptionImmunisations = null;
+	if(valeurInscriptionImmunisationsSelectVal !== '')
+		valeurInscriptionImmunisations = valeurInscriptionImmunisationsSelectVal == 'true';
+	setInscriptionImmunisations = removeInscriptionImmunisations ? null : valeurInscriptionImmunisations;
+	if(removeInscriptionImmunisations || setInscriptionImmunisations != null && setInscriptionImmunisations !== '')
+		vals['setInscriptionImmunisations'] = setInscriptionImmunisations;
+	var addInscriptionImmunisations = $formulaireValeurs.find('.addInscriptionImmunisations').prop('checked');
+	if(addInscriptionImmunisations != null && addInscriptionImmunisations !== '')
+		vals['addInscriptionImmunisations'] = addInscriptionImmunisations;
+	var removeInscriptionImmunisations = $formulaireValeurs.find('.removeInscriptionImmunisations').prop('checked');
+	if(removeInscriptionImmunisations != null && removeInscriptionImmunisations !== '')
+		vals['removeInscriptionImmunisations'] = removeInscriptionImmunisations;
+
+	var valeurInscriptionApprouve = $formulaireValeurs.find('.valeurInscriptionApprouve').prop('checked');
+	if(valeurInscriptionApprouve != null && valeurInscriptionApprouve !== '')
+	var removeInscriptionApprouve = $formulaireFiltres.find('.removeInscriptionApprouve').val() === 'true';
+	var valeurInscriptionApprouveSelectVal = $formulaireValeurs.find('select.setInscriptionApprouve').val();
+	var valeurInscriptionApprouve = null;
+	if(valeurInscriptionApprouveSelectVal !== '')
+		valeurInscriptionApprouve = valeurInscriptionApprouveSelectVal == 'true';
+	setInscriptionApprouve = removeInscriptionApprouve ? null : valeurInscriptionApprouve;
+	if(removeInscriptionApprouve || setInscriptionApprouve != null && setInscriptionApprouve !== '')
+		vals['setInscriptionApprouve'] = setInscriptionApprouve;
+	var addInscriptionApprouve = $formulaireValeurs.find('.addInscriptionApprouve').prop('checked');
+	if(addInscriptionApprouve != null && addInscriptionApprouve !== '')
+		vals['addInscriptionApprouve'] = addInscriptionApprouve;
+	var removeInscriptionApprouve = $formulaireValeurs.find('.removeInscriptionApprouve').prop('checked');
+	if(removeInscriptionApprouve != null && removeInscriptionApprouve !== '')
+		vals['removeInscriptionApprouve'] = removeInscriptionApprouve;
 
 	var valeurFamilleMarie = $formulaireValeurs.find('.valeurFamilleMarie').prop('checked');
 	if(valeurFamilleMarie != null && valeurFamilleMarie !== '')
@@ -1426,26 +1447,6 @@ function patchInscriptionScolaireFiltres($formulaireFiltres) {
 		if(filtreSupprime != null && filtreSupprime === true)
 			filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
-		var $filtreInscriptionApprouveCheckbox = $formulaireFiltres.find('input.valeurInscriptionApprouve[type = "checkbox"]');
-		var $filtreInscriptionApprouveSelect = $formulaireFiltres.find('select.valeurInscriptionApprouve');
-		var filtreInscriptionApprouve = $filtreInscriptionApprouveSelect.length ? $filtreInscriptionApprouveSelect.val() : $filtreInscriptionApprouveCheckbox.prop('checked');
-		var filtreInscriptionApprouveSelectVal = $formulaireFiltres.find('select.filtreInscriptionApprouve').val();
-		var filtreInscriptionApprouve = null;
-		if(filtreInscriptionApprouveSelectVal !== '')
-			filtreInscriptionApprouve = filtreInscriptionApprouveSelectVal == 'true';
-		if(filtreInscriptionApprouve != null && filtreInscriptionApprouve === true)
-			filtres.push({ name: 'fq', value: 'inscriptionApprouve:' + filtreInscriptionApprouve });
-
-		var $filtreInscriptionImmunisationsCheckbox = $formulaireFiltres.find('input.valeurInscriptionImmunisations[type = "checkbox"]');
-		var $filtreInscriptionImmunisationsSelect = $formulaireFiltres.find('select.valeurInscriptionImmunisations');
-		var filtreInscriptionImmunisations = $filtreInscriptionImmunisationsSelect.length ? $filtreInscriptionImmunisationsSelect.val() : $filtreInscriptionImmunisationsCheckbox.prop('checked');
-		var filtreInscriptionImmunisationsSelectVal = $formulaireFiltres.find('select.filtreInscriptionImmunisations').val();
-		var filtreInscriptionImmunisations = null;
-		if(filtreInscriptionImmunisationsSelectVal !== '')
-			filtreInscriptionImmunisations = filtreInscriptionImmunisationsSelectVal == 'true';
-		if(filtreInscriptionImmunisations != null && filtreInscriptionImmunisations === true)
-			filtres.push({ name: 'fq', value: 'inscriptionImmunisations:' + filtreInscriptionImmunisations });
-
 		var filtreInscriptionNomGroupe = $formulaireFiltres.find('.valeurInscriptionNomGroupe').val();
 		if(filtreInscriptionNomGroupe != null && filtreInscriptionNomGroupe !== '')
 			filtres.push({ name: 'fq', value: 'inscriptionNomGroupe:' + filtreInscriptionNomGroupe });
@@ -1483,6 +1484,26 @@ function patchInscriptionScolaireFiltres($formulaireFiltres) {
 			filtreInscriptionPaimentChaqueMois = filtreInscriptionPaimentChaqueMoisSelectVal == 'true';
 		if(filtreInscriptionPaimentChaqueMois != null && filtreInscriptionPaimentChaqueMois === true)
 			filtres.push({ name: 'fq', value: 'inscriptionPaimentChaqueMois:' + filtreInscriptionPaimentChaqueMois });
+
+		var $filtreInscriptionImmunisationsCheckbox = $formulaireFiltres.find('input.valeurInscriptionImmunisations[type = "checkbox"]');
+		var $filtreInscriptionImmunisationsSelect = $formulaireFiltres.find('select.valeurInscriptionImmunisations');
+		var filtreInscriptionImmunisations = $filtreInscriptionImmunisationsSelect.length ? $filtreInscriptionImmunisationsSelect.val() : $filtreInscriptionImmunisationsCheckbox.prop('checked');
+		var filtreInscriptionImmunisationsSelectVal = $formulaireFiltres.find('select.filtreInscriptionImmunisations').val();
+		var filtreInscriptionImmunisations = null;
+		if(filtreInscriptionImmunisationsSelectVal !== '')
+			filtreInscriptionImmunisations = filtreInscriptionImmunisationsSelectVal == 'true';
+		if(filtreInscriptionImmunisations != null && filtreInscriptionImmunisations === true)
+			filtres.push({ name: 'fq', value: 'inscriptionImmunisations:' + filtreInscriptionImmunisations });
+
+		var $filtreInscriptionApprouveCheckbox = $formulaireFiltres.find('input.valeurInscriptionApprouve[type = "checkbox"]');
+		var $filtreInscriptionApprouveSelect = $formulaireFiltres.find('select.valeurInscriptionApprouve');
+		var filtreInscriptionApprouve = $filtreInscriptionApprouveSelect.length ? $filtreInscriptionApprouveSelect.val() : $filtreInscriptionApprouveCheckbox.prop('checked');
+		var filtreInscriptionApprouveSelectVal = $formulaireFiltres.find('select.filtreInscriptionApprouve').val();
+		var filtreInscriptionApprouve = null;
+		if(filtreInscriptionApprouveSelectVal !== '')
+			filtreInscriptionApprouve = filtreInscriptionApprouveSelectVal == 'true';
+		if(filtreInscriptionApprouve != null && filtreInscriptionApprouve === true)
+			filtres.push({ name: 'fq', value: 'inscriptionApprouve:' + filtreInscriptionApprouve });
 
 		var $filtreFamilleMarieCheckbox = $formulaireFiltres.find('input.valeurFamilleMarie[type = "checkbox"]');
 		var $filtreFamilleMarieSelect = $formulaireFiltres.find('select.valeurFamilleMarie');
@@ -1912,9 +1933,17 @@ function patchInscriptionScolaireFiltres($formulaireFiltres) {
 		if(filtreBlocNomComplet != null && filtreBlocNomComplet !== '')
 			filtres.push({ name: 'fq', value: 'blocNomComplet:' + filtreBlocNomComplet });
 
+		var filtreInscriptionCouleurGroupe = $formulaireFiltres.find('.valeurInscriptionCouleurGroupe').val();
+		if(filtreInscriptionCouleurGroupe != null && filtreInscriptionCouleurGroupe !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionCouleurGroupe:' + filtreInscriptionCouleurGroupe });
+
 		var filtreInscriptionDateFrais = $formulaireFiltres.find('.valeurInscriptionDateFrais').val();
 		if(filtreInscriptionDateFrais != null && filtreInscriptionDateFrais !== '')
 			filtres.push({ name: 'fq', value: 'inscriptionDateFrais:' + filtreInscriptionDateFrais });
+
+		var filtrePaiementLastStr = $formulaireFiltres.find('.valeurPaiementLastStr').val();
+		if(filtrePaiementLastStr != null && filtrePaiementLastStr !== '')
+			filtres.push({ name: 'fq', value: 'paiementLastStr:' + filtrePaiementLastStr });
 
 		var filtrePaiementMontant = $formulaireFiltres.find('.valeurPaiementMontant').val();
 		if(filtrePaiementMontant != null && filtrePaiementMontant !== '')
@@ -1955,6 +1984,10 @@ function patchInscriptionScolaireFiltres($formulaireFiltres) {
 			filtrePaiementsEnRetard = filtrePaiementsEnRetardSelectVal == 'true';
 		if(filtrePaiementsEnRetard != null && filtrePaiementsEnRetard === true)
 			filtres.push({ name: 'fq', value: 'paiementsEnRetard:' + filtrePaiementsEnRetard });
+
+		var filtrePaiementsEnRetardMontant = $formulaireFiltres.find('.valeurPaiementsEnRetardMontant').val();
+		if(filtrePaiementsEnRetardMontant != null && filtrePaiementsEnRetardMontant !== '')
+			filtres.push({ name: 'fq', value: 'paiementsEnRetardMontant:' + filtrePaiementsEnRetardMontant });
 
 		var $filtrePaiementsEnAvanceCheckbox = $formulaireFiltres.find('input.valeurPaiementsEnAvance[type = "checkbox"]');
 		var $filtrePaiementsEnAvanceSelect = $formulaireFiltres.find('select.valeurPaiementsEnAvance');
@@ -2144,26 +2177,6 @@ function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 		if(filtreSupprime != null && filtreSupprime === true)
 			filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
-		var $filtreInscriptionApprouveCheckbox = $formulaireFiltres.find('input.valeurInscriptionApprouve[type = "checkbox"]');
-		var $filtreInscriptionApprouveSelect = $formulaireFiltres.find('select.valeurInscriptionApprouve');
-		var filtreInscriptionApprouve = $filtreInscriptionApprouveSelect.length ? $filtreInscriptionApprouveSelect.val() : $filtreInscriptionApprouveCheckbox.prop('checked');
-		var filtreInscriptionApprouveSelectVal = $formulaireFiltres.find('select.filtreInscriptionApprouve').val();
-		var filtreInscriptionApprouve = null;
-		if(filtreInscriptionApprouveSelectVal !== '')
-			filtreInscriptionApprouve = filtreInscriptionApprouveSelectVal == 'true';
-		if(filtreInscriptionApprouve != null && filtreInscriptionApprouve === true)
-			filtres.push({ name: 'fq', value: 'inscriptionApprouve:' + filtreInscriptionApprouve });
-
-		var $filtreInscriptionImmunisationsCheckbox = $formulaireFiltres.find('input.valeurInscriptionImmunisations[type = "checkbox"]');
-		var $filtreInscriptionImmunisationsSelect = $formulaireFiltres.find('select.valeurInscriptionImmunisations');
-		var filtreInscriptionImmunisations = $filtreInscriptionImmunisationsSelect.length ? $filtreInscriptionImmunisationsSelect.val() : $filtreInscriptionImmunisationsCheckbox.prop('checked');
-		var filtreInscriptionImmunisationsSelectVal = $formulaireFiltres.find('select.filtreInscriptionImmunisations').val();
-		var filtreInscriptionImmunisations = null;
-		if(filtreInscriptionImmunisationsSelectVal !== '')
-			filtreInscriptionImmunisations = filtreInscriptionImmunisationsSelectVal == 'true';
-		if(filtreInscriptionImmunisations != null && filtreInscriptionImmunisations === true)
-			filtres.push({ name: 'fq', value: 'inscriptionImmunisations:' + filtreInscriptionImmunisations });
-
 		var filtreInscriptionNomGroupe = $formulaireFiltres.find('.valeurInscriptionNomGroupe').val();
 		if(filtreInscriptionNomGroupe != null && filtreInscriptionNomGroupe !== '')
 			filtres.push({ name: 'fq', value: 'inscriptionNomGroupe:' + filtreInscriptionNomGroupe });
@@ -2201,6 +2214,26 @@ function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 			filtreInscriptionPaimentChaqueMois = filtreInscriptionPaimentChaqueMoisSelectVal == 'true';
 		if(filtreInscriptionPaimentChaqueMois != null && filtreInscriptionPaimentChaqueMois === true)
 			filtres.push({ name: 'fq', value: 'inscriptionPaimentChaqueMois:' + filtreInscriptionPaimentChaqueMois });
+
+		var $filtreInscriptionImmunisationsCheckbox = $formulaireFiltres.find('input.valeurInscriptionImmunisations[type = "checkbox"]');
+		var $filtreInscriptionImmunisationsSelect = $formulaireFiltres.find('select.valeurInscriptionImmunisations');
+		var filtreInscriptionImmunisations = $filtreInscriptionImmunisationsSelect.length ? $filtreInscriptionImmunisationsSelect.val() : $filtreInscriptionImmunisationsCheckbox.prop('checked');
+		var filtreInscriptionImmunisationsSelectVal = $formulaireFiltres.find('select.filtreInscriptionImmunisations').val();
+		var filtreInscriptionImmunisations = null;
+		if(filtreInscriptionImmunisationsSelectVal !== '')
+			filtreInscriptionImmunisations = filtreInscriptionImmunisationsSelectVal == 'true';
+		if(filtreInscriptionImmunisations != null && filtreInscriptionImmunisations === true)
+			filtres.push({ name: 'fq', value: 'inscriptionImmunisations:' + filtreInscriptionImmunisations });
+
+		var $filtreInscriptionApprouveCheckbox = $formulaireFiltres.find('input.valeurInscriptionApprouve[type = "checkbox"]');
+		var $filtreInscriptionApprouveSelect = $formulaireFiltres.find('select.valeurInscriptionApprouve');
+		var filtreInscriptionApprouve = $filtreInscriptionApprouveSelect.length ? $filtreInscriptionApprouveSelect.val() : $filtreInscriptionApprouveCheckbox.prop('checked');
+		var filtreInscriptionApprouveSelectVal = $formulaireFiltres.find('select.filtreInscriptionApprouve').val();
+		var filtreInscriptionApprouve = null;
+		if(filtreInscriptionApprouveSelectVal !== '')
+			filtreInscriptionApprouve = filtreInscriptionApprouveSelectVal == 'true';
+		if(filtreInscriptionApprouve != null && filtreInscriptionApprouve === true)
+			filtres.push({ name: 'fq', value: 'inscriptionApprouve:' + filtreInscriptionApprouve });
 
 		var $filtreFamilleMarieCheckbox = $formulaireFiltres.find('input.valeurFamilleMarie[type = "checkbox"]');
 		var $filtreFamilleMarieSelect = $formulaireFiltres.find('select.valeurFamilleMarie');
@@ -2630,9 +2663,17 @@ function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 		if(filtreBlocNomComplet != null && filtreBlocNomComplet !== '')
 			filtres.push({ name: 'fq', value: 'blocNomComplet:' + filtreBlocNomComplet });
 
+		var filtreInscriptionCouleurGroupe = $formulaireFiltres.find('.valeurInscriptionCouleurGroupe').val();
+		if(filtreInscriptionCouleurGroupe != null && filtreInscriptionCouleurGroupe !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionCouleurGroupe:' + filtreInscriptionCouleurGroupe });
+
 		var filtreInscriptionDateFrais = $formulaireFiltres.find('.valeurInscriptionDateFrais').val();
 		if(filtreInscriptionDateFrais != null && filtreInscriptionDateFrais !== '')
 			filtres.push({ name: 'fq', value: 'inscriptionDateFrais:' + filtreInscriptionDateFrais });
+
+		var filtrePaiementLastStr = $formulaireFiltres.find('.valeurPaiementLastStr').val();
+		if(filtrePaiementLastStr != null && filtrePaiementLastStr !== '')
+			filtres.push({ name: 'fq', value: 'paiementLastStr:' + filtrePaiementLastStr });
 
 		var filtrePaiementMontant = $formulaireFiltres.find('.valeurPaiementMontant').val();
 		if(filtrePaiementMontant != null && filtrePaiementMontant !== '')
@@ -2673,6 +2714,10 @@ function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 			filtrePaiementsEnRetard = filtrePaiementsEnRetardSelectVal == 'true';
 		if(filtrePaiementsEnRetard != null && filtrePaiementsEnRetard === true)
 			filtres.push({ name: 'fq', value: 'paiementsEnRetard:' + filtrePaiementsEnRetard });
+
+		var filtrePaiementsEnRetardMontant = $formulaireFiltres.find('.valeurPaiementsEnRetardMontant').val();
+		if(filtrePaiementsEnRetardMontant != null && filtrePaiementsEnRetardMontant !== '')
+			filtres.push({ name: 'fq', value: 'paiementsEnRetardMontant:' + filtrePaiementsEnRetardMontant });
 
 		var $filtrePaiementsEnAvanceCheckbox = $formulaireFiltres.find('input.valeurPaiementsEnAvance[type = "checkbox"]');
 		var $filtrePaiementsEnAvanceSelect = $formulaireFiltres.find('select.valeurPaiementsEnAvance');
@@ -2780,6 +2825,8 @@ function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 }
 
 function rechercheInscriptionScolaireVals(filtres, success, error) {
+
+	filtres.push({ name: 'rows', value: 300 });
 	$.ajax({
 		url: '/api/inscription?' + $.param(filtres)
 		, dataType: 'json'
@@ -3148,26 +3195,6 @@ function rechercheadminInscriptionScolaireFiltres($formulaireFiltres) {
 		if(filtreSupprime != null && filtreSupprime === true)
 			filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
-		var $filtreInscriptionApprouveCheckbox = $formulaireFiltres.find('input.valeurInscriptionApprouve[type = "checkbox"]');
-		var $filtreInscriptionApprouveSelect = $formulaireFiltres.find('select.valeurInscriptionApprouve');
-		var filtreInscriptionApprouve = $filtreInscriptionApprouveSelect.length ? $filtreInscriptionApprouveSelect.val() : $filtreInscriptionApprouveCheckbox.prop('checked');
-		var filtreInscriptionApprouveSelectVal = $formulaireFiltres.find('select.filtreInscriptionApprouve').val();
-		var filtreInscriptionApprouve = null;
-		if(filtreInscriptionApprouveSelectVal !== '')
-			filtreInscriptionApprouve = filtreInscriptionApprouveSelectVal == 'true';
-		if(filtreInscriptionApprouve != null && filtreInscriptionApprouve === true)
-			filtres.push({ name: 'fq', value: 'inscriptionApprouve:' + filtreInscriptionApprouve });
-
-		var $filtreInscriptionImmunisationsCheckbox = $formulaireFiltres.find('input.valeurInscriptionImmunisations[type = "checkbox"]');
-		var $filtreInscriptionImmunisationsSelect = $formulaireFiltres.find('select.valeurInscriptionImmunisations');
-		var filtreInscriptionImmunisations = $filtreInscriptionImmunisationsSelect.length ? $filtreInscriptionImmunisationsSelect.val() : $filtreInscriptionImmunisationsCheckbox.prop('checked');
-		var filtreInscriptionImmunisationsSelectVal = $formulaireFiltres.find('select.filtreInscriptionImmunisations').val();
-		var filtreInscriptionImmunisations = null;
-		if(filtreInscriptionImmunisationsSelectVal !== '')
-			filtreInscriptionImmunisations = filtreInscriptionImmunisationsSelectVal == 'true';
-		if(filtreInscriptionImmunisations != null && filtreInscriptionImmunisations === true)
-			filtres.push({ name: 'fq', value: 'inscriptionImmunisations:' + filtreInscriptionImmunisations });
-
 		var filtreInscriptionNomGroupe = $formulaireFiltres.find('.valeurInscriptionNomGroupe').val();
 		if(filtreInscriptionNomGroupe != null && filtreInscriptionNomGroupe !== '')
 			filtres.push({ name: 'fq', value: 'inscriptionNomGroupe:' + filtreInscriptionNomGroupe });
@@ -3205,6 +3232,26 @@ function rechercheadminInscriptionScolaireFiltres($formulaireFiltres) {
 			filtreInscriptionPaimentChaqueMois = filtreInscriptionPaimentChaqueMoisSelectVal == 'true';
 		if(filtreInscriptionPaimentChaqueMois != null && filtreInscriptionPaimentChaqueMois === true)
 			filtres.push({ name: 'fq', value: 'inscriptionPaimentChaqueMois:' + filtreInscriptionPaimentChaqueMois });
+
+		var $filtreInscriptionImmunisationsCheckbox = $formulaireFiltres.find('input.valeurInscriptionImmunisations[type = "checkbox"]');
+		var $filtreInscriptionImmunisationsSelect = $formulaireFiltres.find('select.valeurInscriptionImmunisations');
+		var filtreInscriptionImmunisations = $filtreInscriptionImmunisationsSelect.length ? $filtreInscriptionImmunisationsSelect.val() : $filtreInscriptionImmunisationsCheckbox.prop('checked');
+		var filtreInscriptionImmunisationsSelectVal = $formulaireFiltres.find('select.filtreInscriptionImmunisations').val();
+		var filtreInscriptionImmunisations = null;
+		if(filtreInscriptionImmunisationsSelectVal !== '')
+			filtreInscriptionImmunisations = filtreInscriptionImmunisationsSelectVal == 'true';
+		if(filtreInscriptionImmunisations != null && filtreInscriptionImmunisations === true)
+			filtres.push({ name: 'fq', value: 'inscriptionImmunisations:' + filtreInscriptionImmunisations });
+
+		var $filtreInscriptionApprouveCheckbox = $formulaireFiltres.find('input.valeurInscriptionApprouve[type = "checkbox"]');
+		var $filtreInscriptionApprouveSelect = $formulaireFiltres.find('select.valeurInscriptionApprouve');
+		var filtreInscriptionApprouve = $filtreInscriptionApprouveSelect.length ? $filtreInscriptionApprouveSelect.val() : $filtreInscriptionApprouveCheckbox.prop('checked');
+		var filtreInscriptionApprouveSelectVal = $formulaireFiltres.find('select.filtreInscriptionApprouve').val();
+		var filtreInscriptionApprouve = null;
+		if(filtreInscriptionApprouveSelectVal !== '')
+			filtreInscriptionApprouve = filtreInscriptionApprouveSelectVal == 'true';
+		if(filtreInscriptionApprouve != null && filtreInscriptionApprouve === true)
+			filtres.push({ name: 'fq', value: 'inscriptionApprouve:' + filtreInscriptionApprouve });
 
 		var $filtreFamilleMarieCheckbox = $formulaireFiltres.find('input.valeurFamilleMarie[type = "checkbox"]');
 		var $filtreFamilleMarieSelect = $formulaireFiltres.find('select.valeurFamilleMarie');
@@ -3634,9 +3681,17 @@ function rechercheadminInscriptionScolaireFiltres($formulaireFiltres) {
 		if(filtreBlocNomComplet != null && filtreBlocNomComplet !== '')
 			filtres.push({ name: 'fq', value: 'blocNomComplet:' + filtreBlocNomComplet });
 
+		var filtreInscriptionCouleurGroupe = $formulaireFiltres.find('.valeurInscriptionCouleurGroupe').val();
+		if(filtreInscriptionCouleurGroupe != null && filtreInscriptionCouleurGroupe !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionCouleurGroupe:' + filtreInscriptionCouleurGroupe });
+
 		var filtreInscriptionDateFrais = $formulaireFiltres.find('.valeurInscriptionDateFrais').val();
 		if(filtreInscriptionDateFrais != null && filtreInscriptionDateFrais !== '')
 			filtres.push({ name: 'fq', value: 'inscriptionDateFrais:' + filtreInscriptionDateFrais });
+
+		var filtrePaiementLastStr = $formulaireFiltres.find('.valeurPaiementLastStr').val();
+		if(filtrePaiementLastStr != null && filtrePaiementLastStr !== '')
+			filtres.push({ name: 'fq', value: 'paiementLastStr:' + filtrePaiementLastStr });
 
 		var filtrePaiementMontant = $formulaireFiltres.find('.valeurPaiementMontant').val();
 		if(filtrePaiementMontant != null && filtrePaiementMontant !== '')
@@ -3677,6 +3732,10 @@ function rechercheadminInscriptionScolaireFiltres($formulaireFiltres) {
 			filtrePaiementsEnRetard = filtrePaiementsEnRetardSelectVal == 'true';
 		if(filtrePaiementsEnRetard != null && filtrePaiementsEnRetard === true)
 			filtres.push({ name: 'fq', value: 'paiementsEnRetard:' + filtrePaiementsEnRetard });
+
+		var filtrePaiementsEnRetardMontant = $formulaireFiltres.find('.valeurPaiementsEnRetardMontant').val();
+		if(filtrePaiementsEnRetardMontant != null && filtrePaiementsEnRetardMontant !== '')
+			filtres.push({ name: 'fq', value: 'paiementsEnRetardMontant:' + filtrePaiementsEnRetardMontant });
 
 		var $filtrePaiementsEnAvanceCheckbox = $formulaireFiltres.find('input.valeurPaiementsEnAvance[type = "checkbox"]');
 		var $filtrePaiementsEnAvanceSelect = $formulaireFiltres.find('select.valeurPaiementsEnAvance');
@@ -3784,6 +3843,8 @@ function rechercheadminInscriptionScolaireFiltres($formulaireFiltres) {
 }
 
 function rechercheadminInscriptionScolaireVals(filtres, success, error) {
+
+	filtres.push({ name: 'rows', value: 300 });
 	$.ajax({
 		url: '/api/admin/inscription?' + $.param(filtres)
 		, dataType: 'json'
@@ -4193,39 +4254,18 @@ async function patchpaiementsInscriptionScolaire($formulaireFiltres, $formulaire
 	if(removeSupprime != null && removeSupprime !== '')
 		vals['removeSupprime'] = removeSupprime;
 
-	var valeurInscriptionApprouve = $formulaireValeurs.find('.valeurInscriptionApprouve').prop('checked');
-	if(valeurInscriptionApprouve != null && valeurInscriptionApprouve !== '')
-	var removeInscriptionApprouve = $formulaireFiltres.find('.removeInscriptionApprouve').val() === 'true';
-	var valeurInscriptionApprouveSelectVal = $formulaireValeurs.find('select.setInscriptionApprouve').val();
-	var valeurInscriptionApprouve = null;
-	if(valeurInscriptionApprouveSelectVal !== '')
-		valeurInscriptionApprouve = valeurInscriptionApprouveSelectVal == 'true';
-	setInscriptionApprouve = removeInscriptionApprouve ? null : valeurInscriptionApprouve;
-	if(removeInscriptionApprouve || setInscriptionApprouve != null && setInscriptionApprouve !== '')
-		vals['setInscriptionApprouve'] = setInscriptionApprouve;
-	var addInscriptionApprouve = $formulaireValeurs.find('.addInscriptionApprouve').prop('checked');
-	if(addInscriptionApprouve != null && addInscriptionApprouve !== '')
-		vals['addInscriptionApprouve'] = addInscriptionApprouve;
-	var removeInscriptionApprouve = $formulaireValeurs.find('.removeInscriptionApprouve').prop('checked');
-	if(removeInscriptionApprouve != null && removeInscriptionApprouve !== '')
-		vals['removeInscriptionApprouve'] = removeInscriptionApprouve;
-
-	var valeurInscriptionImmunisations = $formulaireValeurs.find('.valeurInscriptionImmunisations').prop('checked');
-	if(valeurInscriptionImmunisations != null && valeurInscriptionImmunisations !== '')
-	var removeInscriptionImmunisations = $formulaireFiltres.find('.removeInscriptionImmunisations').val() === 'true';
-	var valeurInscriptionImmunisationsSelectVal = $formulaireValeurs.find('select.setInscriptionImmunisations').val();
-	var valeurInscriptionImmunisations = null;
-	if(valeurInscriptionImmunisationsSelectVal !== '')
-		valeurInscriptionImmunisations = valeurInscriptionImmunisationsSelectVal == 'true';
-	setInscriptionImmunisations = removeInscriptionImmunisations ? null : valeurInscriptionImmunisations;
-	if(removeInscriptionImmunisations || setInscriptionImmunisations != null && setInscriptionImmunisations !== '')
-		vals['setInscriptionImmunisations'] = setInscriptionImmunisations;
-	var addInscriptionImmunisations = $formulaireValeurs.find('.addInscriptionImmunisations').prop('checked');
-	if(addInscriptionImmunisations != null && addInscriptionImmunisations !== '')
-		vals['addInscriptionImmunisations'] = addInscriptionImmunisations;
-	var removeInscriptionImmunisations = $formulaireValeurs.find('.removeInscriptionImmunisations').prop('checked');
-	if(removeInscriptionImmunisations != null && removeInscriptionImmunisations !== '')
-		vals['removeInscriptionImmunisations'] = removeInscriptionImmunisations;
+	var valeurPhoto = $formulaireValeurs.find('.valeurPhoto').val();
+	if(valeurPhoto != null && valeurPhoto !== '')
+	var removePhoto = $formulaireFiltres.find('.removePhoto').val() === 'true';
+	var setPhoto = removePhoto ? null : $formulaireValeurs.find('.setPhoto').val();
+	if(removePhoto || setPhoto != null && setPhoto !== '')
+		vals['setPhoto'] = setPhoto;
+	var addPhoto = $formulaireValeurs.find('.addPhoto').val();
+	if(addPhoto != null && addPhoto !== '')
+		vals['addPhoto'] = addPhoto;
+	var removePhoto = $formulaireValeurs.find('.removePhoto').val();
+	if(removePhoto != null && removePhoto !== '')
+		vals['removePhoto'] = removePhoto;
 
 	var valeurInscriptionNomGroupe = $formulaireValeurs.find('.valeurInscriptionNomGroupe').val();
 	if(valeurInscriptionNomGroupe != null && valeurInscriptionNomGroupe !== '')
@@ -4303,6 +4343,40 @@ async function patchpaiementsInscriptionScolaire($formulaireFiltres, $formulaire
 	var removeInscriptionPaimentChaqueMois = $formulaireValeurs.find('.removeInscriptionPaimentChaqueMois').prop('checked');
 	if(removeInscriptionPaimentChaqueMois != null && removeInscriptionPaimentChaqueMois !== '')
 		vals['removeInscriptionPaimentChaqueMois'] = removeInscriptionPaimentChaqueMois;
+
+	var valeurInscriptionImmunisations = $formulaireValeurs.find('.valeurInscriptionImmunisations').prop('checked');
+	if(valeurInscriptionImmunisations != null && valeurInscriptionImmunisations !== '')
+	var removeInscriptionImmunisations = $formulaireFiltres.find('.removeInscriptionImmunisations').val() === 'true';
+	var valeurInscriptionImmunisationsSelectVal = $formulaireValeurs.find('select.setInscriptionImmunisations').val();
+	var valeurInscriptionImmunisations = null;
+	if(valeurInscriptionImmunisationsSelectVal !== '')
+		valeurInscriptionImmunisations = valeurInscriptionImmunisationsSelectVal == 'true';
+	setInscriptionImmunisations = removeInscriptionImmunisations ? null : valeurInscriptionImmunisations;
+	if(removeInscriptionImmunisations || setInscriptionImmunisations != null && setInscriptionImmunisations !== '')
+		vals['setInscriptionImmunisations'] = setInscriptionImmunisations;
+	var addInscriptionImmunisations = $formulaireValeurs.find('.addInscriptionImmunisations').prop('checked');
+	if(addInscriptionImmunisations != null && addInscriptionImmunisations !== '')
+		vals['addInscriptionImmunisations'] = addInscriptionImmunisations;
+	var removeInscriptionImmunisations = $formulaireValeurs.find('.removeInscriptionImmunisations').prop('checked');
+	if(removeInscriptionImmunisations != null && removeInscriptionImmunisations !== '')
+		vals['removeInscriptionImmunisations'] = removeInscriptionImmunisations;
+
+	var valeurInscriptionApprouve = $formulaireValeurs.find('.valeurInscriptionApprouve').prop('checked');
+	if(valeurInscriptionApprouve != null && valeurInscriptionApprouve !== '')
+	var removeInscriptionApprouve = $formulaireFiltres.find('.removeInscriptionApprouve').val() === 'true';
+	var valeurInscriptionApprouveSelectVal = $formulaireValeurs.find('select.setInscriptionApprouve').val();
+	var valeurInscriptionApprouve = null;
+	if(valeurInscriptionApprouveSelectVal !== '')
+		valeurInscriptionApprouve = valeurInscriptionApprouveSelectVal == 'true';
+	setInscriptionApprouve = removeInscriptionApprouve ? null : valeurInscriptionApprouve;
+	if(removeInscriptionApprouve || setInscriptionApprouve != null && setInscriptionApprouve !== '')
+		vals['setInscriptionApprouve'] = setInscriptionApprouve;
+	var addInscriptionApprouve = $formulaireValeurs.find('.addInscriptionApprouve').prop('checked');
+	if(addInscriptionApprouve != null && addInscriptionApprouve !== '')
+		vals['addInscriptionApprouve'] = addInscriptionApprouve;
+	var removeInscriptionApprouve = $formulaireValeurs.find('.removeInscriptionApprouve').prop('checked');
+	if(removeInscriptionApprouve != null && removeInscriptionApprouve !== '')
+		vals['removeInscriptionApprouve'] = removeInscriptionApprouve;
 
 	var valeurFamilleMarie = $formulaireValeurs.find('.valeurFamilleMarie').prop('checked');
 	if(valeurFamilleMarie != null && valeurFamilleMarie !== '')
@@ -4920,26 +4994,6 @@ function patchpaiementsInscriptionScolaireFiltres($formulaireFiltres) {
 		if(filtreSupprime != null && filtreSupprime === true)
 			filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
 
-		var $filtreInscriptionApprouveCheckbox = $formulaireFiltres.find('input.valeurInscriptionApprouve[type = "checkbox"]');
-		var $filtreInscriptionApprouveSelect = $formulaireFiltres.find('select.valeurInscriptionApprouve');
-		var filtreInscriptionApprouve = $filtreInscriptionApprouveSelect.length ? $filtreInscriptionApprouveSelect.val() : $filtreInscriptionApprouveCheckbox.prop('checked');
-		var filtreInscriptionApprouveSelectVal = $formulaireFiltres.find('select.filtreInscriptionApprouve').val();
-		var filtreInscriptionApprouve = null;
-		if(filtreInscriptionApprouveSelectVal !== '')
-			filtreInscriptionApprouve = filtreInscriptionApprouveSelectVal == 'true';
-		if(filtreInscriptionApprouve != null && filtreInscriptionApprouve === true)
-			filtres.push({ name: 'fq', value: 'inscriptionApprouve:' + filtreInscriptionApprouve });
-
-		var $filtreInscriptionImmunisationsCheckbox = $formulaireFiltres.find('input.valeurInscriptionImmunisations[type = "checkbox"]');
-		var $filtreInscriptionImmunisationsSelect = $formulaireFiltres.find('select.valeurInscriptionImmunisations');
-		var filtreInscriptionImmunisations = $filtreInscriptionImmunisationsSelect.length ? $filtreInscriptionImmunisationsSelect.val() : $filtreInscriptionImmunisationsCheckbox.prop('checked');
-		var filtreInscriptionImmunisationsSelectVal = $formulaireFiltres.find('select.filtreInscriptionImmunisations').val();
-		var filtreInscriptionImmunisations = null;
-		if(filtreInscriptionImmunisationsSelectVal !== '')
-			filtreInscriptionImmunisations = filtreInscriptionImmunisationsSelectVal == 'true';
-		if(filtreInscriptionImmunisations != null && filtreInscriptionImmunisations === true)
-			filtres.push({ name: 'fq', value: 'inscriptionImmunisations:' + filtreInscriptionImmunisations });
-
 		var filtreInscriptionNomGroupe = $formulaireFiltres.find('.valeurInscriptionNomGroupe').val();
 		if(filtreInscriptionNomGroupe != null && filtreInscriptionNomGroupe !== '')
 			filtres.push({ name: 'fq', value: 'inscriptionNomGroupe:' + filtreInscriptionNomGroupe });
@@ -4977,6 +5031,26 @@ function patchpaiementsInscriptionScolaireFiltres($formulaireFiltres) {
 			filtreInscriptionPaimentChaqueMois = filtreInscriptionPaimentChaqueMoisSelectVal == 'true';
 		if(filtreInscriptionPaimentChaqueMois != null && filtreInscriptionPaimentChaqueMois === true)
 			filtres.push({ name: 'fq', value: 'inscriptionPaimentChaqueMois:' + filtreInscriptionPaimentChaqueMois });
+
+		var $filtreInscriptionImmunisationsCheckbox = $formulaireFiltres.find('input.valeurInscriptionImmunisations[type = "checkbox"]');
+		var $filtreInscriptionImmunisationsSelect = $formulaireFiltres.find('select.valeurInscriptionImmunisations');
+		var filtreInscriptionImmunisations = $filtreInscriptionImmunisationsSelect.length ? $filtreInscriptionImmunisationsSelect.val() : $filtreInscriptionImmunisationsCheckbox.prop('checked');
+		var filtreInscriptionImmunisationsSelectVal = $formulaireFiltres.find('select.filtreInscriptionImmunisations').val();
+		var filtreInscriptionImmunisations = null;
+		if(filtreInscriptionImmunisationsSelectVal !== '')
+			filtreInscriptionImmunisations = filtreInscriptionImmunisationsSelectVal == 'true';
+		if(filtreInscriptionImmunisations != null && filtreInscriptionImmunisations === true)
+			filtres.push({ name: 'fq', value: 'inscriptionImmunisations:' + filtreInscriptionImmunisations });
+
+		var $filtreInscriptionApprouveCheckbox = $formulaireFiltres.find('input.valeurInscriptionApprouve[type = "checkbox"]');
+		var $filtreInscriptionApprouveSelect = $formulaireFiltres.find('select.valeurInscriptionApprouve');
+		var filtreInscriptionApprouve = $filtreInscriptionApprouveSelect.length ? $filtreInscriptionApprouveSelect.val() : $filtreInscriptionApprouveCheckbox.prop('checked');
+		var filtreInscriptionApprouveSelectVal = $formulaireFiltres.find('select.filtreInscriptionApprouve').val();
+		var filtreInscriptionApprouve = null;
+		if(filtreInscriptionApprouveSelectVal !== '')
+			filtreInscriptionApprouve = filtreInscriptionApprouveSelectVal == 'true';
+		if(filtreInscriptionApprouve != null && filtreInscriptionApprouve === true)
+			filtres.push({ name: 'fq', value: 'inscriptionApprouve:' + filtreInscriptionApprouve });
 
 		var $filtreFamilleMarieCheckbox = $formulaireFiltres.find('input.valeurFamilleMarie[type = "checkbox"]');
 		var $filtreFamilleMarieSelect = $formulaireFiltres.find('select.valeurFamilleMarie');
@@ -5406,9 +5480,17 @@ function patchpaiementsInscriptionScolaireFiltres($formulaireFiltres) {
 		if(filtreBlocNomComplet != null && filtreBlocNomComplet !== '')
 			filtres.push({ name: 'fq', value: 'blocNomComplet:' + filtreBlocNomComplet });
 
+		var filtreInscriptionCouleurGroupe = $formulaireFiltres.find('.valeurInscriptionCouleurGroupe').val();
+		if(filtreInscriptionCouleurGroupe != null && filtreInscriptionCouleurGroupe !== '')
+			filtres.push({ name: 'fq', value: 'inscriptionCouleurGroupe:' + filtreInscriptionCouleurGroupe });
+
 		var filtreInscriptionDateFrais = $formulaireFiltres.find('.valeurInscriptionDateFrais').val();
 		if(filtreInscriptionDateFrais != null && filtreInscriptionDateFrais !== '')
 			filtres.push({ name: 'fq', value: 'inscriptionDateFrais:' + filtreInscriptionDateFrais });
+
+		var filtrePaiementLastStr = $formulaireFiltres.find('.valeurPaiementLastStr').val();
+		if(filtrePaiementLastStr != null && filtrePaiementLastStr !== '')
+			filtres.push({ name: 'fq', value: 'paiementLastStr:' + filtrePaiementLastStr });
 
 		var filtrePaiementMontant = $formulaireFiltres.find('.valeurPaiementMontant').val();
 		if(filtrePaiementMontant != null && filtrePaiementMontant !== '')
@@ -5449,6 +5531,10 @@ function patchpaiementsInscriptionScolaireFiltres($formulaireFiltres) {
 			filtrePaiementsEnRetard = filtrePaiementsEnRetardSelectVal == 'true';
 		if(filtrePaiementsEnRetard != null && filtrePaiementsEnRetard === true)
 			filtres.push({ name: 'fq', value: 'paiementsEnRetard:' + filtrePaiementsEnRetard });
+
+		var filtrePaiementsEnRetardMontant = $formulaireFiltres.find('.valeurPaiementsEnRetardMontant').val();
+		if(filtrePaiementsEnRetardMontant != null && filtrePaiementsEnRetardMontant !== '')
+			filtres.push({ name: 'fq', value: 'paiementsEnRetardMontant:' + filtrePaiementsEnRetardMontant });
 
 		var $filtrePaiementsEnAvanceCheckbox = $formulaireFiltres.find('input.valeurPaiementsEnAvance[type = "checkbox"]');
 		var $filtrePaiementsEnAvanceSelect = $formulaireFiltres.find('select.valeurPaiementsEnAvance');
@@ -5782,29 +5868,23 @@ async function websocketInscriptionScolaireInner(requeteApi) {
 				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'Supprime'));
 			}
-			var val = o['inscriptionApprouve'];
-			if(vars.includes('inscriptionApprouve')) {
-				$('.inputInscriptionScolaire' + pk + 'InscriptionApprouve').each(function() {
+			var val = o['photo'];
+			if(vars.includes('photo')) {
+				if(val === undefined)
+					val = null;
+				$('.imgInscriptionScolaire' + pk + 'Photo').each(function() {
+					if(val !== $(this).attr('src'))
+						$(this).attr('src', val);
+				});
+				$('.inputInscriptionScolaire' + pk + 'Photo').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varInscriptionScolaire' + pk + 'InscriptionApprouve').each(function() {
+				$('.varInscriptionScolaire' + pk + 'Photo').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionApprouve'));
-			}
-			var val = o['inscriptionImmunisations'];
-			if(vars.includes('inscriptionImmunisations')) {
-				$('.inputInscriptionScolaire' + pk + 'InscriptionImmunisations').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varInscriptionScolaire' + pk + 'InscriptionImmunisations').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionImmunisations'));
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'Photo'));
 			}
 			var val = o['inscriptionNomGroupe'];
 			if(vars.includes('inscriptionNomGroupe')) {
@@ -5865,6 +5945,30 @@ async function websocketInscriptionScolaireInner(requeteApi) {
 						$(this).text(val);
 				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionPaimentChaqueMois'));
+			}
+			var val = o['inscriptionImmunisations'];
+			if(vars.includes('inscriptionImmunisations')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionImmunisations').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionImmunisations').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionImmunisations'));
+			}
+			var val = o['inscriptionApprouve'];
+			if(vars.includes('inscriptionApprouve')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionApprouve').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionApprouve').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionApprouve'));
 			}
 			var val = o['familleMarie'];
 			if(vars.includes('familleMarie')) {

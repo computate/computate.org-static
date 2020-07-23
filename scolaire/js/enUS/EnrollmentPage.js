@@ -41,13 +41,9 @@ async function postSchoolEnrollment($formValues, success, error) {
 	if(valueDeleted != null && valueDeleted !== '')
 		vals['deleted'] = valueDeleted;
 
-	var valueEnrollmentApproved = $formValues.find('.valueEnrollmentApproved').prop('checked');
-	if(valueEnrollmentApproved != null && valueEnrollmentApproved !== '')
-		vals['enrollmentApproved'] = valueEnrollmentApproved;
-
-	var valueEnrollmentImmunizations = $formValues.find('.valueEnrollmentImmunizations').prop('checked');
-	if(valueEnrollmentImmunizations != null && valueEnrollmentImmunizations !== '')
-		vals['enrollmentImmunizations'] = valueEnrollmentImmunizations;
+	var valuePhoto = $formValues.find('.valuePhoto').val();
+	if(valuePhoto != null && valuePhoto !== '')
+		vals['photo'] = valuePhoto;
 
 	var valueEnrollmentGroupName = $formValues.find('.valueEnrollmentGroupName').val();
 	if(valueEnrollmentGroupName != null && valueEnrollmentGroupName !== '')
@@ -68,6 +64,14 @@ async function postSchoolEnrollment($formValues, success, error) {
 	var valueEnrollmentPaymentEachMonth = $formValues.find('.valueEnrollmentPaymentEachMonth').prop('checked');
 	if(valueEnrollmentPaymentEachMonth != null && valueEnrollmentPaymentEachMonth !== '')
 		vals['enrollmentPaymentEachMonth'] = valueEnrollmentPaymentEachMonth;
+
+	var valueEnrollmentImmunizations = $formValues.find('.valueEnrollmentImmunizations').prop('checked');
+	if(valueEnrollmentImmunizations != null && valueEnrollmentImmunizations !== '')
+		vals['enrollmentImmunizations'] = valueEnrollmentImmunizations;
+
+	var valueEnrollmentApproved = $formValues.find('.valueEnrollmentApproved').prop('checked');
+	if(valueEnrollmentApproved != null && valueEnrollmentApproved !== '')
+		vals['enrollmentApproved'] = valueEnrollmentApproved;
 
 	var valueFamilyMarried = $formValues.find('.valueFamilyMarried').prop('checked');
 	if(valueFamilyMarried != null && valueFamilyMarried !== '')
@@ -371,13 +375,9 @@ async function putcopySchoolEnrollment($formValues, pk, success, error) {
 	if(valueDeleted != null && valueDeleted !== '')
 		vals['deleted'] = valueDeleted;
 
-	var valueEnrollmentApproved = $formValues.find('.valueEnrollmentApproved').prop('checked');
-	if(valueEnrollmentApproved != null && valueEnrollmentApproved !== '')
-		vals['enrollmentApproved'] = valueEnrollmentApproved;
-
-	var valueEnrollmentImmunizations = $formValues.find('.valueEnrollmentImmunizations').prop('checked');
-	if(valueEnrollmentImmunizations != null && valueEnrollmentImmunizations !== '')
-		vals['enrollmentImmunizations'] = valueEnrollmentImmunizations;
+	var valuePhoto = $formValues.find('.valuePhoto').val();
+	if(valuePhoto != null && valuePhoto !== '')
+		vals['photo'] = valuePhoto;
 
 	var valueEnrollmentGroupName = $formValues.find('.valueEnrollmentGroupName').val();
 	if(valueEnrollmentGroupName != null && valueEnrollmentGroupName !== '')
@@ -398,6 +398,14 @@ async function putcopySchoolEnrollment($formValues, pk, success, error) {
 	var valueEnrollmentPaymentEachMonth = $formValues.find('.valueEnrollmentPaymentEachMonth').prop('checked');
 	if(valueEnrollmentPaymentEachMonth != null && valueEnrollmentPaymentEachMonth !== '')
 		vals['enrollmentPaymentEachMonth'] = valueEnrollmentPaymentEachMonth;
+
+	var valueEnrollmentImmunizations = $formValues.find('.valueEnrollmentImmunizations').prop('checked');
+	if(valueEnrollmentImmunizations != null && valueEnrollmentImmunizations !== '')
+		vals['enrollmentImmunizations'] = valueEnrollmentImmunizations;
+
+	var valueEnrollmentApproved = $formValues.find('.valueEnrollmentApproved').prop('checked');
+	if(valueEnrollmentApproved != null && valueEnrollmentApproved !== '')
+		vals['enrollmentApproved'] = valueEnrollmentApproved;
 
 	var valueFamilyMarried = $formValues.find('.valueFamilyMarried').prop('checked');
 	if(valueFamilyMarried != null && valueFamilyMarried !== '')
@@ -699,39 +707,18 @@ async function patchSchoolEnrollment($formFilters, $formValues, pk, success, err
 	if(removeDeleted != null && removeDeleted !== '')
 		vals['removeDeleted'] = removeDeleted;
 
-	var valueEnrollmentApproved = $formValues.find('.valueEnrollmentApproved').prop('checked');
-	if(valueEnrollmentApproved != null && valueEnrollmentApproved !== '')
-	var removeEnrollmentApproved = $formFilters.find('.removeEnrollmentApproved').val() === 'true';
-	var valueEnrollmentApprovedSelectVal = $formValues.find('select.setEnrollmentApproved').val();
-	var valueEnrollmentApproved = null;
-	if(valueEnrollmentApprovedSelectVal !== '')
-		valueEnrollmentApproved = valueEnrollmentApprovedSelectVal == 'true';
-	setEnrollmentApproved = removeEnrollmentApproved ? null : valueEnrollmentApproved;
-	if(removeEnrollmentApproved || setEnrollmentApproved != null && setEnrollmentApproved !== '')
-		vals['setEnrollmentApproved'] = setEnrollmentApproved;
-	var addEnrollmentApproved = $formValues.find('.addEnrollmentApproved').prop('checked');
-	if(addEnrollmentApproved != null && addEnrollmentApproved !== '')
-		vals['addEnrollmentApproved'] = addEnrollmentApproved;
-	var removeEnrollmentApproved = $formValues.find('.removeEnrollmentApproved').prop('checked');
-	if(removeEnrollmentApproved != null && removeEnrollmentApproved !== '')
-		vals['removeEnrollmentApproved'] = removeEnrollmentApproved;
-
-	var valueEnrollmentImmunizations = $formValues.find('.valueEnrollmentImmunizations').prop('checked');
-	if(valueEnrollmentImmunizations != null && valueEnrollmentImmunizations !== '')
-	var removeEnrollmentImmunizations = $formFilters.find('.removeEnrollmentImmunizations').val() === 'true';
-	var valueEnrollmentImmunizationsSelectVal = $formValues.find('select.setEnrollmentImmunizations').val();
-	var valueEnrollmentImmunizations = null;
-	if(valueEnrollmentImmunizationsSelectVal !== '')
-		valueEnrollmentImmunizations = valueEnrollmentImmunizationsSelectVal == 'true';
-	setEnrollmentImmunizations = removeEnrollmentImmunizations ? null : valueEnrollmentImmunizations;
-	if(removeEnrollmentImmunizations || setEnrollmentImmunizations != null && setEnrollmentImmunizations !== '')
-		vals['setEnrollmentImmunizations'] = setEnrollmentImmunizations;
-	var addEnrollmentImmunizations = $formValues.find('.addEnrollmentImmunizations').prop('checked');
-	if(addEnrollmentImmunizations != null && addEnrollmentImmunizations !== '')
-		vals['addEnrollmentImmunizations'] = addEnrollmentImmunizations;
-	var removeEnrollmentImmunizations = $formValues.find('.removeEnrollmentImmunizations').prop('checked');
-	if(removeEnrollmentImmunizations != null && removeEnrollmentImmunizations !== '')
-		vals['removeEnrollmentImmunizations'] = removeEnrollmentImmunizations;
+	var valuePhoto = $formValues.find('.valuePhoto').val();
+	if(valuePhoto != null && valuePhoto !== '')
+	var removePhoto = $formFilters.find('.removePhoto').val() === 'true';
+	var setPhoto = removePhoto ? null : $formValues.find('.setPhoto').val();
+	if(removePhoto || setPhoto != null && setPhoto !== '')
+		vals['setPhoto'] = setPhoto;
+	var addPhoto = $formValues.find('.addPhoto').val();
+	if(addPhoto != null && addPhoto !== '')
+		vals['addPhoto'] = addPhoto;
+	var removePhoto = $formValues.find('.removePhoto').val();
+	if(removePhoto != null && removePhoto !== '')
+		vals['removePhoto'] = removePhoto;
 
 	var valueEnrollmentGroupName = $formValues.find('.valueEnrollmentGroupName').val();
 	if(valueEnrollmentGroupName != null && valueEnrollmentGroupName !== '')
@@ -809,6 +796,40 @@ async function patchSchoolEnrollment($formFilters, $formValues, pk, success, err
 	var removeEnrollmentPaymentEachMonth = $formValues.find('.removeEnrollmentPaymentEachMonth').prop('checked');
 	if(removeEnrollmentPaymentEachMonth != null && removeEnrollmentPaymentEachMonth !== '')
 		vals['removeEnrollmentPaymentEachMonth'] = removeEnrollmentPaymentEachMonth;
+
+	var valueEnrollmentImmunizations = $formValues.find('.valueEnrollmentImmunizations').prop('checked');
+	if(valueEnrollmentImmunizations != null && valueEnrollmentImmunizations !== '')
+	var removeEnrollmentImmunizations = $formFilters.find('.removeEnrollmentImmunizations').val() === 'true';
+	var valueEnrollmentImmunizationsSelectVal = $formValues.find('select.setEnrollmentImmunizations').val();
+	var valueEnrollmentImmunizations = null;
+	if(valueEnrollmentImmunizationsSelectVal !== '')
+		valueEnrollmentImmunizations = valueEnrollmentImmunizationsSelectVal == 'true';
+	setEnrollmentImmunizations = removeEnrollmentImmunizations ? null : valueEnrollmentImmunizations;
+	if(removeEnrollmentImmunizations || setEnrollmentImmunizations != null && setEnrollmentImmunizations !== '')
+		vals['setEnrollmentImmunizations'] = setEnrollmentImmunizations;
+	var addEnrollmentImmunizations = $formValues.find('.addEnrollmentImmunizations').prop('checked');
+	if(addEnrollmentImmunizations != null && addEnrollmentImmunizations !== '')
+		vals['addEnrollmentImmunizations'] = addEnrollmentImmunizations;
+	var removeEnrollmentImmunizations = $formValues.find('.removeEnrollmentImmunizations').prop('checked');
+	if(removeEnrollmentImmunizations != null && removeEnrollmentImmunizations !== '')
+		vals['removeEnrollmentImmunizations'] = removeEnrollmentImmunizations;
+
+	var valueEnrollmentApproved = $formValues.find('.valueEnrollmentApproved').prop('checked');
+	if(valueEnrollmentApproved != null && valueEnrollmentApproved !== '')
+	var removeEnrollmentApproved = $formFilters.find('.removeEnrollmentApproved').val() === 'true';
+	var valueEnrollmentApprovedSelectVal = $formValues.find('select.setEnrollmentApproved').val();
+	var valueEnrollmentApproved = null;
+	if(valueEnrollmentApprovedSelectVal !== '')
+		valueEnrollmentApproved = valueEnrollmentApprovedSelectVal == 'true';
+	setEnrollmentApproved = removeEnrollmentApproved ? null : valueEnrollmentApproved;
+	if(removeEnrollmentApproved || setEnrollmentApproved != null && setEnrollmentApproved !== '')
+		vals['setEnrollmentApproved'] = setEnrollmentApproved;
+	var addEnrollmentApproved = $formValues.find('.addEnrollmentApproved').prop('checked');
+	if(addEnrollmentApproved != null && addEnrollmentApproved !== '')
+		vals['addEnrollmentApproved'] = addEnrollmentApproved;
+	var removeEnrollmentApproved = $formValues.find('.removeEnrollmentApproved').prop('checked');
+	if(removeEnrollmentApproved != null && removeEnrollmentApproved !== '')
+		vals['removeEnrollmentApproved'] = removeEnrollmentApproved;
 
 	var valueFamilyMarried = $formValues.find('.valueFamilyMarried').prop('checked');
 	if(valueFamilyMarried != null && valueFamilyMarried !== '')
@@ -1426,26 +1447,6 @@ function patchSchoolEnrollmentFilters($formFilters) {
 		if(filterDeleted != null && filterDeleted === true)
 			filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
-		var $filterEnrollmentApprovedCheckbox = $formFilters.find('input.valueEnrollmentApproved[type = "checkbox"]');
-		var $filterEnrollmentApprovedSelect = $formFilters.find('select.valueEnrollmentApproved');
-		var filterEnrollmentApproved = $filterEnrollmentApprovedSelect.length ? $filterEnrollmentApprovedSelect.val() : $filterEnrollmentApprovedCheckbox.prop('checked');
-		var filterEnrollmentApprovedSelectVal = $formFilters.find('select.filterEnrollmentApproved').val();
-		var filterEnrollmentApproved = null;
-		if(filterEnrollmentApprovedSelectVal !== '')
-			filterEnrollmentApproved = filterEnrollmentApprovedSelectVal == 'true';
-		if(filterEnrollmentApproved != null && filterEnrollmentApproved === true)
-			filters.push({ name: 'fq', value: 'enrollmentApproved:' + filterEnrollmentApproved });
-
-		var $filterEnrollmentImmunizationsCheckbox = $formFilters.find('input.valueEnrollmentImmunizations[type = "checkbox"]');
-		var $filterEnrollmentImmunizationsSelect = $formFilters.find('select.valueEnrollmentImmunizations');
-		var filterEnrollmentImmunizations = $filterEnrollmentImmunizationsSelect.length ? $filterEnrollmentImmunizationsSelect.val() : $filterEnrollmentImmunizationsCheckbox.prop('checked');
-		var filterEnrollmentImmunizationsSelectVal = $formFilters.find('select.filterEnrollmentImmunizations').val();
-		var filterEnrollmentImmunizations = null;
-		if(filterEnrollmentImmunizationsSelectVal !== '')
-			filterEnrollmentImmunizations = filterEnrollmentImmunizationsSelectVal == 'true';
-		if(filterEnrollmentImmunizations != null && filterEnrollmentImmunizations === true)
-			filters.push({ name: 'fq', value: 'enrollmentImmunizations:' + filterEnrollmentImmunizations });
-
 		var filterEnrollmentGroupName = $formFilters.find('.valueEnrollmentGroupName').val();
 		if(filterEnrollmentGroupName != null && filterEnrollmentGroupName !== '')
 			filters.push({ name: 'fq', value: 'enrollmentGroupName:' + filterEnrollmentGroupName });
@@ -1483,6 +1484,26 @@ function patchSchoolEnrollmentFilters($formFilters) {
 			filterEnrollmentPaymentEachMonth = filterEnrollmentPaymentEachMonthSelectVal == 'true';
 		if(filterEnrollmentPaymentEachMonth != null && filterEnrollmentPaymentEachMonth === true)
 			filters.push({ name: 'fq', value: 'enrollmentPaymentEachMonth:' + filterEnrollmentPaymentEachMonth });
+
+		var $filterEnrollmentImmunizationsCheckbox = $formFilters.find('input.valueEnrollmentImmunizations[type = "checkbox"]');
+		var $filterEnrollmentImmunizationsSelect = $formFilters.find('select.valueEnrollmentImmunizations');
+		var filterEnrollmentImmunizations = $filterEnrollmentImmunizationsSelect.length ? $filterEnrollmentImmunizationsSelect.val() : $filterEnrollmentImmunizationsCheckbox.prop('checked');
+		var filterEnrollmentImmunizationsSelectVal = $formFilters.find('select.filterEnrollmentImmunizations').val();
+		var filterEnrollmentImmunizations = null;
+		if(filterEnrollmentImmunizationsSelectVal !== '')
+			filterEnrollmentImmunizations = filterEnrollmentImmunizationsSelectVal == 'true';
+		if(filterEnrollmentImmunizations != null && filterEnrollmentImmunizations === true)
+			filters.push({ name: 'fq', value: 'enrollmentImmunizations:' + filterEnrollmentImmunizations });
+
+		var $filterEnrollmentApprovedCheckbox = $formFilters.find('input.valueEnrollmentApproved[type = "checkbox"]');
+		var $filterEnrollmentApprovedSelect = $formFilters.find('select.valueEnrollmentApproved');
+		var filterEnrollmentApproved = $filterEnrollmentApprovedSelect.length ? $filterEnrollmentApprovedSelect.val() : $filterEnrollmentApprovedCheckbox.prop('checked');
+		var filterEnrollmentApprovedSelectVal = $formFilters.find('select.filterEnrollmentApproved').val();
+		var filterEnrollmentApproved = null;
+		if(filterEnrollmentApprovedSelectVal !== '')
+			filterEnrollmentApproved = filterEnrollmentApprovedSelectVal == 'true';
+		if(filterEnrollmentApproved != null && filterEnrollmentApproved === true)
+			filters.push({ name: 'fq', value: 'enrollmentApproved:' + filterEnrollmentApproved });
 
 		var $filterFamilyMarriedCheckbox = $formFilters.find('input.valueFamilyMarried[type = "checkbox"]');
 		var $filterFamilyMarriedSelect = $formFilters.find('select.valueFamilyMarried');
@@ -1912,9 +1933,17 @@ function patchSchoolEnrollmentFilters($formFilters) {
 		if(filterBlockCompleteName != null && filterBlockCompleteName !== '')
 			filters.push({ name: 'fq', value: 'blockCompleteName:' + filterBlockCompleteName });
 
+		var filterEnrollmentGroupColor = $formFilters.find('.valueEnrollmentGroupColor').val();
+		if(filterEnrollmentGroupColor != null && filterEnrollmentGroupColor !== '')
+			filters.push({ name: 'fq', value: 'enrollmentGroupColor:' + filterEnrollmentGroupColor });
+
 		var filterEnrollmentChargeDate = $formFilters.find('.valueEnrollmentChargeDate').val();
 		if(filterEnrollmentChargeDate != null && filterEnrollmentChargeDate !== '')
 			filters.push({ name: 'fq', value: 'enrollmentChargeDate:' + filterEnrollmentChargeDate });
+
+		var filterPaymentLastStr = $formFilters.find('.valuePaymentLastStr').val();
+		if(filterPaymentLastStr != null && filterPaymentLastStr !== '')
+			filters.push({ name: 'fq', value: 'paymentLastStr:' + filterPaymentLastStr });
 
 		var filterPaymentAmount = $formFilters.find('.valuePaymentAmount').val();
 		if(filterPaymentAmount != null && filterPaymentAmount !== '')
@@ -1955,6 +1984,10 @@ function patchSchoolEnrollmentFilters($formFilters) {
 			filterPaymentsLate = filterPaymentsLateSelectVal == 'true';
 		if(filterPaymentsLate != null && filterPaymentsLate === true)
 			filters.push({ name: 'fq', value: 'paymentsLate:' + filterPaymentsLate });
+
+		var filterPaymentsLateAmount = $formFilters.find('.valuePaymentsLateAmount').val();
+		if(filterPaymentsLateAmount != null && filterPaymentsLateAmount !== '')
+			filters.push({ name: 'fq', value: 'paymentsLateAmount:' + filterPaymentsLateAmount });
 
 		var $filterPaymentsAheadCheckbox = $formFilters.find('input.valuePaymentsAhead[type = "checkbox"]');
 		var $filterPaymentsAheadSelect = $formFilters.find('select.valuePaymentsAhead');
@@ -2144,26 +2177,6 @@ function searchSchoolEnrollmentFilters($formFilters) {
 		if(filterDeleted != null && filterDeleted === true)
 			filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
-		var $filterEnrollmentApprovedCheckbox = $formFilters.find('input.valueEnrollmentApproved[type = "checkbox"]');
-		var $filterEnrollmentApprovedSelect = $formFilters.find('select.valueEnrollmentApproved');
-		var filterEnrollmentApproved = $filterEnrollmentApprovedSelect.length ? $filterEnrollmentApprovedSelect.val() : $filterEnrollmentApprovedCheckbox.prop('checked');
-		var filterEnrollmentApprovedSelectVal = $formFilters.find('select.filterEnrollmentApproved').val();
-		var filterEnrollmentApproved = null;
-		if(filterEnrollmentApprovedSelectVal !== '')
-			filterEnrollmentApproved = filterEnrollmentApprovedSelectVal == 'true';
-		if(filterEnrollmentApproved != null && filterEnrollmentApproved === true)
-			filters.push({ name: 'fq', value: 'enrollmentApproved:' + filterEnrollmentApproved });
-
-		var $filterEnrollmentImmunizationsCheckbox = $formFilters.find('input.valueEnrollmentImmunizations[type = "checkbox"]');
-		var $filterEnrollmentImmunizationsSelect = $formFilters.find('select.valueEnrollmentImmunizations');
-		var filterEnrollmentImmunizations = $filterEnrollmentImmunizationsSelect.length ? $filterEnrollmentImmunizationsSelect.val() : $filterEnrollmentImmunizationsCheckbox.prop('checked');
-		var filterEnrollmentImmunizationsSelectVal = $formFilters.find('select.filterEnrollmentImmunizations').val();
-		var filterEnrollmentImmunizations = null;
-		if(filterEnrollmentImmunizationsSelectVal !== '')
-			filterEnrollmentImmunizations = filterEnrollmentImmunizationsSelectVal == 'true';
-		if(filterEnrollmentImmunizations != null && filterEnrollmentImmunizations === true)
-			filters.push({ name: 'fq', value: 'enrollmentImmunizations:' + filterEnrollmentImmunizations });
-
 		var filterEnrollmentGroupName = $formFilters.find('.valueEnrollmentGroupName').val();
 		if(filterEnrollmentGroupName != null && filterEnrollmentGroupName !== '')
 			filters.push({ name: 'fq', value: 'enrollmentGroupName:' + filterEnrollmentGroupName });
@@ -2201,6 +2214,26 @@ function searchSchoolEnrollmentFilters($formFilters) {
 			filterEnrollmentPaymentEachMonth = filterEnrollmentPaymentEachMonthSelectVal == 'true';
 		if(filterEnrollmentPaymentEachMonth != null && filterEnrollmentPaymentEachMonth === true)
 			filters.push({ name: 'fq', value: 'enrollmentPaymentEachMonth:' + filterEnrollmentPaymentEachMonth });
+
+		var $filterEnrollmentImmunizationsCheckbox = $formFilters.find('input.valueEnrollmentImmunizations[type = "checkbox"]');
+		var $filterEnrollmentImmunizationsSelect = $formFilters.find('select.valueEnrollmentImmunizations');
+		var filterEnrollmentImmunizations = $filterEnrollmentImmunizationsSelect.length ? $filterEnrollmentImmunizationsSelect.val() : $filterEnrollmentImmunizationsCheckbox.prop('checked');
+		var filterEnrollmentImmunizationsSelectVal = $formFilters.find('select.filterEnrollmentImmunizations').val();
+		var filterEnrollmentImmunizations = null;
+		if(filterEnrollmentImmunizationsSelectVal !== '')
+			filterEnrollmentImmunizations = filterEnrollmentImmunizationsSelectVal == 'true';
+		if(filterEnrollmentImmunizations != null && filterEnrollmentImmunizations === true)
+			filters.push({ name: 'fq', value: 'enrollmentImmunizations:' + filterEnrollmentImmunizations });
+
+		var $filterEnrollmentApprovedCheckbox = $formFilters.find('input.valueEnrollmentApproved[type = "checkbox"]');
+		var $filterEnrollmentApprovedSelect = $formFilters.find('select.valueEnrollmentApproved');
+		var filterEnrollmentApproved = $filterEnrollmentApprovedSelect.length ? $filterEnrollmentApprovedSelect.val() : $filterEnrollmentApprovedCheckbox.prop('checked');
+		var filterEnrollmentApprovedSelectVal = $formFilters.find('select.filterEnrollmentApproved').val();
+		var filterEnrollmentApproved = null;
+		if(filterEnrollmentApprovedSelectVal !== '')
+			filterEnrollmentApproved = filterEnrollmentApprovedSelectVal == 'true';
+		if(filterEnrollmentApproved != null && filterEnrollmentApproved === true)
+			filters.push({ name: 'fq', value: 'enrollmentApproved:' + filterEnrollmentApproved });
 
 		var $filterFamilyMarriedCheckbox = $formFilters.find('input.valueFamilyMarried[type = "checkbox"]');
 		var $filterFamilyMarriedSelect = $formFilters.find('select.valueFamilyMarried');
@@ -2630,9 +2663,17 @@ function searchSchoolEnrollmentFilters($formFilters) {
 		if(filterBlockCompleteName != null && filterBlockCompleteName !== '')
 			filters.push({ name: 'fq', value: 'blockCompleteName:' + filterBlockCompleteName });
 
+		var filterEnrollmentGroupColor = $formFilters.find('.valueEnrollmentGroupColor').val();
+		if(filterEnrollmentGroupColor != null && filterEnrollmentGroupColor !== '')
+			filters.push({ name: 'fq', value: 'enrollmentGroupColor:' + filterEnrollmentGroupColor });
+
 		var filterEnrollmentChargeDate = $formFilters.find('.valueEnrollmentChargeDate').val();
 		if(filterEnrollmentChargeDate != null && filterEnrollmentChargeDate !== '')
 			filters.push({ name: 'fq', value: 'enrollmentChargeDate:' + filterEnrollmentChargeDate });
+
+		var filterPaymentLastStr = $formFilters.find('.valuePaymentLastStr').val();
+		if(filterPaymentLastStr != null && filterPaymentLastStr !== '')
+			filters.push({ name: 'fq', value: 'paymentLastStr:' + filterPaymentLastStr });
 
 		var filterPaymentAmount = $formFilters.find('.valuePaymentAmount').val();
 		if(filterPaymentAmount != null && filterPaymentAmount !== '')
@@ -2673,6 +2714,10 @@ function searchSchoolEnrollmentFilters($formFilters) {
 			filterPaymentsLate = filterPaymentsLateSelectVal == 'true';
 		if(filterPaymentsLate != null && filterPaymentsLate === true)
 			filters.push({ name: 'fq', value: 'paymentsLate:' + filterPaymentsLate });
+
+		var filterPaymentsLateAmount = $formFilters.find('.valuePaymentsLateAmount').val();
+		if(filterPaymentsLateAmount != null && filterPaymentsLateAmount !== '')
+			filters.push({ name: 'fq', value: 'paymentsLateAmount:' + filterPaymentsLateAmount });
 
 		var $filterPaymentsAheadCheckbox = $formFilters.find('input.valuePaymentsAhead[type = "checkbox"]');
 		var $filterPaymentsAheadSelect = $formFilters.find('select.valuePaymentsAhead');
@@ -2780,6 +2825,8 @@ function searchSchoolEnrollmentFilters($formFilters) {
 }
 
 function searchSchoolEnrollmentVals(filters, success, error) {
+
+	filters.push({ name: 'rows', value: 300 });
 	$.ajax({
 		url: '/api/enrollment?' + $.param(filters)
 		, dataType: 'json'
@@ -3148,26 +3195,6 @@ function adminsearchSchoolEnrollmentFilters($formFilters) {
 		if(filterDeleted != null && filterDeleted === true)
 			filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
-		var $filterEnrollmentApprovedCheckbox = $formFilters.find('input.valueEnrollmentApproved[type = "checkbox"]');
-		var $filterEnrollmentApprovedSelect = $formFilters.find('select.valueEnrollmentApproved');
-		var filterEnrollmentApproved = $filterEnrollmentApprovedSelect.length ? $filterEnrollmentApprovedSelect.val() : $filterEnrollmentApprovedCheckbox.prop('checked');
-		var filterEnrollmentApprovedSelectVal = $formFilters.find('select.filterEnrollmentApproved').val();
-		var filterEnrollmentApproved = null;
-		if(filterEnrollmentApprovedSelectVal !== '')
-			filterEnrollmentApproved = filterEnrollmentApprovedSelectVal == 'true';
-		if(filterEnrollmentApproved != null && filterEnrollmentApproved === true)
-			filters.push({ name: 'fq', value: 'enrollmentApproved:' + filterEnrollmentApproved });
-
-		var $filterEnrollmentImmunizationsCheckbox = $formFilters.find('input.valueEnrollmentImmunizations[type = "checkbox"]');
-		var $filterEnrollmentImmunizationsSelect = $formFilters.find('select.valueEnrollmentImmunizations');
-		var filterEnrollmentImmunizations = $filterEnrollmentImmunizationsSelect.length ? $filterEnrollmentImmunizationsSelect.val() : $filterEnrollmentImmunizationsCheckbox.prop('checked');
-		var filterEnrollmentImmunizationsSelectVal = $formFilters.find('select.filterEnrollmentImmunizations').val();
-		var filterEnrollmentImmunizations = null;
-		if(filterEnrollmentImmunizationsSelectVal !== '')
-			filterEnrollmentImmunizations = filterEnrollmentImmunizationsSelectVal == 'true';
-		if(filterEnrollmentImmunizations != null && filterEnrollmentImmunizations === true)
-			filters.push({ name: 'fq', value: 'enrollmentImmunizations:' + filterEnrollmentImmunizations });
-
 		var filterEnrollmentGroupName = $formFilters.find('.valueEnrollmentGroupName').val();
 		if(filterEnrollmentGroupName != null && filterEnrollmentGroupName !== '')
 			filters.push({ name: 'fq', value: 'enrollmentGroupName:' + filterEnrollmentGroupName });
@@ -3205,6 +3232,26 @@ function adminsearchSchoolEnrollmentFilters($formFilters) {
 			filterEnrollmentPaymentEachMonth = filterEnrollmentPaymentEachMonthSelectVal == 'true';
 		if(filterEnrollmentPaymentEachMonth != null && filterEnrollmentPaymentEachMonth === true)
 			filters.push({ name: 'fq', value: 'enrollmentPaymentEachMonth:' + filterEnrollmentPaymentEachMonth });
+
+		var $filterEnrollmentImmunizationsCheckbox = $formFilters.find('input.valueEnrollmentImmunizations[type = "checkbox"]');
+		var $filterEnrollmentImmunizationsSelect = $formFilters.find('select.valueEnrollmentImmunizations');
+		var filterEnrollmentImmunizations = $filterEnrollmentImmunizationsSelect.length ? $filterEnrollmentImmunizationsSelect.val() : $filterEnrollmentImmunizationsCheckbox.prop('checked');
+		var filterEnrollmentImmunizationsSelectVal = $formFilters.find('select.filterEnrollmentImmunizations').val();
+		var filterEnrollmentImmunizations = null;
+		if(filterEnrollmentImmunizationsSelectVal !== '')
+			filterEnrollmentImmunizations = filterEnrollmentImmunizationsSelectVal == 'true';
+		if(filterEnrollmentImmunizations != null && filterEnrollmentImmunizations === true)
+			filters.push({ name: 'fq', value: 'enrollmentImmunizations:' + filterEnrollmentImmunizations });
+
+		var $filterEnrollmentApprovedCheckbox = $formFilters.find('input.valueEnrollmentApproved[type = "checkbox"]');
+		var $filterEnrollmentApprovedSelect = $formFilters.find('select.valueEnrollmentApproved');
+		var filterEnrollmentApproved = $filterEnrollmentApprovedSelect.length ? $filterEnrollmentApprovedSelect.val() : $filterEnrollmentApprovedCheckbox.prop('checked');
+		var filterEnrollmentApprovedSelectVal = $formFilters.find('select.filterEnrollmentApproved').val();
+		var filterEnrollmentApproved = null;
+		if(filterEnrollmentApprovedSelectVal !== '')
+			filterEnrollmentApproved = filterEnrollmentApprovedSelectVal == 'true';
+		if(filterEnrollmentApproved != null && filterEnrollmentApproved === true)
+			filters.push({ name: 'fq', value: 'enrollmentApproved:' + filterEnrollmentApproved });
 
 		var $filterFamilyMarriedCheckbox = $formFilters.find('input.valueFamilyMarried[type = "checkbox"]');
 		var $filterFamilyMarriedSelect = $formFilters.find('select.valueFamilyMarried');
@@ -3634,9 +3681,17 @@ function adminsearchSchoolEnrollmentFilters($formFilters) {
 		if(filterBlockCompleteName != null && filterBlockCompleteName !== '')
 			filters.push({ name: 'fq', value: 'blockCompleteName:' + filterBlockCompleteName });
 
+		var filterEnrollmentGroupColor = $formFilters.find('.valueEnrollmentGroupColor').val();
+		if(filterEnrollmentGroupColor != null && filterEnrollmentGroupColor !== '')
+			filters.push({ name: 'fq', value: 'enrollmentGroupColor:' + filterEnrollmentGroupColor });
+
 		var filterEnrollmentChargeDate = $formFilters.find('.valueEnrollmentChargeDate').val();
 		if(filterEnrollmentChargeDate != null && filterEnrollmentChargeDate !== '')
 			filters.push({ name: 'fq', value: 'enrollmentChargeDate:' + filterEnrollmentChargeDate });
+
+		var filterPaymentLastStr = $formFilters.find('.valuePaymentLastStr').val();
+		if(filterPaymentLastStr != null && filterPaymentLastStr !== '')
+			filters.push({ name: 'fq', value: 'paymentLastStr:' + filterPaymentLastStr });
 
 		var filterPaymentAmount = $formFilters.find('.valuePaymentAmount').val();
 		if(filterPaymentAmount != null && filterPaymentAmount !== '')
@@ -3677,6 +3732,10 @@ function adminsearchSchoolEnrollmentFilters($formFilters) {
 			filterPaymentsLate = filterPaymentsLateSelectVal == 'true';
 		if(filterPaymentsLate != null && filterPaymentsLate === true)
 			filters.push({ name: 'fq', value: 'paymentsLate:' + filterPaymentsLate });
+
+		var filterPaymentsLateAmount = $formFilters.find('.valuePaymentsLateAmount').val();
+		if(filterPaymentsLateAmount != null && filterPaymentsLateAmount !== '')
+			filters.push({ name: 'fq', value: 'paymentsLateAmount:' + filterPaymentsLateAmount });
 
 		var $filterPaymentsAheadCheckbox = $formFilters.find('input.valuePaymentsAhead[type = "checkbox"]');
 		var $filterPaymentsAheadSelect = $formFilters.find('select.valuePaymentsAhead');
@@ -3784,6 +3843,8 @@ function adminsearchSchoolEnrollmentFilters($formFilters) {
 }
 
 function adminsearchSchoolEnrollmentVals(filters, success, error) {
+
+	filters.push({ name: 'rows', value: 300 });
 	$.ajax({
 		url: '/api/admin/enrollment?' + $.param(filters)
 		, dataType: 'json'
@@ -4193,39 +4254,18 @@ async function patchpaymentsSchoolEnrollment($formFilters, $formValues, pk, succ
 	if(removeDeleted != null && removeDeleted !== '')
 		vals['removeDeleted'] = removeDeleted;
 
-	var valueEnrollmentApproved = $formValues.find('.valueEnrollmentApproved').prop('checked');
-	if(valueEnrollmentApproved != null && valueEnrollmentApproved !== '')
-	var removeEnrollmentApproved = $formFilters.find('.removeEnrollmentApproved').val() === 'true';
-	var valueEnrollmentApprovedSelectVal = $formValues.find('select.setEnrollmentApproved').val();
-	var valueEnrollmentApproved = null;
-	if(valueEnrollmentApprovedSelectVal !== '')
-		valueEnrollmentApproved = valueEnrollmentApprovedSelectVal == 'true';
-	setEnrollmentApproved = removeEnrollmentApproved ? null : valueEnrollmentApproved;
-	if(removeEnrollmentApproved || setEnrollmentApproved != null && setEnrollmentApproved !== '')
-		vals['setEnrollmentApproved'] = setEnrollmentApproved;
-	var addEnrollmentApproved = $formValues.find('.addEnrollmentApproved').prop('checked');
-	if(addEnrollmentApproved != null && addEnrollmentApproved !== '')
-		vals['addEnrollmentApproved'] = addEnrollmentApproved;
-	var removeEnrollmentApproved = $formValues.find('.removeEnrollmentApproved').prop('checked');
-	if(removeEnrollmentApproved != null && removeEnrollmentApproved !== '')
-		vals['removeEnrollmentApproved'] = removeEnrollmentApproved;
-
-	var valueEnrollmentImmunizations = $formValues.find('.valueEnrollmentImmunizations').prop('checked');
-	if(valueEnrollmentImmunizations != null && valueEnrollmentImmunizations !== '')
-	var removeEnrollmentImmunizations = $formFilters.find('.removeEnrollmentImmunizations').val() === 'true';
-	var valueEnrollmentImmunizationsSelectVal = $formValues.find('select.setEnrollmentImmunizations').val();
-	var valueEnrollmentImmunizations = null;
-	if(valueEnrollmentImmunizationsSelectVal !== '')
-		valueEnrollmentImmunizations = valueEnrollmentImmunizationsSelectVal == 'true';
-	setEnrollmentImmunizations = removeEnrollmentImmunizations ? null : valueEnrollmentImmunizations;
-	if(removeEnrollmentImmunizations || setEnrollmentImmunizations != null && setEnrollmentImmunizations !== '')
-		vals['setEnrollmentImmunizations'] = setEnrollmentImmunizations;
-	var addEnrollmentImmunizations = $formValues.find('.addEnrollmentImmunizations').prop('checked');
-	if(addEnrollmentImmunizations != null && addEnrollmentImmunizations !== '')
-		vals['addEnrollmentImmunizations'] = addEnrollmentImmunizations;
-	var removeEnrollmentImmunizations = $formValues.find('.removeEnrollmentImmunizations').prop('checked');
-	if(removeEnrollmentImmunizations != null && removeEnrollmentImmunizations !== '')
-		vals['removeEnrollmentImmunizations'] = removeEnrollmentImmunizations;
+	var valuePhoto = $formValues.find('.valuePhoto').val();
+	if(valuePhoto != null && valuePhoto !== '')
+	var removePhoto = $formFilters.find('.removePhoto').val() === 'true';
+	var setPhoto = removePhoto ? null : $formValues.find('.setPhoto').val();
+	if(removePhoto || setPhoto != null && setPhoto !== '')
+		vals['setPhoto'] = setPhoto;
+	var addPhoto = $formValues.find('.addPhoto').val();
+	if(addPhoto != null && addPhoto !== '')
+		vals['addPhoto'] = addPhoto;
+	var removePhoto = $formValues.find('.removePhoto').val();
+	if(removePhoto != null && removePhoto !== '')
+		vals['removePhoto'] = removePhoto;
 
 	var valueEnrollmentGroupName = $formValues.find('.valueEnrollmentGroupName').val();
 	if(valueEnrollmentGroupName != null && valueEnrollmentGroupName !== '')
@@ -4303,6 +4343,40 @@ async function patchpaymentsSchoolEnrollment($formFilters, $formValues, pk, succ
 	var removeEnrollmentPaymentEachMonth = $formValues.find('.removeEnrollmentPaymentEachMonth').prop('checked');
 	if(removeEnrollmentPaymentEachMonth != null && removeEnrollmentPaymentEachMonth !== '')
 		vals['removeEnrollmentPaymentEachMonth'] = removeEnrollmentPaymentEachMonth;
+
+	var valueEnrollmentImmunizations = $formValues.find('.valueEnrollmentImmunizations').prop('checked');
+	if(valueEnrollmentImmunizations != null && valueEnrollmentImmunizations !== '')
+	var removeEnrollmentImmunizations = $formFilters.find('.removeEnrollmentImmunizations').val() === 'true';
+	var valueEnrollmentImmunizationsSelectVal = $formValues.find('select.setEnrollmentImmunizations').val();
+	var valueEnrollmentImmunizations = null;
+	if(valueEnrollmentImmunizationsSelectVal !== '')
+		valueEnrollmentImmunizations = valueEnrollmentImmunizationsSelectVal == 'true';
+	setEnrollmentImmunizations = removeEnrollmentImmunizations ? null : valueEnrollmentImmunizations;
+	if(removeEnrollmentImmunizations || setEnrollmentImmunizations != null && setEnrollmentImmunizations !== '')
+		vals['setEnrollmentImmunizations'] = setEnrollmentImmunizations;
+	var addEnrollmentImmunizations = $formValues.find('.addEnrollmentImmunizations').prop('checked');
+	if(addEnrollmentImmunizations != null && addEnrollmentImmunizations !== '')
+		vals['addEnrollmentImmunizations'] = addEnrollmentImmunizations;
+	var removeEnrollmentImmunizations = $formValues.find('.removeEnrollmentImmunizations').prop('checked');
+	if(removeEnrollmentImmunizations != null && removeEnrollmentImmunizations !== '')
+		vals['removeEnrollmentImmunizations'] = removeEnrollmentImmunizations;
+
+	var valueEnrollmentApproved = $formValues.find('.valueEnrollmentApproved').prop('checked');
+	if(valueEnrollmentApproved != null && valueEnrollmentApproved !== '')
+	var removeEnrollmentApproved = $formFilters.find('.removeEnrollmentApproved').val() === 'true';
+	var valueEnrollmentApprovedSelectVal = $formValues.find('select.setEnrollmentApproved').val();
+	var valueEnrollmentApproved = null;
+	if(valueEnrollmentApprovedSelectVal !== '')
+		valueEnrollmentApproved = valueEnrollmentApprovedSelectVal == 'true';
+	setEnrollmentApproved = removeEnrollmentApproved ? null : valueEnrollmentApproved;
+	if(removeEnrollmentApproved || setEnrollmentApproved != null && setEnrollmentApproved !== '')
+		vals['setEnrollmentApproved'] = setEnrollmentApproved;
+	var addEnrollmentApproved = $formValues.find('.addEnrollmentApproved').prop('checked');
+	if(addEnrollmentApproved != null && addEnrollmentApproved !== '')
+		vals['addEnrollmentApproved'] = addEnrollmentApproved;
+	var removeEnrollmentApproved = $formValues.find('.removeEnrollmentApproved').prop('checked');
+	if(removeEnrollmentApproved != null && removeEnrollmentApproved !== '')
+		vals['removeEnrollmentApproved'] = removeEnrollmentApproved;
 
 	var valueFamilyMarried = $formValues.find('.valueFamilyMarried').prop('checked');
 	if(valueFamilyMarried != null && valueFamilyMarried !== '')
@@ -4920,26 +4994,6 @@ function patchpaymentsSchoolEnrollmentFilters($formFilters) {
 		if(filterDeleted != null && filterDeleted === true)
 			filters.push({ name: 'fq', value: 'deleted:' + filterDeleted });
 
-		var $filterEnrollmentApprovedCheckbox = $formFilters.find('input.valueEnrollmentApproved[type = "checkbox"]');
-		var $filterEnrollmentApprovedSelect = $formFilters.find('select.valueEnrollmentApproved');
-		var filterEnrollmentApproved = $filterEnrollmentApprovedSelect.length ? $filterEnrollmentApprovedSelect.val() : $filterEnrollmentApprovedCheckbox.prop('checked');
-		var filterEnrollmentApprovedSelectVal = $formFilters.find('select.filterEnrollmentApproved').val();
-		var filterEnrollmentApproved = null;
-		if(filterEnrollmentApprovedSelectVal !== '')
-			filterEnrollmentApproved = filterEnrollmentApprovedSelectVal == 'true';
-		if(filterEnrollmentApproved != null && filterEnrollmentApproved === true)
-			filters.push({ name: 'fq', value: 'enrollmentApproved:' + filterEnrollmentApproved });
-
-		var $filterEnrollmentImmunizationsCheckbox = $formFilters.find('input.valueEnrollmentImmunizations[type = "checkbox"]');
-		var $filterEnrollmentImmunizationsSelect = $formFilters.find('select.valueEnrollmentImmunizations');
-		var filterEnrollmentImmunizations = $filterEnrollmentImmunizationsSelect.length ? $filterEnrollmentImmunizationsSelect.val() : $filterEnrollmentImmunizationsCheckbox.prop('checked');
-		var filterEnrollmentImmunizationsSelectVal = $formFilters.find('select.filterEnrollmentImmunizations').val();
-		var filterEnrollmentImmunizations = null;
-		if(filterEnrollmentImmunizationsSelectVal !== '')
-			filterEnrollmentImmunizations = filterEnrollmentImmunizationsSelectVal == 'true';
-		if(filterEnrollmentImmunizations != null && filterEnrollmentImmunizations === true)
-			filters.push({ name: 'fq', value: 'enrollmentImmunizations:' + filterEnrollmentImmunizations });
-
 		var filterEnrollmentGroupName = $formFilters.find('.valueEnrollmentGroupName').val();
 		if(filterEnrollmentGroupName != null && filterEnrollmentGroupName !== '')
 			filters.push({ name: 'fq', value: 'enrollmentGroupName:' + filterEnrollmentGroupName });
@@ -4977,6 +5031,26 @@ function patchpaymentsSchoolEnrollmentFilters($formFilters) {
 			filterEnrollmentPaymentEachMonth = filterEnrollmentPaymentEachMonthSelectVal == 'true';
 		if(filterEnrollmentPaymentEachMonth != null && filterEnrollmentPaymentEachMonth === true)
 			filters.push({ name: 'fq', value: 'enrollmentPaymentEachMonth:' + filterEnrollmentPaymentEachMonth });
+
+		var $filterEnrollmentImmunizationsCheckbox = $formFilters.find('input.valueEnrollmentImmunizations[type = "checkbox"]');
+		var $filterEnrollmentImmunizationsSelect = $formFilters.find('select.valueEnrollmentImmunizations');
+		var filterEnrollmentImmunizations = $filterEnrollmentImmunizationsSelect.length ? $filterEnrollmentImmunizationsSelect.val() : $filterEnrollmentImmunizationsCheckbox.prop('checked');
+		var filterEnrollmentImmunizationsSelectVal = $formFilters.find('select.filterEnrollmentImmunizations').val();
+		var filterEnrollmentImmunizations = null;
+		if(filterEnrollmentImmunizationsSelectVal !== '')
+			filterEnrollmentImmunizations = filterEnrollmentImmunizationsSelectVal == 'true';
+		if(filterEnrollmentImmunizations != null && filterEnrollmentImmunizations === true)
+			filters.push({ name: 'fq', value: 'enrollmentImmunizations:' + filterEnrollmentImmunizations });
+
+		var $filterEnrollmentApprovedCheckbox = $formFilters.find('input.valueEnrollmentApproved[type = "checkbox"]');
+		var $filterEnrollmentApprovedSelect = $formFilters.find('select.valueEnrollmentApproved');
+		var filterEnrollmentApproved = $filterEnrollmentApprovedSelect.length ? $filterEnrollmentApprovedSelect.val() : $filterEnrollmentApprovedCheckbox.prop('checked');
+		var filterEnrollmentApprovedSelectVal = $formFilters.find('select.filterEnrollmentApproved').val();
+		var filterEnrollmentApproved = null;
+		if(filterEnrollmentApprovedSelectVal !== '')
+			filterEnrollmentApproved = filterEnrollmentApprovedSelectVal == 'true';
+		if(filterEnrollmentApproved != null && filterEnrollmentApproved === true)
+			filters.push({ name: 'fq', value: 'enrollmentApproved:' + filterEnrollmentApproved });
 
 		var $filterFamilyMarriedCheckbox = $formFilters.find('input.valueFamilyMarried[type = "checkbox"]');
 		var $filterFamilyMarriedSelect = $formFilters.find('select.valueFamilyMarried');
@@ -5406,9 +5480,17 @@ function patchpaymentsSchoolEnrollmentFilters($formFilters) {
 		if(filterBlockCompleteName != null && filterBlockCompleteName !== '')
 			filters.push({ name: 'fq', value: 'blockCompleteName:' + filterBlockCompleteName });
 
+		var filterEnrollmentGroupColor = $formFilters.find('.valueEnrollmentGroupColor').val();
+		if(filterEnrollmentGroupColor != null && filterEnrollmentGroupColor !== '')
+			filters.push({ name: 'fq', value: 'enrollmentGroupColor:' + filterEnrollmentGroupColor });
+
 		var filterEnrollmentChargeDate = $formFilters.find('.valueEnrollmentChargeDate').val();
 		if(filterEnrollmentChargeDate != null && filterEnrollmentChargeDate !== '')
 			filters.push({ name: 'fq', value: 'enrollmentChargeDate:' + filterEnrollmentChargeDate });
+
+		var filterPaymentLastStr = $formFilters.find('.valuePaymentLastStr').val();
+		if(filterPaymentLastStr != null && filterPaymentLastStr !== '')
+			filters.push({ name: 'fq', value: 'paymentLastStr:' + filterPaymentLastStr });
 
 		var filterPaymentAmount = $formFilters.find('.valuePaymentAmount').val();
 		if(filterPaymentAmount != null && filterPaymentAmount !== '')
@@ -5449,6 +5531,10 @@ function patchpaymentsSchoolEnrollmentFilters($formFilters) {
 			filterPaymentsLate = filterPaymentsLateSelectVal == 'true';
 		if(filterPaymentsLate != null && filterPaymentsLate === true)
 			filters.push({ name: 'fq', value: 'paymentsLate:' + filterPaymentsLate });
+
+		var filterPaymentsLateAmount = $formFilters.find('.valuePaymentsLateAmount').val();
+		if(filterPaymentsLateAmount != null && filterPaymentsLateAmount !== '')
+			filters.push({ name: 'fq', value: 'paymentsLateAmount:' + filterPaymentsLateAmount });
 
 		var $filterPaymentsAheadCheckbox = $formFilters.find('input.valuePaymentsAhead[type = "checkbox"]');
 		var $filterPaymentsAheadSelect = $formFilters.find('select.valuePaymentsAhead');
@@ -5782,29 +5868,23 @@ async function websocketSchoolEnrollmentInner(apiRequest) {
 				});
 				addGlow($('.inputSchoolEnrollment' + pk + 'Deleted'));
 			}
-			var val = o['enrollmentApproved'];
-			if(vars.includes('enrollmentApproved')) {
-				$('.inputSchoolEnrollment' + pk + 'EnrollmentApproved').each(function() {
+			var val = o['photo'];
+			if(vars.includes('photo')) {
+				if(val === undefined)
+					val = null;
+				$('.imgSchoolEnrollment' + pk + 'Photo').each(function() {
+					if(val !== $(this).attr('src'))
+						$(this).attr('src', val);
+				});
+				$('.inputSchoolEnrollment' + pk + 'Photo').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varSchoolEnrollment' + pk + 'EnrollmentApproved').each(function() {
+				$('.varSchoolEnrollment' + pk + 'Photo').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				addGlow($('.inputSchoolEnrollment' + pk + 'EnrollmentApproved'));
-			}
-			var val = o['enrollmentImmunizations'];
-			if(vars.includes('enrollmentImmunizations')) {
-				$('.inputSchoolEnrollment' + pk + 'EnrollmentImmunizations').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varSchoolEnrollment' + pk + 'EnrollmentImmunizations').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputSchoolEnrollment' + pk + 'EnrollmentImmunizations'));
+				addGlow($('.inputSchoolEnrollment' + pk + 'Photo'));
 			}
 			var val = o['enrollmentGroupName'];
 			if(vars.includes('enrollmentGroupName')) {
@@ -5865,6 +5945,30 @@ async function websocketSchoolEnrollmentInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputSchoolEnrollment' + pk + 'EnrollmentPaymentEachMonth'));
+			}
+			var val = o['enrollmentImmunizations'];
+			if(vars.includes('enrollmentImmunizations')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentImmunizations').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'EnrollmentImmunizations').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'EnrollmentImmunizations'));
+			}
+			var val = o['enrollmentApproved'];
+			if(vars.includes('enrollmentApproved')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentApproved').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'EnrollmentApproved').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'EnrollmentApproved'));
 			}
 			var val = o['familyMarried'];
 			if(vars.includes('familyMarried')) {
