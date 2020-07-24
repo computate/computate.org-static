@@ -73,6 +73,10 @@ async function postEcole($formulaireValeurs, success, error) {
 	if(valeurEcoleAddresse != null && valeurEcoleAddresse !== '')
 		vals['ecoleAddresse'] = valeurEcoleAddresse;
 
+	var valeurEcoleForm = $formulaireValeurs.find('.valeurEcoleForm').val();
+	if(valeurEcoleForm != null && valeurEcoleForm !== '')
+		vals['ecoleForm'] = valeurEcoleForm;
+
 	var valeurEcoleNumero = $formulaireValeurs.find('.valeurEcoleNumero').val();
 	if(valeurEcoleNumero != null && valeurEcoleNumero !== '')
 		vals['ecoleNumero'] = valeurEcoleNumero;
@@ -324,6 +328,19 @@ async function patchEcole($formulaireFiltres, $formulaireValeurs, pk, success, e
 	if(removeEcoleAddresse != null && removeEcoleAddresse !== '')
 		vals['removeEcoleAddresse'] = removeEcoleAddresse;
 
+	var valeurEcoleForm = $formulaireValeurs.find('.valeurEcoleForm').val();
+	if(valeurEcoleForm != null && valeurEcoleForm !== '')
+	var removeEcoleForm = $formulaireFiltres.find('.removeEcoleForm').val() === 'true';
+	var setEcoleForm = removeEcoleForm ? null : $formulaireValeurs.find('.setEcoleForm').val();
+	if(removeEcoleForm || setEcoleForm != null && setEcoleForm !== '')
+		vals['setEcoleForm'] = setEcoleForm;
+	var addEcoleForm = $formulaireValeurs.find('.addEcoleForm').val();
+	if(addEcoleForm != null && addEcoleForm !== '')
+		vals['addEcoleForm'] = addEcoleForm;
+	var removeEcoleForm = $formulaireValeurs.find('.removeEcoleForm').val();
+	if(removeEcoleForm != null && removeEcoleForm !== '')
+		vals['removeEcoleForm'] = removeEcoleForm;
+
 	var valeurEcoleNumero = $formulaireValeurs.find('.valeurEcoleNumero').val();
 	if(valeurEcoleNumero != null && valeurEcoleNumero !== '')
 	var removeEcoleNumero = $formulaireFiltres.find('.removeEcoleNumero').val() === 'true';
@@ -480,6 +497,10 @@ function patchEcoleFiltres($formulaireFiltres) {
 		var filtreEcoleAddresse = $formulaireFiltres.find('.valeurEcoleAddresse').val();
 		if(filtreEcoleAddresse != null && filtreEcoleAddresse !== '')
 			filtres.push({ name: 'fq', value: 'ecoleAddresse:' + filtreEcoleAddresse });
+
+		var filtreEcoleForm = $formulaireFiltres.find('.valeurEcoleForm').val();
+		if(filtreEcoleForm != null && filtreEcoleForm !== '')
+			filtres.push({ name: 'fq', value: 'ecoleForm:' + filtreEcoleForm });
 
 		var filtreEcoleNumero = $formulaireFiltres.find('.valeurEcoleNumero').val();
 		if(filtreEcoleNumero != null && filtreEcoleNumero !== '')
@@ -706,6 +727,10 @@ function rechercheEcoleFiltres($formulaireFiltres) {
 		var filtreEcoleAddresse = $formulaireFiltres.find('.valeurEcoleAddresse').val();
 		if(filtreEcoleAddresse != null && filtreEcoleAddresse !== '')
 			filtres.push({ name: 'fq', value: 'ecoleAddresse:' + filtreEcoleAddresse });
+
+		var filtreEcoleForm = $formulaireFiltres.find('.valeurEcoleForm').val();
+		if(filtreEcoleForm != null && filtreEcoleForm !== '')
+			filtres.push({ name: 'fq', value: 'ecoleForm:' + filtreEcoleForm });
 
 		var filtreEcoleNumero = $formulaireFiltres.find('.valeurEcoleNumero').val();
 		if(filtreEcoleNumero != null && filtreEcoleNumero !== '')
@@ -984,6 +1009,10 @@ async function putcopieEcole($formulaireValeurs, pk, success, error) {
 	if(valeurEcoleAddresse != null && valeurEcoleAddresse !== '')
 		vals['ecoleAddresse'] = valeurEcoleAddresse;
 
+	var valeurEcoleForm = $formulaireValeurs.find('.valeurEcoleForm').val();
+	if(valeurEcoleForm != null && valeurEcoleForm !== '')
+		vals['ecoleForm'] = valeurEcoleForm;
+
 	var valeurEcoleNumero = $formulaireValeurs.find('.valeurEcoleNumero').val();
 	if(valeurEcoleNumero != null && valeurEcoleNumero !== '')
 		vals['ecoleNumero'] = valeurEcoleNumero;
@@ -1226,6 +1255,18 @@ async function websocketEcoleInner(requeteApi) {
 						$(this).text(val);
 				});
 				ajouterLueur($('.inputEcole' + pk + 'EcoleAddresse'));
+			}
+			var val = o['ecoleForm'];
+			if(vars.includes('ecoleForm')) {
+				$('.inputEcole' + pk + 'EcoleForm').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varEcole' + pk + 'EcoleForm').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputEcole' + pk + 'EcoleForm'));
 			}
 			var val = o['ecoleNumero'];
 			if(vars.includes('ecoleNumero')) {

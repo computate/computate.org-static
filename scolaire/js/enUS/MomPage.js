@@ -65,10 +65,6 @@ async function postSchoolMom($formValues, success, error) {
 	if(valuePersonOccupation != null && valuePersonOccupation !== '')
 		vals['personOccupation'] = valuePersonOccupation;
 
-	var valuePhoto = $formValues.find('.valuePhoto').val();
-	if(valuePhoto != null && valuePhoto !== '')
-		vals['photo'] = valuePhoto;
-
 	var valuePersonSms = $formValues.find('.valuePersonSms').prop('checked');
 	if(valuePersonSms != null && valuePersonSms !== '')
 		vals['personSms'] = valuePersonSms;
@@ -84,6 +80,10 @@ async function postSchoolMom($formValues, success, error) {
 	var valuePersonPickup = $formValues.find('.valuePersonPickup').prop('checked');
 	if(valuePersonPickup != null && valuePersonPickup !== '')
 		vals['personPickup'] = valuePersonPickup;
+
+	var valuePhoto = $formValues.find('.valuePhoto').val();
+	if(valuePhoto != null && valuePhoto !== '')
+		vals['photo'] = valuePhoto;
 
 	var valueEnrollmentKeys = [];
 	$formValues.find('input.valueEnrollmentKeys:checked').each(function(index) {
@@ -228,10 +228,6 @@ async function putcopySchoolMom($formValues, pk, success, error) {
 	if(valuePersonOccupation != null && valuePersonOccupation !== '')
 		vals['personOccupation'] = valuePersonOccupation;
 
-	var valuePhoto = $formValues.find('.valuePhoto').val();
-	if(valuePhoto != null && valuePhoto !== '')
-		vals['photo'] = valuePhoto;
-
 	var valuePersonSms = $formValues.find('.valuePersonSms').prop('checked');
 	if(valuePersonSms != null && valuePersonSms !== '')
 		vals['personSms'] = valuePersonSms;
@@ -247,6 +243,10 @@ async function putcopySchoolMom($formValues, pk, success, error) {
 	var valuePersonPickup = $formValues.find('.valuePersonPickup').prop('checked');
 	if(valuePersonPickup != null && valuePersonPickup !== '')
 		vals['personPickup'] = valuePersonPickup;
+
+	var valuePhoto = $formValues.find('.valuePhoto').val();
+	if(valuePhoto != null && valuePhoto !== '')
+		vals['photo'] = valuePhoto;
 
 	var valueEnrollmentKeys = $formValues.find('input.valueEnrollmentKeys:checked').val();
 	if(valueEnrollmentKeys != null && valueEnrollmentKeys !== '')
@@ -458,19 +458,6 @@ async function patchSchoolMom($formFilters, $formValues, pk, success, error) {
 	if(removePersonOccupation != null && removePersonOccupation !== '')
 		vals['removePersonOccupation'] = removePersonOccupation;
 
-	var valuePhoto = $formValues.find('.valuePhoto').val();
-	if(valuePhoto != null && valuePhoto !== '')
-	var removePhoto = $formFilters.find('.removePhoto').val() === 'true';
-	var setPhoto = removePhoto ? null : $formValues.find('.setPhoto').val();
-	if(removePhoto || setPhoto != null && setPhoto !== '')
-		vals['setPhoto'] = setPhoto;
-	var addPhoto = $formValues.find('.addPhoto').val();
-	if(addPhoto != null && addPhoto !== '')
-		vals['addPhoto'] = addPhoto;
-	var removePhoto = $formValues.find('.removePhoto').val();
-	if(removePhoto != null && removePhoto !== '')
-		vals['removePhoto'] = removePhoto;
-
 	var valuePersonSms = $formValues.find('.valuePersonSms').prop('checked');
 	if(valuePersonSms != null && valuePersonSms !== '')
 	var removePersonSms = $formFilters.find('.removePersonSms').val() === 'true';
@@ -538,6 +525,19 @@ async function patchSchoolMom($formFilters, $formValues, pk, success, error) {
 	var removePersonPickup = $formValues.find('.removePersonPickup').prop('checked');
 	if(removePersonPickup != null && removePersonPickup !== '')
 		vals['removePersonPickup'] = removePersonPickup;
+
+	var valuePhoto = $formValues.find('.valuePhoto').val();
+	if(valuePhoto != null && valuePhoto !== '')
+	var removePhoto = $formFilters.find('.removePhoto').val() === 'true';
+	var setPhoto = removePhoto ? null : $formValues.find('.setPhoto').val();
+	if(removePhoto || setPhoto != null && setPhoto !== '')
+		vals['setPhoto'] = setPhoto;
+	var addPhoto = $formValues.find('.addPhoto').val();
+	if(addPhoto != null && addPhoto !== '')
+		vals['addPhoto'] = addPhoto;
+	var removePhoto = $formValues.find('.removePhoto').val();
+	if(removePhoto != null && removePhoto !== '')
+		vals['removePhoto'] = removePhoto;
 
 	var valueEnrollmentKeys = $formValues.find('input.valueEnrollmentKeys:checked').val();
 	if(valueEnrollmentKeys != null && valueEnrollmentKeys !== '')
@@ -1660,24 +1660,6 @@ async function websocketSchoolMomInner(apiRequest) {
 				});
 				addGlow($('.inputSchoolMom' + pk + 'PersonOccupation'));
 			}
-			var val = o['photo'];
-			if(vars.includes('photo')) {
-				if(val === undefined)
-					val = null;
-				$('.imgSchoolMom' + pk + 'Photo').each(function() {
-					if(val !== $(this).attr('src'))
-						$(this).attr('src', val);
-				});
-				$('.inputSchoolMom' + pk + 'Photo').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varSchoolMom' + pk + 'Photo').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputSchoolMom' + pk + 'Photo'));
-			}
 			var val = o['personSms'];
 			if(vars.includes('personSms')) {
 				$('.inputSchoolMom' + pk + 'PersonSms').each(function() {
@@ -1725,6 +1707,24 @@ async function websocketSchoolMomInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputSchoolMom' + pk + 'PersonPickup'));
+			}
+			var val = o['photo'];
+			if(vars.includes('photo')) {
+				if(val === undefined)
+					val = null;
+				$('.imgSchoolMom' + pk + 'Photo').each(function() {
+					if(val !== $(this).attr('src'))
+						$(this).attr('src', val);
+				});
+				$('.inputSchoolMom' + pk + 'Photo').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolMom' + pk + 'Photo').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolMom' + pk + 'Photo'));
 			}
 			var val = o['enrollmentKeys'];
 			if(vars.includes('enrollmentKeys')) {

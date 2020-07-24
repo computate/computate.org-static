@@ -611,6 +611,10 @@ function patchSchoolSessionFilters($formFilters) {
 		if(filterSchoolPhoneNumber != null && filterSchoolPhoneNumber !== '')
 			filters.push({ name: 'fq', value: 'schoolPhoneNumber:' + filterSchoolPhoneNumber });
 
+		var filterSchoolForm = $formFilters.find('.valueSchoolForm').val();
+		if(filterSchoolForm != null && filterSchoolForm !== '')
+			filters.push({ name: 'fq', value: 'schoolForm:' + filterSchoolForm });
+
 		var filterSchoolNumber = $formFilters.find('.valueSchoolNumber').val();
 		if(filterSchoolNumber != null && filterSchoolNumber !== '')
 			filters.push({ name: 'fq', value: 'schoolNumber:' + filterSchoolNumber });
@@ -888,6 +892,10 @@ function searchSchoolSessionFilters($formFilters) {
 		var filterSchoolPhoneNumber = $formFilters.find('.valueSchoolPhoneNumber').val();
 		if(filterSchoolPhoneNumber != null && filterSchoolPhoneNumber !== '')
 			filters.push({ name: 'fq', value: 'schoolPhoneNumber:' + filterSchoolPhoneNumber });
+
+		var filterSchoolForm = $formFilters.find('.valueSchoolForm').val();
+		if(filterSchoolForm != null && filterSchoolForm !== '')
+			filters.push({ name: 'fq', value: 'schoolForm:' + filterSchoolForm });
 
 		var filterSchoolNumber = $formFilters.find('.valueSchoolNumber').val();
 		if(filterSchoolNumber != null && filterSchoolNumber !== '')

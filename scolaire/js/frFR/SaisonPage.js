@@ -642,6 +642,10 @@ function patchSaisonScolaireFiltres($formulaireFiltres) {
 		if(filtreEcoleNumeroTelephone != null && filtreEcoleNumeroTelephone !== '')
 			filtres.push({ name: 'fq', value: 'ecoleNumeroTelephone:' + filtreEcoleNumeroTelephone });
 
+		var filtreEcoleForm = $formulaireFiltres.find('.valeurEcoleForm').val();
+		if(filtreEcoleForm != null && filtreEcoleForm !== '')
+			filtres.push({ name: 'fq', value: 'ecoleForm:' + filtreEcoleForm });
+
 		var filtreEcoleNumero = $formulaireFiltres.find('.valeurEcoleNumero').val();
 		if(filtreEcoleNumero != null && filtreEcoleNumero !== '')
 			filtres.push({ name: 'fq', value: 'ecoleNumero:' + filtreEcoleNumero });
@@ -905,6 +909,10 @@ function rechercheSaisonScolaireFiltres($formulaireFiltres) {
 		var filtreEcoleNumeroTelephone = $formulaireFiltres.find('.valeurEcoleNumeroTelephone').val();
 		if(filtreEcoleNumeroTelephone != null && filtreEcoleNumeroTelephone !== '')
 			filtres.push({ name: 'fq', value: 'ecoleNumeroTelephone:' + filtreEcoleNumeroTelephone });
+
+		var filtreEcoleForm = $formulaireFiltres.find('.valeurEcoleForm').val();
+		if(filtreEcoleForm != null && filtreEcoleForm !== '')
+			filtres.push({ name: 'fq', value: 'ecoleForm:' + filtreEcoleForm });
 
 		var filtreEcoleNumero = $formulaireFiltres.find('.valeurEcoleNumero').val();
 		if(filtreEcoleNumero != null && filtreEcoleNumero !== '')

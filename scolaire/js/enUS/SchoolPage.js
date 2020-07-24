@@ -73,6 +73,10 @@ async function postSchool($formValues, success, error) {
 	if(valueSchoolAddress != null && valueSchoolAddress !== '')
 		vals['schoolAddress'] = valueSchoolAddress;
 
+	var valueSchoolForm = $formValues.find('.valueSchoolForm').val();
+	if(valueSchoolForm != null && valueSchoolForm !== '')
+		vals['schoolForm'] = valueSchoolForm;
+
 	var valueSchoolNumber = $formValues.find('.valueSchoolNumber').val();
 	if(valueSchoolNumber != null && valueSchoolNumber !== '')
 		vals['schoolNumber'] = valueSchoolNumber;
@@ -324,6 +328,19 @@ async function patchSchool($formFilters, $formValues, pk, success, error) {
 	if(removeSchoolAddress != null && removeSchoolAddress !== '')
 		vals['removeSchoolAddress'] = removeSchoolAddress;
 
+	var valueSchoolForm = $formValues.find('.valueSchoolForm').val();
+	if(valueSchoolForm != null && valueSchoolForm !== '')
+	var removeSchoolForm = $formFilters.find('.removeSchoolForm').val() === 'true';
+	var setSchoolForm = removeSchoolForm ? null : $formValues.find('.setSchoolForm').val();
+	if(removeSchoolForm || setSchoolForm != null && setSchoolForm !== '')
+		vals['setSchoolForm'] = setSchoolForm;
+	var addSchoolForm = $formValues.find('.addSchoolForm').val();
+	if(addSchoolForm != null && addSchoolForm !== '')
+		vals['addSchoolForm'] = addSchoolForm;
+	var removeSchoolForm = $formValues.find('.removeSchoolForm').val();
+	if(removeSchoolForm != null && removeSchoolForm !== '')
+		vals['removeSchoolForm'] = removeSchoolForm;
+
 	var valueSchoolNumber = $formValues.find('.valueSchoolNumber').val();
 	if(valueSchoolNumber != null && valueSchoolNumber !== '')
 	var removeSchoolNumber = $formFilters.find('.removeSchoolNumber').val() === 'true';
@@ -480,6 +497,10 @@ function patchSchoolFilters($formFilters) {
 		var filterSchoolAddress = $formFilters.find('.valueSchoolAddress').val();
 		if(filterSchoolAddress != null && filterSchoolAddress !== '')
 			filters.push({ name: 'fq', value: 'schoolAddress:' + filterSchoolAddress });
+
+		var filterSchoolForm = $formFilters.find('.valueSchoolForm').val();
+		if(filterSchoolForm != null && filterSchoolForm !== '')
+			filters.push({ name: 'fq', value: 'schoolForm:' + filterSchoolForm });
 
 		var filterSchoolNumber = $formFilters.find('.valueSchoolNumber').val();
 		if(filterSchoolNumber != null && filterSchoolNumber !== '')
@@ -706,6 +727,10 @@ function searchSchoolFilters($formFilters) {
 		var filterSchoolAddress = $formFilters.find('.valueSchoolAddress').val();
 		if(filterSchoolAddress != null && filterSchoolAddress !== '')
 			filters.push({ name: 'fq', value: 'schoolAddress:' + filterSchoolAddress });
+
+		var filterSchoolForm = $formFilters.find('.valueSchoolForm').val();
+		if(filterSchoolForm != null && filterSchoolForm !== '')
+			filters.push({ name: 'fq', value: 'schoolForm:' + filterSchoolForm });
 
 		var filterSchoolNumber = $formFilters.find('.valueSchoolNumber').val();
 		if(filterSchoolNumber != null && filterSchoolNumber !== '')
@@ -984,6 +1009,10 @@ async function putcopySchool($formValues, pk, success, error) {
 	if(valueSchoolAddress != null && valueSchoolAddress !== '')
 		vals['schoolAddress'] = valueSchoolAddress;
 
+	var valueSchoolForm = $formValues.find('.valueSchoolForm').val();
+	if(valueSchoolForm != null && valueSchoolForm !== '')
+		vals['schoolForm'] = valueSchoolForm;
+
 	var valueSchoolNumber = $formValues.find('.valueSchoolNumber').val();
 	if(valueSchoolNumber != null && valueSchoolNumber !== '')
 		vals['schoolNumber'] = valueSchoolNumber;
@@ -1226,6 +1255,18 @@ async function websocketSchoolInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputSchool' + pk + 'SchoolAddress'));
+			}
+			var val = o['schoolForm'];
+			if(vars.includes('schoolForm')) {
+				$('.inputSchool' + pk + 'SchoolForm').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchool' + pk + 'SchoolForm').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchool' + pk + 'SchoolForm'));
 			}
 			var val = o['schoolNumber'];
 			if(vars.includes('schoolNumber')) {
