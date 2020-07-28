@@ -73,10 +73,6 @@ async function postPaiementScolaire($formulaireValeurs, success, error) {
 	if(valeurPaiementPar != null && valeurPaiementPar !== '')
 		vals['paiementPar'] = valeurPaiementPar;
 
-	var valeurInscriptionPaimentComplet = $formulaireValeurs.find('.valeurInscriptionPaimentComplet').prop('checked');
-	if(valeurInscriptionPaimentComplet != null && valeurInscriptionPaimentComplet !== '')
-		vals['inscriptionPaimentComplet'] = valeurInscriptionPaimentComplet;
-
 	var valeurInscriptionPaimentChaqueMois = $formulaireValeurs.find('.valeurInscriptionPaimentChaqueMois').prop('checked');
 	if(valeurInscriptionPaimentChaqueMois != null && valeurInscriptionPaimentChaqueMois !== '')
 		vals['inscriptionPaimentChaqueMois'] = valeurInscriptionPaimentChaqueMois;
@@ -292,10 +288,6 @@ async function putcopiePaiementScolaire($formulaireValeurs, pk, success, error) 
 	var valeurPaiementPar = $formulaireValeurs.find('.valeurPaiementPar').val();
 	if(valeurPaiementPar != null && valeurPaiementPar !== '')
 		vals['paiementPar'] = valeurPaiementPar;
-
-	var valeurInscriptionPaimentComplet = $formulaireValeurs.find('.valeurInscriptionPaimentComplet').prop('checked');
-	if(valeurInscriptionPaimentComplet != null && valeurInscriptionPaimentComplet !== '')
-		vals['inscriptionPaimentComplet'] = valeurInscriptionPaimentComplet;
 
 	var valeurInscriptionPaimentChaqueMois = $formulaireValeurs.find('.valeurInscriptionPaimentChaqueMois').prop('checked');
 	if(valeurInscriptionPaimentChaqueMois != null && valeurInscriptionPaimentChaqueMois !== '')
@@ -616,23 +608,6 @@ async function patchPaiementScolaire($formulaireFiltres, $formulaireValeurs, pk,
 	var removePaiementPar = $formulaireValeurs.find('.removePaiementPar').val();
 	if(removePaiementPar != null && removePaiementPar !== '')
 		vals['removePaiementPar'] = removePaiementPar;
-
-	var valeurInscriptionPaimentComplet = $formulaireValeurs.find('.valeurInscriptionPaimentComplet').prop('checked');
-	if(valeurInscriptionPaimentComplet != null && valeurInscriptionPaimentComplet !== '')
-	var removeInscriptionPaimentComplet = $formulaireFiltres.find('.removeInscriptionPaimentComplet').val() === 'true';
-	var valeurInscriptionPaimentCompletSelectVal = $formulaireValeurs.find('select.setInscriptionPaimentComplet').val();
-	var valeurInscriptionPaimentComplet = null;
-	if(valeurInscriptionPaimentCompletSelectVal !== '')
-		valeurInscriptionPaimentComplet = valeurInscriptionPaimentCompletSelectVal == 'true';
-	setInscriptionPaimentComplet = removeInscriptionPaimentComplet ? null : valeurInscriptionPaimentComplet;
-	if(removeInscriptionPaimentComplet || setInscriptionPaimentComplet != null && setInscriptionPaimentComplet !== '')
-		vals['setInscriptionPaimentComplet'] = setInscriptionPaimentComplet;
-	var addInscriptionPaimentComplet = $formulaireValeurs.find('.addInscriptionPaimentComplet').prop('checked');
-	if(addInscriptionPaimentComplet != null && addInscriptionPaimentComplet !== '')
-		vals['addInscriptionPaimentComplet'] = addInscriptionPaimentComplet;
-	var removeInscriptionPaimentComplet = $formulaireValeurs.find('.removeInscriptionPaimentComplet').prop('checked');
-	if(removeInscriptionPaimentComplet != null && removeInscriptionPaimentComplet !== '')
-		vals['removeInscriptionPaimentComplet'] = removeInscriptionPaimentComplet;
 
 	var valeurInscriptionPaimentChaqueMois = $formulaireValeurs.find('.valeurInscriptionPaimentChaqueMois').prop('checked');
 	if(valeurInscriptionPaimentChaqueMois != null && valeurInscriptionPaimentChaqueMois !== '')
@@ -1046,16 +1021,6 @@ function patchPaiementScolaireFiltres($formulaireFiltres) {
 		var filtrePaiementPar = $formulaireFiltres.find('.valeurPaiementPar').val();
 		if(filtrePaiementPar != null && filtrePaiementPar !== '')
 			filtres.push({ name: 'fq', value: 'paiementPar:' + filtrePaiementPar });
-
-		var $filtreInscriptionPaimentCompletCheckbox = $formulaireFiltres.find('input.valeurInscriptionPaimentComplet[type = "checkbox"]');
-		var $filtreInscriptionPaimentCompletSelect = $formulaireFiltres.find('select.valeurInscriptionPaimentComplet');
-		var filtreInscriptionPaimentComplet = $filtreInscriptionPaimentCompletSelect.length ? $filtreInscriptionPaimentCompletSelect.val() : $filtreInscriptionPaimentCompletCheckbox.prop('checked');
-		var filtreInscriptionPaimentCompletSelectVal = $formulaireFiltres.find('select.filtreInscriptionPaimentComplet').val();
-		var filtreInscriptionPaimentComplet = null;
-		if(filtreInscriptionPaimentCompletSelectVal !== '')
-			filtreInscriptionPaimentComplet = filtreInscriptionPaimentCompletSelectVal == 'true';
-		if(filtreInscriptionPaimentComplet != null && filtreInscriptionPaimentComplet === true)
-			filtres.push({ name: 'fq', value: 'inscriptionPaimentComplet:' + filtreInscriptionPaimentComplet });
 
 		var $filtreInscriptionPaimentChaqueMoisCheckbox = $formulaireFiltres.find('input.valeurInscriptionPaimentChaqueMois[type = "checkbox"]');
 		var $filtreInscriptionPaimentChaqueMoisSelect = $formulaireFiltres.find('select.valeurInscriptionPaimentChaqueMois');
@@ -1495,16 +1460,6 @@ function recherchePaiementScolaireFiltres($formulaireFiltres) {
 		if(filtrePaiementPar != null && filtrePaiementPar !== '')
 			filtres.push({ name: 'fq', value: 'paiementPar:' + filtrePaiementPar });
 
-		var $filtreInscriptionPaimentCompletCheckbox = $formulaireFiltres.find('input.valeurInscriptionPaimentComplet[type = "checkbox"]');
-		var $filtreInscriptionPaimentCompletSelect = $formulaireFiltres.find('select.valeurInscriptionPaimentComplet');
-		var filtreInscriptionPaimentComplet = $filtreInscriptionPaimentCompletSelect.length ? $filtreInscriptionPaimentCompletSelect.val() : $filtreInscriptionPaimentCompletCheckbox.prop('checked');
-		var filtreInscriptionPaimentCompletSelectVal = $formulaireFiltres.find('select.filtreInscriptionPaimentComplet').val();
-		var filtreInscriptionPaimentComplet = null;
-		if(filtreInscriptionPaimentCompletSelectVal !== '')
-			filtreInscriptionPaimentComplet = filtreInscriptionPaimentCompletSelectVal == 'true';
-		if(filtreInscriptionPaimentComplet != null && filtreInscriptionPaimentComplet === true)
-			filtres.push({ name: 'fq', value: 'inscriptionPaimentComplet:' + filtreInscriptionPaimentComplet });
-
 		var $filtreInscriptionPaimentChaqueMoisCheckbox = $formulaireFiltres.find('input.valeurInscriptionPaimentChaqueMois[type = "checkbox"]');
 		var $filtreInscriptionPaimentChaqueMoisSelect = $formulaireFiltres.find('select.valeurInscriptionPaimentChaqueMois');
 		var filtreInscriptionPaimentChaqueMois = $filtreInscriptionPaimentChaqueMoisSelect.length ? $filtreInscriptionPaimentChaqueMoisSelect.val() : $filtreInscriptionPaimentChaqueMoisCheckbox.prop('checked');
@@ -1806,7 +1761,6 @@ function recherchePaiementScolaireFiltres($formulaireFiltres) {
 
 function recherchePaiementScolaireVals(filtres, success, error) {
 
-	filtres.push({ name: 'rows', value: 50 });
 
 	filtres.push({ name: 'sort', value: 'paiementDate desc' });
 	filtres.push({ name: 'sort', value: 'paiementPar desc' });
@@ -2081,18 +2035,6 @@ async function websocketPaiementScolaireInner(requeteApi) {
 						$(this).text(val);
 				});
 				ajouterLueur($('.inputPaiementScolaire' + pk + 'PaiementPar'));
-			}
-			var val = o['inscriptionPaimentComplet'];
-			if(vars.includes('inscriptionPaimentComplet')) {
-				$('.inputPaiementScolaire' + pk + 'InscriptionPaimentComplet').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varPaiementScolaire' + pk + 'InscriptionPaimentComplet').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				ajouterLueur($('.inputPaiementScolaire' + pk + 'InscriptionPaimentComplet'));
 			}
 			var val = o['inscriptionPaimentChaqueMois'];
 			if(vars.includes('inscriptionPaimentChaqueMois')) {

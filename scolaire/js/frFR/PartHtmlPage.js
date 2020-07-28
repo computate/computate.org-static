@@ -1409,7 +1409,6 @@ function recherchePartHtmlFiltres($formulaireFiltres) {
 
 function recherchePartHtmlVals(filtres, success, error) {
 
-	filtres.push({ name: 'rows', value: 300 });
 
 	filtres.push({ name: 'sort', value: 'tri1 asc' });
 	filtres.push({ name: 'sort', value: 'tri2 asc' });

@@ -2834,7 +2834,6 @@ function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 
 function rechercheInscriptionScolaireVals(filtres, success, error) {
 
-	filtres.push({ name: 'rows', value: 300 });
 	$.ajax({
 		url: '/api/inscription?' + $.param(filtres)
 		, dataType: 'json'
@@ -3856,7 +3855,6 @@ function rechercheadminInscriptionScolaireFiltres($formulaireFiltres) {
 
 function rechercheadminInscriptionScolaireVals(filtres, success, error) {
 
-	filtres.push({ name: 'rows', value: 300 });
 	$.ajax({
 		url: '/api/admin/inscription?' + $.param(filtres)
 		, dataType: 'json'

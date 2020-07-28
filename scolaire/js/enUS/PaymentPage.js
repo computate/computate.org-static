@@ -73,10 +73,6 @@ async function postSchoolPayment($formValues, success, error) {
 	if(valuePaymentBy != null && valuePaymentBy !== '')
 		vals['paymentBy'] = valuePaymentBy;
 
-	var valueEnrollmentPaymentComplete = $formValues.find('.valueEnrollmentPaymentComplete').prop('checked');
-	if(valueEnrollmentPaymentComplete != null && valueEnrollmentPaymentComplete !== '')
-		vals['enrollmentPaymentComplete'] = valueEnrollmentPaymentComplete;
-
 	var valueEnrollmentPaymentEachMonth = $formValues.find('.valueEnrollmentPaymentEachMonth').prop('checked');
 	if(valueEnrollmentPaymentEachMonth != null && valueEnrollmentPaymentEachMonth !== '')
 		vals['enrollmentPaymentEachMonth'] = valueEnrollmentPaymentEachMonth;
@@ -292,10 +288,6 @@ async function putcopySchoolPayment($formValues, pk, success, error) {
 	var valuePaymentBy = $formValues.find('.valuePaymentBy').val();
 	if(valuePaymentBy != null && valuePaymentBy !== '')
 		vals['paymentBy'] = valuePaymentBy;
-
-	var valueEnrollmentPaymentComplete = $formValues.find('.valueEnrollmentPaymentComplete').prop('checked');
-	if(valueEnrollmentPaymentComplete != null && valueEnrollmentPaymentComplete !== '')
-		vals['enrollmentPaymentComplete'] = valueEnrollmentPaymentComplete;
 
 	var valueEnrollmentPaymentEachMonth = $formValues.find('.valueEnrollmentPaymentEachMonth').prop('checked');
 	if(valueEnrollmentPaymentEachMonth != null && valueEnrollmentPaymentEachMonth !== '')
@@ -616,23 +608,6 @@ async function patchSchoolPayment($formFilters, $formValues, pk, success, error)
 	var removePaymentBy = $formValues.find('.removePaymentBy').val();
 	if(removePaymentBy != null && removePaymentBy !== '')
 		vals['removePaymentBy'] = removePaymentBy;
-
-	var valueEnrollmentPaymentComplete = $formValues.find('.valueEnrollmentPaymentComplete').prop('checked');
-	if(valueEnrollmentPaymentComplete != null && valueEnrollmentPaymentComplete !== '')
-	var removeEnrollmentPaymentComplete = $formFilters.find('.removeEnrollmentPaymentComplete').val() === 'true';
-	var valueEnrollmentPaymentCompleteSelectVal = $formValues.find('select.setEnrollmentPaymentComplete').val();
-	var valueEnrollmentPaymentComplete = null;
-	if(valueEnrollmentPaymentCompleteSelectVal !== '')
-		valueEnrollmentPaymentComplete = valueEnrollmentPaymentCompleteSelectVal == 'true';
-	setEnrollmentPaymentComplete = removeEnrollmentPaymentComplete ? null : valueEnrollmentPaymentComplete;
-	if(removeEnrollmentPaymentComplete || setEnrollmentPaymentComplete != null && setEnrollmentPaymentComplete !== '')
-		vals['setEnrollmentPaymentComplete'] = setEnrollmentPaymentComplete;
-	var addEnrollmentPaymentComplete = $formValues.find('.addEnrollmentPaymentComplete').prop('checked');
-	if(addEnrollmentPaymentComplete != null && addEnrollmentPaymentComplete !== '')
-		vals['addEnrollmentPaymentComplete'] = addEnrollmentPaymentComplete;
-	var removeEnrollmentPaymentComplete = $formValues.find('.removeEnrollmentPaymentComplete').prop('checked');
-	if(removeEnrollmentPaymentComplete != null && removeEnrollmentPaymentComplete !== '')
-		vals['removeEnrollmentPaymentComplete'] = removeEnrollmentPaymentComplete;
 
 	var valueEnrollmentPaymentEachMonth = $formValues.find('.valueEnrollmentPaymentEachMonth').prop('checked');
 	if(valueEnrollmentPaymentEachMonth != null && valueEnrollmentPaymentEachMonth !== '')
@@ -1046,16 +1021,6 @@ function patchSchoolPaymentFilters($formFilters) {
 		var filterPaymentBy = $formFilters.find('.valuePaymentBy').val();
 		if(filterPaymentBy != null && filterPaymentBy !== '')
 			filters.push({ name: 'fq', value: 'paymentBy:' + filterPaymentBy });
-
-		var $filterEnrollmentPaymentCompleteCheckbox = $formFilters.find('input.valueEnrollmentPaymentComplete[type = "checkbox"]');
-		var $filterEnrollmentPaymentCompleteSelect = $formFilters.find('select.valueEnrollmentPaymentComplete');
-		var filterEnrollmentPaymentComplete = $filterEnrollmentPaymentCompleteSelect.length ? $filterEnrollmentPaymentCompleteSelect.val() : $filterEnrollmentPaymentCompleteCheckbox.prop('checked');
-		var filterEnrollmentPaymentCompleteSelectVal = $formFilters.find('select.filterEnrollmentPaymentComplete').val();
-		var filterEnrollmentPaymentComplete = null;
-		if(filterEnrollmentPaymentCompleteSelectVal !== '')
-			filterEnrollmentPaymentComplete = filterEnrollmentPaymentCompleteSelectVal == 'true';
-		if(filterEnrollmentPaymentComplete != null && filterEnrollmentPaymentComplete === true)
-			filters.push({ name: 'fq', value: 'enrollmentPaymentComplete:' + filterEnrollmentPaymentComplete });
 
 		var $filterEnrollmentPaymentEachMonthCheckbox = $formFilters.find('input.valueEnrollmentPaymentEachMonth[type = "checkbox"]');
 		var $filterEnrollmentPaymentEachMonthSelect = $formFilters.find('select.valueEnrollmentPaymentEachMonth');
@@ -1495,16 +1460,6 @@ function searchSchoolPaymentFilters($formFilters) {
 		if(filterPaymentBy != null && filterPaymentBy !== '')
 			filters.push({ name: 'fq', value: 'paymentBy:' + filterPaymentBy });
 
-		var $filterEnrollmentPaymentCompleteCheckbox = $formFilters.find('input.valueEnrollmentPaymentComplete[type = "checkbox"]');
-		var $filterEnrollmentPaymentCompleteSelect = $formFilters.find('select.valueEnrollmentPaymentComplete');
-		var filterEnrollmentPaymentComplete = $filterEnrollmentPaymentCompleteSelect.length ? $filterEnrollmentPaymentCompleteSelect.val() : $filterEnrollmentPaymentCompleteCheckbox.prop('checked');
-		var filterEnrollmentPaymentCompleteSelectVal = $formFilters.find('select.filterEnrollmentPaymentComplete').val();
-		var filterEnrollmentPaymentComplete = null;
-		if(filterEnrollmentPaymentCompleteSelectVal !== '')
-			filterEnrollmentPaymentComplete = filterEnrollmentPaymentCompleteSelectVal == 'true';
-		if(filterEnrollmentPaymentComplete != null && filterEnrollmentPaymentComplete === true)
-			filters.push({ name: 'fq', value: 'enrollmentPaymentComplete:' + filterEnrollmentPaymentComplete });
-
 		var $filterEnrollmentPaymentEachMonthCheckbox = $formFilters.find('input.valueEnrollmentPaymentEachMonth[type = "checkbox"]');
 		var $filterEnrollmentPaymentEachMonthSelect = $formFilters.find('select.valueEnrollmentPaymentEachMonth');
 		var filterEnrollmentPaymentEachMonth = $filterEnrollmentPaymentEachMonthSelect.length ? $filterEnrollmentPaymentEachMonthSelect.val() : $filterEnrollmentPaymentEachMonthCheckbox.prop('checked');
@@ -1806,7 +1761,6 @@ function searchSchoolPaymentFilters($formFilters) {
 
 function searchSchoolPaymentVals(filters, success, error) {
 
-	filters.push({ name: 'rows', value: 50 });
 
 	filters.push({ name: 'sort', value: 'paymentDate desc' });
 	filters.push({ name: 'sort', value: 'paymentBy desc' });
@@ -2081,18 +2035,6 @@ async function websocketSchoolPaymentInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'PaymentBy'));
-			}
-			var val = o['enrollmentPaymentComplete'];
-			if(vars.includes('enrollmentPaymentComplete')) {
-				$('.inputSchoolPayment' + pk + 'EnrollmentPaymentComplete').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varSchoolPayment' + pk + 'EnrollmentPaymentComplete').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				addGlow($('.inputSchoolPayment' + pk + 'EnrollmentPaymentComplete'));
 			}
 			var val = o['enrollmentPaymentEachMonth'];
 			if(vars.includes('enrollmentPaymentEachMonth')) {

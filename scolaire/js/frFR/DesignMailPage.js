@@ -736,7 +736,6 @@ function rechercheDesignPageFiltres($formulaireFiltres) {
 
 function rechercheDesignPageVals(filtres, success, error) {
 
-	filtres.push({ name: 'rows', value: 100 });
 
 	filtres.push({ name: 'sort', value: 'designPageNomComplet asc' });
 	$.ajax({
@@ -1200,7 +1199,6 @@ function rechercheadminDesignPageFiltres($formulaireFiltres) {
 
 function rechercheadminDesignPageVals(filtres, success, error) {
 
-	filtres.push({ name: 'rows', value: 100 });
 
 	filtres.push({ name: 'sort', value: 'designPageNomComplet asc' });
 	$.ajax({

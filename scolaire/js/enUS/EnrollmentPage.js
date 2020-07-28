@@ -2834,7 +2834,6 @@ function searchSchoolEnrollmentFilters($formFilters) {
 
 function searchSchoolEnrollmentVals(filters, success, error) {
 
-	filters.push({ name: 'rows', value: 300 });
 	$.ajax({
 		url: '/api/enrollment?' + $.param(filters)
 		, dataType: 'json'
@@ -3856,7 +3855,6 @@ function adminsearchSchoolEnrollmentFilters($formFilters) {
 
 function adminsearchSchoolEnrollmentVals(filters, success, error) {
 
-	filters.push({ name: 'rows', value: 300 });
 	$.ajax({
 		url: '/api/admin/enrollment?' + $.param(filters)
 		, dataType: 'json'
