@@ -2003,6 +2003,16 @@ function patchInscriptionScolaireFiltres($formulaireFiltres) {
 		if(filtrePaiementsEnAvance != null && filtrePaiementsEnAvance === true)
 			filtres.push({ name: 'fq', value: 'paiementsEnAvance:' + filtrePaiementsEnAvance });
 
+		var $filtreFraisCreesCheckbox = $formulaireFiltres.find('input.valeurFraisCrees[type = "checkbox"]');
+		var $filtreFraisCreesSelect = $formulaireFiltres.find('select.valeurFraisCrees');
+		var filtreFraisCrees = $filtreFraisCreesSelect.length ? $filtreFraisCreesSelect.val() : $filtreFraisCreesCheckbox.prop('checked');
+		var filtreFraisCreesSelectVal = $formulaireFiltres.find('select.filtreFraisCrees').val();
+		var filtreFraisCrees = null;
+		if(filtreFraisCreesSelectVal !== '')
+			filtreFraisCrees = filtreFraisCreesSelectVal == 'true';
+		if(filtreFraisCrees != null && filtreFraisCrees === true)
+			filtres.push({ name: 'fq', value: 'fraisCrees:' + filtreFraisCrees });
+
 		var filtreCreeDAnnee = $formulaireFiltres.find('.valeurCreeDAnnee').val();
 		if(filtreCreeDAnnee != null && filtreCreeDAnnee !== '')
 			filtres.push({ name: 'fq', value: 'creeDAnnee:' + filtreCreeDAnnee });
@@ -2736,6 +2746,16 @@ function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 			filtrePaiementsEnAvance = filtrePaiementsEnAvanceSelectVal == 'true';
 		if(filtrePaiementsEnAvance != null && filtrePaiementsEnAvance === true)
 			filtres.push({ name: 'fq', value: 'paiementsEnAvance:' + filtrePaiementsEnAvance });
+
+		var $filtreFraisCreesCheckbox = $formulaireFiltres.find('input.valeurFraisCrees[type = "checkbox"]');
+		var $filtreFraisCreesSelect = $formulaireFiltres.find('select.valeurFraisCrees');
+		var filtreFraisCrees = $filtreFraisCreesSelect.length ? $filtreFraisCreesSelect.val() : $filtreFraisCreesCheckbox.prop('checked');
+		var filtreFraisCreesSelectVal = $formulaireFiltres.find('select.filtreFraisCrees').val();
+		var filtreFraisCrees = null;
+		if(filtreFraisCreesSelectVal !== '')
+			filtreFraisCrees = filtreFraisCreesSelectVal == 'true';
+		if(filtreFraisCrees != null && filtreFraisCrees === true)
+			filtres.push({ name: 'fq', value: 'fraisCrees:' + filtreFraisCrees });
 
 		var filtreCreeDAnnee = $formulaireFiltres.find('.valeurCreeDAnnee').val();
 		if(filtreCreeDAnnee != null && filtreCreeDAnnee !== '')
@@ -3757,6 +3777,16 @@ function rechercheadminInscriptionScolaireFiltres($formulaireFiltres) {
 			filtrePaiementsEnAvance = filtrePaiementsEnAvanceSelectVal == 'true';
 		if(filtrePaiementsEnAvance != null && filtrePaiementsEnAvance === true)
 			filtres.push({ name: 'fq', value: 'paiementsEnAvance:' + filtrePaiementsEnAvance });
+
+		var $filtreFraisCreesCheckbox = $formulaireFiltres.find('input.valeurFraisCrees[type = "checkbox"]');
+		var $filtreFraisCreesSelect = $formulaireFiltres.find('select.valeurFraisCrees');
+		var filtreFraisCrees = $filtreFraisCreesSelect.length ? $filtreFraisCreesSelect.val() : $filtreFraisCreesCheckbox.prop('checked');
+		var filtreFraisCreesSelectVal = $formulaireFiltres.find('select.filtreFraisCrees').val();
+		var filtreFraisCrees = null;
+		if(filtreFraisCreesSelectVal !== '')
+			filtreFraisCrees = filtreFraisCreesSelectVal == 'true';
+		if(filtreFraisCrees != null && filtreFraisCrees === true)
+			filtres.push({ name: 'fq', value: 'fraisCrees:' + filtreFraisCrees });
 
 		var filtreCreeDAnnee = $formulaireFiltres.find('.valeurCreeDAnnee').val();
 		if(filtreCreeDAnnee != null && filtreCreeDAnnee !== '')
@@ -5560,6 +5590,16 @@ function patchpaiementsInscriptionScolaireFiltres($formulaireFiltres) {
 		if(filtrePaiementsEnAvance != null && filtrePaiementsEnAvance === true)
 			filtres.push({ name: 'fq', value: 'paiementsEnAvance:' + filtrePaiementsEnAvance });
 
+		var $filtreFraisCreesCheckbox = $formulaireFiltres.find('input.valeurFraisCrees[type = "checkbox"]');
+		var $filtreFraisCreesSelect = $formulaireFiltres.find('select.valeurFraisCrees');
+		var filtreFraisCrees = $filtreFraisCreesSelect.length ? $filtreFraisCreesSelect.val() : $filtreFraisCreesCheckbox.prop('checked');
+		var filtreFraisCreesSelectVal = $formulaireFiltres.find('select.filtreFraisCrees').val();
+		var filtreFraisCrees = null;
+		if(filtreFraisCreesSelectVal !== '')
+			filtreFraisCrees = filtreFraisCreesSelectVal == 'true';
+		if(filtreFraisCrees != null && filtreFraisCrees === true)
+			filtres.push({ name: 'fq', value: 'fraisCrees:' + filtreFraisCrees });
+
 		var filtreCreeDAnnee = $formulaireFiltres.find('.valeurCreeDAnnee').val();
 		if(filtreCreeDAnnee != null && filtreCreeDAnnee !== '')
 			filtres.push({ name: 'fq', value: 'creeDAnnee:' + filtreCreeDAnnee });
@@ -5681,34 +5721,34 @@ async function websocketInscriptionScolaire(success) {
 			var id = json['id'];
 			var pk = json['pk'];
 			var pkPage = $('#InscriptionScolaireForm :input[name=pk]').val();
+			var pks = json['pks'];
+			var empty = json['empty'];
+			var numFound = json['numFound'];
+			var numPATCH = json['numPATCH'];
+			var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
+			var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
+			var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
+			var $card = $('<div>').attr('class', 'w3-card w3-white ').attr('id', 'card-' + id);
+			var $header = $('<div>').attr('class', 'w3-container fa-blue-gray ').attr('id', 'header-' + id);
+			var $i = $('<i>').attr('class', 'fas fa-edit w3-margin-right ').attr('id', 'icon-' + id);
+			var $headerSpan = $('<span>').attr('class', '').text('modifier inscriptions');
+			var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
+			var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
+			var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
+			var $progress = $('<div>').attr('class', 'w3-blue-gray ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
+			$card.append($header);
+			$header.append($i);
+			$header.append($headerSpan);
+			$header.append($x);
+			$body.append($bar);
+			$bar.append($progress);
+			$card.append($body);
+			$box.append($margin);
+			$margin.append($card);
+			$('.box-' + id).remove();
+			if(numPATCH < numFound)
+			$('.top-box').append($box);
 			if(pk && pkPage && pk == pkPage) {;
-				var pks = json['pks'];
-				var empty = json['empty'];
-				var numFound = json['numFound'];
-				var numPATCH = json['numPATCH'];
-				var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
-				var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
-				var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
-				var $card = $('<div>').attr('class', 'w3-card w3-white ').attr('id', 'card-' + id);
-				var $header = $('<div>').attr('class', 'w3-container fa-blue-gray ').attr('id', 'header-' + id);
-				var $i = $('<i>').attr('class', 'fas fa-edit w3-margin-right ').attr('id', 'icon-' + id);
-				var $headerSpan = $('<span>').attr('class', '').text('modifier inscriptions');
-				var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
-				var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
-				var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
-				var $progress = $('<div>').attr('class', 'w3-blue-gray ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
-				$card.append($header);
-				$header.append($i);
-				$header.append($headerSpan);
-				$header.append($x);
-				$body.append($bar);
-				$bar.append($progress);
-				$card.append($body);
-				$box.append($margin);
-				$margin.append($card);
-				$('.box-' + id).remove();
-				if(numPATCH < numFound)
-					$('.top-box').append($box);
 				if(success)
 					success(json);
 			}
