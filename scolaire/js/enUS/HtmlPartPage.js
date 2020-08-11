@@ -96,6 +96,10 @@ async function postHtmlPart($formValues, success, error) {
 	if(valueHtmlVarInput != null && valueHtmlVarInput !== '')
 		vals['htmlVarInput'] = valueHtmlVarInput;
 
+	var valueHtmlIfVarEquals = $formValues.find('.valueHtmlIfVarEquals').val();
+	if(valueHtmlIfVarEquals != null && valueHtmlIfVarEquals !== '')
+		vals['htmlIfVarEquals'] = valueHtmlIfVarEquals;
+
 	var valueHtmlVarForEach = $formValues.find('.valueHtmlVarForEach').val();
 	if(valueHtmlVarForEach != null && valueHtmlVarForEach !== '')
 		vals['htmlVarForEach'] = valueHtmlVarForEach;
@@ -315,6 +319,10 @@ async function putcopyHtmlPart($formValues, pk, success, error) {
 	var valueHtmlVarInput = $formValues.find('.valueHtmlVarInput').val();
 	if(valueHtmlVarInput != null && valueHtmlVarInput !== '')
 		vals['htmlVarInput'] = valueHtmlVarInput;
+
+	var valueHtmlIfVarEquals = $formValues.find('.valueHtmlIfVarEquals').val();
+	if(valueHtmlIfVarEquals != null && valueHtmlIfVarEquals !== '')
+		vals['htmlIfVarEquals'] = valueHtmlIfVarEquals;
 
 	var valueHtmlVarForEach = $formValues.find('.valueHtmlVarForEach').val();
 	if(valueHtmlVarForEach != null && valueHtmlVarForEach !== '')
@@ -660,6 +668,19 @@ async function patchHtmlPart($formFilters, $formValues, pk, success, error) {
 	if(removeHtmlVarInput != null && removeHtmlVarInput !== '')
 		vals['removeHtmlVarInput'] = removeHtmlVarInput;
 
+	var valueHtmlIfVarEquals = $formValues.find('.valueHtmlIfVarEquals').val();
+	if(valueHtmlIfVarEquals != null && valueHtmlIfVarEquals !== '')
+	var removeHtmlIfVarEquals = $formFilters.find('.removeHtmlIfVarEquals').val() === 'true';
+	var setHtmlIfVarEquals = removeHtmlIfVarEquals ? null : $formValues.find('.setHtmlIfVarEquals').val();
+	if(removeHtmlIfVarEquals || setHtmlIfVarEquals != null && setHtmlIfVarEquals !== '')
+		vals['setHtmlIfVarEquals'] = setHtmlIfVarEquals;
+	var addHtmlIfVarEquals = $formValues.find('.addHtmlIfVarEquals').val();
+	if(addHtmlIfVarEquals != null && addHtmlIfVarEquals !== '')
+		vals['addHtmlIfVarEquals'] = addHtmlIfVarEquals;
+	var removeHtmlIfVarEquals = $formValues.find('.removeHtmlIfVarEquals').val();
+	if(removeHtmlIfVarEquals != null && removeHtmlIfVarEquals !== '')
+		vals['removeHtmlIfVarEquals'] = removeHtmlIfVarEquals;
+
 	var valueHtmlVarForEach = $formValues.find('.valueHtmlVarForEach').val();
 	if(valueHtmlVarForEach != null && valueHtmlVarForEach !== '')
 	var removeHtmlVarForEach = $formFilters.find('.removeHtmlVarForEach').val() === 'true';
@@ -1002,6 +1023,10 @@ function patchHtmlPartFilters($formFilters) {
 		if(filterHtmlVarInput != null && filterHtmlVarInput !== '')
 			filters.push({ name: 'fq', value: 'htmlVarInput:' + filterHtmlVarInput });
 
+		var filterHtmlIfVarEquals = $formFilters.find('.valueHtmlIfVarEquals').val();
+		if(filterHtmlIfVarEquals != null && filterHtmlIfVarEquals !== '')
+			filters.push({ name: 'fq', value: 'htmlIfVarEquals:' + filterHtmlIfVarEquals });
+
 		var filterHtmlVarForEach = $formFilters.find('.valueHtmlVarForEach').val();
 		if(filterHtmlVarForEach != null && filterHtmlVarForEach !== '')
 			filters.push({ name: 'fq', value: 'htmlVarForEach:' + filterHtmlVarForEach });
@@ -1265,6 +1290,10 @@ function searchHtmlPartFilters($formFilters) {
 		var filterHtmlVarInput = $formFilters.find('.valueHtmlVarInput').val();
 		if(filterHtmlVarInput != null && filterHtmlVarInput !== '')
 			filters.push({ name: 'fq', value: 'htmlVarInput:' + filterHtmlVarInput });
+
+		var filterHtmlIfVarEquals = $formFilters.find('.valueHtmlIfVarEquals').val();
+		if(filterHtmlIfVarEquals != null && filterHtmlIfVarEquals !== '')
+			filters.push({ name: 'fq', value: 'htmlIfVarEquals:' + filterHtmlIfVarEquals });
 
 		var filterHtmlVarForEach = $formFilters.find('.valueHtmlVarForEach').val();
 		if(filterHtmlVarForEach != null && filterHtmlVarForEach !== '')
@@ -1543,6 +1572,18 @@ async function websocketHtmlPartInner(apiRequest) {
 	if(pk != null) {
 		searchHtmlPartVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
+			var val = o['pk'];
+			if(vars.includes('pk')) {
+				$('.inputHtmlPart' + pk + 'Pk').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varHtmlPart' + pk + 'Pk').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputHtmlPart' + pk + 'Pk'));
+			}
 			var val = o['created'];
 			if(vars.includes('created')) {
 				$('.inputHtmlPart' + pk + 'Created').each(function() {
@@ -1566,6 +1607,18 @@ async function websocketHtmlPartInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputHtmlPart' + pk + 'Modified'));
+			}
+			var val = o['objectId'];
+			if(vars.includes('objectId')) {
+				$('.inputHtmlPart' + pk + 'ObjectId').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varHtmlPart' + pk + 'ObjectId').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputHtmlPart' + pk + 'ObjectId'));
 			}
 			var val = o['archived'];
 			if(vars.includes('archived')) {
@@ -1747,6 +1800,18 @@ async function websocketHtmlPartInner(apiRequest) {
 				});
 				addGlow($('.inputHtmlPart' + pk + 'HtmlVarInput'));
 			}
+			var val = o['htmlIfVarEquals'];
+			if(vars.includes('htmlIfVarEquals')) {
+				$('.inputHtmlPart' + pk + 'HtmlIfVarEquals').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varHtmlPart' + pk + 'HtmlIfVarEquals').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputHtmlPart' + pk + 'HtmlIfVarEquals'));
+			}
 			var val = o['htmlVarForEach'];
 			if(vars.includes('htmlVarForEach')) {
 				$('.inputHtmlPart' + pk + 'HtmlVarForEach').each(function() {
@@ -1927,6 +1992,54 @@ async function websocketHtmlPartInner(apiRequest) {
 				});
 				addGlow($('.inputHtmlPart' + pk + 'InheritPk'));
 			}
+			var val = o['id'];
+			if(vars.includes('id')) {
+				$('.inputHtmlPart' + pk + 'Id').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varHtmlPart' + pk + 'Id').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputHtmlPart' + pk + 'Id'));
+			}
+			var val = o['classCanonicalName'];
+			if(vars.includes('classCanonicalName')) {
+				$('.inputHtmlPart' + pk + 'ClassCanonicalName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varHtmlPart' + pk + 'ClassCanonicalName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputHtmlPart' + pk + 'ClassCanonicalName'));
+			}
+			var val = o['classSimpleName'];
+			if(vars.includes('classSimpleName')) {
+				$('.inputHtmlPart' + pk + 'ClassSimpleName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varHtmlPart' + pk + 'ClassSimpleName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputHtmlPart' + pk + 'ClassSimpleName'));
+			}
+			var val = o['classCanonicalNames'];
+			if(vars.includes('classCanonicalNames')) {
+				$('.inputHtmlPart' + pk + 'ClassCanonicalNames').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varHtmlPart' + pk + 'ClassCanonicalNames').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputHtmlPart' + pk + 'ClassCanonicalNames'));
+			}
 			var val = o['sessionId'];
 			if(vars.includes('sessionId')) {
 				$('.inputHtmlPart' + pk + 'SessionId').each(function() {
@@ -1962,6 +2075,102 @@ async function websocketHtmlPartInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputHtmlPart' + pk + 'UserKey'));
+			}
+			var val = o['saves'];
+			if(vars.includes('saves')) {
+				$('.inputHtmlPart' + pk + 'Saves').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varHtmlPart' + pk + 'Saves').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputHtmlPart' + pk + 'Saves'));
+			}
+			var val = o['objectTitle'];
+			if(vars.includes('objectTitle')) {
+				$('.inputHtmlPart' + pk + 'ObjectTitle').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varHtmlPart' + pk + 'ObjectTitle').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputHtmlPart' + pk + 'ObjectTitle'));
+			}
+			var val = o['objectSuggest'];
+			if(vars.includes('objectSuggest')) {
+				$('.inputHtmlPart' + pk + 'ObjectSuggest').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varHtmlPart' + pk + 'ObjectSuggest').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputHtmlPart' + pk + 'ObjectSuggest'));
+			}
+			var val = o['objectText'];
+			if(vars.includes('objectText')) {
+				$('.inputHtmlPart' + pk + 'ObjectText').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varHtmlPart' + pk + 'ObjectText').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputHtmlPart' + pk + 'ObjectText'));
+			}
+			var val = o['pageUrlId'];
+			if(vars.includes('pageUrlId')) {
+				$('.inputHtmlPart' + pk + 'PageUrlId').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varHtmlPart' + pk + 'PageUrlId').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputHtmlPart' + pk + 'PageUrlId'));
+			}
+			var val = o['pageUrlPk'];
+			if(vars.includes('pageUrlPk')) {
+				$('.inputHtmlPart' + pk + 'PageUrlPk').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varHtmlPart' + pk + 'PageUrlPk').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputHtmlPart' + pk + 'PageUrlPk'));
+			}
+			var val = o['pageUrlApi'];
+			if(vars.includes('pageUrlApi')) {
+				$('.inputHtmlPart' + pk + 'PageUrlApi').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varHtmlPart' + pk + 'PageUrlApi').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputHtmlPart' + pk + 'PageUrlApi'));
+			}
+			var val = o['htmlPartKey'];
+			if(vars.includes('htmlPartKey')) {
+				$('.inputHtmlPart' + pk + 'HtmlPartKey').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varHtmlPart' + pk + 'HtmlPartKey').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputHtmlPart' + pk + 'HtmlPartKey'));
 			}
 		});
 	}

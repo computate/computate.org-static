@@ -1132,6 +1132,18 @@ async function websocketSchoolSeasonInner(apiRequest) {
 	if(pk != null) {
 		searchSchoolSeasonVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
+			var val = o['pk'];
+			if(vars.includes('pk')) {
+				$('.inputSchoolSeason' + pk + 'Pk').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolSeason' + pk + 'Pk').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolSeason' + pk + 'Pk'));
+			}
 			var val = o['created'];
 			if(vars.includes('created')) {
 				$('.inputSchoolSeason' + pk + 'Created').each(function() {
@@ -1155,6 +1167,18 @@ async function websocketSchoolSeasonInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputSchoolSeason' + pk + 'Modified'));
+			}
+			var val = o['objectId'];
+			if(vars.includes('objectId')) {
+				$('.inputSchoolSeason' + pk + 'ObjectId').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolSeason' + pk + 'ObjectId').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolSeason' + pk + 'ObjectId'));
 			}
 			var val = o['archived'];
 			if(vars.includes('archived')) {
@@ -1245,6 +1269,54 @@ async function websocketSchoolSeasonInner(apiRequest) {
 				});
 				addGlow($('.inputSchoolSeason' + pk + 'InheritPk'));
 			}
+			var val = o['id'];
+			if(vars.includes('id')) {
+				$('.inputSchoolSeason' + pk + 'Id').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolSeason' + pk + 'Id').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolSeason' + pk + 'Id'));
+			}
+			var val = o['classCanonicalName'];
+			if(vars.includes('classCanonicalName')) {
+				$('.inputSchoolSeason' + pk + 'ClassCanonicalName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolSeason' + pk + 'ClassCanonicalName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolSeason' + pk + 'ClassCanonicalName'));
+			}
+			var val = o['classSimpleName'];
+			if(vars.includes('classSimpleName')) {
+				$('.inputSchoolSeason' + pk + 'ClassSimpleName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolSeason' + pk + 'ClassSimpleName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolSeason' + pk + 'ClassSimpleName'));
+			}
+			var val = o['classCanonicalNames'];
+			if(vars.includes('classCanonicalNames')) {
+				$('.inputSchoolSeason' + pk + 'ClassCanonicalNames').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolSeason' + pk + 'ClassCanonicalNames').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolSeason' + pk + 'ClassCanonicalNames'));
+			}
 			var val = o['sessionId'];
 			if(vars.includes('sessionId')) {
 				$('.inputSchoolSeason' + pk + 'SessionId').each(function() {
@@ -1281,6 +1353,306 @@ async function websocketSchoolSeasonInner(apiRequest) {
 				});
 				addGlow($('.inputSchoolSeason' + pk + 'UserKey'));
 			}
+			var val = o['saves'];
+			if(vars.includes('saves')) {
+				$('.inputSchoolSeason' + pk + 'Saves').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolSeason' + pk + 'Saves').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolSeason' + pk + 'Saves'));
+			}
+			var val = o['objectTitle'];
+			if(vars.includes('objectTitle')) {
+				$('.inputSchoolSeason' + pk + 'ObjectTitle').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolSeason' + pk + 'ObjectTitle').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolSeason' + pk + 'ObjectTitle'));
+			}
+			var val = o['objectSuggest'];
+			if(vars.includes('objectSuggest')) {
+				$('.inputSchoolSeason' + pk + 'ObjectSuggest').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolSeason' + pk + 'ObjectSuggest').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolSeason' + pk + 'ObjectSuggest'));
+			}
+			var val = o['objectText'];
+			if(vars.includes('objectText')) {
+				$('.inputSchoolSeason' + pk + 'ObjectText').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolSeason' + pk + 'ObjectText').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolSeason' + pk + 'ObjectText'));
+			}
+			var val = o['pageUrlId'];
+			if(vars.includes('pageUrlId')) {
+				$('.inputSchoolSeason' + pk + 'PageUrlId').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolSeason' + pk + 'PageUrlId').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolSeason' + pk + 'PageUrlId'));
+			}
+			var val = o['pageUrlPk'];
+			if(vars.includes('pageUrlPk')) {
+				$('.inputSchoolSeason' + pk + 'PageUrlPk').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolSeason' + pk + 'PageUrlPk').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolSeason' + pk + 'PageUrlPk'));
+			}
+			var val = o['pageUrlApi'];
+			if(vars.includes('pageUrlApi')) {
+				$('.inputSchoolSeason' + pk + 'PageUrlApi').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolSeason' + pk + 'PageUrlApi').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolSeason' + pk + 'PageUrlApi'));
+			}
+			var val = o['seasonKey'];
+			if(vars.includes('seasonKey')) {
+				$('.inputSchoolSeason' + pk + 'SeasonKey').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolSeason' + pk + 'SeasonKey').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolSeason' + pk + 'SeasonKey'));
+			}
+			var val = o['enrollmentKeys'];
+			if(vars.includes('enrollmentKeys')) {
+				$('.inputSchoolSeason' + pk + 'EnrollmentKeys').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolSeason' + pk + 'EnrollmentKeys').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolSeason' + pk + 'EnrollmentKeys'));
+			}
+			var val = o['educationSort'];
+			if(vars.includes('educationSort')) {
+				$('.inputSchoolSeason' + pk + 'EducationSort').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolSeason' + pk + 'EducationSort').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolSeason' + pk + 'EducationSort'));
+			}
+			var val = o['schoolSort'];
+			if(vars.includes('schoolSort')) {
+				$('.inputSchoolSeason' + pk + 'SchoolSort').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolSeason' + pk + 'SchoolSort').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolSeason' + pk + 'SchoolSort'));
+			}
+			var val = o['yearSort'];
+			if(vars.includes('yearSort')) {
+				$('.inputSchoolSeason' + pk + 'YearSort').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolSeason' + pk + 'YearSort').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolSeason' + pk + 'YearSort'));
+			}
+			var val = o['seasonSort'];
+			if(vars.includes('seasonSort')) {
+				$('.inputSchoolSeason' + pk + 'SeasonSort').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolSeason' + pk + 'SeasonSort').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolSeason' + pk + 'SeasonSort'));
+			}
+			var val = o['schoolKey'];
+			if(vars.includes('schoolKey')) {
+				$('.inputSchoolSeason' + pk + 'SchoolKey').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolSeason' + pk + 'SchoolKey').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolSeason' + pk + 'SchoolKey'));
+			}
+			var val = o['schoolName'];
+			if(vars.includes('schoolName')) {
+				$('.inputSchoolSeason' + pk + 'SchoolName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolSeason' + pk + 'SchoolName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolSeason' + pk + 'SchoolName'));
+			}
+			var val = o['schoolCompleteName'];
+			if(vars.includes('schoolCompleteName')) {
+				$('.inputSchoolSeason' + pk + 'SchoolCompleteName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolSeason' + pk + 'SchoolCompleteName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolSeason' + pk + 'SchoolCompleteName'));
+			}
+			var val = o['schoolLocation'];
+			if(vars.includes('schoolLocation')) {
+				$('.inputSchoolSeason' + pk + 'SchoolLocation').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolSeason' + pk + 'SchoolLocation').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolSeason' + pk + 'SchoolLocation'));
+			}
+			var val = o['schoolAddress'];
+			if(vars.includes('schoolAddress')) {
+				$('.inputSchoolSeason' + pk + 'SchoolAddress').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolSeason' + pk + 'SchoolAddress').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolSeason' + pk + 'SchoolAddress'));
+			}
+			var val = o['schoolPhoneNumber'];
+			if(vars.includes('schoolPhoneNumber')) {
+				$('.inputSchoolSeason' + pk + 'SchoolPhoneNumber').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolSeason' + pk + 'SchoolPhoneNumber').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolSeason' + pk + 'SchoolPhoneNumber'));
+			}
+			var val = o['schoolForm'];
+			if(vars.includes('schoolForm')) {
+				$('.inputSchoolSeason' + pk + 'SchoolForm').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolSeason' + pk + 'SchoolForm').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolSeason' + pk + 'SchoolForm'));
+			}
+			var val = o['schoolNumber'];
+			if(vars.includes('schoolNumber')) {
+				$('.inputSchoolSeason' + pk + 'SchoolNumber').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolSeason' + pk + 'SchoolNumber').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolSeason' + pk + 'SchoolNumber'));
+			}
+			var val = o['schoolAdministratorName'];
+			if(vars.includes('schoolAdministratorName')) {
+				$('.inputSchoolSeason' + pk + 'SchoolAdministratorName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolSeason' + pk + 'SchoolAdministratorName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolSeason' + pk + 'SchoolAdministratorName'));
+			}
+			var val = o['yearStart'];
+			if(vars.includes('yearStart')) {
+				$('.inputSchoolSeason' + pk + 'YearStart').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolSeason' + pk + 'YearStart').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolSeason' + pk + 'YearStart'));
+			}
+			var val = o['yearEnd'];
+			if(vars.includes('yearEnd')) {
+				$('.inputSchoolSeason' + pk + 'YearEnd').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolSeason' + pk + 'YearEnd').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolSeason' + pk + 'YearEnd'));
+			}
+			var val = o['yearEnrollmentFee'];
+			if(vars.includes('yearEnrollmentFee')) {
+				$('.inputSchoolSeason' + pk + 'YearEnrollmentFee').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolSeason' + pk + 'YearEnrollmentFee').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolSeason' + pk + 'YearEnrollmentFee'));
+			}
 			var val = o['seasonSummer'];
 			if(vars.includes('seasonSummer')) {
 				$('.inputSchoolSeason' + pk + 'SeasonSummer').each(function() {
@@ -1304,6 +1676,30 @@ async function websocketSchoolSeasonInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputSchoolSeason' + pk + 'SeasonWinter'));
+			}
+			var val = o['seasonShortName'];
+			if(vars.includes('seasonShortName')) {
+				$('.inputSchoolSeason' + pk + 'SeasonShortName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolSeason' + pk + 'SeasonShortName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolSeason' + pk + 'SeasonShortName'));
+			}
+			var val = o['seasonCompleteName'];
+			if(vars.includes('seasonCompleteName')) {
+				$('.inputSchoolSeason' + pk + 'SeasonCompleteName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolSeason' + pk + 'SeasonCompleteName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolSeason' + pk + 'SeasonCompleteName'));
 			}
 		});
 	}

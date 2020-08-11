@@ -1945,6 +1945,10 @@ function patchSchoolEnrollmentFilters($formFilters) {
 		if(filterEnrollmentChargeDate != null && filterEnrollmentChargeDate !== '')
 			filters.push({ name: 'fq', value: 'enrollmentChargeDate:' + filterEnrollmentChargeDate });
 
+		var filterPaymentLastDate = $formFilters.find('.valuePaymentLastDate').val();
+		if(filterPaymentLastDate != null && filterPaymentLastDate !== '')
+			filters.push({ name: 'fq', value: 'paymentLastDate:' + filterPaymentLastDate });
+
 		var filterPaymentLastStr = $formFilters.find('.valuePaymentLastStr').val();
 		if(filterPaymentLastStr != null && filterPaymentLastStr !== '')
 			filters.push({ name: 'fq', value: 'paymentLastStr:' + filterPaymentLastStr });
@@ -1964,6 +1968,10 @@ function patchSchoolEnrollmentFilters($formFilters) {
 		var filterChargeAmountDue = $formFilters.find('.valueChargeAmountDue').val();
 		if(filterChargeAmountDue != null && filterChargeAmountDue !== '')
 			filters.push({ name: 'fq', value: 'chargeAmountDue:' + filterChargeAmountDue });
+
+		var filterChargeAmountNotPassed = $formFilters.find('.valueChargeAmountNotPassed').val();
+		if(filterChargeAmountNotPassed != null && filterChargeAmountNotPassed !== '')
+			filters.push({ name: 'fq', value: 'chargeAmountNotPassed:' + filterChargeAmountNotPassed });
 
 		var filterChargesNow = $formFilters.find('.valueChargesNow').val();
 		if(filterChargesNow != null && filterChargesNow !== '')
@@ -2002,6 +2010,20 @@ function patchSchoolEnrollmentFilters($formFilters) {
 			filterPaymentsAhead = filterPaymentsAheadSelectVal == 'true';
 		if(filterPaymentsAhead != null && filterPaymentsAhead === true)
 			filters.push({ name: 'fq', value: 'paymentsAhead:' + filterPaymentsAhead });
+
+		var $filterPaymentsPastDueCheckbox = $formFilters.find('input.valuePaymentsPastDue[type = "checkbox"]');
+		var $filterPaymentsPastDueSelect = $formFilters.find('select.valuePaymentsPastDue');
+		var filterPaymentsPastDue = $filterPaymentsPastDueSelect.length ? $filterPaymentsPastDueSelect.val() : $filterPaymentsPastDueCheckbox.prop('checked');
+		var filterPaymentsPastDueSelectVal = $formFilters.find('select.filterPaymentsPastDue').val();
+		var filterPaymentsPastDue = null;
+		if(filterPaymentsPastDueSelectVal !== '')
+			filterPaymentsPastDue = filterPaymentsPastDueSelectVal == 'true';
+		if(filterPaymentsPastDue != null && filterPaymentsPastDue === true)
+			filters.push({ name: 'fq', value: 'paymentsPastDue:' + filterPaymentsPastDue });
+
+		var filterPaymentsPastDueAmount = $formFilters.find('.valuePaymentsPastDueAmount').val();
+		if(filterPaymentsPastDueAmount != null && filterPaymentsPastDueAmount !== '')
+			filters.push({ name: 'fq', value: 'paymentsPastDueAmount:' + filterPaymentsPastDueAmount });
 
 		var $filterChargesCreatedCheckbox = $formFilters.find('input.valueChargesCreated[type = "checkbox"]');
 		var $filterChargesCreatedSelect = $formFilters.find('select.valueChargesCreated');
@@ -2689,6 +2711,10 @@ function searchSchoolEnrollmentFilters($formFilters) {
 		if(filterEnrollmentChargeDate != null && filterEnrollmentChargeDate !== '')
 			filters.push({ name: 'fq', value: 'enrollmentChargeDate:' + filterEnrollmentChargeDate });
 
+		var filterPaymentLastDate = $formFilters.find('.valuePaymentLastDate').val();
+		if(filterPaymentLastDate != null && filterPaymentLastDate !== '')
+			filters.push({ name: 'fq', value: 'paymentLastDate:' + filterPaymentLastDate });
+
 		var filterPaymentLastStr = $formFilters.find('.valuePaymentLastStr').val();
 		if(filterPaymentLastStr != null && filterPaymentLastStr !== '')
 			filters.push({ name: 'fq', value: 'paymentLastStr:' + filterPaymentLastStr });
@@ -2708,6 +2734,10 @@ function searchSchoolEnrollmentFilters($formFilters) {
 		var filterChargeAmountDue = $formFilters.find('.valueChargeAmountDue').val();
 		if(filterChargeAmountDue != null && filterChargeAmountDue !== '')
 			filters.push({ name: 'fq', value: 'chargeAmountDue:' + filterChargeAmountDue });
+
+		var filterChargeAmountNotPassed = $formFilters.find('.valueChargeAmountNotPassed').val();
+		if(filterChargeAmountNotPassed != null && filterChargeAmountNotPassed !== '')
+			filters.push({ name: 'fq', value: 'chargeAmountNotPassed:' + filterChargeAmountNotPassed });
 
 		var filterChargesNow = $formFilters.find('.valueChargesNow').val();
 		if(filterChargesNow != null && filterChargesNow !== '')
@@ -2746,6 +2776,20 @@ function searchSchoolEnrollmentFilters($formFilters) {
 			filterPaymentsAhead = filterPaymentsAheadSelectVal == 'true';
 		if(filterPaymentsAhead != null && filterPaymentsAhead === true)
 			filters.push({ name: 'fq', value: 'paymentsAhead:' + filterPaymentsAhead });
+
+		var $filterPaymentsPastDueCheckbox = $formFilters.find('input.valuePaymentsPastDue[type = "checkbox"]');
+		var $filterPaymentsPastDueSelect = $formFilters.find('select.valuePaymentsPastDue');
+		var filterPaymentsPastDue = $filterPaymentsPastDueSelect.length ? $filterPaymentsPastDueSelect.val() : $filterPaymentsPastDueCheckbox.prop('checked');
+		var filterPaymentsPastDueSelectVal = $formFilters.find('select.filterPaymentsPastDue').val();
+		var filterPaymentsPastDue = null;
+		if(filterPaymentsPastDueSelectVal !== '')
+			filterPaymentsPastDue = filterPaymentsPastDueSelectVal == 'true';
+		if(filterPaymentsPastDue != null && filterPaymentsPastDue === true)
+			filters.push({ name: 'fq', value: 'paymentsPastDue:' + filterPaymentsPastDue });
+
+		var filterPaymentsPastDueAmount = $formFilters.find('.valuePaymentsPastDueAmount').val();
+		if(filterPaymentsPastDueAmount != null && filterPaymentsPastDueAmount !== '')
+			filters.push({ name: 'fq', value: 'paymentsPastDueAmount:' + filterPaymentsPastDueAmount });
 
 		var $filterChargesCreatedCheckbox = $formFilters.find('input.valueChargesCreated[type = "checkbox"]');
 		var $filterChargesCreatedSelect = $formFilters.find('select.valueChargesCreated');
@@ -3720,6 +3764,10 @@ function adminsearchSchoolEnrollmentFilters($formFilters) {
 		if(filterEnrollmentChargeDate != null && filterEnrollmentChargeDate !== '')
 			filters.push({ name: 'fq', value: 'enrollmentChargeDate:' + filterEnrollmentChargeDate });
 
+		var filterPaymentLastDate = $formFilters.find('.valuePaymentLastDate').val();
+		if(filterPaymentLastDate != null && filterPaymentLastDate !== '')
+			filters.push({ name: 'fq', value: 'paymentLastDate:' + filterPaymentLastDate });
+
 		var filterPaymentLastStr = $formFilters.find('.valuePaymentLastStr').val();
 		if(filterPaymentLastStr != null && filterPaymentLastStr !== '')
 			filters.push({ name: 'fq', value: 'paymentLastStr:' + filterPaymentLastStr });
@@ -3739,6 +3787,10 @@ function adminsearchSchoolEnrollmentFilters($formFilters) {
 		var filterChargeAmountDue = $formFilters.find('.valueChargeAmountDue').val();
 		if(filterChargeAmountDue != null && filterChargeAmountDue !== '')
 			filters.push({ name: 'fq', value: 'chargeAmountDue:' + filterChargeAmountDue });
+
+		var filterChargeAmountNotPassed = $formFilters.find('.valueChargeAmountNotPassed').val();
+		if(filterChargeAmountNotPassed != null && filterChargeAmountNotPassed !== '')
+			filters.push({ name: 'fq', value: 'chargeAmountNotPassed:' + filterChargeAmountNotPassed });
 
 		var filterChargesNow = $formFilters.find('.valueChargesNow').val();
 		if(filterChargesNow != null && filterChargesNow !== '')
@@ -3777,6 +3829,20 @@ function adminsearchSchoolEnrollmentFilters($formFilters) {
 			filterPaymentsAhead = filterPaymentsAheadSelectVal == 'true';
 		if(filterPaymentsAhead != null && filterPaymentsAhead === true)
 			filters.push({ name: 'fq', value: 'paymentsAhead:' + filterPaymentsAhead });
+
+		var $filterPaymentsPastDueCheckbox = $formFilters.find('input.valuePaymentsPastDue[type = "checkbox"]');
+		var $filterPaymentsPastDueSelect = $formFilters.find('select.valuePaymentsPastDue');
+		var filterPaymentsPastDue = $filterPaymentsPastDueSelect.length ? $filterPaymentsPastDueSelect.val() : $filterPaymentsPastDueCheckbox.prop('checked');
+		var filterPaymentsPastDueSelectVal = $formFilters.find('select.filterPaymentsPastDue').val();
+		var filterPaymentsPastDue = null;
+		if(filterPaymentsPastDueSelectVal !== '')
+			filterPaymentsPastDue = filterPaymentsPastDueSelectVal == 'true';
+		if(filterPaymentsPastDue != null && filterPaymentsPastDue === true)
+			filters.push({ name: 'fq', value: 'paymentsPastDue:' + filterPaymentsPastDue });
+
+		var filterPaymentsPastDueAmount = $formFilters.find('.valuePaymentsPastDueAmount').val();
+		if(filterPaymentsPastDueAmount != null && filterPaymentsPastDueAmount !== '')
+			filters.push({ name: 'fq', value: 'paymentsPastDueAmount:' + filterPaymentsPastDueAmount });
 
 		var $filterChargesCreatedCheckbox = $formFilters.find('input.valueChargesCreated[type = "checkbox"]');
 		var $filterChargesCreatedSelect = $formFilters.find('select.valueChargesCreated');
@@ -5532,6 +5598,10 @@ function patchpaymentsSchoolEnrollmentFilters($formFilters) {
 		if(filterEnrollmentChargeDate != null && filterEnrollmentChargeDate !== '')
 			filters.push({ name: 'fq', value: 'enrollmentChargeDate:' + filterEnrollmentChargeDate });
 
+		var filterPaymentLastDate = $formFilters.find('.valuePaymentLastDate').val();
+		if(filterPaymentLastDate != null && filterPaymentLastDate !== '')
+			filters.push({ name: 'fq', value: 'paymentLastDate:' + filterPaymentLastDate });
+
 		var filterPaymentLastStr = $formFilters.find('.valuePaymentLastStr').val();
 		if(filterPaymentLastStr != null && filterPaymentLastStr !== '')
 			filters.push({ name: 'fq', value: 'paymentLastStr:' + filterPaymentLastStr });
@@ -5551,6 +5621,10 @@ function patchpaymentsSchoolEnrollmentFilters($formFilters) {
 		var filterChargeAmountDue = $formFilters.find('.valueChargeAmountDue').val();
 		if(filterChargeAmountDue != null && filterChargeAmountDue !== '')
 			filters.push({ name: 'fq', value: 'chargeAmountDue:' + filterChargeAmountDue });
+
+		var filterChargeAmountNotPassed = $formFilters.find('.valueChargeAmountNotPassed').val();
+		if(filterChargeAmountNotPassed != null && filterChargeAmountNotPassed !== '')
+			filters.push({ name: 'fq', value: 'chargeAmountNotPassed:' + filterChargeAmountNotPassed });
 
 		var filterChargesNow = $formFilters.find('.valueChargesNow').val();
 		if(filterChargesNow != null && filterChargesNow !== '')
@@ -5589,6 +5663,20 @@ function patchpaymentsSchoolEnrollmentFilters($formFilters) {
 			filterPaymentsAhead = filterPaymentsAheadSelectVal == 'true';
 		if(filterPaymentsAhead != null && filterPaymentsAhead === true)
 			filters.push({ name: 'fq', value: 'paymentsAhead:' + filterPaymentsAhead });
+
+		var $filterPaymentsPastDueCheckbox = $formFilters.find('input.valuePaymentsPastDue[type = "checkbox"]');
+		var $filterPaymentsPastDueSelect = $formFilters.find('select.valuePaymentsPastDue');
+		var filterPaymentsPastDue = $filterPaymentsPastDueSelect.length ? $filterPaymentsPastDueSelect.val() : $filterPaymentsPastDueCheckbox.prop('checked');
+		var filterPaymentsPastDueSelectVal = $formFilters.find('select.filterPaymentsPastDue').val();
+		var filterPaymentsPastDue = null;
+		if(filterPaymentsPastDueSelectVal !== '')
+			filterPaymentsPastDue = filterPaymentsPastDueSelectVal == 'true';
+		if(filterPaymentsPastDue != null && filterPaymentsPastDue === true)
+			filters.push({ name: 'fq', value: 'paymentsPastDue:' + filterPaymentsPastDue });
+
+		var filterPaymentsPastDueAmount = $formFilters.find('.valuePaymentsPastDueAmount').val();
+		if(filterPaymentsPastDueAmount != null && filterPaymentsPastDueAmount !== '')
+			filters.push({ name: 'fq', value: 'paymentsPastDueAmount:' + filterPaymentsPastDueAmount });
 
 		var $filterChargesCreatedCheckbox = $formFilters.find('input.valueChargesCreated[type = "checkbox"]');
 		var $filterChargesCreatedSelect = $formFilters.find('select.valueChargesCreated');
@@ -5877,6 +5965,18 @@ async function websocketSchoolEnrollmentInner(apiRequest) {
 	if(pk != null) {
 		searchSchoolEnrollmentVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
+			var val = o['pk'];
+			if(vars.includes('pk')) {
+				$('.inputSchoolEnrollment' + pk + 'Pk').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'Pk').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'Pk'));
+			}
 			var val = o['created'];
 			if(vars.includes('created')) {
 				$('.inputSchoolEnrollment' + pk + 'Created').each(function() {
@@ -5900,6 +6000,18 @@ async function websocketSchoolEnrollmentInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputSchoolEnrollment' + pk + 'Modified'));
+			}
+			var val = o['objectId'];
+			if(vars.includes('objectId')) {
+				$('.inputSchoolEnrollment' + pk + 'ObjectId').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'ObjectId').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'ObjectId'));
 			}
 			var val = o['archived'];
 			if(vars.includes('archived')) {
@@ -6243,6 +6355,54 @@ async function websocketSchoolEnrollmentInner(apiRequest) {
 				});
 				addGlow($('.inputSchoolEnrollment' + pk + 'InheritPk'));
 			}
+			var val = o['id'];
+			if(vars.includes('id')) {
+				$('.inputSchoolEnrollment' + pk + 'Id').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'Id').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'Id'));
+			}
+			var val = o['classCanonicalName'];
+			if(vars.includes('classCanonicalName')) {
+				$('.inputSchoolEnrollment' + pk + 'ClassCanonicalName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'ClassCanonicalName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'ClassCanonicalName'));
+			}
+			var val = o['classSimpleName'];
+			if(vars.includes('classSimpleName')) {
+				$('.inputSchoolEnrollment' + pk + 'ClassSimpleName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'ClassSimpleName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'ClassSimpleName'));
+			}
+			var val = o['classCanonicalNames'];
+			if(vars.includes('classCanonicalNames')) {
+				$('.inputSchoolEnrollment' + pk + 'ClassCanonicalNames').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'ClassCanonicalNames').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'ClassCanonicalNames'));
+			}
 			var val = o['sessionId'];
 			if(vars.includes('sessionId')) {
 				$('.inputSchoolEnrollment' + pk + 'SessionId').each(function() {
@@ -6279,6 +6439,102 @@ async function websocketSchoolEnrollmentInner(apiRequest) {
 				});
 				addGlow($('.inputSchoolEnrollment' + pk + 'UserKey'));
 			}
+			var val = o['saves'];
+			if(vars.includes('saves')) {
+				$('.inputSchoolEnrollment' + pk + 'Saves').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'Saves').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'Saves'));
+			}
+			var val = o['objectTitle'];
+			if(vars.includes('objectTitle')) {
+				$('.inputSchoolEnrollment' + pk + 'ObjectTitle').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'ObjectTitle').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'ObjectTitle'));
+			}
+			var val = o['objectSuggest'];
+			if(vars.includes('objectSuggest')) {
+				$('.inputSchoolEnrollment' + pk + 'ObjectSuggest').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'ObjectSuggest').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'ObjectSuggest'));
+			}
+			var val = o['objectText'];
+			if(vars.includes('objectText')) {
+				$('.inputSchoolEnrollment' + pk + 'ObjectText').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'ObjectText').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'ObjectText'));
+			}
+			var val = o['pageUrlId'];
+			if(vars.includes('pageUrlId')) {
+				$('.inputSchoolEnrollment' + pk + 'PageUrlId').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'PageUrlId').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'PageUrlId'));
+			}
+			var val = o['pageUrlPk'];
+			if(vars.includes('pageUrlPk')) {
+				$('.inputSchoolEnrollment' + pk + 'PageUrlPk').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'PageUrlPk').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'PageUrlPk'));
+			}
+			var val = o['pageUrlApi'];
+			if(vars.includes('pageUrlApi')) {
+				$('.inputSchoolEnrollment' + pk + 'PageUrlApi').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'PageUrlApi').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'PageUrlApi'));
+			}
+			var val = o['enrollmentKey'];
+			if(vars.includes('enrollmentKey')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentKey').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'EnrollmentKey').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'EnrollmentKey'));
+			}
 			var val = o['yearKey'];
 			if(vars.includes('yearKey')) {
 				$('.inputSchoolEnrollment' + pk + 'YearKey').each(function() {
@@ -6290,6 +6546,246 @@ async function websocketSchoolEnrollmentInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputSchoolEnrollment' + pk + 'YearKey'));
+			}
+			var val = o['schoolKey'];
+			if(vars.includes('schoolKey')) {
+				$('.inputSchoolEnrollment' + pk + 'SchoolKey').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'SchoolKey').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'SchoolKey'));
+			}
+			var val = o['sessionKey'];
+			if(vars.includes('sessionKey')) {
+				$('.inputSchoolEnrollment' + pk + 'SessionKey').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'SessionKey').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'SessionKey'));
+			}
+			var val = o['ageKey'];
+			if(vars.includes('ageKey')) {
+				$('.inputSchoolEnrollment' + pk + 'AgeKey').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'AgeKey').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'AgeKey'));
+			}
+			var val = o['blockKey'];
+			if(vars.includes('blockKey')) {
+				$('.inputSchoolEnrollment' + pk + 'BlockKey').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'BlockKey').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'BlockKey'));
+			}
+			var val = o['enrollmentFormKey'];
+			if(vars.includes('enrollmentFormKey')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentFormKey').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'EnrollmentFormKey').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'EnrollmentFormKey'));
+			}
+			var val = o['educationSort'];
+			if(vars.includes('educationSort')) {
+				$('.inputSchoolEnrollment' + pk + 'EducationSort').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'EducationSort').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'EducationSort'));
+			}
+			var val = o['schoolSort'];
+			if(vars.includes('schoolSort')) {
+				$('.inputSchoolEnrollment' + pk + 'SchoolSort').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'SchoolSort').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'SchoolSort'));
+			}
+			var val = o['yearSort'];
+			if(vars.includes('yearSort')) {
+				$('.inputSchoolEnrollment' + pk + 'YearSort').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'YearSort').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'YearSort'));
+			}
+			var val = o['seasonSort'];
+			if(vars.includes('seasonSort')) {
+				$('.inputSchoolEnrollment' + pk + 'SeasonSort').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'SeasonSort').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'SeasonSort'));
+			}
+			var val = o['sessionSort'];
+			if(vars.includes('sessionSort')) {
+				$('.inputSchoolEnrollment' + pk + 'SessionSort').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'SessionSort').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'SessionSort'));
+			}
+			var val = o['ageSort'];
+			if(vars.includes('ageSort')) {
+				$('.inputSchoolEnrollment' + pk + 'AgeSort').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'AgeSort').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'AgeSort'));
+			}
+			var val = o['childFirstName'];
+			if(vars.includes('childFirstName')) {
+				$('.inputSchoolEnrollment' + pk + 'ChildFirstName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'ChildFirstName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'ChildFirstName'));
+			}
+			var val = o['childFirstNamePreferred'];
+			if(vars.includes('childFirstNamePreferred')) {
+				$('.inputSchoolEnrollment' + pk + 'ChildFirstNamePreferred').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'ChildFirstNamePreferred').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'ChildFirstNamePreferred'));
+			}
+			var val = o['childFamilyName'];
+			if(vars.includes('childFamilyName')) {
+				$('.inputSchoolEnrollment' + pk + 'ChildFamilyName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'ChildFamilyName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'ChildFamilyName'));
+			}
+			var val = o['momFirstName'];
+			if(vars.includes('momFirstName')) {
+				$('.inputSchoolEnrollment' + pk + 'MomFirstName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'MomFirstName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'MomFirstName'));
+			}
+			var val = o['momFirstNamePreferred'];
+			if(vars.includes('momFirstNamePreferred')) {
+				$('.inputSchoolEnrollment' + pk + 'MomFirstNamePreferred').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'MomFirstNamePreferred').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'MomFirstNamePreferred'));
+			}
+			var val = o['momCompleteNamePreferred'];
+			if(vars.includes('momCompleteNamePreferred')) {
+				$('.inputSchoolEnrollment' + pk + 'MomCompleteNamePreferred').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'MomCompleteNamePreferred').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'MomCompleteNamePreferred'));
+			}
+			var val = o['dadFirstName'];
+			if(vars.includes('dadFirstName')) {
+				$('.inputSchoolEnrollment' + pk + 'DadFirstName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'DadFirstName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'DadFirstName'));
+			}
+			var val = o['dadFirstNamePreferred'];
+			if(vars.includes('dadFirstNamePreferred')) {
+				$('.inputSchoolEnrollment' + pk + 'DadFirstNamePreferred').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'DadFirstNamePreferred').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'DadFirstNamePreferred'));
+			}
+			var val = o['dadCompleteNamePreferred'];
+			if(vars.includes('dadCompleteNamePreferred')) {
+				$('.inputSchoolEnrollment' + pk + 'DadCompleteNamePreferred').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'DadCompleteNamePreferred').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'DadCompleteNamePreferred'));
 			}
 			var val = o['childCompleteName'];
 			if(vars.includes('childCompleteName')) {
@@ -6332,6 +6828,102 @@ async function websocketSchoolEnrollmentInner(apiRequest) {
 				});
 				addGlow($('.inputSchoolEnrollment' + pk + 'ChildBirthDate'));
 			}
+			var val = o['childBirthDateYear'];
+			if(vars.includes('childBirthDateYear')) {
+				$('.inputSchoolEnrollment' + pk + 'ChildBirthDateYear').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'ChildBirthDateYear').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'ChildBirthDateYear'));
+			}
+			var val = o['childBirthDateMonthOfYear'];
+			if(vars.includes('childBirthDateMonthOfYear')) {
+				$('.inputSchoolEnrollment' + pk + 'ChildBirthDateMonthOfYear').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'ChildBirthDateMonthOfYear').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'ChildBirthDateMonthOfYear'));
+			}
+			var val = o['childBirthDateDayOfWeek'];
+			if(vars.includes('childBirthDateDayOfWeek')) {
+				$('.inputSchoolEnrollment' + pk + 'ChildBirthDateDayOfWeek').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'ChildBirthDateDayOfWeek').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'ChildBirthDateDayOfWeek'));
+			}
+			var val = o['childBirthMonth'];
+			if(vars.includes('childBirthMonth')) {
+				$('.inputSchoolEnrollment' + pk + 'ChildBirthMonth').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'ChildBirthMonth').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'ChildBirthMonth'));
+			}
+			var val = o['childBirthDay'];
+			if(vars.includes('childBirthDay')) {
+				$('.inputSchoolEnrollment' + pk + 'ChildBirthDay').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'ChildBirthDay').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'ChildBirthDay'));
+			}
+			var val = o['schoolName'];
+			if(vars.includes('schoolName')) {
+				$('.inputSchoolEnrollment' + pk + 'SchoolName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'SchoolName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'SchoolName'));
+			}
+			var val = o['schoolCompleteName'];
+			if(vars.includes('schoolCompleteName')) {
+				$('.inputSchoolEnrollment' + pk + 'SchoolCompleteName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'SchoolCompleteName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'SchoolCompleteName'));
+			}
+			var val = o['schoolLocation'];
+			if(vars.includes('schoolLocation')) {
+				$('.inputSchoolEnrollment' + pk + 'SchoolLocation').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'SchoolLocation').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'SchoolLocation'));
+			}
 			var val = o['schoolAddress'];
 			if(vars.includes('schoolAddress')) {
 				$('.inputSchoolEnrollment' + pk + 'SchoolAddress').each(function() {
@@ -6343,6 +6935,367 @@ async function websocketSchoolEnrollmentInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputSchoolEnrollment' + pk + 'SchoolAddress'));
+			}
+			var val = o['schoolPhoneNumber'];
+			if(vars.includes('schoolPhoneNumber')) {
+				$('.inputSchoolEnrollment' + pk + 'SchoolPhoneNumber').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'SchoolPhoneNumber').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'SchoolPhoneNumber'));
+			}
+			var val = o['schoolForm'];
+			if(vars.includes('schoolForm')) {
+				$('.inputSchoolEnrollment' + pk + 'SchoolForm').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'SchoolForm').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'SchoolForm'));
+			}
+			var val = o['schoolNumber'];
+			if(vars.includes('schoolNumber')) {
+				$('.inputSchoolEnrollment' + pk + 'SchoolNumber').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'SchoolNumber').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'SchoolNumber'));
+			}
+			var val = o['schoolAdministratorName'];
+			if(vars.includes('schoolAdministratorName')) {
+				$('.inputSchoolEnrollment' + pk + 'SchoolAdministratorName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'SchoolAdministratorName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'SchoolAdministratorName'));
+			}
+			var val = o['yearStart'];
+			if(vars.includes('yearStart')) {
+				$('.inputSchoolEnrollment' + pk + 'YearStart').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'YearStart').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'YearStart'));
+			}
+			var val = o['yearEnd'];
+			if(vars.includes('yearEnd')) {
+				$('.inputSchoolEnrollment' + pk + 'YearEnd').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'YearEnd').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'YearEnd'));
+			}
+			var val = o['seasonStartDate'];
+			if(val != null) {
+				var t = moment(val, 'YYYY-MM-DD');
+				if(t)
+					val = t.format('MM/DD/YYYY');
+			}
+			if(vars.includes('seasonStartDate')) {
+				$('.inputSchoolEnrollment' + pk + 'SeasonStartDate').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'SeasonStartDate').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'SeasonStartDate'));
+			}
+			var val = o['yearEnrollmentFee'];
+			if(vars.includes('yearEnrollmentFee')) {
+				$('.inputSchoolEnrollment' + pk + 'YearEnrollmentFee').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'YearEnrollmentFee').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'YearEnrollmentFee'));
+			}
+			var val = o['sessionStartDate'];
+			if(val != null) {
+				var t = moment(val, 'YYYY-MM-DD');
+				if(t)
+					val = t.format('MM/DD/YYYY');
+			}
+			if(vars.includes('sessionStartDate')) {
+				$('.inputSchoolEnrollment' + pk + 'SessionStartDate').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'SessionStartDate').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'SessionStartDate'));
+			}
+			var val = o['sessionEndDate'];
+			if(val != null) {
+				var t = moment(val, 'YYYY-MM-DD');
+				if(t)
+					val = t.format('MM/DD/YYYY');
+			}
+			if(vars.includes('sessionEndDate')) {
+				$('.inputSchoolEnrollment' + pk + 'SessionEndDate').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'SessionEndDate').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'SessionEndDate'));
+			}
+			var val = o['ageCompleteName'];
+			if(vars.includes('ageCompleteName')) {
+				$('.inputSchoolEnrollment' + pk + 'AgeCompleteName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'AgeCompleteName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'AgeCompleteName'));
+			}
+			var val = o['ageStart'];
+			if(vars.includes('ageStart')) {
+				$('.inputSchoolEnrollment' + pk + 'AgeStart').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'AgeStart').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'AgeStart'));
+			}
+			var val = o['ageEnd'];
+			if(vars.includes('ageEnd')) {
+				$('.inputSchoolEnrollment' + pk + 'AgeEnd').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'AgeEnd').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'AgeEnd'));
+			}
+			var val = o['blockStartTime'];
+			if(val != null) {
+				var t = moment(val, 'HH:mm');
+				if(t)
+					val = t.format('h:mm a');
+			}
+			if(vars.includes('blockStartTime')) {
+				$('.inputSchoolEnrollment' + pk + 'BlockStartTime').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'BlockStartTime').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'BlockStartTime'));
+			}
+			var val = o['blockEndTime'];
+			if(val != null) {
+				var t = moment(val, 'HH:mm');
+				if(t)
+					val = t.format('h:mm a');
+			}
+			if(vars.includes('blockEndTime')) {
+				$('.inputSchoolEnrollment' + pk + 'BlockEndTime').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'BlockEndTime').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'BlockEndTime'));
+			}
+			var val = o['blockPricePerMonth'];
+			if(vars.includes('blockPricePerMonth')) {
+				$('.inputSchoolEnrollment' + pk + 'BlockPricePerMonth').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'BlockPricePerMonth').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'BlockPricePerMonth'));
+			}
+			var val = o['blockSunday'];
+			if(vars.includes('blockSunday')) {
+				$('.inputSchoolEnrollment' + pk + 'BlockSunday').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'BlockSunday').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'BlockSunday'));
+			}
+			var val = o['blockMonday'];
+			if(vars.includes('blockMonday')) {
+				$('.inputSchoolEnrollment' + pk + 'BlockMonday').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'BlockMonday').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'BlockMonday'));
+			}
+			var val = o['blockTuesday'];
+			if(vars.includes('blockTuesday')) {
+				$('.inputSchoolEnrollment' + pk + 'BlockTuesday').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'BlockTuesday').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'BlockTuesday'));
+			}
+			var val = o['blockWednesday'];
+			if(vars.includes('blockWednesday')) {
+				$('.inputSchoolEnrollment' + pk + 'BlockWednesday').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'BlockWednesday').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'BlockWednesday'));
+			}
+			var val = o['blockThursday'];
+			if(vars.includes('blockThursday')) {
+				$('.inputSchoolEnrollment' + pk + 'BlockThursday').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'BlockThursday').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'BlockThursday'));
+			}
+			var val = o['blockFriday'];
+			if(vars.includes('blockFriday')) {
+				$('.inputSchoolEnrollment' + pk + 'BlockFriday').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'BlockFriday').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'BlockFriday'));
+			}
+			var val = o['blockSaturday'];
+			if(vars.includes('blockSaturday')) {
+				$('.inputSchoolEnrollment' + pk + 'BlockSaturday').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'BlockSaturday').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'BlockSaturday'));
+			}
+			var val = o['blockTotalPrice'];
+			if(vars.includes('blockTotalPrice')) {
+				$('.inputSchoolEnrollment' + pk + 'BlockTotalPrice').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'BlockTotalPrice').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'BlockTotalPrice'));
+			}
+			var val = o['blockAdminName'];
+			if(vars.includes('blockAdminName')) {
+				$('.inputSchoolEnrollment' + pk + 'BlockAdminName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'BlockAdminName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'BlockAdminName'));
+			}
+			var val = o['blockShortName'];
+			if(vars.includes('blockShortName')) {
+				$('.inputSchoolEnrollment' + pk + 'BlockShortName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'BlockShortName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'BlockShortName'));
+			}
+			var val = o['blockCompleteName'];
+			if(vars.includes('blockCompleteName')) {
+				$('.inputSchoolEnrollment' + pk + 'BlockCompleteName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'BlockCompleteName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'BlockCompleteName'));
+			}
+			var val = o['enrollmentGroupColor'];
+			if(vars.includes('enrollmentGroupColor')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentGroupColor').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'EnrollmentGroupColor').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'EnrollmentGroupColor'));
 			}
 			var val = o['enrollmentChargeDate'];
 			if(val != null) {
@@ -6361,6 +7314,251 @@ async function websocketSchoolEnrollmentInner(apiRequest) {
 				});
 				addGlow($('.inputSchoolEnrollment' + pk + 'EnrollmentChargeDate'));
 			}
+			var val = o['paymentLastDate'];
+			if(val != null) {
+				var t = moment(val, 'YYYY-MM-DD');
+				if(t)
+					val = t.format('MM/DD/YYYY');
+			}
+			if(vars.includes('paymentLastDate')) {
+				$('.inputSchoolEnrollment' + pk + 'PaymentLastDate').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'PaymentLastDate').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'PaymentLastDate'));
+			}
+			var val = o['paymentLastStr'];
+			if(vars.includes('paymentLastStr')) {
+				$('.inputSchoolEnrollment' + pk + 'PaymentLastStr').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'PaymentLastStr').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'PaymentLastStr'));
+			}
+			var val = o['paymentAmount'];
+			if(vars.includes('paymentAmount')) {
+				$('.inputSchoolEnrollment' + pk + 'PaymentAmount').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'PaymentAmount').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'PaymentAmount'));
+			}
+			var val = o['chargeAmount'];
+			if(vars.includes('chargeAmount')) {
+				$('.inputSchoolEnrollment' + pk + 'ChargeAmount').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'ChargeAmount').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'ChargeAmount'));
+			}
+			var val = o['chargeAmountFuture'];
+			if(vars.includes('chargeAmountFuture')) {
+				$('.inputSchoolEnrollment' + pk + 'ChargeAmountFuture').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'ChargeAmountFuture').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'ChargeAmountFuture'));
+			}
+			var val = o['chargeAmountDue'];
+			if(vars.includes('chargeAmountDue')) {
+				$('.inputSchoolEnrollment' + pk + 'ChargeAmountDue').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'ChargeAmountDue').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'ChargeAmountDue'));
+			}
+			var val = o['chargeAmountNotPassed'];
+			if(vars.includes('chargeAmountNotPassed')) {
+				$('.inputSchoolEnrollment' + pk + 'ChargeAmountNotPassed').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'ChargeAmountNotPassed').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'ChargeAmountNotPassed'));
+			}
+			var val = o['chargesNow'];
+			if(vars.includes('chargesNow')) {
+				$('.inputSchoolEnrollment' + pk + 'ChargesNow').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'ChargesNow').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'ChargesNow'));
+			}
+			var val = o['paymentsCurrent'];
+			if(vars.includes('paymentsCurrent')) {
+				$('.inputSchoolEnrollment' + pk + 'PaymentsCurrent').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'PaymentsCurrent').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'PaymentsCurrent'));
+			}
+			var val = o['paymentsLate'];
+			if(vars.includes('paymentsLate')) {
+				$('.inputSchoolEnrollment' + pk + 'PaymentsLate').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'PaymentsLate').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'PaymentsLate'));
+			}
+			var val = o['paymentsLateAmount'];
+			if(vars.includes('paymentsLateAmount')) {
+				$('.inputSchoolEnrollment' + pk + 'PaymentsLateAmount').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'PaymentsLateAmount').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'PaymentsLateAmount'));
+			}
+			var val = o['paymentsAhead'];
+			if(vars.includes('paymentsAhead')) {
+				$('.inputSchoolEnrollment' + pk + 'PaymentsAhead').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'PaymentsAhead').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'PaymentsAhead'));
+			}
+			var val = o['paymentsPastDue'];
+			if(vars.includes('paymentsPastDue')) {
+				$('.inputSchoolEnrollment' + pk + 'PaymentsPastDue').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'PaymentsPastDue').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'PaymentsPastDue'));
+			}
+			var val = o['paymentsPastDueAmount'];
+			if(vars.includes('paymentsPastDueAmount')) {
+				$('.inputSchoolEnrollment' + pk + 'PaymentsPastDueAmount').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'PaymentsPastDueAmount').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'PaymentsPastDueAmount'));
+			}
+			var val = o['chargesCreated'];
+			if(vars.includes('chargesCreated')) {
+				$('.inputSchoolEnrollment' + pk + 'ChargesCreated').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'ChargesCreated').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'ChargesCreated'));
+			}
+			var val = o['createdYear'];
+			if(vars.includes('createdYear')) {
+				$('.inputSchoolEnrollment' + pk + 'CreatedYear').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'CreatedYear').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'CreatedYear'));
+			}
+			var val = o['createdDayOfWeek'];
+			if(vars.includes('createdDayOfWeek')) {
+				$('.inputSchoolEnrollment' + pk + 'CreatedDayOfWeek').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'CreatedDayOfWeek').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'CreatedDayOfWeek'));
+			}
+			var val = o['createdMonthOfYear'];
+			if(vars.includes('createdMonthOfYear')) {
+				$('.inputSchoolEnrollment' + pk + 'CreatedMonthOfYear').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'CreatedMonthOfYear').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'CreatedMonthOfYear'));
+			}
+			var val = o['createdHourOfDay'];
+			if(vars.includes('createdHourOfDay')) {
+				$('.inputSchoolEnrollment' + pk + 'CreatedHourOfDay').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'CreatedHourOfDay').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'CreatedHourOfDay'));
+			}
+			var val = o['enrollmentDaysOfWeek'];
+			if(vars.includes('enrollmentDaysOfWeek')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentDaysOfWeek').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'EnrollmentDaysOfWeek').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'EnrollmentDaysOfWeek'));
+			}
 			var val = o['enrollmentParentNames'];
 			if(vars.includes('enrollmentParentNames')) {
 				$('.inputSchoolEnrollment' + pk + 'EnrollmentParentNames').each(function() {
@@ -6372,6 +7570,138 @@ async function websocketSchoolEnrollmentInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputSchoolEnrollment' + pk + 'EnrollmentParentNames'));
+			}
+			var val = o['enrollmentEmails'];
+			if(vars.includes('enrollmentEmails')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentEmails').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'EnrollmentEmails').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'EnrollmentEmails'));
+			}
+			var val = o['enrollmentEmail'];
+			if(vars.includes('enrollmentEmail')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentEmail').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'EnrollmentEmail').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'EnrollmentEmail'));
+			}
+			var val = o['enrollmentParentEmails'];
+			if(vars.includes('enrollmentParentEmails')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentParentEmails').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'EnrollmentParentEmails').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'EnrollmentParentEmails'));
+			}
+			var val = o['enrollmentPhoneNumbers'];
+			if(vars.includes('enrollmentPhoneNumbers')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentPhoneNumbers').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'EnrollmentPhoneNumbers').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'EnrollmentPhoneNumbers'));
+			}
+			var val = o['enrollmentPhoneNumber'];
+			if(vars.includes('enrollmentPhoneNumber')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentPhoneNumber').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'EnrollmentPhoneNumber').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'EnrollmentPhoneNumber'));
+			}
+			var val = o['enrollmentParentName'];
+			if(vars.includes('enrollmentParentName')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentParentName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'EnrollmentParentName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'EnrollmentParentName'));
+			}
+			var val = o['enrollmentParentNameLines'];
+			if(vars.includes('enrollmentParentNameLines')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentParentNameLines').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'EnrollmentParentNameLines').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'EnrollmentParentNameLines'));
+			}
+			var val = o['enrollmentParentEmailLines'];
+			if(vars.includes('enrollmentParentEmailLines')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentParentEmailLines').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'EnrollmentParentEmailLines').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'EnrollmentParentEmailLines'));
+			}
+			var val = o['enrollmentParentDetailLines'];
+			if(vars.includes('enrollmentParentDetailLines')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentParentDetailLines').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'EnrollmentParentDetailLines').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'EnrollmentParentDetailLines'));
+			}
+			var val = o['enrollmentPickupDetailLines'];
+			if(vars.includes('enrollmentPickupDetailLines')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentPickupDetailLines').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'EnrollmentPickupDetailLines').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'EnrollmentPickupDetailLines'));
+			}
+			var val = o['enrollmentEmergencyContactDetailLines'];
+			if(vars.includes('enrollmentEmergencyContactDetailLines')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentEmergencyContactDetailLines').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'EnrollmentEmergencyContactDetailLines').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'EnrollmentEmergencyContactDetailLines'));
 			}
 			var val = o['enrollmentSignature1'];
 			if(vars.includes('enrollmentSignature1')) {
@@ -6732,6 +8062,42 @@ async function websocketSchoolEnrollmentInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputSchoolEnrollment' + pk + 'EnrollmentDate10'));
+			}
+			var val = o['childImmunizationsReceived'];
+			if(vars.includes('childImmunizationsReceived')) {
+				$('.inputSchoolEnrollment' + pk + 'ChildImmunizationsReceived').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'ChildImmunizationsReceived').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'ChildImmunizationsReceived'));
+			}
+			var val = o['childPhotosApproved'];
+			if(vars.includes('childPhotosApproved')) {
+				$('.inputSchoolEnrollment' + pk + 'ChildPhotosApproved').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'ChildPhotosApproved').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'ChildPhotosApproved'));
+			}
+			var val = o['enrollmentCompleteName'];
+			if(vars.includes('enrollmentCompleteName')) {
+				$('.inputSchoolEnrollment' + pk + 'EnrollmentCompleteName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolEnrollment' + pk + 'EnrollmentCompleteName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolEnrollment' + pk + 'EnrollmentCompleteName'));
 			}
 		});
 	}

@@ -157,6 +157,14 @@ async function postSchoolPayment($formValues, success, error) {
 	if(valueChargeAmountDue != null && valueChargeAmountDue !== '')
 		vals['chargeAmountDue'] = valueChargeAmountDue;
 
+	var valueChargeAmountPassed = $formValues.find('.valueChargeAmountPassed').val();
+	if(valueChargeAmountPassed != null && valueChargeAmountPassed !== '')
+		vals['chargeAmountPassed'] = valueChargeAmountPassed;
+
+	var valueChargeAmountNotPassed = $formValues.find('.valueChargeAmountNotPassed').val();
+	if(valueChargeAmountNotPassed != null && valueChargeAmountNotPassed !== '')
+		vals['chargeAmountNotPassed'] = valueChargeAmountNotPassed;
+
 	var valueChargeAmountFuture = $formValues.find('.valueChargeAmountFuture').val();
 	if(valueChargeAmountFuture != null && valueChargeAmountFuture !== '')
 		vals['chargeAmountFuture'] = valueChargeAmountFuture;
@@ -372,6 +380,14 @@ async function putcopySchoolPayment($formValues, pk, success, error) {
 	var valueChargeAmountDue = $formValues.find('.valueChargeAmountDue').val();
 	if(valueChargeAmountDue != null && valueChargeAmountDue !== '')
 		vals['chargeAmountDue'] = valueChargeAmountDue;
+
+	var valueChargeAmountPassed = $formValues.find('.valueChargeAmountPassed').val();
+	if(valueChargeAmountPassed != null && valueChargeAmountPassed !== '')
+		vals['chargeAmountPassed'] = valueChargeAmountPassed;
+
+	var valueChargeAmountNotPassed = $formValues.find('.valueChargeAmountNotPassed').val();
+	if(valueChargeAmountNotPassed != null && valueChargeAmountNotPassed !== '')
+		vals['chargeAmountNotPassed'] = valueChargeAmountNotPassed;
 
 	var valueChargeAmountFuture = $formValues.find('.valueChargeAmountFuture').val();
 	if(valueChargeAmountFuture != null && valueChargeAmountFuture !== '')
@@ -897,6 +913,32 @@ async function patchSchoolPayment($formFilters, $formValues, pk, success, error)
 	if(removeChargeAmountDue != null && removeChargeAmountDue !== '')
 		vals['removeChargeAmountDue'] = removeChargeAmountDue;
 
+	var valueChargeAmountPassed = $formValues.find('.valueChargeAmountPassed').val();
+	if(valueChargeAmountPassed != null && valueChargeAmountPassed !== '')
+	var removeChargeAmountPassed = $formFilters.find('.removeChargeAmountPassed').val() === 'true';
+	var setChargeAmountPassed = removeChargeAmountPassed ? null : $formValues.find('.setChargeAmountPassed').val();
+	if(removeChargeAmountPassed || setChargeAmountPassed != null && setChargeAmountPassed !== '')
+		vals['setChargeAmountPassed'] = setChargeAmountPassed;
+	var addChargeAmountPassed = $formValues.find('.addChargeAmountPassed').val();
+	if(addChargeAmountPassed != null && addChargeAmountPassed !== '')
+		vals['addChargeAmountPassed'] = addChargeAmountPassed;
+	var removeChargeAmountPassed = $formValues.find('.removeChargeAmountPassed').val();
+	if(removeChargeAmountPassed != null && removeChargeAmountPassed !== '')
+		vals['removeChargeAmountPassed'] = removeChargeAmountPassed;
+
+	var valueChargeAmountNotPassed = $formValues.find('.valueChargeAmountNotPassed').val();
+	if(valueChargeAmountNotPassed != null && valueChargeAmountNotPassed !== '')
+	var removeChargeAmountNotPassed = $formFilters.find('.removeChargeAmountNotPassed').val() === 'true';
+	var setChargeAmountNotPassed = removeChargeAmountNotPassed ? null : $formValues.find('.setChargeAmountNotPassed').val();
+	if(removeChargeAmountNotPassed || setChargeAmountNotPassed != null && setChargeAmountNotPassed !== '')
+		vals['setChargeAmountNotPassed'] = setChargeAmountNotPassed;
+	var addChargeAmountNotPassed = $formValues.find('.addChargeAmountNotPassed').val();
+	if(addChargeAmountNotPassed != null && addChargeAmountNotPassed !== '')
+		vals['addChargeAmountNotPassed'] = addChargeAmountNotPassed;
+	var removeChargeAmountNotPassed = $formValues.find('.removeChargeAmountNotPassed').val();
+	if(removeChargeAmountNotPassed != null && removeChargeAmountNotPassed !== '')
+		vals['removeChargeAmountNotPassed'] = removeChargeAmountNotPassed;
+
 	var valueChargeAmountFuture = $formValues.find('.valueChargeAmountFuture').val();
 	if(valueChargeAmountFuture != null && valueChargeAmountFuture !== '')
 	var removeChargeAmountFuture = $formFilters.find('.removeChargeAmountFuture').val() === 'true';
@@ -1294,6 +1336,10 @@ function patchSchoolPaymentFilters($formFilters) {
 		if(filterBlockTotalPrice != null && filterBlockTotalPrice !== '')
 			filters.push({ name: 'fq', value: 'blockTotalPrice:' + filterBlockTotalPrice });
 
+		var filterPaymentYear = $formFilters.find('.valuePaymentYear').val();
+		if(filterPaymentYear != null && filterPaymentYear !== '')
+			filters.push({ name: 'fq', value: 'paymentYear:' + filterPaymentYear });
+
 		var filterPaymentType = $formFilters.find('.valuePaymentType').val();
 		if(filterPaymentType != null && filterPaymentType !== '')
 			filters.push({ name: 'fq', value: 'paymentType:' + filterPaymentType });
@@ -1305,6 +1351,14 @@ function patchSchoolPaymentFilters($formFilters) {
 		var filterChargeAmountDue = $formFilters.find('.valueChargeAmountDue').val();
 		if(filterChargeAmountDue != null && filterChargeAmountDue !== '')
 			filters.push({ name: 'fq', value: 'chargeAmountDue:' + filterChargeAmountDue });
+
+		var filterChargeAmountPassed = $formFilters.find('.valueChargeAmountPassed').val();
+		if(filterChargeAmountPassed != null && filterChargeAmountPassed !== '')
+			filters.push({ name: 'fq', value: 'chargeAmountPassed:' + filterChargeAmountPassed });
+
+		var filterChargeAmountNotPassed = $formFilters.find('.valueChargeAmountNotPassed').val();
+		if(filterChargeAmountNotPassed != null && filterChargeAmountNotPassed !== '')
+			filters.push({ name: 'fq', value: 'chargeAmountNotPassed:' + filterChargeAmountNotPassed });
 
 		var filterChargeAmountFuture = $formFilters.find('.valueChargeAmountFuture').val();
 		if(filterChargeAmountFuture != null && filterChargeAmountFuture !== '')
@@ -1732,6 +1786,10 @@ function searchSchoolPaymentFilters($formFilters) {
 		if(filterBlockTotalPrice != null && filterBlockTotalPrice !== '')
 			filters.push({ name: 'fq', value: 'blockTotalPrice:' + filterBlockTotalPrice });
 
+		var filterPaymentYear = $formFilters.find('.valuePaymentYear').val();
+		if(filterPaymentYear != null && filterPaymentYear !== '')
+			filters.push({ name: 'fq', value: 'paymentYear:' + filterPaymentYear });
+
 		var filterPaymentType = $formFilters.find('.valuePaymentType').val();
 		if(filterPaymentType != null && filterPaymentType !== '')
 			filters.push({ name: 'fq', value: 'paymentType:' + filterPaymentType });
@@ -1743,6 +1801,14 @@ function searchSchoolPaymentFilters($formFilters) {
 		var filterChargeAmountDue = $formFilters.find('.valueChargeAmountDue').val();
 		if(filterChargeAmountDue != null && filterChargeAmountDue !== '')
 			filters.push({ name: 'fq', value: 'chargeAmountDue:' + filterChargeAmountDue });
+
+		var filterChargeAmountPassed = $formFilters.find('.valueChargeAmountPassed').val();
+		if(filterChargeAmountPassed != null && filterChargeAmountPassed !== '')
+			filters.push({ name: 'fq', value: 'chargeAmountPassed:' + filterChargeAmountPassed });
+
+		var filterChargeAmountNotPassed = $formFilters.find('.valueChargeAmountNotPassed').val();
+		if(filterChargeAmountNotPassed != null && filterChargeAmountNotPassed !== '')
+			filters.push({ name: 'fq', value: 'chargeAmountNotPassed:' + filterChargeAmountNotPassed });
 
 		var filterChargeAmountFuture = $formFilters.find('.valueChargeAmountFuture').val();
 		if(filterChargeAmountFuture != null && filterChargeAmountFuture !== '')
@@ -1887,6 +1953,18 @@ async function websocketSchoolPaymentInner(apiRequest) {
 	if(pk != null) {
 		searchSchoolPaymentVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
+			var val = o['pk'];
+			if(vars.includes('pk')) {
+				$('.inputSchoolPayment' + pk + 'Pk').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'Pk').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'Pk'));
+			}
 			var val = o['created'];
 			if(vars.includes('created')) {
 				$('.inputSchoolPayment' + pk + 'Created').each(function() {
@@ -1910,6 +1988,18 @@ async function websocketSchoolPaymentInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'Modified'));
+			}
+			var val = o['objectId'];
+			if(vars.includes('objectId')) {
+				$('.inputSchoolPayment' + pk + 'ObjectId').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'ObjectId').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'ObjectId'));
 			}
 			var val = o['archived'];
 			if(vars.includes('archived')) {
@@ -2180,6 +2270,54 @@ async function websocketSchoolPaymentInner(apiRequest) {
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'InheritPk'));
 			}
+			var val = o['id'];
+			if(vars.includes('id')) {
+				$('.inputSchoolPayment' + pk + 'Id').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'Id').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'Id'));
+			}
+			var val = o['classCanonicalName'];
+			if(vars.includes('classCanonicalName')) {
+				$('.inputSchoolPayment' + pk + 'ClassCanonicalName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'ClassCanonicalName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'ClassCanonicalName'));
+			}
+			var val = o['classSimpleName'];
+			if(vars.includes('classSimpleName')) {
+				$('.inputSchoolPayment' + pk + 'ClassSimpleName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'ClassSimpleName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'ClassSimpleName'));
+			}
+			var val = o['classCanonicalNames'];
+			if(vars.includes('classCanonicalNames')) {
+				$('.inputSchoolPayment' + pk + 'ClassCanonicalNames').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'ClassCanonicalNames').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'ClassCanonicalNames'));
+			}
 			var val = o['sessionId'];
 			if(vars.includes('sessionId')) {
 				$('.inputSchoolPayment' + pk + 'SessionId').each(function() {
@@ -2215,6 +2353,258 @@ async function websocketSchoolPaymentInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'UserKey'));
+			}
+			var val = o['saves'];
+			if(vars.includes('saves')) {
+				$('.inputSchoolPayment' + pk + 'Saves').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'Saves').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'Saves'));
+			}
+			var val = o['objectTitle'];
+			if(vars.includes('objectTitle')) {
+				$('.inputSchoolPayment' + pk + 'ObjectTitle').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'ObjectTitle').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'ObjectTitle'));
+			}
+			var val = o['objectSuggest'];
+			if(vars.includes('objectSuggest')) {
+				$('.inputSchoolPayment' + pk + 'ObjectSuggest').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'ObjectSuggest').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'ObjectSuggest'));
+			}
+			var val = o['objectText'];
+			if(vars.includes('objectText')) {
+				$('.inputSchoolPayment' + pk + 'ObjectText').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'ObjectText').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'ObjectText'));
+			}
+			var val = o['pageUrlId'];
+			if(vars.includes('pageUrlId')) {
+				$('.inputSchoolPayment' + pk + 'PageUrlId').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'PageUrlId').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'PageUrlId'));
+			}
+			var val = o['pageUrlPk'];
+			if(vars.includes('pageUrlPk')) {
+				$('.inputSchoolPayment' + pk + 'PageUrlPk').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'PageUrlPk').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'PageUrlPk'));
+			}
+			var val = o['pageUrlApi'];
+			if(vars.includes('pageUrlApi')) {
+				$('.inputSchoolPayment' + pk + 'PageUrlApi').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'PageUrlApi').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'PageUrlApi'));
+			}
+			var val = o['paymentKey'];
+			if(vars.includes('paymentKey')) {
+				$('.inputSchoolPayment' + pk + 'PaymentKey').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'PaymentKey').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'PaymentKey'));
+			}
+			var val = o['schoolNumber'];
+			if(vars.includes('schoolNumber')) {
+				$('.inputSchoolPayment' + pk + 'SchoolNumber').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'SchoolNumber').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'SchoolNumber'));
+			}
+			var val = o['userKeys'];
+			if(vars.includes('userKeys')) {
+				$('.inputSchoolPayment' + pk + 'UserKeys').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'UserKeys').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'UserKeys'));
+			}
+			var val = o['schoolKey'];
+			if(vars.includes('schoolKey')) {
+				$('.inputSchoolPayment' + pk + 'SchoolKey').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'SchoolKey').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'SchoolKey'));
+			}
+			var val = o['schoolAddress'];
+			if(vars.includes('schoolAddress')) {
+				$('.inputSchoolPayment' + pk + 'SchoolAddress').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'SchoolAddress').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'SchoolAddress'));
+			}
+			var val = o['schoolPhoneNumber'];
+			if(vars.includes('schoolPhoneNumber')) {
+				$('.inputSchoolPayment' + pk + 'SchoolPhoneNumber').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'SchoolPhoneNumber').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'SchoolPhoneNumber'));
+			}
+			var val = o['yearKey'];
+			if(vars.includes('yearKey')) {
+				$('.inputSchoolPayment' + pk + 'YearKey').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'YearKey').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'YearKey'));
+			}
+			var val = o['sessionKey'];
+			if(vars.includes('sessionKey')) {
+				$('.inputSchoolPayment' + pk + 'SessionKey').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'SessionKey').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'SessionKey'));
+			}
+			var val = o['ageKey'];
+			if(vars.includes('ageKey')) {
+				$('.inputSchoolPayment' + pk + 'AgeKey').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'AgeKey').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'AgeKey'));
+			}
+			var val = o['blockKey'];
+			if(vars.includes('blockKey')) {
+				$('.inputSchoolPayment' + pk + 'BlockKey').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'BlockKey').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'BlockKey'));
+			}
+			var val = o['childKey'];
+			if(vars.includes('childKey')) {
+				$('.inputSchoolPayment' + pk + 'ChildKey').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'ChildKey').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'ChildKey'));
+			}
+			var val = o['momKeys'];
+			if(vars.includes('momKeys')) {
+				$('.inputSchoolPayment' + pk + 'MomKeys').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'MomKeys').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'MomKeys'));
+			}
+			var val = o['dadKeys'];
+			if(vars.includes('dadKeys')) {
+				$('.inputSchoolPayment' + pk + 'DadKeys').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'DadKeys').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'DadKeys'));
+			}
+			var val = o['guardianKeys'];
+			if(vars.includes('guardianKeys')) {
+				$('.inputSchoolPayment' + pk + 'GuardianKeys').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'GuardianKeys').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'GuardianKeys'));
 			}
 			var val = o['childCompleteNamePreferred'];
 			if(vars.includes('childCompleteNamePreferred')) {
@@ -2269,6 +2659,252 @@ async function websocketSchoolPaymentInner(apiRequest) {
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'DadCompleteNamePreferred'));
 			}
+			var val = o['schoolName'];
+			if(vars.includes('schoolName')) {
+				$('.inputSchoolPayment' + pk + 'SchoolName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'SchoolName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'SchoolName'));
+			}
+			var val = o['schoolCompleteName'];
+			if(vars.includes('schoolCompleteName')) {
+				$('.inputSchoolPayment' + pk + 'SchoolCompleteName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'SchoolCompleteName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'SchoolCompleteName'));
+			}
+			var val = o['schoolLocation'];
+			if(vars.includes('schoolLocation')) {
+				$('.inputSchoolPayment' + pk + 'SchoolLocation').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'SchoolLocation').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'SchoolLocation'));
+			}
+			var val = o['yearStart'];
+			if(vars.includes('yearStart')) {
+				$('.inputSchoolPayment' + pk + 'YearStart').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'YearStart').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'YearStart'));
+			}
+			var val = o['yearEnd'];
+			if(vars.includes('yearEnd')) {
+				$('.inputSchoolPayment' + pk + 'YearEnd').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'YearEnd').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'YearEnd'));
+			}
+			var val = o['seasonStartDate'];
+			if(val != null) {
+				var t = moment(val, 'YYYY-MM-DD');
+				if(t)
+					val = t.format('MM/DD/YYYY');
+			}
+			if(vars.includes('seasonStartDate')) {
+				$('.inputSchoolPayment' + pk + 'SeasonStartDate').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'SeasonStartDate').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'SeasonStartDate'));
+			}
+			var val = o['yearEnrollmentFee'];
+			if(vars.includes('yearEnrollmentFee')) {
+				$('.inputSchoolPayment' + pk + 'YearEnrollmentFee').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'YearEnrollmentFee').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'YearEnrollmentFee'));
+			}
+			var val = o['sessionStartDate'];
+			if(val != null) {
+				var t = moment(val, 'YYYY-MM-DD');
+				if(t)
+					val = t.format('MM/DD/YYYY');
+			}
+			if(vars.includes('sessionStartDate')) {
+				$('.inputSchoolPayment' + pk + 'SessionStartDate').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'SessionStartDate').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'SessionStartDate'));
+			}
+			var val = o['sessionEndDate'];
+			if(val != null) {
+				var t = moment(val, 'YYYY-MM-DD');
+				if(t)
+					val = t.format('MM/DD/YYYY');
+			}
+			if(vars.includes('sessionEndDate')) {
+				$('.inputSchoolPayment' + pk + 'SessionEndDate').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'SessionEndDate').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'SessionEndDate'));
+			}
+			var val = o['ageStart'];
+			if(vars.includes('ageStart')) {
+				$('.inputSchoolPayment' + pk + 'AgeStart').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'AgeStart').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'AgeStart'));
+			}
+			var val = o['ageEnd'];
+			if(vars.includes('ageEnd')) {
+				$('.inputSchoolPayment' + pk + 'AgeEnd').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'AgeEnd').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'AgeEnd'));
+			}
+			var val = o['blockStartTime'];
+			if(val != null) {
+				var t = moment(val, 'HH:mm');
+				if(t)
+					val = t.format('h:mm a');
+			}
+			if(vars.includes('blockStartTime')) {
+				$('.inputSchoolPayment' + pk + 'BlockStartTime').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'BlockStartTime').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'BlockStartTime'));
+			}
+			var val = o['blockEndTime'];
+			if(val != null) {
+				var t = moment(val, 'HH:mm');
+				if(t)
+					val = t.format('h:mm a');
+			}
+			if(vars.includes('blockEndTime')) {
+				$('.inputSchoolPayment' + pk + 'BlockEndTime').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'BlockEndTime').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'BlockEndTime'));
+			}
+			var val = o['blockPricePerMonth'];
+			if(vars.includes('blockPricePerMonth')) {
+				$('.inputSchoolPayment' + pk + 'BlockPricePerMonth').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'BlockPricePerMonth').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'BlockPricePerMonth'));
+			}
+			var val = o['blockTotalPrice'];
+			if(vars.includes('blockTotalPrice')) {
+				$('.inputSchoolPayment' + pk + 'BlockTotalPrice').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'BlockTotalPrice').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'BlockTotalPrice'));
+			}
+			var val = o['paymentYear'];
+			if(vars.includes('paymentYear')) {
+				$('.inputSchoolPayment' + pk + 'PaymentYear').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'PaymentYear').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'PaymentYear'));
+			}
+			var val = o['paymentType'];
+			if(vars.includes('paymentType')) {
+				$('.inputSchoolPayment' + pk + 'PaymentType').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'PaymentType').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'PaymentType'));
+			}
+			var val = o['paymentNext'];
+			if(val != null) {
+				var t = moment(val, 'YYYY-MM-DD');
+				if(t)
+					val = t.format('MM/DD/YYYY');
+			}
+			if(vars.includes('paymentNext')) {
+				$('.inputSchoolPayment' + pk + 'PaymentNext').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'PaymentNext').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'PaymentNext'));
+			}
 			var val = o['chargeAmountDue'];
 			if(vars.includes('chargeAmountDue')) {
 				$('.inputSchoolPayment' + pk + 'ChargeAmountDue').each(function() {
@@ -2280,6 +2916,30 @@ async function websocketSchoolPaymentInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'ChargeAmountDue'));
+			}
+			var val = o['chargeAmountPassed'];
+			if(vars.includes('chargeAmountPassed')) {
+				$('.inputSchoolPayment' + pk + 'ChargeAmountPassed').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'ChargeAmountPassed').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'ChargeAmountPassed'));
+			}
+			var val = o['chargeAmountNotPassed'];
+			if(vars.includes('chargeAmountNotPassed')) {
+				$('.inputSchoolPayment' + pk + 'ChargeAmountNotPassed').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'ChargeAmountNotPassed').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'ChargeAmountNotPassed'));
 			}
 			var val = o['chargeAmountFuture'];
 			if(vars.includes('chargeAmountFuture')) {
@@ -2304,6 +2964,18 @@ async function websocketSchoolPaymentInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputSchoolPayment' + pk + 'PaymentShortName'));
+			}
+			var val = o['paymentCompleteName'];
+			if(vars.includes('paymentCompleteName')) {
+				$('.inputSchoolPayment' + pk + 'PaymentCompleteName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolPayment' + pk + 'PaymentCompleteName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolPayment' + pk + 'PaymentCompleteName'));
 			}
 		});
 	}

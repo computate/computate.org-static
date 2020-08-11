@@ -1161,6 +1161,18 @@ async function websocketSchoolYearInner(apiRequest) {
 	if(pk != null) {
 		searchSchoolYearVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
+			var val = o['pk'];
+			if(vars.includes('pk')) {
+				$('.inputSchoolYear' + pk + 'Pk').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolYear' + pk + 'Pk').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolYear' + pk + 'Pk'));
+			}
 			var val = o['created'];
 			if(vars.includes('created')) {
 				$('.inputSchoolYear' + pk + 'Created').each(function() {
@@ -1184,6 +1196,18 @@ async function websocketSchoolYearInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputSchoolYear' + pk + 'Modified'));
+			}
+			var val = o['objectId'];
+			if(vars.includes('objectId')) {
+				$('.inputSchoolYear' + pk + 'ObjectId').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolYear' + pk + 'ObjectId').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolYear' + pk + 'ObjectId'));
 			}
 			var val = o['archived'];
 			if(vars.includes('archived')) {
@@ -1291,6 +1315,54 @@ async function websocketSchoolYearInner(apiRequest) {
 				});
 				addGlow($('.inputSchoolYear' + pk + 'InheritPk'));
 			}
+			var val = o['id'];
+			if(vars.includes('id')) {
+				$('.inputSchoolYear' + pk + 'Id').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolYear' + pk + 'Id').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolYear' + pk + 'Id'));
+			}
+			var val = o['classCanonicalName'];
+			if(vars.includes('classCanonicalName')) {
+				$('.inputSchoolYear' + pk + 'ClassCanonicalName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolYear' + pk + 'ClassCanonicalName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolYear' + pk + 'ClassCanonicalName'));
+			}
+			var val = o['classSimpleName'];
+			if(vars.includes('classSimpleName')) {
+				$('.inputSchoolYear' + pk + 'ClassSimpleName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolYear' + pk + 'ClassSimpleName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolYear' + pk + 'ClassSimpleName'));
+			}
+			var val = o['classCanonicalNames'];
+			if(vars.includes('classCanonicalNames')) {
+				$('.inputSchoolYear' + pk + 'ClassCanonicalNames').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolYear' + pk + 'ClassCanonicalNames').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolYear' + pk + 'ClassCanonicalNames'));
+			}
 			var val = o['sessionId'];
 			if(vars.includes('sessionId')) {
 				$('.inputSchoolYear' + pk + 'SessionId').each(function() {
@@ -1327,6 +1399,114 @@ async function websocketSchoolYearInner(apiRequest) {
 				});
 				addGlow($('.inputSchoolYear' + pk + 'UserKey'));
 			}
+			var val = o['saves'];
+			if(vars.includes('saves')) {
+				$('.inputSchoolYear' + pk + 'Saves').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolYear' + pk + 'Saves').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolYear' + pk + 'Saves'));
+			}
+			var val = o['objectTitle'];
+			if(vars.includes('objectTitle')) {
+				$('.inputSchoolYear' + pk + 'ObjectTitle').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolYear' + pk + 'ObjectTitle').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolYear' + pk + 'ObjectTitle'));
+			}
+			var val = o['objectSuggest'];
+			if(vars.includes('objectSuggest')) {
+				$('.inputSchoolYear' + pk + 'ObjectSuggest').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolYear' + pk + 'ObjectSuggest').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolYear' + pk + 'ObjectSuggest'));
+			}
+			var val = o['objectText'];
+			if(vars.includes('objectText')) {
+				$('.inputSchoolYear' + pk + 'ObjectText').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolYear' + pk + 'ObjectText').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolYear' + pk + 'ObjectText'));
+			}
+			var val = o['pageUrlId'];
+			if(vars.includes('pageUrlId')) {
+				$('.inputSchoolYear' + pk + 'PageUrlId').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolYear' + pk + 'PageUrlId').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolYear' + pk + 'PageUrlId'));
+			}
+			var val = o['pageUrlPk'];
+			if(vars.includes('pageUrlPk')) {
+				$('.inputSchoolYear' + pk + 'PageUrlPk').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolYear' + pk + 'PageUrlPk').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolYear' + pk + 'PageUrlPk'));
+			}
+			var val = o['pageUrlApi'];
+			if(vars.includes('pageUrlApi')) {
+				$('.inputSchoolYear' + pk + 'PageUrlApi').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolYear' + pk + 'PageUrlApi').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolYear' + pk + 'PageUrlApi'));
+			}
+			var val = o['yearKey'];
+			if(vars.includes('yearKey')) {
+				$('.inputSchoolYear' + pk + 'YearKey').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolYear' + pk + 'YearKey').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolYear' + pk + 'YearKey'));
+			}
+			var val = o['enrollmentKeys'];
+			if(vars.includes('enrollmentKeys')) {
+				$('.inputSchoolYear' + pk + 'EnrollmentKeys').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolYear' + pk + 'EnrollmentKeys').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolYear' + pk + 'EnrollmentKeys'));
+			}
 			var val = o['seasonKeys'];
 			if(vars.includes('seasonKeys')) {
 				$('.inputSchoolYear' + pk + 'SeasonKeys').each(function() {
@@ -1338,6 +1518,150 @@ async function websocketSchoolYearInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputSchoolYear' + pk + 'SeasonKeys'));
+			}
+			var val = o['educationSort'];
+			if(vars.includes('educationSort')) {
+				$('.inputSchoolYear' + pk + 'EducationSort').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolYear' + pk + 'EducationSort').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolYear' + pk + 'EducationSort'));
+			}
+			var val = o['schoolSort'];
+			if(vars.includes('schoolSort')) {
+				$('.inputSchoolYear' + pk + 'SchoolSort').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolYear' + pk + 'SchoolSort').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolYear' + pk + 'SchoolSort'));
+			}
+			var val = o['yearSort'];
+			if(vars.includes('yearSort')) {
+				$('.inputSchoolYear' + pk + 'YearSort').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolYear' + pk + 'YearSort').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolYear' + pk + 'YearSort'));
+			}
+			var val = o['schoolName'];
+			if(vars.includes('schoolName')) {
+				$('.inputSchoolYear' + pk + 'SchoolName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolYear' + pk + 'SchoolName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolYear' + pk + 'SchoolName'));
+			}
+			var val = o['schoolCompleteName'];
+			if(vars.includes('schoolCompleteName')) {
+				$('.inputSchoolYear' + pk + 'SchoolCompleteName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolYear' + pk + 'SchoolCompleteName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolYear' + pk + 'SchoolCompleteName'));
+			}
+			var val = o['schoolLocation'];
+			if(vars.includes('schoolLocation')) {
+				$('.inputSchoolYear' + pk + 'SchoolLocation').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolYear' + pk + 'SchoolLocation').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolYear' + pk + 'SchoolLocation'));
+			}
+			var val = o['schoolAddress'];
+			if(vars.includes('schoolAddress')) {
+				$('.inputSchoolYear' + pk + 'SchoolAddress').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolYear' + pk + 'SchoolAddress').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolYear' + pk + 'SchoolAddress'));
+			}
+			var val = o['schoolPhoneNumber'];
+			if(vars.includes('schoolPhoneNumber')) {
+				$('.inputSchoolYear' + pk + 'SchoolPhoneNumber').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolYear' + pk + 'SchoolPhoneNumber').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolYear' + pk + 'SchoolPhoneNumber'));
+			}
+			var val = o['schoolForm'];
+			if(vars.includes('schoolForm')) {
+				$('.inputSchoolYear' + pk + 'SchoolForm').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolYear' + pk + 'SchoolForm').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolYear' + pk + 'SchoolForm'));
+			}
+			var val = o['schoolNumber'];
+			if(vars.includes('schoolNumber')) {
+				$('.inputSchoolYear' + pk + 'SchoolNumber').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolYear' + pk + 'SchoolNumber').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolYear' + pk + 'SchoolNumber'));
+			}
+			var val = o['schoolAdministratorName'];
+			if(vars.includes('schoolAdministratorName')) {
+				$('.inputSchoolYear' + pk + 'SchoolAdministratorName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolYear' + pk + 'SchoolAdministratorName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolYear' + pk + 'SchoolAdministratorName'));
+			}
+			var val = o['enrollmentFormKey'];
+			if(vars.includes('enrollmentFormKey')) {
+				$('.inputSchoolYear' + pk + 'EnrollmentFormKey').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolYear' + pk + 'EnrollmentFormKey').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolYear' + pk + 'EnrollmentFormKey'));
 			}
 			var val = o['seasonStartDate'];
 			if(val != null) {
@@ -1379,6 +1703,30 @@ async function websocketSchoolYearInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputSchoolYear' + pk + 'YearEnd'));
+			}
+			var val = o['yearShortName'];
+			if(vars.includes('yearShortName')) {
+				$('.inputSchoolYear' + pk + 'YearShortName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolYear' + pk + 'YearShortName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolYear' + pk + 'YearShortName'));
+			}
+			var val = o['yearCompleteName'];
+			if(vars.includes('yearCompleteName')) {
+				$('.inputSchoolYear' + pk + 'YearCompleteName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolYear' + pk + 'YearCompleteName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolYear' + pk + 'YearCompleteName'));
 			}
 		});
 	}

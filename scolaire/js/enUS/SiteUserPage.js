@@ -949,6 +949,18 @@ async function websocketSiteUserInner(apiRequest) {
 	if(pk != null) {
 		searchSiteUserVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
+			var val = o['pk'];
+			if(vars.includes('pk')) {
+				$('.inputSiteUser' + pk + 'Pk').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSiteUser' + pk + 'Pk').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSiteUser' + pk + 'Pk'));
+			}
 			var val = o['created'];
 			if(vars.includes('created')) {
 				$('.inputSiteUser' + pk + 'Created').each(function() {
@@ -972,6 +984,18 @@ async function websocketSiteUserInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputSiteUser' + pk + 'Modified'));
+			}
+			var val = o['objectId'];
+			if(vars.includes('objectId')) {
+				$('.inputSiteUser' + pk + 'ObjectId').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSiteUser' + pk + 'ObjectId').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSiteUser' + pk + 'ObjectId'));
 			}
 			var val = o['archived'];
 			if(vars.includes('archived')) {
@@ -1093,6 +1117,54 @@ async function websocketSiteUserInner(apiRequest) {
 				});
 				addGlow($('.inputSiteUser' + pk + 'InheritPk'));
 			}
+			var val = o['id'];
+			if(vars.includes('id')) {
+				$('.inputSiteUser' + pk + 'Id').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSiteUser' + pk + 'Id').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSiteUser' + pk + 'Id'));
+			}
+			var val = o['classCanonicalName'];
+			if(vars.includes('classCanonicalName')) {
+				$('.inputSiteUser' + pk + 'ClassCanonicalName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSiteUser' + pk + 'ClassCanonicalName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSiteUser' + pk + 'ClassCanonicalName'));
+			}
+			var val = o['classSimpleName'];
+			if(vars.includes('classSimpleName')) {
+				$('.inputSiteUser' + pk + 'ClassSimpleName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSiteUser' + pk + 'ClassSimpleName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSiteUser' + pk + 'ClassSimpleName'));
+			}
+			var val = o['classCanonicalNames'];
+			if(vars.includes('classCanonicalNames')) {
+				$('.inputSiteUser' + pk + 'ClassCanonicalNames').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSiteUser' + pk + 'ClassCanonicalNames').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSiteUser' + pk + 'ClassCanonicalNames'));
+			}
 			var val = o['sessionId'];
 			if(vars.includes('sessionId')) {
 				$('.inputSiteUser' + pk + 'SessionId').each(function() {
@@ -1129,6 +1201,102 @@ async function websocketSiteUserInner(apiRequest) {
 				});
 				addGlow($('.inputSiteUser' + pk + 'UserKey'));
 			}
+			var val = o['saves'];
+			if(vars.includes('saves')) {
+				$('.inputSiteUser' + pk + 'Saves').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSiteUser' + pk + 'Saves').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSiteUser' + pk + 'Saves'));
+			}
+			var val = o['objectTitle'];
+			if(vars.includes('objectTitle')) {
+				$('.inputSiteUser' + pk + 'ObjectTitle').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSiteUser' + pk + 'ObjectTitle').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSiteUser' + pk + 'ObjectTitle'));
+			}
+			var val = o['objectSuggest'];
+			if(vars.includes('objectSuggest')) {
+				$('.inputSiteUser' + pk + 'ObjectSuggest').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSiteUser' + pk + 'ObjectSuggest').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSiteUser' + pk + 'ObjectSuggest'));
+			}
+			var val = o['objectText'];
+			if(vars.includes('objectText')) {
+				$('.inputSiteUser' + pk + 'ObjectText').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSiteUser' + pk + 'ObjectText').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSiteUser' + pk + 'ObjectText'));
+			}
+			var val = o['pageUrlId'];
+			if(vars.includes('pageUrlId')) {
+				$('.inputSiteUser' + pk + 'PageUrlId').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSiteUser' + pk + 'PageUrlId').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSiteUser' + pk + 'PageUrlId'));
+			}
+			var val = o['pageUrlPk'];
+			if(vars.includes('pageUrlPk')) {
+				$('.inputSiteUser' + pk + 'PageUrlPk').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSiteUser' + pk + 'PageUrlPk').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSiteUser' + pk + 'PageUrlPk'));
+			}
+			var val = o['pageUrlApi'];
+			if(vars.includes('pageUrlApi')) {
+				$('.inputSiteUser' + pk + 'PageUrlApi').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSiteUser' + pk + 'PageUrlApi').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSiteUser' + pk + 'PageUrlApi'));
+			}
+			var val = o['userKeys'];
+			if(vars.includes('userKeys')) {
+				$('.inputSiteUser' + pk + 'UserKeys').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSiteUser' + pk + 'UserKeys').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSiteUser' + pk + 'UserKeys'));
+			}
 			var val = o['userName'];
 			if(vars.includes('userName')) {
 				$('.inputSiteUser' + pk + 'UserName').each(function() {
@@ -1152,6 +1320,54 @@ async function websocketSiteUserInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputSiteUser' + pk + 'UserEmail'));
+			}
+			var val = o['userFirstName'];
+			if(vars.includes('userFirstName')) {
+				$('.inputSiteUser' + pk + 'UserFirstName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSiteUser' + pk + 'UserFirstName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSiteUser' + pk + 'UserFirstName'));
+			}
+			var val = o['userLastName'];
+			if(vars.includes('userLastName')) {
+				$('.inputSiteUser' + pk + 'UserLastName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSiteUser' + pk + 'UserLastName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSiteUser' + pk + 'UserLastName'));
+			}
+			var val = o['userFullName'];
+			if(vars.includes('userFullName')) {
+				$('.inputSiteUser' + pk + 'UserFullName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSiteUser' + pk + 'UserFullName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSiteUser' + pk + 'UserFullName'));
+			}
+			var val = o['userSite'];
+			if(vars.includes('userSite')) {
+				$('.inputSiteUser' + pk + 'UserSite').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSiteUser' + pk + 'UserSite').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSiteUser' + pk + 'UserSite'));
 			}
 		});
 	}

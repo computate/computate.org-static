@@ -949,6 +949,18 @@ async function websocketUtilisateurSiteInner(requeteApi) {
 	if(pk != null) {
 		rechercherUtilisateurSiteVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
+			var val = o['pk'];
+			if(vars.includes('pk')) {
+				$('.inputUtilisateurSite' + pk + 'Pk').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varUtilisateurSite' + pk + 'Pk').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputUtilisateurSite' + pk + 'Pk'));
+			}
 			var val = o['cree'];
 			if(vars.includes('cree')) {
 				$('.inputUtilisateurSite' + pk + 'Cree').each(function() {
@@ -972,6 +984,18 @@ async function websocketUtilisateurSiteInner(requeteApi) {
 						$(this).text(val);
 				});
 				ajouterLueur($('.inputUtilisateurSite' + pk + 'Modifie'));
+			}
+			var val = o['objetId'];
+			if(vars.includes('objetId')) {
+				$('.inputUtilisateurSite' + pk + 'ObjetId').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varUtilisateurSite' + pk + 'ObjetId').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputUtilisateurSite' + pk + 'ObjetId'));
 			}
 			var val = o['archive'];
 			if(vars.includes('archive')) {
@@ -1093,6 +1117,54 @@ async function websocketUtilisateurSiteInner(requeteApi) {
 				});
 				ajouterLueur($('.inputUtilisateurSite' + pk + 'InheritPk'));
 			}
+			var val = o['id'];
+			if(vars.includes('id')) {
+				$('.inputUtilisateurSite' + pk + 'Id').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varUtilisateurSite' + pk + 'Id').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputUtilisateurSite' + pk + 'Id'));
+			}
+			var val = o['classeNomCanonique'];
+			if(vars.includes('classeNomCanonique')) {
+				$('.inputUtilisateurSite' + pk + 'ClasseNomCanonique').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varUtilisateurSite' + pk + 'ClasseNomCanonique').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputUtilisateurSite' + pk + 'ClasseNomCanonique'));
+			}
+			var val = o['classeNomSimple'];
+			if(vars.includes('classeNomSimple')) {
+				$('.inputUtilisateurSite' + pk + 'ClasseNomSimple').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varUtilisateurSite' + pk + 'ClasseNomSimple').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputUtilisateurSite' + pk + 'ClasseNomSimple'));
+			}
+			var val = o['classeNomsCanoniques'];
+			if(vars.includes('classeNomsCanoniques')) {
+				$('.inputUtilisateurSite' + pk + 'ClasseNomsCanoniques').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varUtilisateurSite' + pk + 'ClasseNomsCanoniques').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputUtilisateurSite' + pk + 'ClasseNomsCanoniques'));
+			}
 			var val = o['sessionId'];
 			if(vars.includes('sessionId')) {
 				$('.inputUtilisateurSite' + pk + 'SessionId').each(function() {
@@ -1129,6 +1201,102 @@ async function websocketUtilisateurSiteInner(requeteApi) {
 				});
 				ajouterLueur($('.inputUtilisateurSite' + pk + 'UtilisateurCle'));
 			}
+			var val = o['sauvegardes'];
+			if(vars.includes('sauvegardes')) {
+				$('.inputUtilisateurSite' + pk + 'Sauvegardes').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varUtilisateurSite' + pk + 'Sauvegardes').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputUtilisateurSite' + pk + 'Sauvegardes'));
+			}
+			var val = o['objetTitre'];
+			if(vars.includes('objetTitre')) {
+				$('.inputUtilisateurSite' + pk + 'ObjetTitre').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varUtilisateurSite' + pk + 'ObjetTitre').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputUtilisateurSite' + pk + 'ObjetTitre'));
+			}
+			var val = o['objetSuggere'];
+			if(vars.includes('objetSuggere')) {
+				$('.inputUtilisateurSite' + pk + 'ObjetSuggere').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varUtilisateurSite' + pk + 'ObjetSuggere').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputUtilisateurSite' + pk + 'ObjetSuggere'));
+			}
+			var val = o['objetTexte'];
+			if(vars.includes('objetTexte')) {
+				$('.inputUtilisateurSite' + pk + 'ObjetTexte').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varUtilisateurSite' + pk + 'ObjetTexte').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputUtilisateurSite' + pk + 'ObjetTexte'));
+			}
+			var val = o['pageUrlId'];
+			if(vars.includes('pageUrlId')) {
+				$('.inputUtilisateurSite' + pk + 'PageUrlId').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varUtilisateurSite' + pk + 'PageUrlId').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputUtilisateurSite' + pk + 'PageUrlId'));
+			}
+			var val = o['pageUrlPk'];
+			if(vars.includes('pageUrlPk')) {
+				$('.inputUtilisateurSite' + pk + 'PageUrlPk').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varUtilisateurSite' + pk + 'PageUrlPk').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputUtilisateurSite' + pk + 'PageUrlPk'));
+			}
+			var val = o['pageUrlApi'];
+			if(vars.includes('pageUrlApi')) {
+				$('.inputUtilisateurSite' + pk + 'PageUrlApi').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varUtilisateurSite' + pk + 'PageUrlApi').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputUtilisateurSite' + pk + 'PageUrlApi'));
+			}
+			var val = o['utilisateurCles'];
+			if(vars.includes('utilisateurCles')) {
+				$('.inputUtilisateurSite' + pk + 'UtilisateurCles').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varUtilisateurSite' + pk + 'UtilisateurCles').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputUtilisateurSite' + pk + 'UtilisateurCles'));
+			}
 			var val = o['utilisateurNom'];
 			if(vars.includes('utilisateurNom')) {
 				$('.inputUtilisateurSite' + pk + 'UtilisateurNom').each(function() {
@@ -1152,6 +1320,54 @@ async function websocketUtilisateurSiteInner(requeteApi) {
 						$(this).text(val);
 				});
 				ajouterLueur($('.inputUtilisateurSite' + pk + 'UtilisateurMail'));
+			}
+			var val = o['utilisateurPrenom'];
+			if(vars.includes('utilisateurPrenom')) {
+				$('.inputUtilisateurSite' + pk + 'UtilisateurPrenom').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varUtilisateurSite' + pk + 'UtilisateurPrenom').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputUtilisateurSite' + pk + 'UtilisateurPrenom'));
+			}
+			var val = o['utilisateurNomFamille'];
+			if(vars.includes('utilisateurNomFamille')) {
+				$('.inputUtilisateurSite' + pk + 'UtilisateurNomFamille').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varUtilisateurSite' + pk + 'UtilisateurNomFamille').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputUtilisateurSite' + pk + 'UtilisateurNomFamille'));
+			}
+			var val = o['utilisateurNomComplet'];
+			if(vars.includes('utilisateurNomComplet')) {
+				$('.inputUtilisateurSite' + pk + 'UtilisateurNomComplet').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varUtilisateurSite' + pk + 'UtilisateurNomComplet').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputUtilisateurSite' + pk + 'UtilisateurNomComplet'));
+			}
+			var val = o['utilisateurSite'];
+			if(vars.includes('utilisateurSite')) {
+				$('.inputUtilisateurSite' + pk + 'UtilisateurSite').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varUtilisateurSite' + pk + 'UtilisateurSite').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputUtilisateurSite' + pk + 'UtilisateurSite'));
 			}
 		});
 	}

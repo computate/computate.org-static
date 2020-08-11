@@ -1472,6 +1472,18 @@ async function websocketGardienScolaireInner(requeteApi) {
 	if(pk != null) {
 		rechercherGardienScolaireVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
+			var val = o['pk'];
+			if(vars.includes('pk')) {
+				$('.inputGardienScolaire' + pk + 'Pk').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varGardienScolaire' + pk + 'Pk').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputGardienScolaire' + pk + 'Pk'));
+			}
 			var val = o['cree'];
 			if(vars.includes('cree')) {
 				$('.inputGardienScolaire' + pk + 'Cree').each(function() {
@@ -1495,6 +1507,18 @@ async function websocketGardienScolaireInner(requeteApi) {
 						$(this).text(val);
 				});
 				ajouterLueur($('.inputGardienScolaire' + pk + 'Modifie'));
+			}
+			var val = o['objetId'];
+			if(vars.includes('objetId')) {
+				$('.inputGardienScolaire' + pk + 'ObjetId').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varGardienScolaire' + pk + 'ObjetId').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputGardienScolaire' + pk + 'ObjetId'));
 			}
 			var val = o['archive'];
 			if(vars.includes('archive')) {
@@ -1646,6 +1670,54 @@ async function websocketGardienScolaireInner(requeteApi) {
 				});
 				ajouterLueur($('.inputGardienScolaire' + pk + 'InheritPk'));
 			}
+			var val = o['id'];
+			if(vars.includes('id')) {
+				$('.inputGardienScolaire' + pk + 'Id').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varGardienScolaire' + pk + 'Id').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputGardienScolaire' + pk + 'Id'));
+			}
+			var val = o['classeNomCanonique'];
+			if(vars.includes('classeNomCanonique')) {
+				$('.inputGardienScolaire' + pk + 'ClasseNomCanonique').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varGardienScolaire' + pk + 'ClasseNomCanonique').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputGardienScolaire' + pk + 'ClasseNomCanonique'));
+			}
+			var val = o['classeNomSimple'];
+			if(vars.includes('classeNomSimple')) {
+				$('.inputGardienScolaire' + pk + 'ClasseNomSimple').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varGardienScolaire' + pk + 'ClasseNomSimple').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputGardienScolaire' + pk + 'ClasseNomSimple'));
+			}
+			var val = o['classeNomsCanoniques'];
+			if(vars.includes('classeNomsCanoniques')) {
+				$('.inputGardienScolaire' + pk + 'ClasseNomsCanoniques').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varGardienScolaire' + pk + 'ClasseNomsCanoniques').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputGardienScolaire' + pk + 'ClasseNomsCanoniques'));
+			}
 			var val = o['sessionId'];
 			if(vars.includes('sessionId')) {
 				$('.inputGardienScolaire' + pk + 'SessionId').each(function() {
@@ -1681,6 +1753,294 @@ async function websocketGardienScolaireInner(requeteApi) {
 						$(this).text(val);
 				});
 				ajouterLueur($('.inputGardienScolaire' + pk + 'UtilisateurCle'));
+			}
+			var val = o['sauvegardes'];
+			if(vars.includes('sauvegardes')) {
+				$('.inputGardienScolaire' + pk + 'Sauvegardes').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varGardienScolaire' + pk + 'Sauvegardes').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputGardienScolaire' + pk + 'Sauvegardes'));
+			}
+			var val = o['objetTitre'];
+			if(vars.includes('objetTitre')) {
+				$('.inputGardienScolaire' + pk + 'ObjetTitre').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varGardienScolaire' + pk + 'ObjetTitre').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputGardienScolaire' + pk + 'ObjetTitre'));
+			}
+			var val = o['objetSuggere'];
+			if(vars.includes('objetSuggere')) {
+				$('.inputGardienScolaire' + pk + 'ObjetSuggere').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varGardienScolaire' + pk + 'ObjetSuggere').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputGardienScolaire' + pk + 'ObjetSuggere'));
+			}
+			var val = o['objetTexte'];
+			if(vars.includes('objetTexte')) {
+				$('.inputGardienScolaire' + pk + 'ObjetTexte').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varGardienScolaire' + pk + 'ObjetTexte').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputGardienScolaire' + pk + 'ObjetTexte'));
+			}
+			var val = o['pageUrlId'];
+			if(vars.includes('pageUrlId')) {
+				$('.inputGardienScolaire' + pk + 'PageUrlId').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varGardienScolaire' + pk + 'PageUrlId').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputGardienScolaire' + pk + 'PageUrlId'));
+			}
+			var val = o['pageUrlPk'];
+			if(vars.includes('pageUrlPk')) {
+				$('.inputGardienScolaire' + pk + 'PageUrlPk').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varGardienScolaire' + pk + 'PageUrlPk').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputGardienScolaire' + pk + 'PageUrlPk'));
+			}
+			var val = o['pageUrlApi'];
+			if(vars.includes('pageUrlApi')) {
+				$('.inputGardienScolaire' + pk + 'PageUrlApi').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varGardienScolaire' + pk + 'PageUrlApi').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputGardienScolaire' + pk + 'PageUrlApi'));
+			}
+			var val = o['gardienCle'];
+			if(vars.includes('gardienCle')) {
+				$('.inputGardienScolaire' + pk + 'GardienCle').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varGardienScolaire' + pk + 'GardienCle').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputGardienScolaire' + pk + 'GardienCle'));
+			}
+			var val = o['familleTri'];
+			if(vars.includes('familleTri')) {
+				$('.inputGardienScolaire' + pk + 'FamilleTri').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varGardienScolaire' + pk + 'FamilleTri').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputGardienScolaire' + pk + 'FamilleTri'));
+			}
+			var val = o['gardienTri'];
+			if(vars.includes('gardienTri')) {
+				$('.inputGardienScolaire' + pk + 'GardienTri').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varGardienScolaire' + pk + 'GardienTri').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputGardienScolaire' + pk + 'GardienTri'));
+			}
+			var val = o['utilisateurCles'];
+			if(vars.includes('utilisateurCles')) {
+				$('.inputGardienScolaire' + pk + 'UtilisateurCles').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varGardienScolaire' + pk + 'UtilisateurCles').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputGardienScolaire' + pk + 'UtilisateurCles'));
+			}
+			var val = o['ecoleCles'];
+			if(vars.includes('ecoleCles')) {
+				$('.inputGardienScolaire' + pk + 'EcoleCles').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varGardienScolaire' + pk + 'EcoleCles').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputGardienScolaire' + pk + 'EcoleCles'));
+			}
+			var val = o['anneeCles'];
+			if(vars.includes('anneeCles')) {
+				$('.inputGardienScolaire' + pk + 'AnneeCles').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varGardienScolaire' + pk + 'AnneeCles').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputGardienScolaire' + pk + 'AnneeCles'));
+			}
+			var val = o['saisonCles'];
+			if(vars.includes('saisonCles')) {
+				$('.inputGardienScolaire' + pk + 'SaisonCles').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varGardienScolaire' + pk + 'SaisonCles').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputGardienScolaire' + pk + 'SaisonCles'));
+			}
+			var val = o['sessionCles'];
+			if(vars.includes('sessionCles')) {
+				$('.inputGardienScolaire' + pk + 'SessionCles').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varGardienScolaire' + pk + 'SessionCles').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputGardienScolaire' + pk + 'SessionCles'));
+			}
+			var val = o['ageCles'];
+			if(vars.includes('ageCles')) {
+				$('.inputGardienScolaire' + pk + 'AgeCles').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varGardienScolaire' + pk + 'AgeCles').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputGardienScolaire' + pk + 'AgeCles'));
+			}
+			var val = o['personneNomComplet'];
+			if(vars.includes('personneNomComplet')) {
+				$('.inputGardienScolaire' + pk + 'PersonneNomComplet').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varGardienScolaire' + pk + 'PersonneNomComplet').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputGardienScolaire' + pk + 'PersonneNomComplet'));
+			}
+			var val = o['personneNomCompletPrefere'];
+			if(vars.includes('personneNomCompletPrefere')) {
+				$('.inputGardienScolaire' + pk + 'PersonneNomCompletPrefere').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varGardienScolaire' + pk + 'PersonneNomCompletPrefere').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputGardienScolaire' + pk + 'PersonneNomCompletPrefere'));
+			}
+			var val = o['personneNomFormel'];
+			if(vars.includes('personneNomFormel')) {
+				$('.inputGardienScolaire' + pk + 'PersonneNomFormel').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varGardienScolaire' + pk + 'PersonneNomFormel').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputGardienScolaire' + pk + 'PersonneNomFormel'));
+			}
+			var val = o['personneOccupation'];
+			if(vars.includes('personneOccupation')) {
+				$('.inputGardienScolaire' + pk + 'PersonneOccupation').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varGardienScolaire' + pk + 'PersonneOccupation').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputGardienScolaire' + pk + 'PersonneOccupation'));
+			}
+			var val = o['personneMail'];
+			if(vars.includes('personneMail')) {
+				$('.inputGardienScolaire' + pk + 'PersonneMail').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varGardienScolaire' + pk + 'PersonneMail').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputGardienScolaire' + pk + 'PersonneMail'));
+			}
+			var val = o['personneSms'];
+			if(vars.includes('personneSms')) {
+				$('.inputGardienScolaire' + pk + 'PersonneSms').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varGardienScolaire' + pk + 'PersonneSms').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputGardienScolaire' + pk + 'PersonneSms'));
+			}
+			var val = o['personneRecevoirMail'];
+			if(vars.includes('personneRecevoirMail')) {
+				$('.inputGardienScolaire' + pk + 'PersonneRecevoirMail').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varGardienScolaire' + pk + 'PersonneRecevoirMail').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputGardienScolaire' + pk + 'PersonneRecevoirMail'));
+			}
+			var val = o['gardienNomComplet'];
+			if(vars.includes('gardienNomComplet')) {
+				$('.inputGardienScolaire' + pk + 'GardienNomComplet').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varGardienScolaire' + pk + 'GardienNomComplet').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputGardienScolaire' + pk + 'GardienNomComplet'));
 			}
 		});
 	}

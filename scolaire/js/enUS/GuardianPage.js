@@ -1472,6 +1472,18 @@ async function websocketSchoolGuardianInner(apiRequest) {
 	if(pk != null) {
 		searchSchoolGuardianVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
+			var val = o['pk'];
+			if(vars.includes('pk')) {
+				$('.inputSchoolGuardian' + pk + 'Pk').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolGuardian' + pk + 'Pk').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolGuardian' + pk + 'Pk'));
+			}
 			var val = o['created'];
 			if(vars.includes('created')) {
 				$('.inputSchoolGuardian' + pk + 'Created').each(function() {
@@ -1495,6 +1507,18 @@ async function websocketSchoolGuardianInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputSchoolGuardian' + pk + 'Modified'));
+			}
+			var val = o['objectId'];
+			if(vars.includes('objectId')) {
+				$('.inputSchoolGuardian' + pk + 'ObjectId').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolGuardian' + pk + 'ObjectId').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolGuardian' + pk + 'ObjectId'));
 			}
 			var val = o['archived'];
 			if(vars.includes('archived')) {
@@ -1646,6 +1670,54 @@ async function websocketSchoolGuardianInner(apiRequest) {
 				});
 				addGlow($('.inputSchoolGuardian' + pk + 'InheritPk'));
 			}
+			var val = o['id'];
+			if(vars.includes('id')) {
+				$('.inputSchoolGuardian' + pk + 'Id').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolGuardian' + pk + 'Id').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolGuardian' + pk + 'Id'));
+			}
+			var val = o['classCanonicalName'];
+			if(vars.includes('classCanonicalName')) {
+				$('.inputSchoolGuardian' + pk + 'ClassCanonicalName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolGuardian' + pk + 'ClassCanonicalName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolGuardian' + pk + 'ClassCanonicalName'));
+			}
+			var val = o['classSimpleName'];
+			if(vars.includes('classSimpleName')) {
+				$('.inputSchoolGuardian' + pk + 'ClassSimpleName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolGuardian' + pk + 'ClassSimpleName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolGuardian' + pk + 'ClassSimpleName'));
+			}
+			var val = o['classCanonicalNames'];
+			if(vars.includes('classCanonicalNames')) {
+				$('.inputSchoolGuardian' + pk + 'ClassCanonicalNames').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolGuardian' + pk + 'ClassCanonicalNames').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolGuardian' + pk + 'ClassCanonicalNames'));
+			}
 			var val = o['sessionId'];
 			if(vars.includes('sessionId')) {
 				$('.inputSchoolGuardian' + pk + 'SessionId').each(function() {
@@ -1681,6 +1753,294 @@ async function websocketSchoolGuardianInner(apiRequest) {
 						$(this).text(val);
 				});
 				addGlow($('.inputSchoolGuardian' + pk + 'UserKey'));
+			}
+			var val = o['saves'];
+			if(vars.includes('saves')) {
+				$('.inputSchoolGuardian' + pk + 'Saves').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolGuardian' + pk + 'Saves').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolGuardian' + pk + 'Saves'));
+			}
+			var val = o['objectTitle'];
+			if(vars.includes('objectTitle')) {
+				$('.inputSchoolGuardian' + pk + 'ObjectTitle').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolGuardian' + pk + 'ObjectTitle').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolGuardian' + pk + 'ObjectTitle'));
+			}
+			var val = o['objectSuggest'];
+			if(vars.includes('objectSuggest')) {
+				$('.inputSchoolGuardian' + pk + 'ObjectSuggest').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolGuardian' + pk + 'ObjectSuggest').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolGuardian' + pk + 'ObjectSuggest'));
+			}
+			var val = o['objectText'];
+			if(vars.includes('objectText')) {
+				$('.inputSchoolGuardian' + pk + 'ObjectText').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolGuardian' + pk + 'ObjectText').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolGuardian' + pk + 'ObjectText'));
+			}
+			var val = o['pageUrlId'];
+			if(vars.includes('pageUrlId')) {
+				$('.inputSchoolGuardian' + pk + 'PageUrlId').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolGuardian' + pk + 'PageUrlId').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolGuardian' + pk + 'PageUrlId'));
+			}
+			var val = o['pageUrlPk'];
+			if(vars.includes('pageUrlPk')) {
+				$('.inputSchoolGuardian' + pk + 'PageUrlPk').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolGuardian' + pk + 'PageUrlPk').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolGuardian' + pk + 'PageUrlPk'));
+			}
+			var val = o['pageUrlApi'];
+			if(vars.includes('pageUrlApi')) {
+				$('.inputSchoolGuardian' + pk + 'PageUrlApi').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolGuardian' + pk + 'PageUrlApi').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolGuardian' + pk + 'PageUrlApi'));
+			}
+			var val = o['guardianKey'];
+			if(vars.includes('guardianKey')) {
+				$('.inputSchoolGuardian' + pk + 'GuardianKey').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolGuardian' + pk + 'GuardianKey').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolGuardian' + pk + 'GuardianKey'));
+			}
+			var val = o['familySort'];
+			if(vars.includes('familySort')) {
+				$('.inputSchoolGuardian' + pk + 'FamilySort').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolGuardian' + pk + 'FamilySort').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolGuardian' + pk + 'FamilySort'));
+			}
+			var val = o['schoolSort'];
+			if(vars.includes('schoolSort')) {
+				$('.inputSchoolGuardian' + pk + 'SchoolSort').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolGuardian' + pk + 'SchoolSort').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolGuardian' + pk + 'SchoolSort'));
+			}
+			var val = o['userKeys'];
+			if(vars.includes('userKeys')) {
+				$('.inputSchoolGuardian' + pk + 'UserKeys').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolGuardian' + pk + 'UserKeys').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolGuardian' + pk + 'UserKeys'));
+			}
+			var val = o['schoolKeys'];
+			if(vars.includes('schoolKeys')) {
+				$('.inputSchoolGuardian' + pk + 'SchoolKeys').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolGuardian' + pk + 'SchoolKeys').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolGuardian' + pk + 'SchoolKeys'));
+			}
+			var val = o['yearKeys'];
+			if(vars.includes('yearKeys')) {
+				$('.inputSchoolGuardian' + pk + 'YearKeys').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolGuardian' + pk + 'YearKeys').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolGuardian' + pk + 'YearKeys'));
+			}
+			var val = o['seasonKeys'];
+			if(vars.includes('seasonKeys')) {
+				$('.inputSchoolGuardian' + pk + 'SeasonKeys').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolGuardian' + pk + 'SeasonKeys').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolGuardian' + pk + 'SeasonKeys'));
+			}
+			var val = o['sessionKeys'];
+			if(vars.includes('sessionKeys')) {
+				$('.inputSchoolGuardian' + pk + 'SessionKeys').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolGuardian' + pk + 'SessionKeys').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolGuardian' + pk + 'SessionKeys'));
+			}
+			var val = o['ageKeys'];
+			if(vars.includes('ageKeys')) {
+				$('.inputSchoolGuardian' + pk + 'AgeKeys').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolGuardian' + pk + 'AgeKeys').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolGuardian' + pk + 'AgeKeys'));
+			}
+			var val = o['personCompleteName'];
+			if(vars.includes('personCompleteName')) {
+				$('.inputSchoolGuardian' + pk + 'PersonCompleteName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolGuardian' + pk + 'PersonCompleteName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolGuardian' + pk + 'PersonCompleteName'));
+			}
+			var val = o['personCompleteNamePreferred'];
+			if(vars.includes('personCompleteNamePreferred')) {
+				$('.inputSchoolGuardian' + pk + 'PersonCompleteNamePreferred').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolGuardian' + pk + 'PersonCompleteNamePreferred').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolGuardian' + pk + 'PersonCompleteNamePreferred'));
+			}
+			var val = o['personFormalName'];
+			if(vars.includes('personFormalName')) {
+				$('.inputSchoolGuardian' + pk + 'PersonFormalName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolGuardian' + pk + 'PersonFormalName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolGuardian' + pk + 'PersonFormalName'));
+			}
+			var val = o['personOccupation'];
+			if(vars.includes('personOccupation')) {
+				$('.inputSchoolGuardian' + pk + 'PersonOccupation').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolGuardian' + pk + 'PersonOccupation').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolGuardian' + pk + 'PersonOccupation'));
+			}
+			var val = o['personEmail'];
+			if(vars.includes('personEmail')) {
+				$('.inputSchoolGuardian' + pk + 'PersonEmail').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolGuardian' + pk + 'PersonEmail').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolGuardian' + pk + 'PersonEmail'));
+			}
+			var val = o['personSms'];
+			if(vars.includes('personSms')) {
+				$('.inputSchoolGuardian' + pk + 'PersonSms').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolGuardian' + pk + 'PersonSms').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolGuardian' + pk + 'PersonSms'));
+			}
+			var val = o['personReceiveEmail'];
+			if(vars.includes('personReceiveEmail')) {
+				$('.inputSchoolGuardian' + pk + 'PersonReceiveEmail').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolGuardian' + pk + 'PersonReceiveEmail').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolGuardian' + pk + 'PersonReceiveEmail'));
+			}
+			var val = o['guardianCompleteName'];
+			if(vars.includes('guardianCompleteName')) {
+				$('.inputSchoolGuardian' + pk + 'GuardianCompleteName').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varSchoolGuardian' + pk + 'GuardianCompleteName').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				addGlow($('.inputSchoolGuardian' + pk + 'GuardianCompleteName'));
 			}
 		});
 	}

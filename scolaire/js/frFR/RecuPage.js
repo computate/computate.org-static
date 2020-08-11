@@ -1,7 +1,7 @@
 
 // POST //
 
-async function postCluster($formulaireValeurs, success, error) {
+async function postRecuScolaire($formulaireValeurs, success, error) {
 	var vals = {};
 	if(success == null) {
 		success = function( data, textStatus, jQxhr ) {
@@ -41,6 +41,22 @@ async function postCluster($formulaireValeurs, success, error) {
 	if(valeurSupprime != null && valeurSupprime !== '')
 		vals['supprime'] = valeurSupprime;
 
+	var valeurPaiementDate = $formulaireValeurs.find('.valeurPaiementDate').val();
+	if(valeurPaiementDate != null && valeurPaiementDate !== '')
+		vals['paiementDate'] = valeurPaiementDate;
+
+	var valeurPaiementMontant = $formulaireValeurs.find('.valeurPaiementMontant').val();
+	if(valeurPaiementMontant != null && valeurPaiementMontant !== '')
+		vals['paiementMontant'] = valeurPaiementMontant;
+
+	var valeurEcoleCle = $formulaireValeurs.find('.valeurEcoleCle').val();
+	if(valeurEcoleCle != null && valeurEcoleCle !== '')
+		vals['ecoleCle'] = valeurEcoleCle;
+
+	var valeurPaiementDescription = $formulaireValeurs.find('.valeurPaiementDescription').val();
+	if(valeurPaiementDescription != null && valeurPaiementDescription !== '')
+		vals['paiementDescription'] = valeurPaiementDescription;
+
 	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
 	if(valeurInheritPk != null && valeurInheritPk !== '')
 		vals['inheritPk'] = valeurInheritPk;
@@ -61,8 +77,12 @@ async function postCluster($formulaireValeurs, success, error) {
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 		vals['objetTitre'] = valeurObjetTitre;
 
+	var valeurPaiementNomCourt = $formulaireValeurs.find('.valeurPaiementNomCourt').val();
+	if(valeurPaiementNomCourt != null && valeurPaiementNomCourt !== '')
+		vals['paiementNomCourt'] = valeurPaiementNomCourt;
+
 	$.ajax({
-		url: '/api/cluster'
+		url: '/api/recu'
 		, dataType: 'json'
 		, type: 'POST'
 		, contentType: 'application/json; charset=utf-8'
@@ -72,9 +92,9 @@ async function postCluster($formulaireValeurs, success, error) {
 	});
 }
 
-function postClusterVals(vals, success, error) {
+function postRecuScolaireVals(vals, success, error) {
 	$.ajax({
-		url: '/api/cluster'
+		url: '/api/recu'
 		, dataType: 'json'
 		, type: 'POST'
 		, contentType: 'application/json; charset=utf-8'
@@ -86,15 +106,15 @@ function postClusterVals(vals, success, error) {
 
 // PUTImport //
 
-async function putimportCluster($formulaireValeurs, pk, success, error) {
+async function putimportRecuScolaire($formulaireValeurs, pk, success, error) {
 	var json = $formulaireValeurs.find('.PUTImport_liste').val();
 	if(json != null && json !== '')
-		putimportClusterVals(JSON.parse(json), success, error);
+		putimportRecuScolaireVals(JSON.parse(json), success, error);
 }
 
-function putimportClusterVals(json, success, error) {
+function putimportRecuScolaireVals(json, success, error) {
 	$.ajax({
-		url: '/api/cluster/import'
+		url: '/api/recu/import'
 		, dataType: 'json'
 		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
@@ -106,15 +126,15 @@ function putimportClusterVals(json, success, error) {
 
 // PUTFusion //
 
-async function putfusionCluster($formulaireValeurs, pk, success, error) {
+async function putfusionRecuScolaire($formulaireValeurs, pk, success, error) {
 	var json = $formulaireValeurs.find('.PUTFusion_liste').val();
 	if(json != null && json !== '')
-		putfusionClusterVals(JSON.parse(json), success, error);
+		putfusionRecuScolaireVals(JSON.parse(json), success, error);
 }
 
-function putfusionClusterVals(json, success, error) {
+function putfusionRecuScolaireVals(json, success, error) {
 	$.ajax({
-		url: '/api/cluster/fusion'
+		url: '/api/recu/fusion'
 		, dataType: 'json'
 		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
@@ -126,7 +146,7 @@ function putfusionClusterVals(json, success, error) {
 
 // PUTCopie //
 
-async function putcopieCluster($formulaireValeurs, pk, success, error) {
+async function putcopieRecuScolaire($formulaireValeurs, pk, success, error) {
 	var vals = {};
 
 	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
@@ -153,6 +173,22 @@ async function putcopieCluster($formulaireValeurs, pk, success, error) {
 	if(valeurSupprime != null && valeurSupprime !== '')
 		vals['supprime'] = valeurSupprime;
 
+	var valeurPaiementDate = $formulaireValeurs.find('.valeurPaiementDate').val();
+	if(valeurPaiementDate != null && valeurPaiementDate !== '')
+		vals['paiementDate'] = valeurPaiementDate;
+
+	var valeurPaiementMontant = $formulaireValeurs.find('.valeurPaiementMontant').val();
+	if(valeurPaiementMontant != null && valeurPaiementMontant !== '')
+		vals['paiementMontant'] = valeurPaiementMontant;
+
+	var valeurEcoleCle = $formulaireValeurs.find('input.valeurEcoleCle:checked').val();
+	if(valeurEcoleCle != null && valeurEcoleCle !== '')
+		vals['ecoleCle'] = valeurEcoleCle;
+
+	var valeurPaiementDescription = $formulaireValeurs.find('.valeurPaiementDescription').val();
+	if(valeurPaiementDescription != null && valeurPaiementDescription !== '')
+		vals['paiementDescription'] = valeurPaiementDescription;
+
 	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
 	if(valeurInheritPk != null && valeurInheritPk !== '')
 		vals['inheritPk'] = valeurInheritPk;
@@ -173,12 +209,16 @@ async function putcopieCluster($formulaireValeurs, pk, success, error) {
 	if(valeurObjetTitre != null && valeurObjetTitre !== '')
 		vals['objetTitre'] = valeurObjetTitre;
 
-	putcopieClusterVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
+	var valeurPaiementNomCourt = $formulaireValeurs.find('.valeurPaiementNomCourt').val();
+	if(valeurPaiementNomCourt != null && valeurPaiementNomCourt !== '')
+		vals['paiementNomCourt'] = valeurPaiementNomCourt;
+
+	putcopieRecuScolaireVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
-function putcopieClusterVals(filtres, vals, success, error) {
+function putcopieRecuScolaireVals(filtres, vals, success, error) {
 	$.ajax({
-		url: '/api/cluster/copie?' + $.param(filtres)
+		url: '/api/recu/copie?' + $.param(filtres)
 		, dataType: 'json'
 		, type: 'PUT'
 		, contentType: 'application/json; charset=utf-8'
@@ -190,8 +230,8 @@ function putcopieClusterVals(filtres, vals, success, error) {
 
 // PATCH //
 
-async function patchCluster($formulaireFiltres, $formulaireValeurs, pk, success, error) {
-	var filtres = patchClusterFiltres($formulaireFiltres);
+async function patchRecuScolaire($formulaireFiltres, $formulaireValeurs, pk, success, error) {
+	var filtres = patchRecuScolaireFiltres($formulaireFiltres);
 
 	var vals = {};
 
@@ -281,6 +321,49 @@ async function patchCluster($formulaireFiltres, $formulaireValeurs, pk, success,
 	if(removeSupprime != null && removeSupprime !== '')
 		vals['removeSupprime'] = removeSupprime;
 
+	var valeurPaiementDate = $formulaireValeurs.find('.valeurPaiementDate').val();
+	if(valeurPaiementDate != null && valeurPaiementDate !== '')
+	var removePaiementDate = $formulaireFiltres.find('.removePaiementDate').val() === 'true';
+	var setPaiementDate = removePaiementDate ? null : $formulaireValeurs.find('.setPaiementDate').val();
+	if(removePaiementDate || setPaiementDate != null && setPaiementDate !== '')
+		vals['setPaiementDate'] = setPaiementDate;
+	var addPaiementDate = $formulaireValeurs.find('.addPaiementDate').val();
+	if(addPaiementDate != null && addPaiementDate !== '')
+		vals['addPaiementDate'] = addPaiementDate;
+	var removePaiementDate = $formulaireValeurs.find('.removePaiementDate').val();
+	if(removePaiementDate != null && removePaiementDate !== '')
+		vals['removePaiementDate'] = removePaiementDate;
+
+	var valeurPaiementMontant = $formulaireValeurs.find('.valeurPaiementMontant').val();
+	if(valeurPaiementMontant != null && valeurPaiementMontant !== '')
+	var removePaiementMontant = $formulaireFiltres.find('.removePaiementMontant').val() === 'true';
+	var setPaiementMontant = removePaiementMontant ? null : $formulaireValeurs.find('.setPaiementMontant').val();
+	if(removePaiementMontant || setPaiementMontant != null && setPaiementMontant !== '')
+		vals['setPaiementMontant'] = setPaiementMontant;
+	var addPaiementMontant = $formulaireValeurs.find('.addPaiementMontant').val();
+	if(addPaiementMontant != null && addPaiementMontant !== '')
+		vals['addPaiementMontant'] = addPaiementMontant;
+	var removePaiementMontant = $formulaireValeurs.find('.removePaiementMontant').val();
+	if(removePaiementMontant != null && removePaiementMontant !== '')
+		vals['removePaiementMontant'] = removePaiementMontant;
+
+	var valeurEcoleCle = $formulaireValeurs.find('input.valeurEcoleCle:checked').val();
+	if(valeurEcoleCle != null && valeurEcoleCle !== '')
+		vals['setEcoleCle'] = valeurEcoleCle;
+
+	var valeurPaiementDescription = $formulaireValeurs.find('.valeurPaiementDescription').val();
+	if(valeurPaiementDescription != null && valeurPaiementDescription !== '')
+	var removePaiementDescription = $formulaireFiltres.find('.removePaiementDescription').val() === 'true';
+	var setPaiementDescription = removePaiementDescription ? null : $formulaireValeurs.find('.setPaiementDescription').val();
+	if(removePaiementDescription || setPaiementDescription != null && setPaiementDescription !== '')
+		vals['setPaiementDescription'] = setPaiementDescription;
+	var addPaiementDescription = $formulaireValeurs.find('.addPaiementDescription').val();
+	if(addPaiementDescription != null && addPaiementDescription !== '')
+		vals['addPaiementDescription'] = addPaiementDescription;
+	var removePaiementDescription = $formulaireValeurs.find('.removePaiementDescription').val();
+	if(removePaiementDescription != null && removePaiementDescription !== '')
+		vals['removePaiementDescription'] = removePaiementDescription;
+
 	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
 	if(valeurInheritPk != null && valeurInheritPk !== '')
 	var removeInheritPk = $formulaireFiltres.find('.removeInheritPk').val() === 'true';
@@ -346,10 +429,23 @@ async function patchCluster($formulaireFiltres, $formulaireValeurs, pk, success,
 	if(removeObjetTitre != null && removeObjetTitre !== '')
 		vals['removeObjetTitre'] = removeObjetTitre;
 
-	patchClusterVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
+	var valeurPaiementNomCourt = $formulaireValeurs.find('.valeurPaiementNomCourt').val();
+	if(valeurPaiementNomCourt != null && valeurPaiementNomCourt !== '')
+	var removePaiementNomCourt = $formulaireFiltres.find('.removePaiementNomCourt').val() === 'true';
+	var setPaiementNomCourt = removePaiementNomCourt ? null : $formulaireValeurs.find('.setPaiementNomCourt').val();
+	if(removePaiementNomCourt || setPaiementNomCourt != null && setPaiementNomCourt !== '')
+		vals['setPaiementNomCourt'] = setPaiementNomCourt;
+	var addPaiementNomCourt = $formulaireValeurs.find('.addPaiementNomCourt').val();
+	if(addPaiementNomCourt != null && addPaiementNomCourt !== '')
+		vals['addPaiementNomCourt'] = addPaiementNomCourt;
+	var removePaiementNomCourt = $formulaireValeurs.find('.removePaiementNomCourt').val();
+	if(removePaiementNomCourt != null && removePaiementNomCourt !== '')
+		vals['removePaiementNomCourt'] = removePaiementNomCourt;
+
+	patchRecuScolaireVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
-function patchClusterFiltres($formulaireFiltres) {
+function patchRecuScolaireFiltres($formulaireFiltres) {
 	var filtres = [];
 	if($formulaireFiltres) {
 
@@ -388,6 +484,22 @@ function patchClusterFiltres($formulaireFiltres) {
 			filtreSupprime = filtreSupprimeSelectVal == 'true';
 		if(filtreSupprime != null && filtreSupprime === true)
 			filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
+
+		var filtrePaiementDate = $formulaireFiltres.find('.valeurPaiementDate').val();
+		if(filtrePaiementDate != null && filtrePaiementDate !== '')
+			filtres.push({ name: 'fq', value: 'paiementDate:' + filtrePaiementDate });
+
+		var filtrePaiementMontant = $formulaireFiltres.find('.valeurPaiementMontant').val();
+		if(filtrePaiementMontant != null && filtrePaiementMontant !== '')
+			filtres.push({ name: 'fq', value: 'paiementMontant:' + filtrePaiementMontant });
+
+		var filtreEcoleCle = $formulaireFiltres.find('.valeurEcoleCle').val();
+		if(filtreEcoleCle != null && filtreEcoleCle !== '')
+			filtres.push({ name: 'fq', value: 'ecoleCle:' + filtreEcoleCle });
+
+		var filtrePaiementDescription = $formulaireFiltres.find('.valeurPaiementDescription').val();
+		if(filtrePaiementDescription != null && filtrePaiementDescription !== '')
+			filtres.push({ name: 'fq', value: 'paiementDescription:' + filtrePaiementDescription });
 
 		var filtreInheritPk = $formulaireFiltres.find('.valeurInheritPk').val();
 		if(filtreInheritPk != null && filtreInheritPk !== '')
@@ -448,19 +560,43 @@ function patchClusterFiltres($formulaireFiltres) {
 		var filtrePageUrlApi = $formulaireFiltres.find('.valeurPageUrlApi').val();
 		if(filtrePageUrlApi != null && filtrePageUrlApi !== '')
 			filtres.push({ name: 'fq', value: 'pageUrlApi:' + filtrePageUrlApi });
+
+		var filtreRecuCle = $formulaireFiltres.find('.valeurRecuCle').val();
+		if(filtreRecuCle != null && filtreRecuCle !== '')
+			filtres.push({ name: 'fq', value: 'recuCle:' + filtreRecuCle });
+
+		var filtreEcoleAddresse = $formulaireFiltres.find('.valeurEcoleAddresse').val();
+		if(filtreEcoleAddresse != null && filtreEcoleAddresse !== '')
+			filtres.push({ name: 'fq', value: 'ecoleAddresse:' + filtreEcoleAddresse });
+
+		var filtreEcoleNumeroTelephone = $formulaireFiltres.find('.valeurEcoleNumeroTelephone').val();
+		if(filtreEcoleNumeroTelephone != null && filtreEcoleNumeroTelephone !== '')
+			filtres.push({ name: 'fq', value: 'ecoleNumeroTelephone:' + filtreEcoleNumeroTelephone });
+
+		var filtrePaiementAnnee = $formulaireFiltres.find('.valeurPaiementAnnee').val();
+		if(filtrePaiementAnnee != null && filtrePaiementAnnee !== '')
+			filtres.push({ name: 'fq', value: 'paiementAnnee:' + filtrePaiementAnnee });
+
+		var filtrePaiementNomCourt = $formulaireFiltres.find('.valeurPaiementNomCourt').val();
+		if(filtrePaiementNomCourt != null && filtrePaiementNomCourt !== '')
+			filtres.push({ name: 'fq', value: 'paiementNomCourt:' + filtrePaiementNomCourt });
+
+		var filtrePaiementNomComplet = $formulaireFiltres.find('.valeurPaiementNomComplet').val();
+		if(filtrePaiementNomComplet != null && filtrePaiementNomComplet !== '')
+			filtres.push({ name: 'fq', value: 'paiementNomComplet:' + filtrePaiementNomComplet });
 	}
 	return filtres;
 }
 
-function patchClusterVal(filtres, v, val, success, error) {
+function patchRecuScolaireVal(filtres, v, val, success, error) {
 	var vals = {};
 	vals[v] = val;
-	patchClusterVals(filtres, vals, success, error);
+	patchRecuScolaireVals(filtres, vals, success, error);
 }
 
-function patchClusterVals(filtres, vals, success, error) {
+function patchRecuScolaireVals(filtres, vals, success, error) {
 	$.ajax({
-		url: '/api/cluster?' + $.param(filtres)
+		url: '/api/recu?' + $.param(filtres)
 		, dataType: 'json'
 		, type: 'PATCH'
 		, contentType: 'application/json; charset=utf-8'
@@ -472,9 +608,9 @@ function patchClusterVals(filtres, vals, success, error) {
 
 // GET //
 
-async function getCluster(pk) {
+async function getRecuScolaire(pk) {
 	$.ajax({
-		url: '/api/cluster/' + id
+		url: '/api/recu/' + id
 		, dataType: 'json'
 		, type: 'GET'
 		, contentType: 'application/json; charset=utf-8'
@@ -485,17 +621,17 @@ async function getCluster(pk) {
 
 // Recherche //
 
-async function rechercheCluster($formulaireFiltres, success, error) {
-	var filtres = rechercheClusterFiltres($formulaireFiltres);
+async function rechercheRecuScolaire($formulaireFiltres, success, error) {
+	var filtres = rechercheRecuScolaireFiltres($formulaireFiltres);
 	if(success == null)
 		success = function( data, textStatus, jQxhr ) {};
 	if(error == null)
 		error = function( jqXhr, textStatus, errorThrown ) {};
 
-	rechercheClusterVals(filtres, success, error);
+	rechercheRecuScolaireVals(filtres, success, error);
 }
 
-function rechercheClusterFiltres($formulaireFiltres) {
+function rechercheRecuScolaireFiltres($formulaireFiltres) {
 	var filtres = [];
 	if($formulaireFiltres) {
 
@@ -534,6 +670,22 @@ function rechercheClusterFiltres($formulaireFiltres) {
 			filtreSupprime = filtreSupprimeSelectVal == 'true';
 		if(filtreSupprime != null && filtreSupprime === true)
 			filtres.push({ name: 'fq', value: 'supprime:' + filtreSupprime });
+
+		var filtrePaiementDate = $formulaireFiltres.find('.valeurPaiementDate').val();
+		if(filtrePaiementDate != null && filtrePaiementDate !== '')
+			filtres.push({ name: 'fq', value: 'paiementDate:' + filtrePaiementDate });
+
+		var filtrePaiementMontant = $formulaireFiltres.find('.valeurPaiementMontant').val();
+		if(filtrePaiementMontant != null && filtrePaiementMontant !== '')
+			filtres.push({ name: 'fq', value: 'paiementMontant:' + filtrePaiementMontant });
+
+		var filtreEcoleCle = $formulaireFiltres.find('.valeurEcoleCle').val();
+		if(filtreEcoleCle != null && filtreEcoleCle !== '')
+			filtres.push({ name: 'fq', value: 'ecoleCle:' + filtreEcoleCle });
+
+		var filtrePaiementDescription = $formulaireFiltres.find('.valeurPaiementDescription').val();
+		if(filtrePaiementDescription != null && filtrePaiementDescription !== '')
+			filtres.push({ name: 'fq', value: 'paiementDescription:' + filtrePaiementDescription });
 
 		var filtreInheritPk = $formulaireFiltres.find('.valeurInheritPk').val();
 		if(filtreInheritPk != null && filtreInheritPk !== '')
@@ -594,13 +746,40 @@ function rechercheClusterFiltres($formulaireFiltres) {
 		var filtrePageUrlApi = $formulaireFiltres.find('.valeurPageUrlApi').val();
 		if(filtrePageUrlApi != null && filtrePageUrlApi !== '')
 			filtres.push({ name: 'fq', value: 'pageUrlApi:' + filtrePageUrlApi });
+
+		var filtreRecuCle = $formulaireFiltres.find('.valeurRecuCle').val();
+		if(filtreRecuCle != null && filtreRecuCle !== '')
+			filtres.push({ name: 'fq', value: 'recuCle:' + filtreRecuCle });
+
+		var filtreEcoleAddresse = $formulaireFiltres.find('.valeurEcoleAddresse').val();
+		if(filtreEcoleAddresse != null && filtreEcoleAddresse !== '')
+			filtres.push({ name: 'fq', value: 'ecoleAddresse:' + filtreEcoleAddresse });
+
+		var filtreEcoleNumeroTelephone = $formulaireFiltres.find('.valeurEcoleNumeroTelephone').val();
+		if(filtreEcoleNumeroTelephone != null && filtreEcoleNumeroTelephone !== '')
+			filtres.push({ name: 'fq', value: 'ecoleNumeroTelephone:' + filtreEcoleNumeroTelephone });
+
+		var filtrePaiementAnnee = $formulaireFiltres.find('.valeurPaiementAnnee').val();
+		if(filtrePaiementAnnee != null && filtrePaiementAnnee !== '')
+			filtres.push({ name: 'fq', value: 'paiementAnnee:' + filtrePaiementAnnee });
+
+		var filtrePaiementNomCourt = $formulaireFiltres.find('.valeurPaiementNomCourt').val();
+		if(filtrePaiementNomCourt != null && filtrePaiementNomCourt !== '')
+			filtres.push({ name: 'fq', value: 'paiementNomCourt:' + filtrePaiementNomCourt });
+
+		var filtrePaiementNomComplet = $formulaireFiltres.find('.valeurPaiementNomComplet').val();
+		if(filtrePaiementNomComplet != null && filtrePaiementNomComplet !== '')
+			filtres.push({ name: 'fq', value: 'paiementNomComplet:' + filtrePaiementNomComplet });
 	}
 	return filtres;
 }
 
-function rechercheClusterVals(filtres, success, error) {
+function rechercheRecuScolaireVals(filtres, success, error) {
+
+
+	filtres.push({ name: 'sort', value: 'paiementDate desc' });
 	$.ajax({
-		url: '/api/cluster?' + $.param(filtres)
+		url: '/api/recu?' + $.param(filtres)
 		, dataType: 'json'
 		, type: 'GET'
 		, contentType: 'application/json; charset=utf-8'
@@ -609,12 +788,12 @@ function rechercheClusterVals(filtres, success, error) {
 	});
 }
 
-function suggereClusterObjetSuggere($formulaireFiltres, $list) {
+function suggereRecuScolaireObjetSuggere($formulaireFiltres, $list) {
 	success = function( data, textStatus, jQxhr ) {
 		$list.empty();
 		$.each(data['list'], function(i, o) {
-			var $i = $('<i>').attr('class', 'far fa-fort-awesome ');
-			var $span = $('<span>').attr('class', '').text(o['objetTitre']);
+			var $i = $('<i>').attr('class', 'fas fa-file-invoice-dollar ');
+			var $span = $('<span>').attr('class', '').text(o['paiementNomComplet']);
 			var $li = $('<li>');
 			var $a = $('<a>').attr('href', o['pageUrlPk']);
 			$a.append($i);
@@ -624,17 +803,53 @@ function suggereClusterObjetSuggere($formulaireFiltres, $list) {
 		});
 	};
 	error = function( jqXhr, textStatus, errorThrown ) {};
-	rechercherClusterVals($formulaireFiltres, success, error);
+	rechercherRecuScolaireVals($formulaireFiltres, success, error);
 }
 
-async function websocketCluster(success) {
+function suggereRecuScolaireEcoleCle(filtres, $list, pk = null, attribuer=true) {
+	success = function( data, textStatus, jQxhr ) {
+		$list.empty();
+		$.each(data['list'], function(i, o) {
+			var $i = $('<i>').attr('class', 'fa fa-school ');
+			var $span = $('<span>').attr('class', '').text(o['ecoleNomComplet']);
+			var $a = $('<a>').attr('id', o['pk']).attr('href', o['pageUrlPk'] + '#' + pk);
+			$a.append($i);
+			$a.append($span);
+			var val = o['recuCles'];
+			var checked = pk == null ? false : Array.isArray(val) ? val.includes(pk.toString()) : val == pk;
+			var $input = $('<input>');
+			$input.attr('id', 'GET_ecoleCle_' + pk + '_recuCles_' + o['pk']);
+			$input.attr('value', o['pk']);
+			$input.attr('class', 'valeurEcoleCle w3-check ');
+			if(pk != null) {
+				$input.attr('onchange', "var $input = $('#GET_ecoleCle_" + pk + "_recuCles_" + o['pk'] + "'); patchRecuScolaireVals([{ name: 'fq', value: 'pk:" + pk + "' }], { [($input.prop('checked') ? 'set' : 'remove') + 'EcoleCle']: \"" + o['pk'] + "\" } ); ");
+				$input.attr('onclick', 'enleverLueur($(this)); ');
+			}
+			$input.attr('type', 'checkbox');
+			if(checked)
+				$input.attr('checked', 'checked');
+			var $li = $('<li>');
+			if(attribuer)
+				$li.append($input);
+			$li.append($a);
+			$list.append($li);
+		});
+		var focusId = $('#RecuScolaireForm :input[name="focusId"]').val();
+		if(focusId)
+			$('#' + focusId).parent().next().find('input').focus();
+	};
+	error = function( jqXhr, textStatus, errorThrown ) {};
+	rechercheEcoleVals(filtres, success, error);
+}
+
+async function websocketRecuScolaire(success) {
 	window.eventBus.onopen = function () {
 
-		window.eventBus.registerHandler('websocketCluster', function (error, message) {
+		window.eventBus.registerHandler('websocketRecuScolaire', function (error, message) {
 			var json = JSON.parse(message['body']);
 			var id = json['id'];
 			var pk = json['pk'];
-			var pkPage = $('#ClusterForm :input[name=pk]').val();
+			var pkPage = $('#RecuScolaireForm :input[name=pk]').val();
 			var pks = json['pks'];
 			var empty = json['empty'];
 			var numFound = json['numFound'];
@@ -643,13 +858,13 @@ async function websocketCluster(success) {
 			var $box = $('<div>').attr('class', 'w3-display-topright w3-quarter box-' + id + ' ').attr('id', 'box-' + id);
 			var $margin = $('<div>').attr('class', 'w3-margin ').attr('id', 'margin-' + id);
 			var $card = $('<div>').attr('class', 'w3-card w3-white ').attr('id', 'card-' + id);
-			var $header = $('<div>').attr('class', 'w3-container fa-gray ').attr('id', 'header-' + id);
-			var $i = $('<i>').attr('class', 'far fa-fort-awesome w3-margin-right ').attr('id', 'icon-' + id);
-			var $headerSpan = $('<span>').attr('class', '').text('modifier clusters');
+			var $header = $('<div>').attr('class', 'w3-container fa-light-green ').attr('id', 'header-' + id);
+			var $i = $('<i>').attr('class', 'fas fa-file-invoice-dollar w3-margin-right ').attr('id', 'icon-' + id);
+			var $headerSpan = $('<span>').attr('class', '').text('modifier reçus');
 			var $x = $('<span>').attr('class', 'w3-button w3-display-topright ').attr('onclick', '$("#card-' + id + '").hide(); ').attr('id', 'x-' + id);
 			var $body = $('<div>').attr('class', 'w3-container w3-padding ').attr('id', 'text-' + id);
 			var $bar = $('<div>').attr('class', 'w3-light-gray ').attr('id', 'bar-' + id);
-			var $progress = $('<div>').attr('class', 'w3-gray ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
+			var $progress = $('<div>').attr('class', 'w3-light-green ').attr('style', 'height: 24px; width: ' + percent + '; ').attr('id', 'progress-' + id).text(numPATCH + '/' + numFound);
 			$card.append($header);
 			$header.append($i);
 			$header.append($headerSpan);
@@ -667,9 +882,16 @@ async function websocketCluster(success) {
 					success(json);
 			}
 		});
+
+		window.eventBus.registerHandler('websocketEcole', function (error, message) {
+			$('#Page_ecoleCle').trigger('oninput');
+			$('#Page_ecoleCle_ajouter').text('ajouter une école');
+			$('#Page_ecoleCle_ajouter').removeClass('w3-disabled');
+			$('#Page_ecoleCle_ajouter').attr('disabled', false);
+		});
 	}
 }
-async function websocketClusterInner(requeteApi) {
+async function websocketRecuScolaireInner(requeteApi) {
 	var pk = requeteApi['pk'];
 	var pks = requeteApi['pks'];
 	var classes = requeteApi['classes'];
@@ -677,259 +899,384 @@ async function websocketClusterInner(requeteApi) {
 	var empty = requeteApi['empty'];
 
 	if(pk != null) {
-		rechercherClusterVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
+		rechercherRecuScolaireVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
 			var val = o['pk'];
 			if(vars.includes('pk')) {
-				$('.inputCluster' + pk + 'Pk').each(function() {
+				$('.inputRecuScolaire' + pk + 'Pk').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varCluster' + pk + 'Pk').each(function() {
+				$('.varRecuScolaire' + pk + 'Pk').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				ajouterLueur($('.inputCluster' + pk + 'Pk'));
+				ajouterLueur($('.inputRecuScolaire' + pk + 'Pk'));
 			}
 			var val = o['cree'];
 			if(vars.includes('cree')) {
-				$('.inputCluster' + pk + 'Cree').each(function() {
+				$('.inputRecuScolaire' + pk + 'Cree').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varCluster' + pk + 'Cree').each(function() {
+				$('.varRecuScolaire' + pk + 'Cree').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				ajouterLueur($('.inputCluster' + pk + 'Cree'));
+				ajouterLueur($('.inputRecuScolaire' + pk + 'Cree'));
 			}
 			var val = o['modifie'];
 			if(vars.includes('modifie')) {
-				$('.inputCluster' + pk + 'Modifie').each(function() {
+				$('.inputRecuScolaire' + pk + 'Modifie').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varCluster' + pk + 'Modifie').each(function() {
+				$('.varRecuScolaire' + pk + 'Modifie').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				ajouterLueur($('.inputCluster' + pk + 'Modifie'));
+				ajouterLueur($('.inputRecuScolaire' + pk + 'Modifie'));
 			}
 			var val = o['objetId'];
 			if(vars.includes('objetId')) {
-				$('.inputCluster' + pk + 'ObjetId').each(function() {
+				$('.inputRecuScolaire' + pk + 'ObjetId').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varCluster' + pk + 'ObjetId').each(function() {
+				$('.varRecuScolaire' + pk + 'ObjetId').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				ajouterLueur($('.inputCluster' + pk + 'ObjetId'));
+				ajouterLueur($('.inputRecuScolaire' + pk + 'ObjetId'));
 			}
 			var val = o['archive'];
 			if(vars.includes('archive')) {
-				$('.inputCluster' + pk + 'Archive').each(function() {
+				$('.inputRecuScolaire' + pk + 'Archive').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varCluster' + pk + 'Archive').each(function() {
+				$('.varRecuScolaire' + pk + 'Archive').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				ajouterLueur($('.inputCluster' + pk + 'Archive'));
+				ajouterLueur($('.inputRecuScolaire' + pk + 'Archive'));
 			}
 			var val = o['supprime'];
 			if(vars.includes('supprime')) {
-				$('.inputCluster' + pk + 'Supprime').each(function() {
+				$('.inputRecuScolaire' + pk + 'Supprime').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varCluster' + pk + 'Supprime').each(function() {
+				$('.varRecuScolaire' + pk + 'Supprime').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				ajouterLueur($('.inputCluster' + pk + 'Supprime'));
+				ajouterLueur($('.inputRecuScolaire' + pk + 'Supprime'));
+			}
+			var val = o['paiementDate'];
+			if(val != null) {
+				var t = moment(val, 'YYYY-MM-DD');
+				if(t)
+					val = t.format('DD-MM-YYYY');
+			}
+			if(vars.includes('paiementDate')) {
+				$('.inputRecuScolaire' + pk + 'PaiementDate').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varRecuScolaire' + pk + 'PaiementDate').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputRecuScolaire' + pk + 'PaiementDate'));
+			}
+			var val = o['paiementMontant'];
+			if(vars.includes('paiementMontant')) {
+				$('.inputRecuScolaire' + pk + 'PaiementMontant').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varRecuScolaire' + pk + 'PaiementMontant').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputRecuScolaire' + pk + 'PaiementMontant'));
+			}
+			var val = o['ecoleCle'];
+			if(vars.includes('ecoleCle')) {
+				$('.inputRecuScolaire' + pk + 'EcoleCle').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varRecuScolaire' + pk + 'EcoleCle').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputRecuScolaire' + pk + 'EcoleCle'));
+			}
+			var val = o['paiementDescription'];
+			if(vars.includes('paiementDescription')) {
+				$('.inputRecuScolaire' + pk + 'PaiementDescription').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varRecuScolaire' + pk + 'PaiementDescription').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputRecuScolaire' + pk + 'PaiementDescription'));
 			}
 			var val = o['inheritPk'];
 			if(vars.includes('inheritPk')) {
-				$('.inputCluster' + pk + 'InheritPk').each(function() {
+				$('.inputRecuScolaire' + pk + 'InheritPk').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varCluster' + pk + 'InheritPk').each(function() {
+				$('.varRecuScolaire' + pk + 'InheritPk').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				ajouterLueur($('.inputCluster' + pk + 'InheritPk'));
+				ajouterLueur($('.inputRecuScolaire' + pk + 'InheritPk'));
 			}
 			var val = o['id'];
 			if(vars.includes('id')) {
-				$('.inputCluster' + pk + 'Id').each(function() {
+				$('.inputRecuScolaire' + pk + 'Id').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varCluster' + pk + 'Id').each(function() {
+				$('.varRecuScolaire' + pk + 'Id').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				ajouterLueur($('.inputCluster' + pk + 'Id'));
+				ajouterLueur($('.inputRecuScolaire' + pk + 'Id'));
 			}
 			var val = o['classeNomCanonique'];
 			if(vars.includes('classeNomCanonique')) {
-				$('.inputCluster' + pk + 'ClasseNomCanonique').each(function() {
+				$('.inputRecuScolaire' + pk + 'ClasseNomCanonique').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varCluster' + pk + 'ClasseNomCanonique').each(function() {
+				$('.varRecuScolaire' + pk + 'ClasseNomCanonique').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				ajouterLueur($('.inputCluster' + pk + 'ClasseNomCanonique'));
+				ajouterLueur($('.inputRecuScolaire' + pk + 'ClasseNomCanonique'));
 			}
 			var val = o['classeNomSimple'];
 			if(vars.includes('classeNomSimple')) {
-				$('.inputCluster' + pk + 'ClasseNomSimple').each(function() {
+				$('.inputRecuScolaire' + pk + 'ClasseNomSimple').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varCluster' + pk + 'ClasseNomSimple').each(function() {
+				$('.varRecuScolaire' + pk + 'ClasseNomSimple').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				ajouterLueur($('.inputCluster' + pk + 'ClasseNomSimple'));
+				ajouterLueur($('.inputRecuScolaire' + pk + 'ClasseNomSimple'));
 			}
 			var val = o['classeNomsCanoniques'];
 			if(vars.includes('classeNomsCanoniques')) {
-				$('.inputCluster' + pk + 'ClasseNomsCanoniques').each(function() {
+				$('.inputRecuScolaire' + pk + 'ClasseNomsCanoniques').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varCluster' + pk + 'ClasseNomsCanoniques').each(function() {
+				$('.varRecuScolaire' + pk + 'ClasseNomsCanoniques').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				ajouterLueur($('.inputCluster' + pk + 'ClasseNomsCanoniques'));
+				ajouterLueur($('.inputRecuScolaire' + pk + 'ClasseNomsCanoniques'));
 			}
 			var val = o['sessionId'];
 			if(vars.includes('sessionId')) {
-				$('.inputCluster' + pk + 'SessionId').each(function() {
+				$('.inputRecuScolaire' + pk + 'SessionId').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varCluster' + pk + 'SessionId').each(function() {
+				$('.varRecuScolaire' + pk + 'SessionId').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				ajouterLueur($('.inputCluster' + pk + 'SessionId'));
+				ajouterLueur($('.inputRecuScolaire' + pk + 'SessionId'));
 			}
 			var val = o['utilisateurId'];
 			if(vars.includes('utilisateurId')) {
-				$('.inputCluster' + pk + 'UtilisateurId').each(function() {
+				$('.inputRecuScolaire' + pk + 'UtilisateurId').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varCluster' + pk + 'UtilisateurId').each(function() {
+				$('.varRecuScolaire' + pk + 'UtilisateurId').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				ajouterLueur($('.inputCluster' + pk + 'UtilisateurId'));
+				ajouterLueur($('.inputRecuScolaire' + pk + 'UtilisateurId'));
 			}
 			var val = o['utilisateurCle'];
 			if(vars.includes('utilisateurCle')) {
-				$('.inputCluster' + pk + 'UtilisateurCle').each(function() {
+				$('.inputRecuScolaire' + pk + 'UtilisateurCle').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varCluster' + pk + 'UtilisateurCle').each(function() {
+				$('.varRecuScolaire' + pk + 'UtilisateurCle').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				ajouterLueur($('.inputCluster' + pk + 'UtilisateurCle'));
+				ajouterLueur($('.inputRecuScolaire' + pk + 'UtilisateurCle'));
 			}
 			var val = o['sauvegardes'];
 			if(vars.includes('sauvegardes')) {
-				$('.inputCluster' + pk + 'Sauvegardes').each(function() {
+				$('.inputRecuScolaire' + pk + 'Sauvegardes').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varCluster' + pk + 'Sauvegardes').each(function() {
+				$('.varRecuScolaire' + pk + 'Sauvegardes').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				ajouterLueur($('.inputCluster' + pk + 'Sauvegardes'));
+				ajouterLueur($('.inputRecuScolaire' + pk + 'Sauvegardes'));
 			}
 			var val = o['objetTitre'];
 			if(vars.includes('objetTitre')) {
-				$('.inputCluster' + pk + 'ObjetTitre').each(function() {
+				$('.inputRecuScolaire' + pk + 'ObjetTitre').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varCluster' + pk + 'ObjetTitre').each(function() {
+				$('.varRecuScolaire' + pk + 'ObjetTitre').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				ajouterLueur($('.inputCluster' + pk + 'ObjetTitre'));
+				ajouterLueur($('.inputRecuScolaire' + pk + 'ObjetTitre'));
 			}
 			var val = o['objetSuggere'];
 			if(vars.includes('objetSuggere')) {
-				$('.inputCluster' + pk + 'ObjetSuggere').each(function() {
+				$('.inputRecuScolaire' + pk + 'ObjetSuggere').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varCluster' + pk + 'ObjetSuggere').each(function() {
+				$('.varRecuScolaire' + pk + 'ObjetSuggere').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				ajouterLueur($('.inputCluster' + pk + 'ObjetSuggere'));
+				ajouterLueur($('.inputRecuScolaire' + pk + 'ObjetSuggere'));
 			}
 			var val = o['objetTexte'];
 			if(vars.includes('objetTexte')) {
-				$('.inputCluster' + pk + 'ObjetTexte').each(function() {
+				$('.inputRecuScolaire' + pk + 'ObjetTexte').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varCluster' + pk + 'ObjetTexte').each(function() {
+				$('.varRecuScolaire' + pk + 'ObjetTexte').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				ajouterLueur($('.inputCluster' + pk + 'ObjetTexte'));
+				ajouterLueur($('.inputRecuScolaire' + pk + 'ObjetTexte'));
 			}
 			var val = o['pageUrlId'];
 			if(vars.includes('pageUrlId')) {
-				$('.inputCluster' + pk + 'PageUrlId').each(function() {
+				$('.inputRecuScolaire' + pk + 'PageUrlId').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varCluster' + pk + 'PageUrlId').each(function() {
+				$('.varRecuScolaire' + pk + 'PageUrlId').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				ajouterLueur($('.inputCluster' + pk + 'PageUrlId'));
+				ajouterLueur($('.inputRecuScolaire' + pk + 'PageUrlId'));
 			}
 			var val = o['pageUrlPk'];
 			if(vars.includes('pageUrlPk')) {
-				$('.inputCluster' + pk + 'PageUrlPk').each(function() {
+				$('.inputRecuScolaire' + pk + 'PageUrlPk').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varCluster' + pk + 'PageUrlPk').each(function() {
+				$('.varRecuScolaire' + pk + 'PageUrlPk').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				ajouterLueur($('.inputCluster' + pk + 'PageUrlPk'));
+				ajouterLueur($('.inputRecuScolaire' + pk + 'PageUrlPk'));
 			}
 			var val = o['pageUrlApi'];
 			if(vars.includes('pageUrlApi')) {
-				$('.inputCluster' + pk + 'PageUrlApi').each(function() {
+				$('.inputRecuScolaire' + pk + 'PageUrlApi').each(function() {
 					if(val !== $(this).val())
 						$(this).val(val);
 				});
-				$('.varCluster' + pk + 'PageUrlApi').each(function() {
+				$('.varRecuScolaire' + pk + 'PageUrlApi').each(function() {
 					if(val !== $(this).text())
 						$(this).text(val);
 				});
-				ajouterLueur($('.inputCluster' + pk + 'PageUrlApi'));
+				ajouterLueur($('.inputRecuScolaire' + pk + 'PageUrlApi'));
+			}
+			var val = o['recuCle'];
+			if(vars.includes('recuCle')) {
+				$('.inputRecuScolaire' + pk + 'RecuCle').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varRecuScolaire' + pk + 'RecuCle').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputRecuScolaire' + pk + 'RecuCle'));
+			}
+			var val = o['ecoleAddresse'];
+			if(vars.includes('ecoleAddresse')) {
+				$('.inputRecuScolaire' + pk + 'EcoleAddresse').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varRecuScolaire' + pk + 'EcoleAddresse').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputRecuScolaire' + pk + 'EcoleAddresse'));
+			}
+			var val = o['ecoleNumeroTelephone'];
+			if(vars.includes('ecoleNumeroTelephone')) {
+				$('.inputRecuScolaire' + pk + 'EcoleNumeroTelephone').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varRecuScolaire' + pk + 'EcoleNumeroTelephone').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputRecuScolaire' + pk + 'EcoleNumeroTelephone'));
+			}
+			var val = o['paiementAnnee'];
+			if(vars.includes('paiementAnnee')) {
+				$('.inputRecuScolaire' + pk + 'PaiementAnnee').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varRecuScolaire' + pk + 'PaiementAnnee').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputRecuScolaire' + pk + 'PaiementAnnee'));
+			}
+			var val = o['paiementNomCourt'];
+			if(vars.includes('paiementNomCourt')) {
+				$('.inputRecuScolaire' + pk + 'PaiementNomCourt').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varRecuScolaire' + pk + 'PaiementNomCourt').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputRecuScolaire' + pk + 'PaiementNomCourt'));
+			}
+			var val = o['paiementNomComplet'];
+			if(vars.includes('paiementNomComplet')) {
+				$('.inputRecuScolaire' + pk + 'PaiementNomComplet').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varRecuScolaire' + pk + 'PaiementNomComplet').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputRecuScolaire' + pk + 'PaiementNomComplet'));
 			}
 		});
 	}

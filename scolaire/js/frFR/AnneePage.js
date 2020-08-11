@@ -1161,6 +1161,18 @@ async function websocketAnneeScolaireInner(requeteApi) {
 	if(pk != null) {
 		rechercherAnneeScolaireVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
+			var val = o['pk'];
+			if(vars.includes('pk')) {
+				$('.inputAnneeScolaire' + pk + 'Pk').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varAnneeScolaire' + pk + 'Pk').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputAnneeScolaire' + pk + 'Pk'));
+			}
 			var val = o['cree'];
 			if(vars.includes('cree')) {
 				$('.inputAnneeScolaire' + pk + 'Cree').each(function() {
@@ -1184,6 +1196,18 @@ async function websocketAnneeScolaireInner(requeteApi) {
 						$(this).text(val);
 				});
 				ajouterLueur($('.inputAnneeScolaire' + pk + 'Modifie'));
+			}
+			var val = o['objetId'];
+			if(vars.includes('objetId')) {
+				$('.inputAnneeScolaire' + pk + 'ObjetId').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varAnneeScolaire' + pk + 'ObjetId').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputAnneeScolaire' + pk + 'ObjetId'));
 			}
 			var val = o['archive'];
 			if(vars.includes('archive')) {
@@ -1291,6 +1315,54 @@ async function websocketAnneeScolaireInner(requeteApi) {
 				});
 				ajouterLueur($('.inputAnneeScolaire' + pk + 'InheritPk'));
 			}
+			var val = o['id'];
+			if(vars.includes('id')) {
+				$('.inputAnneeScolaire' + pk + 'Id').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varAnneeScolaire' + pk + 'Id').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputAnneeScolaire' + pk + 'Id'));
+			}
+			var val = o['classeNomCanonique'];
+			if(vars.includes('classeNomCanonique')) {
+				$('.inputAnneeScolaire' + pk + 'ClasseNomCanonique').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varAnneeScolaire' + pk + 'ClasseNomCanonique').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputAnneeScolaire' + pk + 'ClasseNomCanonique'));
+			}
+			var val = o['classeNomSimple'];
+			if(vars.includes('classeNomSimple')) {
+				$('.inputAnneeScolaire' + pk + 'ClasseNomSimple').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varAnneeScolaire' + pk + 'ClasseNomSimple').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputAnneeScolaire' + pk + 'ClasseNomSimple'));
+			}
+			var val = o['classeNomsCanoniques'];
+			if(vars.includes('classeNomsCanoniques')) {
+				$('.inputAnneeScolaire' + pk + 'ClasseNomsCanoniques').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varAnneeScolaire' + pk + 'ClasseNomsCanoniques').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputAnneeScolaire' + pk + 'ClasseNomsCanoniques'));
+			}
 			var val = o['sessionId'];
 			if(vars.includes('sessionId')) {
 				$('.inputAnneeScolaire' + pk + 'SessionId').each(function() {
@@ -1327,6 +1399,114 @@ async function websocketAnneeScolaireInner(requeteApi) {
 				});
 				ajouterLueur($('.inputAnneeScolaire' + pk + 'UtilisateurCle'));
 			}
+			var val = o['sauvegardes'];
+			if(vars.includes('sauvegardes')) {
+				$('.inputAnneeScolaire' + pk + 'Sauvegardes').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varAnneeScolaire' + pk + 'Sauvegardes').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputAnneeScolaire' + pk + 'Sauvegardes'));
+			}
+			var val = o['objetTitre'];
+			if(vars.includes('objetTitre')) {
+				$('.inputAnneeScolaire' + pk + 'ObjetTitre').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varAnneeScolaire' + pk + 'ObjetTitre').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputAnneeScolaire' + pk + 'ObjetTitre'));
+			}
+			var val = o['objetSuggere'];
+			if(vars.includes('objetSuggere')) {
+				$('.inputAnneeScolaire' + pk + 'ObjetSuggere').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varAnneeScolaire' + pk + 'ObjetSuggere').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputAnneeScolaire' + pk + 'ObjetSuggere'));
+			}
+			var val = o['objetTexte'];
+			if(vars.includes('objetTexte')) {
+				$('.inputAnneeScolaire' + pk + 'ObjetTexte').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varAnneeScolaire' + pk + 'ObjetTexte').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputAnneeScolaire' + pk + 'ObjetTexte'));
+			}
+			var val = o['pageUrlId'];
+			if(vars.includes('pageUrlId')) {
+				$('.inputAnneeScolaire' + pk + 'PageUrlId').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varAnneeScolaire' + pk + 'PageUrlId').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputAnneeScolaire' + pk + 'PageUrlId'));
+			}
+			var val = o['pageUrlPk'];
+			if(vars.includes('pageUrlPk')) {
+				$('.inputAnneeScolaire' + pk + 'PageUrlPk').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varAnneeScolaire' + pk + 'PageUrlPk').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputAnneeScolaire' + pk + 'PageUrlPk'));
+			}
+			var val = o['pageUrlApi'];
+			if(vars.includes('pageUrlApi')) {
+				$('.inputAnneeScolaire' + pk + 'PageUrlApi').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varAnneeScolaire' + pk + 'PageUrlApi').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputAnneeScolaire' + pk + 'PageUrlApi'));
+			}
+			var val = o['anneeCle'];
+			if(vars.includes('anneeCle')) {
+				$('.inputAnneeScolaire' + pk + 'AnneeCle').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varAnneeScolaire' + pk + 'AnneeCle').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputAnneeScolaire' + pk + 'AnneeCle'));
+			}
+			var val = o['inscriptionCles'];
+			if(vars.includes('inscriptionCles')) {
+				$('.inputAnneeScolaire' + pk + 'InscriptionCles').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varAnneeScolaire' + pk + 'InscriptionCles').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputAnneeScolaire' + pk + 'InscriptionCles'));
+			}
 			var val = o['saisonCles'];
 			if(vars.includes('saisonCles')) {
 				$('.inputAnneeScolaire' + pk + 'SaisonCles').each(function() {
@@ -1338,6 +1518,150 @@ async function websocketAnneeScolaireInner(requeteApi) {
 						$(this).text(val);
 				});
 				ajouterLueur($('.inputAnneeScolaire' + pk + 'SaisonCles'));
+			}
+			var val = o['scolaireTri'];
+			if(vars.includes('scolaireTri')) {
+				$('.inputAnneeScolaire' + pk + 'ScolaireTri').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varAnneeScolaire' + pk + 'ScolaireTri').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputAnneeScolaire' + pk + 'ScolaireTri'));
+			}
+			var val = o['ecoleTri'];
+			if(vars.includes('ecoleTri')) {
+				$('.inputAnneeScolaire' + pk + 'EcoleTri').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varAnneeScolaire' + pk + 'EcoleTri').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputAnneeScolaire' + pk + 'EcoleTri'));
+			}
+			var val = o['anneeTri'];
+			if(vars.includes('anneeTri')) {
+				$('.inputAnneeScolaire' + pk + 'AnneeTri').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varAnneeScolaire' + pk + 'AnneeTri').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputAnneeScolaire' + pk + 'AnneeTri'));
+			}
+			var val = o['ecoleNom'];
+			if(vars.includes('ecoleNom')) {
+				$('.inputAnneeScolaire' + pk + 'EcoleNom').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varAnneeScolaire' + pk + 'EcoleNom').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputAnneeScolaire' + pk + 'EcoleNom'));
+			}
+			var val = o['ecoleNomComplet'];
+			if(vars.includes('ecoleNomComplet')) {
+				$('.inputAnneeScolaire' + pk + 'EcoleNomComplet').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varAnneeScolaire' + pk + 'EcoleNomComplet').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputAnneeScolaire' + pk + 'EcoleNomComplet'));
+			}
+			var val = o['ecoleEmplacement'];
+			if(vars.includes('ecoleEmplacement')) {
+				$('.inputAnneeScolaire' + pk + 'EcoleEmplacement').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varAnneeScolaire' + pk + 'EcoleEmplacement').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputAnneeScolaire' + pk + 'EcoleEmplacement'));
+			}
+			var val = o['ecoleAddresse'];
+			if(vars.includes('ecoleAddresse')) {
+				$('.inputAnneeScolaire' + pk + 'EcoleAddresse').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varAnneeScolaire' + pk + 'EcoleAddresse').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputAnneeScolaire' + pk + 'EcoleAddresse'));
+			}
+			var val = o['ecoleNumeroTelephone'];
+			if(vars.includes('ecoleNumeroTelephone')) {
+				$('.inputAnneeScolaire' + pk + 'EcoleNumeroTelephone').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varAnneeScolaire' + pk + 'EcoleNumeroTelephone').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputAnneeScolaire' + pk + 'EcoleNumeroTelephone'));
+			}
+			var val = o['ecoleForm'];
+			if(vars.includes('ecoleForm')) {
+				$('.inputAnneeScolaire' + pk + 'EcoleForm').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varAnneeScolaire' + pk + 'EcoleForm').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputAnneeScolaire' + pk + 'EcoleForm'));
+			}
+			var val = o['ecoleNumero'];
+			if(vars.includes('ecoleNumero')) {
+				$('.inputAnneeScolaire' + pk + 'EcoleNumero').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varAnneeScolaire' + pk + 'EcoleNumero').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputAnneeScolaire' + pk + 'EcoleNumero'));
+			}
+			var val = o['ecoleAdministrateurNom'];
+			if(vars.includes('ecoleAdministrateurNom')) {
+				$('.inputAnneeScolaire' + pk + 'EcoleAdministrateurNom').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varAnneeScolaire' + pk + 'EcoleAdministrateurNom').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputAnneeScolaire' + pk + 'EcoleAdministrateurNom'));
+			}
+			var val = o['formInscriptionCle'];
+			if(vars.includes('formInscriptionCle')) {
+				$('.inputAnneeScolaire' + pk + 'FormInscriptionCle').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varAnneeScolaire' + pk + 'FormInscriptionCle').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputAnneeScolaire' + pk + 'FormInscriptionCle'));
 			}
 			var val = o['saisonDateDebut'];
 			if(val != null) {
@@ -1379,6 +1703,30 @@ async function websocketAnneeScolaireInner(requeteApi) {
 						$(this).text(val);
 				});
 				ajouterLueur($('.inputAnneeScolaire' + pk + 'AnneeFin'));
+			}
+			var val = o['anneeNomCourt'];
+			if(vars.includes('anneeNomCourt')) {
+				$('.inputAnneeScolaire' + pk + 'AnneeNomCourt').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varAnneeScolaire' + pk + 'AnneeNomCourt').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputAnneeScolaire' + pk + 'AnneeNomCourt'));
+			}
+			var val = o['anneeNomComplet'];
+			if(vars.includes('anneeNomComplet')) {
+				$('.inputAnneeScolaire' + pk + 'AnneeNomComplet').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varAnneeScolaire' + pk + 'AnneeNomComplet').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputAnneeScolaire' + pk + 'AnneeNomComplet'));
 			}
 		});
 	}

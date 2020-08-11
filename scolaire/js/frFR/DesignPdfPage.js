@@ -49,6 +49,38 @@ async function postDesignPage($formulaireValeurs, success, error) {
 	if(valeurDesignCache != null && valeurDesignCache !== '')
 		vals['designCache'] = valeurDesignCache;
 
+	var valeurDesignAdmin = $formulaireValeurs.find('.valeurDesignAdmin').prop('checked');
+	if(valeurDesignAdmin != null && valeurDesignAdmin !== '')
+		vals['designAdmin'] = valeurDesignAdmin;
+
+	var valeurDesignIgnorerNomEnfantVide = $formulaireValeurs.find('.valeurDesignIgnorerNomEnfantVide').prop('checked');
+	if(valeurDesignIgnorerNomEnfantVide != null && valeurDesignIgnorerNomEnfantVide !== '')
+		vals['designIgnorerNomEnfantVide'] = valeurDesignIgnorerNomEnfantVide;
+
+	var valeurDesignIgnorerPaiementsPasEnSouffrance = $formulaireValeurs.find('.valeurDesignIgnorerPaiementsPasEnSouffrance').prop('checked');
+	if(valeurDesignIgnorerPaiementsPasEnSouffrance != null && valeurDesignIgnorerPaiementsPasEnSouffrance !== '')
+		vals['designIgnorerPaiementsPasEnSouffrance'] = valeurDesignIgnorerPaiementsPasEnSouffrance;
+
+	var valeurDesignIgnorerPaiementsEnSouffrance = $formulaireValeurs.find('.valeurDesignIgnorerPaiementsEnSouffrance').prop('checked');
+	if(valeurDesignIgnorerPaiementsEnSouffrance != null && valeurDesignIgnorerPaiementsEnSouffrance !== '')
+		vals['designIgnorerPaiementsEnSouffrance'] = valeurDesignIgnorerPaiementsEnSouffrance;
+
+	var valeurDesignFiltrerInscriptionCle = $formulaireValeurs.find('.valeurDesignFiltrerInscriptionCle').prop('checked');
+	if(valeurDesignFiltrerInscriptionCle != null && valeurDesignFiltrerInscriptionCle !== '')
+		vals['designFiltrerInscriptionCle'] = valeurDesignFiltrerInscriptionCle;
+
+	var valeurDesignInscriptionTriNomEnfant = $formulaireValeurs.find('.valeurDesignInscriptionTriNomEnfant').prop('checked');
+	if(valeurDesignInscriptionTriNomEnfant != null && valeurDesignInscriptionTriNomEnfant !== '')
+		vals['designInscriptionTriNomEnfant'] = valeurDesignInscriptionTriNomEnfant;
+
+	var valeurDesignInscriptionTriMoisJourDeNaissance = $formulaireValeurs.find('.valeurDesignInscriptionTriMoisJourDeNaissance').prop('checked');
+	if(valeurDesignInscriptionTriMoisJourDeNaissance != null && valeurDesignInscriptionTriMoisJourDeNaissance !== '')
+		vals['designInscriptionTriMoisJourDeNaissance'] = valeurDesignInscriptionTriMoisJourDeNaissance;
+
+	var valeurDesignInscriptionTriNomGroupe = $formulaireValeurs.find('.valeurDesignInscriptionTriNomGroupe').prop('checked');
+	if(valeurDesignInscriptionTriNomGroupe != null && valeurDesignInscriptionTriNomGroupe !== '')
+		vals['designInscriptionTriNomGroupe'] = valeurDesignInscriptionTriNomGroupe;
+
 	var valeurDesignParentCles = [];
 	$formulaireValeurs.find('input.valeurDesignParentCles:checked').each(function(index) {
 		valeurDesignParentCles.push($(this).val());
@@ -182,6 +214,38 @@ async function putcopieDesignPage($formulaireValeurs, pk, success, error) {
 	var valeurDesignCache = $formulaireValeurs.find('.valeurDesignCache').prop('checked');
 	if(valeurDesignCache != null && valeurDesignCache !== '')
 		vals['designCache'] = valeurDesignCache;
+
+	var valeurDesignAdmin = $formulaireValeurs.find('.valeurDesignAdmin').prop('checked');
+	if(valeurDesignAdmin != null && valeurDesignAdmin !== '')
+		vals['designAdmin'] = valeurDesignAdmin;
+
+	var valeurDesignIgnorerNomEnfantVide = $formulaireValeurs.find('.valeurDesignIgnorerNomEnfantVide').prop('checked');
+	if(valeurDesignIgnorerNomEnfantVide != null && valeurDesignIgnorerNomEnfantVide !== '')
+		vals['designIgnorerNomEnfantVide'] = valeurDesignIgnorerNomEnfantVide;
+
+	var valeurDesignIgnorerPaiementsPasEnSouffrance = $formulaireValeurs.find('.valeurDesignIgnorerPaiementsPasEnSouffrance').prop('checked');
+	if(valeurDesignIgnorerPaiementsPasEnSouffrance != null && valeurDesignIgnorerPaiementsPasEnSouffrance !== '')
+		vals['designIgnorerPaiementsPasEnSouffrance'] = valeurDesignIgnorerPaiementsPasEnSouffrance;
+
+	var valeurDesignIgnorerPaiementsEnSouffrance = $formulaireValeurs.find('.valeurDesignIgnorerPaiementsEnSouffrance').prop('checked');
+	if(valeurDesignIgnorerPaiementsEnSouffrance != null && valeurDesignIgnorerPaiementsEnSouffrance !== '')
+		vals['designIgnorerPaiementsEnSouffrance'] = valeurDesignIgnorerPaiementsEnSouffrance;
+
+	var valeurDesignFiltrerInscriptionCle = $formulaireValeurs.find('.valeurDesignFiltrerInscriptionCle').prop('checked');
+	if(valeurDesignFiltrerInscriptionCle != null && valeurDesignFiltrerInscriptionCle !== '')
+		vals['designFiltrerInscriptionCle'] = valeurDesignFiltrerInscriptionCle;
+
+	var valeurDesignInscriptionTriNomEnfant = $formulaireValeurs.find('.valeurDesignInscriptionTriNomEnfant').prop('checked');
+	if(valeurDesignInscriptionTriNomEnfant != null && valeurDesignInscriptionTriNomEnfant !== '')
+		vals['designInscriptionTriNomEnfant'] = valeurDesignInscriptionTriNomEnfant;
+
+	var valeurDesignInscriptionTriMoisJourDeNaissance = $formulaireValeurs.find('.valeurDesignInscriptionTriMoisJourDeNaissance').prop('checked');
+	if(valeurDesignInscriptionTriMoisJourDeNaissance != null && valeurDesignInscriptionTriMoisJourDeNaissance !== '')
+		vals['designInscriptionTriMoisJourDeNaissance'] = valeurDesignInscriptionTriMoisJourDeNaissance;
+
+	var valeurDesignInscriptionTriNomGroupe = $formulaireValeurs.find('.valeurDesignInscriptionTriNomGroupe').prop('checked');
+	if(valeurDesignInscriptionTriNomGroupe != null && valeurDesignInscriptionTriNomGroupe !== '')
+		vals['designInscriptionTriNomGroupe'] = valeurDesignInscriptionTriNomGroupe;
 
 	var valeurDesignParentCles = $formulaireValeurs.find('input.valeurDesignParentCles:checked').val();
 	if(valeurDesignParentCles != null && valeurDesignParentCles !== '')
@@ -349,6 +413,142 @@ async function patchDesignPage($formulaireFiltres, $formulaireValeurs, pk, succe
 	if(removeDesignCache != null && removeDesignCache !== '')
 		vals['removeDesignCache'] = removeDesignCache;
 
+	var valeurDesignAdmin = $formulaireValeurs.find('.valeurDesignAdmin').prop('checked');
+	if(valeurDesignAdmin != null && valeurDesignAdmin !== '')
+	var removeDesignAdmin = $formulaireFiltres.find('.removeDesignAdmin').val() === 'true';
+	var valeurDesignAdminSelectVal = $formulaireValeurs.find('select.setDesignAdmin').val();
+	var valeurDesignAdmin = null;
+	if(valeurDesignAdminSelectVal !== '')
+		valeurDesignAdmin = valeurDesignAdminSelectVal == 'true';
+	setDesignAdmin = removeDesignAdmin ? null : valeurDesignAdmin;
+	if(removeDesignAdmin || setDesignAdmin != null && setDesignAdmin !== '')
+		vals['setDesignAdmin'] = setDesignAdmin;
+	var addDesignAdmin = $formulaireValeurs.find('.addDesignAdmin').prop('checked');
+	if(addDesignAdmin != null && addDesignAdmin !== '')
+		vals['addDesignAdmin'] = addDesignAdmin;
+	var removeDesignAdmin = $formulaireValeurs.find('.removeDesignAdmin').prop('checked');
+	if(removeDesignAdmin != null && removeDesignAdmin !== '')
+		vals['removeDesignAdmin'] = removeDesignAdmin;
+
+	var valeurDesignIgnorerNomEnfantVide = $formulaireValeurs.find('.valeurDesignIgnorerNomEnfantVide').prop('checked');
+	if(valeurDesignIgnorerNomEnfantVide != null && valeurDesignIgnorerNomEnfantVide !== '')
+	var removeDesignIgnorerNomEnfantVide = $formulaireFiltres.find('.removeDesignIgnorerNomEnfantVide').val() === 'true';
+	var valeurDesignIgnorerNomEnfantVideSelectVal = $formulaireValeurs.find('select.setDesignIgnorerNomEnfantVide').val();
+	var valeurDesignIgnorerNomEnfantVide = null;
+	if(valeurDesignIgnorerNomEnfantVideSelectVal !== '')
+		valeurDesignIgnorerNomEnfantVide = valeurDesignIgnorerNomEnfantVideSelectVal == 'true';
+	setDesignIgnorerNomEnfantVide = removeDesignIgnorerNomEnfantVide ? null : valeurDesignIgnorerNomEnfantVide;
+	if(removeDesignIgnorerNomEnfantVide || setDesignIgnorerNomEnfantVide != null && setDesignIgnorerNomEnfantVide !== '')
+		vals['setDesignIgnorerNomEnfantVide'] = setDesignIgnorerNomEnfantVide;
+	var addDesignIgnorerNomEnfantVide = $formulaireValeurs.find('.addDesignIgnorerNomEnfantVide').prop('checked');
+	if(addDesignIgnorerNomEnfantVide != null && addDesignIgnorerNomEnfantVide !== '')
+		vals['addDesignIgnorerNomEnfantVide'] = addDesignIgnorerNomEnfantVide;
+	var removeDesignIgnorerNomEnfantVide = $formulaireValeurs.find('.removeDesignIgnorerNomEnfantVide').prop('checked');
+	if(removeDesignIgnorerNomEnfantVide != null && removeDesignIgnorerNomEnfantVide !== '')
+		vals['removeDesignIgnorerNomEnfantVide'] = removeDesignIgnorerNomEnfantVide;
+
+	var valeurDesignIgnorerPaiementsPasEnSouffrance = $formulaireValeurs.find('.valeurDesignIgnorerPaiementsPasEnSouffrance').prop('checked');
+	if(valeurDesignIgnorerPaiementsPasEnSouffrance != null && valeurDesignIgnorerPaiementsPasEnSouffrance !== '')
+	var removeDesignIgnorerPaiementsPasEnSouffrance = $formulaireFiltres.find('.removeDesignIgnorerPaiementsPasEnSouffrance').val() === 'true';
+	var valeurDesignIgnorerPaiementsPasEnSouffranceSelectVal = $formulaireValeurs.find('select.setDesignIgnorerPaiementsPasEnSouffrance').val();
+	var valeurDesignIgnorerPaiementsPasEnSouffrance = null;
+	if(valeurDesignIgnorerPaiementsPasEnSouffranceSelectVal !== '')
+		valeurDesignIgnorerPaiementsPasEnSouffrance = valeurDesignIgnorerPaiementsPasEnSouffranceSelectVal == 'true';
+	setDesignIgnorerPaiementsPasEnSouffrance = removeDesignIgnorerPaiementsPasEnSouffrance ? null : valeurDesignIgnorerPaiementsPasEnSouffrance;
+	if(removeDesignIgnorerPaiementsPasEnSouffrance || setDesignIgnorerPaiementsPasEnSouffrance != null && setDesignIgnorerPaiementsPasEnSouffrance !== '')
+		vals['setDesignIgnorerPaiementsPasEnSouffrance'] = setDesignIgnorerPaiementsPasEnSouffrance;
+	var addDesignIgnorerPaiementsPasEnSouffrance = $formulaireValeurs.find('.addDesignIgnorerPaiementsPasEnSouffrance').prop('checked');
+	if(addDesignIgnorerPaiementsPasEnSouffrance != null && addDesignIgnorerPaiementsPasEnSouffrance !== '')
+		vals['addDesignIgnorerPaiementsPasEnSouffrance'] = addDesignIgnorerPaiementsPasEnSouffrance;
+	var removeDesignIgnorerPaiementsPasEnSouffrance = $formulaireValeurs.find('.removeDesignIgnorerPaiementsPasEnSouffrance').prop('checked');
+	if(removeDesignIgnorerPaiementsPasEnSouffrance != null && removeDesignIgnorerPaiementsPasEnSouffrance !== '')
+		vals['removeDesignIgnorerPaiementsPasEnSouffrance'] = removeDesignIgnorerPaiementsPasEnSouffrance;
+
+	var valeurDesignIgnorerPaiementsEnSouffrance = $formulaireValeurs.find('.valeurDesignIgnorerPaiementsEnSouffrance').prop('checked');
+	if(valeurDesignIgnorerPaiementsEnSouffrance != null && valeurDesignIgnorerPaiementsEnSouffrance !== '')
+	var removeDesignIgnorerPaiementsEnSouffrance = $formulaireFiltres.find('.removeDesignIgnorerPaiementsEnSouffrance').val() === 'true';
+	var valeurDesignIgnorerPaiementsEnSouffranceSelectVal = $formulaireValeurs.find('select.setDesignIgnorerPaiementsEnSouffrance').val();
+	var valeurDesignIgnorerPaiementsEnSouffrance = null;
+	if(valeurDesignIgnorerPaiementsEnSouffranceSelectVal !== '')
+		valeurDesignIgnorerPaiementsEnSouffrance = valeurDesignIgnorerPaiementsEnSouffranceSelectVal == 'true';
+	setDesignIgnorerPaiementsEnSouffrance = removeDesignIgnorerPaiementsEnSouffrance ? null : valeurDesignIgnorerPaiementsEnSouffrance;
+	if(removeDesignIgnorerPaiementsEnSouffrance || setDesignIgnorerPaiementsEnSouffrance != null && setDesignIgnorerPaiementsEnSouffrance !== '')
+		vals['setDesignIgnorerPaiementsEnSouffrance'] = setDesignIgnorerPaiementsEnSouffrance;
+	var addDesignIgnorerPaiementsEnSouffrance = $formulaireValeurs.find('.addDesignIgnorerPaiementsEnSouffrance').prop('checked');
+	if(addDesignIgnorerPaiementsEnSouffrance != null && addDesignIgnorerPaiementsEnSouffrance !== '')
+		vals['addDesignIgnorerPaiementsEnSouffrance'] = addDesignIgnorerPaiementsEnSouffrance;
+	var removeDesignIgnorerPaiementsEnSouffrance = $formulaireValeurs.find('.removeDesignIgnorerPaiementsEnSouffrance').prop('checked');
+	if(removeDesignIgnorerPaiementsEnSouffrance != null && removeDesignIgnorerPaiementsEnSouffrance !== '')
+		vals['removeDesignIgnorerPaiementsEnSouffrance'] = removeDesignIgnorerPaiementsEnSouffrance;
+
+	var valeurDesignFiltrerInscriptionCle = $formulaireValeurs.find('.valeurDesignFiltrerInscriptionCle').prop('checked');
+	if(valeurDesignFiltrerInscriptionCle != null && valeurDesignFiltrerInscriptionCle !== '')
+	var removeDesignFiltrerInscriptionCle = $formulaireFiltres.find('.removeDesignFiltrerInscriptionCle').val() === 'true';
+	var valeurDesignFiltrerInscriptionCleSelectVal = $formulaireValeurs.find('select.setDesignFiltrerInscriptionCle').val();
+	var valeurDesignFiltrerInscriptionCle = null;
+	if(valeurDesignFiltrerInscriptionCleSelectVal !== '')
+		valeurDesignFiltrerInscriptionCle = valeurDesignFiltrerInscriptionCleSelectVal == 'true';
+	setDesignFiltrerInscriptionCle = removeDesignFiltrerInscriptionCle ? null : valeurDesignFiltrerInscriptionCle;
+	if(removeDesignFiltrerInscriptionCle || setDesignFiltrerInscriptionCle != null && setDesignFiltrerInscriptionCle !== '')
+		vals['setDesignFiltrerInscriptionCle'] = setDesignFiltrerInscriptionCle;
+	var addDesignFiltrerInscriptionCle = $formulaireValeurs.find('.addDesignFiltrerInscriptionCle').prop('checked');
+	if(addDesignFiltrerInscriptionCle != null && addDesignFiltrerInscriptionCle !== '')
+		vals['addDesignFiltrerInscriptionCle'] = addDesignFiltrerInscriptionCle;
+	var removeDesignFiltrerInscriptionCle = $formulaireValeurs.find('.removeDesignFiltrerInscriptionCle').prop('checked');
+	if(removeDesignFiltrerInscriptionCle != null && removeDesignFiltrerInscriptionCle !== '')
+		vals['removeDesignFiltrerInscriptionCle'] = removeDesignFiltrerInscriptionCle;
+
+	var valeurDesignInscriptionTriNomEnfant = $formulaireValeurs.find('.valeurDesignInscriptionTriNomEnfant').prop('checked');
+	if(valeurDesignInscriptionTriNomEnfant != null && valeurDesignInscriptionTriNomEnfant !== '')
+	var removeDesignInscriptionTriNomEnfant = $formulaireFiltres.find('.removeDesignInscriptionTriNomEnfant').val() === 'true';
+	var valeurDesignInscriptionTriNomEnfantSelectVal = $formulaireValeurs.find('select.setDesignInscriptionTriNomEnfant').val();
+	var valeurDesignInscriptionTriNomEnfant = null;
+	if(valeurDesignInscriptionTriNomEnfantSelectVal !== '')
+		valeurDesignInscriptionTriNomEnfant = valeurDesignInscriptionTriNomEnfantSelectVal == 'true';
+	setDesignInscriptionTriNomEnfant = removeDesignInscriptionTriNomEnfant ? null : valeurDesignInscriptionTriNomEnfant;
+	if(removeDesignInscriptionTriNomEnfant || setDesignInscriptionTriNomEnfant != null && setDesignInscriptionTriNomEnfant !== '')
+		vals['setDesignInscriptionTriNomEnfant'] = setDesignInscriptionTriNomEnfant;
+	var addDesignInscriptionTriNomEnfant = $formulaireValeurs.find('.addDesignInscriptionTriNomEnfant').prop('checked');
+	if(addDesignInscriptionTriNomEnfant != null && addDesignInscriptionTriNomEnfant !== '')
+		vals['addDesignInscriptionTriNomEnfant'] = addDesignInscriptionTriNomEnfant;
+	var removeDesignInscriptionTriNomEnfant = $formulaireValeurs.find('.removeDesignInscriptionTriNomEnfant').prop('checked');
+	if(removeDesignInscriptionTriNomEnfant != null && removeDesignInscriptionTriNomEnfant !== '')
+		vals['removeDesignInscriptionTriNomEnfant'] = removeDesignInscriptionTriNomEnfant;
+
+	var valeurDesignInscriptionTriMoisJourDeNaissance = $formulaireValeurs.find('.valeurDesignInscriptionTriMoisJourDeNaissance').prop('checked');
+	if(valeurDesignInscriptionTriMoisJourDeNaissance != null && valeurDesignInscriptionTriMoisJourDeNaissance !== '')
+	var removeDesignInscriptionTriMoisJourDeNaissance = $formulaireFiltres.find('.removeDesignInscriptionTriMoisJourDeNaissance').val() === 'true';
+	var valeurDesignInscriptionTriMoisJourDeNaissanceSelectVal = $formulaireValeurs.find('select.setDesignInscriptionTriMoisJourDeNaissance').val();
+	var valeurDesignInscriptionTriMoisJourDeNaissance = null;
+	if(valeurDesignInscriptionTriMoisJourDeNaissanceSelectVal !== '')
+		valeurDesignInscriptionTriMoisJourDeNaissance = valeurDesignInscriptionTriMoisJourDeNaissanceSelectVal == 'true';
+	setDesignInscriptionTriMoisJourDeNaissance = removeDesignInscriptionTriMoisJourDeNaissance ? null : valeurDesignInscriptionTriMoisJourDeNaissance;
+	if(removeDesignInscriptionTriMoisJourDeNaissance || setDesignInscriptionTriMoisJourDeNaissance != null && setDesignInscriptionTriMoisJourDeNaissance !== '')
+		vals['setDesignInscriptionTriMoisJourDeNaissance'] = setDesignInscriptionTriMoisJourDeNaissance;
+	var addDesignInscriptionTriMoisJourDeNaissance = $formulaireValeurs.find('.addDesignInscriptionTriMoisJourDeNaissance').prop('checked');
+	if(addDesignInscriptionTriMoisJourDeNaissance != null && addDesignInscriptionTriMoisJourDeNaissance !== '')
+		vals['addDesignInscriptionTriMoisJourDeNaissance'] = addDesignInscriptionTriMoisJourDeNaissance;
+	var removeDesignInscriptionTriMoisJourDeNaissance = $formulaireValeurs.find('.removeDesignInscriptionTriMoisJourDeNaissance').prop('checked');
+	if(removeDesignInscriptionTriMoisJourDeNaissance != null && removeDesignInscriptionTriMoisJourDeNaissance !== '')
+		vals['removeDesignInscriptionTriMoisJourDeNaissance'] = removeDesignInscriptionTriMoisJourDeNaissance;
+
+	var valeurDesignInscriptionTriNomGroupe = $formulaireValeurs.find('.valeurDesignInscriptionTriNomGroupe').prop('checked');
+	if(valeurDesignInscriptionTriNomGroupe != null && valeurDesignInscriptionTriNomGroupe !== '')
+	var removeDesignInscriptionTriNomGroupe = $formulaireFiltres.find('.removeDesignInscriptionTriNomGroupe').val() === 'true';
+	var valeurDesignInscriptionTriNomGroupeSelectVal = $formulaireValeurs.find('select.setDesignInscriptionTriNomGroupe').val();
+	var valeurDesignInscriptionTriNomGroupe = null;
+	if(valeurDesignInscriptionTriNomGroupeSelectVal !== '')
+		valeurDesignInscriptionTriNomGroupe = valeurDesignInscriptionTriNomGroupeSelectVal == 'true';
+	setDesignInscriptionTriNomGroupe = removeDesignInscriptionTriNomGroupe ? null : valeurDesignInscriptionTriNomGroupe;
+	if(removeDesignInscriptionTriNomGroupe || setDesignInscriptionTriNomGroupe != null && setDesignInscriptionTriNomGroupe !== '')
+		vals['setDesignInscriptionTriNomGroupe'] = setDesignInscriptionTriNomGroupe;
+	var addDesignInscriptionTriNomGroupe = $formulaireValeurs.find('.addDesignInscriptionTriNomGroupe').prop('checked');
+	if(addDesignInscriptionTriNomGroupe != null && addDesignInscriptionTriNomGroupe !== '')
+		vals['addDesignInscriptionTriNomGroupe'] = addDesignInscriptionTriNomGroupe;
+	var removeDesignInscriptionTriNomGroupe = $formulaireValeurs.find('.removeDesignInscriptionTriNomGroupe').prop('checked');
+	if(removeDesignInscriptionTriNomGroupe != null && removeDesignInscriptionTriNomGroupe !== '')
+		vals['removeDesignInscriptionTriNomGroupe'] = removeDesignInscriptionTriNomGroupe;
+
 	var valeurDesignParentCles = $formulaireValeurs.find('input.valeurDesignParentCles:checked').val();
 	if(valeurDesignParentCles != null && valeurDesignParentCles !== '')
 		vals['addDesignParentCles'] = valeurDesignParentCles;
@@ -478,6 +678,86 @@ function patchDesignPageFiltres($formulaireFiltres) {
 			filtreDesignCache = filtreDesignCacheSelectVal == 'true';
 		if(filtreDesignCache != null && filtreDesignCache === true)
 			filtres.push({ name: 'fq', value: 'designCache:' + filtreDesignCache });
+
+		var $filtreDesignAdminCheckbox = $formulaireFiltres.find('input.valeurDesignAdmin[type = "checkbox"]');
+		var $filtreDesignAdminSelect = $formulaireFiltres.find('select.valeurDesignAdmin');
+		var filtreDesignAdmin = $filtreDesignAdminSelect.length ? $filtreDesignAdminSelect.val() : $filtreDesignAdminCheckbox.prop('checked');
+		var filtreDesignAdminSelectVal = $formulaireFiltres.find('select.filtreDesignAdmin').val();
+		var filtreDesignAdmin = null;
+		if(filtreDesignAdminSelectVal !== '')
+			filtreDesignAdmin = filtreDesignAdminSelectVal == 'true';
+		if(filtreDesignAdmin != null && filtreDesignAdmin === true)
+			filtres.push({ name: 'fq', value: 'designAdmin:' + filtreDesignAdmin });
+
+		var $filtreDesignIgnorerNomEnfantVideCheckbox = $formulaireFiltres.find('input.valeurDesignIgnorerNomEnfantVide[type = "checkbox"]');
+		var $filtreDesignIgnorerNomEnfantVideSelect = $formulaireFiltres.find('select.valeurDesignIgnorerNomEnfantVide');
+		var filtreDesignIgnorerNomEnfantVide = $filtreDesignIgnorerNomEnfantVideSelect.length ? $filtreDesignIgnorerNomEnfantVideSelect.val() : $filtreDesignIgnorerNomEnfantVideCheckbox.prop('checked');
+		var filtreDesignIgnorerNomEnfantVideSelectVal = $formulaireFiltres.find('select.filtreDesignIgnorerNomEnfantVide').val();
+		var filtreDesignIgnorerNomEnfantVide = null;
+		if(filtreDesignIgnorerNomEnfantVideSelectVal !== '')
+			filtreDesignIgnorerNomEnfantVide = filtreDesignIgnorerNomEnfantVideSelectVal == 'true';
+		if(filtreDesignIgnorerNomEnfantVide != null && filtreDesignIgnorerNomEnfantVide === true)
+			filtres.push({ name: 'fq', value: 'designIgnorerNomEnfantVide:' + filtreDesignIgnorerNomEnfantVide });
+
+		var $filtreDesignIgnorerPaiementsPasEnSouffranceCheckbox = $formulaireFiltres.find('input.valeurDesignIgnorerPaiementsPasEnSouffrance[type = "checkbox"]');
+		var $filtreDesignIgnorerPaiementsPasEnSouffranceSelect = $formulaireFiltres.find('select.valeurDesignIgnorerPaiementsPasEnSouffrance');
+		var filtreDesignIgnorerPaiementsPasEnSouffrance = $filtreDesignIgnorerPaiementsPasEnSouffranceSelect.length ? $filtreDesignIgnorerPaiementsPasEnSouffranceSelect.val() : $filtreDesignIgnorerPaiementsPasEnSouffranceCheckbox.prop('checked');
+		var filtreDesignIgnorerPaiementsPasEnSouffranceSelectVal = $formulaireFiltres.find('select.filtreDesignIgnorerPaiementsPasEnSouffrance').val();
+		var filtreDesignIgnorerPaiementsPasEnSouffrance = null;
+		if(filtreDesignIgnorerPaiementsPasEnSouffranceSelectVal !== '')
+			filtreDesignIgnorerPaiementsPasEnSouffrance = filtreDesignIgnorerPaiementsPasEnSouffranceSelectVal == 'true';
+		if(filtreDesignIgnorerPaiementsPasEnSouffrance != null && filtreDesignIgnorerPaiementsPasEnSouffrance === true)
+			filtres.push({ name: 'fq', value: 'designIgnorerPaiementsPasEnSouffrance:' + filtreDesignIgnorerPaiementsPasEnSouffrance });
+
+		var $filtreDesignIgnorerPaiementsEnSouffranceCheckbox = $formulaireFiltres.find('input.valeurDesignIgnorerPaiementsEnSouffrance[type = "checkbox"]');
+		var $filtreDesignIgnorerPaiementsEnSouffranceSelect = $formulaireFiltres.find('select.valeurDesignIgnorerPaiementsEnSouffrance');
+		var filtreDesignIgnorerPaiementsEnSouffrance = $filtreDesignIgnorerPaiementsEnSouffranceSelect.length ? $filtreDesignIgnorerPaiementsEnSouffranceSelect.val() : $filtreDesignIgnorerPaiementsEnSouffranceCheckbox.prop('checked');
+		var filtreDesignIgnorerPaiementsEnSouffranceSelectVal = $formulaireFiltres.find('select.filtreDesignIgnorerPaiementsEnSouffrance').val();
+		var filtreDesignIgnorerPaiementsEnSouffrance = null;
+		if(filtreDesignIgnorerPaiementsEnSouffranceSelectVal !== '')
+			filtreDesignIgnorerPaiementsEnSouffrance = filtreDesignIgnorerPaiementsEnSouffranceSelectVal == 'true';
+		if(filtreDesignIgnorerPaiementsEnSouffrance != null && filtreDesignIgnorerPaiementsEnSouffrance === true)
+			filtres.push({ name: 'fq', value: 'designIgnorerPaiementsEnSouffrance:' + filtreDesignIgnorerPaiementsEnSouffrance });
+
+		var $filtreDesignFiltrerInscriptionCleCheckbox = $formulaireFiltres.find('input.valeurDesignFiltrerInscriptionCle[type = "checkbox"]');
+		var $filtreDesignFiltrerInscriptionCleSelect = $formulaireFiltres.find('select.valeurDesignFiltrerInscriptionCle');
+		var filtreDesignFiltrerInscriptionCle = $filtreDesignFiltrerInscriptionCleSelect.length ? $filtreDesignFiltrerInscriptionCleSelect.val() : $filtreDesignFiltrerInscriptionCleCheckbox.prop('checked');
+		var filtreDesignFiltrerInscriptionCleSelectVal = $formulaireFiltres.find('select.filtreDesignFiltrerInscriptionCle').val();
+		var filtreDesignFiltrerInscriptionCle = null;
+		if(filtreDesignFiltrerInscriptionCleSelectVal !== '')
+			filtreDesignFiltrerInscriptionCle = filtreDesignFiltrerInscriptionCleSelectVal == 'true';
+		if(filtreDesignFiltrerInscriptionCle != null && filtreDesignFiltrerInscriptionCle === true)
+			filtres.push({ name: 'fq', value: 'designFiltrerInscriptionCle:' + filtreDesignFiltrerInscriptionCle });
+
+		var $filtreDesignInscriptionTriNomEnfantCheckbox = $formulaireFiltres.find('input.valeurDesignInscriptionTriNomEnfant[type = "checkbox"]');
+		var $filtreDesignInscriptionTriNomEnfantSelect = $formulaireFiltres.find('select.valeurDesignInscriptionTriNomEnfant');
+		var filtreDesignInscriptionTriNomEnfant = $filtreDesignInscriptionTriNomEnfantSelect.length ? $filtreDesignInscriptionTriNomEnfantSelect.val() : $filtreDesignInscriptionTriNomEnfantCheckbox.prop('checked');
+		var filtreDesignInscriptionTriNomEnfantSelectVal = $formulaireFiltres.find('select.filtreDesignInscriptionTriNomEnfant').val();
+		var filtreDesignInscriptionTriNomEnfant = null;
+		if(filtreDesignInscriptionTriNomEnfantSelectVal !== '')
+			filtreDesignInscriptionTriNomEnfant = filtreDesignInscriptionTriNomEnfantSelectVal == 'true';
+		if(filtreDesignInscriptionTriNomEnfant != null && filtreDesignInscriptionTriNomEnfant === true)
+			filtres.push({ name: 'fq', value: 'designInscriptionTriNomEnfant:' + filtreDesignInscriptionTriNomEnfant });
+
+		var $filtreDesignInscriptionTriMoisJourDeNaissanceCheckbox = $formulaireFiltres.find('input.valeurDesignInscriptionTriMoisJourDeNaissance[type = "checkbox"]');
+		var $filtreDesignInscriptionTriMoisJourDeNaissanceSelect = $formulaireFiltres.find('select.valeurDesignInscriptionTriMoisJourDeNaissance');
+		var filtreDesignInscriptionTriMoisJourDeNaissance = $filtreDesignInscriptionTriMoisJourDeNaissanceSelect.length ? $filtreDesignInscriptionTriMoisJourDeNaissanceSelect.val() : $filtreDesignInscriptionTriMoisJourDeNaissanceCheckbox.prop('checked');
+		var filtreDesignInscriptionTriMoisJourDeNaissanceSelectVal = $formulaireFiltres.find('select.filtreDesignInscriptionTriMoisJourDeNaissance').val();
+		var filtreDesignInscriptionTriMoisJourDeNaissance = null;
+		if(filtreDesignInscriptionTriMoisJourDeNaissanceSelectVal !== '')
+			filtreDesignInscriptionTriMoisJourDeNaissance = filtreDesignInscriptionTriMoisJourDeNaissanceSelectVal == 'true';
+		if(filtreDesignInscriptionTriMoisJourDeNaissance != null && filtreDesignInscriptionTriMoisJourDeNaissance === true)
+			filtres.push({ name: 'fq', value: 'designInscriptionTriMoisJourDeNaissance:' + filtreDesignInscriptionTriMoisJourDeNaissance });
+
+		var $filtreDesignInscriptionTriNomGroupeCheckbox = $formulaireFiltres.find('input.valeurDesignInscriptionTriNomGroupe[type = "checkbox"]');
+		var $filtreDesignInscriptionTriNomGroupeSelect = $formulaireFiltres.find('select.valeurDesignInscriptionTriNomGroupe');
+		var filtreDesignInscriptionTriNomGroupe = $filtreDesignInscriptionTriNomGroupeSelect.length ? $filtreDesignInscriptionTriNomGroupeSelect.val() : $filtreDesignInscriptionTriNomGroupeCheckbox.prop('checked');
+		var filtreDesignInscriptionTriNomGroupeSelectVal = $formulaireFiltres.find('select.filtreDesignInscriptionTriNomGroupe').val();
+		var filtreDesignInscriptionTriNomGroupe = null;
+		if(filtreDesignInscriptionTriNomGroupeSelectVal !== '')
+			filtreDesignInscriptionTriNomGroupe = filtreDesignInscriptionTriNomGroupeSelectVal == 'true';
+		if(filtreDesignInscriptionTriNomGroupe != null && filtreDesignInscriptionTriNomGroupe === true)
+			filtres.push({ name: 'fq', value: 'designInscriptionTriNomGroupe:' + filtreDesignInscriptionTriNomGroupe });
 
 		var filtreDesignParentCles = $formulaireFiltres.find('.valeurDesignParentCles').val();
 		if(filtreDesignParentCles != null && filtreDesignParentCles !== '')
@@ -654,6 +934,86 @@ function rechercheDesignPageFiltres($formulaireFiltres) {
 			filtreDesignCache = filtreDesignCacheSelectVal == 'true';
 		if(filtreDesignCache != null && filtreDesignCache === true)
 			filtres.push({ name: 'fq', value: 'designCache:' + filtreDesignCache });
+
+		var $filtreDesignAdminCheckbox = $formulaireFiltres.find('input.valeurDesignAdmin[type = "checkbox"]');
+		var $filtreDesignAdminSelect = $formulaireFiltres.find('select.valeurDesignAdmin');
+		var filtreDesignAdmin = $filtreDesignAdminSelect.length ? $filtreDesignAdminSelect.val() : $filtreDesignAdminCheckbox.prop('checked');
+		var filtreDesignAdminSelectVal = $formulaireFiltres.find('select.filtreDesignAdmin').val();
+		var filtreDesignAdmin = null;
+		if(filtreDesignAdminSelectVal !== '')
+			filtreDesignAdmin = filtreDesignAdminSelectVal == 'true';
+		if(filtreDesignAdmin != null && filtreDesignAdmin === true)
+			filtres.push({ name: 'fq', value: 'designAdmin:' + filtreDesignAdmin });
+
+		var $filtreDesignIgnorerNomEnfantVideCheckbox = $formulaireFiltres.find('input.valeurDesignIgnorerNomEnfantVide[type = "checkbox"]');
+		var $filtreDesignIgnorerNomEnfantVideSelect = $formulaireFiltres.find('select.valeurDesignIgnorerNomEnfantVide');
+		var filtreDesignIgnorerNomEnfantVide = $filtreDesignIgnorerNomEnfantVideSelect.length ? $filtreDesignIgnorerNomEnfantVideSelect.val() : $filtreDesignIgnorerNomEnfantVideCheckbox.prop('checked');
+		var filtreDesignIgnorerNomEnfantVideSelectVal = $formulaireFiltres.find('select.filtreDesignIgnorerNomEnfantVide').val();
+		var filtreDesignIgnorerNomEnfantVide = null;
+		if(filtreDesignIgnorerNomEnfantVideSelectVal !== '')
+			filtreDesignIgnorerNomEnfantVide = filtreDesignIgnorerNomEnfantVideSelectVal == 'true';
+		if(filtreDesignIgnorerNomEnfantVide != null && filtreDesignIgnorerNomEnfantVide === true)
+			filtres.push({ name: 'fq', value: 'designIgnorerNomEnfantVide:' + filtreDesignIgnorerNomEnfantVide });
+
+		var $filtreDesignIgnorerPaiementsPasEnSouffranceCheckbox = $formulaireFiltres.find('input.valeurDesignIgnorerPaiementsPasEnSouffrance[type = "checkbox"]');
+		var $filtreDesignIgnorerPaiementsPasEnSouffranceSelect = $formulaireFiltres.find('select.valeurDesignIgnorerPaiementsPasEnSouffrance');
+		var filtreDesignIgnorerPaiementsPasEnSouffrance = $filtreDesignIgnorerPaiementsPasEnSouffranceSelect.length ? $filtreDesignIgnorerPaiementsPasEnSouffranceSelect.val() : $filtreDesignIgnorerPaiementsPasEnSouffranceCheckbox.prop('checked');
+		var filtreDesignIgnorerPaiementsPasEnSouffranceSelectVal = $formulaireFiltres.find('select.filtreDesignIgnorerPaiementsPasEnSouffrance').val();
+		var filtreDesignIgnorerPaiementsPasEnSouffrance = null;
+		if(filtreDesignIgnorerPaiementsPasEnSouffranceSelectVal !== '')
+			filtreDesignIgnorerPaiementsPasEnSouffrance = filtreDesignIgnorerPaiementsPasEnSouffranceSelectVal == 'true';
+		if(filtreDesignIgnorerPaiementsPasEnSouffrance != null && filtreDesignIgnorerPaiementsPasEnSouffrance === true)
+			filtres.push({ name: 'fq', value: 'designIgnorerPaiementsPasEnSouffrance:' + filtreDesignIgnorerPaiementsPasEnSouffrance });
+
+		var $filtreDesignIgnorerPaiementsEnSouffranceCheckbox = $formulaireFiltres.find('input.valeurDesignIgnorerPaiementsEnSouffrance[type = "checkbox"]');
+		var $filtreDesignIgnorerPaiementsEnSouffranceSelect = $formulaireFiltres.find('select.valeurDesignIgnorerPaiementsEnSouffrance');
+		var filtreDesignIgnorerPaiementsEnSouffrance = $filtreDesignIgnorerPaiementsEnSouffranceSelect.length ? $filtreDesignIgnorerPaiementsEnSouffranceSelect.val() : $filtreDesignIgnorerPaiementsEnSouffranceCheckbox.prop('checked');
+		var filtreDesignIgnorerPaiementsEnSouffranceSelectVal = $formulaireFiltres.find('select.filtreDesignIgnorerPaiementsEnSouffrance').val();
+		var filtreDesignIgnorerPaiementsEnSouffrance = null;
+		if(filtreDesignIgnorerPaiementsEnSouffranceSelectVal !== '')
+			filtreDesignIgnorerPaiementsEnSouffrance = filtreDesignIgnorerPaiementsEnSouffranceSelectVal == 'true';
+		if(filtreDesignIgnorerPaiementsEnSouffrance != null && filtreDesignIgnorerPaiementsEnSouffrance === true)
+			filtres.push({ name: 'fq', value: 'designIgnorerPaiementsEnSouffrance:' + filtreDesignIgnorerPaiementsEnSouffrance });
+
+		var $filtreDesignFiltrerInscriptionCleCheckbox = $formulaireFiltres.find('input.valeurDesignFiltrerInscriptionCle[type = "checkbox"]');
+		var $filtreDesignFiltrerInscriptionCleSelect = $formulaireFiltres.find('select.valeurDesignFiltrerInscriptionCle');
+		var filtreDesignFiltrerInscriptionCle = $filtreDesignFiltrerInscriptionCleSelect.length ? $filtreDesignFiltrerInscriptionCleSelect.val() : $filtreDesignFiltrerInscriptionCleCheckbox.prop('checked');
+		var filtreDesignFiltrerInscriptionCleSelectVal = $formulaireFiltres.find('select.filtreDesignFiltrerInscriptionCle').val();
+		var filtreDesignFiltrerInscriptionCle = null;
+		if(filtreDesignFiltrerInscriptionCleSelectVal !== '')
+			filtreDesignFiltrerInscriptionCle = filtreDesignFiltrerInscriptionCleSelectVal == 'true';
+		if(filtreDesignFiltrerInscriptionCle != null && filtreDesignFiltrerInscriptionCle === true)
+			filtres.push({ name: 'fq', value: 'designFiltrerInscriptionCle:' + filtreDesignFiltrerInscriptionCle });
+
+		var $filtreDesignInscriptionTriNomEnfantCheckbox = $formulaireFiltres.find('input.valeurDesignInscriptionTriNomEnfant[type = "checkbox"]');
+		var $filtreDesignInscriptionTriNomEnfantSelect = $formulaireFiltres.find('select.valeurDesignInscriptionTriNomEnfant');
+		var filtreDesignInscriptionTriNomEnfant = $filtreDesignInscriptionTriNomEnfantSelect.length ? $filtreDesignInscriptionTriNomEnfantSelect.val() : $filtreDesignInscriptionTriNomEnfantCheckbox.prop('checked');
+		var filtreDesignInscriptionTriNomEnfantSelectVal = $formulaireFiltres.find('select.filtreDesignInscriptionTriNomEnfant').val();
+		var filtreDesignInscriptionTriNomEnfant = null;
+		if(filtreDesignInscriptionTriNomEnfantSelectVal !== '')
+			filtreDesignInscriptionTriNomEnfant = filtreDesignInscriptionTriNomEnfantSelectVal == 'true';
+		if(filtreDesignInscriptionTriNomEnfant != null && filtreDesignInscriptionTriNomEnfant === true)
+			filtres.push({ name: 'fq', value: 'designInscriptionTriNomEnfant:' + filtreDesignInscriptionTriNomEnfant });
+
+		var $filtreDesignInscriptionTriMoisJourDeNaissanceCheckbox = $formulaireFiltres.find('input.valeurDesignInscriptionTriMoisJourDeNaissance[type = "checkbox"]');
+		var $filtreDesignInscriptionTriMoisJourDeNaissanceSelect = $formulaireFiltres.find('select.valeurDesignInscriptionTriMoisJourDeNaissance');
+		var filtreDesignInscriptionTriMoisJourDeNaissance = $filtreDesignInscriptionTriMoisJourDeNaissanceSelect.length ? $filtreDesignInscriptionTriMoisJourDeNaissanceSelect.val() : $filtreDesignInscriptionTriMoisJourDeNaissanceCheckbox.prop('checked');
+		var filtreDesignInscriptionTriMoisJourDeNaissanceSelectVal = $formulaireFiltres.find('select.filtreDesignInscriptionTriMoisJourDeNaissance').val();
+		var filtreDesignInscriptionTriMoisJourDeNaissance = null;
+		if(filtreDesignInscriptionTriMoisJourDeNaissanceSelectVal !== '')
+			filtreDesignInscriptionTriMoisJourDeNaissance = filtreDesignInscriptionTriMoisJourDeNaissanceSelectVal == 'true';
+		if(filtreDesignInscriptionTriMoisJourDeNaissance != null && filtreDesignInscriptionTriMoisJourDeNaissance === true)
+			filtres.push({ name: 'fq', value: 'designInscriptionTriMoisJourDeNaissance:' + filtreDesignInscriptionTriMoisJourDeNaissance });
+
+		var $filtreDesignInscriptionTriNomGroupeCheckbox = $formulaireFiltres.find('input.valeurDesignInscriptionTriNomGroupe[type = "checkbox"]');
+		var $filtreDesignInscriptionTriNomGroupeSelect = $formulaireFiltres.find('select.valeurDesignInscriptionTriNomGroupe');
+		var filtreDesignInscriptionTriNomGroupe = $filtreDesignInscriptionTriNomGroupeSelect.length ? $filtreDesignInscriptionTriNomGroupeSelect.val() : $filtreDesignInscriptionTriNomGroupeCheckbox.prop('checked');
+		var filtreDesignInscriptionTriNomGroupeSelectVal = $formulaireFiltres.find('select.filtreDesignInscriptionTriNomGroupe').val();
+		var filtreDesignInscriptionTriNomGroupe = null;
+		if(filtreDesignInscriptionTriNomGroupeSelectVal !== '')
+			filtreDesignInscriptionTriNomGroupe = filtreDesignInscriptionTriNomGroupeSelectVal == 'true';
+		if(filtreDesignInscriptionTriNomGroupe != null && filtreDesignInscriptionTriNomGroupe === true)
+			filtres.push({ name: 'fq', value: 'designInscriptionTriNomGroupe:' + filtreDesignInscriptionTriNomGroupe });
 
 		var filtreDesignParentCles = $formulaireFiltres.find('.valeurDesignParentCles').val();
 		if(filtreDesignParentCles != null && filtreDesignParentCles !== '')
@@ -1117,6 +1477,86 @@ function rechercheadminDesignPageFiltres($formulaireFiltres) {
 			filtreDesignCache = filtreDesignCacheSelectVal == 'true';
 		if(filtreDesignCache != null && filtreDesignCache === true)
 			filtres.push({ name: 'fq', value: 'designCache:' + filtreDesignCache });
+
+		var $filtreDesignAdminCheckbox = $formulaireFiltres.find('input.valeurDesignAdmin[type = "checkbox"]');
+		var $filtreDesignAdminSelect = $formulaireFiltres.find('select.valeurDesignAdmin');
+		var filtreDesignAdmin = $filtreDesignAdminSelect.length ? $filtreDesignAdminSelect.val() : $filtreDesignAdminCheckbox.prop('checked');
+		var filtreDesignAdminSelectVal = $formulaireFiltres.find('select.filtreDesignAdmin').val();
+		var filtreDesignAdmin = null;
+		if(filtreDesignAdminSelectVal !== '')
+			filtreDesignAdmin = filtreDesignAdminSelectVal == 'true';
+		if(filtreDesignAdmin != null && filtreDesignAdmin === true)
+			filtres.push({ name: 'fq', value: 'designAdmin:' + filtreDesignAdmin });
+
+		var $filtreDesignIgnorerNomEnfantVideCheckbox = $formulaireFiltres.find('input.valeurDesignIgnorerNomEnfantVide[type = "checkbox"]');
+		var $filtreDesignIgnorerNomEnfantVideSelect = $formulaireFiltres.find('select.valeurDesignIgnorerNomEnfantVide');
+		var filtreDesignIgnorerNomEnfantVide = $filtreDesignIgnorerNomEnfantVideSelect.length ? $filtreDesignIgnorerNomEnfantVideSelect.val() : $filtreDesignIgnorerNomEnfantVideCheckbox.prop('checked');
+		var filtreDesignIgnorerNomEnfantVideSelectVal = $formulaireFiltres.find('select.filtreDesignIgnorerNomEnfantVide').val();
+		var filtreDesignIgnorerNomEnfantVide = null;
+		if(filtreDesignIgnorerNomEnfantVideSelectVal !== '')
+			filtreDesignIgnorerNomEnfantVide = filtreDesignIgnorerNomEnfantVideSelectVal == 'true';
+		if(filtreDesignIgnorerNomEnfantVide != null && filtreDesignIgnorerNomEnfantVide === true)
+			filtres.push({ name: 'fq', value: 'designIgnorerNomEnfantVide:' + filtreDesignIgnorerNomEnfantVide });
+
+		var $filtreDesignIgnorerPaiementsPasEnSouffranceCheckbox = $formulaireFiltres.find('input.valeurDesignIgnorerPaiementsPasEnSouffrance[type = "checkbox"]');
+		var $filtreDesignIgnorerPaiementsPasEnSouffranceSelect = $formulaireFiltres.find('select.valeurDesignIgnorerPaiementsPasEnSouffrance');
+		var filtreDesignIgnorerPaiementsPasEnSouffrance = $filtreDesignIgnorerPaiementsPasEnSouffranceSelect.length ? $filtreDesignIgnorerPaiementsPasEnSouffranceSelect.val() : $filtreDesignIgnorerPaiementsPasEnSouffranceCheckbox.prop('checked');
+		var filtreDesignIgnorerPaiementsPasEnSouffranceSelectVal = $formulaireFiltres.find('select.filtreDesignIgnorerPaiementsPasEnSouffrance').val();
+		var filtreDesignIgnorerPaiementsPasEnSouffrance = null;
+		if(filtreDesignIgnorerPaiementsPasEnSouffranceSelectVal !== '')
+			filtreDesignIgnorerPaiementsPasEnSouffrance = filtreDesignIgnorerPaiementsPasEnSouffranceSelectVal == 'true';
+		if(filtreDesignIgnorerPaiementsPasEnSouffrance != null && filtreDesignIgnorerPaiementsPasEnSouffrance === true)
+			filtres.push({ name: 'fq', value: 'designIgnorerPaiementsPasEnSouffrance:' + filtreDesignIgnorerPaiementsPasEnSouffrance });
+
+		var $filtreDesignIgnorerPaiementsEnSouffranceCheckbox = $formulaireFiltres.find('input.valeurDesignIgnorerPaiementsEnSouffrance[type = "checkbox"]');
+		var $filtreDesignIgnorerPaiementsEnSouffranceSelect = $formulaireFiltres.find('select.valeurDesignIgnorerPaiementsEnSouffrance');
+		var filtreDesignIgnorerPaiementsEnSouffrance = $filtreDesignIgnorerPaiementsEnSouffranceSelect.length ? $filtreDesignIgnorerPaiementsEnSouffranceSelect.val() : $filtreDesignIgnorerPaiementsEnSouffranceCheckbox.prop('checked');
+		var filtreDesignIgnorerPaiementsEnSouffranceSelectVal = $formulaireFiltres.find('select.filtreDesignIgnorerPaiementsEnSouffrance').val();
+		var filtreDesignIgnorerPaiementsEnSouffrance = null;
+		if(filtreDesignIgnorerPaiementsEnSouffranceSelectVal !== '')
+			filtreDesignIgnorerPaiementsEnSouffrance = filtreDesignIgnorerPaiementsEnSouffranceSelectVal == 'true';
+		if(filtreDesignIgnorerPaiementsEnSouffrance != null && filtreDesignIgnorerPaiementsEnSouffrance === true)
+			filtres.push({ name: 'fq', value: 'designIgnorerPaiementsEnSouffrance:' + filtreDesignIgnorerPaiementsEnSouffrance });
+
+		var $filtreDesignFiltrerInscriptionCleCheckbox = $formulaireFiltres.find('input.valeurDesignFiltrerInscriptionCle[type = "checkbox"]');
+		var $filtreDesignFiltrerInscriptionCleSelect = $formulaireFiltres.find('select.valeurDesignFiltrerInscriptionCle');
+		var filtreDesignFiltrerInscriptionCle = $filtreDesignFiltrerInscriptionCleSelect.length ? $filtreDesignFiltrerInscriptionCleSelect.val() : $filtreDesignFiltrerInscriptionCleCheckbox.prop('checked');
+		var filtreDesignFiltrerInscriptionCleSelectVal = $formulaireFiltres.find('select.filtreDesignFiltrerInscriptionCle').val();
+		var filtreDesignFiltrerInscriptionCle = null;
+		if(filtreDesignFiltrerInscriptionCleSelectVal !== '')
+			filtreDesignFiltrerInscriptionCle = filtreDesignFiltrerInscriptionCleSelectVal == 'true';
+		if(filtreDesignFiltrerInscriptionCle != null && filtreDesignFiltrerInscriptionCle === true)
+			filtres.push({ name: 'fq', value: 'designFiltrerInscriptionCle:' + filtreDesignFiltrerInscriptionCle });
+
+		var $filtreDesignInscriptionTriNomEnfantCheckbox = $formulaireFiltres.find('input.valeurDesignInscriptionTriNomEnfant[type = "checkbox"]');
+		var $filtreDesignInscriptionTriNomEnfantSelect = $formulaireFiltres.find('select.valeurDesignInscriptionTriNomEnfant');
+		var filtreDesignInscriptionTriNomEnfant = $filtreDesignInscriptionTriNomEnfantSelect.length ? $filtreDesignInscriptionTriNomEnfantSelect.val() : $filtreDesignInscriptionTriNomEnfantCheckbox.prop('checked');
+		var filtreDesignInscriptionTriNomEnfantSelectVal = $formulaireFiltres.find('select.filtreDesignInscriptionTriNomEnfant').val();
+		var filtreDesignInscriptionTriNomEnfant = null;
+		if(filtreDesignInscriptionTriNomEnfantSelectVal !== '')
+			filtreDesignInscriptionTriNomEnfant = filtreDesignInscriptionTriNomEnfantSelectVal == 'true';
+		if(filtreDesignInscriptionTriNomEnfant != null && filtreDesignInscriptionTriNomEnfant === true)
+			filtres.push({ name: 'fq', value: 'designInscriptionTriNomEnfant:' + filtreDesignInscriptionTriNomEnfant });
+
+		var $filtreDesignInscriptionTriMoisJourDeNaissanceCheckbox = $formulaireFiltres.find('input.valeurDesignInscriptionTriMoisJourDeNaissance[type = "checkbox"]');
+		var $filtreDesignInscriptionTriMoisJourDeNaissanceSelect = $formulaireFiltres.find('select.valeurDesignInscriptionTriMoisJourDeNaissance');
+		var filtreDesignInscriptionTriMoisJourDeNaissance = $filtreDesignInscriptionTriMoisJourDeNaissanceSelect.length ? $filtreDesignInscriptionTriMoisJourDeNaissanceSelect.val() : $filtreDesignInscriptionTriMoisJourDeNaissanceCheckbox.prop('checked');
+		var filtreDesignInscriptionTriMoisJourDeNaissanceSelectVal = $formulaireFiltres.find('select.filtreDesignInscriptionTriMoisJourDeNaissance').val();
+		var filtreDesignInscriptionTriMoisJourDeNaissance = null;
+		if(filtreDesignInscriptionTriMoisJourDeNaissanceSelectVal !== '')
+			filtreDesignInscriptionTriMoisJourDeNaissance = filtreDesignInscriptionTriMoisJourDeNaissanceSelectVal == 'true';
+		if(filtreDesignInscriptionTriMoisJourDeNaissance != null && filtreDesignInscriptionTriMoisJourDeNaissance === true)
+			filtres.push({ name: 'fq', value: 'designInscriptionTriMoisJourDeNaissance:' + filtreDesignInscriptionTriMoisJourDeNaissance });
+
+		var $filtreDesignInscriptionTriNomGroupeCheckbox = $formulaireFiltres.find('input.valeurDesignInscriptionTriNomGroupe[type = "checkbox"]');
+		var $filtreDesignInscriptionTriNomGroupeSelect = $formulaireFiltres.find('select.valeurDesignInscriptionTriNomGroupe');
+		var filtreDesignInscriptionTriNomGroupe = $filtreDesignInscriptionTriNomGroupeSelect.length ? $filtreDesignInscriptionTriNomGroupeSelect.val() : $filtreDesignInscriptionTriNomGroupeCheckbox.prop('checked');
+		var filtreDesignInscriptionTriNomGroupeSelectVal = $formulaireFiltres.find('select.filtreDesignInscriptionTriNomGroupe').val();
+		var filtreDesignInscriptionTriNomGroupe = null;
+		if(filtreDesignInscriptionTriNomGroupeSelectVal !== '')
+			filtreDesignInscriptionTriNomGroupe = filtreDesignInscriptionTriNomGroupeSelectVal == 'true';
+		if(filtreDesignInscriptionTriNomGroupe != null && filtreDesignInscriptionTriNomGroupe === true)
+			filtres.push({ name: 'fq', value: 'designInscriptionTriNomGroupe:' + filtreDesignInscriptionTriNomGroupe });
 
 		var filtreDesignParentCles = $formulaireFiltres.find('.valeurDesignParentCles').val();
 		if(filtreDesignParentCles != null && filtreDesignParentCles !== '')
@@ -1609,6 +2049,18 @@ async function websocketDesignPageInner(requeteApi) {
 	if(pk != null) {
 		rechercherDesignPageVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
+			var val = o['pk'];
+			if(vars.includes('pk')) {
+				$('.inputDesignPage' + pk + 'Pk').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varDesignPage' + pk + 'Pk').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputDesignPage' + pk + 'Pk'));
+			}
 			var val = o['cree'];
 			if(vars.includes('cree')) {
 				$('.inputDesignPage' + pk + 'Cree').each(function() {
@@ -1632,6 +2084,18 @@ async function websocketDesignPageInner(requeteApi) {
 						$(this).text(val);
 				});
 				ajouterLueur($('.inputDesignPage' + pk + 'Modifie'));
+			}
+			var val = o['objetId'];
+			if(vars.includes('objetId')) {
+				$('.inputDesignPage' + pk + 'ObjetId').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varDesignPage' + pk + 'ObjetId').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputDesignPage' + pk + 'ObjetId'));
 			}
 			var val = o['archive'];
 			if(vars.includes('archive')) {
@@ -1681,6 +2145,102 @@ async function websocketDesignPageInner(requeteApi) {
 				});
 				ajouterLueur($('.inputDesignPage' + pk + 'DesignCache'));
 			}
+			var val = o['designAdmin'];
+			if(vars.includes('designAdmin')) {
+				$('.inputDesignPage' + pk + 'DesignAdmin').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varDesignPage' + pk + 'DesignAdmin').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputDesignPage' + pk + 'DesignAdmin'));
+			}
+			var val = o['designIgnorerNomEnfantVide'];
+			if(vars.includes('designIgnorerNomEnfantVide')) {
+				$('.inputDesignPage' + pk + 'DesignIgnorerNomEnfantVide').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varDesignPage' + pk + 'DesignIgnorerNomEnfantVide').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputDesignPage' + pk + 'DesignIgnorerNomEnfantVide'));
+			}
+			var val = o['designIgnorerPaiementsPasEnSouffrance'];
+			if(vars.includes('designIgnorerPaiementsPasEnSouffrance')) {
+				$('.inputDesignPage' + pk + 'DesignIgnorerPaiementsPasEnSouffrance').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varDesignPage' + pk + 'DesignIgnorerPaiementsPasEnSouffrance').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputDesignPage' + pk + 'DesignIgnorerPaiementsPasEnSouffrance'));
+			}
+			var val = o['designIgnorerPaiementsEnSouffrance'];
+			if(vars.includes('designIgnorerPaiementsEnSouffrance')) {
+				$('.inputDesignPage' + pk + 'DesignIgnorerPaiementsEnSouffrance').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varDesignPage' + pk + 'DesignIgnorerPaiementsEnSouffrance').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputDesignPage' + pk + 'DesignIgnorerPaiementsEnSouffrance'));
+			}
+			var val = o['designFiltrerInscriptionCle'];
+			if(vars.includes('designFiltrerInscriptionCle')) {
+				$('.inputDesignPage' + pk + 'DesignFiltrerInscriptionCle').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varDesignPage' + pk + 'DesignFiltrerInscriptionCle').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputDesignPage' + pk + 'DesignFiltrerInscriptionCle'));
+			}
+			var val = o['designInscriptionTriNomEnfant'];
+			if(vars.includes('designInscriptionTriNomEnfant')) {
+				$('.inputDesignPage' + pk + 'DesignInscriptionTriNomEnfant').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varDesignPage' + pk + 'DesignInscriptionTriNomEnfant').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputDesignPage' + pk + 'DesignInscriptionTriNomEnfant'));
+			}
+			var val = o['designInscriptionTriMoisJourDeNaissance'];
+			if(vars.includes('designInscriptionTriMoisJourDeNaissance')) {
+				$('.inputDesignPage' + pk + 'DesignInscriptionTriMoisJourDeNaissance').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varDesignPage' + pk + 'DesignInscriptionTriMoisJourDeNaissance').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputDesignPage' + pk + 'DesignInscriptionTriMoisJourDeNaissance'));
+			}
+			var val = o['designInscriptionTriNomGroupe'];
+			if(vars.includes('designInscriptionTriNomGroupe')) {
+				$('.inputDesignPage' + pk + 'DesignInscriptionTriNomGroupe').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varDesignPage' + pk + 'DesignInscriptionTriNomGroupe').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputDesignPage' + pk + 'DesignInscriptionTriNomGroupe'));
+			}
 			var val = o['designParentCles'];
 			if(vars.includes('designParentCles')) {
 				$('.inputDesignPage' + pk + 'DesignParentCles').each(function() {
@@ -1717,6 +2277,54 @@ async function websocketDesignPageInner(requeteApi) {
 				});
 				ajouterLueur($('.inputDesignPage' + pk + 'InheritPk'));
 			}
+			var val = o['id'];
+			if(vars.includes('id')) {
+				$('.inputDesignPage' + pk + 'Id').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varDesignPage' + pk + 'Id').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputDesignPage' + pk + 'Id'));
+			}
+			var val = o['classeNomCanonique'];
+			if(vars.includes('classeNomCanonique')) {
+				$('.inputDesignPage' + pk + 'ClasseNomCanonique').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varDesignPage' + pk + 'ClasseNomCanonique').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputDesignPage' + pk + 'ClasseNomCanonique'));
+			}
+			var val = o['classeNomSimple'];
+			if(vars.includes('classeNomSimple')) {
+				$('.inputDesignPage' + pk + 'ClasseNomSimple').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varDesignPage' + pk + 'ClasseNomSimple').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputDesignPage' + pk + 'ClasseNomSimple'));
+			}
+			var val = o['classeNomsCanoniques'];
+			if(vars.includes('classeNomsCanoniques')) {
+				$('.inputDesignPage' + pk + 'ClasseNomsCanoniques').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varDesignPage' + pk + 'ClasseNomsCanoniques').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputDesignPage' + pk + 'ClasseNomsCanoniques'));
+			}
 			var val = o['sessionId'];
 			if(vars.includes('sessionId')) {
 				$('.inputDesignPage' + pk + 'SessionId').each(function() {
@@ -1752,6 +2360,102 @@ async function websocketDesignPageInner(requeteApi) {
 						$(this).text(val);
 				});
 				ajouterLueur($('.inputDesignPage' + pk + 'UtilisateurCle'));
+			}
+			var val = o['sauvegardes'];
+			if(vars.includes('sauvegardes')) {
+				$('.inputDesignPage' + pk + 'Sauvegardes').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varDesignPage' + pk + 'Sauvegardes').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputDesignPage' + pk + 'Sauvegardes'));
+			}
+			var val = o['objetTitre'];
+			if(vars.includes('objetTitre')) {
+				$('.inputDesignPage' + pk + 'ObjetTitre').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varDesignPage' + pk + 'ObjetTitre').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputDesignPage' + pk + 'ObjetTitre'));
+			}
+			var val = o['objetSuggere'];
+			if(vars.includes('objetSuggere')) {
+				$('.inputDesignPage' + pk + 'ObjetSuggere').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varDesignPage' + pk + 'ObjetSuggere').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputDesignPage' + pk + 'ObjetSuggere'));
+			}
+			var val = o['objetTexte'];
+			if(vars.includes('objetTexte')) {
+				$('.inputDesignPage' + pk + 'ObjetTexte').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varDesignPage' + pk + 'ObjetTexte').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputDesignPage' + pk + 'ObjetTexte'));
+			}
+			var val = o['pageUrlId'];
+			if(vars.includes('pageUrlId')) {
+				$('.inputDesignPage' + pk + 'PageUrlId').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varDesignPage' + pk + 'PageUrlId').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputDesignPage' + pk + 'PageUrlId'));
+			}
+			var val = o['pageUrlPk'];
+			if(vars.includes('pageUrlPk')) {
+				$('.inputDesignPage' + pk + 'PageUrlPk').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varDesignPage' + pk + 'PageUrlPk').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputDesignPage' + pk + 'PageUrlPk'));
+			}
+			var val = o['pageUrlApi'];
+			if(vars.includes('pageUrlApi')) {
+				$('.inputDesignPage' + pk + 'PageUrlApi').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varDesignPage' + pk + 'PageUrlApi').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputDesignPage' + pk + 'PageUrlApi'));
+			}
+			var val = o['designPageCle'];
+			if(vars.includes('designPageCle')) {
+				$('.inputDesignPage' + pk + 'DesignPageCle').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varDesignPage' + pk + 'DesignPageCle').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputDesignPage' + pk + 'DesignPageCle'));
 			}
 			var val = o['designEnfantCles'];
 			if(vars.includes('designEnfantCles')) {

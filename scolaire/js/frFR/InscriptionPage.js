@@ -1945,6 +1945,10 @@ function patchInscriptionScolaireFiltres($formulaireFiltres) {
 		if(filtreInscriptionDateFrais != null && filtreInscriptionDateFrais !== '')
 			filtres.push({ name: 'fq', value: 'inscriptionDateFrais:' + filtreInscriptionDateFrais });
 
+		var filtrePaiementLastDate = $formulaireFiltres.find('.valeurPaiementLastDate').val();
+		if(filtrePaiementLastDate != null && filtrePaiementLastDate !== '')
+			filtres.push({ name: 'fq', value: 'paiementLastDate:' + filtrePaiementLastDate });
+
 		var filtrePaiementLastStr = $formulaireFiltres.find('.valeurPaiementLastStr').val();
 		if(filtrePaiementLastStr != null && filtrePaiementLastStr !== '')
 			filtres.push({ name: 'fq', value: 'paiementLastStr:' + filtrePaiementLastStr });
@@ -1964,6 +1968,10 @@ function patchInscriptionScolaireFiltres($formulaireFiltres) {
 		var filtreFraisMontantDu = $formulaireFiltres.find('.valeurFraisMontantDu').val();
 		if(filtreFraisMontantDu != null && filtreFraisMontantDu !== '')
 			filtres.push({ name: 'fq', value: 'fraisMontantDu:' + filtreFraisMontantDu });
+
+		var filtreFraisMontantNonPasse = $formulaireFiltres.find('.valeurFraisMontantNonPasse').val();
+		if(filtreFraisMontantNonPasse != null && filtreFraisMontantNonPasse !== '')
+			filtres.push({ name: 'fq', value: 'fraisMontantNonPasse:' + filtreFraisMontantNonPasse });
 
 		var filtreFraisMaintenant = $formulaireFiltres.find('.valeurFraisMaintenant').val();
 		if(filtreFraisMaintenant != null && filtreFraisMaintenant !== '')
@@ -2002,6 +2010,20 @@ function patchInscriptionScolaireFiltres($formulaireFiltres) {
 			filtrePaiementsEnAvance = filtrePaiementsEnAvanceSelectVal == 'true';
 		if(filtrePaiementsEnAvance != null && filtrePaiementsEnAvance === true)
 			filtres.push({ name: 'fq', value: 'paiementsEnAvance:' + filtrePaiementsEnAvance });
+
+		var $filtrePaiementsEnSouffranceCheckbox = $formulaireFiltres.find('input.valeurPaiementsEnSouffrance[type = "checkbox"]');
+		var $filtrePaiementsEnSouffranceSelect = $formulaireFiltres.find('select.valeurPaiementsEnSouffrance');
+		var filtrePaiementsEnSouffrance = $filtrePaiementsEnSouffranceSelect.length ? $filtrePaiementsEnSouffranceSelect.val() : $filtrePaiementsEnSouffranceCheckbox.prop('checked');
+		var filtrePaiementsEnSouffranceSelectVal = $formulaireFiltres.find('select.filtrePaiementsEnSouffrance').val();
+		var filtrePaiementsEnSouffrance = null;
+		if(filtrePaiementsEnSouffranceSelectVal !== '')
+			filtrePaiementsEnSouffrance = filtrePaiementsEnSouffranceSelectVal == 'true';
+		if(filtrePaiementsEnSouffrance != null && filtrePaiementsEnSouffrance === true)
+			filtres.push({ name: 'fq', value: 'paiementsEnSouffrance:' + filtrePaiementsEnSouffrance });
+
+		var filtrePaiementsEnSouffranceMontant = $formulaireFiltres.find('.valeurPaiementsEnSouffranceMontant').val();
+		if(filtrePaiementsEnSouffranceMontant != null && filtrePaiementsEnSouffranceMontant !== '')
+			filtres.push({ name: 'fq', value: 'paiementsEnSouffranceMontant:' + filtrePaiementsEnSouffranceMontant });
 
 		var $filtreFraisCreesCheckbox = $formulaireFiltres.find('input.valeurFraisCrees[type = "checkbox"]');
 		var $filtreFraisCreesSelect = $formulaireFiltres.find('select.valeurFraisCrees');
@@ -2689,6 +2711,10 @@ function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 		if(filtreInscriptionDateFrais != null && filtreInscriptionDateFrais !== '')
 			filtres.push({ name: 'fq', value: 'inscriptionDateFrais:' + filtreInscriptionDateFrais });
 
+		var filtrePaiementLastDate = $formulaireFiltres.find('.valeurPaiementLastDate').val();
+		if(filtrePaiementLastDate != null && filtrePaiementLastDate !== '')
+			filtres.push({ name: 'fq', value: 'paiementLastDate:' + filtrePaiementLastDate });
+
 		var filtrePaiementLastStr = $formulaireFiltres.find('.valeurPaiementLastStr').val();
 		if(filtrePaiementLastStr != null && filtrePaiementLastStr !== '')
 			filtres.push({ name: 'fq', value: 'paiementLastStr:' + filtrePaiementLastStr });
@@ -2708,6 +2734,10 @@ function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 		var filtreFraisMontantDu = $formulaireFiltres.find('.valeurFraisMontantDu').val();
 		if(filtreFraisMontantDu != null && filtreFraisMontantDu !== '')
 			filtres.push({ name: 'fq', value: 'fraisMontantDu:' + filtreFraisMontantDu });
+
+		var filtreFraisMontantNonPasse = $formulaireFiltres.find('.valeurFraisMontantNonPasse').val();
+		if(filtreFraisMontantNonPasse != null && filtreFraisMontantNonPasse !== '')
+			filtres.push({ name: 'fq', value: 'fraisMontantNonPasse:' + filtreFraisMontantNonPasse });
 
 		var filtreFraisMaintenant = $formulaireFiltres.find('.valeurFraisMaintenant').val();
 		if(filtreFraisMaintenant != null && filtreFraisMaintenant !== '')
@@ -2746,6 +2776,20 @@ function rechercheInscriptionScolaireFiltres($formulaireFiltres) {
 			filtrePaiementsEnAvance = filtrePaiementsEnAvanceSelectVal == 'true';
 		if(filtrePaiementsEnAvance != null && filtrePaiementsEnAvance === true)
 			filtres.push({ name: 'fq', value: 'paiementsEnAvance:' + filtrePaiementsEnAvance });
+
+		var $filtrePaiementsEnSouffranceCheckbox = $formulaireFiltres.find('input.valeurPaiementsEnSouffrance[type = "checkbox"]');
+		var $filtrePaiementsEnSouffranceSelect = $formulaireFiltres.find('select.valeurPaiementsEnSouffrance');
+		var filtrePaiementsEnSouffrance = $filtrePaiementsEnSouffranceSelect.length ? $filtrePaiementsEnSouffranceSelect.val() : $filtrePaiementsEnSouffranceCheckbox.prop('checked');
+		var filtrePaiementsEnSouffranceSelectVal = $formulaireFiltres.find('select.filtrePaiementsEnSouffrance').val();
+		var filtrePaiementsEnSouffrance = null;
+		if(filtrePaiementsEnSouffranceSelectVal !== '')
+			filtrePaiementsEnSouffrance = filtrePaiementsEnSouffranceSelectVal == 'true';
+		if(filtrePaiementsEnSouffrance != null && filtrePaiementsEnSouffrance === true)
+			filtres.push({ name: 'fq', value: 'paiementsEnSouffrance:' + filtrePaiementsEnSouffrance });
+
+		var filtrePaiementsEnSouffranceMontant = $formulaireFiltres.find('.valeurPaiementsEnSouffranceMontant').val();
+		if(filtrePaiementsEnSouffranceMontant != null && filtrePaiementsEnSouffranceMontant !== '')
+			filtres.push({ name: 'fq', value: 'paiementsEnSouffranceMontant:' + filtrePaiementsEnSouffranceMontant });
 
 		var $filtreFraisCreesCheckbox = $formulaireFiltres.find('input.valeurFraisCrees[type = "checkbox"]');
 		var $filtreFraisCreesSelect = $formulaireFiltres.find('select.valeurFraisCrees');
@@ -3720,6 +3764,10 @@ function rechercheadminInscriptionScolaireFiltres($formulaireFiltres) {
 		if(filtreInscriptionDateFrais != null && filtreInscriptionDateFrais !== '')
 			filtres.push({ name: 'fq', value: 'inscriptionDateFrais:' + filtreInscriptionDateFrais });
 
+		var filtrePaiementLastDate = $formulaireFiltres.find('.valeurPaiementLastDate').val();
+		if(filtrePaiementLastDate != null && filtrePaiementLastDate !== '')
+			filtres.push({ name: 'fq', value: 'paiementLastDate:' + filtrePaiementLastDate });
+
 		var filtrePaiementLastStr = $formulaireFiltres.find('.valeurPaiementLastStr').val();
 		if(filtrePaiementLastStr != null && filtrePaiementLastStr !== '')
 			filtres.push({ name: 'fq', value: 'paiementLastStr:' + filtrePaiementLastStr });
@@ -3739,6 +3787,10 @@ function rechercheadminInscriptionScolaireFiltres($formulaireFiltres) {
 		var filtreFraisMontantDu = $formulaireFiltres.find('.valeurFraisMontantDu').val();
 		if(filtreFraisMontantDu != null && filtreFraisMontantDu !== '')
 			filtres.push({ name: 'fq', value: 'fraisMontantDu:' + filtreFraisMontantDu });
+
+		var filtreFraisMontantNonPasse = $formulaireFiltres.find('.valeurFraisMontantNonPasse').val();
+		if(filtreFraisMontantNonPasse != null && filtreFraisMontantNonPasse !== '')
+			filtres.push({ name: 'fq', value: 'fraisMontantNonPasse:' + filtreFraisMontantNonPasse });
 
 		var filtreFraisMaintenant = $formulaireFiltres.find('.valeurFraisMaintenant').val();
 		if(filtreFraisMaintenant != null && filtreFraisMaintenant !== '')
@@ -3777,6 +3829,20 @@ function rechercheadminInscriptionScolaireFiltres($formulaireFiltres) {
 			filtrePaiementsEnAvance = filtrePaiementsEnAvanceSelectVal == 'true';
 		if(filtrePaiementsEnAvance != null && filtrePaiementsEnAvance === true)
 			filtres.push({ name: 'fq', value: 'paiementsEnAvance:' + filtrePaiementsEnAvance });
+
+		var $filtrePaiementsEnSouffranceCheckbox = $formulaireFiltres.find('input.valeurPaiementsEnSouffrance[type = "checkbox"]');
+		var $filtrePaiementsEnSouffranceSelect = $formulaireFiltres.find('select.valeurPaiementsEnSouffrance');
+		var filtrePaiementsEnSouffrance = $filtrePaiementsEnSouffranceSelect.length ? $filtrePaiementsEnSouffranceSelect.val() : $filtrePaiementsEnSouffranceCheckbox.prop('checked');
+		var filtrePaiementsEnSouffranceSelectVal = $formulaireFiltres.find('select.filtrePaiementsEnSouffrance').val();
+		var filtrePaiementsEnSouffrance = null;
+		if(filtrePaiementsEnSouffranceSelectVal !== '')
+			filtrePaiementsEnSouffrance = filtrePaiementsEnSouffranceSelectVal == 'true';
+		if(filtrePaiementsEnSouffrance != null && filtrePaiementsEnSouffrance === true)
+			filtres.push({ name: 'fq', value: 'paiementsEnSouffrance:' + filtrePaiementsEnSouffrance });
+
+		var filtrePaiementsEnSouffranceMontant = $formulaireFiltres.find('.valeurPaiementsEnSouffranceMontant').val();
+		if(filtrePaiementsEnSouffranceMontant != null && filtrePaiementsEnSouffranceMontant !== '')
+			filtres.push({ name: 'fq', value: 'paiementsEnSouffranceMontant:' + filtrePaiementsEnSouffranceMontant });
 
 		var $filtreFraisCreesCheckbox = $formulaireFiltres.find('input.valeurFraisCrees[type = "checkbox"]');
 		var $filtreFraisCreesSelect = $formulaireFiltres.find('select.valeurFraisCrees');
@@ -5532,6 +5598,10 @@ function patchpaiementsInscriptionScolaireFiltres($formulaireFiltres) {
 		if(filtreInscriptionDateFrais != null && filtreInscriptionDateFrais !== '')
 			filtres.push({ name: 'fq', value: 'inscriptionDateFrais:' + filtreInscriptionDateFrais });
 
+		var filtrePaiementLastDate = $formulaireFiltres.find('.valeurPaiementLastDate').val();
+		if(filtrePaiementLastDate != null && filtrePaiementLastDate !== '')
+			filtres.push({ name: 'fq', value: 'paiementLastDate:' + filtrePaiementLastDate });
+
 		var filtrePaiementLastStr = $formulaireFiltres.find('.valeurPaiementLastStr').val();
 		if(filtrePaiementLastStr != null && filtrePaiementLastStr !== '')
 			filtres.push({ name: 'fq', value: 'paiementLastStr:' + filtrePaiementLastStr });
@@ -5551,6 +5621,10 @@ function patchpaiementsInscriptionScolaireFiltres($formulaireFiltres) {
 		var filtreFraisMontantDu = $formulaireFiltres.find('.valeurFraisMontantDu').val();
 		if(filtreFraisMontantDu != null && filtreFraisMontantDu !== '')
 			filtres.push({ name: 'fq', value: 'fraisMontantDu:' + filtreFraisMontantDu });
+
+		var filtreFraisMontantNonPasse = $formulaireFiltres.find('.valeurFraisMontantNonPasse').val();
+		if(filtreFraisMontantNonPasse != null && filtreFraisMontantNonPasse !== '')
+			filtres.push({ name: 'fq', value: 'fraisMontantNonPasse:' + filtreFraisMontantNonPasse });
 
 		var filtreFraisMaintenant = $formulaireFiltres.find('.valeurFraisMaintenant').val();
 		if(filtreFraisMaintenant != null && filtreFraisMaintenant !== '')
@@ -5589,6 +5663,20 @@ function patchpaiementsInscriptionScolaireFiltres($formulaireFiltres) {
 			filtrePaiementsEnAvance = filtrePaiementsEnAvanceSelectVal == 'true';
 		if(filtrePaiementsEnAvance != null && filtrePaiementsEnAvance === true)
 			filtres.push({ name: 'fq', value: 'paiementsEnAvance:' + filtrePaiementsEnAvance });
+
+		var $filtrePaiementsEnSouffranceCheckbox = $formulaireFiltres.find('input.valeurPaiementsEnSouffrance[type = "checkbox"]');
+		var $filtrePaiementsEnSouffranceSelect = $formulaireFiltres.find('select.valeurPaiementsEnSouffrance');
+		var filtrePaiementsEnSouffrance = $filtrePaiementsEnSouffranceSelect.length ? $filtrePaiementsEnSouffranceSelect.val() : $filtrePaiementsEnSouffranceCheckbox.prop('checked');
+		var filtrePaiementsEnSouffranceSelectVal = $formulaireFiltres.find('select.filtrePaiementsEnSouffrance').val();
+		var filtrePaiementsEnSouffrance = null;
+		if(filtrePaiementsEnSouffranceSelectVal !== '')
+			filtrePaiementsEnSouffrance = filtrePaiementsEnSouffranceSelectVal == 'true';
+		if(filtrePaiementsEnSouffrance != null && filtrePaiementsEnSouffrance === true)
+			filtres.push({ name: 'fq', value: 'paiementsEnSouffrance:' + filtrePaiementsEnSouffrance });
+
+		var filtrePaiementsEnSouffranceMontant = $formulaireFiltres.find('.valeurPaiementsEnSouffranceMontant').val();
+		if(filtrePaiementsEnSouffranceMontant != null && filtrePaiementsEnSouffranceMontant !== '')
+			filtres.push({ name: 'fq', value: 'paiementsEnSouffranceMontant:' + filtrePaiementsEnSouffranceMontant });
 
 		var $filtreFraisCreesCheckbox = $formulaireFiltres.find('input.valeurFraisCrees[type = "checkbox"]');
 		var $filtreFraisCreesSelect = $formulaireFiltres.find('select.valeurFraisCrees');
@@ -5877,6 +5965,18 @@ async function websocketInscriptionScolaireInner(requeteApi) {
 	if(pk != null) {
 		rechercherInscriptionScolaireVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
+			var val = o['pk'];
+			if(vars.includes('pk')) {
+				$('.inputInscriptionScolaire' + pk + 'Pk').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'Pk').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'Pk'));
+			}
 			var val = o['cree'];
 			if(vars.includes('cree')) {
 				$('.inputInscriptionScolaire' + pk + 'Cree').each(function() {
@@ -5900,6 +6000,18 @@ async function websocketInscriptionScolaireInner(requeteApi) {
 						$(this).text(val);
 				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'Modifie'));
+			}
+			var val = o['objetId'];
+			if(vars.includes('objetId')) {
+				$('.inputInscriptionScolaire' + pk + 'ObjetId').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'ObjetId').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'ObjetId'));
 			}
 			var val = o['archive'];
 			if(vars.includes('archive')) {
@@ -6243,6 +6355,54 @@ async function websocketInscriptionScolaireInner(requeteApi) {
 				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InheritPk'));
 			}
+			var val = o['id'];
+			if(vars.includes('id')) {
+				$('.inputInscriptionScolaire' + pk + 'Id').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'Id').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'Id'));
+			}
+			var val = o['classeNomCanonique'];
+			if(vars.includes('classeNomCanonique')) {
+				$('.inputInscriptionScolaire' + pk + 'ClasseNomCanonique').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'ClasseNomCanonique').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'ClasseNomCanonique'));
+			}
+			var val = o['classeNomSimple'];
+			if(vars.includes('classeNomSimple')) {
+				$('.inputInscriptionScolaire' + pk + 'ClasseNomSimple').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'ClasseNomSimple').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'ClasseNomSimple'));
+			}
+			var val = o['classeNomsCanoniques'];
+			if(vars.includes('classeNomsCanoniques')) {
+				$('.inputInscriptionScolaire' + pk + 'ClasseNomsCanoniques').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'ClasseNomsCanoniques').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'ClasseNomsCanoniques'));
+			}
 			var val = o['sessionId'];
 			if(vars.includes('sessionId')) {
 				$('.inputInscriptionScolaire' + pk + 'SessionId').each(function() {
@@ -6279,6 +6439,102 @@ async function websocketInscriptionScolaireInner(requeteApi) {
 				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'UtilisateurCle'));
 			}
+			var val = o['sauvegardes'];
+			if(vars.includes('sauvegardes')) {
+				$('.inputInscriptionScolaire' + pk + 'Sauvegardes').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'Sauvegardes').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'Sauvegardes'));
+			}
+			var val = o['objetTitre'];
+			if(vars.includes('objetTitre')) {
+				$('.inputInscriptionScolaire' + pk + 'ObjetTitre').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'ObjetTitre').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'ObjetTitre'));
+			}
+			var val = o['objetSuggere'];
+			if(vars.includes('objetSuggere')) {
+				$('.inputInscriptionScolaire' + pk + 'ObjetSuggere').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'ObjetSuggere').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'ObjetSuggere'));
+			}
+			var val = o['objetTexte'];
+			if(vars.includes('objetTexte')) {
+				$('.inputInscriptionScolaire' + pk + 'ObjetTexte').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'ObjetTexte').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'ObjetTexte'));
+			}
+			var val = o['pageUrlId'];
+			if(vars.includes('pageUrlId')) {
+				$('.inputInscriptionScolaire' + pk + 'PageUrlId').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'PageUrlId').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'PageUrlId'));
+			}
+			var val = o['pageUrlPk'];
+			if(vars.includes('pageUrlPk')) {
+				$('.inputInscriptionScolaire' + pk + 'PageUrlPk').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'PageUrlPk').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'PageUrlPk'));
+			}
+			var val = o['pageUrlApi'];
+			if(vars.includes('pageUrlApi')) {
+				$('.inputInscriptionScolaire' + pk + 'PageUrlApi').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'PageUrlApi').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'PageUrlApi'));
+			}
+			var val = o['inscriptionCle'];
+			if(vars.includes('inscriptionCle')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionCle').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionCle').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionCle'));
+			}
 			var val = o['anneeCle'];
 			if(vars.includes('anneeCle')) {
 				$('.inputInscriptionScolaire' + pk + 'AnneeCle').each(function() {
@@ -6290,6 +6546,246 @@ async function websocketInscriptionScolaireInner(requeteApi) {
 						$(this).text(val);
 				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'AnneeCle'));
+			}
+			var val = o['ecoleCle'];
+			if(vars.includes('ecoleCle')) {
+				$('.inputInscriptionScolaire' + pk + 'EcoleCle').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'EcoleCle').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EcoleCle'));
+			}
+			var val = o['sessionCle'];
+			if(vars.includes('sessionCle')) {
+				$('.inputInscriptionScolaire' + pk + 'SessionCle').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'SessionCle').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'SessionCle'));
+			}
+			var val = o['ageCle'];
+			if(vars.includes('ageCle')) {
+				$('.inputInscriptionScolaire' + pk + 'AgeCle').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'AgeCle').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'AgeCle'));
+			}
+			var val = o['blocCle'];
+			if(vars.includes('blocCle')) {
+				$('.inputInscriptionScolaire' + pk + 'BlocCle').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'BlocCle').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'BlocCle'));
+			}
+			var val = o['formInscriptionCle'];
+			if(vars.includes('formInscriptionCle')) {
+				$('.inputInscriptionScolaire' + pk + 'FormInscriptionCle').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'FormInscriptionCle').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'FormInscriptionCle'));
+			}
+			var val = o['scolaireTri'];
+			if(vars.includes('scolaireTri')) {
+				$('.inputInscriptionScolaire' + pk + 'ScolaireTri').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'ScolaireTri').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'ScolaireTri'));
+			}
+			var val = o['ecoleTri'];
+			if(vars.includes('ecoleTri')) {
+				$('.inputInscriptionScolaire' + pk + 'EcoleTri').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'EcoleTri').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EcoleTri'));
+			}
+			var val = o['anneeTri'];
+			if(vars.includes('anneeTri')) {
+				$('.inputInscriptionScolaire' + pk + 'AnneeTri').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'AnneeTri').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'AnneeTri'));
+			}
+			var val = o['saisonTri'];
+			if(vars.includes('saisonTri')) {
+				$('.inputInscriptionScolaire' + pk + 'SaisonTri').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'SaisonTri').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'SaisonTri'));
+			}
+			var val = o['sessionTri'];
+			if(vars.includes('sessionTri')) {
+				$('.inputInscriptionScolaire' + pk + 'SessionTri').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'SessionTri').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'SessionTri'));
+			}
+			var val = o['ageTri'];
+			if(vars.includes('ageTri')) {
+				$('.inputInscriptionScolaire' + pk + 'AgeTri').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'AgeTri').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'AgeTri'));
+			}
+			var val = o['enfantPrenom'];
+			if(vars.includes('enfantPrenom')) {
+				$('.inputInscriptionScolaire' + pk + 'EnfantPrenom').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'EnfantPrenom').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EnfantPrenom'));
+			}
+			var val = o['enfantPrenomPrefere'];
+			if(vars.includes('enfantPrenomPrefere')) {
+				$('.inputInscriptionScolaire' + pk + 'EnfantPrenomPrefere').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'EnfantPrenomPrefere').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EnfantPrenomPrefere'));
+			}
+			var val = o['enfantFamilleNom'];
+			if(vars.includes('enfantFamilleNom')) {
+				$('.inputInscriptionScolaire' + pk + 'EnfantFamilleNom').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'EnfantFamilleNom').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EnfantFamilleNom'));
+			}
+			var val = o['merePrenom'];
+			if(vars.includes('merePrenom')) {
+				$('.inputInscriptionScolaire' + pk + 'MerePrenom').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'MerePrenom').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'MerePrenom'));
+			}
+			var val = o['merePrenomPrefere'];
+			if(vars.includes('merePrenomPrefere')) {
+				$('.inputInscriptionScolaire' + pk + 'MerePrenomPrefere').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'MerePrenomPrefere').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'MerePrenomPrefere'));
+			}
+			var val = o['mereNomCompletPrefere'];
+			if(vars.includes('mereNomCompletPrefere')) {
+				$('.inputInscriptionScolaire' + pk + 'MereNomCompletPrefere').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'MereNomCompletPrefere').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'MereNomCompletPrefere'));
+			}
+			var val = o['perePrenom'];
+			if(vars.includes('perePrenom')) {
+				$('.inputInscriptionScolaire' + pk + 'PerePrenom').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'PerePrenom').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'PerePrenom'));
+			}
+			var val = o['perePrenomPrefere'];
+			if(vars.includes('perePrenomPrefere')) {
+				$('.inputInscriptionScolaire' + pk + 'PerePrenomPrefere').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'PerePrenomPrefere').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'PerePrenomPrefere'));
+			}
+			var val = o['pereNomCompletPrefere'];
+			if(vars.includes('pereNomCompletPrefere')) {
+				$('.inputInscriptionScolaire' + pk + 'PereNomCompletPrefere').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'PereNomCompletPrefere').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'PereNomCompletPrefere'));
 			}
 			var val = o['enfantNomComplet'];
 			if(vars.includes('enfantNomComplet')) {
@@ -6332,6 +6828,102 @@ async function websocketInscriptionScolaireInner(requeteApi) {
 				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EnfantDateNaissance'));
 			}
+			var val = o['enfantDateNaissanceDAnnee'];
+			if(vars.includes('enfantDateNaissanceDAnnee')) {
+				$('.inputInscriptionScolaire' + pk + 'EnfantDateNaissanceDAnnee').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'EnfantDateNaissanceDAnnee').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EnfantDateNaissanceDAnnee'));
+			}
+			var val = o['enfantDateNaissanceMoisDAnnee'];
+			if(vars.includes('enfantDateNaissanceMoisDAnnee')) {
+				$('.inputInscriptionScolaire' + pk + 'EnfantDateNaissanceMoisDAnnee').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'EnfantDateNaissanceMoisDAnnee').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EnfantDateNaissanceMoisDAnnee'));
+			}
+			var val = o['enfantDateNaissanceJourDeSemaine'];
+			if(vars.includes('enfantDateNaissanceJourDeSemaine')) {
+				$('.inputInscriptionScolaire' + pk + 'EnfantDateNaissanceJourDeSemaine').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'EnfantDateNaissanceJourDeSemaine').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EnfantDateNaissanceJourDeSemaine'));
+			}
+			var val = o['enfantMoisNaissance'];
+			if(vars.includes('enfantMoisNaissance')) {
+				$('.inputInscriptionScolaire' + pk + 'EnfantMoisNaissance').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'EnfantMoisNaissance').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EnfantMoisNaissance'));
+			}
+			var val = o['enfantJourNaissance'];
+			if(vars.includes('enfantJourNaissance')) {
+				$('.inputInscriptionScolaire' + pk + 'EnfantJourNaissance').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'EnfantJourNaissance').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EnfantJourNaissance'));
+			}
+			var val = o['ecoleNom'];
+			if(vars.includes('ecoleNom')) {
+				$('.inputInscriptionScolaire' + pk + 'EcoleNom').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'EcoleNom').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EcoleNom'));
+			}
+			var val = o['ecoleNomComplet'];
+			if(vars.includes('ecoleNomComplet')) {
+				$('.inputInscriptionScolaire' + pk + 'EcoleNomComplet').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'EcoleNomComplet').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EcoleNomComplet'));
+			}
+			var val = o['ecoleEmplacement'];
+			if(vars.includes('ecoleEmplacement')) {
+				$('.inputInscriptionScolaire' + pk + 'EcoleEmplacement').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'EcoleEmplacement').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EcoleEmplacement'));
+			}
 			var val = o['ecoleAddresse'];
 			if(vars.includes('ecoleAddresse')) {
 				$('.inputInscriptionScolaire' + pk + 'EcoleAddresse').each(function() {
@@ -6343,6 +6935,367 @@ async function websocketInscriptionScolaireInner(requeteApi) {
 						$(this).text(val);
 				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EcoleAddresse'));
+			}
+			var val = o['ecoleNumeroTelephone'];
+			if(vars.includes('ecoleNumeroTelephone')) {
+				$('.inputInscriptionScolaire' + pk + 'EcoleNumeroTelephone').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'EcoleNumeroTelephone').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EcoleNumeroTelephone'));
+			}
+			var val = o['ecoleForm'];
+			if(vars.includes('ecoleForm')) {
+				$('.inputInscriptionScolaire' + pk + 'EcoleForm').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'EcoleForm').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EcoleForm'));
+			}
+			var val = o['ecoleNumero'];
+			if(vars.includes('ecoleNumero')) {
+				$('.inputInscriptionScolaire' + pk + 'EcoleNumero').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'EcoleNumero').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EcoleNumero'));
+			}
+			var val = o['ecoleAdministrateurNom'];
+			if(vars.includes('ecoleAdministrateurNom')) {
+				$('.inputInscriptionScolaire' + pk + 'EcoleAdministrateurNom').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'EcoleAdministrateurNom').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EcoleAdministrateurNom'));
+			}
+			var val = o['anneeDebut'];
+			if(vars.includes('anneeDebut')) {
+				$('.inputInscriptionScolaire' + pk + 'AnneeDebut').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'AnneeDebut').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'AnneeDebut'));
+			}
+			var val = o['anneeFin'];
+			if(vars.includes('anneeFin')) {
+				$('.inputInscriptionScolaire' + pk + 'AnneeFin').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'AnneeFin').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'AnneeFin'));
+			}
+			var val = o['saisonDateDebut'];
+			if(val != null) {
+				var t = moment(val, 'YYYY-MM-DD');
+				if(t)
+					val = t.format('DD-MM-YYYY');
+			}
+			if(vars.includes('saisonDateDebut')) {
+				$('.inputInscriptionScolaire' + pk + 'SaisonDateDebut').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'SaisonDateDebut').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'SaisonDateDebut'));
+			}
+			var val = o['anneeFraisInscription'];
+			if(vars.includes('anneeFraisInscription')) {
+				$('.inputInscriptionScolaire' + pk + 'AnneeFraisInscription').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'AnneeFraisInscription').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'AnneeFraisInscription'));
+			}
+			var val = o['sessionDateDebut'];
+			if(val != null) {
+				var t = moment(val, 'YYYY-MM-DD');
+				if(t)
+					val = t.format('DD-MM-YYYY');
+			}
+			if(vars.includes('sessionDateDebut')) {
+				$('.inputInscriptionScolaire' + pk + 'SessionDateDebut').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'SessionDateDebut').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'SessionDateDebut'));
+			}
+			var val = o['sessionDateFin'];
+			if(val != null) {
+				var t = moment(val, 'YYYY-MM-DD');
+				if(t)
+					val = t.format('DD-MM-YYYY');
+			}
+			if(vars.includes('sessionDateFin')) {
+				$('.inputInscriptionScolaire' + pk + 'SessionDateFin').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'SessionDateFin').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'SessionDateFin'));
+			}
+			var val = o['ageNomComplet'];
+			if(vars.includes('ageNomComplet')) {
+				$('.inputInscriptionScolaire' + pk + 'AgeNomComplet').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'AgeNomComplet').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'AgeNomComplet'));
+			}
+			var val = o['ageDebut'];
+			if(vars.includes('ageDebut')) {
+				$('.inputInscriptionScolaire' + pk + 'AgeDebut').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'AgeDebut').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'AgeDebut'));
+			}
+			var val = o['ageFin'];
+			if(vars.includes('ageFin')) {
+				$('.inputInscriptionScolaire' + pk + 'AgeFin').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'AgeFin').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'AgeFin'));
+			}
+			var val = o['blocHeureDebut'];
+			if(val != null) {
+				var t = moment(val, 'HH:mm');
+				if(t)
+					val = t.format('H'h'mm');
+			}
+			if(vars.includes('blocHeureDebut')) {
+				$('.inputInscriptionScolaire' + pk + 'BlocHeureDebut').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'BlocHeureDebut').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'BlocHeureDebut'));
+			}
+			var val = o['blocHeureFin'];
+			if(val != null) {
+				var t = moment(val, 'HH:mm');
+				if(t)
+					val = t.format('H'h'mm');
+			}
+			if(vars.includes('blocHeureFin')) {
+				$('.inputInscriptionScolaire' + pk + 'BlocHeureFin').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'BlocHeureFin').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'BlocHeureFin'));
+			}
+			var val = o['blocPrixParMois'];
+			if(vars.includes('blocPrixParMois')) {
+				$('.inputInscriptionScolaire' + pk + 'BlocPrixParMois').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'BlocPrixParMois').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'BlocPrixParMois'));
+			}
+			var val = o['blocDimanche'];
+			if(vars.includes('blocDimanche')) {
+				$('.inputInscriptionScolaire' + pk + 'BlocDimanche').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'BlocDimanche').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'BlocDimanche'));
+			}
+			var val = o['blocLundi'];
+			if(vars.includes('blocLundi')) {
+				$('.inputInscriptionScolaire' + pk + 'BlocLundi').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'BlocLundi').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'BlocLundi'));
+			}
+			var val = o['blocMardi'];
+			if(vars.includes('blocMardi')) {
+				$('.inputInscriptionScolaire' + pk + 'BlocMardi').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'BlocMardi').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'BlocMardi'));
+			}
+			var val = o['blocMercredi'];
+			if(vars.includes('blocMercredi')) {
+				$('.inputInscriptionScolaire' + pk + 'BlocMercredi').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'BlocMercredi').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'BlocMercredi'));
+			}
+			var val = o['blocJeudi'];
+			if(vars.includes('blocJeudi')) {
+				$('.inputInscriptionScolaire' + pk + 'BlocJeudi').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'BlocJeudi').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'BlocJeudi'));
+			}
+			var val = o['blocVendredi'];
+			if(vars.includes('blocVendredi')) {
+				$('.inputInscriptionScolaire' + pk + 'BlocVendredi').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'BlocVendredi').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'BlocVendredi'));
+			}
+			var val = o['blocSamedi'];
+			if(vars.includes('blocSamedi')) {
+				$('.inputInscriptionScolaire' + pk + 'BlocSamedi').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'BlocSamedi').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'BlocSamedi'));
+			}
+			var val = o['blocPrixTotal'];
+			if(vars.includes('blocPrixTotal')) {
+				$('.inputInscriptionScolaire' + pk + 'BlocPrixTotal').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'BlocPrixTotal').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'BlocPrixTotal'));
+			}
+			var val = o['blocNomAdmin'];
+			if(vars.includes('blocNomAdmin')) {
+				$('.inputInscriptionScolaire' + pk + 'BlocNomAdmin').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'BlocNomAdmin').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'BlocNomAdmin'));
+			}
+			var val = o['blocNomCourt'];
+			if(vars.includes('blocNomCourt')) {
+				$('.inputInscriptionScolaire' + pk + 'BlocNomCourt').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'BlocNomCourt').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'BlocNomCourt'));
+			}
+			var val = o['blocNomComplet'];
+			if(vars.includes('blocNomComplet')) {
+				$('.inputInscriptionScolaire' + pk + 'BlocNomComplet').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'BlocNomComplet').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'BlocNomComplet'));
+			}
+			var val = o['inscriptionCouleurGroupe'];
+			if(vars.includes('inscriptionCouleurGroupe')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionCouleurGroupe').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionCouleurGroupe').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionCouleurGroupe'));
 			}
 			var val = o['inscriptionDateFrais'];
 			if(val != null) {
@@ -6361,6 +7314,251 @@ async function websocketInscriptionScolaireInner(requeteApi) {
 				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionDateFrais'));
 			}
+			var val = o['paiementLastDate'];
+			if(val != null) {
+				var t = moment(val, 'YYYY-MM-DD');
+				if(t)
+					val = t.format('DD-MM-YYYY');
+			}
+			if(vars.includes('paiementLastDate')) {
+				$('.inputInscriptionScolaire' + pk + 'PaiementLastDate').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'PaiementLastDate').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'PaiementLastDate'));
+			}
+			var val = o['paiementLastStr'];
+			if(vars.includes('paiementLastStr')) {
+				$('.inputInscriptionScolaire' + pk + 'PaiementLastStr').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'PaiementLastStr').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'PaiementLastStr'));
+			}
+			var val = o['paiementMontant'];
+			if(vars.includes('paiementMontant')) {
+				$('.inputInscriptionScolaire' + pk + 'PaiementMontant').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'PaiementMontant').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'PaiementMontant'));
+			}
+			var val = o['fraisMontant'];
+			if(vars.includes('fraisMontant')) {
+				$('.inputInscriptionScolaire' + pk + 'FraisMontant').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'FraisMontant').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'FraisMontant'));
+			}
+			var val = o['fraisMontantFuture'];
+			if(vars.includes('fraisMontantFuture')) {
+				$('.inputInscriptionScolaire' + pk + 'FraisMontantFuture').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'FraisMontantFuture').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'FraisMontantFuture'));
+			}
+			var val = o['fraisMontantDu'];
+			if(vars.includes('fraisMontantDu')) {
+				$('.inputInscriptionScolaire' + pk + 'FraisMontantDu').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'FraisMontantDu').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'FraisMontantDu'));
+			}
+			var val = o['fraisMontantNonPasse'];
+			if(vars.includes('fraisMontantNonPasse')) {
+				$('.inputInscriptionScolaire' + pk + 'FraisMontantNonPasse').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'FraisMontantNonPasse').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'FraisMontantNonPasse'));
+			}
+			var val = o['fraisMaintenant'];
+			if(vars.includes('fraisMaintenant')) {
+				$('.inputInscriptionScolaire' + pk + 'FraisMaintenant').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'FraisMaintenant').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'FraisMaintenant'));
+			}
+			var val = o['paiementsAJour'];
+			if(vars.includes('paiementsAJour')) {
+				$('.inputInscriptionScolaire' + pk + 'PaiementsAJour').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'PaiementsAJour').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'PaiementsAJour'));
+			}
+			var val = o['paiementsEnRetard'];
+			if(vars.includes('paiementsEnRetard')) {
+				$('.inputInscriptionScolaire' + pk + 'PaiementsEnRetard').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'PaiementsEnRetard').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'PaiementsEnRetard'));
+			}
+			var val = o['paiementsEnRetardMontant'];
+			if(vars.includes('paiementsEnRetardMontant')) {
+				$('.inputInscriptionScolaire' + pk + 'PaiementsEnRetardMontant').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'PaiementsEnRetardMontant').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'PaiementsEnRetardMontant'));
+			}
+			var val = o['paiementsEnAvance'];
+			if(vars.includes('paiementsEnAvance')) {
+				$('.inputInscriptionScolaire' + pk + 'PaiementsEnAvance').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'PaiementsEnAvance').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'PaiementsEnAvance'));
+			}
+			var val = o['paiementsEnSouffrance'];
+			if(vars.includes('paiementsEnSouffrance')) {
+				$('.inputInscriptionScolaire' + pk + 'PaiementsEnSouffrance').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'PaiementsEnSouffrance').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'PaiementsEnSouffrance'));
+			}
+			var val = o['paiementsEnSouffranceMontant'];
+			if(vars.includes('paiementsEnSouffranceMontant')) {
+				$('.inputInscriptionScolaire' + pk + 'PaiementsEnSouffranceMontant').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'PaiementsEnSouffranceMontant').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'PaiementsEnSouffranceMontant'));
+			}
+			var val = o['fraisCrees'];
+			if(vars.includes('fraisCrees')) {
+				$('.inputInscriptionScolaire' + pk + 'FraisCrees').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'FraisCrees').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'FraisCrees'));
+			}
+			var val = o['creeDAnnee'];
+			if(vars.includes('creeDAnnee')) {
+				$('.inputInscriptionScolaire' + pk + 'CreeDAnnee').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'CreeDAnnee').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'CreeDAnnee'));
+			}
+			var val = o['creeJourDeSemaine'];
+			if(vars.includes('creeJourDeSemaine')) {
+				$('.inputInscriptionScolaire' + pk + 'CreeJourDeSemaine').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'CreeJourDeSemaine').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'CreeJourDeSemaine'));
+			}
+			var val = o['creeMoisDAnnee'];
+			if(vars.includes('creeMoisDAnnee')) {
+				$('.inputInscriptionScolaire' + pk + 'CreeMoisDAnnee').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'CreeMoisDAnnee').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'CreeMoisDAnnee'));
+			}
+			var val = o['creeHeureDuJour'];
+			if(vars.includes('creeHeureDuJour')) {
+				$('.inputInscriptionScolaire' + pk + 'CreeHeureDuJour').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'CreeHeureDuJour').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'CreeHeureDuJour'));
+			}
+			var val = o['inscriptionJoursDeSemaine'];
+			if(vars.includes('inscriptionJoursDeSemaine')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionJoursDeSemaine').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionJoursDeSemaine').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionJoursDeSemaine'));
+			}
 			var val = o['inscriptionNomsParents'];
 			if(vars.includes('inscriptionNomsParents')) {
 				$('.inputInscriptionScolaire' + pk + 'InscriptionNomsParents').each(function() {
@@ -6372,6 +7570,138 @@ async function websocketInscriptionScolaireInner(requeteApi) {
 						$(this).text(val);
 				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionNomsParents'));
+			}
+			var val = o['inscriptionMails'];
+			if(vars.includes('inscriptionMails')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionMails').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionMails').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionMails'));
+			}
+			var val = o['inscriptionMail'];
+			if(vars.includes('inscriptionMail')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionMail').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionMail').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionMail'));
+			}
+			var val = o['inscriptionMailsParents'];
+			if(vars.includes('inscriptionMailsParents')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionMailsParents').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionMailsParents').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionMailsParents'));
+			}
+			var val = o['inscriptionNumeroTelephones'];
+			if(vars.includes('inscriptionNumeroTelephones')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionNumeroTelephones').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionNumeroTelephones').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionNumeroTelephones'));
+			}
+			var val = o['inscriptionNumeroTelephone'];
+			if(vars.includes('inscriptionNumeroTelephone')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionNumeroTelephone').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionNumeroTelephone').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionNumeroTelephone'));
+			}
+			var val = o['inscriptionNomParent'];
+			if(vars.includes('inscriptionNomParent')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionNomParent').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionNomParent').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionNomParent'));
+			}
+			var val = o['inscriptionNomParentLignes'];
+			if(vars.includes('inscriptionNomParentLignes')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionNomParentLignes').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionNomParentLignes').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionNomParentLignes'));
+			}
+			var val = o['inscriptionMailParentLignes'];
+			if(vars.includes('inscriptionMailParentLignes')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionMailParentLignes').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionMailParentLignes').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionMailParentLignes'));
+			}
+			var val = o['inscriptionDetailParentLignes'];
+			if(vars.includes('inscriptionDetailParentLignes')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionDetailParentLignes').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionDetailParentLignes').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionDetailParentLignes'));
+			}
+			var val = o['inscriptionChercherParentLignes'];
+			if(vars.includes('inscriptionChercherParentLignes')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionChercherParentLignes').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionChercherParentLignes').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionChercherParentLignes'));
+			}
+			var val = o['inscriptionContactUrgenceParentLignes'];
+			if(vars.includes('inscriptionContactUrgenceParentLignes')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionContactUrgenceParentLignes').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionContactUrgenceParentLignes').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionContactUrgenceParentLignes'));
 			}
 			var val = o['inscriptionSignature1'];
 			if(vars.includes('inscriptionSignature1')) {
@@ -6732,6 +8062,42 @@ async function websocketInscriptionScolaireInner(requeteApi) {
 						$(this).text(val);
 				});
 				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionDate10'));
+			}
+			var val = o['enfantImmunisationsRecu'];
+			if(vars.includes('enfantImmunisationsRecu')) {
+				$('.inputInscriptionScolaire' + pk + 'EnfantImmunisationsRecu').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'EnfantImmunisationsRecu').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EnfantImmunisationsRecu'));
+			}
+			var val = o['enfantPhotosApprouve'];
+			if(vars.includes('enfantPhotosApprouve')) {
+				$('.inputInscriptionScolaire' + pk + 'EnfantPhotosApprouve').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'EnfantPhotosApprouve').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'EnfantPhotosApprouve'));
+			}
+			var val = o['inscriptionNomComplet'];
+			if(vars.includes('inscriptionNomComplet')) {
+				$('.inputInscriptionScolaire' + pk + 'InscriptionNomComplet').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varInscriptionScolaire' + pk + 'InscriptionNomComplet').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputInscriptionScolaire' + pk + 'InscriptionNomComplet'));
 			}
 		});
 	}

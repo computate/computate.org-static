@@ -96,6 +96,10 @@ async function postPartHtml($formulaireValeurs, success, error) {
 	if(valeurHtmlVarInput != null && valeurHtmlVarInput !== '')
 		vals['htmlVarInput'] = valeurHtmlVarInput;
 
+	var valeurHtmlIfVarEquals = $formulaireValeurs.find('.valeurHtmlIfVarEquals').val();
+	if(valeurHtmlIfVarEquals != null && valeurHtmlIfVarEquals !== '')
+		vals['htmlIfVarEquals'] = valeurHtmlIfVarEquals;
+
 	var valeurHtmlVarForEach = $formulaireValeurs.find('.valeurHtmlVarForEach').val();
 	if(valeurHtmlVarForEach != null && valeurHtmlVarForEach !== '')
 		vals['htmlVarForEach'] = valeurHtmlVarForEach;
@@ -315,6 +319,10 @@ async function putcopiePartHtml($formulaireValeurs, pk, success, error) {
 	var valeurHtmlVarInput = $formulaireValeurs.find('.valeurHtmlVarInput').val();
 	if(valeurHtmlVarInput != null && valeurHtmlVarInput !== '')
 		vals['htmlVarInput'] = valeurHtmlVarInput;
+
+	var valeurHtmlIfVarEquals = $formulaireValeurs.find('.valeurHtmlIfVarEquals').val();
+	if(valeurHtmlIfVarEquals != null && valeurHtmlIfVarEquals !== '')
+		vals['htmlIfVarEquals'] = valeurHtmlIfVarEquals;
 
 	var valeurHtmlVarForEach = $formulaireValeurs.find('.valeurHtmlVarForEach').val();
 	if(valeurHtmlVarForEach != null && valeurHtmlVarForEach !== '')
@@ -660,6 +668,19 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 	if(removeHtmlVarInput != null && removeHtmlVarInput !== '')
 		vals['removeHtmlVarInput'] = removeHtmlVarInput;
 
+	var valeurHtmlIfVarEquals = $formulaireValeurs.find('.valeurHtmlIfVarEquals').val();
+	if(valeurHtmlIfVarEquals != null && valeurHtmlIfVarEquals !== '')
+	var removeHtmlIfVarEquals = $formulaireFiltres.find('.removeHtmlIfVarEquals').val() === 'true';
+	var setHtmlIfVarEquals = removeHtmlIfVarEquals ? null : $formulaireValeurs.find('.setHtmlIfVarEquals').val();
+	if(removeHtmlIfVarEquals || setHtmlIfVarEquals != null && setHtmlIfVarEquals !== '')
+		vals['setHtmlIfVarEquals'] = setHtmlIfVarEquals;
+	var addHtmlIfVarEquals = $formulaireValeurs.find('.addHtmlIfVarEquals').val();
+	if(addHtmlIfVarEquals != null && addHtmlIfVarEquals !== '')
+		vals['addHtmlIfVarEquals'] = addHtmlIfVarEquals;
+	var removeHtmlIfVarEquals = $formulaireValeurs.find('.removeHtmlIfVarEquals').val();
+	if(removeHtmlIfVarEquals != null && removeHtmlIfVarEquals !== '')
+		vals['removeHtmlIfVarEquals'] = removeHtmlIfVarEquals;
+
 	var valeurHtmlVarForEach = $formulaireValeurs.find('.valeurHtmlVarForEach').val();
 	if(valeurHtmlVarForEach != null && valeurHtmlVarForEach !== '')
 	var removeHtmlVarForEach = $formulaireFiltres.find('.removeHtmlVarForEach').val() === 'true';
@@ -1002,6 +1023,10 @@ function patchPartHtmlFiltres($formulaireFiltres) {
 		if(filtreHtmlVarInput != null && filtreHtmlVarInput !== '')
 			filtres.push({ name: 'fq', value: 'htmlVarInput:' + filtreHtmlVarInput });
 
+		var filtreHtmlIfVarEquals = $formulaireFiltres.find('.valeurHtmlIfVarEquals').val();
+		if(filtreHtmlIfVarEquals != null && filtreHtmlIfVarEquals !== '')
+			filtres.push({ name: 'fq', value: 'htmlIfVarEquals:' + filtreHtmlIfVarEquals });
+
 		var filtreHtmlVarForEach = $formulaireFiltres.find('.valeurHtmlVarForEach').val();
 		if(filtreHtmlVarForEach != null && filtreHtmlVarForEach !== '')
 			filtres.push({ name: 'fq', value: 'htmlVarForEach:' + filtreHtmlVarForEach });
@@ -1265,6 +1290,10 @@ function recherchePartHtmlFiltres($formulaireFiltres) {
 		var filtreHtmlVarInput = $formulaireFiltres.find('.valeurHtmlVarInput').val();
 		if(filtreHtmlVarInput != null && filtreHtmlVarInput !== '')
 			filtres.push({ name: 'fq', value: 'htmlVarInput:' + filtreHtmlVarInput });
+
+		var filtreHtmlIfVarEquals = $formulaireFiltres.find('.valeurHtmlIfVarEquals').val();
+		if(filtreHtmlIfVarEquals != null && filtreHtmlIfVarEquals !== '')
+			filtres.push({ name: 'fq', value: 'htmlIfVarEquals:' + filtreHtmlIfVarEquals });
 
 		var filtreHtmlVarForEach = $formulaireFiltres.find('.valeurHtmlVarForEach').val();
 		if(filtreHtmlVarForEach != null && filtreHtmlVarForEach !== '')
@@ -1543,6 +1572,18 @@ async function websocketPartHtmlInner(requeteApi) {
 	if(pk != null) {
 		rechercherPartHtmlVals([ {name: 'fq', value: 'pk:' + pk} ], function( data, textStatus, jQxhr ) {
 			var o = data['list'][0];
+			var val = o['pk'];
+			if(vars.includes('pk')) {
+				$('.inputPartHtml' + pk + 'Pk').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varPartHtml' + pk + 'Pk').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputPartHtml' + pk + 'Pk'));
+			}
 			var val = o['cree'];
 			if(vars.includes('cree')) {
 				$('.inputPartHtml' + pk + 'Cree').each(function() {
@@ -1566,6 +1607,18 @@ async function websocketPartHtmlInner(requeteApi) {
 						$(this).text(val);
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'Modifie'));
+			}
+			var val = o['objetId'];
+			if(vars.includes('objetId')) {
+				$('.inputPartHtml' + pk + 'ObjetId').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varPartHtml' + pk + 'ObjetId').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputPartHtml' + pk + 'ObjetId'));
 			}
 			var val = o['archive'];
 			if(vars.includes('archive')) {
@@ -1747,6 +1800,18 @@ async function websocketPartHtmlInner(requeteApi) {
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'HtmlVarInput'));
 			}
+			var val = o['htmlIfVarEquals'];
+			if(vars.includes('htmlIfVarEquals')) {
+				$('.inputPartHtml' + pk + 'HtmlIfVarEquals').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varPartHtml' + pk + 'HtmlIfVarEquals').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputPartHtml' + pk + 'HtmlIfVarEquals'));
+			}
 			var val = o['htmlVarForEach'];
 			if(vars.includes('htmlVarForEach')) {
 				$('.inputPartHtml' + pk + 'HtmlVarForEach').each(function() {
@@ -1927,6 +1992,54 @@ async function websocketPartHtmlInner(requeteApi) {
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'InheritPk'));
 			}
+			var val = o['id'];
+			if(vars.includes('id')) {
+				$('.inputPartHtml' + pk + 'Id').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varPartHtml' + pk + 'Id').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputPartHtml' + pk + 'Id'));
+			}
+			var val = o['classeNomCanonique'];
+			if(vars.includes('classeNomCanonique')) {
+				$('.inputPartHtml' + pk + 'ClasseNomCanonique').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varPartHtml' + pk + 'ClasseNomCanonique').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputPartHtml' + pk + 'ClasseNomCanonique'));
+			}
+			var val = o['classeNomSimple'];
+			if(vars.includes('classeNomSimple')) {
+				$('.inputPartHtml' + pk + 'ClasseNomSimple').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varPartHtml' + pk + 'ClasseNomSimple').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputPartHtml' + pk + 'ClasseNomSimple'));
+			}
+			var val = o['classeNomsCanoniques'];
+			if(vars.includes('classeNomsCanoniques')) {
+				$('.inputPartHtml' + pk + 'ClasseNomsCanoniques').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varPartHtml' + pk + 'ClasseNomsCanoniques').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputPartHtml' + pk + 'ClasseNomsCanoniques'));
+			}
 			var val = o['sessionId'];
 			if(vars.includes('sessionId')) {
 				$('.inputPartHtml' + pk + 'SessionId').each(function() {
@@ -1962,6 +2075,102 @@ async function websocketPartHtmlInner(requeteApi) {
 						$(this).text(val);
 				});
 				ajouterLueur($('.inputPartHtml' + pk + 'UtilisateurCle'));
+			}
+			var val = o['sauvegardes'];
+			if(vars.includes('sauvegardes')) {
+				$('.inputPartHtml' + pk + 'Sauvegardes').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varPartHtml' + pk + 'Sauvegardes').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputPartHtml' + pk + 'Sauvegardes'));
+			}
+			var val = o['objetTitre'];
+			if(vars.includes('objetTitre')) {
+				$('.inputPartHtml' + pk + 'ObjetTitre').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varPartHtml' + pk + 'ObjetTitre').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputPartHtml' + pk + 'ObjetTitre'));
+			}
+			var val = o['objetSuggere'];
+			if(vars.includes('objetSuggere')) {
+				$('.inputPartHtml' + pk + 'ObjetSuggere').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varPartHtml' + pk + 'ObjetSuggere').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputPartHtml' + pk + 'ObjetSuggere'));
+			}
+			var val = o['objetTexte'];
+			if(vars.includes('objetTexte')) {
+				$('.inputPartHtml' + pk + 'ObjetTexte').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varPartHtml' + pk + 'ObjetTexte').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputPartHtml' + pk + 'ObjetTexte'));
+			}
+			var val = o['pageUrlId'];
+			if(vars.includes('pageUrlId')) {
+				$('.inputPartHtml' + pk + 'PageUrlId').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varPartHtml' + pk + 'PageUrlId').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputPartHtml' + pk + 'PageUrlId'));
+			}
+			var val = o['pageUrlPk'];
+			if(vars.includes('pageUrlPk')) {
+				$('.inputPartHtml' + pk + 'PageUrlPk').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varPartHtml' + pk + 'PageUrlPk').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputPartHtml' + pk + 'PageUrlPk'));
+			}
+			var val = o['pageUrlApi'];
+			if(vars.includes('pageUrlApi')) {
+				$('.inputPartHtml' + pk + 'PageUrlApi').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varPartHtml' + pk + 'PageUrlApi').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputPartHtml' + pk + 'PageUrlApi'));
+			}
+			var val = o['partHtmlCle'];
+			if(vars.includes('partHtmlCle')) {
+				$('.inputPartHtml' + pk + 'PartHtmlCle').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varPartHtml' + pk + 'PartHtmlCle').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputPartHtml' + pk + 'PartHtmlCle'));
 			}
 		});
 	}
