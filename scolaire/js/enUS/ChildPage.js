@@ -255,8 +255,7 @@ async function patchSchoolChild($formFilters, $formValues, pk, success, error) {
 	var vals = {};
 
 	var valuePk = $formValues.find('.valuePk').val();
-	if(valuePk != null && valuePk !== '')
-	var removePk = $formFilters.find('.removePk').val() === 'true';
+	var removePk = $formValues.find('.removePk').val() === 'true';
 	var setPk = removePk ? null : $formValues.find('.setPk').val();
 	if(removePk || setPk != null && setPk !== '')
 		vals['setPk'] = setPk;
@@ -268,8 +267,7 @@ async function patchSchoolChild($formFilters, $formValues, pk, success, error) {
 		vals['removePk'] = removePk;
 
 	var valueCreated = $formValues.find('.valueCreated').val();
-	if(valueCreated != null && valueCreated !== '')
-	var removeCreated = $formFilters.find('.removeCreated').val() === 'true';
+	var removeCreated = $formValues.find('.removeCreated').val() === 'true';
 	var setCreated = removeCreated ? null : $formValues.find('.setCreated').val();
 	if(removeCreated || setCreated != null && setCreated !== '')
 		vals['setCreated'] = setCreated;
@@ -281,8 +279,7 @@ async function patchSchoolChild($formFilters, $formValues, pk, success, error) {
 		vals['removeCreated'] = removeCreated;
 
 	var valueModified = $formValues.find('.valueModified').val();
-	if(valueModified != null && valueModified !== '')
-	var removeModified = $formFilters.find('.removeModified').val() === 'true';
+	var removeModified = $formValues.find('.removeModified').val() === 'true';
 	var setModified = removeModified ? null : $formValues.find('.setModified').val();
 	if(removeModified || setModified != null && setModified !== '')
 		vals['setModified'] = setModified;
@@ -294,8 +291,7 @@ async function patchSchoolChild($formFilters, $formValues, pk, success, error) {
 		vals['removeModified'] = removeModified;
 
 	var valueObjectId = $formValues.find('.valueObjectId').val();
-	if(valueObjectId != null && valueObjectId !== '')
-	var removeObjectId = $formFilters.find('.removeObjectId').val() === 'true';
+	var removeObjectId = $formValues.find('.removeObjectId').val() === 'true';
 	var setObjectId = removeObjectId ? null : $formValues.find('.setObjectId').val();
 	if(removeObjectId || setObjectId != null && setObjectId !== '')
 		vals['setObjectId'] = setObjectId;
@@ -307,11 +303,10 @@ async function patchSchoolChild($formFilters, $formValues, pk, success, error) {
 		vals['removeObjectId'] = removeObjectId;
 
 	var valueArchived = $formValues.find('.valueArchived').prop('checked');
-	if(valueArchived != null && valueArchived !== '')
-	var removeArchived = $formFilters.find('.removeArchived').val() === 'true';
+	var removeArchived = $formValues.find('.removeArchived').val() === 'true';
 	var valueArchivedSelectVal = $formValues.find('select.setArchived').val();
 	var valueArchived = null;
-	if(valueArchivedSelectVal !== '')
+	if(valueArchivedSelectVal != null && valueArchivedSelectVal !== '')
 		valueArchived = valueArchivedSelectVal == 'true';
 	setArchived = removeArchived ? null : valueArchived;
 	if(removeArchived || setArchived != null && setArchived !== '')
@@ -324,11 +319,10 @@ async function patchSchoolChild($formFilters, $formValues, pk, success, error) {
 		vals['removeArchived'] = removeArchived;
 
 	var valueDeleted = $formValues.find('.valueDeleted').prop('checked');
-	if(valueDeleted != null && valueDeleted !== '')
-	var removeDeleted = $formFilters.find('.removeDeleted').val() === 'true';
+	var removeDeleted = $formValues.find('.removeDeleted').val() === 'true';
 	var valueDeletedSelectVal = $formValues.find('select.setDeleted').val();
 	var valueDeleted = null;
-	if(valueDeletedSelectVal !== '')
+	if(valueDeletedSelectVal != null && valueDeletedSelectVal !== '')
 		valueDeleted = valueDeletedSelectVal == 'true';
 	setDeleted = removeDeleted ? null : valueDeleted;
 	if(removeDeleted || setDeleted != null && setDeleted !== '')
@@ -341,8 +335,7 @@ async function patchSchoolChild($formFilters, $formValues, pk, success, error) {
 		vals['removeDeleted'] = removeDeleted;
 
 	var valuePersonFirstName = $formValues.find('.valuePersonFirstName').val();
-	if(valuePersonFirstName != null && valuePersonFirstName !== '')
-	var removePersonFirstName = $formFilters.find('.removePersonFirstName').val() === 'true';
+	var removePersonFirstName = $formValues.find('.removePersonFirstName').val() === 'true';
 	var setPersonFirstName = removePersonFirstName ? null : $formValues.find('.setPersonFirstName').val();
 	if(removePersonFirstName || setPersonFirstName != null && setPersonFirstName !== '')
 		vals['setPersonFirstName'] = setPersonFirstName;
@@ -354,8 +347,7 @@ async function patchSchoolChild($formFilters, $formValues, pk, success, error) {
 		vals['removePersonFirstName'] = removePersonFirstName;
 
 	var valueFamilyName = $formValues.find('.valueFamilyName').val();
-	if(valueFamilyName != null && valueFamilyName !== '')
-	var removeFamilyName = $formFilters.find('.removeFamilyName').val() === 'true';
+	var removeFamilyName = $formValues.find('.removeFamilyName').val() === 'true';
 	var setFamilyName = removeFamilyName ? null : $formValues.find('.setFamilyName').val();
 	if(removeFamilyName || setFamilyName != null && setFamilyName !== '')
 		vals['setFamilyName'] = setFamilyName;
@@ -367,8 +359,7 @@ async function patchSchoolChild($formFilters, $formValues, pk, success, error) {
 		vals['removeFamilyName'] = removeFamilyName;
 
 	var valuePersonFirstNamePreferred = $formValues.find('.valuePersonFirstNamePreferred').val();
-	if(valuePersonFirstNamePreferred != null && valuePersonFirstNamePreferred !== '')
-	var removePersonFirstNamePreferred = $formFilters.find('.removePersonFirstNamePreferred').val() === 'true';
+	var removePersonFirstNamePreferred = $formValues.find('.removePersonFirstNamePreferred').val() === 'true';
 	var setPersonFirstNamePreferred = removePersonFirstNamePreferred ? null : $formValues.find('.setPersonFirstNamePreferred').val();
 	if(removePersonFirstNamePreferred || setPersonFirstNamePreferred != null && setPersonFirstNamePreferred !== '')
 		vals['setPersonFirstNamePreferred'] = setPersonFirstNamePreferred;
@@ -380,8 +371,7 @@ async function patchSchoolChild($formFilters, $formValues, pk, success, error) {
 		vals['removePersonFirstNamePreferred'] = removePersonFirstNamePreferred;
 
 	var valuePersonBirthDate = $formValues.find('.valuePersonBirthDate').val();
-	if(valuePersonBirthDate != null && valuePersonBirthDate !== '')
-	var removePersonBirthDate = $formFilters.find('.removePersonBirthDate').val() === 'true';
+	var removePersonBirthDate = $formValues.find('.removePersonBirthDate').val() === 'true';
 	var setPersonBirthDate = removePersonBirthDate ? null : $formValues.find('.setPersonBirthDate').val();
 	if(removePersonBirthDate || setPersonBirthDate != null && setPersonBirthDate !== '')
 		vals['setPersonBirthDate'] = setPersonBirthDate;
@@ -393,8 +383,7 @@ async function patchSchoolChild($formFilters, $formValues, pk, success, error) {
 		vals['removePersonBirthDate'] = removePersonBirthDate;
 
 	var valuePersonAgeInSeptember = $formValues.find('.valuePersonAgeInSeptember').val();
-	if(valuePersonAgeInSeptember != null && valuePersonAgeInSeptember !== '')
-	var removePersonAgeInSeptember = $formFilters.find('.removePersonAgeInSeptember').val() === 'true';
+	var removePersonAgeInSeptember = $formValues.find('.removePersonAgeInSeptember').val() === 'true';
 	var setPersonAgeInSeptember = removePersonAgeInSeptember ? null : $formValues.find('.setPersonAgeInSeptember').val();
 	if(removePersonAgeInSeptember || setPersonAgeInSeptember != null && setPersonAgeInSeptember !== '')
 		vals['setPersonAgeInSeptember'] = setPersonAgeInSeptember;
@@ -406,8 +395,7 @@ async function patchSchoolChild($formFilters, $formValues, pk, success, error) {
 		vals['removePersonAgeInSeptember'] = removePersonAgeInSeptember;
 
 	var valuePhoto = $formValues.find('.valuePhoto').val();
-	if(valuePhoto != null && valuePhoto !== '')
-	var removePhoto = $formFilters.find('.removePhoto').val() === 'true';
+	var removePhoto = $formValues.find('.removePhoto').val() === 'true';
 	var setPhoto = removePhoto ? null : $formValues.find('.setPhoto').val();
 	if(removePhoto || setPhoto != null && setPhoto !== '')
 		vals['setPhoto'] = setPhoto;
@@ -423,8 +411,7 @@ async function patchSchoolChild($formFilters, $formValues, pk, success, error) {
 		vals['addEnrollmentKeys'] = valueEnrollmentKeys;
 
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
-	if(valueInheritPk != null && valueInheritPk !== '')
-	var removeInheritPk = $formFilters.find('.removeInheritPk').val() === 'true';
+	var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
 	var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
 	if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
 		vals['setInheritPk'] = setInheritPk;
@@ -436,8 +423,7 @@ async function patchSchoolChild($formFilters, $formValues, pk, success, error) {
 		vals['removeInheritPk'] = removeInheritPk;
 
 	var valueSessionId = $formValues.find('.valueSessionId').val();
-	if(valueSessionId != null && valueSessionId !== '')
-	var removeSessionId = $formFilters.find('.removeSessionId').val() === 'true';
+	var removeSessionId = $formValues.find('.removeSessionId').val() === 'true';
 	var setSessionId = removeSessionId ? null : $formValues.find('.setSessionId').val();
 	if(removeSessionId || setSessionId != null && setSessionId !== '')
 		vals['setSessionId'] = setSessionId;
@@ -449,8 +435,7 @@ async function patchSchoolChild($formFilters, $formValues, pk, success, error) {
 		vals['removeSessionId'] = removeSessionId;
 
 	var valueUserId = $formValues.find('.valueUserId').val();
-	if(valueUserId != null && valueUserId !== '')
-	var removeUserId = $formFilters.find('.removeUserId').val() === 'true';
+	var removeUserId = $formValues.find('.removeUserId').val() === 'true';
 	var setUserId = removeUserId ? null : $formValues.find('.setUserId').val();
 	if(removeUserId || setUserId != null && setUserId !== '')
 		vals['setUserId'] = setUserId;
@@ -462,8 +447,7 @@ async function patchSchoolChild($formFilters, $formValues, pk, success, error) {
 		vals['removeUserId'] = removeUserId;
 
 	var valueUserKey = $formValues.find('.valueUserKey').val();
-	if(valueUserKey != null && valueUserKey !== '')
-	var removeUserKey = $formFilters.find('.removeUserKey').val() === 'true';
+	var removeUserKey = $formValues.find('.removeUserKey').val() === 'true';
 	var setUserKey = removeUserKey ? null : $formValues.find('.setUserKey').val();
 	if(removeUserKey || setUserKey != null && setUserKey !== '')
 		vals['setUserKey'] = setUserKey;
@@ -475,8 +459,7 @@ async function patchSchoolChild($formFilters, $formValues, pk, success, error) {
 		vals['removeUserKey'] = removeUserKey;
 
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
-	if(valueObjectTitle != null && valueObjectTitle !== '')
-	var removeObjectTitle = $formFilters.find('.removeObjectTitle').val() === 'true';
+	var removeObjectTitle = $formValues.find('.removeObjectTitle').val() === 'true';
 	var setObjectTitle = removeObjectTitle ? null : $formValues.find('.setObjectTitle').val();
 	if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
 		vals['setObjectTitle'] = setObjectTitle;

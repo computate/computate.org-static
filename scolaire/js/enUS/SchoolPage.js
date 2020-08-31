@@ -146,8 +146,7 @@ async function patchSchool($formFilters, $formValues, pk, success, error) {
 	var vals = {};
 
 	var valuePk = $formValues.find('.valuePk').val();
-	if(valuePk != null && valuePk !== '')
-	var removePk = $formFilters.find('.removePk').val() === 'true';
+	var removePk = $formValues.find('.removePk').val() === 'true';
 	var setPk = removePk ? null : $formValues.find('.setPk').val();
 	if(removePk || setPk != null && setPk !== '')
 		vals['setPk'] = setPk;
@@ -159,8 +158,7 @@ async function patchSchool($formFilters, $formValues, pk, success, error) {
 		vals['removePk'] = removePk;
 
 	var valueCreated = $formValues.find('.valueCreated').val();
-	if(valueCreated != null && valueCreated !== '')
-	var removeCreated = $formFilters.find('.removeCreated').val() === 'true';
+	var removeCreated = $formValues.find('.removeCreated').val() === 'true';
 	var setCreated = removeCreated ? null : $formValues.find('.setCreated').val();
 	if(removeCreated || setCreated != null && setCreated !== '')
 		vals['setCreated'] = setCreated;
@@ -172,8 +170,7 @@ async function patchSchool($formFilters, $formValues, pk, success, error) {
 		vals['removeCreated'] = removeCreated;
 
 	var valueModified = $formValues.find('.valueModified').val();
-	if(valueModified != null && valueModified !== '')
-	var removeModified = $formFilters.find('.removeModified').val() === 'true';
+	var removeModified = $formValues.find('.removeModified').val() === 'true';
 	var setModified = removeModified ? null : $formValues.find('.setModified').val();
 	if(removeModified || setModified != null && setModified !== '')
 		vals['setModified'] = setModified;
@@ -185,8 +182,7 @@ async function patchSchool($formFilters, $formValues, pk, success, error) {
 		vals['removeModified'] = removeModified;
 
 	var valueObjectId = $formValues.find('.valueObjectId').val();
-	if(valueObjectId != null && valueObjectId !== '')
-	var removeObjectId = $formFilters.find('.removeObjectId').val() === 'true';
+	var removeObjectId = $formValues.find('.removeObjectId').val() === 'true';
 	var setObjectId = removeObjectId ? null : $formValues.find('.setObjectId').val();
 	if(removeObjectId || setObjectId != null && setObjectId !== '')
 		vals['setObjectId'] = setObjectId;
@@ -198,11 +194,10 @@ async function patchSchool($formFilters, $formValues, pk, success, error) {
 		vals['removeObjectId'] = removeObjectId;
 
 	var valueArchived = $formValues.find('.valueArchived').prop('checked');
-	if(valueArchived != null && valueArchived !== '')
-	var removeArchived = $formFilters.find('.removeArchived').val() === 'true';
+	var removeArchived = $formValues.find('.removeArchived').val() === 'true';
 	var valueArchivedSelectVal = $formValues.find('select.setArchived').val();
 	var valueArchived = null;
-	if(valueArchivedSelectVal !== '')
+	if(valueArchivedSelectVal != null && valueArchivedSelectVal !== '')
 		valueArchived = valueArchivedSelectVal == 'true';
 	setArchived = removeArchived ? null : valueArchived;
 	if(removeArchived || setArchived != null && setArchived !== '')
@@ -215,11 +210,10 @@ async function patchSchool($formFilters, $formValues, pk, success, error) {
 		vals['removeArchived'] = removeArchived;
 
 	var valueDeleted = $formValues.find('.valueDeleted').prop('checked');
-	if(valueDeleted != null && valueDeleted !== '')
-	var removeDeleted = $formFilters.find('.removeDeleted').val() === 'true';
+	var removeDeleted = $formValues.find('.removeDeleted').val() === 'true';
 	var valueDeletedSelectVal = $formValues.find('select.setDeleted').val();
 	var valueDeleted = null;
-	if(valueDeletedSelectVal !== '')
+	if(valueDeletedSelectVal != null && valueDeletedSelectVal !== '')
 		valueDeleted = valueDeletedSelectVal == 'true';
 	setDeleted = removeDeleted ? null : valueDeleted;
 	if(removeDeleted || setDeleted != null && setDeleted !== '')
@@ -232,8 +226,7 @@ async function patchSchool($formFilters, $formValues, pk, success, error) {
 		vals['removeDeleted'] = removeDeleted;
 
 	var valueSchoolName = $formValues.find('.valueSchoolName').val();
-	if(valueSchoolName != null && valueSchoolName !== '')
-	var removeSchoolName = $formFilters.find('.removeSchoolName').val() === 'true';
+	var removeSchoolName = $formValues.find('.removeSchoolName').val() === 'true';
 	var setSchoolName = removeSchoolName ? null : $formValues.find('.setSchoolName').val();
 	if(removeSchoolName || setSchoolName != null && setSchoolName !== '')
 		vals['setSchoolName'] = setSchoolName;
@@ -245,8 +238,7 @@ async function patchSchool($formFilters, $formValues, pk, success, error) {
 		vals['removeSchoolName'] = removeSchoolName;
 
 	var valueSchoolLocation = $formValues.find('.valueSchoolLocation').val();
-	if(valueSchoolLocation != null && valueSchoolLocation !== '')
-	var removeSchoolLocation = $formFilters.find('.removeSchoolLocation').val() === 'true';
+	var removeSchoolLocation = $formValues.find('.removeSchoolLocation').val() === 'true';
 	var setSchoolLocation = removeSchoolLocation ? null : $formValues.find('.setSchoolLocation').val();
 	if(removeSchoolLocation || setSchoolLocation != null && setSchoolLocation !== '')
 		vals['setSchoolLocation'] = setSchoolLocation;
@@ -258,8 +250,7 @@ async function patchSchool($formFilters, $formValues, pk, success, error) {
 		vals['removeSchoolLocation'] = removeSchoolLocation;
 
 	var valueSchoolAdministratorName = $formValues.find('.valueSchoolAdministratorName').val();
-	if(valueSchoolAdministratorName != null && valueSchoolAdministratorName !== '')
-	var removeSchoolAdministratorName = $formFilters.find('.removeSchoolAdministratorName').val() === 'true';
+	var removeSchoolAdministratorName = $formValues.find('.removeSchoolAdministratorName').val() === 'true';
 	var setSchoolAdministratorName = removeSchoolAdministratorName ? null : $formValues.find('.setSchoolAdministratorName').val();
 	if(removeSchoolAdministratorName || setSchoolAdministratorName != null && setSchoolAdministratorName !== '')
 		vals['setSchoolAdministratorName'] = setSchoolAdministratorName;
@@ -271,8 +262,7 @@ async function patchSchool($formFilters, $formValues, pk, success, error) {
 		vals['removeSchoolAdministratorName'] = removeSchoolAdministratorName;
 
 	var valueSchoolEmail = $formValues.find('.valueSchoolEmail').val();
-	if(valueSchoolEmail != null && valueSchoolEmail !== '')
-	var removeSchoolEmail = $formFilters.find('.removeSchoolEmail').val() === 'true';
+	var removeSchoolEmail = $formValues.find('.removeSchoolEmail').val() === 'true';
 	var setSchoolEmail = removeSchoolEmail ? null : $formValues.find('.setSchoolEmail').val();
 	if(removeSchoolEmail || setSchoolEmail != null && setSchoolEmail !== '')
 		vals['setSchoolEmail'] = setSchoolEmail;
@@ -284,8 +274,7 @@ async function patchSchool($formFilters, $formValues, pk, success, error) {
 		vals['removeSchoolEmail'] = removeSchoolEmail;
 
 	var valueSchoolEmailFrom = $formValues.find('.valueSchoolEmailFrom').val();
-	if(valueSchoolEmailFrom != null && valueSchoolEmailFrom !== '')
-	var removeSchoolEmailFrom = $formFilters.find('.removeSchoolEmailFrom').val() === 'true';
+	var removeSchoolEmailFrom = $formValues.find('.removeSchoolEmailFrom').val() === 'true';
 	var setSchoolEmailFrom = removeSchoolEmailFrom ? null : $formValues.find('.setSchoolEmailFrom').val();
 	if(removeSchoolEmailFrom || setSchoolEmailFrom != null && setSchoolEmailFrom !== '')
 		vals['setSchoolEmailFrom'] = setSchoolEmailFrom;
@@ -297,8 +286,7 @@ async function patchSchool($formFilters, $formValues, pk, success, error) {
 		vals['removeSchoolEmailFrom'] = removeSchoolEmailFrom;
 
 	var valueSchoolEmailTo = $formValues.find('.valueSchoolEmailTo').val();
-	if(valueSchoolEmailTo != null && valueSchoolEmailTo !== '')
-	var removeSchoolEmailTo = $formFilters.find('.removeSchoolEmailTo').val() === 'true';
+	var removeSchoolEmailTo = $formValues.find('.removeSchoolEmailTo').val() === 'true';
 	var setSchoolEmailTo = removeSchoolEmailTo ? null : $formValues.find('.setSchoolEmailTo').val();
 	if(removeSchoolEmailTo || setSchoolEmailTo != null && setSchoolEmailTo !== '')
 		vals['setSchoolEmailTo'] = setSchoolEmailTo;
@@ -310,8 +298,7 @@ async function patchSchool($formFilters, $formValues, pk, success, error) {
 		vals['removeSchoolEmailTo'] = removeSchoolEmailTo;
 
 	var valueSchoolPhoneNumber = $formValues.find('.valueSchoolPhoneNumber').val();
-	if(valueSchoolPhoneNumber != null && valueSchoolPhoneNumber !== '')
-	var removeSchoolPhoneNumber = $formFilters.find('.removeSchoolPhoneNumber').val() === 'true';
+	var removeSchoolPhoneNumber = $formValues.find('.removeSchoolPhoneNumber').val() === 'true';
 	var setSchoolPhoneNumber = removeSchoolPhoneNumber ? null : $formValues.find('.setSchoolPhoneNumber').val();
 	if(removeSchoolPhoneNumber || setSchoolPhoneNumber != null && setSchoolPhoneNumber !== '')
 		vals['setSchoolPhoneNumber'] = setSchoolPhoneNumber;
@@ -323,8 +310,7 @@ async function patchSchool($formFilters, $formValues, pk, success, error) {
 		vals['removeSchoolPhoneNumber'] = removeSchoolPhoneNumber;
 
 	var valueSchoolAddress = $formValues.find('.valueSchoolAddress').val();
-	if(valueSchoolAddress != null && valueSchoolAddress !== '')
-	var removeSchoolAddress = $formFilters.find('.removeSchoolAddress').val() === 'true';
+	var removeSchoolAddress = $formValues.find('.removeSchoolAddress').val() === 'true';
 	var setSchoolAddress = removeSchoolAddress ? null : $formValues.find('.setSchoolAddress').val();
 	if(removeSchoolAddress || setSchoolAddress != null && setSchoolAddress !== '')
 		vals['setSchoolAddress'] = setSchoolAddress;
@@ -336,8 +322,7 @@ async function patchSchool($formFilters, $formValues, pk, success, error) {
 		vals['removeSchoolAddress'] = removeSchoolAddress;
 
 	var valueSchoolForm = $formValues.find('.valueSchoolForm').val();
-	if(valueSchoolForm != null && valueSchoolForm !== '')
-	var removeSchoolForm = $formFilters.find('.removeSchoolForm').val() === 'true';
+	var removeSchoolForm = $formValues.find('.removeSchoolForm').val() === 'true';
 	var setSchoolForm = removeSchoolForm ? null : $formValues.find('.setSchoolForm').val();
 	if(removeSchoolForm || setSchoolForm != null && setSchoolForm !== '')
 		vals['setSchoolForm'] = setSchoolForm;
@@ -349,8 +334,7 @@ async function patchSchool($formFilters, $formValues, pk, success, error) {
 		vals['removeSchoolForm'] = removeSchoolForm;
 
 	var valueSchoolNumber = $formValues.find('.valueSchoolNumber').val();
-	if(valueSchoolNumber != null && valueSchoolNumber !== '')
-	var removeSchoolNumber = $formFilters.find('.removeSchoolNumber').val() === 'true';
+	var removeSchoolNumber = $formValues.find('.removeSchoolNumber').val() === 'true';
 	var setSchoolNumber = removeSchoolNumber ? null : $formValues.find('.setSchoolNumber').val();
 	if(removeSchoolNumber || setSchoolNumber != null && setSchoolNumber !== '')
 		vals['setSchoolNumber'] = setSchoolNumber;
@@ -370,8 +354,7 @@ async function patchSchool($formFilters, $formValues, pk, success, error) {
 		vals['addReceiptKeys'] = valueReceiptKeys;
 
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
-	if(valueInheritPk != null && valueInheritPk !== '')
-	var removeInheritPk = $formFilters.find('.removeInheritPk').val() === 'true';
+	var removeInheritPk = $formValues.find('.removeInheritPk').val() === 'true';
 	var setInheritPk = removeInheritPk ? null : $formValues.find('.setInheritPk').val();
 	if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
 		vals['setInheritPk'] = setInheritPk;
@@ -383,8 +366,7 @@ async function patchSchool($formFilters, $formValues, pk, success, error) {
 		vals['removeInheritPk'] = removeInheritPk;
 
 	var valueSessionId = $formValues.find('.valueSessionId').val();
-	if(valueSessionId != null && valueSessionId !== '')
-	var removeSessionId = $formFilters.find('.removeSessionId').val() === 'true';
+	var removeSessionId = $formValues.find('.removeSessionId').val() === 'true';
 	var setSessionId = removeSessionId ? null : $formValues.find('.setSessionId').val();
 	if(removeSessionId || setSessionId != null && setSessionId !== '')
 		vals['setSessionId'] = setSessionId;
@@ -396,8 +378,7 @@ async function patchSchool($formFilters, $formValues, pk, success, error) {
 		vals['removeSessionId'] = removeSessionId;
 
 	var valueUserId = $formValues.find('.valueUserId').val();
-	if(valueUserId != null && valueUserId !== '')
-	var removeUserId = $formFilters.find('.removeUserId').val() === 'true';
+	var removeUserId = $formValues.find('.removeUserId').val() === 'true';
 	var setUserId = removeUserId ? null : $formValues.find('.setUserId').val();
 	if(removeUserId || setUserId != null && setUserId !== '')
 		vals['setUserId'] = setUserId;
@@ -409,8 +390,7 @@ async function patchSchool($formFilters, $formValues, pk, success, error) {
 		vals['removeUserId'] = removeUserId;
 
 	var valueUserKey = $formValues.find('.valueUserKey').val();
-	if(valueUserKey != null && valueUserKey !== '')
-	var removeUserKey = $formFilters.find('.removeUserKey').val() === 'true';
+	var removeUserKey = $formValues.find('.removeUserKey').val() === 'true';
 	var setUserKey = removeUserKey ? null : $formValues.find('.setUserKey').val();
 	if(removeUserKey || setUserKey != null && setUserKey !== '')
 		vals['setUserKey'] = setUserKey;
@@ -422,8 +402,7 @@ async function patchSchool($formFilters, $formValues, pk, success, error) {
 		vals['removeUserKey'] = removeUserKey;
 
 	var valueObjectTitle = $formValues.find('.valueObjectTitle').val();
-	if(valueObjectTitle != null && valueObjectTitle !== '')
-	var removeObjectTitle = $formFilters.find('.removeObjectTitle').val() === 'true';
+	var removeObjectTitle = $formValues.find('.removeObjectTitle').val() === 'true';
 	var setObjectTitle = removeObjectTitle ? null : $formValues.find('.setObjectTitle').val();
 	if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
 		vals['setObjectTitle'] = setObjectTitle;

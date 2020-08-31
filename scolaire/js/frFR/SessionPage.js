@@ -239,8 +239,7 @@ async function patchSessionScolaire($formulaireFiltres, $formulaireValeurs, pk, 
 	var vals = {};
 
 	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
-	if(valeurPk != null && valeurPk !== '')
-	var removePk = $formulaireFiltres.find('.removePk').val() === 'true';
+	var removePk = $formulaireValeurs.find('.removePk').val() === 'true';
 	var setPk = removePk ? null : $formulaireValeurs.find('.setPk').val();
 	if(removePk || setPk != null && setPk !== '')
 		vals['setPk'] = setPk;
@@ -252,8 +251,7 @@ async function patchSessionScolaire($formulaireFiltres, $formulaireValeurs, pk, 
 		vals['removePk'] = removePk;
 
 	var valeurCree = $formulaireValeurs.find('.valeurCree').val();
-	if(valeurCree != null && valeurCree !== '')
-	var removeCree = $formulaireFiltres.find('.removeCree').val() === 'true';
+	var removeCree = $formulaireValeurs.find('.removeCree').val() === 'true';
 	var setCree = removeCree ? null : $formulaireValeurs.find('.setCree').val();
 	if(removeCree || setCree != null && setCree !== '')
 		vals['setCree'] = setCree;
@@ -265,8 +263,7 @@ async function patchSessionScolaire($formulaireFiltres, $formulaireValeurs, pk, 
 		vals['removeCree'] = removeCree;
 
 	var valeurModifie = $formulaireValeurs.find('.valeurModifie').val();
-	if(valeurModifie != null && valeurModifie !== '')
-	var removeModifie = $formulaireFiltres.find('.removeModifie').val() === 'true';
+	var removeModifie = $formulaireValeurs.find('.removeModifie').val() === 'true';
 	var setModifie = removeModifie ? null : $formulaireValeurs.find('.setModifie').val();
 	if(removeModifie || setModifie != null && setModifie !== '')
 		vals['setModifie'] = setModifie;
@@ -278,8 +275,7 @@ async function patchSessionScolaire($formulaireFiltres, $formulaireValeurs, pk, 
 		vals['removeModifie'] = removeModifie;
 
 	var valeurObjetId = $formulaireValeurs.find('.valeurObjetId').val();
-	if(valeurObjetId != null && valeurObjetId !== '')
-	var removeObjetId = $formulaireFiltres.find('.removeObjetId').val() === 'true';
+	var removeObjetId = $formulaireValeurs.find('.removeObjetId').val() === 'true';
 	var setObjetId = removeObjetId ? null : $formulaireValeurs.find('.setObjetId').val();
 	if(removeObjetId || setObjetId != null && setObjetId !== '')
 		vals['setObjetId'] = setObjetId;
@@ -291,11 +287,10 @@ async function patchSessionScolaire($formulaireFiltres, $formulaireValeurs, pk, 
 		vals['removeObjetId'] = removeObjetId;
 
 	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
-	if(valeurArchive != null && valeurArchive !== '')
-	var removeArchive = $formulaireFiltres.find('.removeArchive').val() === 'true';
+	var removeArchive = $formulaireValeurs.find('.removeArchive').val() === 'true';
 	var valeurArchiveSelectVal = $formulaireValeurs.find('select.setArchive').val();
 	var valeurArchive = null;
-	if(valeurArchiveSelectVal !== '')
+	if(valeurArchiveSelectVal != null && valeurArchiveSelectVal !== '')
 		valeurArchive = valeurArchiveSelectVal == 'true';
 	setArchive = removeArchive ? null : valeurArchive;
 	if(removeArchive || setArchive != null && setArchive !== '')
@@ -308,11 +303,10 @@ async function patchSessionScolaire($formulaireFiltres, $formulaireValeurs, pk, 
 		vals['removeArchive'] = removeArchive;
 
 	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').prop('checked');
-	if(valeurSupprime != null && valeurSupprime !== '')
-	var removeSupprime = $formulaireFiltres.find('.removeSupprime').val() === 'true';
+	var removeSupprime = $formulaireValeurs.find('.removeSupprime').val() === 'true';
 	var valeurSupprimeSelectVal = $formulaireValeurs.find('select.setSupprime').val();
 	var valeurSupprime = null;
-	if(valeurSupprimeSelectVal !== '')
+	if(valeurSupprimeSelectVal != null && valeurSupprimeSelectVal !== '')
 		valeurSupprime = valeurSupprimeSelectVal == 'true';
 	setSupprime = removeSupprime ? null : valeurSupprime;
 	if(removeSupprime || setSupprime != null && setSupprime !== '')
@@ -325,8 +319,7 @@ async function patchSessionScolaire($formulaireFiltres, $formulaireValeurs, pk, 
 		vals['removeSupprime'] = removeSupprime;
 
 	var valeurSessionDateDebut = $formulaireValeurs.find('.valeurSessionDateDebut').val();
-	if(valeurSessionDateDebut != null && valeurSessionDateDebut !== '')
-	var removeSessionDateDebut = $formulaireFiltres.find('.removeSessionDateDebut').val() === 'true';
+	var removeSessionDateDebut = $formulaireValeurs.find('.removeSessionDateDebut').val() === 'true';
 	var setSessionDateDebut = removeSessionDateDebut ? null : $formulaireValeurs.find('.setSessionDateDebut').val();
 	if(removeSessionDateDebut || setSessionDateDebut != null && setSessionDateDebut !== '')
 		vals['setSessionDateDebut'] = setSessionDateDebut;
@@ -338,8 +331,7 @@ async function patchSessionScolaire($formulaireFiltres, $formulaireValeurs, pk, 
 		vals['removeSessionDateDebut'] = removeSessionDateDebut;
 
 	var valeurSessionDateFin = $formulaireValeurs.find('.valeurSessionDateFin').val();
-	if(valeurSessionDateFin != null && valeurSessionDateFin !== '')
-	var removeSessionDateFin = $formulaireFiltres.find('.removeSessionDateFin').val() === 'true';
+	var removeSessionDateFin = $formulaireValeurs.find('.removeSessionDateFin').val() === 'true';
 	var setSessionDateFin = removeSessionDateFin ? null : $formulaireValeurs.find('.setSessionDateFin').val();
 	if(removeSessionDateFin || setSessionDateFin != null && setSessionDateFin !== '')
 		vals['setSessionDateFin'] = setSessionDateFin;
@@ -359,8 +351,7 @@ async function patchSessionScolaire($formulaireFiltres, $formulaireValeurs, pk, 
 		vals['addAgeCles'] = valeurAgeCles;
 
 	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
-	if(valeurInheritPk != null && valeurInheritPk !== '')
-	var removeInheritPk = $formulaireFiltres.find('.removeInheritPk').val() === 'true';
+	var removeInheritPk = $formulaireValeurs.find('.removeInheritPk').val() === 'true';
 	var setInheritPk = removeInheritPk ? null : $formulaireValeurs.find('.setInheritPk').val();
 	if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
 		vals['setInheritPk'] = setInheritPk;
@@ -372,8 +363,7 @@ async function patchSessionScolaire($formulaireFiltres, $formulaireValeurs, pk, 
 		vals['removeInheritPk'] = removeInheritPk;
 
 	var valeurSessionId = $formulaireValeurs.find('.valeurSessionId').val();
-	if(valeurSessionId != null && valeurSessionId !== '')
-	var removeSessionId = $formulaireFiltres.find('.removeSessionId').val() === 'true';
+	var removeSessionId = $formulaireValeurs.find('.removeSessionId').val() === 'true';
 	var setSessionId = removeSessionId ? null : $formulaireValeurs.find('.setSessionId').val();
 	if(removeSessionId || setSessionId != null && setSessionId !== '')
 		vals['setSessionId'] = setSessionId;
@@ -385,8 +375,7 @@ async function patchSessionScolaire($formulaireFiltres, $formulaireValeurs, pk, 
 		vals['removeSessionId'] = removeSessionId;
 
 	var valeurUtilisateurId = $formulaireValeurs.find('.valeurUtilisateurId').val();
-	if(valeurUtilisateurId != null && valeurUtilisateurId !== '')
-	var removeUtilisateurId = $formulaireFiltres.find('.removeUtilisateurId').val() === 'true';
+	var removeUtilisateurId = $formulaireValeurs.find('.removeUtilisateurId').val() === 'true';
 	var setUtilisateurId = removeUtilisateurId ? null : $formulaireValeurs.find('.setUtilisateurId').val();
 	if(removeUtilisateurId || setUtilisateurId != null && setUtilisateurId !== '')
 		vals['setUtilisateurId'] = setUtilisateurId;
@@ -398,8 +387,7 @@ async function patchSessionScolaire($formulaireFiltres, $formulaireValeurs, pk, 
 		vals['removeUtilisateurId'] = removeUtilisateurId;
 
 	var valeurUtilisateurCle = $formulaireValeurs.find('.valeurUtilisateurCle').val();
-	if(valeurUtilisateurCle != null && valeurUtilisateurCle !== '')
-	var removeUtilisateurCle = $formulaireFiltres.find('.removeUtilisateurCle').val() === 'true';
+	var removeUtilisateurCle = $formulaireValeurs.find('.removeUtilisateurCle').val() === 'true';
 	var setUtilisateurCle = removeUtilisateurCle ? null : $formulaireValeurs.find('.setUtilisateurCle').val();
 	if(removeUtilisateurCle || setUtilisateurCle != null && setUtilisateurCle !== '')
 		vals['setUtilisateurCle'] = setUtilisateurCle;
@@ -411,8 +399,7 @@ async function patchSessionScolaire($formulaireFiltres, $formulaireValeurs, pk, 
 		vals['removeUtilisateurCle'] = removeUtilisateurCle;
 
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
-	if(valeurObjetTitre != null && valeurObjetTitre !== '')
-	var removeObjetTitre = $formulaireFiltres.find('.removeObjetTitre').val() === 'true';
+	var removeObjetTitre = $formulaireValeurs.find('.removeObjetTitre').val() === 'true';
 	var setObjetTitre = removeObjetTitre ? null : $formulaireValeurs.find('.setObjetTitre').val();
 	if(removeObjetTitre || setObjetTitre != null && setObjetTitre !== '')
 		vals['setObjetTitre'] = setObjetTitre;
@@ -424,8 +411,7 @@ async function patchSessionScolaire($formulaireFiltres, $formulaireValeurs, pk, 
 		vals['removeObjetTitre'] = removeObjetTitre;
 
 	var valeurEcoleAddresse = $formulaireValeurs.find('.valeurEcoleAddresse').val();
-	if(valeurEcoleAddresse != null && valeurEcoleAddresse !== '')
-	var removeEcoleAddresse = $formulaireFiltres.find('.removeEcoleAddresse').val() === 'true';
+	var removeEcoleAddresse = $formulaireValeurs.find('.removeEcoleAddresse').val() === 'true';
 	var setEcoleAddresse = removeEcoleAddresse ? null : $formulaireValeurs.find('.setEcoleAddresse').val();
 	if(removeEcoleAddresse || setEcoleAddresse != null && setEcoleAddresse !== '')
 		vals['setEcoleAddresse'] = setEcoleAddresse;

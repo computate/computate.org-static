@@ -146,8 +146,7 @@ async function patchEcole($formulaireFiltres, $formulaireValeurs, pk, success, e
 	var vals = {};
 
 	var valeurPk = $formulaireValeurs.find('.valeurPk').val();
-	if(valeurPk != null && valeurPk !== '')
-	var removePk = $formulaireFiltres.find('.removePk').val() === 'true';
+	var removePk = $formulaireValeurs.find('.removePk').val() === 'true';
 	var setPk = removePk ? null : $formulaireValeurs.find('.setPk').val();
 	if(removePk || setPk != null && setPk !== '')
 		vals['setPk'] = setPk;
@@ -159,8 +158,7 @@ async function patchEcole($formulaireFiltres, $formulaireValeurs, pk, success, e
 		vals['removePk'] = removePk;
 
 	var valeurCree = $formulaireValeurs.find('.valeurCree').val();
-	if(valeurCree != null && valeurCree !== '')
-	var removeCree = $formulaireFiltres.find('.removeCree').val() === 'true';
+	var removeCree = $formulaireValeurs.find('.removeCree').val() === 'true';
 	var setCree = removeCree ? null : $formulaireValeurs.find('.setCree').val();
 	if(removeCree || setCree != null && setCree !== '')
 		vals['setCree'] = setCree;
@@ -172,8 +170,7 @@ async function patchEcole($formulaireFiltres, $formulaireValeurs, pk, success, e
 		vals['removeCree'] = removeCree;
 
 	var valeurModifie = $formulaireValeurs.find('.valeurModifie').val();
-	if(valeurModifie != null && valeurModifie !== '')
-	var removeModifie = $formulaireFiltres.find('.removeModifie').val() === 'true';
+	var removeModifie = $formulaireValeurs.find('.removeModifie').val() === 'true';
 	var setModifie = removeModifie ? null : $formulaireValeurs.find('.setModifie').val();
 	if(removeModifie || setModifie != null && setModifie !== '')
 		vals['setModifie'] = setModifie;
@@ -185,8 +182,7 @@ async function patchEcole($formulaireFiltres, $formulaireValeurs, pk, success, e
 		vals['removeModifie'] = removeModifie;
 
 	var valeurObjetId = $formulaireValeurs.find('.valeurObjetId').val();
-	if(valeurObjetId != null && valeurObjetId !== '')
-	var removeObjetId = $formulaireFiltres.find('.removeObjetId').val() === 'true';
+	var removeObjetId = $formulaireValeurs.find('.removeObjetId').val() === 'true';
 	var setObjetId = removeObjetId ? null : $formulaireValeurs.find('.setObjetId').val();
 	if(removeObjetId || setObjetId != null && setObjetId !== '')
 		vals['setObjetId'] = setObjetId;
@@ -198,11 +194,10 @@ async function patchEcole($formulaireFiltres, $formulaireValeurs, pk, success, e
 		vals['removeObjetId'] = removeObjetId;
 
 	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
-	if(valeurArchive != null && valeurArchive !== '')
-	var removeArchive = $formulaireFiltres.find('.removeArchive').val() === 'true';
+	var removeArchive = $formulaireValeurs.find('.removeArchive').val() === 'true';
 	var valeurArchiveSelectVal = $formulaireValeurs.find('select.setArchive').val();
 	var valeurArchive = null;
-	if(valeurArchiveSelectVal !== '')
+	if(valeurArchiveSelectVal != null && valeurArchiveSelectVal !== '')
 		valeurArchive = valeurArchiveSelectVal == 'true';
 	setArchive = removeArchive ? null : valeurArchive;
 	if(removeArchive || setArchive != null && setArchive !== '')
@@ -215,11 +210,10 @@ async function patchEcole($formulaireFiltres, $formulaireValeurs, pk, success, e
 		vals['removeArchive'] = removeArchive;
 
 	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').prop('checked');
-	if(valeurSupprime != null && valeurSupprime !== '')
-	var removeSupprime = $formulaireFiltres.find('.removeSupprime').val() === 'true';
+	var removeSupprime = $formulaireValeurs.find('.removeSupprime').val() === 'true';
 	var valeurSupprimeSelectVal = $formulaireValeurs.find('select.setSupprime').val();
 	var valeurSupprime = null;
-	if(valeurSupprimeSelectVal !== '')
+	if(valeurSupprimeSelectVal != null && valeurSupprimeSelectVal !== '')
 		valeurSupprime = valeurSupprimeSelectVal == 'true';
 	setSupprime = removeSupprime ? null : valeurSupprime;
 	if(removeSupprime || setSupprime != null && setSupprime !== '')
@@ -232,8 +226,7 @@ async function patchEcole($formulaireFiltres, $formulaireValeurs, pk, success, e
 		vals['removeSupprime'] = removeSupprime;
 
 	var valeurEcoleNom = $formulaireValeurs.find('.valeurEcoleNom').val();
-	if(valeurEcoleNom != null && valeurEcoleNom !== '')
-	var removeEcoleNom = $formulaireFiltres.find('.removeEcoleNom').val() === 'true';
+	var removeEcoleNom = $formulaireValeurs.find('.removeEcoleNom').val() === 'true';
 	var setEcoleNom = removeEcoleNom ? null : $formulaireValeurs.find('.setEcoleNom').val();
 	if(removeEcoleNom || setEcoleNom != null && setEcoleNom !== '')
 		vals['setEcoleNom'] = setEcoleNom;
@@ -245,8 +238,7 @@ async function patchEcole($formulaireFiltres, $formulaireValeurs, pk, success, e
 		vals['removeEcoleNom'] = removeEcoleNom;
 
 	var valeurEcoleEmplacement = $formulaireValeurs.find('.valeurEcoleEmplacement').val();
-	if(valeurEcoleEmplacement != null && valeurEcoleEmplacement !== '')
-	var removeEcoleEmplacement = $formulaireFiltres.find('.removeEcoleEmplacement').val() === 'true';
+	var removeEcoleEmplacement = $formulaireValeurs.find('.removeEcoleEmplacement').val() === 'true';
 	var setEcoleEmplacement = removeEcoleEmplacement ? null : $formulaireValeurs.find('.setEcoleEmplacement').val();
 	if(removeEcoleEmplacement || setEcoleEmplacement != null && setEcoleEmplacement !== '')
 		vals['setEcoleEmplacement'] = setEcoleEmplacement;
@@ -258,8 +250,7 @@ async function patchEcole($formulaireFiltres, $formulaireValeurs, pk, success, e
 		vals['removeEcoleEmplacement'] = removeEcoleEmplacement;
 
 	var valeurEcoleAdministrateurNom = $formulaireValeurs.find('.valeurEcoleAdministrateurNom').val();
-	if(valeurEcoleAdministrateurNom != null && valeurEcoleAdministrateurNom !== '')
-	var removeEcoleAdministrateurNom = $formulaireFiltres.find('.removeEcoleAdministrateurNom').val() === 'true';
+	var removeEcoleAdministrateurNom = $formulaireValeurs.find('.removeEcoleAdministrateurNom').val() === 'true';
 	var setEcoleAdministrateurNom = removeEcoleAdministrateurNom ? null : $formulaireValeurs.find('.setEcoleAdministrateurNom').val();
 	if(removeEcoleAdministrateurNom || setEcoleAdministrateurNom != null && setEcoleAdministrateurNom !== '')
 		vals['setEcoleAdministrateurNom'] = setEcoleAdministrateurNom;
@@ -271,8 +262,7 @@ async function patchEcole($formulaireFiltres, $formulaireValeurs, pk, success, e
 		vals['removeEcoleAdministrateurNom'] = removeEcoleAdministrateurNom;
 
 	var valeurEcoleMail = $formulaireValeurs.find('.valeurEcoleMail').val();
-	if(valeurEcoleMail != null && valeurEcoleMail !== '')
-	var removeEcoleMail = $formulaireFiltres.find('.removeEcoleMail').val() === 'true';
+	var removeEcoleMail = $formulaireValeurs.find('.removeEcoleMail').val() === 'true';
 	var setEcoleMail = removeEcoleMail ? null : $formulaireValeurs.find('.setEcoleMail').val();
 	if(removeEcoleMail || setEcoleMail != null && setEcoleMail !== '')
 		vals['setEcoleMail'] = setEcoleMail;
@@ -284,8 +274,7 @@ async function patchEcole($formulaireFiltres, $formulaireValeurs, pk, success, e
 		vals['removeEcoleMail'] = removeEcoleMail;
 
 	var valeurEcoleMailDe = $formulaireValeurs.find('.valeurEcoleMailDe').val();
-	if(valeurEcoleMailDe != null && valeurEcoleMailDe !== '')
-	var removeEcoleMailDe = $formulaireFiltres.find('.removeEcoleMailDe').val() === 'true';
+	var removeEcoleMailDe = $formulaireValeurs.find('.removeEcoleMailDe').val() === 'true';
 	var setEcoleMailDe = removeEcoleMailDe ? null : $formulaireValeurs.find('.setEcoleMailDe').val();
 	if(removeEcoleMailDe || setEcoleMailDe != null && setEcoleMailDe !== '')
 		vals['setEcoleMailDe'] = setEcoleMailDe;
@@ -297,8 +286,7 @@ async function patchEcole($formulaireFiltres, $formulaireValeurs, pk, success, e
 		vals['removeEcoleMailDe'] = removeEcoleMailDe;
 
 	var valeurEcoleMailA = $formulaireValeurs.find('.valeurEcoleMailA').val();
-	if(valeurEcoleMailA != null && valeurEcoleMailA !== '')
-	var removeEcoleMailA = $formulaireFiltres.find('.removeEcoleMailA').val() === 'true';
+	var removeEcoleMailA = $formulaireValeurs.find('.removeEcoleMailA').val() === 'true';
 	var setEcoleMailA = removeEcoleMailA ? null : $formulaireValeurs.find('.setEcoleMailA').val();
 	if(removeEcoleMailA || setEcoleMailA != null && setEcoleMailA !== '')
 		vals['setEcoleMailA'] = setEcoleMailA;
@@ -310,8 +298,7 @@ async function patchEcole($formulaireFiltres, $formulaireValeurs, pk, success, e
 		vals['removeEcoleMailA'] = removeEcoleMailA;
 
 	var valeurEcoleNumeroTelephone = $formulaireValeurs.find('.valeurEcoleNumeroTelephone').val();
-	if(valeurEcoleNumeroTelephone != null && valeurEcoleNumeroTelephone !== '')
-	var removeEcoleNumeroTelephone = $formulaireFiltres.find('.removeEcoleNumeroTelephone').val() === 'true';
+	var removeEcoleNumeroTelephone = $formulaireValeurs.find('.removeEcoleNumeroTelephone').val() === 'true';
 	var setEcoleNumeroTelephone = removeEcoleNumeroTelephone ? null : $formulaireValeurs.find('.setEcoleNumeroTelephone').val();
 	if(removeEcoleNumeroTelephone || setEcoleNumeroTelephone != null && setEcoleNumeroTelephone !== '')
 		vals['setEcoleNumeroTelephone'] = setEcoleNumeroTelephone;
@@ -323,8 +310,7 @@ async function patchEcole($formulaireFiltres, $formulaireValeurs, pk, success, e
 		vals['removeEcoleNumeroTelephone'] = removeEcoleNumeroTelephone;
 
 	var valeurEcoleAddresse = $formulaireValeurs.find('.valeurEcoleAddresse').val();
-	if(valeurEcoleAddresse != null && valeurEcoleAddresse !== '')
-	var removeEcoleAddresse = $formulaireFiltres.find('.removeEcoleAddresse').val() === 'true';
+	var removeEcoleAddresse = $formulaireValeurs.find('.removeEcoleAddresse').val() === 'true';
 	var setEcoleAddresse = removeEcoleAddresse ? null : $formulaireValeurs.find('.setEcoleAddresse').val();
 	if(removeEcoleAddresse || setEcoleAddresse != null && setEcoleAddresse !== '')
 		vals['setEcoleAddresse'] = setEcoleAddresse;
@@ -336,8 +322,7 @@ async function patchEcole($formulaireFiltres, $formulaireValeurs, pk, success, e
 		vals['removeEcoleAddresse'] = removeEcoleAddresse;
 
 	var valeurEcoleForm = $formulaireValeurs.find('.valeurEcoleForm').val();
-	if(valeurEcoleForm != null && valeurEcoleForm !== '')
-	var removeEcoleForm = $formulaireFiltres.find('.removeEcoleForm').val() === 'true';
+	var removeEcoleForm = $formulaireValeurs.find('.removeEcoleForm').val() === 'true';
 	var setEcoleForm = removeEcoleForm ? null : $formulaireValeurs.find('.setEcoleForm').val();
 	if(removeEcoleForm || setEcoleForm != null && setEcoleForm !== '')
 		vals['setEcoleForm'] = setEcoleForm;
@@ -349,8 +334,7 @@ async function patchEcole($formulaireFiltres, $formulaireValeurs, pk, success, e
 		vals['removeEcoleForm'] = removeEcoleForm;
 
 	var valeurEcoleNumero = $formulaireValeurs.find('.valeurEcoleNumero').val();
-	if(valeurEcoleNumero != null && valeurEcoleNumero !== '')
-	var removeEcoleNumero = $formulaireFiltres.find('.removeEcoleNumero').val() === 'true';
+	var removeEcoleNumero = $formulaireValeurs.find('.removeEcoleNumero').val() === 'true';
 	var setEcoleNumero = removeEcoleNumero ? null : $formulaireValeurs.find('.setEcoleNumero').val();
 	if(removeEcoleNumero || setEcoleNumero != null && setEcoleNumero !== '')
 		vals['setEcoleNumero'] = setEcoleNumero;
@@ -370,8 +354,7 @@ async function patchEcole($formulaireFiltres, $formulaireValeurs, pk, success, e
 		vals['addRecuCles'] = valeurRecuCles;
 
 	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
-	if(valeurInheritPk != null && valeurInheritPk !== '')
-	var removeInheritPk = $formulaireFiltres.find('.removeInheritPk').val() === 'true';
+	var removeInheritPk = $formulaireValeurs.find('.removeInheritPk').val() === 'true';
 	var setInheritPk = removeInheritPk ? null : $formulaireValeurs.find('.setInheritPk').val();
 	if(removeInheritPk || setInheritPk != null && setInheritPk !== '')
 		vals['setInheritPk'] = setInheritPk;
@@ -383,8 +366,7 @@ async function patchEcole($formulaireFiltres, $formulaireValeurs, pk, success, e
 		vals['removeInheritPk'] = removeInheritPk;
 
 	var valeurSessionId = $formulaireValeurs.find('.valeurSessionId').val();
-	if(valeurSessionId != null && valeurSessionId !== '')
-	var removeSessionId = $formulaireFiltres.find('.removeSessionId').val() === 'true';
+	var removeSessionId = $formulaireValeurs.find('.removeSessionId').val() === 'true';
 	var setSessionId = removeSessionId ? null : $formulaireValeurs.find('.setSessionId').val();
 	if(removeSessionId || setSessionId != null && setSessionId !== '')
 		vals['setSessionId'] = setSessionId;
@@ -396,8 +378,7 @@ async function patchEcole($formulaireFiltres, $formulaireValeurs, pk, success, e
 		vals['removeSessionId'] = removeSessionId;
 
 	var valeurUtilisateurId = $formulaireValeurs.find('.valeurUtilisateurId').val();
-	if(valeurUtilisateurId != null && valeurUtilisateurId !== '')
-	var removeUtilisateurId = $formulaireFiltres.find('.removeUtilisateurId').val() === 'true';
+	var removeUtilisateurId = $formulaireValeurs.find('.removeUtilisateurId').val() === 'true';
 	var setUtilisateurId = removeUtilisateurId ? null : $formulaireValeurs.find('.setUtilisateurId').val();
 	if(removeUtilisateurId || setUtilisateurId != null && setUtilisateurId !== '')
 		vals['setUtilisateurId'] = setUtilisateurId;
@@ -409,8 +390,7 @@ async function patchEcole($formulaireFiltres, $formulaireValeurs, pk, success, e
 		vals['removeUtilisateurId'] = removeUtilisateurId;
 
 	var valeurUtilisateurCle = $formulaireValeurs.find('.valeurUtilisateurCle').val();
-	if(valeurUtilisateurCle != null && valeurUtilisateurCle !== '')
-	var removeUtilisateurCle = $formulaireFiltres.find('.removeUtilisateurCle').val() === 'true';
+	var removeUtilisateurCle = $formulaireValeurs.find('.removeUtilisateurCle').val() === 'true';
 	var setUtilisateurCle = removeUtilisateurCle ? null : $formulaireValeurs.find('.setUtilisateurCle').val();
 	if(removeUtilisateurCle || setUtilisateurCle != null && setUtilisateurCle !== '')
 		vals['setUtilisateurCle'] = setUtilisateurCle;
@@ -422,8 +402,7 @@ async function patchEcole($formulaireFiltres, $formulaireValeurs, pk, success, e
 		vals['removeUtilisateurCle'] = removeUtilisateurCle;
 
 	var valeurObjetTitre = $formulaireValeurs.find('.valeurObjetTitre').val();
-	if(valeurObjetTitre != null && valeurObjetTitre !== '')
-	var removeObjetTitre = $formulaireFiltres.find('.removeObjetTitre').val() === 'true';
+	var removeObjetTitre = $formulaireValeurs.find('.removeObjetTitre').val() === 'true';
 	var setObjetTitre = removeObjetTitre ? null : $formulaireValeurs.find('.setObjetTitre').val();
 	if(removeObjetTitre || setObjetTitre != null && setObjetTitre !== '')
 		vals['setObjetTitre'] = setObjetTitre;
