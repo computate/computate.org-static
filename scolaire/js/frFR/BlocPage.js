@@ -33,13 +33,13 @@ async function postBlocScolaire($formulaireValeurs, success, error) {
 	if(valeurObjetId != null && valeurObjetId !== '')
 		vals['objetId'] = valeurObjetId;
 
-	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
+	var valeurArchive = $formulaireValeurs.find('.valeurArchive').val();
 	if(valeurArchive != null && valeurArchive !== '')
-		vals['archive'] = valeurArchive;
+		vals['archive'] = valeurArchive == 'true';
 
-	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').prop('checked');
+	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').val();
 	if(valeurSupprime != null && valeurSupprime !== '')
-		vals['supprime'] = valeurSupprime;
+		vals['supprime'] = valeurSupprime == 'true';
 
 	var valeurBlocHeureDebut = $formulaireValeurs.find('.valeurBlocHeureDebut').val();
 	if(valeurBlocHeureDebut != null && valeurBlocHeureDebut !== '')
@@ -53,25 +53,25 @@ async function postBlocScolaire($formulaireValeurs, success, error) {
 	if(valeurBlocPrixParMois != null && valeurBlocPrixParMois !== '')
 		vals['blocPrixParMois'] = valeurBlocPrixParMois;
 
-	var valeurBlocLundi = $formulaireValeurs.find('.valeurBlocLundi').prop('checked');
+	var valeurBlocLundi = $formulaireValeurs.find('.valeurBlocLundi').val();
 	if(valeurBlocLundi != null && valeurBlocLundi !== '')
-		vals['blocLundi'] = valeurBlocLundi;
+		vals['blocLundi'] = valeurBlocLundi == 'true';
 
-	var valeurBlocMardi = $formulaireValeurs.find('.valeurBlocMardi').prop('checked');
+	var valeurBlocMardi = $formulaireValeurs.find('.valeurBlocMardi').val();
 	if(valeurBlocMardi != null && valeurBlocMardi !== '')
-		vals['blocMardi'] = valeurBlocMardi;
+		vals['blocMardi'] = valeurBlocMardi == 'true';
 
-	var valeurBlocMercredi = $formulaireValeurs.find('.valeurBlocMercredi').prop('checked');
+	var valeurBlocMercredi = $formulaireValeurs.find('.valeurBlocMercredi').val();
 	if(valeurBlocMercredi != null && valeurBlocMercredi !== '')
-		vals['blocMercredi'] = valeurBlocMercredi;
+		vals['blocMercredi'] = valeurBlocMercredi == 'true';
 
-	var valeurBlocJeudi = $formulaireValeurs.find('.valeurBlocJeudi').prop('checked');
+	var valeurBlocJeudi = $formulaireValeurs.find('.valeurBlocJeudi').val();
 	if(valeurBlocJeudi != null && valeurBlocJeudi !== '')
-		vals['blocJeudi'] = valeurBlocJeudi;
+		vals['blocJeudi'] = valeurBlocJeudi == 'true';
 
-	var valeurBlocVendredi = $formulaireValeurs.find('.valeurBlocVendredi').prop('checked');
+	var valeurBlocVendredi = $formulaireValeurs.find('.valeurBlocVendredi').val();
 	if(valeurBlocVendredi != null && valeurBlocVendredi !== '')
-		vals['blocVendredi'] = valeurBlocVendredi;
+		vals['blocVendredi'] = valeurBlocVendredi == 'true';
 
 	var valeurAgeCle = $formulaireValeurs.find('.valeurAgeCle').val();
 	if(valeurAgeCle != null && valeurAgeCle !== '')
@@ -192,13 +192,13 @@ async function putcopieBlocScolaire($formulaireValeurs, pk, success, error) {
 	if(valeurObjetId != null && valeurObjetId !== '')
 		vals['objetId'] = valeurObjetId;
 
-	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
+	var valeurArchive = $formulaireValeurs.find('.valeurArchive').val();
 	if(valeurArchive != null && valeurArchive !== '')
-		vals['archive'] = valeurArchive;
+		vals['archive'] = valeurArchive == 'true';
 
-	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').prop('checked');
+	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').val();
 	if(valeurSupprime != null && valeurSupprime !== '')
-		vals['supprime'] = valeurSupprime;
+		vals['supprime'] = valeurSupprime == 'true';
 
 	var valeurBlocHeureDebut = $formulaireValeurs.find('.valeurBlocHeureDebut').val();
 	if(valeurBlocHeureDebut != null && valeurBlocHeureDebut !== '')
@@ -212,32 +212,38 @@ async function putcopieBlocScolaire($formulaireValeurs, pk, success, error) {
 	if(valeurBlocPrixParMois != null && valeurBlocPrixParMois !== '')
 		vals['blocPrixParMois'] = valeurBlocPrixParMois;
 
-	var valeurBlocLundi = $formulaireValeurs.find('.valeurBlocLundi').prop('checked');
+	var valeurBlocLundi = $formulaireValeurs.find('.valeurBlocLundi').val();
 	if(valeurBlocLundi != null && valeurBlocLundi !== '')
-		vals['blocLundi'] = valeurBlocLundi;
+		vals['blocLundi'] = valeurBlocLundi == 'true';
 
-	var valeurBlocMardi = $formulaireValeurs.find('.valeurBlocMardi').prop('checked');
+	var valeurBlocMardi = $formulaireValeurs.find('.valeurBlocMardi').val();
 	if(valeurBlocMardi != null && valeurBlocMardi !== '')
-		vals['blocMardi'] = valeurBlocMardi;
+		vals['blocMardi'] = valeurBlocMardi == 'true';
 
-	var valeurBlocMercredi = $formulaireValeurs.find('.valeurBlocMercredi').prop('checked');
+	var valeurBlocMercredi = $formulaireValeurs.find('.valeurBlocMercredi').val();
 	if(valeurBlocMercredi != null && valeurBlocMercredi !== '')
-		vals['blocMercredi'] = valeurBlocMercredi;
+		vals['blocMercredi'] = valeurBlocMercredi == 'true';
 
-	var valeurBlocJeudi = $formulaireValeurs.find('.valeurBlocJeudi').prop('checked');
+	var valeurBlocJeudi = $formulaireValeurs.find('.valeurBlocJeudi').val();
 	if(valeurBlocJeudi != null && valeurBlocJeudi !== '')
-		vals['blocJeudi'] = valeurBlocJeudi;
+		vals['blocJeudi'] = valeurBlocJeudi == 'true';
 
-	var valeurBlocVendredi = $formulaireValeurs.find('.valeurBlocVendredi').prop('checked');
+	var valeurBlocVendredi = $formulaireValeurs.find('.valeurBlocVendredi').val();
 	if(valeurBlocVendredi != null && valeurBlocVendredi !== '')
-		vals['blocVendredi'] = valeurBlocVendredi;
+		vals['blocVendredi'] = valeurBlocVendredi == 'true';
 
 	var valeurAgeCle = $formulaireValeurs.find('input.valeurAgeCle:checked').val();
-	if(valeurAgeCle != null && valeurAgeCle !== '')
+	var valeurAgeCleVider = $formulaireValeurs.find('input.ageCle_vider:checked').val();
+	if(valeurAgeCleVider != null && valeurAgeCleVider)
+		vals['ageCle'] = null;
+	else if(valeurAgeCleVider != null && valeurAgeCleVider)
 		vals['ageCle'] = valeurAgeCle;
 
 	var valeurInscriptionCles = $formulaireValeurs.find('input.valeurInscriptionCles:checked').val();
-	if(valeurInscriptionCles != null && valeurInscriptionCles !== '')
+	var valeurInscriptionClesVider = $formulaireValeurs.find('input.inscriptionCles_vider:checked').val();
+	if(valeurInscriptionClesVider != null && valeurInscriptionClesVider)
+		vals['inscriptionCles'] = null;
+	else if(valeurInscriptionClesVider != null && valeurInscriptionClesVider)
 		vals['inscriptionCles'] = [valeurInscriptionCles];
 
 	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
@@ -334,7 +340,7 @@ async function patchBlocScolaire($formulaireFiltres, $formulaireValeurs, pk, suc
 	if(removeObjetId != null && removeObjetId !== '')
 		vals['removeObjetId'] = removeObjetId;
 
-	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
+	var valeurArchive = $formulaireValeurs.find('.valeurArchive').val();
 	var removeArchive = $formulaireValeurs.find('.removeArchive').val() === 'true';
 	var valeurArchiveSelectVal = $formulaireValeurs.find('select.setArchive').val();
 	var valeurArchive = null;
@@ -350,7 +356,7 @@ async function patchBlocScolaire($formulaireFiltres, $formulaireValeurs, pk, suc
 	if(removeArchive != null && removeArchive !== '')
 		vals['removeArchive'] = removeArchive;
 
-	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').prop('checked');
+	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').val();
 	var removeSupprime = $formulaireValeurs.find('.removeSupprime').val() === 'true';
 	var valeurSupprimeSelectVal = $formulaireValeurs.find('select.setSupprime').val();
 	var valeurSupprime = null;
@@ -402,7 +408,7 @@ async function patchBlocScolaire($formulaireFiltres, $formulaireValeurs, pk, suc
 	if(removeBlocPrixParMois != null && removeBlocPrixParMois !== '')
 		vals['removeBlocPrixParMois'] = removeBlocPrixParMois;
 
-	var valeurBlocLundi = $formulaireValeurs.find('.valeurBlocLundi').prop('checked');
+	var valeurBlocLundi = $formulaireValeurs.find('.valeurBlocLundi').val();
 	var removeBlocLundi = $formulaireValeurs.find('.removeBlocLundi').val() === 'true';
 	var valeurBlocLundiSelectVal = $formulaireValeurs.find('select.setBlocLundi').val();
 	var valeurBlocLundi = null;
@@ -418,7 +424,7 @@ async function patchBlocScolaire($formulaireFiltres, $formulaireValeurs, pk, suc
 	if(removeBlocLundi != null && removeBlocLundi !== '')
 		vals['removeBlocLundi'] = removeBlocLundi;
 
-	var valeurBlocMardi = $formulaireValeurs.find('.valeurBlocMardi').prop('checked');
+	var valeurBlocMardi = $formulaireValeurs.find('.valeurBlocMardi').val();
 	var removeBlocMardi = $formulaireValeurs.find('.removeBlocMardi').val() === 'true';
 	var valeurBlocMardiSelectVal = $formulaireValeurs.find('select.setBlocMardi').val();
 	var valeurBlocMardi = null;
@@ -434,7 +440,7 @@ async function patchBlocScolaire($formulaireFiltres, $formulaireValeurs, pk, suc
 	if(removeBlocMardi != null && removeBlocMardi !== '')
 		vals['removeBlocMardi'] = removeBlocMardi;
 
-	var valeurBlocMercredi = $formulaireValeurs.find('.valeurBlocMercredi').prop('checked');
+	var valeurBlocMercredi = $formulaireValeurs.find('.valeurBlocMercredi').val();
 	var removeBlocMercredi = $formulaireValeurs.find('.removeBlocMercredi').val() === 'true';
 	var valeurBlocMercrediSelectVal = $formulaireValeurs.find('select.setBlocMercredi').val();
 	var valeurBlocMercredi = null;
@@ -450,7 +456,7 @@ async function patchBlocScolaire($formulaireFiltres, $formulaireValeurs, pk, suc
 	if(removeBlocMercredi != null && removeBlocMercredi !== '')
 		vals['removeBlocMercredi'] = removeBlocMercredi;
 
-	var valeurBlocJeudi = $formulaireValeurs.find('.valeurBlocJeudi').prop('checked');
+	var valeurBlocJeudi = $formulaireValeurs.find('.valeurBlocJeudi').val();
 	var removeBlocJeudi = $formulaireValeurs.find('.removeBlocJeudi').val() === 'true';
 	var valeurBlocJeudiSelectVal = $formulaireValeurs.find('select.setBlocJeudi').val();
 	var valeurBlocJeudi = null;
@@ -466,7 +472,7 @@ async function patchBlocScolaire($formulaireFiltres, $formulaireValeurs, pk, suc
 	if(removeBlocJeudi != null && removeBlocJeudi !== '')
 		vals['removeBlocJeudi'] = removeBlocJeudi;
 
-	var valeurBlocVendredi = $formulaireValeurs.find('.valeurBlocVendredi').prop('checked');
+	var valeurBlocVendredi = $formulaireValeurs.find('.valeurBlocVendredi').val();
 	var removeBlocVendredi = $formulaireValeurs.find('.removeBlocVendredi').val() === 'true';
 	var valeurBlocVendrediSelectVal = $formulaireValeurs.find('select.setBlocVendredi').val();
 	var valeurBlocVendredi = null;

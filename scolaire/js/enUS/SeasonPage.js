@@ -33,21 +33,21 @@ async function postSchoolSeason($formValues, success, error) {
 	if(valueObjectId != null && valueObjectId !== '')
 		vals['objectId'] = valueObjectId;
 
-	var valueArchived = $formValues.find('.valueArchived').prop('checked');
+	var valueArchived = $formValues.find('.valueArchived').val();
 	if(valueArchived != null && valueArchived !== '')
-		vals['archived'] = valueArchived;
+		vals['archived'] = valueArchived == 'true';
 
-	var valueDeleted = $formValues.find('.valueDeleted').prop('checked');
+	var valueDeleted = $formValues.find('.valueDeleted').val();
 	if(valueDeleted != null && valueDeleted !== '')
-		vals['deleted'] = valueDeleted;
+		vals['deleted'] = valueDeleted == 'true';
 
 	var valueSeasonStartDate = $formValues.find('.valueSeasonStartDate').val();
 	if(valueSeasonStartDate != null && valueSeasonStartDate !== '')
 		vals['seasonStartDate'] = valueSeasonStartDate;
 
-	var valueSeasonFuture = $formValues.find('.valueSeasonFuture').prop('checked');
+	var valueSeasonFuture = $formValues.find('.valueSeasonFuture').val();
 	if(valueSeasonFuture != null && valueSeasonFuture !== '')
-		vals['seasonFuture'] = valueSeasonFuture;
+		vals['seasonFuture'] = valueSeasonFuture == 'true';
 
 	var valueYearKey = $formValues.find('.valueYearKey').val();
 	if(valueYearKey != null && valueYearKey !== '')
@@ -80,13 +80,13 @@ async function postSchoolSeason($formValues, success, error) {
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
 
-	var valueSeasonSummer = $formValues.find('.valueSeasonSummer').prop('checked');
+	var valueSeasonSummer = $formValues.find('.valueSeasonSummer').val();
 	if(valueSeasonSummer != null && valueSeasonSummer !== '')
-		vals['seasonSummer'] = valueSeasonSummer;
+		vals['seasonSummer'] = valueSeasonSummer == 'true';
 
-	var valueSeasonWinter = $formValues.find('.valueSeasonWinter').prop('checked');
+	var valueSeasonWinter = $formValues.find('.valueSeasonWinter').val();
 	if(valueSeasonWinter != null && valueSeasonWinter !== '')
-		vals['seasonWinter'] = valueSeasonWinter;
+		vals['seasonWinter'] = valueSeasonWinter == 'true';
 
 	$.ajax({
 		url: '/api/season'
@@ -172,28 +172,34 @@ async function putcopySchoolSeason($formValues, pk, success, error) {
 	if(valueObjectId != null && valueObjectId !== '')
 		vals['objectId'] = valueObjectId;
 
-	var valueArchived = $formValues.find('.valueArchived').prop('checked');
+	var valueArchived = $formValues.find('.valueArchived').val();
 	if(valueArchived != null && valueArchived !== '')
-		vals['archived'] = valueArchived;
+		vals['archived'] = valueArchived == 'true';
 
-	var valueDeleted = $formValues.find('.valueDeleted').prop('checked');
+	var valueDeleted = $formValues.find('.valueDeleted').val();
 	if(valueDeleted != null && valueDeleted !== '')
-		vals['deleted'] = valueDeleted;
+		vals['deleted'] = valueDeleted == 'true';
 
 	var valueSeasonStartDate = $formValues.find('.valueSeasonStartDate').val();
 	if(valueSeasonStartDate != null && valueSeasonStartDate !== '')
 		vals['seasonStartDate'] = valueSeasonStartDate;
 
-	var valueSeasonFuture = $formValues.find('.valueSeasonFuture').prop('checked');
+	var valueSeasonFuture = $formValues.find('.valueSeasonFuture').val();
 	if(valueSeasonFuture != null && valueSeasonFuture !== '')
-		vals['seasonFuture'] = valueSeasonFuture;
+		vals['seasonFuture'] = valueSeasonFuture == 'true';
 
 	var valueYearKey = $formValues.find('input.valueYearKey:checked').val();
-	if(valueYearKey != null && valueYearKey !== '')
+	var valueYearKeyClear = $formValues.find('input.yearKey_clear:checked').val();
+	if(valueYearKeyClear != null && valueYearKeyClear)
+		vals['yearKey'] = null;
+	else if(valueYearKeyClear != null && valueYearKeyClear)
 		vals['yearKey'] = valueYearKey;
 
 	var valueSessionKeys = $formValues.find('input.valueSessionKeys:checked').val();
-	if(valueSessionKeys != null && valueSessionKeys !== '')
+	var valueSessionKeysClear = $formValues.find('input.sessionKeys_clear:checked').val();
+	if(valueSessionKeysClear != null && valueSessionKeysClear)
+		vals['sessionKeys'] = null;
+	else if(valueSessionKeysClear != null && valueSessionKeysClear)
 		vals['sessionKeys'] = [valueSessionKeys];
 
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
@@ -216,13 +222,13 @@ async function putcopySchoolSeason($formValues, pk, success, error) {
 	if(valueObjectTitle != null && valueObjectTitle !== '')
 		vals['objectTitle'] = valueObjectTitle;
 
-	var valueSeasonSummer = $formValues.find('.valueSeasonSummer').prop('checked');
+	var valueSeasonSummer = $formValues.find('.valueSeasonSummer').val();
 	if(valueSeasonSummer != null && valueSeasonSummer !== '')
-		vals['seasonSummer'] = valueSeasonSummer;
+		vals['seasonSummer'] = valueSeasonSummer == 'true';
 
-	var valueSeasonWinter = $formValues.find('.valueSeasonWinter').prop('checked');
+	var valueSeasonWinter = $formValues.find('.valueSeasonWinter').val();
 	if(valueSeasonWinter != null && valueSeasonWinter !== '')
-		vals['seasonWinter'] = valueSeasonWinter;
+		vals['seasonWinter'] = valueSeasonWinter == 'true';
 
 	putcopySchoolSeasonVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
@@ -294,7 +300,7 @@ async function patchSchoolSeason($formFilters, $formValues, pk, success, error) 
 	if(removeObjectId != null && removeObjectId !== '')
 		vals['removeObjectId'] = removeObjectId;
 
-	var valueArchived = $formValues.find('.valueArchived').prop('checked');
+	var valueArchived = $formValues.find('.valueArchived').val();
 	var removeArchived = $formValues.find('.removeArchived').val() === 'true';
 	var valueArchivedSelectVal = $formValues.find('select.setArchived').val();
 	var valueArchived = null;
@@ -310,7 +316,7 @@ async function patchSchoolSeason($formFilters, $formValues, pk, success, error) 
 	if(removeArchived != null && removeArchived !== '')
 		vals['removeArchived'] = removeArchived;
 
-	var valueDeleted = $formValues.find('.valueDeleted').prop('checked');
+	var valueDeleted = $formValues.find('.valueDeleted').val();
 	var removeDeleted = $formValues.find('.removeDeleted').val() === 'true';
 	var valueDeletedSelectVal = $formValues.find('select.setDeleted').val();
 	var valueDeleted = null;
@@ -348,7 +354,7 @@ async function patchSchoolSeason($formFilters, $formValues, pk, success, error) 
 	if(removeSeasonStartDate != null && removeSeasonStartDate !== '')
 		vals['removeSeasonStartDate'] = removeSeasonStartDate;
 
-	var valueSeasonFuture = $formValues.find('.valueSeasonFuture').prop('checked');
+	var valueSeasonFuture = $formValues.find('.valueSeasonFuture').val();
 	var removeSeasonFuture = $formValues.find('.removeSeasonFuture').val() === 'true';
 	var valueSeasonFutureSelectVal = $formValues.find('select.setSeasonFuture').val();
 	var valueSeasonFuture = null;
@@ -432,7 +438,7 @@ async function patchSchoolSeason($formFilters, $formValues, pk, success, error) 
 	if(removeObjectTitle != null && removeObjectTitle !== '')
 		vals['removeObjectTitle'] = removeObjectTitle;
 
-	var valueSeasonSummer = $formValues.find('.valueSeasonSummer').prop('checked');
+	var valueSeasonSummer = $formValues.find('.valueSeasonSummer').val();
 	var removeSeasonSummer = $formValues.find('.removeSeasonSummer').val() === 'true';
 	var valueSeasonSummerSelectVal = $formValues.find('select.setSeasonSummer').val();
 	var valueSeasonSummer = null;
@@ -448,7 +454,7 @@ async function patchSchoolSeason($formFilters, $formValues, pk, success, error) 
 	if(removeSeasonSummer != null && removeSeasonSummer !== '')
 		vals['removeSeasonSummer'] = removeSeasonSummer;
 
-	var valueSeasonWinter = $formValues.find('.valueSeasonWinter').prop('checked');
+	var valueSeasonWinter = $formValues.find('.valueSeasonWinter').val();
 	var removeSeasonWinter = $formValues.find('.removeSeasonWinter').val() === 'true';
 	var valueSeasonWinterSelectVal = $formValues.find('select.setSeasonWinter').val();
 	var valueSeasonWinter = null;

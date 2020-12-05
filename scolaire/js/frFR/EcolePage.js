@@ -33,13 +33,13 @@ async function postEcole($formulaireValeurs, success, error) {
 	if(valeurObjetId != null && valeurObjetId !== '')
 		vals['objetId'] = valeurObjetId;
 
-	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
+	var valeurArchive = $formulaireValeurs.find('.valeurArchive').val();
 	if(valeurArchive != null && valeurArchive !== '')
-		vals['archive'] = valeurArchive;
+		vals['archive'] = valeurArchive == 'true';
 
-	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').prop('checked');
+	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').val();
 	if(valeurSupprime != null && valeurSupprime !== '')
-		vals['supprime'] = valeurSupprime;
+		vals['supprime'] = valeurSupprime == 'true';
 
 	var valeurEcoleNom = $formulaireValeurs.find('.valeurEcoleNom').val();
 	if(valeurEcoleNom != null && valeurEcoleNom !== '')
@@ -193,7 +193,7 @@ async function patchEcole($formulaireFiltres, $formulaireValeurs, pk, success, e
 	if(removeObjetId != null && removeObjetId !== '')
 		vals['removeObjetId'] = removeObjetId;
 
-	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
+	var valeurArchive = $formulaireValeurs.find('.valeurArchive').val();
 	var removeArchive = $formulaireValeurs.find('.removeArchive').val() === 'true';
 	var valeurArchiveSelectVal = $formulaireValeurs.find('select.setArchive').val();
 	var valeurArchive = null;
@@ -209,7 +209,7 @@ async function patchEcole($formulaireFiltres, $formulaireValeurs, pk, success, e
 	if(removeArchive != null && removeArchive !== '')
 		vals['removeArchive'] = removeArchive;
 
-	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').prop('checked');
+	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').val();
 	var removeSupprime = $formulaireValeurs.find('.removeSupprime').val() === 'true';
 	var valeurSupprimeSelectVal = $formulaireValeurs.find('select.setSupprime').val();
 	var valeurSupprime = null;
@@ -1003,13 +1003,13 @@ async function putcopieEcole($formulaireValeurs, pk, success, error) {
 	if(valeurObjetId != null && valeurObjetId !== '')
 		vals['objetId'] = valeurObjetId;
 
-	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
+	var valeurArchive = $formulaireValeurs.find('.valeurArchive').val();
 	if(valeurArchive != null && valeurArchive !== '')
-		vals['archive'] = valeurArchive;
+		vals['archive'] = valeurArchive == 'true';
 
-	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').prop('checked');
+	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').val();
 	if(valeurSupprime != null && valeurSupprime !== '')
-		vals['supprime'] = valeurSupprime;
+		vals['supprime'] = valeurSupprime == 'true';
 
 	var valeurEcoleNom = $formulaireValeurs.find('.valeurEcoleNom').val();
 	if(valeurEcoleNom != null && valeurEcoleNom !== '')
@@ -1052,11 +1052,17 @@ async function putcopieEcole($formulaireValeurs, pk, success, error) {
 		vals['ecoleNumero'] = valeurEcoleNumero;
 
 	var valeurAnneeCles = $formulaireValeurs.find('input.valeurAnneeCles:checked').val();
-	if(valeurAnneeCles != null && valeurAnneeCles !== '')
+	var valeurAnneeClesVider = $formulaireValeurs.find('input.anneeCles_vider:checked').val();
+	if(valeurAnneeClesVider != null && valeurAnneeClesVider)
+		vals['anneeCles'] = null;
+	else if(valeurAnneeClesVider != null && valeurAnneeClesVider)
 		vals['anneeCles'] = [valeurAnneeCles];
 
 	var valeurRecuCles = $formulaireValeurs.find('input.valeurRecuCles:checked').val();
-	if(valeurRecuCles != null && valeurRecuCles !== '')
+	var valeurRecuClesVider = $formulaireValeurs.find('input.recuCles_vider:checked').val();
+	if(valeurRecuClesVider != null && valeurRecuClesVider)
+		vals['recuCles'] = null;
+	else if(valeurRecuClesVider != null && valeurRecuClesVider)
 		vals['recuCles'] = [valeurRecuCles];
 
 	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();

@@ -33,13 +33,13 @@ async function postSchoolReceipt($formValues, success, error) {
 	if(valueObjectId != null && valueObjectId !== '')
 		vals['objectId'] = valueObjectId;
 
-	var valueArchived = $formValues.find('.valueArchived').prop('checked');
+	var valueArchived = $formValues.find('.valueArchived').val();
 	if(valueArchived != null && valueArchived !== '')
-		vals['archived'] = valueArchived;
+		vals['archived'] = valueArchived == 'true';
 
-	var valueDeleted = $formValues.find('.valueDeleted').prop('checked');
+	var valueDeleted = $formValues.find('.valueDeleted').val();
 	if(valueDeleted != null && valueDeleted !== '')
-		vals['deleted'] = valueDeleted;
+		vals['deleted'] = valueDeleted == 'true';
 
 	var valuePaymentDate = $formValues.find('.valuePaymentDate').val();
 	if(valuePaymentDate != null && valuePaymentDate !== '')
@@ -165,13 +165,13 @@ async function putcopySchoolReceipt($formValues, pk, success, error) {
 	if(valueObjectId != null && valueObjectId !== '')
 		vals['objectId'] = valueObjectId;
 
-	var valueArchived = $formValues.find('.valueArchived').prop('checked');
+	var valueArchived = $formValues.find('.valueArchived').val();
 	if(valueArchived != null && valueArchived !== '')
-		vals['archived'] = valueArchived;
+		vals['archived'] = valueArchived == 'true';
 
-	var valueDeleted = $formValues.find('.valueDeleted').prop('checked');
+	var valueDeleted = $formValues.find('.valueDeleted').val();
 	if(valueDeleted != null && valueDeleted !== '')
-		vals['deleted'] = valueDeleted;
+		vals['deleted'] = valueDeleted == 'true';
 
 	var valuePaymentDate = $formValues.find('.valuePaymentDate').val();
 	if(valuePaymentDate != null && valuePaymentDate !== '')
@@ -182,7 +182,10 @@ async function putcopySchoolReceipt($formValues, pk, success, error) {
 		vals['paymentAmount'] = valuePaymentAmount;
 
 	var valueSchoolKey = $formValues.find('input.valueSchoolKey:checked').val();
-	if(valueSchoolKey != null && valueSchoolKey !== '')
+	var valueSchoolKeyClear = $formValues.find('input.schoolKey_clear:checked').val();
+	if(valueSchoolKeyClear != null && valueSchoolKeyClear)
+		vals['schoolKey'] = null;
+	else if(valueSchoolKeyClear != null && valueSchoolKeyClear)
 		vals['schoolKey'] = valueSchoolKey;
 
 	var valuePaymentDescription = $formValues.find('.valuePaymentDescription').val();
@@ -283,7 +286,7 @@ async function patchSchoolReceipt($formFilters, $formValues, pk, success, error)
 	if(removeObjectId != null && removeObjectId !== '')
 		vals['removeObjectId'] = removeObjectId;
 
-	var valueArchived = $formValues.find('.valueArchived').prop('checked');
+	var valueArchived = $formValues.find('.valueArchived').val();
 	var removeArchived = $formValues.find('.removeArchived').val() === 'true';
 	var valueArchivedSelectVal = $formValues.find('select.setArchived').val();
 	var valueArchived = null;
@@ -299,7 +302,7 @@ async function patchSchoolReceipt($formFilters, $formValues, pk, success, error)
 	if(removeArchived != null && removeArchived !== '')
 		vals['removeArchived'] = removeArchived;
 
-	var valueDeleted = $formValues.find('.valueDeleted').prop('checked');
+	var valueDeleted = $formValues.find('.valueDeleted').val();
 	var removeDeleted = $formValues.find('.removeDeleted').val() === 'true';
 	var valueDeletedSelectVal = $formValues.find('select.setDeleted').val();
 	var valueDeleted = null;

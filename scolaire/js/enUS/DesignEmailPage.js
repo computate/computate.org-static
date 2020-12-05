@@ -33,61 +33,61 @@ async function postPageDesign($formValues, success, error) {
 	if(valueObjectId != null && valueObjectId !== '')
 		vals['objectId'] = valueObjectId;
 
-	var valueArchived = $formValues.find('.valueArchived').prop('checked');
+	var valueArchived = $formValues.find('.valueArchived').val();
 	if(valueArchived != null && valueArchived !== '')
-		vals['archived'] = valueArchived;
+		vals['archived'] = valueArchived == 'true';
 
-	var valueDeleted = $formValues.find('.valueDeleted').prop('checked');
+	var valueDeleted = $formValues.find('.valueDeleted').val();
 	if(valueDeleted != null && valueDeleted !== '')
-		vals['deleted'] = valueDeleted;
+		vals['deleted'] = valueDeleted == 'true';
 
 	var valuePageDesignCompleteName = $formValues.find('.valuePageDesignCompleteName').val();
 	if(valuePageDesignCompleteName != null && valuePageDesignCompleteName !== '')
 		vals['pageDesignCompleteName'] = valuePageDesignCompleteName;
 
-	var valueDesignHidden = $formValues.find('.valueDesignHidden').prop('checked');
+	var valueDesignHidden = $formValues.find('.valueDesignHidden').val();
 	if(valueDesignHidden != null && valueDesignHidden !== '')
-		vals['designHidden'] = valueDesignHidden;
+		vals['designHidden'] = valueDesignHidden == 'true';
 
-	var valueDesignAdmin = $formValues.find('.valueDesignAdmin').prop('checked');
+	var valueDesignAdmin = $formValues.find('.valueDesignAdmin').val();
 	if(valueDesignAdmin != null && valueDesignAdmin !== '')
-		vals['designAdmin'] = valueDesignAdmin;
+		vals['designAdmin'] = valueDesignAdmin == 'true';
 
-	var valueDesignIgnoreEmptyChildName = $formValues.find('.valueDesignIgnoreEmptyChildName').prop('checked');
+	var valueDesignIgnoreEmptyChildName = $formValues.find('.valueDesignIgnoreEmptyChildName').val();
 	if(valueDesignIgnoreEmptyChildName != null && valueDesignIgnoreEmptyChildName !== '')
-		vals['designIgnoreEmptyChildName'] = valueDesignIgnoreEmptyChildName;
+		vals['designIgnoreEmptyChildName'] = valueDesignIgnoreEmptyChildName == 'true';
 
-	var valueDesignIgnorePaymentsNotPastDue = $formValues.find('.valueDesignIgnorePaymentsNotPastDue').prop('checked');
+	var valueDesignIgnorePaymentsNotPastDue = $formValues.find('.valueDesignIgnorePaymentsNotPastDue').val();
 	if(valueDesignIgnorePaymentsNotPastDue != null && valueDesignIgnorePaymentsNotPastDue !== '')
-		vals['designIgnorePaymentsNotPastDue'] = valueDesignIgnorePaymentsNotPastDue;
+		vals['designIgnorePaymentsNotPastDue'] = valueDesignIgnorePaymentsNotPastDue == 'true';
 
-	var valueDesignIgnorePaymentsPastDue = $formValues.find('.valueDesignIgnorePaymentsPastDue').prop('checked');
+	var valueDesignIgnorePaymentsPastDue = $formValues.find('.valueDesignIgnorePaymentsPastDue').val();
 	if(valueDesignIgnorePaymentsPastDue != null && valueDesignIgnorePaymentsPastDue !== '')
-		vals['designIgnorePaymentsPastDue'] = valueDesignIgnorePaymentsPastDue;
+		vals['designIgnorePaymentsPastDue'] = valueDesignIgnorePaymentsPastDue == 'true';
 
-	var valueDesignFilterEnrollmentKey = $formValues.find('.valueDesignFilterEnrollmentKey').prop('checked');
+	var valueDesignFilterEnrollmentKey = $formValues.find('.valueDesignFilterEnrollmentKey').val();
 	if(valueDesignFilterEnrollmentKey != null && valueDesignFilterEnrollmentKey !== '')
-		vals['designFilterEnrollmentKey'] = valueDesignFilterEnrollmentKey;
+		vals['designFilterEnrollmentKey'] = valueDesignFilterEnrollmentKey == 'true';
 
-	var valueDesignEnrollmentSortMonthDayOfBirth = $formValues.find('.valueDesignEnrollmentSortMonthDayOfBirth').prop('checked');
+	var valueDesignEnrollmentSortMonthDayOfBirth = $formValues.find('.valueDesignEnrollmentSortMonthDayOfBirth').val();
 	if(valueDesignEnrollmentSortMonthDayOfBirth != null && valueDesignEnrollmentSortMonthDayOfBirth !== '')
-		vals['designEnrollmentSortMonthDayOfBirth'] = valueDesignEnrollmentSortMonthDayOfBirth;
+		vals['designEnrollmentSortMonthDayOfBirth'] = valueDesignEnrollmentSortMonthDayOfBirth == 'true';
 
-	var valueDesignEnrollmentSortGroupName = $formValues.find('.valueDesignEnrollmentSortGroupName').prop('checked');
+	var valueDesignEnrollmentSortGroupName = $formValues.find('.valueDesignEnrollmentSortGroupName').val();
 	if(valueDesignEnrollmentSortGroupName != null && valueDesignEnrollmentSortGroupName !== '')
-		vals['designEnrollmentSortGroupName'] = valueDesignEnrollmentSortGroupName;
+		vals['designEnrollmentSortGroupName'] = valueDesignEnrollmentSortGroupName == 'true';
 
-	var valueDesignEnrollmentSortChildName = $formValues.find('.valueDesignEnrollmentSortChildName').prop('checked');
+	var valueDesignEnrollmentSortChildName = $formValues.find('.valueDesignEnrollmentSortChildName').val();
 	if(valueDesignEnrollmentSortChildName != null && valueDesignEnrollmentSortChildName !== '')
-		vals['designEnrollmentSortChildName'] = valueDesignEnrollmentSortChildName;
+		vals['designEnrollmentSortChildName'] = valueDesignEnrollmentSortChildName == 'true';
 
-	var valueSearchYears = $formValues.find('.valueSearchYears').prop('checked');
+	var valueSearchYears = $formValues.find('.valueSearchYears').val();
 	if(valueSearchYears != null && valueSearchYears !== '')
-		vals['searchYears'] = valueSearchYears;
+		vals['searchYears'] = valueSearchYears == 'true';
 
-	var valueSearchPayments = $formValues.find('.valueSearchPayments').prop('checked');
+	var valueSearchPayments = $formValues.find('.valueSearchPayments').val();
 	if(valueSearchPayments != null && valueSearchPayments !== '')
-		vals['searchPayments'] = valueSearchPayments;
+		vals['searchPayments'] = valueSearchPayments == 'true';
 
 	var valueParentDesignKeys = [];
 	$formValues.find('input.valueParentDesignKeys:checked').each(function(index) {
@@ -207,68 +207,74 @@ async function putcopyPageDesign($formValues, pk, success, error) {
 	if(valueObjectId != null && valueObjectId !== '')
 		vals['objectId'] = valueObjectId;
 
-	var valueArchived = $formValues.find('.valueArchived').prop('checked');
+	var valueArchived = $formValues.find('.valueArchived').val();
 	if(valueArchived != null && valueArchived !== '')
-		vals['archived'] = valueArchived;
+		vals['archived'] = valueArchived == 'true';
 
-	var valueDeleted = $formValues.find('.valueDeleted').prop('checked');
+	var valueDeleted = $formValues.find('.valueDeleted').val();
 	if(valueDeleted != null && valueDeleted !== '')
-		vals['deleted'] = valueDeleted;
+		vals['deleted'] = valueDeleted == 'true';
 
 	var valuePageDesignCompleteName = $formValues.find('.valuePageDesignCompleteName').val();
 	if(valuePageDesignCompleteName != null && valuePageDesignCompleteName !== '')
 		vals['pageDesignCompleteName'] = valuePageDesignCompleteName;
 
-	var valueDesignHidden = $formValues.find('.valueDesignHidden').prop('checked');
+	var valueDesignHidden = $formValues.find('.valueDesignHidden').val();
 	if(valueDesignHidden != null && valueDesignHidden !== '')
-		vals['designHidden'] = valueDesignHidden;
+		vals['designHidden'] = valueDesignHidden == 'true';
 
-	var valueDesignAdmin = $formValues.find('.valueDesignAdmin').prop('checked');
+	var valueDesignAdmin = $formValues.find('.valueDesignAdmin').val();
 	if(valueDesignAdmin != null && valueDesignAdmin !== '')
-		vals['designAdmin'] = valueDesignAdmin;
+		vals['designAdmin'] = valueDesignAdmin == 'true';
 
-	var valueDesignIgnoreEmptyChildName = $formValues.find('.valueDesignIgnoreEmptyChildName').prop('checked');
+	var valueDesignIgnoreEmptyChildName = $formValues.find('.valueDesignIgnoreEmptyChildName').val();
 	if(valueDesignIgnoreEmptyChildName != null && valueDesignIgnoreEmptyChildName !== '')
-		vals['designIgnoreEmptyChildName'] = valueDesignIgnoreEmptyChildName;
+		vals['designIgnoreEmptyChildName'] = valueDesignIgnoreEmptyChildName == 'true';
 
-	var valueDesignIgnorePaymentsNotPastDue = $formValues.find('.valueDesignIgnorePaymentsNotPastDue').prop('checked');
+	var valueDesignIgnorePaymentsNotPastDue = $formValues.find('.valueDesignIgnorePaymentsNotPastDue').val();
 	if(valueDesignIgnorePaymentsNotPastDue != null && valueDesignIgnorePaymentsNotPastDue !== '')
-		vals['designIgnorePaymentsNotPastDue'] = valueDesignIgnorePaymentsNotPastDue;
+		vals['designIgnorePaymentsNotPastDue'] = valueDesignIgnorePaymentsNotPastDue == 'true';
 
-	var valueDesignIgnorePaymentsPastDue = $formValues.find('.valueDesignIgnorePaymentsPastDue').prop('checked');
+	var valueDesignIgnorePaymentsPastDue = $formValues.find('.valueDesignIgnorePaymentsPastDue').val();
 	if(valueDesignIgnorePaymentsPastDue != null && valueDesignIgnorePaymentsPastDue !== '')
-		vals['designIgnorePaymentsPastDue'] = valueDesignIgnorePaymentsPastDue;
+		vals['designIgnorePaymentsPastDue'] = valueDesignIgnorePaymentsPastDue == 'true';
 
-	var valueDesignFilterEnrollmentKey = $formValues.find('.valueDesignFilterEnrollmentKey').prop('checked');
+	var valueDesignFilterEnrollmentKey = $formValues.find('.valueDesignFilterEnrollmentKey').val();
 	if(valueDesignFilterEnrollmentKey != null && valueDesignFilterEnrollmentKey !== '')
-		vals['designFilterEnrollmentKey'] = valueDesignFilterEnrollmentKey;
+		vals['designFilterEnrollmentKey'] = valueDesignFilterEnrollmentKey == 'true';
 
-	var valueDesignEnrollmentSortMonthDayOfBirth = $formValues.find('.valueDesignEnrollmentSortMonthDayOfBirth').prop('checked');
+	var valueDesignEnrollmentSortMonthDayOfBirth = $formValues.find('.valueDesignEnrollmentSortMonthDayOfBirth').val();
 	if(valueDesignEnrollmentSortMonthDayOfBirth != null && valueDesignEnrollmentSortMonthDayOfBirth !== '')
-		vals['designEnrollmentSortMonthDayOfBirth'] = valueDesignEnrollmentSortMonthDayOfBirth;
+		vals['designEnrollmentSortMonthDayOfBirth'] = valueDesignEnrollmentSortMonthDayOfBirth == 'true';
 
-	var valueDesignEnrollmentSortGroupName = $formValues.find('.valueDesignEnrollmentSortGroupName').prop('checked');
+	var valueDesignEnrollmentSortGroupName = $formValues.find('.valueDesignEnrollmentSortGroupName').val();
 	if(valueDesignEnrollmentSortGroupName != null && valueDesignEnrollmentSortGroupName !== '')
-		vals['designEnrollmentSortGroupName'] = valueDesignEnrollmentSortGroupName;
+		vals['designEnrollmentSortGroupName'] = valueDesignEnrollmentSortGroupName == 'true';
 
-	var valueDesignEnrollmentSortChildName = $formValues.find('.valueDesignEnrollmentSortChildName').prop('checked');
+	var valueDesignEnrollmentSortChildName = $formValues.find('.valueDesignEnrollmentSortChildName').val();
 	if(valueDesignEnrollmentSortChildName != null && valueDesignEnrollmentSortChildName !== '')
-		vals['designEnrollmentSortChildName'] = valueDesignEnrollmentSortChildName;
+		vals['designEnrollmentSortChildName'] = valueDesignEnrollmentSortChildName == 'true';
 
-	var valueSearchYears = $formValues.find('.valueSearchYears').prop('checked');
+	var valueSearchYears = $formValues.find('.valueSearchYears').val();
 	if(valueSearchYears != null && valueSearchYears !== '')
-		vals['searchYears'] = valueSearchYears;
+		vals['searchYears'] = valueSearchYears == 'true';
 
-	var valueSearchPayments = $formValues.find('.valueSearchPayments').prop('checked');
+	var valueSearchPayments = $formValues.find('.valueSearchPayments').val();
 	if(valueSearchPayments != null && valueSearchPayments !== '')
-		vals['searchPayments'] = valueSearchPayments;
+		vals['searchPayments'] = valueSearchPayments == 'true';
 
 	var valueParentDesignKeys = $formValues.find('input.valueParentDesignKeys:checked').val();
-	if(valueParentDesignKeys != null && valueParentDesignKeys !== '')
+	var valueParentDesignKeysClear = $formValues.find('input.parentDesignKeys_clear:checked').val();
+	if(valueParentDesignKeysClear != null && valueParentDesignKeysClear)
+		vals['parentDesignKeys'] = null;
+	else if(valueParentDesignKeysClear != null && valueParentDesignKeysClear)
 		vals['parentDesignKeys'] = [valueParentDesignKeys];
 
 	var valueHtmlPartKeys = $formValues.find('input.valueHtmlPartKeys:checked').val();
-	if(valueHtmlPartKeys != null && valueHtmlPartKeys !== '')
+	var valueHtmlPartKeysClear = $formValues.find('input.htmlPartKeys_clear:checked').val();
+	if(valueHtmlPartKeysClear != null && valueHtmlPartKeysClear)
+		vals['htmlPartKeys'] = null;
+	else if(valueHtmlPartKeysClear != null && valueHtmlPartKeysClear)
 		vals['htmlPartKeys'] = [valueHtmlPartKeys];
 
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
@@ -361,7 +367,7 @@ async function patchPageDesign($formFilters, $formValues, pk, success, error) {
 	if(removeObjectId != null && removeObjectId !== '')
 		vals['removeObjectId'] = removeObjectId;
 
-	var valueArchived = $formValues.find('.valueArchived').prop('checked');
+	var valueArchived = $formValues.find('.valueArchived').val();
 	var removeArchived = $formValues.find('.removeArchived').val() === 'true';
 	var valueArchivedSelectVal = $formValues.find('select.setArchived').val();
 	var valueArchived = null;
@@ -377,7 +383,7 @@ async function patchPageDesign($formFilters, $formValues, pk, success, error) {
 	if(removeArchived != null && removeArchived !== '')
 		vals['removeArchived'] = removeArchived;
 
-	var valueDeleted = $formValues.find('.valueDeleted').prop('checked');
+	var valueDeleted = $formValues.find('.valueDeleted').val();
 	var removeDeleted = $formValues.find('.removeDeleted').val() === 'true';
 	var valueDeletedSelectVal = $formValues.find('select.setDeleted').val();
 	var valueDeleted = null;
@@ -405,7 +411,7 @@ async function patchPageDesign($formFilters, $formValues, pk, success, error) {
 	if(removePageDesignCompleteName != null && removePageDesignCompleteName !== '')
 		vals['removePageDesignCompleteName'] = removePageDesignCompleteName;
 
-	var valueDesignHidden = $formValues.find('.valueDesignHidden').prop('checked');
+	var valueDesignHidden = $formValues.find('.valueDesignHidden').val();
 	var removeDesignHidden = $formValues.find('.removeDesignHidden').val() === 'true';
 	var valueDesignHiddenSelectVal = $formValues.find('select.setDesignHidden').val();
 	var valueDesignHidden = null;
@@ -421,7 +427,7 @@ async function patchPageDesign($formFilters, $formValues, pk, success, error) {
 	if(removeDesignHidden != null && removeDesignHidden !== '')
 		vals['removeDesignHidden'] = removeDesignHidden;
 
-	var valueDesignAdmin = $formValues.find('.valueDesignAdmin').prop('checked');
+	var valueDesignAdmin = $formValues.find('.valueDesignAdmin').val();
 	var removeDesignAdmin = $formValues.find('.removeDesignAdmin').val() === 'true';
 	var valueDesignAdminSelectVal = $formValues.find('select.setDesignAdmin').val();
 	var valueDesignAdmin = null;
@@ -437,7 +443,7 @@ async function patchPageDesign($formFilters, $formValues, pk, success, error) {
 	if(removeDesignAdmin != null && removeDesignAdmin !== '')
 		vals['removeDesignAdmin'] = removeDesignAdmin;
 
-	var valueDesignIgnoreEmptyChildName = $formValues.find('.valueDesignIgnoreEmptyChildName').prop('checked');
+	var valueDesignIgnoreEmptyChildName = $formValues.find('.valueDesignIgnoreEmptyChildName').val();
 	var removeDesignIgnoreEmptyChildName = $formValues.find('.removeDesignIgnoreEmptyChildName').val() === 'true';
 	var valueDesignIgnoreEmptyChildNameSelectVal = $formValues.find('select.setDesignIgnoreEmptyChildName').val();
 	var valueDesignIgnoreEmptyChildName = null;
@@ -453,7 +459,7 @@ async function patchPageDesign($formFilters, $formValues, pk, success, error) {
 	if(removeDesignIgnoreEmptyChildName != null && removeDesignIgnoreEmptyChildName !== '')
 		vals['removeDesignIgnoreEmptyChildName'] = removeDesignIgnoreEmptyChildName;
 
-	var valueDesignIgnorePaymentsNotPastDue = $formValues.find('.valueDesignIgnorePaymentsNotPastDue').prop('checked');
+	var valueDesignIgnorePaymentsNotPastDue = $formValues.find('.valueDesignIgnorePaymentsNotPastDue').val();
 	var removeDesignIgnorePaymentsNotPastDue = $formValues.find('.removeDesignIgnorePaymentsNotPastDue').val() === 'true';
 	var valueDesignIgnorePaymentsNotPastDueSelectVal = $formValues.find('select.setDesignIgnorePaymentsNotPastDue').val();
 	var valueDesignIgnorePaymentsNotPastDue = null;
@@ -469,7 +475,7 @@ async function patchPageDesign($formFilters, $formValues, pk, success, error) {
 	if(removeDesignIgnorePaymentsNotPastDue != null && removeDesignIgnorePaymentsNotPastDue !== '')
 		vals['removeDesignIgnorePaymentsNotPastDue'] = removeDesignIgnorePaymentsNotPastDue;
 
-	var valueDesignIgnorePaymentsPastDue = $formValues.find('.valueDesignIgnorePaymentsPastDue').prop('checked');
+	var valueDesignIgnorePaymentsPastDue = $formValues.find('.valueDesignIgnorePaymentsPastDue').val();
 	var removeDesignIgnorePaymentsPastDue = $formValues.find('.removeDesignIgnorePaymentsPastDue').val() === 'true';
 	var valueDesignIgnorePaymentsPastDueSelectVal = $formValues.find('select.setDesignIgnorePaymentsPastDue').val();
 	var valueDesignIgnorePaymentsPastDue = null;
@@ -485,7 +491,7 @@ async function patchPageDesign($formFilters, $formValues, pk, success, error) {
 	if(removeDesignIgnorePaymentsPastDue != null && removeDesignIgnorePaymentsPastDue !== '')
 		vals['removeDesignIgnorePaymentsPastDue'] = removeDesignIgnorePaymentsPastDue;
 
-	var valueDesignFilterEnrollmentKey = $formValues.find('.valueDesignFilterEnrollmentKey').prop('checked');
+	var valueDesignFilterEnrollmentKey = $formValues.find('.valueDesignFilterEnrollmentKey').val();
 	var removeDesignFilterEnrollmentKey = $formValues.find('.removeDesignFilterEnrollmentKey').val() === 'true';
 	var valueDesignFilterEnrollmentKeySelectVal = $formValues.find('select.setDesignFilterEnrollmentKey').val();
 	var valueDesignFilterEnrollmentKey = null;
@@ -501,7 +507,7 @@ async function patchPageDesign($formFilters, $formValues, pk, success, error) {
 	if(removeDesignFilterEnrollmentKey != null && removeDesignFilterEnrollmentKey !== '')
 		vals['removeDesignFilterEnrollmentKey'] = removeDesignFilterEnrollmentKey;
 
-	var valueDesignEnrollmentSortMonthDayOfBirth = $formValues.find('.valueDesignEnrollmentSortMonthDayOfBirth').prop('checked');
+	var valueDesignEnrollmentSortMonthDayOfBirth = $formValues.find('.valueDesignEnrollmentSortMonthDayOfBirth').val();
 	var removeDesignEnrollmentSortMonthDayOfBirth = $formValues.find('.removeDesignEnrollmentSortMonthDayOfBirth').val() === 'true';
 	var valueDesignEnrollmentSortMonthDayOfBirthSelectVal = $formValues.find('select.setDesignEnrollmentSortMonthDayOfBirth').val();
 	var valueDesignEnrollmentSortMonthDayOfBirth = null;
@@ -517,7 +523,7 @@ async function patchPageDesign($formFilters, $formValues, pk, success, error) {
 	if(removeDesignEnrollmentSortMonthDayOfBirth != null && removeDesignEnrollmentSortMonthDayOfBirth !== '')
 		vals['removeDesignEnrollmentSortMonthDayOfBirth'] = removeDesignEnrollmentSortMonthDayOfBirth;
 
-	var valueDesignEnrollmentSortGroupName = $formValues.find('.valueDesignEnrollmentSortGroupName').prop('checked');
+	var valueDesignEnrollmentSortGroupName = $formValues.find('.valueDesignEnrollmentSortGroupName').val();
 	var removeDesignEnrollmentSortGroupName = $formValues.find('.removeDesignEnrollmentSortGroupName').val() === 'true';
 	var valueDesignEnrollmentSortGroupNameSelectVal = $formValues.find('select.setDesignEnrollmentSortGroupName').val();
 	var valueDesignEnrollmentSortGroupName = null;
@@ -533,7 +539,7 @@ async function patchPageDesign($formFilters, $formValues, pk, success, error) {
 	if(removeDesignEnrollmentSortGroupName != null && removeDesignEnrollmentSortGroupName !== '')
 		vals['removeDesignEnrollmentSortGroupName'] = removeDesignEnrollmentSortGroupName;
 
-	var valueDesignEnrollmentSortChildName = $formValues.find('.valueDesignEnrollmentSortChildName').prop('checked');
+	var valueDesignEnrollmentSortChildName = $formValues.find('.valueDesignEnrollmentSortChildName').val();
 	var removeDesignEnrollmentSortChildName = $formValues.find('.removeDesignEnrollmentSortChildName').val() === 'true';
 	var valueDesignEnrollmentSortChildNameSelectVal = $formValues.find('select.setDesignEnrollmentSortChildName').val();
 	var valueDesignEnrollmentSortChildName = null;
@@ -549,7 +555,7 @@ async function patchPageDesign($formFilters, $formValues, pk, success, error) {
 	if(removeDesignEnrollmentSortChildName != null && removeDesignEnrollmentSortChildName !== '')
 		vals['removeDesignEnrollmentSortChildName'] = removeDesignEnrollmentSortChildName;
 
-	var valueSearchYears = $formValues.find('.valueSearchYears').prop('checked');
+	var valueSearchYears = $formValues.find('.valueSearchYears').val();
 	var removeSearchYears = $formValues.find('.removeSearchYears').val() === 'true';
 	var valueSearchYearsSelectVal = $formValues.find('select.setSearchYears').val();
 	var valueSearchYears = null;
@@ -565,7 +571,7 @@ async function patchPageDesign($formFilters, $formValues, pk, success, error) {
 	if(removeSearchYears != null && removeSearchYears !== '')
 		vals['removeSearchYears'] = removeSearchYears;
 
-	var valueSearchPayments = $formValues.find('.valueSearchPayments').prop('checked');
+	var valueSearchPayments = $formValues.find('.valueSearchPayments').val();
 	var removeSearchPayments = $formValues.find('.removeSearchPayments').val() === 'true';
 	var valueSearchPaymentsSelectVal = $formValues.find('select.setSearchPayments').val();
 	var valueSearchPayments = null;

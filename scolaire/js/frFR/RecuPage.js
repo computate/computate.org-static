@@ -33,13 +33,13 @@ async function postRecuScolaire($formulaireValeurs, success, error) {
 	if(valeurObjetId != null && valeurObjetId !== '')
 		vals['objetId'] = valeurObjetId;
 
-	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
+	var valeurArchive = $formulaireValeurs.find('.valeurArchive').val();
 	if(valeurArchive != null && valeurArchive !== '')
-		vals['archive'] = valeurArchive;
+		vals['archive'] = valeurArchive == 'true';
 
-	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').prop('checked');
+	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').val();
 	if(valeurSupprime != null && valeurSupprime !== '')
-		vals['supprime'] = valeurSupprime;
+		vals['supprime'] = valeurSupprime == 'true';
 
 	var valeurPaiementDate = $formulaireValeurs.find('.valeurPaiementDate').val();
 	if(valeurPaiementDate != null && valeurPaiementDate !== '')
@@ -165,13 +165,13 @@ async function putcopieRecuScolaire($formulaireValeurs, pk, success, error) {
 	if(valeurObjetId != null && valeurObjetId !== '')
 		vals['objetId'] = valeurObjetId;
 
-	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
+	var valeurArchive = $formulaireValeurs.find('.valeurArchive').val();
 	if(valeurArchive != null && valeurArchive !== '')
-		vals['archive'] = valeurArchive;
+		vals['archive'] = valeurArchive == 'true';
 
-	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').prop('checked');
+	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').val();
 	if(valeurSupprime != null && valeurSupprime !== '')
-		vals['supprime'] = valeurSupprime;
+		vals['supprime'] = valeurSupprime == 'true';
 
 	var valeurPaiementDate = $formulaireValeurs.find('.valeurPaiementDate').val();
 	if(valeurPaiementDate != null && valeurPaiementDate !== '')
@@ -182,7 +182,10 @@ async function putcopieRecuScolaire($formulaireValeurs, pk, success, error) {
 		vals['paiementMontant'] = valeurPaiementMontant;
 
 	var valeurEcoleCle = $formulaireValeurs.find('input.valeurEcoleCle:checked').val();
-	if(valeurEcoleCle != null && valeurEcoleCle !== '')
+	var valeurEcoleCleVider = $formulaireValeurs.find('input.ecoleCle_vider:checked').val();
+	if(valeurEcoleCleVider != null && valeurEcoleCleVider)
+		vals['ecoleCle'] = null;
+	else if(valeurEcoleCleVider != null && valeurEcoleCleVider)
 		vals['ecoleCle'] = valeurEcoleCle;
 
 	var valeurPaiementDescription = $formulaireValeurs.find('.valeurPaiementDescription').val();
@@ -283,7 +286,7 @@ async function patchRecuScolaire($formulaireFiltres, $formulaireValeurs, pk, suc
 	if(removeObjetId != null && removeObjetId !== '')
 		vals['removeObjetId'] = removeObjetId;
 
-	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
+	var valeurArchive = $formulaireValeurs.find('.valeurArchive').val();
 	var removeArchive = $formulaireValeurs.find('.removeArchive').val() === 'true';
 	var valeurArchiveSelectVal = $formulaireValeurs.find('select.setArchive').val();
 	var valeurArchive = null;
@@ -299,7 +302,7 @@ async function patchRecuScolaire($formulaireFiltres, $formulaireValeurs, pk, suc
 	if(removeArchive != null && removeArchive !== '')
 		vals['removeArchive'] = removeArchive;
 
-	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').prop('checked');
+	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').val();
 	var removeSupprime = $formulaireValeurs.find('.removeSupprime').val() === 'true';
 	var valeurSupprimeSelectVal = $formulaireValeurs.find('select.setSupprime').val();
 	var valeurSupprime = null;

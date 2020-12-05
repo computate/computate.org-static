@@ -33,13 +33,13 @@ async function postSchoolChild($formValues, success, error) {
 	if(valueObjectId != null && valueObjectId !== '')
 		vals['objectId'] = valueObjectId;
 
-	var valueArchived = $formValues.find('.valueArchived').prop('checked');
+	var valueArchived = $formValues.find('.valueArchived').val();
 	if(valueArchived != null && valueArchived !== '')
-		vals['archived'] = valueArchived;
+		vals['archived'] = valueArchived == 'true';
 
-	var valueDeleted = $formValues.find('.valueDeleted').prop('checked');
+	var valueDeleted = $formValues.find('.valueDeleted').val();
 	if(valueDeleted != null && valueDeleted !== '')
-		vals['deleted'] = valueDeleted;
+		vals['deleted'] = valueDeleted == 'true';
 
 	var valuePersonFirstName = $formValues.find('.valuePersonFirstName').val();
 	if(valuePersonFirstName != null && valuePersonFirstName !== '')
@@ -176,13 +176,13 @@ async function putcopySchoolChild($formValues, pk, success, error) {
 	if(valueObjectId != null && valueObjectId !== '')
 		vals['objectId'] = valueObjectId;
 
-	var valueArchived = $formValues.find('.valueArchived').prop('checked');
+	var valueArchived = $formValues.find('.valueArchived').val();
 	if(valueArchived != null && valueArchived !== '')
-		vals['archived'] = valueArchived;
+		vals['archived'] = valueArchived == 'true';
 
-	var valueDeleted = $formValues.find('.valueDeleted').prop('checked');
+	var valueDeleted = $formValues.find('.valueDeleted').val();
 	if(valueDeleted != null && valueDeleted !== '')
-		vals['deleted'] = valueDeleted;
+		vals['deleted'] = valueDeleted == 'true';
 
 	var valuePersonFirstName = $formValues.find('.valuePersonFirstName').val();
 	if(valuePersonFirstName != null && valuePersonFirstName !== '')
@@ -209,7 +209,10 @@ async function putcopySchoolChild($formValues, pk, success, error) {
 		vals['photo'] = valuePhoto;
 
 	var valueEnrollmentKeys = $formValues.find('input.valueEnrollmentKeys:checked').val();
-	if(valueEnrollmentKeys != null && valueEnrollmentKeys !== '')
+	var valueEnrollmentKeysClear = $formValues.find('input.enrollmentKeys_clear:checked').val();
+	if(valueEnrollmentKeysClear != null && valueEnrollmentKeysClear)
+		vals['enrollmentKeys'] = null;
+	else if(valueEnrollmentKeysClear != null && valueEnrollmentKeysClear)
 		vals['enrollmentKeys'] = [valueEnrollmentKeys];
 
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
@@ -302,7 +305,7 @@ async function patchSchoolChild($formFilters, $formValues, pk, success, error) {
 	if(removeObjectId != null && removeObjectId !== '')
 		vals['removeObjectId'] = removeObjectId;
 
-	var valueArchived = $formValues.find('.valueArchived').prop('checked');
+	var valueArchived = $formValues.find('.valueArchived').val();
 	var removeArchived = $formValues.find('.removeArchived').val() === 'true';
 	var valueArchivedSelectVal = $formValues.find('select.setArchived').val();
 	var valueArchived = null;
@@ -318,7 +321,7 @@ async function patchSchoolChild($formFilters, $formValues, pk, success, error) {
 	if(removeArchived != null && removeArchived !== '')
 		vals['removeArchived'] = removeArchived;
 
-	var valueDeleted = $formValues.find('.valueDeleted').prop('checked');
+	var valueDeleted = $formValues.find('.valueDeleted').val();
 	var removeDeleted = $formValues.find('.removeDeleted').val() === 'true';
 	var valueDeletedSelectVal = $formValues.find('select.setDeleted').val();
 	var valueDeleted = null;

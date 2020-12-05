@@ -33,13 +33,13 @@ async function postPaiementScolaire($formulaireValeurs, success, error) {
 	if(valeurObjetId != null && valeurObjetId !== '')
 		vals['objetId'] = valeurObjetId;
 
-	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
+	var valeurArchive = $formulaireValeurs.find('.valeurArchive').val();
 	if(valeurArchive != null && valeurArchive !== '')
-		vals['archive'] = valeurArchive;
+		vals['archive'] = valeurArchive == 'true';
 
-	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').prop('checked');
+	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').val();
 	if(valeurSupprime != null && valeurSupprime !== '')
-		vals['supprime'] = valeurSupprime;
+		vals['supprime'] = valeurSupprime == 'true';
 
 	var valeurPaiementDate = $formulaireValeurs.find('.valeurPaiementDate').val();
 	if(valeurPaiementDate != null && valeurPaiementDate !== '')
@@ -49,21 +49,21 @@ async function postPaiementScolaire($formulaireValeurs, success, error) {
 	if(valeurPaiementMontant != null && valeurPaiementMontant !== '')
 		vals['paiementMontant'] = valeurPaiementMontant;
 
-	var valeurPaiementEspeces = $formulaireValeurs.find('.valeurPaiementEspeces').prop('checked');
+	var valeurPaiementEspeces = $formulaireValeurs.find('.valeurPaiementEspeces').val();
 	if(valeurPaiementEspeces != null && valeurPaiementEspeces !== '')
-		vals['paiementEspeces'] = valeurPaiementEspeces;
+		vals['paiementEspeces'] = valeurPaiementEspeces == 'true';
 
-	var valeurPaiementCheque = $formulaireValeurs.find('.valeurPaiementCheque').prop('checked');
+	var valeurPaiementCheque = $formulaireValeurs.find('.valeurPaiementCheque').val();
 	if(valeurPaiementCheque != null && valeurPaiementCheque !== '')
-		vals['paiementCheque'] = valeurPaiementCheque;
+		vals['paiementCheque'] = valeurPaiementCheque == 'true';
 
-	var valeurPaiementECheck = $formulaireValeurs.find('.valeurPaiementECheck').prop('checked');
+	var valeurPaiementECheck = $formulaireValeurs.find('.valeurPaiementECheck').val();
 	if(valeurPaiementECheck != null && valeurPaiementECheck !== '')
-		vals['paiementECheck'] = valeurPaiementECheck;
+		vals['paiementECheck'] = valeurPaiementECheck == 'true';
 
-	var valeurPaiementSysteme = $formulaireValeurs.find('.valeurPaiementSysteme').prop('checked');
+	var valeurPaiementSysteme = $formulaireValeurs.find('.valeurPaiementSysteme').val();
 	if(valeurPaiementSysteme != null && valeurPaiementSysteme !== '')
-		vals['paiementSysteme'] = valeurPaiementSysteme;
+		vals['paiementSysteme'] = valeurPaiementSysteme == 'true';
 
 	var valeurPaiementDescription = $formulaireValeurs.find('.valeurPaiementDescription').val();
 	if(valeurPaiementDescription != null && valeurPaiementDescription !== '')
@@ -73,9 +73,9 @@ async function postPaiementScolaire($formulaireValeurs, success, error) {
 	if(valeurPaiementPar != null && valeurPaiementPar !== '')
 		vals['paiementPar'] = valeurPaiementPar;
 
-	var valeurInscriptionPaimentChaqueMois = $formulaireValeurs.find('.valeurInscriptionPaimentChaqueMois').prop('checked');
+	var valeurInscriptionPaimentChaqueMois = $formulaireValeurs.find('.valeurInscriptionPaimentChaqueMois').val();
 	if(valeurInscriptionPaimentChaqueMois != null && valeurInscriptionPaimentChaqueMois !== '')
-		vals['inscriptionPaimentChaqueMois'] = valeurInscriptionPaimentChaqueMois;
+		vals['inscriptionPaimentChaqueMois'] = valeurInscriptionPaimentChaqueMois == 'true';
 
 	var valeurTransactionId = $formulaireValeurs.find('.valeurTransactionId').val();
 	if(valeurTransactionId != null && valeurTransactionId !== '')
@@ -89,29 +89,29 @@ async function postPaiementScolaire($formulaireValeurs, success, error) {
 	if(valeurTransactionStatus != null && valeurTransactionStatus !== '')
 		vals['transactionStatus'] = valeurTransactionStatus;
 
-	var valeurPaiementRecu = $formulaireValeurs.find('.valeurPaiementRecu').prop('checked');
+	var valeurPaiementRecu = $formulaireValeurs.find('.valeurPaiementRecu').val();
 	if(valeurPaiementRecu != null && valeurPaiementRecu !== '')
-		vals['paiementRecu'] = valeurPaiementRecu;
+		vals['paiementRecu'] = valeurPaiementRecu == 'true';
 
 	var valeurFraisMontant = $formulaireValeurs.find('.valeurFraisMontant').val();
 	if(valeurFraisMontant != null && valeurFraisMontant !== '')
 		vals['fraisMontant'] = valeurFraisMontant;
 
-	var valeurFraisPremierDernier = $formulaireValeurs.find('.valeurFraisPremierDernier').prop('checked');
+	var valeurFraisPremierDernier = $formulaireValeurs.find('.valeurFraisPremierDernier').val();
 	if(valeurFraisPremierDernier != null && valeurFraisPremierDernier !== '')
-		vals['fraisPremierDernier'] = valeurFraisPremierDernier;
+		vals['fraisPremierDernier'] = valeurFraisPremierDernier == 'true';
 
-	var valeurFraisInscription = $formulaireValeurs.find('.valeurFraisInscription').prop('checked');
+	var valeurFraisInscription = $formulaireValeurs.find('.valeurFraisInscription').val();
 	if(valeurFraisInscription != null && valeurFraisInscription !== '')
-		vals['fraisInscription'] = valeurFraisInscription;
+		vals['fraisInscription'] = valeurFraisInscription == 'true';
 
-	var valeurFraisMois = $formulaireValeurs.find('.valeurFraisMois').prop('checked');
+	var valeurFraisMois = $formulaireValeurs.find('.valeurFraisMois').val();
 	if(valeurFraisMois != null && valeurFraisMois !== '')
-		vals['fraisMois'] = valeurFraisMois;
+		vals['fraisMois'] = valeurFraisMois == 'true';
 
-	var valeurFraisRetard = $formulaireValeurs.find('.valeurFraisRetard').prop('checked');
+	var valeurFraisRetard = $formulaireValeurs.find('.valeurFraisRetard').val();
 	if(valeurFraisRetard != null && valeurFraisRetard !== '')
-		vals['fraisRetard'] = valeurFraisRetard;
+		vals['fraisRetard'] = valeurFraisRetard == 'true';
 
 	var valeurInscriptionCle = $formulaireValeurs.find('.valeurInscriptionCle').val();
 	if(valeurInscriptionCle != null && valeurInscriptionCle !== '')
@@ -229,13 +229,13 @@ async function putcopiePaiementScolaire($formulaireValeurs, pk, success, error) 
 	if(valeurObjetId != null && valeurObjetId !== '')
 		vals['objetId'] = valeurObjetId;
 
-	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
+	var valeurArchive = $formulaireValeurs.find('.valeurArchive').val();
 	if(valeurArchive != null && valeurArchive !== '')
-		vals['archive'] = valeurArchive;
+		vals['archive'] = valeurArchive == 'true';
 
-	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').prop('checked');
+	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').val();
 	if(valeurSupprime != null && valeurSupprime !== '')
-		vals['supprime'] = valeurSupprime;
+		vals['supprime'] = valeurSupprime == 'true';
 
 	var valeurPaiementDate = $formulaireValeurs.find('.valeurPaiementDate').val();
 	if(valeurPaiementDate != null && valeurPaiementDate !== '')
@@ -245,21 +245,21 @@ async function putcopiePaiementScolaire($formulaireValeurs, pk, success, error) 
 	if(valeurPaiementMontant != null && valeurPaiementMontant !== '')
 		vals['paiementMontant'] = valeurPaiementMontant;
 
-	var valeurPaiementEspeces = $formulaireValeurs.find('.valeurPaiementEspeces').prop('checked');
+	var valeurPaiementEspeces = $formulaireValeurs.find('.valeurPaiementEspeces').val();
 	if(valeurPaiementEspeces != null && valeurPaiementEspeces !== '')
-		vals['paiementEspeces'] = valeurPaiementEspeces;
+		vals['paiementEspeces'] = valeurPaiementEspeces == 'true';
 
-	var valeurPaiementCheque = $formulaireValeurs.find('.valeurPaiementCheque').prop('checked');
+	var valeurPaiementCheque = $formulaireValeurs.find('.valeurPaiementCheque').val();
 	if(valeurPaiementCheque != null && valeurPaiementCheque !== '')
-		vals['paiementCheque'] = valeurPaiementCheque;
+		vals['paiementCheque'] = valeurPaiementCheque == 'true';
 
-	var valeurPaiementECheck = $formulaireValeurs.find('.valeurPaiementECheck').prop('checked');
+	var valeurPaiementECheck = $formulaireValeurs.find('.valeurPaiementECheck').val();
 	if(valeurPaiementECheck != null && valeurPaiementECheck !== '')
-		vals['paiementECheck'] = valeurPaiementECheck;
+		vals['paiementECheck'] = valeurPaiementECheck == 'true';
 
-	var valeurPaiementSysteme = $formulaireValeurs.find('.valeurPaiementSysteme').prop('checked');
+	var valeurPaiementSysteme = $formulaireValeurs.find('.valeurPaiementSysteme').val();
 	if(valeurPaiementSysteme != null && valeurPaiementSysteme !== '')
-		vals['paiementSysteme'] = valeurPaiementSysteme;
+		vals['paiementSysteme'] = valeurPaiementSysteme == 'true';
 
 	var valeurPaiementDescription = $formulaireValeurs.find('.valeurPaiementDescription').val();
 	if(valeurPaiementDescription != null && valeurPaiementDescription !== '')
@@ -269,9 +269,9 @@ async function putcopiePaiementScolaire($formulaireValeurs, pk, success, error) 
 	if(valeurPaiementPar != null && valeurPaiementPar !== '')
 		vals['paiementPar'] = valeurPaiementPar;
 
-	var valeurInscriptionPaimentChaqueMois = $formulaireValeurs.find('.valeurInscriptionPaimentChaqueMois').prop('checked');
+	var valeurInscriptionPaimentChaqueMois = $formulaireValeurs.find('.valeurInscriptionPaimentChaqueMois').val();
 	if(valeurInscriptionPaimentChaqueMois != null && valeurInscriptionPaimentChaqueMois !== '')
-		vals['inscriptionPaimentChaqueMois'] = valeurInscriptionPaimentChaqueMois;
+		vals['inscriptionPaimentChaqueMois'] = valeurInscriptionPaimentChaqueMois == 'true';
 
 	var valeurTransactionId = $formulaireValeurs.find('.valeurTransactionId').val();
 	if(valeurTransactionId != null && valeurTransactionId !== '')
@@ -285,32 +285,35 @@ async function putcopiePaiementScolaire($formulaireValeurs, pk, success, error) 
 	if(valeurTransactionStatus != null && valeurTransactionStatus !== '')
 		vals['transactionStatus'] = valeurTransactionStatus;
 
-	var valeurPaiementRecu = $formulaireValeurs.find('.valeurPaiementRecu').prop('checked');
+	var valeurPaiementRecu = $formulaireValeurs.find('.valeurPaiementRecu').val();
 	if(valeurPaiementRecu != null && valeurPaiementRecu !== '')
-		vals['paiementRecu'] = valeurPaiementRecu;
+		vals['paiementRecu'] = valeurPaiementRecu == 'true';
 
 	var valeurFraisMontant = $formulaireValeurs.find('.valeurFraisMontant').val();
 	if(valeurFraisMontant != null && valeurFraisMontant !== '')
 		vals['fraisMontant'] = valeurFraisMontant;
 
-	var valeurFraisPremierDernier = $formulaireValeurs.find('.valeurFraisPremierDernier').prop('checked');
+	var valeurFraisPremierDernier = $formulaireValeurs.find('.valeurFraisPremierDernier').val();
 	if(valeurFraisPremierDernier != null && valeurFraisPremierDernier !== '')
-		vals['fraisPremierDernier'] = valeurFraisPremierDernier;
+		vals['fraisPremierDernier'] = valeurFraisPremierDernier == 'true';
 
-	var valeurFraisInscription = $formulaireValeurs.find('.valeurFraisInscription').prop('checked');
+	var valeurFraisInscription = $formulaireValeurs.find('.valeurFraisInscription').val();
 	if(valeurFraisInscription != null && valeurFraisInscription !== '')
-		vals['fraisInscription'] = valeurFraisInscription;
+		vals['fraisInscription'] = valeurFraisInscription == 'true';
 
-	var valeurFraisMois = $formulaireValeurs.find('.valeurFraisMois').prop('checked');
+	var valeurFraisMois = $formulaireValeurs.find('.valeurFraisMois').val();
 	if(valeurFraisMois != null && valeurFraisMois !== '')
-		vals['fraisMois'] = valeurFraisMois;
+		vals['fraisMois'] = valeurFraisMois == 'true';
 
-	var valeurFraisRetard = $formulaireValeurs.find('.valeurFraisRetard').prop('checked');
+	var valeurFraisRetard = $formulaireValeurs.find('.valeurFraisRetard').val();
 	if(valeurFraisRetard != null && valeurFraisRetard !== '')
-		vals['fraisRetard'] = valeurFraisRetard;
+		vals['fraisRetard'] = valeurFraisRetard == 'true';
 
 	var valeurInscriptionCle = $formulaireValeurs.find('input.valeurInscriptionCle:checked').val();
-	if(valeurInscriptionCle != null && valeurInscriptionCle !== '')
+	var valeurInscriptionCleVider = $formulaireValeurs.find('input.inscriptionCle_vider:checked').val();
+	if(valeurInscriptionCleVider != null && valeurInscriptionCleVider)
+		vals['inscriptionCle'] = null;
+	else if(valeurInscriptionCleVider != null && valeurInscriptionCleVider)
 		vals['inscriptionCle'] = valeurInscriptionCle;
 
 	var valeurFraisRetardDate = $formulaireValeurs.find('.valeurFraisRetardDate').val();
@@ -411,7 +414,7 @@ async function patchPaiementScolaire($formulaireFiltres, $formulaireValeurs, pk,
 	if(removeObjetId != null && removeObjetId !== '')
 		vals['removeObjetId'] = removeObjetId;
 
-	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
+	var valeurArchive = $formulaireValeurs.find('.valeurArchive').val();
 	var removeArchive = $formulaireValeurs.find('.removeArchive').val() === 'true';
 	var valeurArchiveSelectVal = $formulaireValeurs.find('select.setArchive').val();
 	var valeurArchive = null;
@@ -427,7 +430,7 @@ async function patchPaiementScolaire($formulaireFiltres, $formulaireValeurs, pk,
 	if(removeArchive != null && removeArchive !== '')
 		vals['removeArchive'] = removeArchive;
 
-	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').prop('checked');
+	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').val();
 	var removeSupprime = $formulaireValeurs.find('.removeSupprime').val() === 'true';
 	var valeurSupprimeSelectVal = $formulaireValeurs.find('select.setSupprime').val();
 	var valeurSupprime = null;
@@ -477,7 +480,7 @@ async function patchPaiementScolaire($formulaireFiltres, $formulaireValeurs, pk,
 	if(removePaiementMontant != null && removePaiementMontant !== '')
 		vals['removePaiementMontant'] = removePaiementMontant;
 
-	var valeurPaiementEspeces = $formulaireValeurs.find('.valeurPaiementEspeces').prop('checked');
+	var valeurPaiementEspeces = $formulaireValeurs.find('.valeurPaiementEspeces').val();
 	var removePaiementEspeces = $formulaireValeurs.find('.removePaiementEspeces').val() === 'true';
 	var valeurPaiementEspecesSelectVal = $formulaireValeurs.find('select.setPaiementEspeces').val();
 	var valeurPaiementEspeces = null;
@@ -493,7 +496,7 @@ async function patchPaiementScolaire($formulaireFiltres, $formulaireValeurs, pk,
 	if(removePaiementEspeces != null && removePaiementEspeces !== '')
 		vals['removePaiementEspeces'] = removePaiementEspeces;
 
-	var valeurPaiementCheque = $formulaireValeurs.find('.valeurPaiementCheque').prop('checked');
+	var valeurPaiementCheque = $formulaireValeurs.find('.valeurPaiementCheque').val();
 	var removePaiementCheque = $formulaireValeurs.find('.removePaiementCheque').val() === 'true';
 	var valeurPaiementChequeSelectVal = $formulaireValeurs.find('select.setPaiementCheque').val();
 	var valeurPaiementCheque = null;
@@ -509,7 +512,7 @@ async function patchPaiementScolaire($formulaireFiltres, $formulaireValeurs, pk,
 	if(removePaiementCheque != null && removePaiementCheque !== '')
 		vals['removePaiementCheque'] = removePaiementCheque;
 
-	var valeurPaiementECheck = $formulaireValeurs.find('.valeurPaiementECheck').prop('checked');
+	var valeurPaiementECheck = $formulaireValeurs.find('.valeurPaiementECheck').val();
 	var removePaiementECheck = $formulaireValeurs.find('.removePaiementECheck').val() === 'true';
 	var valeurPaiementECheckSelectVal = $formulaireValeurs.find('select.setPaiementECheck').val();
 	var valeurPaiementECheck = null;
@@ -525,7 +528,7 @@ async function patchPaiementScolaire($formulaireFiltres, $formulaireValeurs, pk,
 	if(removePaiementECheck != null && removePaiementECheck !== '')
 		vals['removePaiementECheck'] = removePaiementECheck;
 
-	var valeurPaiementSysteme = $formulaireValeurs.find('.valeurPaiementSysteme').prop('checked');
+	var valeurPaiementSysteme = $formulaireValeurs.find('.valeurPaiementSysteme').val();
 	var removePaiementSysteme = $formulaireValeurs.find('.removePaiementSysteme').val() === 'true';
 	var valeurPaiementSystemeSelectVal = $formulaireValeurs.find('select.setPaiementSysteme').val();
 	var valeurPaiementSysteme = null;
@@ -565,7 +568,7 @@ async function patchPaiementScolaire($formulaireFiltres, $formulaireValeurs, pk,
 	if(removePaiementPar != null && removePaiementPar !== '')
 		vals['removePaiementPar'] = removePaiementPar;
 
-	var valeurInscriptionPaimentChaqueMois = $formulaireValeurs.find('.valeurInscriptionPaimentChaqueMois').prop('checked');
+	var valeurInscriptionPaimentChaqueMois = $formulaireValeurs.find('.valeurInscriptionPaimentChaqueMois').val();
 	var removeInscriptionPaimentChaqueMois = $formulaireValeurs.find('.removeInscriptionPaimentChaqueMois').val() === 'true';
 	var valeurInscriptionPaimentChaqueMoisSelectVal = $formulaireValeurs.find('select.setInscriptionPaimentChaqueMois').val();
 	var valeurInscriptionPaimentChaqueMois = null;
@@ -617,7 +620,7 @@ async function patchPaiementScolaire($formulaireFiltres, $formulaireValeurs, pk,
 	if(removeTransactionStatus != null && removeTransactionStatus !== '')
 		vals['removeTransactionStatus'] = removeTransactionStatus;
 
-	var valeurPaiementRecu = $formulaireValeurs.find('.valeurPaiementRecu').prop('checked');
+	var valeurPaiementRecu = $formulaireValeurs.find('.valeurPaiementRecu').val();
 	var removePaiementRecu = $formulaireValeurs.find('.removePaiementRecu').val() === 'true';
 	var valeurPaiementRecuSelectVal = $formulaireValeurs.find('select.setPaiementRecu').val();
 	var valeurPaiementRecu = null;
@@ -645,7 +648,7 @@ async function patchPaiementScolaire($formulaireFiltres, $formulaireValeurs, pk,
 	if(removeFraisMontant != null && removeFraisMontant !== '')
 		vals['removeFraisMontant'] = removeFraisMontant;
 
-	var valeurFraisPremierDernier = $formulaireValeurs.find('.valeurFraisPremierDernier').prop('checked');
+	var valeurFraisPremierDernier = $formulaireValeurs.find('.valeurFraisPremierDernier').val();
 	var removeFraisPremierDernier = $formulaireValeurs.find('.removeFraisPremierDernier').val() === 'true';
 	var valeurFraisPremierDernierSelectVal = $formulaireValeurs.find('select.setFraisPremierDernier').val();
 	var valeurFraisPremierDernier = null;
@@ -661,7 +664,7 @@ async function patchPaiementScolaire($formulaireFiltres, $formulaireValeurs, pk,
 	if(removeFraisPremierDernier != null && removeFraisPremierDernier !== '')
 		vals['removeFraisPremierDernier'] = removeFraisPremierDernier;
 
-	var valeurFraisInscription = $formulaireValeurs.find('.valeurFraisInscription').prop('checked');
+	var valeurFraisInscription = $formulaireValeurs.find('.valeurFraisInscription').val();
 	var removeFraisInscription = $formulaireValeurs.find('.removeFraisInscription').val() === 'true';
 	var valeurFraisInscriptionSelectVal = $formulaireValeurs.find('select.setFraisInscription').val();
 	var valeurFraisInscription = null;
@@ -677,7 +680,7 @@ async function patchPaiementScolaire($formulaireFiltres, $formulaireValeurs, pk,
 	if(removeFraisInscription != null && removeFraisInscription !== '')
 		vals['removeFraisInscription'] = removeFraisInscription;
 
-	var valeurFraisMois = $formulaireValeurs.find('.valeurFraisMois').prop('checked');
+	var valeurFraisMois = $formulaireValeurs.find('.valeurFraisMois').val();
 	var removeFraisMois = $formulaireValeurs.find('.removeFraisMois').val() === 'true';
 	var valeurFraisMoisSelectVal = $formulaireValeurs.find('select.setFraisMois').val();
 	var valeurFraisMois = null;
@@ -693,7 +696,7 @@ async function patchPaiementScolaire($formulaireFiltres, $formulaireValeurs, pk,
 	if(removeFraisMois != null && removeFraisMois !== '')
 		vals['removeFraisMois'] = removeFraisMois;
 
-	var valeurFraisRetard = $formulaireValeurs.find('.valeurFraisRetard').prop('checked');
+	var valeurFraisRetard = $formulaireValeurs.find('.valeurFraisRetard').val();
 	var removeFraisRetard = $formulaireValeurs.find('.removeFraisRetard').val() === 'true';
 	var valeurFraisRetardSelectVal = $formulaireValeurs.find('select.setFraisRetard').val();
 	var valeurFraisRetard = null;

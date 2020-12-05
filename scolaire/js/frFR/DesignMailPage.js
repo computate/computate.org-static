@@ -33,61 +33,61 @@ async function postDesignPage($formulaireValeurs, success, error) {
 	if(valeurObjetId != null && valeurObjetId !== '')
 		vals['objetId'] = valeurObjetId;
 
-	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
+	var valeurArchive = $formulaireValeurs.find('.valeurArchive').val();
 	if(valeurArchive != null && valeurArchive !== '')
-		vals['archive'] = valeurArchive;
+		vals['archive'] = valeurArchive == 'true';
 
-	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').prop('checked');
+	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').val();
 	if(valeurSupprime != null && valeurSupprime !== '')
-		vals['supprime'] = valeurSupprime;
+		vals['supprime'] = valeurSupprime == 'true';
 
 	var valeurDesignPageNomComplet = $formulaireValeurs.find('.valeurDesignPageNomComplet').val();
 	if(valeurDesignPageNomComplet != null && valeurDesignPageNomComplet !== '')
 		vals['designPageNomComplet'] = valeurDesignPageNomComplet;
 
-	var valeurDesignCache = $formulaireValeurs.find('.valeurDesignCache').prop('checked');
+	var valeurDesignCache = $formulaireValeurs.find('.valeurDesignCache').val();
 	if(valeurDesignCache != null && valeurDesignCache !== '')
-		vals['designCache'] = valeurDesignCache;
+		vals['designCache'] = valeurDesignCache == 'true';
 
-	var valeurDesignAdmin = $formulaireValeurs.find('.valeurDesignAdmin').prop('checked');
+	var valeurDesignAdmin = $formulaireValeurs.find('.valeurDesignAdmin').val();
 	if(valeurDesignAdmin != null && valeurDesignAdmin !== '')
-		vals['designAdmin'] = valeurDesignAdmin;
+		vals['designAdmin'] = valeurDesignAdmin == 'true';
 
-	var valeurDesignIgnorerNomEnfantVide = $formulaireValeurs.find('.valeurDesignIgnorerNomEnfantVide').prop('checked');
+	var valeurDesignIgnorerNomEnfantVide = $formulaireValeurs.find('.valeurDesignIgnorerNomEnfantVide').val();
 	if(valeurDesignIgnorerNomEnfantVide != null && valeurDesignIgnorerNomEnfantVide !== '')
-		vals['designIgnorerNomEnfantVide'] = valeurDesignIgnorerNomEnfantVide;
+		vals['designIgnorerNomEnfantVide'] = valeurDesignIgnorerNomEnfantVide == 'true';
 
-	var valeurDesignIgnorerPaiementsPasEnSouffrance = $formulaireValeurs.find('.valeurDesignIgnorerPaiementsPasEnSouffrance').prop('checked');
+	var valeurDesignIgnorerPaiementsPasEnSouffrance = $formulaireValeurs.find('.valeurDesignIgnorerPaiementsPasEnSouffrance').val();
 	if(valeurDesignIgnorerPaiementsPasEnSouffrance != null && valeurDesignIgnorerPaiementsPasEnSouffrance !== '')
-		vals['designIgnorerPaiementsPasEnSouffrance'] = valeurDesignIgnorerPaiementsPasEnSouffrance;
+		vals['designIgnorerPaiementsPasEnSouffrance'] = valeurDesignIgnorerPaiementsPasEnSouffrance == 'true';
 
-	var valeurDesignIgnorerPaiementsEnSouffrance = $formulaireValeurs.find('.valeurDesignIgnorerPaiementsEnSouffrance').prop('checked');
+	var valeurDesignIgnorerPaiementsEnSouffrance = $formulaireValeurs.find('.valeurDesignIgnorerPaiementsEnSouffrance').val();
 	if(valeurDesignIgnorerPaiementsEnSouffrance != null && valeurDesignIgnorerPaiementsEnSouffrance !== '')
-		vals['designIgnorerPaiementsEnSouffrance'] = valeurDesignIgnorerPaiementsEnSouffrance;
+		vals['designIgnorerPaiementsEnSouffrance'] = valeurDesignIgnorerPaiementsEnSouffrance == 'true';
 
-	var valeurDesignFiltrerInscriptionCle = $formulaireValeurs.find('.valeurDesignFiltrerInscriptionCle').prop('checked');
+	var valeurDesignFiltrerInscriptionCle = $formulaireValeurs.find('.valeurDesignFiltrerInscriptionCle').val();
 	if(valeurDesignFiltrerInscriptionCle != null && valeurDesignFiltrerInscriptionCle !== '')
-		vals['designFiltrerInscriptionCle'] = valeurDesignFiltrerInscriptionCle;
+		vals['designFiltrerInscriptionCle'] = valeurDesignFiltrerInscriptionCle == 'true';
 
-	var valeurDesignInscriptionTriMoisJourDeNaissance = $formulaireValeurs.find('.valeurDesignInscriptionTriMoisJourDeNaissance').prop('checked');
+	var valeurDesignInscriptionTriMoisJourDeNaissance = $formulaireValeurs.find('.valeurDesignInscriptionTriMoisJourDeNaissance').val();
 	if(valeurDesignInscriptionTriMoisJourDeNaissance != null && valeurDesignInscriptionTriMoisJourDeNaissance !== '')
-		vals['designInscriptionTriMoisJourDeNaissance'] = valeurDesignInscriptionTriMoisJourDeNaissance;
+		vals['designInscriptionTriMoisJourDeNaissance'] = valeurDesignInscriptionTriMoisJourDeNaissance == 'true';
 
-	var valeurDesignInscriptionTriNomGroupe = $formulaireValeurs.find('.valeurDesignInscriptionTriNomGroupe').prop('checked');
+	var valeurDesignInscriptionTriNomGroupe = $formulaireValeurs.find('.valeurDesignInscriptionTriNomGroupe').val();
 	if(valeurDesignInscriptionTriNomGroupe != null && valeurDesignInscriptionTriNomGroupe !== '')
-		vals['designInscriptionTriNomGroupe'] = valeurDesignInscriptionTriNomGroupe;
+		vals['designInscriptionTriNomGroupe'] = valeurDesignInscriptionTriNomGroupe == 'true';
 
-	var valeurDesignInscriptionTriNomEnfant = $formulaireValeurs.find('.valeurDesignInscriptionTriNomEnfant').prop('checked');
+	var valeurDesignInscriptionTriNomEnfant = $formulaireValeurs.find('.valeurDesignInscriptionTriNomEnfant').val();
 	if(valeurDesignInscriptionTriNomEnfant != null && valeurDesignInscriptionTriNomEnfant !== '')
-		vals['designInscriptionTriNomEnfant'] = valeurDesignInscriptionTriNomEnfant;
+		vals['designInscriptionTriNomEnfant'] = valeurDesignInscriptionTriNomEnfant == 'true';
 
-	var valeurRechercherAnnees = $formulaireValeurs.find('.valeurRechercherAnnees').prop('checked');
+	var valeurRechercherAnnees = $formulaireValeurs.find('.valeurRechercherAnnees').val();
 	if(valeurRechercherAnnees != null && valeurRechercherAnnees !== '')
-		vals['rechercherAnnees'] = valeurRechercherAnnees;
+		vals['rechercherAnnees'] = valeurRechercherAnnees == 'true';
 
-	var valeurRechercherPaiements = $formulaireValeurs.find('.valeurRechercherPaiements').prop('checked');
+	var valeurRechercherPaiements = $formulaireValeurs.find('.valeurRechercherPaiements').val();
 	if(valeurRechercherPaiements != null && valeurRechercherPaiements !== '')
-		vals['rechercherPaiements'] = valeurRechercherPaiements;
+		vals['rechercherPaiements'] = valeurRechercherPaiements == 'true';
 
 	var valeurDesignParentCles = [];
 	$formulaireValeurs.find('input.valeurDesignParentCles:checked').each(function(index) {
@@ -207,68 +207,74 @@ async function putcopieDesignPage($formulaireValeurs, pk, success, error) {
 	if(valeurObjetId != null && valeurObjetId !== '')
 		vals['objetId'] = valeurObjetId;
 
-	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
+	var valeurArchive = $formulaireValeurs.find('.valeurArchive').val();
 	if(valeurArchive != null && valeurArchive !== '')
-		vals['archive'] = valeurArchive;
+		vals['archive'] = valeurArchive == 'true';
 
-	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').prop('checked');
+	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').val();
 	if(valeurSupprime != null && valeurSupprime !== '')
-		vals['supprime'] = valeurSupprime;
+		vals['supprime'] = valeurSupprime == 'true';
 
 	var valeurDesignPageNomComplet = $formulaireValeurs.find('.valeurDesignPageNomComplet').val();
 	if(valeurDesignPageNomComplet != null && valeurDesignPageNomComplet !== '')
 		vals['designPageNomComplet'] = valeurDesignPageNomComplet;
 
-	var valeurDesignCache = $formulaireValeurs.find('.valeurDesignCache').prop('checked');
+	var valeurDesignCache = $formulaireValeurs.find('.valeurDesignCache').val();
 	if(valeurDesignCache != null && valeurDesignCache !== '')
-		vals['designCache'] = valeurDesignCache;
+		vals['designCache'] = valeurDesignCache == 'true';
 
-	var valeurDesignAdmin = $formulaireValeurs.find('.valeurDesignAdmin').prop('checked');
+	var valeurDesignAdmin = $formulaireValeurs.find('.valeurDesignAdmin').val();
 	if(valeurDesignAdmin != null && valeurDesignAdmin !== '')
-		vals['designAdmin'] = valeurDesignAdmin;
+		vals['designAdmin'] = valeurDesignAdmin == 'true';
 
-	var valeurDesignIgnorerNomEnfantVide = $formulaireValeurs.find('.valeurDesignIgnorerNomEnfantVide').prop('checked');
+	var valeurDesignIgnorerNomEnfantVide = $formulaireValeurs.find('.valeurDesignIgnorerNomEnfantVide').val();
 	if(valeurDesignIgnorerNomEnfantVide != null && valeurDesignIgnorerNomEnfantVide !== '')
-		vals['designIgnorerNomEnfantVide'] = valeurDesignIgnorerNomEnfantVide;
+		vals['designIgnorerNomEnfantVide'] = valeurDesignIgnorerNomEnfantVide == 'true';
 
-	var valeurDesignIgnorerPaiementsPasEnSouffrance = $formulaireValeurs.find('.valeurDesignIgnorerPaiementsPasEnSouffrance').prop('checked');
+	var valeurDesignIgnorerPaiementsPasEnSouffrance = $formulaireValeurs.find('.valeurDesignIgnorerPaiementsPasEnSouffrance').val();
 	if(valeurDesignIgnorerPaiementsPasEnSouffrance != null && valeurDesignIgnorerPaiementsPasEnSouffrance !== '')
-		vals['designIgnorerPaiementsPasEnSouffrance'] = valeurDesignIgnorerPaiementsPasEnSouffrance;
+		vals['designIgnorerPaiementsPasEnSouffrance'] = valeurDesignIgnorerPaiementsPasEnSouffrance == 'true';
 
-	var valeurDesignIgnorerPaiementsEnSouffrance = $formulaireValeurs.find('.valeurDesignIgnorerPaiementsEnSouffrance').prop('checked');
+	var valeurDesignIgnorerPaiementsEnSouffrance = $formulaireValeurs.find('.valeurDesignIgnorerPaiementsEnSouffrance').val();
 	if(valeurDesignIgnorerPaiementsEnSouffrance != null && valeurDesignIgnorerPaiementsEnSouffrance !== '')
-		vals['designIgnorerPaiementsEnSouffrance'] = valeurDesignIgnorerPaiementsEnSouffrance;
+		vals['designIgnorerPaiementsEnSouffrance'] = valeurDesignIgnorerPaiementsEnSouffrance == 'true';
 
-	var valeurDesignFiltrerInscriptionCle = $formulaireValeurs.find('.valeurDesignFiltrerInscriptionCle').prop('checked');
+	var valeurDesignFiltrerInscriptionCle = $formulaireValeurs.find('.valeurDesignFiltrerInscriptionCle').val();
 	if(valeurDesignFiltrerInscriptionCle != null && valeurDesignFiltrerInscriptionCle !== '')
-		vals['designFiltrerInscriptionCle'] = valeurDesignFiltrerInscriptionCle;
+		vals['designFiltrerInscriptionCle'] = valeurDesignFiltrerInscriptionCle == 'true';
 
-	var valeurDesignInscriptionTriMoisJourDeNaissance = $formulaireValeurs.find('.valeurDesignInscriptionTriMoisJourDeNaissance').prop('checked');
+	var valeurDesignInscriptionTriMoisJourDeNaissance = $formulaireValeurs.find('.valeurDesignInscriptionTriMoisJourDeNaissance').val();
 	if(valeurDesignInscriptionTriMoisJourDeNaissance != null && valeurDesignInscriptionTriMoisJourDeNaissance !== '')
-		vals['designInscriptionTriMoisJourDeNaissance'] = valeurDesignInscriptionTriMoisJourDeNaissance;
+		vals['designInscriptionTriMoisJourDeNaissance'] = valeurDesignInscriptionTriMoisJourDeNaissance == 'true';
 
-	var valeurDesignInscriptionTriNomGroupe = $formulaireValeurs.find('.valeurDesignInscriptionTriNomGroupe').prop('checked');
+	var valeurDesignInscriptionTriNomGroupe = $formulaireValeurs.find('.valeurDesignInscriptionTriNomGroupe').val();
 	if(valeurDesignInscriptionTriNomGroupe != null && valeurDesignInscriptionTriNomGroupe !== '')
-		vals['designInscriptionTriNomGroupe'] = valeurDesignInscriptionTriNomGroupe;
+		vals['designInscriptionTriNomGroupe'] = valeurDesignInscriptionTriNomGroupe == 'true';
 
-	var valeurDesignInscriptionTriNomEnfant = $formulaireValeurs.find('.valeurDesignInscriptionTriNomEnfant').prop('checked');
+	var valeurDesignInscriptionTriNomEnfant = $formulaireValeurs.find('.valeurDesignInscriptionTriNomEnfant').val();
 	if(valeurDesignInscriptionTriNomEnfant != null && valeurDesignInscriptionTriNomEnfant !== '')
-		vals['designInscriptionTriNomEnfant'] = valeurDesignInscriptionTriNomEnfant;
+		vals['designInscriptionTriNomEnfant'] = valeurDesignInscriptionTriNomEnfant == 'true';
 
-	var valeurRechercherAnnees = $formulaireValeurs.find('.valeurRechercherAnnees').prop('checked');
+	var valeurRechercherAnnees = $formulaireValeurs.find('.valeurRechercherAnnees').val();
 	if(valeurRechercherAnnees != null && valeurRechercherAnnees !== '')
-		vals['rechercherAnnees'] = valeurRechercherAnnees;
+		vals['rechercherAnnees'] = valeurRechercherAnnees == 'true';
 
-	var valeurRechercherPaiements = $formulaireValeurs.find('.valeurRechercherPaiements').prop('checked');
+	var valeurRechercherPaiements = $formulaireValeurs.find('.valeurRechercherPaiements').val();
 	if(valeurRechercherPaiements != null && valeurRechercherPaiements !== '')
-		vals['rechercherPaiements'] = valeurRechercherPaiements;
+		vals['rechercherPaiements'] = valeurRechercherPaiements == 'true';
 
 	var valeurDesignParentCles = $formulaireValeurs.find('input.valeurDesignParentCles:checked').val();
-	if(valeurDesignParentCles != null && valeurDesignParentCles !== '')
+	var valeurDesignParentClesVider = $formulaireValeurs.find('input.designParentCles_vider:checked').val();
+	if(valeurDesignParentClesVider != null && valeurDesignParentClesVider)
+		vals['designParentCles'] = null;
+	else if(valeurDesignParentClesVider != null && valeurDesignParentClesVider)
 		vals['designParentCles'] = [valeurDesignParentCles];
 
 	var valeurPartHtmlCles = $formulaireValeurs.find('input.valeurPartHtmlCles:checked').val();
-	if(valeurPartHtmlCles != null && valeurPartHtmlCles !== '')
+	var valeurPartHtmlClesVider = $formulaireValeurs.find('input.partHtmlCles_vider:checked').val();
+	if(valeurPartHtmlClesVider != null && valeurPartHtmlClesVider)
+		vals['partHtmlCles'] = null;
+	else if(valeurPartHtmlClesVider != null && valeurPartHtmlClesVider)
 		vals['partHtmlCles'] = [valeurPartHtmlCles];
 
 	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
@@ -361,7 +367,7 @@ async function patchDesignPage($formulaireFiltres, $formulaireValeurs, pk, succe
 	if(removeObjetId != null && removeObjetId !== '')
 		vals['removeObjetId'] = removeObjetId;
 
-	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
+	var valeurArchive = $formulaireValeurs.find('.valeurArchive').val();
 	var removeArchive = $formulaireValeurs.find('.removeArchive').val() === 'true';
 	var valeurArchiveSelectVal = $formulaireValeurs.find('select.setArchive').val();
 	var valeurArchive = null;
@@ -377,7 +383,7 @@ async function patchDesignPage($formulaireFiltres, $formulaireValeurs, pk, succe
 	if(removeArchive != null && removeArchive !== '')
 		vals['removeArchive'] = removeArchive;
 
-	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').prop('checked');
+	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').val();
 	var removeSupprime = $formulaireValeurs.find('.removeSupprime').val() === 'true';
 	var valeurSupprimeSelectVal = $formulaireValeurs.find('select.setSupprime').val();
 	var valeurSupprime = null;
@@ -405,7 +411,7 @@ async function patchDesignPage($formulaireFiltres, $formulaireValeurs, pk, succe
 	if(removeDesignPageNomComplet != null && removeDesignPageNomComplet !== '')
 		vals['removeDesignPageNomComplet'] = removeDesignPageNomComplet;
 
-	var valeurDesignCache = $formulaireValeurs.find('.valeurDesignCache').prop('checked');
+	var valeurDesignCache = $formulaireValeurs.find('.valeurDesignCache').val();
 	var removeDesignCache = $formulaireValeurs.find('.removeDesignCache').val() === 'true';
 	var valeurDesignCacheSelectVal = $formulaireValeurs.find('select.setDesignCache').val();
 	var valeurDesignCache = null;
@@ -421,7 +427,7 @@ async function patchDesignPage($formulaireFiltres, $formulaireValeurs, pk, succe
 	if(removeDesignCache != null && removeDesignCache !== '')
 		vals['removeDesignCache'] = removeDesignCache;
 
-	var valeurDesignAdmin = $formulaireValeurs.find('.valeurDesignAdmin').prop('checked');
+	var valeurDesignAdmin = $formulaireValeurs.find('.valeurDesignAdmin').val();
 	var removeDesignAdmin = $formulaireValeurs.find('.removeDesignAdmin').val() === 'true';
 	var valeurDesignAdminSelectVal = $formulaireValeurs.find('select.setDesignAdmin').val();
 	var valeurDesignAdmin = null;
@@ -437,7 +443,7 @@ async function patchDesignPage($formulaireFiltres, $formulaireValeurs, pk, succe
 	if(removeDesignAdmin != null && removeDesignAdmin !== '')
 		vals['removeDesignAdmin'] = removeDesignAdmin;
 
-	var valeurDesignIgnorerNomEnfantVide = $formulaireValeurs.find('.valeurDesignIgnorerNomEnfantVide').prop('checked');
+	var valeurDesignIgnorerNomEnfantVide = $formulaireValeurs.find('.valeurDesignIgnorerNomEnfantVide').val();
 	var removeDesignIgnorerNomEnfantVide = $formulaireValeurs.find('.removeDesignIgnorerNomEnfantVide').val() === 'true';
 	var valeurDesignIgnorerNomEnfantVideSelectVal = $formulaireValeurs.find('select.setDesignIgnorerNomEnfantVide').val();
 	var valeurDesignIgnorerNomEnfantVide = null;
@@ -453,7 +459,7 @@ async function patchDesignPage($formulaireFiltres, $formulaireValeurs, pk, succe
 	if(removeDesignIgnorerNomEnfantVide != null && removeDesignIgnorerNomEnfantVide !== '')
 		vals['removeDesignIgnorerNomEnfantVide'] = removeDesignIgnorerNomEnfantVide;
 
-	var valeurDesignIgnorerPaiementsPasEnSouffrance = $formulaireValeurs.find('.valeurDesignIgnorerPaiementsPasEnSouffrance').prop('checked');
+	var valeurDesignIgnorerPaiementsPasEnSouffrance = $formulaireValeurs.find('.valeurDesignIgnorerPaiementsPasEnSouffrance').val();
 	var removeDesignIgnorerPaiementsPasEnSouffrance = $formulaireValeurs.find('.removeDesignIgnorerPaiementsPasEnSouffrance').val() === 'true';
 	var valeurDesignIgnorerPaiementsPasEnSouffranceSelectVal = $formulaireValeurs.find('select.setDesignIgnorerPaiementsPasEnSouffrance').val();
 	var valeurDesignIgnorerPaiementsPasEnSouffrance = null;
@@ -469,7 +475,7 @@ async function patchDesignPage($formulaireFiltres, $formulaireValeurs, pk, succe
 	if(removeDesignIgnorerPaiementsPasEnSouffrance != null && removeDesignIgnorerPaiementsPasEnSouffrance !== '')
 		vals['removeDesignIgnorerPaiementsPasEnSouffrance'] = removeDesignIgnorerPaiementsPasEnSouffrance;
 
-	var valeurDesignIgnorerPaiementsEnSouffrance = $formulaireValeurs.find('.valeurDesignIgnorerPaiementsEnSouffrance').prop('checked');
+	var valeurDesignIgnorerPaiementsEnSouffrance = $formulaireValeurs.find('.valeurDesignIgnorerPaiementsEnSouffrance').val();
 	var removeDesignIgnorerPaiementsEnSouffrance = $formulaireValeurs.find('.removeDesignIgnorerPaiementsEnSouffrance').val() === 'true';
 	var valeurDesignIgnorerPaiementsEnSouffranceSelectVal = $formulaireValeurs.find('select.setDesignIgnorerPaiementsEnSouffrance').val();
 	var valeurDesignIgnorerPaiementsEnSouffrance = null;
@@ -485,7 +491,7 @@ async function patchDesignPage($formulaireFiltres, $formulaireValeurs, pk, succe
 	if(removeDesignIgnorerPaiementsEnSouffrance != null && removeDesignIgnorerPaiementsEnSouffrance !== '')
 		vals['removeDesignIgnorerPaiementsEnSouffrance'] = removeDesignIgnorerPaiementsEnSouffrance;
 
-	var valeurDesignFiltrerInscriptionCle = $formulaireValeurs.find('.valeurDesignFiltrerInscriptionCle').prop('checked');
+	var valeurDesignFiltrerInscriptionCle = $formulaireValeurs.find('.valeurDesignFiltrerInscriptionCle').val();
 	var removeDesignFiltrerInscriptionCle = $formulaireValeurs.find('.removeDesignFiltrerInscriptionCle').val() === 'true';
 	var valeurDesignFiltrerInscriptionCleSelectVal = $formulaireValeurs.find('select.setDesignFiltrerInscriptionCle').val();
 	var valeurDesignFiltrerInscriptionCle = null;
@@ -501,7 +507,7 @@ async function patchDesignPage($formulaireFiltres, $formulaireValeurs, pk, succe
 	if(removeDesignFiltrerInscriptionCle != null && removeDesignFiltrerInscriptionCle !== '')
 		vals['removeDesignFiltrerInscriptionCle'] = removeDesignFiltrerInscriptionCle;
 
-	var valeurDesignInscriptionTriMoisJourDeNaissance = $formulaireValeurs.find('.valeurDesignInscriptionTriMoisJourDeNaissance').prop('checked');
+	var valeurDesignInscriptionTriMoisJourDeNaissance = $formulaireValeurs.find('.valeurDesignInscriptionTriMoisJourDeNaissance').val();
 	var removeDesignInscriptionTriMoisJourDeNaissance = $formulaireValeurs.find('.removeDesignInscriptionTriMoisJourDeNaissance').val() === 'true';
 	var valeurDesignInscriptionTriMoisJourDeNaissanceSelectVal = $formulaireValeurs.find('select.setDesignInscriptionTriMoisJourDeNaissance').val();
 	var valeurDesignInscriptionTriMoisJourDeNaissance = null;
@@ -517,7 +523,7 @@ async function patchDesignPage($formulaireFiltres, $formulaireValeurs, pk, succe
 	if(removeDesignInscriptionTriMoisJourDeNaissance != null && removeDesignInscriptionTriMoisJourDeNaissance !== '')
 		vals['removeDesignInscriptionTriMoisJourDeNaissance'] = removeDesignInscriptionTriMoisJourDeNaissance;
 
-	var valeurDesignInscriptionTriNomGroupe = $formulaireValeurs.find('.valeurDesignInscriptionTriNomGroupe').prop('checked');
+	var valeurDesignInscriptionTriNomGroupe = $formulaireValeurs.find('.valeurDesignInscriptionTriNomGroupe').val();
 	var removeDesignInscriptionTriNomGroupe = $formulaireValeurs.find('.removeDesignInscriptionTriNomGroupe').val() === 'true';
 	var valeurDesignInscriptionTriNomGroupeSelectVal = $formulaireValeurs.find('select.setDesignInscriptionTriNomGroupe').val();
 	var valeurDesignInscriptionTriNomGroupe = null;
@@ -533,7 +539,7 @@ async function patchDesignPage($formulaireFiltres, $formulaireValeurs, pk, succe
 	if(removeDesignInscriptionTriNomGroupe != null && removeDesignInscriptionTriNomGroupe !== '')
 		vals['removeDesignInscriptionTriNomGroupe'] = removeDesignInscriptionTriNomGroupe;
 
-	var valeurDesignInscriptionTriNomEnfant = $formulaireValeurs.find('.valeurDesignInscriptionTriNomEnfant').prop('checked');
+	var valeurDesignInscriptionTriNomEnfant = $formulaireValeurs.find('.valeurDesignInscriptionTriNomEnfant').val();
 	var removeDesignInscriptionTriNomEnfant = $formulaireValeurs.find('.removeDesignInscriptionTriNomEnfant').val() === 'true';
 	var valeurDesignInscriptionTriNomEnfantSelectVal = $formulaireValeurs.find('select.setDesignInscriptionTriNomEnfant').val();
 	var valeurDesignInscriptionTriNomEnfant = null;
@@ -549,7 +555,7 @@ async function patchDesignPage($formulaireFiltres, $formulaireValeurs, pk, succe
 	if(removeDesignInscriptionTriNomEnfant != null && removeDesignInscriptionTriNomEnfant !== '')
 		vals['removeDesignInscriptionTriNomEnfant'] = removeDesignInscriptionTriNomEnfant;
 
-	var valeurRechercherAnnees = $formulaireValeurs.find('.valeurRechercherAnnees').prop('checked');
+	var valeurRechercherAnnees = $formulaireValeurs.find('.valeurRechercherAnnees').val();
 	var removeRechercherAnnees = $formulaireValeurs.find('.removeRechercherAnnees').val() === 'true';
 	var valeurRechercherAnneesSelectVal = $formulaireValeurs.find('select.setRechercherAnnees').val();
 	var valeurRechercherAnnees = null;
@@ -565,7 +571,7 @@ async function patchDesignPage($formulaireFiltres, $formulaireValeurs, pk, succe
 	if(removeRechercherAnnees != null && removeRechercherAnnees !== '')
 		vals['removeRechercherAnnees'] = removeRechercherAnnees;
 
-	var valeurRechercherPaiements = $formulaireValeurs.find('.valeurRechercherPaiements').prop('checked');
+	var valeurRechercherPaiements = $formulaireValeurs.find('.valeurRechercherPaiements').val();
 	var removeRechercherPaiements = $formulaireValeurs.find('.removeRechercherPaiements').val() === 'true';
 	var valeurRechercherPaiementsSelectVal = $formulaireValeurs.find('select.setRechercherPaiements').val();
 	var valeurRechercherPaiements = null;

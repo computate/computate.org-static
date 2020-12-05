@@ -33,13 +33,13 @@ async function postSessionScolaire($formulaireValeurs, success, error) {
 	if(valeurObjetId != null && valeurObjetId !== '')
 		vals['objetId'] = valeurObjetId;
 
-	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
+	var valeurArchive = $formulaireValeurs.find('.valeurArchive').val();
 	if(valeurArchive != null && valeurArchive !== '')
-		vals['archive'] = valeurArchive;
+		vals['archive'] = valeurArchive == 'true';
 
-	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').prop('checked');
+	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').val();
 	if(valeurSupprime != null && valeurSupprime !== '')
-		vals['supprime'] = valeurSupprime;
+		vals['supprime'] = valeurSupprime == 'true';
 
 	var valeurSessionDateDebut = $formulaireValeurs.find('.valeurSessionDateDebut').val();
 	if(valeurSessionDateDebut != null && valeurSessionDateDebut !== '')
@@ -168,13 +168,13 @@ async function putcopieSessionScolaire($formulaireValeurs, pk, success, error) {
 	if(valeurObjetId != null && valeurObjetId !== '')
 		vals['objetId'] = valeurObjetId;
 
-	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
+	var valeurArchive = $formulaireValeurs.find('.valeurArchive').val();
 	if(valeurArchive != null && valeurArchive !== '')
-		vals['archive'] = valeurArchive;
+		vals['archive'] = valeurArchive == 'true';
 
-	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').prop('checked');
+	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').val();
 	if(valeurSupprime != null && valeurSupprime !== '')
-		vals['supprime'] = valeurSupprime;
+		vals['supprime'] = valeurSupprime == 'true';
 
 	var valeurSessionDateDebut = $formulaireValeurs.find('.valeurSessionDateDebut').val();
 	if(valeurSessionDateDebut != null && valeurSessionDateDebut !== '')
@@ -185,11 +185,17 @@ async function putcopieSessionScolaire($formulaireValeurs, pk, success, error) {
 		vals['sessionDateFin'] = valeurSessionDateFin;
 
 	var valeurSaisonCle = $formulaireValeurs.find('input.valeurSaisonCle:checked').val();
-	if(valeurSaisonCle != null && valeurSaisonCle !== '')
+	var valeurSaisonCleVider = $formulaireValeurs.find('input.saisonCle_vider:checked').val();
+	if(valeurSaisonCleVider != null && valeurSaisonCleVider)
+		vals['saisonCle'] = null;
+	else if(valeurSaisonCleVider != null && valeurSaisonCleVider)
 		vals['saisonCle'] = valeurSaisonCle;
 
 	var valeurAgeCles = $formulaireValeurs.find('input.valeurAgeCles:checked').val();
-	if(valeurAgeCles != null && valeurAgeCles !== '')
+	var valeurAgeClesVider = $formulaireValeurs.find('input.ageCles_vider:checked').val();
+	if(valeurAgeClesVider != null && valeurAgeClesVider)
+		vals['ageCles'] = null;
+	else if(valeurAgeClesVider != null && valeurAgeClesVider)
 		vals['ageCles'] = [valeurAgeCles];
 
 	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();
@@ -286,7 +292,7 @@ async function patchSessionScolaire($formulaireFiltres, $formulaireValeurs, pk, 
 	if(removeObjetId != null && removeObjetId !== '')
 		vals['removeObjetId'] = removeObjetId;
 
-	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
+	var valeurArchive = $formulaireValeurs.find('.valeurArchive').val();
 	var removeArchive = $formulaireValeurs.find('.removeArchive').val() === 'true';
 	var valeurArchiveSelectVal = $formulaireValeurs.find('select.setArchive').val();
 	var valeurArchive = null;
@@ -302,7 +308,7 @@ async function patchSessionScolaire($formulaireFiltres, $formulaireValeurs, pk, 
 	if(removeArchive != null && removeArchive !== '')
 		vals['removeArchive'] = removeArchive;
 
-	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').prop('checked');
+	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').val();
 	var removeSupprime = $formulaireValeurs.find('.removeSupprime').val() === 'true';
 	var valeurSupprimeSelectVal = $formulaireValeurs.find('select.setSupprime').val();
 	var valeurSupprime = null;

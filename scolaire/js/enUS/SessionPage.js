@@ -33,13 +33,13 @@ async function postSchoolSession($formValues, success, error) {
 	if(valueObjectId != null && valueObjectId !== '')
 		vals['objectId'] = valueObjectId;
 
-	var valueArchived = $formValues.find('.valueArchived').prop('checked');
+	var valueArchived = $formValues.find('.valueArchived').val();
 	if(valueArchived != null && valueArchived !== '')
-		vals['archived'] = valueArchived;
+		vals['archived'] = valueArchived == 'true';
 
-	var valueDeleted = $formValues.find('.valueDeleted').prop('checked');
+	var valueDeleted = $formValues.find('.valueDeleted').val();
 	if(valueDeleted != null && valueDeleted !== '')
-		vals['deleted'] = valueDeleted;
+		vals['deleted'] = valueDeleted == 'true';
 
 	var valueSessionStartDate = $formValues.find('.valueSessionStartDate').val();
 	if(valueSessionStartDate != null && valueSessionStartDate !== '')
@@ -168,13 +168,13 @@ async function putcopySchoolSession($formValues, pk, success, error) {
 	if(valueObjectId != null && valueObjectId !== '')
 		vals['objectId'] = valueObjectId;
 
-	var valueArchived = $formValues.find('.valueArchived').prop('checked');
+	var valueArchived = $formValues.find('.valueArchived').val();
 	if(valueArchived != null && valueArchived !== '')
-		vals['archived'] = valueArchived;
+		vals['archived'] = valueArchived == 'true';
 
-	var valueDeleted = $formValues.find('.valueDeleted').prop('checked');
+	var valueDeleted = $formValues.find('.valueDeleted').val();
 	if(valueDeleted != null && valueDeleted !== '')
-		vals['deleted'] = valueDeleted;
+		vals['deleted'] = valueDeleted == 'true';
 
 	var valueSessionStartDate = $formValues.find('.valueSessionStartDate').val();
 	if(valueSessionStartDate != null && valueSessionStartDate !== '')
@@ -185,11 +185,17 @@ async function putcopySchoolSession($formValues, pk, success, error) {
 		vals['sessionEndDate'] = valueSessionEndDate;
 
 	var valueSeasonKey = $formValues.find('input.valueSeasonKey:checked').val();
-	if(valueSeasonKey != null && valueSeasonKey !== '')
+	var valueSeasonKeyClear = $formValues.find('input.seasonKey_clear:checked').val();
+	if(valueSeasonKeyClear != null && valueSeasonKeyClear)
+		vals['seasonKey'] = null;
+	else if(valueSeasonKeyClear != null && valueSeasonKeyClear)
 		vals['seasonKey'] = valueSeasonKey;
 
 	var valueAgeKeys = $formValues.find('input.valueAgeKeys:checked').val();
-	if(valueAgeKeys != null && valueAgeKeys !== '')
+	var valueAgeKeysClear = $formValues.find('input.ageKeys_clear:checked').val();
+	if(valueAgeKeysClear != null && valueAgeKeysClear)
+		vals['ageKeys'] = null;
+	else if(valueAgeKeysClear != null && valueAgeKeysClear)
 		vals['ageKeys'] = [valueAgeKeys];
 
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
@@ -286,7 +292,7 @@ async function patchSchoolSession($formFilters, $formValues, pk, success, error)
 	if(removeObjectId != null && removeObjectId !== '')
 		vals['removeObjectId'] = removeObjectId;
 
-	var valueArchived = $formValues.find('.valueArchived').prop('checked');
+	var valueArchived = $formValues.find('.valueArchived').val();
 	var removeArchived = $formValues.find('.removeArchived').val() === 'true';
 	var valueArchivedSelectVal = $formValues.find('select.setArchived').val();
 	var valueArchived = null;
@@ -302,7 +308,7 @@ async function patchSchoolSession($formFilters, $formValues, pk, success, error)
 	if(removeArchived != null && removeArchived !== '')
 		vals['removeArchived'] = removeArchived;
 
-	var valueDeleted = $formValues.find('.valueDeleted').prop('checked');
+	var valueDeleted = $formValues.find('.valueDeleted').val();
 	var removeDeleted = $formValues.find('.removeDeleted').val() === 'true';
 	var valueDeletedSelectVal = $formValues.find('select.setDeleted').val();
 	var valueDeleted = null;

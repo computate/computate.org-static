@@ -33,13 +33,13 @@ async function postPartHtml($formulaireValeurs, success, error) {
 	if(valeurObjetId != null && valeurObjetId !== '')
 		vals['objetId'] = valeurObjetId;
 
-	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
+	var valeurArchive = $formulaireValeurs.find('.valeurArchive').val();
 	if(valeurArchive != null && valeurArchive !== '')
-		vals['archive'] = valeurArchive;
+		vals['archive'] = valeurArchive == 'true';
 
-	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').prop('checked');
+	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').val();
 	if(valeurSupprime != null && valeurSupprime !== '')
-		vals['supprime'] = valeurSupprime;
+		vals['supprime'] = valeurSupprime == 'true';
 
 	var valeurDesignPageCles = [];
 	$formulaireValeurs.find('input.valeurDesignPageCles:checked').each(function(index) {
@@ -108,17 +108,17 @@ async function postPartHtml($formulaireValeurs, success, error) {
 	if(valeurHtmlVarHtml != null && valeurHtmlVarHtml !== '')
 		vals['htmlVarHtml'] = valeurHtmlVarHtml;
 
-	var valeurHtmlExclure = $formulaireValeurs.find('.valeurHtmlExclure').prop('checked');
+	var valeurHtmlExclure = $formulaireValeurs.find('.valeurHtmlExclure').val();
 	if(valeurHtmlExclure != null && valeurHtmlExclure !== '')
-		vals['htmlExclure'] = valeurHtmlExclure;
+		vals['htmlExclure'] = valeurHtmlExclure == 'true';
 
-	var valeurPdfExclure = $formulaireValeurs.find('.valeurPdfExclure').prop('checked');
+	var valeurPdfExclure = $formulaireValeurs.find('.valeurPdfExclure').val();
 	if(valeurPdfExclure != null && valeurPdfExclure !== '')
-		vals['pdfExclure'] = valeurPdfExclure;
+		vals['pdfExclure'] = valeurPdfExclure == 'true';
 
-	var valeurConnecterDeconnecter = $formulaireValeurs.find('.valeurConnecterDeconnecter').prop('checked');
+	var valeurConnecterDeconnecter = $formulaireValeurs.find('.valeurConnecterDeconnecter').val();
 	if(valeurConnecterDeconnecter != null && valeurConnecterDeconnecter !== '')
-		vals['connecterDeconnecter'] = valeurConnecterDeconnecter;
+		vals['connecterDeconnecter'] = valeurConnecterDeconnecter == 'true';
 
 	var valeurTri1 = $formulaireValeurs.find('.valeurTri1').val();
 	if(valeurTri1 != null && valeurTri1 !== '')
@@ -264,16 +264,19 @@ async function putcopiePartHtml($formulaireValeurs, pk, success, error) {
 	if(valeurObjetId != null && valeurObjetId !== '')
 		vals['objetId'] = valeurObjetId;
 
-	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
+	var valeurArchive = $formulaireValeurs.find('.valeurArchive').val();
 	if(valeurArchive != null && valeurArchive !== '')
-		vals['archive'] = valeurArchive;
+		vals['archive'] = valeurArchive == 'true';
 
-	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').prop('checked');
+	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').val();
 	if(valeurSupprime != null && valeurSupprime !== '')
-		vals['supprime'] = valeurSupprime;
+		vals['supprime'] = valeurSupprime == 'true';
 
 	var valeurDesignPageCles = $formulaireValeurs.find('input.valeurDesignPageCles:checked').val();
-	if(valeurDesignPageCles != null && valeurDesignPageCles !== '')
+	var valeurDesignPageClesVider = $formulaireValeurs.find('input.designPageCles_vider:checked').val();
+	if(valeurDesignPageClesVider != null && valeurDesignPageClesVider)
+		vals['designPageCles'] = null;
+	else if(valeurDesignPageClesVider != null && valeurDesignPageClesVider)
 		vals['designPageCles'] = [valeurDesignPageCles];
 
 	var valeurHtmlLien = $formulaireValeurs.find('.valeurHtmlLien').val();
@@ -336,17 +339,17 @@ async function putcopiePartHtml($formulaireValeurs, pk, success, error) {
 	if(valeurHtmlVarHtml != null && valeurHtmlVarHtml !== '')
 		vals['htmlVarHtml'] = valeurHtmlVarHtml;
 
-	var valeurHtmlExclure = $formulaireValeurs.find('.valeurHtmlExclure').prop('checked');
+	var valeurHtmlExclure = $formulaireValeurs.find('.valeurHtmlExclure').val();
 	if(valeurHtmlExclure != null && valeurHtmlExclure !== '')
-		vals['htmlExclure'] = valeurHtmlExclure;
+		vals['htmlExclure'] = valeurHtmlExclure == 'true';
 
-	var valeurPdfExclure = $formulaireValeurs.find('.valeurPdfExclure').prop('checked');
+	var valeurPdfExclure = $formulaireValeurs.find('.valeurPdfExclure').val();
 	if(valeurPdfExclure != null && valeurPdfExclure !== '')
-		vals['pdfExclure'] = valeurPdfExclure;
+		vals['pdfExclure'] = valeurPdfExclure == 'true';
 
-	var valeurConnecterDeconnecter = $formulaireValeurs.find('.valeurConnecterDeconnecter').prop('checked');
+	var valeurConnecterDeconnecter = $formulaireValeurs.find('.valeurConnecterDeconnecter').val();
 	if(valeurConnecterDeconnecter != null && valeurConnecterDeconnecter !== '')
-		vals['connecterDeconnecter'] = valeurConnecterDeconnecter;
+		vals['connecterDeconnecter'] = valeurConnecterDeconnecter == 'true';
 
 	var valeurTri1 = $formulaireValeurs.find('.valeurTri1').val();
 	if(valeurTri1 != null && valeurTri1 !== '')
@@ -478,7 +481,7 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 	if(removeObjetId != null && removeObjetId !== '')
 		vals['removeObjetId'] = removeObjetId;
 
-	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
+	var valeurArchive = $formulaireValeurs.find('.valeurArchive').val();
 	var removeArchive = $formulaireValeurs.find('.removeArchive').val() === 'true';
 	var valeurArchiveSelectVal = $formulaireValeurs.find('select.setArchive').val();
 	var valeurArchive = null;
@@ -494,7 +497,7 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 	if(removeArchive != null && removeArchive !== '')
 		vals['removeArchive'] = removeArchive;
 
-	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').prop('checked');
+	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').val();
 	var removeSupprime = $formulaireValeurs.find('.removeSupprime').val() === 'true';
 	var valeurSupprimeSelectVal = $formulaireValeurs.find('select.setSupprime').val();
 	var valeurSupprime = null;
@@ -694,7 +697,7 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 	if(removeHtmlVarHtml != null && removeHtmlVarHtml !== '')
 		vals['removeHtmlVarHtml'] = removeHtmlVarHtml;
 
-	var valeurHtmlExclure = $formulaireValeurs.find('.valeurHtmlExclure').prop('checked');
+	var valeurHtmlExclure = $formulaireValeurs.find('.valeurHtmlExclure').val();
 	var removeHtmlExclure = $formulaireValeurs.find('.removeHtmlExclure').val() === 'true';
 	var valeurHtmlExclureSelectVal = $formulaireValeurs.find('select.setHtmlExclure').val();
 	var valeurHtmlExclure = null;
@@ -710,7 +713,7 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 	if(removeHtmlExclure != null && removeHtmlExclure !== '')
 		vals['removeHtmlExclure'] = removeHtmlExclure;
 
-	var valeurPdfExclure = $formulaireValeurs.find('.valeurPdfExclure').prop('checked');
+	var valeurPdfExclure = $formulaireValeurs.find('.valeurPdfExclure').val();
 	var removePdfExclure = $formulaireValeurs.find('.removePdfExclure').val() === 'true';
 	var valeurPdfExclureSelectVal = $formulaireValeurs.find('select.setPdfExclure').val();
 	var valeurPdfExclure = null;
@@ -726,7 +729,7 @@ async function patchPartHtml($formulaireFiltres, $formulaireValeurs, pk, success
 	if(removePdfExclure != null && removePdfExclure !== '')
 		vals['removePdfExclure'] = removePdfExclure;
 
-	var valeurConnecterDeconnecter = $formulaireValeurs.find('.valeurConnecterDeconnecter').prop('checked');
+	var valeurConnecterDeconnecter = $formulaireValeurs.find('.valeurConnecterDeconnecter').val();
 	var removeConnecterDeconnecter = $formulaireValeurs.find('.removeConnecterDeconnecter').val() === 'true';
 	var valeurConnecterDeconnecterSelectVal = $formulaireValeurs.find('select.setConnecterDeconnecter').val();
 	var valeurConnecterDeconnecter = null;

@@ -33,13 +33,13 @@ async function postSchoolEnrollment($formValues, success, error) {
 	if(valueObjectId != null && valueObjectId !== '')
 		vals['objectId'] = valueObjectId;
 
-	var valueArchived = $formValues.find('.valueArchived').prop('checked');
+	var valueArchived = $formValues.find('.valueArchived').val();
 	if(valueArchived != null && valueArchived !== '')
-		vals['archived'] = valueArchived;
+		vals['archived'] = valueArchived == 'true';
 
-	var valueDeleted = $formValues.find('.valueDeleted').prop('checked');
+	var valueDeleted = $formValues.find('.valueDeleted').val();
 	if(valueDeleted != null && valueDeleted !== '')
-		vals['deleted'] = valueDeleted;
+		vals['deleted'] = valueDeleted == 'true';
 
 	var valuePhoto = $formValues.find('.valuePhoto').val();
 	if(valuePhoto != null && valuePhoto !== '')
@@ -53,37 +53,37 @@ async function postSchoolEnrollment($formValues, success, error) {
 	if(valueCustomerProfileId != null && valueCustomerProfileId !== '')
 		vals['customerProfileId'] = valueCustomerProfileId;
 
-	var valueEnrollmentPaymentComplete = $formValues.find('.valueEnrollmentPaymentComplete').prop('checked');
+	var valueEnrollmentPaymentComplete = $formValues.find('.valueEnrollmentPaymentComplete').val();
 	if(valueEnrollmentPaymentComplete != null && valueEnrollmentPaymentComplete !== '')
-		vals['enrollmentPaymentComplete'] = valueEnrollmentPaymentComplete;
+		vals['enrollmentPaymentComplete'] = valueEnrollmentPaymentComplete == 'true';
 
-	var valueChildPottyTrained = $formValues.find('.valueChildPottyTrained').prop('checked');
+	var valueChildPottyTrained = $formValues.find('.valueChildPottyTrained').val();
 	if(valueChildPottyTrained != null && valueChildPottyTrained !== '')
-		vals['childPottyTrained'] = valueChildPottyTrained;
+		vals['childPottyTrained'] = valueChildPottyTrained == 'true';
 
-	var valueEnrollmentPaymentEachMonth = $formValues.find('.valueEnrollmentPaymentEachMonth').prop('checked');
+	var valueEnrollmentPaymentEachMonth = $formValues.find('.valueEnrollmentPaymentEachMonth').val();
 	if(valueEnrollmentPaymentEachMonth != null && valueEnrollmentPaymentEachMonth !== '')
-		vals['enrollmentPaymentEachMonth'] = valueEnrollmentPaymentEachMonth;
+		vals['enrollmentPaymentEachMonth'] = valueEnrollmentPaymentEachMonth == 'true';
 
-	var valueEnrollmentImmunizations = $formValues.find('.valueEnrollmentImmunizations').prop('checked');
+	var valueEnrollmentImmunizations = $formValues.find('.valueEnrollmentImmunizations').val();
 	if(valueEnrollmentImmunizations != null && valueEnrollmentImmunizations !== '')
-		vals['enrollmentImmunizations'] = valueEnrollmentImmunizations;
+		vals['enrollmentImmunizations'] = valueEnrollmentImmunizations == 'true';
 
-	var valueEnrollmentApproved = $formValues.find('.valueEnrollmentApproved').prop('checked');
+	var valueEnrollmentApproved = $formValues.find('.valueEnrollmentApproved').val();
 	if(valueEnrollmentApproved != null && valueEnrollmentApproved !== '')
-		vals['enrollmentApproved'] = valueEnrollmentApproved;
+		vals['enrollmentApproved'] = valueEnrollmentApproved == 'true';
 
-	var valueFamilyMarried = $formValues.find('.valueFamilyMarried').prop('checked');
+	var valueFamilyMarried = $formValues.find('.valueFamilyMarried').val();
 	if(valueFamilyMarried != null && valueFamilyMarried !== '')
-		vals['familyMarried'] = valueFamilyMarried;
+		vals['familyMarried'] = valueFamilyMarried == 'true';
 
-	var valueFamilySeparated = $formValues.find('.valueFamilySeparated').prop('checked');
+	var valueFamilySeparated = $formValues.find('.valueFamilySeparated').val();
 	if(valueFamilySeparated != null && valueFamilySeparated !== '')
-		vals['familySeparated'] = valueFamilySeparated;
+		vals['familySeparated'] = valueFamilySeparated == 'true';
 
-	var valueFamilyDivorced = $formValues.find('.valueFamilyDivorced').prop('checked');
+	var valueFamilyDivorced = $formValues.find('.valueFamilyDivorced').val();
 	if(valueFamilyDivorced != null && valueFamilyDivorced !== '')
-		vals['familyDivorced'] = valueFamilyDivorced;
+		vals['familyDivorced'] = valueFamilyDivorced == 'true';
 
 	var valueFamilyAddress = $formValues.find('.valueFamilyAddress').val();
 	if(valueFamilyAddress != null && valueFamilyAddress !== '')
@@ -371,13 +371,13 @@ async function putcopySchoolEnrollment($formValues, pk, success, error) {
 	if(valueObjectId != null && valueObjectId !== '')
 		vals['objectId'] = valueObjectId;
 
-	var valueArchived = $formValues.find('.valueArchived').prop('checked');
+	var valueArchived = $formValues.find('.valueArchived').val();
 	if(valueArchived != null && valueArchived !== '')
-		vals['archived'] = valueArchived;
+		vals['archived'] = valueArchived == 'true';
 
-	var valueDeleted = $formValues.find('.valueDeleted').prop('checked');
+	var valueDeleted = $formValues.find('.valueDeleted').val();
 	if(valueDeleted != null && valueDeleted !== '')
-		vals['deleted'] = valueDeleted;
+		vals['deleted'] = valueDeleted == 'true';
 
 	var valuePhoto = $formValues.find('.valuePhoto').val();
 	if(valuePhoto != null && valuePhoto !== '')
@@ -391,37 +391,37 @@ async function putcopySchoolEnrollment($formValues, pk, success, error) {
 	if(valueCustomerProfileId != null && valueCustomerProfileId !== '')
 		vals['customerProfileId'] = valueCustomerProfileId;
 
-	var valueEnrollmentPaymentComplete = $formValues.find('.valueEnrollmentPaymentComplete').prop('checked');
+	var valueEnrollmentPaymentComplete = $formValues.find('.valueEnrollmentPaymentComplete').val();
 	if(valueEnrollmentPaymentComplete != null && valueEnrollmentPaymentComplete !== '')
-		vals['enrollmentPaymentComplete'] = valueEnrollmentPaymentComplete;
+		vals['enrollmentPaymentComplete'] = valueEnrollmentPaymentComplete == 'true';
 
-	var valueChildPottyTrained = $formValues.find('.valueChildPottyTrained').prop('checked');
+	var valueChildPottyTrained = $formValues.find('.valueChildPottyTrained').val();
 	if(valueChildPottyTrained != null && valueChildPottyTrained !== '')
-		vals['childPottyTrained'] = valueChildPottyTrained;
+		vals['childPottyTrained'] = valueChildPottyTrained == 'true';
 
-	var valueEnrollmentPaymentEachMonth = $formValues.find('.valueEnrollmentPaymentEachMonth').prop('checked');
+	var valueEnrollmentPaymentEachMonth = $formValues.find('.valueEnrollmentPaymentEachMonth').val();
 	if(valueEnrollmentPaymentEachMonth != null && valueEnrollmentPaymentEachMonth !== '')
-		vals['enrollmentPaymentEachMonth'] = valueEnrollmentPaymentEachMonth;
+		vals['enrollmentPaymentEachMonth'] = valueEnrollmentPaymentEachMonth == 'true';
 
-	var valueEnrollmentImmunizations = $formValues.find('.valueEnrollmentImmunizations').prop('checked');
+	var valueEnrollmentImmunizations = $formValues.find('.valueEnrollmentImmunizations').val();
 	if(valueEnrollmentImmunizations != null && valueEnrollmentImmunizations !== '')
-		vals['enrollmentImmunizations'] = valueEnrollmentImmunizations;
+		vals['enrollmentImmunizations'] = valueEnrollmentImmunizations == 'true';
 
-	var valueEnrollmentApproved = $formValues.find('.valueEnrollmentApproved').prop('checked');
+	var valueEnrollmentApproved = $formValues.find('.valueEnrollmentApproved').val();
 	if(valueEnrollmentApproved != null && valueEnrollmentApproved !== '')
-		vals['enrollmentApproved'] = valueEnrollmentApproved;
+		vals['enrollmentApproved'] = valueEnrollmentApproved == 'true';
 
-	var valueFamilyMarried = $formValues.find('.valueFamilyMarried').prop('checked');
+	var valueFamilyMarried = $formValues.find('.valueFamilyMarried').val();
 	if(valueFamilyMarried != null && valueFamilyMarried !== '')
-		vals['familyMarried'] = valueFamilyMarried;
+		vals['familyMarried'] = valueFamilyMarried == 'true';
 
-	var valueFamilySeparated = $formValues.find('.valueFamilySeparated').prop('checked');
+	var valueFamilySeparated = $formValues.find('.valueFamilySeparated').val();
 	if(valueFamilySeparated != null && valueFamilySeparated !== '')
-		vals['familySeparated'] = valueFamilySeparated;
+		vals['familySeparated'] = valueFamilySeparated == 'true';
 
-	var valueFamilyDivorced = $formValues.find('.valueFamilyDivorced').prop('checked');
+	var valueFamilyDivorced = $formValues.find('.valueFamilyDivorced').val();
 	if(valueFamilyDivorced != null && valueFamilyDivorced !== '')
-		vals['familyDivorced'] = valueFamilyDivorced;
+		vals['familyDivorced'] = valueFamilyDivorced == 'true';
 
 	var valueFamilyAddress = $formValues.find('.valueFamilyAddress').val();
 	if(valueFamilyAddress != null && valueFamilyAddress !== '')
@@ -452,35 +452,59 @@ async function putcopySchoolEnrollment($formValues, pk, success, error) {
 		vals['childObjectives'] = valueChildObjectives;
 
 	var valueYearKey = $formValues.find('input.valueYearKey:checked').val();
-	if(valueYearKey != null && valueYearKey !== '')
+	var valueYearKeyClear = $formValues.find('input.yearKey_clear:checked').val();
+	if(valueYearKeyClear != null && valueYearKeyClear)
+		vals['yearKey'] = null;
+	else if(valueYearKeyClear != null && valueYearKeyClear)
 		vals['yearKey'] = valueYearKey;
 
 	var valueBlockKeys = $formValues.find('input.valueBlockKeys:checked').val();
-	if(valueBlockKeys != null && valueBlockKeys !== '')
+	var valueBlockKeysClear = $formValues.find('input.blockKeys_clear:checked').val();
+	if(valueBlockKeysClear != null && valueBlockKeysClear)
+		vals['blockKeys'] = null;
+	else if(valueBlockKeysClear != null && valueBlockKeysClear)
 		vals['blockKeys'] = [valueBlockKeys];
 
 	var valueChildKey = $formValues.find('input.valueChildKey:checked').val();
-	if(valueChildKey != null && valueChildKey !== '')
+	var valueChildKeyClear = $formValues.find('input.childKey_clear:checked').val();
+	if(valueChildKeyClear != null && valueChildKeyClear)
+		vals['childKey'] = null;
+	else if(valueChildKeyClear != null && valueChildKeyClear)
 		vals['childKey'] = valueChildKey;
 
 	var valueGuardianKeys = $formValues.find('input.valueGuardianKeys:checked').val();
-	if(valueGuardianKeys != null && valueGuardianKeys !== '')
+	var valueGuardianKeysClear = $formValues.find('input.guardianKeys_clear:checked').val();
+	if(valueGuardianKeysClear != null && valueGuardianKeysClear)
+		vals['guardianKeys'] = null;
+	else if(valueGuardianKeysClear != null && valueGuardianKeysClear)
 		vals['guardianKeys'] = [valueGuardianKeys];
 
 	var valueMomKeys = $formValues.find('input.valueMomKeys:checked').val();
-	if(valueMomKeys != null && valueMomKeys !== '')
+	var valueMomKeysClear = $formValues.find('input.momKeys_clear:checked').val();
+	if(valueMomKeysClear != null && valueMomKeysClear)
+		vals['momKeys'] = null;
+	else if(valueMomKeysClear != null && valueMomKeysClear)
 		vals['momKeys'] = [valueMomKeys];
 
 	var valueDadKeys = $formValues.find('input.valueDadKeys:checked').val();
-	if(valueDadKeys != null && valueDadKeys !== '')
+	var valueDadKeysClear = $formValues.find('input.dadKeys_clear:checked').val();
+	if(valueDadKeysClear != null && valueDadKeysClear)
+		vals['dadKeys'] = null;
+	else if(valueDadKeysClear != null && valueDadKeysClear)
 		vals['dadKeys'] = [valueDadKeys];
 
 	var valueUserKeys = $formValues.find('input.valueUserKeys:checked').val();
-	if(valueUserKeys != null && valueUserKeys !== '')
+	var valueUserKeysClear = $formValues.find('input.userKeys_clear:checked').val();
+	if(valueUserKeysClear != null && valueUserKeysClear)
+		vals['userKeys'] = null;
+	else if(valueUserKeysClear != null && valueUserKeysClear)
 		vals['userKeys'] = [valueUserKeys];
 
 	var valuePaymentKeys = $formValues.find('input.valuePaymentKeys:checked').val();
-	if(valuePaymentKeys != null && valuePaymentKeys !== '')
+	var valuePaymentKeysClear = $formValues.find('input.paymentKeys_clear:checked').val();
+	if(valuePaymentKeysClear != null && valuePaymentKeysClear)
+		vals['paymentKeys'] = null;
+	else if(valuePaymentKeysClear != null && valuePaymentKeysClear)
 		vals['paymentKeys'] = [valuePaymentKeys];
 
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
@@ -677,7 +701,7 @@ async function patchSchoolEnrollment($formFilters, $formValues, pk, success, err
 	if(removeObjectId != null && removeObjectId !== '')
 		vals['removeObjectId'] = removeObjectId;
 
-	var valueArchived = $formValues.find('.valueArchived').prop('checked');
+	var valueArchived = $formValues.find('.valueArchived').val();
 	var removeArchived = $formValues.find('.removeArchived').val() === 'true';
 	var valueArchivedSelectVal = $formValues.find('select.setArchived').val();
 	var valueArchived = null;
@@ -693,7 +717,7 @@ async function patchSchoolEnrollment($formFilters, $formValues, pk, success, err
 	if(removeArchived != null && removeArchived !== '')
 		vals['removeArchived'] = removeArchived;
 
-	var valueDeleted = $formValues.find('.valueDeleted').prop('checked');
+	var valueDeleted = $formValues.find('.valueDeleted').val();
 	var removeDeleted = $formValues.find('.removeDeleted').val() === 'true';
 	var valueDeletedSelectVal = $formValues.find('select.setDeleted').val();
 	var valueDeleted = null;
@@ -745,7 +769,7 @@ async function patchSchoolEnrollment($formFilters, $formValues, pk, success, err
 	if(removeCustomerProfileId != null && removeCustomerProfileId !== '')
 		vals['removeCustomerProfileId'] = removeCustomerProfileId;
 
-	var valueEnrollmentPaymentComplete = $formValues.find('.valueEnrollmentPaymentComplete').prop('checked');
+	var valueEnrollmentPaymentComplete = $formValues.find('.valueEnrollmentPaymentComplete').val();
 	var removeEnrollmentPaymentComplete = $formValues.find('.removeEnrollmentPaymentComplete').val() === 'true';
 	var valueEnrollmentPaymentCompleteSelectVal = $formValues.find('select.setEnrollmentPaymentComplete').val();
 	var valueEnrollmentPaymentComplete = null;
@@ -761,7 +785,7 @@ async function patchSchoolEnrollment($formFilters, $formValues, pk, success, err
 	if(removeEnrollmentPaymentComplete != null && removeEnrollmentPaymentComplete !== '')
 		vals['removeEnrollmentPaymentComplete'] = removeEnrollmentPaymentComplete;
 
-	var valueChildPottyTrained = $formValues.find('.valueChildPottyTrained').prop('checked');
+	var valueChildPottyTrained = $formValues.find('.valueChildPottyTrained').val();
 	var removeChildPottyTrained = $formValues.find('.removeChildPottyTrained').val() === 'true';
 	var valueChildPottyTrainedSelectVal = $formValues.find('select.setChildPottyTrained').val();
 	var valueChildPottyTrained = null;
@@ -777,7 +801,7 @@ async function patchSchoolEnrollment($formFilters, $formValues, pk, success, err
 	if(removeChildPottyTrained != null && removeChildPottyTrained !== '')
 		vals['removeChildPottyTrained'] = removeChildPottyTrained;
 
-	var valueEnrollmentPaymentEachMonth = $formValues.find('.valueEnrollmentPaymentEachMonth').prop('checked');
+	var valueEnrollmentPaymentEachMonth = $formValues.find('.valueEnrollmentPaymentEachMonth').val();
 	var removeEnrollmentPaymentEachMonth = $formValues.find('.removeEnrollmentPaymentEachMonth').val() === 'true';
 	var valueEnrollmentPaymentEachMonthSelectVal = $formValues.find('select.setEnrollmentPaymentEachMonth').val();
 	var valueEnrollmentPaymentEachMonth = null;
@@ -793,7 +817,7 @@ async function patchSchoolEnrollment($formFilters, $formValues, pk, success, err
 	if(removeEnrollmentPaymentEachMonth != null && removeEnrollmentPaymentEachMonth !== '')
 		vals['removeEnrollmentPaymentEachMonth'] = removeEnrollmentPaymentEachMonth;
 
-	var valueEnrollmentImmunizations = $formValues.find('.valueEnrollmentImmunizations').prop('checked');
+	var valueEnrollmentImmunizations = $formValues.find('.valueEnrollmentImmunizations').val();
 	var removeEnrollmentImmunizations = $formValues.find('.removeEnrollmentImmunizations').val() === 'true';
 	var valueEnrollmentImmunizationsSelectVal = $formValues.find('select.setEnrollmentImmunizations').val();
 	var valueEnrollmentImmunizations = null;
@@ -809,7 +833,7 @@ async function patchSchoolEnrollment($formFilters, $formValues, pk, success, err
 	if(removeEnrollmentImmunizations != null && removeEnrollmentImmunizations !== '')
 		vals['removeEnrollmentImmunizations'] = removeEnrollmentImmunizations;
 
-	var valueEnrollmentApproved = $formValues.find('.valueEnrollmentApproved').prop('checked');
+	var valueEnrollmentApproved = $formValues.find('.valueEnrollmentApproved').val();
 	var removeEnrollmentApproved = $formValues.find('.removeEnrollmentApproved').val() === 'true';
 	var valueEnrollmentApprovedSelectVal = $formValues.find('select.setEnrollmentApproved').val();
 	var valueEnrollmentApproved = null;
@@ -825,7 +849,7 @@ async function patchSchoolEnrollment($formFilters, $formValues, pk, success, err
 	if(removeEnrollmentApproved != null && removeEnrollmentApproved !== '')
 		vals['removeEnrollmentApproved'] = removeEnrollmentApproved;
 
-	var valueFamilyMarried = $formValues.find('.valueFamilyMarried').prop('checked');
+	var valueFamilyMarried = $formValues.find('.valueFamilyMarried').val();
 	var removeFamilyMarried = $formValues.find('.removeFamilyMarried').val() === 'true';
 	var valueFamilyMarriedSelectVal = $formValues.find('select.setFamilyMarried').val();
 	var valueFamilyMarried = null;
@@ -841,7 +865,7 @@ async function patchSchoolEnrollment($formFilters, $formValues, pk, success, err
 	if(removeFamilyMarried != null && removeFamilyMarried !== '')
 		vals['removeFamilyMarried'] = removeFamilyMarried;
 
-	var valueFamilySeparated = $formValues.find('.valueFamilySeparated').prop('checked');
+	var valueFamilySeparated = $formValues.find('.valueFamilySeparated').val();
 	var removeFamilySeparated = $formValues.find('.removeFamilySeparated').val() === 'true';
 	var valueFamilySeparatedSelectVal = $formValues.find('select.setFamilySeparated').val();
 	var valueFamilySeparated = null;
@@ -857,7 +881,7 @@ async function patchSchoolEnrollment($formFilters, $formValues, pk, success, err
 	if(removeFamilySeparated != null && removeFamilySeparated !== '')
 		vals['removeFamilySeparated'] = removeFamilySeparated;
 
-	var valueFamilyDivorced = $formValues.find('.valueFamilyDivorced').prop('checked');
+	var valueFamilyDivorced = $formValues.find('.valueFamilyDivorced').val();
 	var removeFamilyDivorced = $formValues.find('.removeFamilyDivorced').val() === 'true';
 	var valueFamilyDivorcedSelectVal = $formValues.find('select.setFamilyDivorced').val();
 	var valueFamilyDivorced = null;
@@ -4399,7 +4423,7 @@ async function adminpatchSchoolEnrollment($formFilters, $formValues, pk, success
 	if(removeObjectId != null && removeObjectId !== '')
 		vals['removeObjectId'] = removeObjectId;
 
-	var valueArchived = $formValues.find('.valueArchived').prop('checked');
+	var valueArchived = $formValues.find('.valueArchived').val();
 	var removeArchived = $formValues.find('.removeArchived').val() === 'true';
 	var valueArchivedSelectVal = $formValues.find('select.setArchived').val();
 	var valueArchived = null;
@@ -4415,7 +4439,7 @@ async function adminpatchSchoolEnrollment($formFilters, $formValues, pk, success
 	if(removeArchived != null && removeArchived !== '')
 		vals['removeArchived'] = removeArchived;
 
-	var valueDeleted = $formValues.find('.valueDeleted').prop('checked');
+	var valueDeleted = $formValues.find('.valueDeleted').val();
 	var removeDeleted = $formValues.find('.removeDeleted').val() === 'true';
 	var valueDeletedSelectVal = $formValues.find('select.setDeleted').val();
 	var valueDeleted = null;
@@ -4467,7 +4491,7 @@ async function adminpatchSchoolEnrollment($formFilters, $formValues, pk, success
 	if(removeCustomerProfileId != null && removeCustomerProfileId !== '')
 		vals['removeCustomerProfileId'] = removeCustomerProfileId;
 
-	var valueEnrollmentPaymentComplete = $formValues.find('.valueEnrollmentPaymentComplete').prop('checked');
+	var valueEnrollmentPaymentComplete = $formValues.find('.valueEnrollmentPaymentComplete').val();
 	var removeEnrollmentPaymentComplete = $formValues.find('.removeEnrollmentPaymentComplete').val() === 'true';
 	var valueEnrollmentPaymentCompleteSelectVal = $formValues.find('select.setEnrollmentPaymentComplete').val();
 	var valueEnrollmentPaymentComplete = null;
@@ -4483,7 +4507,7 @@ async function adminpatchSchoolEnrollment($formFilters, $formValues, pk, success
 	if(removeEnrollmentPaymentComplete != null && removeEnrollmentPaymentComplete !== '')
 		vals['removeEnrollmentPaymentComplete'] = removeEnrollmentPaymentComplete;
 
-	var valueChildPottyTrained = $formValues.find('.valueChildPottyTrained').prop('checked');
+	var valueChildPottyTrained = $formValues.find('.valueChildPottyTrained').val();
 	var removeChildPottyTrained = $formValues.find('.removeChildPottyTrained').val() === 'true';
 	var valueChildPottyTrainedSelectVal = $formValues.find('select.setChildPottyTrained').val();
 	var valueChildPottyTrained = null;
@@ -4499,7 +4523,7 @@ async function adminpatchSchoolEnrollment($formFilters, $formValues, pk, success
 	if(removeChildPottyTrained != null && removeChildPottyTrained !== '')
 		vals['removeChildPottyTrained'] = removeChildPottyTrained;
 
-	var valueEnrollmentPaymentEachMonth = $formValues.find('.valueEnrollmentPaymentEachMonth').prop('checked');
+	var valueEnrollmentPaymentEachMonth = $formValues.find('.valueEnrollmentPaymentEachMonth').val();
 	var removeEnrollmentPaymentEachMonth = $formValues.find('.removeEnrollmentPaymentEachMonth').val() === 'true';
 	var valueEnrollmentPaymentEachMonthSelectVal = $formValues.find('select.setEnrollmentPaymentEachMonth').val();
 	var valueEnrollmentPaymentEachMonth = null;
@@ -4515,7 +4539,7 @@ async function adminpatchSchoolEnrollment($formFilters, $formValues, pk, success
 	if(removeEnrollmentPaymentEachMonth != null && removeEnrollmentPaymentEachMonth !== '')
 		vals['removeEnrollmentPaymentEachMonth'] = removeEnrollmentPaymentEachMonth;
 
-	var valueEnrollmentImmunizations = $formValues.find('.valueEnrollmentImmunizations').prop('checked');
+	var valueEnrollmentImmunizations = $formValues.find('.valueEnrollmentImmunizations').val();
 	var removeEnrollmentImmunizations = $formValues.find('.removeEnrollmentImmunizations').val() === 'true';
 	var valueEnrollmentImmunizationsSelectVal = $formValues.find('select.setEnrollmentImmunizations').val();
 	var valueEnrollmentImmunizations = null;
@@ -4531,7 +4555,7 @@ async function adminpatchSchoolEnrollment($formFilters, $formValues, pk, success
 	if(removeEnrollmentImmunizations != null && removeEnrollmentImmunizations !== '')
 		vals['removeEnrollmentImmunizations'] = removeEnrollmentImmunizations;
 
-	var valueEnrollmentApproved = $formValues.find('.valueEnrollmentApproved').prop('checked');
+	var valueEnrollmentApproved = $formValues.find('.valueEnrollmentApproved').val();
 	var removeEnrollmentApproved = $formValues.find('.removeEnrollmentApproved').val() === 'true';
 	var valueEnrollmentApprovedSelectVal = $formValues.find('select.setEnrollmentApproved').val();
 	var valueEnrollmentApproved = null;
@@ -4547,7 +4571,7 @@ async function adminpatchSchoolEnrollment($formFilters, $formValues, pk, success
 	if(removeEnrollmentApproved != null && removeEnrollmentApproved !== '')
 		vals['removeEnrollmentApproved'] = removeEnrollmentApproved;
 
-	var valueFamilyMarried = $formValues.find('.valueFamilyMarried').prop('checked');
+	var valueFamilyMarried = $formValues.find('.valueFamilyMarried').val();
 	var removeFamilyMarried = $formValues.find('.removeFamilyMarried').val() === 'true';
 	var valueFamilyMarriedSelectVal = $formValues.find('select.setFamilyMarried').val();
 	var valueFamilyMarried = null;
@@ -4563,7 +4587,7 @@ async function adminpatchSchoolEnrollment($formFilters, $formValues, pk, success
 	if(removeFamilyMarried != null && removeFamilyMarried !== '')
 		vals['removeFamilyMarried'] = removeFamilyMarried;
 
-	var valueFamilySeparated = $formValues.find('.valueFamilySeparated').prop('checked');
+	var valueFamilySeparated = $formValues.find('.valueFamilySeparated').val();
 	var removeFamilySeparated = $formValues.find('.removeFamilySeparated').val() === 'true';
 	var valueFamilySeparatedSelectVal = $formValues.find('select.setFamilySeparated').val();
 	var valueFamilySeparated = null;
@@ -4579,7 +4603,7 @@ async function adminpatchSchoolEnrollment($formFilters, $formValues, pk, success
 	if(removeFamilySeparated != null && removeFamilySeparated !== '')
 		vals['removeFamilySeparated'] = removeFamilySeparated;
 
-	var valueFamilyDivorced = $formValues.find('.valueFamilyDivorced').prop('checked');
+	var valueFamilyDivorced = $formValues.find('.valueFamilyDivorced').val();
 	var removeFamilyDivorced = $formValues.find('.removeFamilyDivorced').val() === 'true';
 	var valueFamilyDivorcedSelectVal = $formValues.find('select.setFamilyDivorced').val();
 	var valueFamilyDivorced = null;
@@ -6002,7 +6026,7 @@ async function patchpaymentsSchoolEnrollment($formFilters, $formValues, pk, succ
 	if(removeObjectId != null && removeObjectId !== '')
 		vals['removeObjectId'] = removeObjectId;
 
-	var valueArchived = $formValues.find('.valueArchived').prop('checked');
+	var valueArchived = $formValues.find('.valueArchived').val();
 	var removeArchived = $formValues.find('.removeArchived').val() === 'true';
 	var valueArchivedSelectVal = $formValues.find('select.setArchived').val();
 	var valueArchived = null;
@@ -6018,7 +6042,7 @@ async function patchpaymentsSchoolEnrollment($formFilters, $formValues, pk, succ
 	if(removeArchived != null && removeArchived !== '')
 		vals['removeArchived'] = removeArchived;
 
-	var valueDeleted = $formValues.find('.valueDeleted').prop('checked');
+	var valueDeleted = $formValues.find('.valueDeleted').val();
 	var removeDeleted = $formValues.find('.removeDeleted').val() === 'true';
 	var valueDeletedSelectVal = $formValues.find('select.setDeleted').val();
 	var valueDeleted = null;
@@ -6070,7 +6094,7 @@ async function patchpaymentsSchoolEnrollment($formFilters, $formValues, pk, succ
 	if(removeCustomerProfileId != null && removeCustomerProfileId !== '')
 		vals['removeCustomerProfileId'] = removeCustomerProfileId;
 
-	var valueEnrollmentPaymentComplete = $formValues.find('.valueEnrollmentPaymentComplete').prop('checked');
+	var valueEnrollmentPaymentComplete = $formValues.find('.valueEnrollmentPaymentComplete').val();
 	var removeEnrollmentPaymentComplete = $formValues.find('.removeEnrollmentPaymentComplete').val() === 'true';
 	var valueEnrollmentPaymentCompleteSelectVal = $formValues.find('select.setEnrollmentPaymentComplete').val();
 	var valueEnrollmentPaymentComplete = null;
@@ -6086,7 +6110,7 @@ async function patchpaymentsSchoolEnrollment($formFilters, $formValues, pk, succ
 	if(removeEnrollmentPaymentComplete != null && removeEnrollmentPaymentComplete !== '')
 		vals['removeEnrollmentPaymentComplete'] = removeEnrollmentPaymentComplete;
 
-	var valueChildPottyTrained = $formValues.find('.valueChildPottyTrained').prop('checked');
+	var valueChildPottyTrained = $formValues.find('.valueChildPottyTrained').val();
 	var removeChildPottyTrained = $formValues.find('.removeChildPottyTrained').val() === 'true';
 	var valueChildPottyTrainedSelectVal = $formValues.find('select.setChildPottyTrained').val();
 	var valueChildPottyTrained = null;
@@ -6102,7 +6126,7 @@ async function patchpaymentsSchoolEnrollment($formFilters, $formValues, pk, succ
 	if(removeChildPottyTrained != null && removeChildPottyTrained !== '')
 		vals['removeChildPottyTrained'] = removeChildPottyTrained;
 
-	var valueEnrollmentPaymentEachMonth = $formValues.find('.valueEnrollmentPaymentEachMonth').prop('checked');
+	var valueEnrollmentPaymentEachMonth = $formValues.find('.valueEnrollmentPaymentEachMonth').val();
 	var removeEnrollmentPaymentEachMonth = $formValues.find('.removeEnrollmentPaymentEachMonth').val() === 'true';
 	var valueEnrollmentPaymentEachMonthSelectVal = $formValues.find('select.setEnrollmentPaymentEachMonth').val();
 	var valueEnrollmentPaymentEachMonth = null;
@@ -6118,7 +6142,7 @@ async function patchpaymentsSchoolEnrollment($formFilters, $formValues, pk, succ
 	if(removeEnrollmentPaymentEachMonth != null && removeEnrollmentPaymentEachMonth !== '')
 		vals['removeEnrollmentPaymentEachMonth'] = removeEnrollmentPaymentEachMonth;
 
-	var valueEnrollmentImmunizations = $formValues.find('.valueEnrollmentImmunizations').prop('checked');
+	var valueEnrollmentImmunizations = $formValues.find('.valueEnrollmentImmunizations').val();
 	var removeEnrollmentImmunizations = $formValues.find('.removeEnrollmentImmunizations').val() === 'true';
 	var valueEnrollmentImmunizationsSelectVal = $formValues.find('select.setEnrollmentImmunizations').val();
 	var valueEnrollmentImmunizations = null;
@@ -6134,7 +6158,7 @@ async function patchpaymentsSchoolEnrollment($formFilters, $formValues, pk, succ
 	if(removeEnrollmentImmunizations != null && removeEnrollmentImmunizations !== '')
 		vals['removeEnrollmentImmunizations'] = removeEnrollmentImmunizations;
 
-	var valueEnrollmentApproved = $formValues.find('.valueEnrollmentApproved').prop('checked');
+	var valueEnrollmentApproved = $formValues.find('.valueEnrollmentApproved').val();
 	var removeEnrollmentApproved = $formValues.find('.removeEnrollmentApproved').val() === 'true';
 	var valueEnrollmentApprovedSelectVal = $formValues.find('select.setEnrollmentApproved').val();
 	var valueEnrollmentApproved = null;
@@ -6150,7 +6174,7 @@ async function patchpaymentsSchoolEnrollment($formFilters, $formValues, pk, succ
 	if(removeEnrollmentApproved != null && removeEnrollmentApproved !== '')
 		vals['removeEnrollmentApproved'] = removeEnrollmentApproved;
 
-	var valueFamilyMarried = $formValues.find('.valueFamilyMarried').prop('checked');
+	var valueFamilyMarried = $formValues.find('.valueFamilyMarried').val();
 	var removeFamilyMarried = $formValues.find('.removeFamilyMarried').val() === 'true';
 	var valueFamilyMarriedSelectVal = $formValues.find('select.setFamilyMarried').val();
 	var valueFamilyMarried = null;
@@ -6166,7 +6190,7 @@ async function patchpaymentsSchoolEnrollment($formFilters, $formValues, pk, succ
 	if(removeFamilyMarried != null && removeFamilyMarried !== '')
 		vals['removeFamilyMarried'] = removeFamilyMarried;
 
-	var valueFamilySeparated = $formValues.find('.valueFamilySeparated').prop('checked');
+	var valueFamilySeparated = $formValues.find('.valueFamilySeparated').val();
 	var removeFamilySeparated = $formValues.find('.removeFamilySeparated').val() === 'true';
 	var valueFamilySeparatedSelectVal = $formValues.find('select.setFamilySeparated').val();
 	var valueFamilySeparated = null;
@@ -6182,7 +6206,7 @@ async function patchpaymentsSchoolEnrollment($formFilters, $formValues, pk, succ
 	if(removeFamilySeparated != null && removeFamilySeparated !== '')
 		vals['removeFamilySeparated'] = removeFamilySeparated;
 
-	var valueFamilyDivorced = $formValues.find('.valueFamilyDivorced').prop('checked');
+	var valueFamilyDivorced = $formValues.find('.valueFamilyDivorced').val();
 	var removeFamilyDivorced = $formValues.find('.removeFamilyDivorced').val() === 'true';
 	var valueFamilyDivorcedSelectVal = $formValues.find('select.setFamilyDivorced').val();
 	var valueFamilyDivorced = null;

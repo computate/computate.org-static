@@ -81,14 +81,6 @@ function rechercheUtilisateurSiteFiltres($formulaireFiltres) {
 		if(filtreVoirSupprime != null && filtreVoirSupprime === true)
 			filtres.push({ name: 'fq', value: 'voirSupprime:' + filtreVoirSupprime });
 
-		var filtreCustomerProfileId1 = $formulaireFiltres.find('.valeurCustomerProfileId1').val();
-		if(filtreCustomerProfileId1 != null && filtreCustomerProfileId1 !== '')
-			filtres.push({ name: 'fq', value: 'customerProfileId1:' + filtreCustomerProfileId1 });
-
-		var filtreCustomerProfileId2 = $formulaireFiltres.find('.valeurCustomerProfileId2').val();
-		if(filtreCustomerProfileId2 != null && filtreCustomerProfileId2 !== '')
-			filtres.push({ name: 'fq', value: 'customerProfileId2:' + filtreCustomerProfileId2 });
-
 		var filtreInscriptionCles = $formulaireFiltres.find('.valeurInscriptionCles').val();
 		if(filtreInscriptionCles != null && filtreInscriptionCles !== '')
 			filtres.push({ name: 'fq', value: 'inscriptionCles:' + filtreInscriptionCles });
@@ -184,6 +176,46 @@ function rechercheUtilisateurSiteFiltres($formulaireFiltres) {
 		var filtreUtilisateurSite = $formulaireFiltres.find('.valeurUtilisateurSite').val();
 		if(filtreUtilisateurSite != null && filtreUtilisateurSite !== '')
 			filtres.push({ name: 'fq', value: 'utilisateurSite:' + filtreUtilisateurSite });
+
+		var filtreCustomerProfileId1 = $formulaireFiltres.find('.valeurCustomerProfileId1').val();
+		if(filtreCustomerProfileId1 != null && filtreCustomerProfileId1 !== '')
+			filtres.push({ name: 'fq', value: 'customerProfileId1:' + filtreCustomerProfileId1 });
+
+		var filtreCustomerProfileId2 = $formulaireFiltres.find('.valeurCustomerProfileId2').val();
+		if(filtreCustomerProfileId2 != null && filtreCustomerProfileId2 !== '')
+			filtres.push({ name: 'fq', value: 'customerProfileId2:' + filtreCustomerProfileId2 });
+
+		var filtreCustomerProfileId3 = $formulaireFiltres.find('.valeurCustomerProfileId3').val();
+		if(filtreCustomerProfileId3 != null && filtreCustomerProfileId3 !== '')
+			filtres.push({ name: 'fq', value: 'customerProfileId3:' + filtreCustomerProfileId3 });
+
+		var filtreCustomerProfileId4 = $formulaireFiltres.find('.valeurCustomerProfileId4').val();
+		if(filtreCustomerProfileId4 != null && filtreCustomerProfileId4 !== '')
+			filtres.push({ name: 'fq', value: 'customerProfileId4:' + filtreCustomerProfileId4 });
+
+		var filtreCustomerProfileId5 = $formulaireFiltres.find('.valeurCustomerProfileId5').val();
+		if(filtreCustomerProfileId5 != null && filtreCustomerProfileId5 !== '')
+			filtres.push({ name: 'fq', value: 'customerProfileId5:' + filtreCustomerProfileId5 });
+
+		var filtreCustomerProfileId6 = $formulaireFiltres.find('.valeurCustomerProfileId6').val();
+		if(filtreCustomerProfileId6 != null && filtreCustomerProfileId6 !== '')
+			filtres.push({ name: 'fq', value: 'customerProfileId6:' + filtreCustomerProfileId6 });
+
+		var filtreCustomerProfileId7 = $formulaireFiltres.find('.valeurCustomerProfileId7').val();
+		if(filtreCustomerProfileId7 != null && filtreCustomerProfileId7 !== '')
+			filtres.push({ name: 'fq', value: 'customerProfileId7:' + filtreCustomerProfileId7 });
+
+		var filtreCustomerProfileId8 = $formulaireFiltres.find('.valeurCustomerProfileId8').val();
+		if(filtreCustomerProfileId8 != null && filtreCustomerProfileId8 !== '')
+			filtres.push({ name: 'fq', value: 'customerProfileId8:' + filtreCustomerProfileId8 });
+
+		var filtreCustomerProfileId9 = $formulaireFiltres.find('.valeurCustomerProfileId9').val();
+		if(filtreCustomerProfileId9 != null && filtreCustomerProfileId9 !== '')
+			filtres.push({ name: 'fq', value: 'customerProfileId9:' + filtreCustomerProfileId9 });
+
+		var filtreCustomerProfileId10 = $formulaireFiltres.find('.valeurCustomerProfileId10').val();
+		if(filtreCustomerProfileId10 != null && filtreCustomerProfileId10 !== '')
+			filtres.push({ name: 'fq', value: 'customerProfileId10:' + filtreCustomerProfileId10 });
 	}
 	return filtres;
 }
@@ -344,7 +376,7 @@ async function patchUtilisateurSite($formulaireFiltres, $formulaireValeurs, pk, 
 	if(removeObjetId != null && removeObjetId !== '')
 		vals['removeObjetId'] = removeObjetId;
 
-	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
+	var valeurArchive = $formulaireValeurs.find('.valeurArchive').val();
 	var removeArchive = $formulaireValeurs.find('.removeArchive').val() === 'true';
 	var valeurArchiveSelectVal = $formulaireValeurs.find('select.setArchive').val();
 	var valeurArchive = null;
@@ -360,7 +392,7 @@ async function patchUtilisateurSite($formulaireFiltres, $formulaireValeurs, pk, 
 	if(removeArchive != null && removeArchive !== '')
 		vals['removeArchive'] = removeArchive;
 
-	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').prop('checked');
+	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').val();
 	var removeSupprime = $formulaireValeurs.find('.removeSupprime').val() === 'true';
 	var valeurSupprimeSelectVal = $formulaireValeurs.find('select.setSupprime').val();
 	var valeurSupprime = null;
@@ -376,7 +408,7 @@ async function patchUtilisateurSite($formulaireFiltres, $formulaireValeurs, pk, 
 	if(removeSupprime != null && removeSupprime !== '')
 		vals['removeSupprime'] = removeSupprime;
 
-	var valeurUtilisateurRecevoirCourriels = $formulaireValeurs.find('.valeurUtilisateurRecevoirCourriels').prop('checked');
+	var valeurUtilisateurRecevoirCourriels = $formulaireValeurs.find('.valeurUtilisateurRecevoirCourriels').val();
 	var removeUtilisateurRecevoirCourriels = $formulaireValeurs.find('.removeUtilisateurRecevoirCourriels').val() === 'true';
 	var valeurUtilisateurRecevoirCourrielsSelectVal = $formulaireValeurs.find('select.setUtilisateurRecevoirCourriels').val();
 	var valeurUtilisateurRecevoirCourriels = null;
@@ -392,7 +424,7 @@ async function patchUtilisateurSite($formulaireFiltres, $formulaireValeurs, pk, 
 	if(removeUtilisateurRecevoirCourriels != null && removeUtilisateurRecevoirCourriels !== '')
 		vals['removeUtilisateurRecevoirCourriels'] = removeUtilisateurRecevoirCourriels;
 
-	var valeurVoirArchive = $formulaireValeurs.find('.valeurVoirArchive').prop('checked');
+	var valeurVoirArchive = $formulaireValeurs.find('.valeurVoirArchive').val();
 	var removeVoirArchive = $formulaireValeurs.find('.removeVoirArchive').val() === 'true';
 	var valeurVoirArchiveSelectVal = $formulaireValeurs.find('select.setVoirArchive').val();
 	var valeurVoirArchive = null;
@@ -408,7 +440,7 @@ async function patchUtilisateurSite($formulaireFiltres, $formulaireValeurs, pk, 
 	if(removeVoirArchive != null && removeVoirArchive !== '')
 		vals['removeVoirArchive'] = removeVoirArchive;
 
-	var valeurVoirSupprime = $formulaireValeurs.find('.valeurVoirSupprime').prop('checked');
+	var valeurVoirSupprime = $formulaireValeurs.find('.valeurVoirSupprime').val();
 	var removeVoirSupprime = $formulaireValeurs.find('.removeVoirSupprime').val() === 'true';
 	var valeurVoirSupprimeSelectVal = $formulaireValeurs.find('select.setVoirSupprime').val();
 	var valeurVoirSupprime = null;
@@ -423,30 +455,6 @@ async function patchUtilisateurSite($formulaireFiltres, $formulaireValeurs, pk, 
 	var removeVoirSupprime = $formulaireValeurs.find('.removeVoirSupprime').prop('checked');
 	if(removeVoirSupprime != null && removeVoirSupprime !== '')
 		vals['removeVoirSupprime'] = removeVoirSupprime;
-
-	var valeurCustomerProfileId1 = $formulaireValeurs.find('.valeurCustomerProfileId1').val();
-	var removeCustomerProfileId1 = $formulaireValeurs.find('.removeCustomerProfileId1').val() === 'true';
-	var setCustomerProfileId1 = removeCustomerProfileId1 ? null : $formulaireValeurs.find('.setCustomerProfileId1').val();
-	var addCustomerProfileId1 = $formulaireValeurs.find('.addCustomerProfileId1').val();
-	if(removeCustomerProfileId1 || setCustomerProfileId1 != null && setCustomerProfileId1 !== '')
-		vals['setCustomerProfileId1'] = setCustomerProfileId1;
-	if(addCustomerProfileId1 != null && addCustomerProfileId1 !== '')
-		vals['addCustomerProfileId1'] = addCustomerProfileId1;
-	var removeCustomerProfileId1 = $formulaireValeurs.find('.removeCustomerProfileId1').val();
-	if(removeCustomerProfileId1 != null && removeCustomerProfileId1 !== '')
-		vals['removeCustomerProfileId1'] = removeCustomerProfileId1;
-
-	var valeurCustomerProfileId2 = $formulaireValeurs.find('.valeurCustomerProfileId2').val();
-	var removeCustomerProfileId2 = $formulaireValeurs.find('.removeCustomerProfileId2').val() === 'true';
-	var setCustomerProfileId2 = removeCustomerProfileId2 ? null : $formulaireValeurs.find('.setCustomerProfileId2').val();
-	var addCustomerProfileId2 = $formulaireValeurs.find('.addCustomerProfileId2').val();
-	if(removeCustomerProfileId2 || setCustomerProfileId2 != null && setCustomerProfileId2 !== '')
-		vals['setCustomerProfileId2'] = setCustomerProfileId2;
-	if(addCustomerProfileId2 != null && addCustomerProfileId2 !== '')
-		vals['addCustomerProfileId2'] = addCustomerProfileId2;
-	var removeCustomerProfileId2 = $formulaireValeurs.find('.removeCustomerProfileId2').val();
-	if(removeCustomerProfileId2 != null && removeCustomerProfileId2 !== '')
-		vals['removeCustomerProfileId2'] = removeCustomerProfileId2;
 
 	var valeurInscriptionCles = $formulaireValeurs.find('input.valeurInscriptionCles:checked').val();
 	if(valeurInscriptionCles != null && valeurInscriptionCles !== '')
@@ -540,6 +548,126 @@ async function patchUtilisateurSite($formulaireFiltres, $formulaireValeurs, pk, 
 	if(removeUtilisateurMail != null && removeUtilisateurMail !== '')
 		vals['removeUtilisateurMail'] = removeUtilisateurMail;
 
+	var valeurCustomerProfileId1 = $formulaireValeurs.find('.valeurCustomerProfileId1').val();
+	var removeCustomerProfileId1 = $formulaireValeurs.find('.removeCustomerProfileId1').val() === 'true';
+	var setCustomerProfileId1 = removeCustomerProfileId1 ? null : $formulaireValeurs.find('.setCustomerProfileId1').val();
+	var addCustomerProfileId1 = $formulaireValeurs.find('.addCustomerProfileId1').val();
+	if(removeCustomerProfileId1 || setCustomerProfileId1 != null && setCustomerProfileId1 !== '')
+		vals['setCustomerProfileId1'] = setCustomerProfileId1;
+	if(addCustomerProfileId1 != null && addCustomerProfileId1 !== '')
+		vals['addCustomerProfileId1'] = addCustomerProfileId1;
+	var removeCustomerProfileId1 = $formulaireValeurs.find('.removeCustomerProfileId1').val();
+	if(removeCustomerProfileId1 != null && removeCustomerProfileId1 !== '')
+		vals['removeCustomerProfileId1'] = removeCustomerProfileId1;
+
+	var valeurCustomerProfileId2 = $formulaireValeurs.find('.valeurCustomerProfileId2').val();
+	var removeCustomerProfileId2 = $formulaireValeurs.find('.removeCustomerProfileId2').val() === 'true';
+	var setCustomerProfileId2 = removeCustomerProfileId2 ? null : $formulaireValeurs.find('.setCustomerProfileId2').val();
+	var addCustomerProfileId2 = $formulaireValeurs.find('.addCustomerProfileId2').val();
+	if(removeCustomerProfileId2 || setCustomerProfileId2 != null && setCustomerProfileId2 !== '')
+		vals['setCustomerProfileId2'] = setCustomerProfileId2;
+	if(addCustomerProfileId2 != null && addCustomerProfileId2 !== '')
+		vals['addCustomerProfileId2'] = addCustomerProfileId2;
+	var removeCustomerProfileId2 = $formulaireValeurs.find('.removeCustomerProfileId2').val();
+	if(removeCustomerProfileId2 != null && removeCustomerProfileId2 !== '')
+		vals['removeCustomerProfileId2'] = removeCustomerProfileId2;
+
+	var valeurCustomerProfileId3 = $formulaireValeurs.find('.valeurCustomerProfileId3').val();
+	var removeCustomerProfileId3 = $formulaireValeurs.find('.removeCustomerProfileId3').val() === 'true';
+	var setCustomerProfileId3 = removeCustomerProfileId3 ? null : $formulaireValeurs.find('.setCustomerProfileId3').val();
+	var addCustomerProfileId3 = $formulaireValeurs.find('.addCustomerProfileId3').val();
+	if(removeCustomerProfileId3 || setCustomerProfileId3 != null && setCustomerProfileId3 !== '')
+		vals['setCustomerProfileId3'] = setCustomerProfileId3;
+	if(addCustomerProfileId3 != null && addCustomerProfileId3 !== '')
+		vals['addCustomerProfileId3'] = addCustomerProfileId3;
+	var removeCustomerProfileId3 = $formulaireValeurs.find('.removeCustomerProfileId3').val();
+	if(removeCustomerProfileId3 != null && removeCustomerProfileId3 !== '')
+		vals['removeCustomerProfileId3'] = removeCustomerProfileId3;
+
+	var valeurCustomerProfileId4 = $formulaireValeurs.find('.valeurCustomerProfileId4').val();
+	var removeCustomerProfileId4 = $formulaireValeurs.find('.removeCustomerProfileId4').val() === 'true';
+	var setCustomerProfileId4 = removeCustomerProfileId4 ? null : $formulaireValeurs.find('.setCustomerProfileId4').val();
+	var addCustomerProfileId4 = $formulaireValeurs.find('.addCustomerProfileId4').val();
+	if(removeCustomerProfileId4 || setCustomerProfileId4 != null && setCustomerProfileId4 !== '')
+		vals['setCustomerProfileId4'] = setCustomerProfileId4;
+	if(addCustomerProfileId4 != null && addCustomerProfileId4 !== '')
+		vals['addCustomerProfileId4'] = addCustomerProfileId4;
+	var removeCustomerProfileId4 = $formulaireValeurs.find('.removeCustomerProfileId4').val();
+	if(removeCustomerProfileId4 != null && removeCustomerProfileId4 !== '')
+		vals['removeCustomerProfileId4'] = removeCustomerProfileId4;
+
+	var valeurCustomerProfileId5 = $formulaireValeurs.find('.valeurCustomerProfileId5').val();
+	var removeCustomerProfileId5 = $formulaireValeurs.find('.removeCustomerProfileId5').val() === 'true';
+	var setCustomerProfileId5 = removeCustomerProfileId5 ? null : $formulaireValeurs.find('.setCustomerProfileId5').val();
+	var addCustomerProfileId5 = $formulaireValeurs.find('.addCustomerProfileId5').val();
+	if(removeCustomerProfileId5 || setCustomerProfileId5 != null && setCustomerProfileId5 !== '')
+		vals['setCustomerProfileId5'] = setCustomerProfileId5;
+	if(addCustomerProfileId5 != null && addCustomerProfileId5 !== '')
+		vals['addCustomerProfileId5'] = addCustomerProfileId5;
+	var removeCustomerProfileId5 = $formulaireValeurs.find('.removeCustomerProfileId5').val();
+	if(removeCustomerProfileId5 != null && removeCustomerProfileId5 !== '')
+		vals['removeCustomerProfileId5'] = removeCustomerProfileId5;
+
+	var valeurCustomerProfileId6 = $formulaireValeurs.find('.valeurCustomerProfileId6').val();
+	var removeCustomerProfileId6 = $formulaireValeurs.find('.removeCustomerProfileId6').val() === 'true';
+	var setCustomerProfileId6 = removeCustomerProfileId6 ? null : $formulaireValeurs.find('.setCustomerProfileId6').val();
+	var addCustomerProfileId6 = $formulaireValeurs.find('.addCustomerProfileId6').val();
+	if(removeCustomerProfileId6 || setCustomerProfileId6 != null && setCustomerProfileId6 !== '')
+		vals['setCustomerProfileId6'] = setCustomerProfileId6;
+	if(addCustomerProfileId6 != null && addCustomerProfileId6 !== '')
+		vals['addCustomerProfileId6'] = addCustomerProfileId6;
+	var removeCustomerProfileId6 = $formulaireValeurs.find('.removeCustomerProfileId6').val();
+	if(removeCustomerProfileId6 != null && removeCustomerProfileId6 !== '')
+		vals['removeCustomerProfileId6'] = removeCustomerProfileId6;
+
+	var valeurCustomerProfileId7 = $formulaireValeurs.find('.valeurCustomerProfileId7').val();
+	var removeCustomerProfileId7 = $formulaireValeurs.find('.removeCustomerProfileId7').val() === 'true';
+	var setCustomerProfileId7 = removeCustomerProfileId7 ? null : $formulaireValeurs.find('.setCustomerProfileId7').val();
+	var addCustomerProfileId7 = $formulaireValeurs.find('.addCustomerProfileId7').val();
+	if(removeCustomerProfileId7 || setCustomerProfileId7 != null && setCustomerProfileId7 !== '')
+		vals['setCustomerProfileId7'] = setCustomerProfileId7;
+	if(addCustomerProfileId7 != null && addCustomerProfileId7 !== '')
+		vals['addCustomerProfileId7'] = addCustomerProfileId7;
+	var removeCustomerProfileId7 = $formulaireValeurs.find('.removeCustomerProfileId7').val();
+	if(removeCustomerProfileId7 != null && removeCustomerProfileId7 !== '')
+		vals['removeCustomerProfileId7'] = removeCustomerProfileId7;
+
+	var valeurCustomerProfileId8 = $formulaireValeurs.find('.valeurCustomerProfileId8').val();
+	var removeCustomerProfileId8 = $formulaireValeurs.find('.removeCustomerProfileId8').val() === 'true';
+	var setCustomerProfileId8 = removeCustomerProfileId8 ? null : $formulaireValeurs.find('.setCustomerProfileId8').val();
+	var addCustomerProfileId8 = $formulaireValeurs.find('.addCustomerProfileId8').val();
+	if(removeCustomerProfileId8 || setCustomerProfileId8 != null && setCustomerProfileId8 !== '')
+		vals['setCustomerProfileId8'] = setCustomerProfileId8;
+	if(addCustomerProfileId8 != null && addCustomerProfileId8 !== '')
+		vals['addCustomerProfileId8'] = addCustomerProfileId8;
+	var removeCustomerProfileId8 = $formulaireValeurs.find('.removeCustomerProfileId8').val();
+	if(removeCustomerProfileId8 != null && removeCustomerProfileId8 !== '')
+		vals['removeCustomerProfileId8'] = removeCustomerProfileId8;
+
+	var valeurCustomerProfileId9 = $formulaireValeurs.find('.valeurCustomerProfileId9').val();
+	var removeCustomerProfileId9 = $formulaireValeurs.find('.removeCustomerProfileId9').val() === 'true';
+	var setCustomerProfileId9 = removeCustomerProfileId9 ? null : $formulaireValeurs.find('.setCustomerProfileId9').val();
+	var addCustomerProfileId9 = $formulaireValeurs.find('.addCustomerProfileId9').val();
+	if(removeCustomerProfileId9 || setCustomerProfileId9 != null && setCustomerProfileId9 !== '')
+		vals['setCustomerProfileId9'] = setCustomerProfileId9;
+	if(addCustomerProfileId9 != null && addCustomerProfileId9 !== '')
+		vals['addCustomerProfileId9'] = addCustomerProfileId9;
+	var removeCustomerProfileId9 = $formulaireValeurs.find('.removeCustomerProfileId9').val();
+	if(removeCustomerProfileId9 != null && removeCustomerProfileId9 !== '')
+		vals['removeCustomerProfileId9'] = removeCustomerProfileId9;
+
+	var valeurCustomerProfileId10 = $formulaireValeurs.find('.valeurCustomerProfileId10').val();
+	var removeCustomerProfileId10 = $formulaireValeurs.find('.removeCustomerProfileId10').val() === 'true';
+	var setCustomerProfileId10 = removeCustomerProfileId10 ? null : $formulaireValeurs.find('.setCustomerProfileId10').val();
+	var addCustomerProfileId10 = $formulaireValeurs.find('.addCustomerProfileId10').val();
+	if(removeCustomerProfileId10 || setCustomerProfileId10 != null && setCustomerProfileId10 !== '')
+		vals['setCustomerProfileId10'] = setCustomerProfileId10;
+	if(addCustomerProfileId10 != null && addCustomerProfileId10 !== '')
+		vals['addCustomerProfileId10'] = addCustomerProfileId10;
+	var removeCustomerProfileId10 = $formulaireValeurs.find('.removeCustomerProfileId10').val();
+	if(removeCustomerProfileId10 != null && removeCustomerProfileId10 !== '')
+		vals['removeCustomerProfileId10'] = removeCustomerProfileId10;
+
 	patchUtilisateurSiteVals(pk == null ? $.deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, success, error);
 }
 
@@ -612,14 +740,6 @@ function patchUtilisateurSiteFiltres($formulaireFiltres) {
 			filtreVoirSupprime = filtreVoirSupprimeSelectVal == 'true';
 		if(filtreVoirSupprime != null && filtreVoirSupprime === true)
 			filtres.push({ name: 'fq', value: 'voirSupprime:' + filtreVoirSupprime });
-
-		var filtreCustomerProfileId1 = $formulaireFiltres.find('.valeurCustomerProfileId1').val();
-		if(filtreCustomerProfileId1 != null && filtreCustomerProfileId1 !== '')
-			filtres.push({ name: 'fq', value: 'customerProfileId1:' + filtreCustomerProfileId1 });
-
-		var filtreCustomerProfileId2 = $formulaireFiltres.find('.valeurCustomerProfileId2').val();
-		if(filtreCustomerProfileId2 != null && filtreCustomerProfileId2 !== '')
-			filtres.push({ name: 'fq', value: 'customerProfileId2:' + filtreCustomerProfileId2 });
 
 		var filtreInscriptionCles = $formulaireFiltres.find('.valeurInscriptionCles').val();
 		if(filtreInscriptionCles != null && filtreInscriptionCles !== '')
@@ -716,6 +836,46 @@ function patchUtilisateurSiteFiltres($formulaireFiltres) {
 		var filtreUtilisateurSite = $formulaireFiltres.find('.valeurUtilisateurSite').val();
 		if(filtreUtilisateurSite != null && filtreUtilisateurSite !== '')
 			filtres.push({ name: 'fq', value: 'utilisateurSite:' + filtreUtilisateurSite });
+
+		var filtreCustomerProfileId1 = $formulaireFiltres.find('.valeurCustomerProfileId1').val();
+		if(filtreCustomerProfileId1 != null && filtreCustomerProfileId1 !== '')
+			filtres.push({ name: 'fq', value: 'customerProfileId1:' + filtreCustomerProfileId1 });
+
+		var filtreCustomerProfileId2 = $formulaireFiltres.find('.valeurCustomerProfileId2').val();
+		if(filtreCustomerProfileId2 != null && filtreCustomerProfileId2 !== '')
+			filtres.push({ name: 'fq', value: 'customerProfileId2:' + filtreCustomerProfileId2 });
+
+		var filtreCustomerProfileId3 = $formulaireFiltres.find('.valeurCustomerProfileId3').val();
+		if(filtreCustomerProfileId3 != null && filtreCustomerProfileId3 !== '')
+			filtres.push({ name: 'fq', value: 'customerProfileId3:' + filtreCustomerProfileId3 });
+
+		var filtreCustomerProfileId4 = $formulaireFiltres.find('.valeurCustomerProfileId4').val();
+		if(filtreCustomerProfileId4 != null && filtreCustomerProfileId4 !== '')
+			filtres.push({ name: 'fq', value: 'customerProfileId4:' + filtreCustomerProfileId4 });
+
+		var filtreCustomerProfileId5 = $formulaireFiltres.find('.valeurCustomerProfileId5').val();
+		if(filtreCustomerProfileId5 != null && filtreCustomerProfileId5 !== '')
+			filtres.push({ name: 'fq', value: 'customerProfileId5:' + filtreCustomerProfileId5 });
+
+		var filtreCustomerProfileId6 = $formulaireFiltres.find('.valeurCustomerProfileId6').val();
+		if(filtreCustomerProfileId6 != null && filtreCustomerProfileId6 !== '')
+			filtres.push({ name: 'fq', value: 'customerProfileId6:' + filtreCustomerProfileId6 });
+
+		var filtreCustomerProfileId7 = $formulaireFiltres.find('.valeurCustomerProfileId7').val();
+		if(filtreCustomerProfileId7 != null && filtreCustomerProfileId7 !== '')
+			filtres.push({ name: 'fq', value: 'customerProfileId7:' + filtreCustomerProfileId7 });
+
+		var filtreCustomerProfileId8 = $formulaireFiltres.find('.valeurCustomerProfileId8').val();
+		if(filtreCustomerProfileId8 != null && filtreCustomerProfileId8 !== '')
+			filtres.push({ name: 'fq', value: 'customerProfileId8:' + filtreCustomerProfileId8 });
+
+		var filtreCustomerProfileId9 = $formulaireFiltres.find('.valeurCustomerProfileId9').val();
+		if(filtreCustomerProfileId9 != null && filtreCustomerProfileId9 !== '')
+			filtres.push({ name: 'fq', value: 'customerProfileId9:' + filtreCustomerProfileId9 });
+
+		var filtreCustomerProfileId10 = $formulaireFiltres.find('.valeurCustomerProfileId10').val();
+		if(filtreCustomerProfileId10 != null && filtreCustomerProfileId10 !== '')
+			filtres.push({ name: 'fq', value: 'customerProfileId10:' + filtreCustomerProfileId10 });
 	}
 	return filtres;
 }
@@ -772,33 +932,25 @@ async function postUtilisateurSite($formulaireValeurs, success, error) {
 	if(valeurObjetId != null && valeurObjetId !== '')
 		vals['objetId'] = valeurObjetId;
 
-	var valeurArchive = $formulaireValeurs.find('.valeurArchive').prop('checked');
+	var valeurArchive = $formulaireValeurs.find('.valeurArchive').val();
 	if(valeurArchive != null && valeurArchive !== '')
-		vals['archive'] = valeurArchive;
+		vals['archive'] = valeurArchive == 'true';
 
-	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').prop('checked');
+	var valeurSupprime = $formulaireValeurs.find('.valeurSupprime').val();
 	if(valeurSupprime != null && valeurSupprime !== '')
-		vals['supprime'] = valeurSupprime;
+		vals['supprime'] = valeurSupprime == 'true';
 
-	var valeurUtilisateurRecevoirCourriels = $formulaireValeurs.find('.valeurUtilisateurRecevoirCourriels').prop('checked');
+	var valeurUtilisateurRecevoirCourriels = $formulaireValeurs.find('.valeurUtilisateurRecevoirCourriels').val();
 	if(valeurUtilisateurRecevoirCourriels != null && valeurUtilisateurRecevoirCourriels !== '')
-		vals['utilisateurRecevoirCourriels'] = valeurUtilisateurRecevoirCourriels;
+		vals['utilisateurRecevoirCourriels'] = valeurUtilisateurRecevoirCourriels == 'true';
 
-	var valeurVoirArchive = $formulaireValeurs.find('.valeurVoirArchive').prop('checked');
+	var valeurVoirArchive = $formulaireValeurs.find('.valeurVoirArchive').val();
 	if(valeurVoirArchive != null && valeurVoirArchive !== '')
-		vals['voirArchive'] = valeurVoirArchive;
+		vals['voirArchive'] = valeurVoirArchive == 'true';
 
-	var valeurVoirSupprime = $formulaireValeurs.find('.valeurVoirSupprime').prop('checked');
+	var valeurVoirSupprime = $formulaireValeurs.find('.valeurVoirSupprime').val();
 	if(valeurVoirSupprime != null && valeurVoirSupprime !== '')
-		vals['voirSupprime'] = valeurVoirSupprime;
-
-	var valeurCustomerProfileId1 = $formulaireValeurs.find('.valeurCustomerProfileId1').val();
-	if(valeurCustomerProfileId1 != null && valeurCustomerProfileId1 !== '')
-		vals['customerProfileId1'] = valeurCustomerProfileId1;
-
-	var valeurCustomerProfileId2 = $formulaireValeurs.find('.valeurCustomerProfileId2').val();
-	if(valeurCustomerProfileId2 != null && valeurCustomerProfileId2 !== '')
-		vals['customerProfileId2'] = valeurCustomerProfileId2;
+		vals['voirSupprime'] = valeurVoirSupprime == 'true';
 
 	var valeurInscriptionCles = [];
 	$formulaireValeurs.find('input.valeurInscriptionCles:checked').each(function(index) {
@@ -841,6 +993,46 @@ async function postUtilisateurSite($formulaireValeurs, success, error) {
 	var valeurUtilisateurMail = $formulaireValeurs.find('.valeurUtilisateurMail').val();
 	if(valeurUtilisateurMail != null && valeurUtilisateurMail !== '')
 		vals['utilisateurMail'] = valeurUtilisateurMail;
+
+	var valeurCustomerProfileId1 = $formulaireValeurs.find('.valeurCustomerProfileId1').val();
+	if(valeurCustomerProfileId1 != null && valeurCustomerProfileId1 !== '')
+		vals['customerProfileId1'] = valeurCustomerProfileId1;
+
+	var valeurCustomerProfileId2 = $formulaireValeurs.find('.valeurCustomerProfileId2').val();
+	if(valeurCustomerProfileId2 != null && valeurCustomerProfileId2 !== '')
+		vals['customerProfileId2'] = valeurCustomerProfileId2;
+
+	var valeurCustomerProfileId3 = $formulaireValeurs.find('.valeurCustomerProfileId3').val();
+	if(valeurCustomerProfileId3 != null && valeurCustomerProfileId3 !== '')
+		vals['customerProfileId3'] = valeurCustomerProfileId3;
+
+	var valeurCustomerProfileId4 = $formulaireValeurs.find('.valeurCustomerProfileId4').val();
+	if(valeurCustomerProfileId4 != null && valeurCustomerProfileId4 !== '')
+		vals['customerProfileId4'] = valeurCustomerProfileId4;
+
+	var valeurCustomerProfileId5 = $formulaireValeurs.find('.valeurCustomerProfileId5').val();
+	if(valeurCustomerProfileId5 != null && valeurCustomerProfileId5 !== '')
+		vals['customerProfileId5'] = valeurCustomerProfileId5;
+
+	var valeurCustomerProfileId6 = $formulaireValeurs.find('.valeurCustomerProfileId6').val();
+	if(valeurCustomerProfileId6 != null && valeurCustomerProfileId6 !== '')
+		vals['customerProfileId6'] = valeurCustomerProfileId6;
+
+	var valeurCustomerProfileId7 = $formulaireValeurs.find('.valeurCustomerProfileId7').val();
+	if(valeurCustomerProfileId7 != null && valeurCustomerProfileId7 !== '')
+		vals['customerProfileId7'] = valeurCustomerProfileId7;
+
+	var valeurCustomerProfileId8 = $formulaireValeurs.find('.valeurCustomerProfileId8').val();
+	if(valeurCustomerProfileId8 != null && valeurCustomerProfileId8 !== '')
+		vals['customerProfileId8'] = valeurCustomerProfileId8;
+
+	var valeurCustomerProfileId9 = $formulaireValeurs.find('.valeurCustomerProfileId9').val();
+	if(valeurCustomerProfileId9 != null && valeurCustomerProfileId9 !== '')
+		vals['customerProfileId9'] = valeurCustomerProfileId9;
+
+	var valeurCustomerProfileId10 = $formulaireValeurs.find('.valeurCustomerProfileId10').val();
+	if(valeurCustomerProfileId10 != null && valeurCustomerProfileId10 !== '')
+		vals['customerProfileId10'] = valeurCustomerProfileId10;
 
 	$.ajax({
 		url: '/api/utilisateur'
@@ -1046,30 +1238,6 @@ async function websocketUtilisateurSiteInner(requeteApi) {
 						$(this).text(val);
 				});
 				ajouterLueur($('.inputUtilisateurSite' + pk + 'VoirSupprime'));
-			}
-			var val = o['customerProfileId1'];
-			if(vars.includes('customerProfileId1')) {
-				$('.inputUtilisateurSite' + pk + 'CustomerProfileId1').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varUtilisateurSite' + pk + 'CustomerProfileId1').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				ajouterLueur($('.inputUtilisateurSite' + pk + 'CustomerProfileId1'));
-			}
-			var val = o['customerProfileId2'];
-			if(vars.includes('customerProfileId2')) {
-				$('.inputUtilisateurSite' + pk + 'CustomerProfileId2').each(function() {
-					if(val !== $(this).val())
-						$(this).val(val);
-				});
-				$('.varUtilisateurSite' + pk + 'CustomerProfileId2').each(function() {
-					if(val !== $(this).text())
-						$(this).text(val);
-				});
-				ajouterLueur($('.inputUtilisateurSite' + pk + 'CustomerProfileId2'));
 			}
 			var val = o['inscriptionCles'];
 			if(vars.includes('inscriptionCles')) {
@@ -1358,6 +1526,126 @@ async function websocketUtilisateurSiteInner(requeteApi) {
 						$(this).text(val);
 				});
 				ajouterLueur($('.inputUtilisateurSite' + pk + 'UtilisateurSite'));
+			}
+			var val = o['customerProfileId1'];
+			if(vars.includes('customerProfileId1')) {
+				$('.inputUtilisateurSite' + pk + 'CustomerProfileId1').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varUtilisateurSite' + pk + 'CustomerProfileId1').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputUtilisateurSite' + pk + 'CustomerProfileId1'));
+			}
+			var val = o['customerProfileId2'];
+			if(vars.includes('customerProfileId2')) {
+				$('.inputUtilisateurSite' + pk + 'CustomerProfileId2').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varUtilisateurSite' + pk + 'CustomerProfileId2').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputUtilisateurSite' + pk + 'CustomerProfileId2'));
+			}
+			var val = o['customerProfileId3'];
+			if(vars.includes('customerProfileId3')) {
+				$('.inputUtilisateurSite' + pk + 'CustomerProfileId3').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varUtilisateurSite' + pk + 'CustomerProfileId3').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputUtilisateurSite' + pk + 'CustomerProfileId3'));
+			}
+			var val = o['customerProfileId4'];
+			if(vars.includes('customerProfileId4')) {
+				$('.inputUtilisateurSite' + pk + 'CustomerProfileId4').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varUtilisateurSite' + pk + 'CustomerProfileId4').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputUtilisateurSite' + pk + 'CustomerProfileId4'));
+			}
+			var val = o['customerProfileId5'];
+			if(vars.includes('customerProfileId5')) {
+				$('.inputUtilisateurSite' + pk + 'CustomerProfileId5').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varUtilisateurSite' + pk + 'CustomerProfileId5').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputUtilisateurSite' + pk + 'CustomerProfileId5'));
+			}
+			var val = o['customerProfileId6'];
+			if(vars.includes('customerProfileId6')) {
+				$('.inputUtilisateurSite' + pk + 'CustomerProfileId6').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varUtilisateurSite' + pk + 'CustomerProfileId6').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputUtilisateurSite' + pk + 'CustomerProfileId6'));
+			}
+			var val = o['customerProfileId7'];
+			if(vars.includes('customerProfileId7')) {
+				$('.inputUtilisateurSite' + pk + 'CustomerProfileId7').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varUtilisateurSite' + pk + 'CustomerProfileId7').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputUtilisateurSite' + pk + 'CustomerProfileId7'));
+			}
+			var val = o['customerProfileId8'];
+			if(vars.includes('customerProfileId8')) {
+				$('.inputUtilisateurSite' + pk + 'CustomerProfileId8').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varUtilisateurSite' + pk + 'CustomerProfileId8').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputUtilisateurSite' + pk + 'CustomerProfileId8'));
+			}
+			var val = o['customerProfileId9'];
+			if(vars.includes('customerProfileId9')) {
+				$('.inputUtilisateurSite' + pk + 'CustomerProfileId9').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varUtilisateurSite' + pk + 'CustomerProfileId9').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputUtilisateurSite' + pk + 'CustomerProfileId9'));
+			}
+			var val = o['customerProfileId10'];
+			if(vars.includes('customerProfileId10')) {
+				$('.inputUtilisateurSite' + pk + 'CustomerProfileId10').each(function() {
+					if(val !== $(this).val())
+						$(this).val(val);
+				});
+				$('.varUtilisateurSite' + pk + 'CustomerProfileId10').each(function() {
+					if(val !== $(this).text())
+						$(this).text(val);
+				});
+				ajouterLueur($('.inputUtilisateurSite' + pk + 'CustomerProfileId10'));
 			}
 		});
 	}

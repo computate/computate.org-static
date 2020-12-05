@@ -33,13 +33,13 @@ async function postSchoolBlock($formValues, success, error) {
 	if(valueObjectId != null && valueObjectId !== '')
 		vals['objectId'] = valueObjectId;
 
-	var valueArchived = $formValues.find('.valueArchived').prop('checked');
+	var valueArchived = $formValues.find('.valueArchived').val();
 	if(valueArchived != null && valueArchived !== '')
-		vals['archived'] = valueArchived;
+		vals['archived'] = valueArchived == 'true';
 
-	var valueDeleted = $formValues.find('.valueDeleted').prop('checked');
+	var valueDeleted = $formValues.find('.valueDeleted').val();
 	if(valueDeleted != null && valueDeleted !== '')
-		vals['deleted'] = valueDeleted;
+		vals['deleted'] = valueDeleted == 'true';
 
 	var valueBlockStartTime = $formValues.find('.valueBlockStartTime').val();
 	if(valueBlockStartTime != null && valueBlockStartTime !== '')
@@ -53,25 +53,25 @@ async function postSchoolBlock($formValues, success, error) {
 	if(valueBlockPricePerMonth != null && valueBlockPricePerMonth !== '')
 		vals['blockPricePerMonth'] = valueBlockPricePerMonth;
 
-	var valueBlockMonday = $formValues.find('.valueBlockMonday').prop('checked');
+	var valueBlockMonday = $formValues.find('.valueBlockMonday').val();
 	if(valueBlockMonday != null && valueBlockMonday !== '')
-		vals['blockMonday'] = valueBlockMonday;
+		vals['blockMonday'] = valueBlockMonday == 'true';
 
-	var valueBlockTuesday = $formValues.find('.valueBlockTuesday').prop('checked');
+	var valueBlockTuesday = $formValues.find('.valueBlockTuesday').val();
 	if(valueBlockTuesday != null && valueBlockTuesday !== '')
-		vals['blockTuesday'] = valueBlockTuesday;
+		vals['blockTuesday'] = valueBlockTuesday == 'true';
 
-	var valueBlockWednesday = $formValues.find('.valueBlockWednesday').prop('checked');
+	var valueBlockWednesday = $formValues.find('.valueBlockWednesday').val();
 	if(valueBlockWednesday != null && valueBlockWednesday !== '')
-		vals['blockWednesday'] = valueBlockWednesday;
+		vals['blockWednesday'] = valueBlockWednesday == 'true';
 
-	var valueBlockThursday = $formValues.find('.valueBlockThursday').prop('checked');
+	var valueBlockThursday = $formValues.find('.valueBlockThursday').val();
 	if(valueBlockThursday != null && valueBlockThursday !== '')
-		vals['blockThursday'] = valueBlockThursday;
+		vals['blockThursday'] = valueBlockThursday == 'true';
 
-	var valueBlockFriday = $formValues.find('.valueBlockFriday').prop('checked');
+	var valueBlockFriday = $formValues.find('.valueBlockFriday').val();
 	if(valueBlockFriday != null && valueBlockFriday !== '')
-		vals['blockFriday'] = valueBlockFriday;
+		vals['blockFriday'] = valueBlockFriday == 'true';
 
 	var valueAgeKey = $formValues.find('.valueAgeKey').val();
 	if(valueAgeKey != null && valueAgeKey !== '')
@@ -192,13 +192,13 @@ async function putcopySchoolBlock($formValues, pk, success, error) {
 	if(valueObjectId != null && valueObjectId !== '')
 		vals['objectId'] = valueObjectId;
 
-	var valueArchived = $formValues.find('.valueArchived').prop('checked');
+	var valueArchived = $formValues.find('.valueArchived').val();
 	if(valueArchived != null && valueArchived !== '')
-		vals['archived'] = valueArchived;
+		vals['archived'] = valueArchived == 'true';
 
-	var valueDeleted = $formValues.find('.valueDeleted').prop('checked');
+	var valueDeleted = $formValues.find('.valueDeleted').val();
 	if(valueDeleted != null && valueDeleted !== '')
-		vals['deleted'] = valueDeleted;
+		vals['deleted'] = valueDeleted == 'true';
 
 	var valueBlockStartTime = $formValues.find('.valueBlockStartTime').val();
 	if(valueBlockStartTime != null && valueBlockStartTime !== '')
@@ -212,32 +212,38 @@ async function putcopySchoolBlock($formValues, pk, success, error) {
 	if(valueBlockPricePerMonth != null && valueBlockPricePerMonth !== '')
 		vals['blockPricePerMonth'] = valueBlockPricePerMonth;
 
-	var valueBlockMonday = $formValues.find('.valueBlockMonday').prop('checked');
+	var valueBlockMonday = $formValues.find('.valueBlockMonday').val();
 	if(valueBlockMonday != null && valueBlockMonday !== '')
-		vals['blockMonday'] = valueBlockMonday;
+		vals['blockMonday'] = valueBlockMonday == 'true';
 
-	var valueBlockTuesday = $formValues.find('.valueBlockTuesday').prop('checked');
+	var valueBlockTuesday = $formValues.find('.valueBlockTuesday').val();
 	if(valueBlockTuesday != null && valueBlockTuesday !== '')
-		vals['blockTuesday'] = valueBlockTuesday;
+		vals['blockTuesday'] = valueBlockTuesday == 'true';
 
-	var valueBlockWednesday = $formValues.find('.valueBlockWednesday').prop('checked');
+	var valueBlockWednesday = $formValues.find('.valueBlockWednesday').val();
 	if(valueBlockWednesday != null && valueBlockWednesday !== '')
-		vals['blockWednesday'] = valueBlockWednesday;
+		vals['blockWednesday'] = valueBlockWednesday == 'true';
 
-	var valueBlockThursday = $formValues.find('.valueBlockThursday').prop('checked');
+	var valueBlockThursday = $formValues.find('.valueBlockThursday').val();
 	if(valueBlockThursday != null && valueBlockThursday !== '')
-		vals['blockThursday'] = valueBlockThursday;
+		vals['blockThursday'] = valueBlockThursday == 'true';
 
-	var valueBlockFriday = $formValues.find('.valueBlockFriday').prop('checked');
+	var valueBlockFriday = $formValues.find('.valueBlockFriday').val();
 	if(valueBlockFriday != null && valueBlockFriday !== '')
-		vals['blockFriday'] = valueBlockFriday;
+		vals['blockFriday'] = valueBlockFriday == 'true';
 
 	var valueAgeKey = $formValues.find('input.valueAgeKey:checked').val();
-	if(valueAgeKey != null && valueAgeKey !== '')
+	var valueAgeKeyClear = $formValues.find('input.ageKey_clear:checked').val();
+	if(valueAgeKeyClear != null && valueAgeKeyClear)
+		vals['ageKey'] = null;
+	else if(valueAgeKeyClear != null && valueAgeKeyClear)
 		vals['ageKey'] = valueAgeKey;
 
 	var valueEnrollmentKeys = $formValues.find('input.valueEnrollmentKeys:checked').val();
-	if(valueEnrollmentKeys != null && valueEnrollmentKeys !== '')
+	var valueEnrollmentKeysClear = $formValues.find('input.enrollmentKeys_clear:checked').val();
+	if(valueEnrollmentKeysClear != null && valueEnrollmentKeysClear)
+		vals['enrollmentKeys'] = null;
+	else if(valueEnrollmentKeysClear != null && valueEnrollmentKeysClear)
 		vals['enrollmentKeys'] = [valueEnrollmentKeys];
 
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
@@ -334,7 +340,7 @@ async function patchSchoolBlock($formFilters, $formValues, pk, success, error) {
 	if(removeObjectId != null && removeObjectId !== '')
 		vals['removeObjectId'] = removeObjectId;
 
-	var valueArchived = $formValues.find('.valueArchived').prop('checked');
+	var valueArchived = $formValues.find('.valueArchived').val();
 	var removeArchived = $formValues.find('.removeArchived').val() === 'true';
 	var valueArchivedSelectVal = $formValues.find('select.setArchived').val();
 	var valueArchived = null;
@@ -350,7 +356,7 @@ async function patchSchoolBlock($formFilters, $formValues, pk, success, error) {
 	if(removeArchived != null && removeArchived !== '')
 		vals['removeArchived'] = removeArchived;
 
-	var valueDeleted = $formValues.find('.valueDeleted').prop('checked');
+	var valueDeleted = $formValues.find('.valueDeleted').val();
 	var removeDeleted = $formValues.find('.removeDeleted').val() === 'true';
 	var valueDeletedSelectVal = $formValues.find('select.setDeleted').val();
 	var valueDeleted = null;
@@ -402,7 +408,7 @@ async function patchSchoolBlock($formFilters, $formValues, pk, success, error) {
 	if(removeBlockPricePerMonth != null && removeBlockPricePerMonth !== '')
 		vals['removeBlockPricePerMonth'] = removeBlockPricePerMonth;
 
-	var valueBlockMonday = $formValues.find('.valueBlockMonday').prop('checked');
+	var valueBlockMonday = $formValues.find('.valueBlockMonday').val();
 	var removeBlockMonday = $formValues.find('.removeBlockMonday').val() === 'true';
 	var valueBlockMondaySelectVal = $formValues.find('select.setBlockMonday').val();
 	var valueBlockMonday = null;
@@ -418,7 +424,7 @@ async function patchSchoolBlock($formFilters, $formValues, pk, success, error) {
 	if(removeBlockMonday != null && removeBlockMonday !== '')
 		vals['removeBlockMonday'] = removeBlockMonday;
 
-	var valueBlockTuesday = $formValues.find('.valueBlockTuesday').prop('checked');
+	var valueBlockTuesday = $formValues.find('.valueBlockTuesday').val();
 	var removeBlockTuesday = $formValues.find('.removeBlockTuesday').val() === 'true';
 	var valueBlockTuesdaySelectVal = $formValues.find('select.setBlockTuesday').val();
 	var valueBlockTuesday = null;
@@ -434,7 +440,7 @@ async function patchSchoolBlock($formFilters, $formValues, pk, success, error) {
 	if(removeBlockTuesday != null && removeBlockTuesday !== '')
 		vals['removeBlockTuesday'] = removeBlockTuesday;
 
-	var valueBlockWednesday = $formValues.find('.valueBlockWednesday').prop('checked');
+	var valueBlockWednesday = $formValues.find('.valueBlockWednesday').val();
 	var removeBlockWednesday = $formValues.find('.removeBlockWednesday').val() === 'true';
 	var valueBlockWednesdaySelectVal = $formValues.find('select.setBlockWednesday').val();
 	var valueBlockWednesday = null;
@@ -450,7 +456,7 @@ async function patchSchoolBlock($formFilters, $formValues, pk, success, error) {
 	if(removeBlockWednesday != null && removeBlockWednesday !== '')
 		vals['removeBlockWednesday'] = removeBlockWednesday;
 
-	var valueBlockThursday = $formValues.find('.valueBlockThursday').prop('checked');
+	var valueBlockThursday = $formValues.find('.valueBlockThursday').val();
 	var removeBlockThursday = $formValues.find('.removeBlockThursday').val() === 'true';
 	var valueBlockThursdaySelectVal = $formValues.find('select.setBlockThursday').val();
 	var valueBlockThursday = null;
@@ -466,7 +472,7 @@ async function patchSchoolBlock($formFilters, $formValues, pk, success, error) {
 	if(removeBlockThursday != null && removeBlockThursday !== '')
 		vals['removeBlockThursday'] = removeBlockThursday;
 
-	var valueBlockFriday = $formValues.find('.valueBlockFriday').prop('checked');
+	var valueBlockFriday = $formValues.find('.valueBlockFriday').val();
 	var removeBlockFriday = $formValues.find('.removeBlockFriday').val() === 'true';
 	var valueBlockFridaySelectVal = $formValues.find('select.setBlockFriday').val();
 	var valueBlockFriday = null;
