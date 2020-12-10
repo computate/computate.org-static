@@ -252,7 +252,7 @@ async function putcopySchoolMom($formValues, pk, success, error) {
 	var valueEnrollmentKeysClear = $formValues.find('input.enrollmentKeys_clear:checked').val();
 	if(valueEnrollmentKeysClear != null && valueEnrollmentKeysClear)
 		vals['enrollmentKeys'] = null;
-	else if(valueEnrollmentKeysClear != null && valueEnrollmentKeysClear)
+	else if(valueEnrollmentKeys != null && valueEnrollmentKeys)
 		vals['enrollmentKeys'] = [valueEnrollmentKeys];
 
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();

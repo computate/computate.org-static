@@ -455,56 +455,56 @@ async function putcopySchoolEnrollment($formValues, pk, success, error) {
 	var valueYearKeyClear = $formValues.find('input.yearKey_clear:checked').val();
 	if(valueYearKeyClear != null && valueYearKeyClear)
 		vals['yearKey'] = null;
-	else if(valueYearKeyClear != null && valueYearKeyClear)
+	else if(valueYearKey != null && valueYearKey)
 		vals['yearKey'] = valueYearKey;
 
 	var valueBlockKeys = $formValues.find('input.valueBlockKeys:checked').val();
 	var valueBlockKeysClear = $formValues.find('input.blockKeys_clear:checked').val();
 	if(valueBlockKeysClear != null && valueBlockKeysClear)
 		vals['blockKeys'] = null;
-	else if(valueBlockKeysClear != null && valueBlockKeysClear)
+	else if(valueBlockKeys != null && valueBlockKeys)
 		vals['blockKeys'] = [valueBlockKeys];
 
 	var valueChildKey = $formValues.find('input.valueChildKey:checked').val();
 	var valueChildKeyClear = $formValues.find('input.childKey_clear:checked').val();
 	if(valueChildKeyClear != null && valueChildKeyClear)
 		vals['childKey'] = null;
-	else if(valueChildKeyClear != null && valueChildKeyClear)
+	else if(valueChildKey != null && valueChildKey)
 		vals['childKey'] = valueChildKey;
 
 	var valueGuardianKeys = $formValues.find('input.valueGuardianKeys:checked').val();
 	var valueGuardianKeysClear = $formValues.find('input.guardianKeys_clear:checked').val();
 	if(valueGuardianKeysClear != null && valueGuardianKeysClear)
 		vals['guardianKeys'] = null;
-	else if(valueGuardianKeysClear != null && valueGuardianKeysClear)
+	else if(valueGuardianKeys != null && valueGuardianKeys)
 		vals['guardianKeys'] = [valueGuardianKeys];
 
 	var valueMomKeys = $formValues.find('input.valueMomKeys:checked').val();
 	var valueMomKeysClear = $formValues.find('input.momKeys_clear:checked').val();
 	if(valueMomKeysClear != null && valueMomKeysClear)
 		vals['momKeys'] = null;
-	else if(valueMomKeysClear != null && valueMomKeysClear)
+	else if(valueMomKeys != null && valueMomKeys)
 		vals['momKeys'] = [valueMomKeys];
 
 	var valueDadKeys = $formValues.find('input.valueDadKeys:checked').val();
 	var valueDadKeysClear = $formValues.find('input.dadKeys_clear:checked').val();
 	if(valueDadKeysClear != null && valueDadKeysClear)
 		vals['dadKeys'] = null;
-	else if(valueDadKeysClear != null && valueDadKeysClear)
+	else if(valueDadKeys != null && valueDadKeys)
 		vals['dadKeys'] = [valueDadKeys];
 
 	var valueUserKeys = $formValues.find('input.valueUserKeys:checked').val();
 	var valueUserKeysClear = $formValues.find('input.userKeys_clear:checked').val();
 	if(valueUserKeysClear != null && valueUserKeysClear)
 		vals['userKeys'] = null;
-	else if(valueUserKeysClear != null && valueUserKeysClear)
+	else if(valueUserKeys != null && valueUserKeys)
 		vals['userKeys'] = [valueUserKeys];
 
 	var valuePaymentKeys = $formValues.find('input.valuePaymentKeys:checked').val();
 	var valuePaymentKeysClear = $formValues.find('input.paymentKeys_clear:checked').val();
 	if(valuePaymentKeysClear != null && valuePaymentKeysClear)
 		vals['paymentKeys'] = null;
-	else if(valuePaymentKeysClear != null && valuePaymentKeysClear)
+	else if(valuePaymentKeys != null && valuePaymentKeys)
 		vals['paymentKeys'] = [valuePaymentKeys];
 
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();

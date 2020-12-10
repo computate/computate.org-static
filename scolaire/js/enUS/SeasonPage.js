@@ -192,14 +192,14 @@ async function putcopySchoolSeason($formValues, pk, success, error) {
 	var valueYearKeyClear = $formValues.find('input.yearKey_clear:checked').val();
 	if(valueYearKeyClear != null && valueYearKeyClear)
 		vals['yearKey'] = null;
-	else if(valueYearKeyClear != null && valueYearKeyClear)
+	else if(valueYearKey != null && valueYearKey)
 		vals['yearKey'] = valueYearKey;
 
 	var valueSessionKeys = $formValues.find('input.valueSessionKeys:checked').val();
 	var valueSessionKeysClear = $formValues.find('input.sessionKeys_clear:checked').val();
 	if(valueSessionKeysClear != null && valueSessionKeysClear)
 		vals['sessionKeys'] = null;
-	else if(valueSessionKeysClear != null && valueSessionKeysClear)
+	else if(valueSessionKeys != null && valueSessionKeys)
 		vals['sessionKeys'] = [valueSessionKeys];
 
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();

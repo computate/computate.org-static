@@ -276,7 +276,7 @@ async function putcopiePartHtml($formulaireValeurs, pk, success, error) {
 	var valeurDesignPageClesVider = $formulaireValeurs.find('input.designPageCles_vider:checked').val();
 	if(valeurDesignPageClesVider != null && valeurDesignPageClesVider)
 		vals['designPageCles'] = null;
-	else if(valeurDesignPageClesVider != null && valeurDesignPageClesVider)
+	else if(valeurDesignPageCles != null && valeurDesignPageCles)
 		vals['designPageCles'] = [valeurDesignPageCles];
 
 	var valeurHtmlLien = $formulaireValeurs.find('.valeurHtmlLien').val();

@@ -188,14 +188,14 @@ async function putcopieSessionScolaire($formulaireValeurs, pk, success, error) {
 	var valeurSaisonCleVider = $formulaireValeurs.find('input.saisonCle_vider:checked').val();
 	if(valeurSaisonCleVider != null && valeurSaisonCleVider)
 		vals['saisonCle'] = null;
-	else if(valeurSaisonCleVider != null && valeurSaisonCleVider)
+	else if(valeurSaisonCle != null && valeurSaisonCle)
 		vals['saisonCle'] = valeurSaisonCle;
 
 	var valeurAgeCles = $formulaireValeurs.find('input.valeurAgeCles:checked').val();
 	var valeurAgeClesVider = $formulaireValeurs.find('input.ageCles_vider:checked').val();
 	if(valeurAgeClesVider != null && valeurAgeClesVider)
 		vals['ageCles'] = null;
-	else if(valeurAgeClesVider != null && valeurAgeClesVider)
+	else if(valeurAgeCles != null && valeurAgeCles)
 		vals['ageCles'] = [valeurAgeCles];
 
 	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();

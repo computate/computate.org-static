@@ -228,7 +228,7 @@ async function putcopieGardienScolaire($formulaireValeurs, pk, success, error) {
 	var valeurInscriptionClesVider = $formulaireValeurs.find('input.inscriptionCles_vider:checked').val();
 	if(valeurInscriptionClesVider != null && valeurInscriptionClesVider)
 		vals['inscriptionCles'] = null;
-	else if(valeurInscriptionClesVider != null && valeurInscriptionClesVider)
+	else if(valeurInscriptionCles != null && valeurInscriptionCles)
 		vals['inscriptionCles'] = [valeurInscriptionCles];
 
 	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();

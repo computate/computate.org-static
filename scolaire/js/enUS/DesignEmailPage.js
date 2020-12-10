@@ -267,14 +267,14 @@ async function putcopyPageDesign($formValues, pk, success, error) {
 	var valueParentDesignKeysClear = $formValues.find('input.parentDesignKeys_clear:checked').val();
 	if(valueParentDesignKeysClear != null && valueParentDesignKeysClear)
 		vals['parentDesignKeys'] = null;
-	else if(valueParentDesignKeysClear != null && valueParentDesignKeysClear)
+	else if(valueParentDesignKeys != null && valueParentDesignKeys)
 		vals['parentDesignKeys'] = [valueParentDesignKeys];
 
 	var valueHtmlPartKeys = $formValues.find('input.valueHtmlPartKeys:checked').val();
 	var valueHtmlPartKeysClear = $formValues.find('input.htmlPartKeys_clear:checked').val();
 	if(valueHtmlPartKeysClear != null && valueHtmlPartKeysClear)
 		vals['htmlPartKeys'] = null;
-	else if(valueHtmlPartKeysClear != null && valueHtmlPartKeysClear)
+	else if(valueHtmlPartKeys != null && valueHtmlPartKeys)
 		vals['htmlPartKeys'] = [valueHtmlPartKeys];
 
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();

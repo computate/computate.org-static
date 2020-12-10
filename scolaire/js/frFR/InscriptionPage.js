@@ -455,56 +455,56 @@ async function putcopieInscriptionScolaire($formulaireValeurs, pk, success, erro
 	var valeurAnneeCleVider = $formulaireValeurs.find('input.anneeCle_vider:checked').val();
 	if(valeurAnneeCleVider != null && valeurAnneeCleVider)
 		vals['anneeCle'] = null;
-	else if(valeurAnneeCleVider != null && valeurAnneeCleVider)
+	else if(valeurAnneeCle != null && valeurAnneeCle)
 		vals['anneeCle'] = valeurAnneeCle;
 
 	var valeurBlocCles = $formulaireValeurs.find('input.valeurBlocCles:checked').val();
 	var valeurBlocClesVider = $formulaireValeurs.find('input.blocCles_vider:checked').val();
 	if(valeurBlocClesVider != null && valeurBlocClesVider)
 		vals['blocCles'] = null;
-	else if(valeurBlocClesVider != null && valeurBlocClesVider)
+	else if(valeurBlocCles != null && valeurBlocCles)
 		vals['blocCles'] = [valeurBlocCles];
 
 	var valeurEnfantCle = $formulaireValeurs.find('input.valeurEnfantCle:checked').val();
 	var valeurEnfantCleVider = $formulaireValeurs.find('input.enfantCle_vider:checked').val();
 	if(valeurEnfantCleVider != null && valeurEnfantCleVider)
 		vals['enfantCle'] = null;
-	else if(valeurEnfantCleVider != null && valeurEnfantCleVider)
+	else if(valeurEnfantCle != null && valeurEnfantCle)
 		vals['enfantCle'] = valeurEnfantCle;
 
 	var valeurGardienCles = $formulaireValeurs.find('input.valeurGardienCles:checked').val();
 	var valeurGardienClesVider = $formulaireValeurs.find('input.gardienCles_vider:checked').val();
 	if(valeurGardienClesVider != null && valeurGardienClesVider)
 		vals['gardienCles'] = null;
-	else if(valeurGardienClesVider != null && valeurGardienClesVider)
+	else if(valeurGardienCles != null && valeurGardienCles)
 		vals['gardienCles'] = [valeurGardienCles];
 
 	var valeurMereCles = $formulaireValeurs.find('input.valeurMereCles:checked').val();
 	var valeurMereClesVider = $formulaireValeurs.find('input.mereCles_vider:checked').val();
 	if(valeurMereClesVider != null && valeurMereClesVider)
 		vals['mereCles'] = null;
-	else if(valeurMereClesVider != null && valeurMereClesVider)
+	else if(valeurMereCles != null && valeurMereCles)
 		vals['mereCles'] = [valeurMereCles];
 
 	var valeurPereCles = $formulaireValeurs.find('input.valeurPereCles:checked').val();
 	var valeurPereClesVider = $formulaireValeurs.find('input.pereCles_vider:checked').val();
 	if(valeurPereClesVider != null && valeurPereClesVider)
 		vals['pereCles'] = null;
-	else if(valeurPereClesVider != null && valeurPereClesVider)
+	else if(valeurPereCles != null && valeurPereCles)
 		vals['pereCles'] = [valeurPereCles];
 
 	var valeurUtilisateurCles = $formulaireValeurs.find('input.valeurUtilisateurCles:checked').val();
 	var valeurUtilisateurClesVider = $formulaireValeurs.find('input.utilisateurCles_vider:checked').val();
 	if(valeurUtilisateurClesVider != null && valeurUtilisateurClesVider)
 		vals['utilisateurCles'] = null;
-	else if(valeurUtilisateurClesVider != null && valeurUtilisateurClesVider)
+	else if(valeurUtilisateurCles != null && valeurUtilisateurCles)
 		vals['utilisateurCles'] = [valeurUtilisateurCles];
 
 	var valeurPaiementCles = $formulaireValeurs.find('input.valeurPaiementCles:checked').val();
 	var valeurPaiementClesVider = $formulaireValeurs.find('input.paiementCles_vider:checked').val();
 	if(valeurPaiementClesVider != null && valeurPaiementClesVider)
 		vals['paiementCles'] = null;
-	else if(valeurPaiementClesVider != null && valeurPaiementClesVider)
+	else if(valeurPaiementCles != null && valeurPaiementCles)
 		vals['paiementCles'] = [valeurPaiementCles];
 
 	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();

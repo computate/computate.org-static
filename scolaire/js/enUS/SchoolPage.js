@@ -1055,14 +1055,14 @@ async function putcopySchool($formValues, pk, success, error) {
 	var valueYearKeysClear = $formValues.find('input.yearKeys_clear:checked').val();
 	if(valueYearKeysClear != null && valueYearKeysClear)
 		vals['yearKeys'] = null;
-	else if(valueYearKeysClear != null && valueYearKeysClear)
+	else if(valueYearKeys != null && valueYearKeys)
 		vals['yearKeys'] = [valueYearKeys];
 
 	var valueReceiptKeys = $formValues.find('input.valueReceiptKeys:checked').val();
 	var valueReceiptKeysClear = $formValues.find('input.receiptKeys_clear:checked').val();
 	if(valueReceiptKeysClear != null && valueReceiptKeysClear)
 		vals['receiptKeys'] = null;
-	else if(valueReceiptKeysClear != null && valueReceiptKeysClear)
+	else if(valueReceiptKeys != null && valueReceiptKeys)
 		vals['receiptKeys'] = [valueReceiptKeys];
 
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();

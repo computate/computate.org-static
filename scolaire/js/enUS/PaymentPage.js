@@ -313,7 +313,7 @@ async function putcopySchoolPayment($formValues, pk, success, error) {
 	var valueEnrollmentKeyClear = $formValues.find('input.enrollmentKey_clear:checked').val();
 	if(valueEnrollmentKeyClear != null && valueEnrollmentKeyClear)
 		vals['enrollmentKey'] = null;
-	else if(valueEnrollmentKeyClear != null && valueEnrollmentKeyClear)
+	else if(valueEnrollmentKey != null && valueEnrollmentKey)
 		vals['enrollmentKey'] = valueEnrollmentKey;
 
 	var valueLateFeeDate = $formValues.find('.valueLateFeeDate').val();

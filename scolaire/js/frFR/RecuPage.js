@@ -185,7 +185,7 @@ async function putcopieRecuScolaire($formulaireValeurs, pk, success, error) {
 	var valeurEcoleCleVider = $formulaireValeurs.find('input.ecoleCle_vider:checked').val();
 	if(valeurEcoleCleVider != null && valeurEcoleCleVider)
 		vals['ecoleCle'] = null;
-	else if(valeurEcoleCleVider != null && valeurEcoleCleVider)
+	else if(valeurEcoleCle != null && valeurEcoleCle)
 		vals['ecoleCle'] = valeurEcoleCle;
 
 	var valeurPaiementDescription = $formulaireValeurs.find('.valeurPaiementDescription').val();

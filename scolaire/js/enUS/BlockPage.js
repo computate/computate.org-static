@@ -236,14 +236,14 @@ async function putcopySchoolBlock($formValues, pk, success, error) {
 	var valueAgeKeyClear = $formValues.find('input.ageKey_clear:checked').val();
 	if(valueAgeKeyClear != null && valueAgeKeyClear)
 		vals['ageKey'] = null;
-	else if(valueAgeKeyClear != null && valueAgeKeyClear)
+	else if(valueAgeKey != null && valueAgeKey)
 		vals['ageKey'] = valueAgeKey;
 
 	var valueEnrollmentKeys = $formValues.find('input.valueEnrollmentKeys:checked').val();
 	var valueEnrollmentKeysClear = $formValues.find('input.enrollmentKeys_clear:checked').val();
 	if(valueEnrollmentKeysClear != null && valueEnrollmentKeysClear)
 		vals['enrollmentKeys'] = null;
-	else if(valueEnrollmentKeysClear != null && valueEnrollmentKeysClear)
+	else if(valueEnrollmentKeys != null && valueEnrollmentKeys)
 		vals['enrollmentKeys'] = [valueEnrollmentKeys];
 
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();

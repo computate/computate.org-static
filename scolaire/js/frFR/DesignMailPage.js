@@ -267,14 +267,14 @@ async function putcopieDesignPage($formulaireValeurs, pk, success, error) {
 	var valeurDesignParentClesVider = $formulaireValeurs.find('input.designParentCles_vider:checked').val();
 	if(valeurDesignParentClesVider != null && valeurDesignParentClesVider)
 		vals['designParentCles'] = null;
-	else if(valeurDesignParentClesVider != null && valeurDesignParentClesVider)
+	else if(valeurDesignParentCles != null && valeurDesignParentCles)
 		vals['designParentCles'] = [valeurDesignParentCles];
 
 	var valeurPartHtmlCles = $formulaireValeurs.find('input.valeurPartHtmlCles:checked').val();
 	var valeurPartHtmlClesVider = $formulaireValeurs.find('input.partHtmlCles_vider:checked').val();
 	if(valeurPartHtmlClesVider != null && valeurPartHtmlClesVider)
 		vals['partHtmlCles'] = null;
-	else if(valeurPartHtmlClesVider != null && valeurPartHtmlClesVider)
+	else if(valeurPartHtmlCles != null && valeurPartHtmlCles)
 		vals['partHtmlCles'] = [valeurPartHtmlCles];
 
 	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();

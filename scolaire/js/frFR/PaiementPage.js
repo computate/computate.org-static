@@ -313,7 +313,7 @@ async function putcopiePaiementScolaire($formulaireValeurs, pk, success, error) 
 	var valeurInscriptionCleVider = $formulaireValeurs.find('input.inscriptionCle_vider:checked').val();
 	if(valeurInscriptionCleVider != null && valeurInscriptionCleVider)
 		vals['inscriptionCle'] = null;
-	else if(valeurInscriptionCleVider != null && valeurInscriptionCleVider)
+	else if(valeurInscriptionCle != null && valeurInscriptionCle)
 		vals['inscriptionCle'] = valeurInscriptionCle;
 
 	var valeurFraisRetardDate = $formulaireValeurs.find('.valeurFraisRetardDate').val();

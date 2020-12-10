@@ -185,7 +185,7 @@ async function putcopySchoolReceipt($formValues, pk, success, error) {
 	var valueSchoolKeyClear = $formValues.find('input.schoolKey_clear:checked').val();
 	if(valueSchoolKeyClear != null && valueSchoolKeyClear)
 		vals['schoolKey'] = null;
-	else if(valueSchoolKeyClear != null && valueSchoolKeyClear)
+	else if(valueSchoolKey != null && valueSchoolKey)
 		vals['schoolKey'] = valueSchoolKey;
 
 	var valuePaymentDescription = $formValues.find('.valuePaymentDescription').val();

@@ -1055,14 +1055,14 @@ async function putcopieEcole($formulaireValeurs, pk, success, error) {
 	var valeurAnneeClesVider = $formulaireValeurs.find('input.anneeCles_vider:checked').val();
 	if(valeurAnneeClesVider != null && valeurAnneeClesVider)
 		vals['anneeCles'] = null;
-	else if(valeurAnneeClesVider != null && valeurAnneeClesVider)
+	else if(valeurAnneeCles != null && valeurAnneeCles)
 		vals['anneeCles'] = [valeurAnneeCles];
 
 	var valeurRecuCles = $formulaireValeurs.find('input.valeurRecuCles:checked').val();
 	var valeurRecuClesVider = $formulaireValeurs.find('input.recuCles_vider:checked').val();
 	if(valeurRecuClesVider != null && valeurRecuClesVider)
 		vals['recuCles'] = null;
-	else if(valeurRecuClesVider != null && valeurRecuClesVider)
+	else if(valeurRecuCles != null && valeurRecuCles)
 		vals['recuCles'] = [valeurRecuCles];
 
 	var valeurInheritPk = $formulaireValeurs.find('.valeurInheritPk').val();

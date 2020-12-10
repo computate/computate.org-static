@@ -276,7 +276,7 @@ async function putcopyHtmlPart($formValues, pk, success, error) {
 	var valuePageDesignKeysClear = $formValues.find('input.pageDesignKeys_clear:checked').val();
 	if(valuePageDesignKeysClear != null && valuePageDesignKeysClear)
 		vals['pageDesignKeys'] = null;
-	else if(valuePageDesignKeysClear != null && valuePageDesignKeysClear)
+	else if(valuePageDesignKeys != null && valuePageDesignKeys)
 		vals['pageDesignKeys'] = [valuePageDesignKeys];
 
 	var valueHtmlLink = $formValues.find('.valueHtmlLink').val();

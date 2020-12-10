@@ -188,14 +188,14 @@ async function putcopySchoolAge($formValues, pk, success, error) {
 	var valueYearKeyClear = $formValues.find('input.yearKey_clear:checked').val();
 	if(valueYearKeyClear != null && valueYearKeyClear)
 		vals['yearKey'] = null;
-	else if(valueYearKeyClear != null && valueYearKeyClear)
+	else if(valueYearKey != null && valueYearKey)
 		vals['yearKey'] = valueYearKey;
 
 	var valueBlockKeys = $formValues.find('input.valueBlockKeys:checked').val();
 	var valueBlockKeysClear = $formValues.find('input.blockKeys_clear:checked').val();
 	if(valueBlockKeysClear != null && valueBlockKeysClear)
 		vals['blockKeys'] = null;
-	else if(valueBlockKeysClear != null && valueBlockKeysClear)
+	else if(valueBlockKeys != null && valueBlockKeys)
 		vals['blockKeys'] = [valueBlockKeys];
 
 	var valueInheritPk = $formValues.find('.valueInheritPk').val();
